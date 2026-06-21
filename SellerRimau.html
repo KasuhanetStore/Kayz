@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasuhanet | Hub Jualan & Sistem Affiliate</title>
+    
+    <!-- Google Fonts: Orbitron & Inter untuk Teks Biasa -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           1. VARIABEL TEMA & TETAPAN ASAS (DARK FUTURISTIC)
+           ========================================================================== */
+        :root {
+            --bg-dark: #0b0c10;
+            --bg-card: #1f2833;
+            --text-light: #c5a059;
+            --text-muted: #c5c6c7;
+            --neon-blue: #45f3ff;
+            --neon-glow: 0 0 10px #45f3ff, 0 0 20px #45f3ff;
+            --accent-orange: #fba017;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        /* ==========================================================================
+           2. SISTEM NAVIGASI (HEADER)
+           ========================================================================== */
+        header {
+            background-color: rgba(11, 12, 16, 0.95);
+            border-bottom: 2px solid var(--neon-blue);
+            box-shadow: 0 0 15px rgba(69, 243, 255, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 900;
+        }
+
+        .logo span {
+            color: var(--neon-blue);
+            text-shadow: var(--neon-glow);
+        }
+
+        .btn-back-menu {
+            text-decoration: none;
+            color: var(--neon-blue);
+            border: 1px solid var(--neon-blue);
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back-menu:hover {
+            background-color: var(--neon-blue);
+            color: var(--bg-dark);
+            box-shadow: var(--neon-glow);
+        }
+
+        /* ==========================================================================
+           3. HERO BANNER SECTION
+           ========================================================================== */
+        .hero-section {
+            background: linear-gradient(135deg, #1f2833 0%, #0b0c10 100%);
+            border-bottom: 1px solid rgba(69, 243, 255, 0.1);
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--white);
+            text-shadow: 0 0 10px rgba(255,255,255,0.2);
+        }
+
+        .hero-section p {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 16px;
+        }
+
+        /* ==========================================================================
+           4. KANDUNGAN UTAMA & FILTERS
+           ========================================================================== */
+        .main-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            color: var(--white);
+        }
+
+        /* Butang Tapis Dinamik */
+        .filter-tags {
+            display: flex;
+            gap: 10px;
+        }
+
+        .badge-tag {
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .badge-tag.active, .badge-tag:hover {
+            background: var(--neon-blue);
+            color: var(--bg-dark);
+            border-color: var(--neon-blue);
+            box-shadow: var(--neon-glow);
+        }
+
+        /* ==========================================================================
+           5. PRODUCT GRID & CARD LAYOUT
+           ========================================================================== */
+        .grid-products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .card-product {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            position: relative;
+        }
+
+        .card-product:hover {
+            transform: translateY(-5px);
+            border-color: var(--neon-blue);
+            box-shadow: 0 5px 20px rgba(69, 243, 255, 0.15);
+        }
+
+        /* Elemen Gambar Preview */
+        .product-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 190px;
+            background-color: #151c24;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .product-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Label Jenis Produk */
+        .product-label {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 4px 10px;
+            font-size: 10px;
+            font-weight: bold;
+            font-family: 'Orbitron', sans-serif;
+            border-radius: 3px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 2;
+        }
+
+        .label-own { background-color: var(--accent-orange); color: #000; }
+        .label-affiliate { background-color: var(--neon-blue); color: #000; box-shadow: var(--neon-glow); }
+
+        /* Kandungan Maklumat Produk */
+        .product-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--white);
+            line-height: 1.4;
+        }
+
+        .product-price {
+            font-size: 18px;
+            color: var(--neon-blue);
+            font-weight: 700;
+            margin-top: auto;
+            margin-bottom: 15px;
+        }
+
+        /* Butang Tindakan */
+        .btn-action {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-own {
+            background-color: var(--accent-orange);
+            color: #000;
+        }
+
+        .btn-own:hover {
+            background-color: #ffb43a;
+            box-shadow: 0 0 10px rgba(251, 160, 23, 0.5);
+        }
+
+        .btn-affiliate {
+            background-color: transparent;
+            color: var(--neon-blue);
+            border: 1px solid var(--neon-blue);
+        }
+
+        .btn-affiliate:hover {
+            background-color: var(--neon-blue);
+            color: var(--bg-dark);
+            box-shadow: var(--neon-glow);
+        }
+
+        /* ==========================================================================
+           6. FLOATING WHATSAPP SOKONGAN
+           ========================================================================== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50px;
+            text-align: center;
+            padding: 12px 20px;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
+            text-decoration: none;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.05);
+            background-color: #20ba5a;
+        }
+
+        /* ==========================================================================
+           7. PERSISTENT FOOTER
+           ========================================================================== */
+        footer {
+            background-color: #050608;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--text-muted);
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 13px;
+        }
+
+        footer p a {
+            color: var(--neon-blue);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">KASUHA<span>NET</span></a>
+            <a href="../" class="btn-back-menu">← Kembali Ke Menu</a>
+        </div>
+    </header>
+
+    <!-- Hero Banner Promosi -->
+    <section class="hero-section">
+        <h1>PORTAL JUALAN & HUB AFFILIATE</h1>
+        <p>Akses pantas ke modul e-learning sistem, servis utama, serta produk pengurusan perkakasan komputer pilihan.</p>
+    </section>
+
+    <!-- Kandungan Utama Grid -->
+    <main class="main-container">
+        
+        <div class="section-header">
+            <h2 class="section-title">Katalog Hub Jualan</h2>
+            
+            <!-- Filter Pembahagi Menggunakan JavaScript Ringkas -->
+            <div class="filter-tags">
+                <button class="badge-tag active" onclick="filterProducts('all')">Semua Item</button>
+                <button class="badge-tag" onclick="filterProducts('own')">Produk/Servis</button>
+                <button class="badge-tag" onclick="filterProducts('affiliate')">Affiliate</button>
+            </div>
+        </div>
+
+        <div class="grid-products">
+            
+            <!-- ITEM 1: Produk Sendiri (Ebook / Setup Website) -->
+            <div class="card-product item-type-own">
+                <span class="product-label label-own">Produk Kami</span>
+                <div class="product-img-wrapper">
+                    <!-- Sila masukkan URL imej banner sebenar anda di placeholder src -->
+                    <img src="https://via.placeholder.com/300x190/151c24/ffffff?text=Ebook+PC+/+Setup+VPS" alt="Servis Web">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">Ebook Naik Taraf PC & Pakej Setup VPS Website</h3>
+                    <p class="product-price">RM 150.00</p>
+                    <a href="#" class="btn-action btn-own">Beli Sekarang</a>
+                </div>
+            </div>
+
+            <!-- ITEM 2: Produk Affiliate (Shopee/Lazada) -->
+            <div class="card-product item-type-affiliate">
+                <span class="product-label label-affiliate">Rekomendasi</span>
+                <div class="product-img-wrapper">
+                    <img src="https://via.placeholder.com/300x190/151c24/ffffff?text=Alatan+Hardware+PC" alt="Hardware Affiliate">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">Hardware PC Pilihan & Alatan Pembersihan Khas</h3>
+                    <p class="product-price">Semak Harga Terkini</p>
+                    <a href="#" class="btn-action btn-affiliate">Lihat di Shopee</a>
+                </div>
+            </div>
+
+            <!-- ITEM 3: Contoh Tambahan Produk Sendiri (E-Learn / Kursus) -->
+            <div class="card-product item-type-own">
+                <span class="product-label label-own">E-Learn</span>
+                <div class="product-img-wrapper">
+                    <img src="https://via.placeholder.com/300x190/151c24/ffffff?text=Akses+E-Learning" alt="E-Learn">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">Akses VIP Pembelajaran Sistem & Pengurusan Jualan</h3>
+                    <p class="product-price">RM 50.00</p>
+                    <a href="#" class="btn-action btn-own">Daftar Sekarang</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/60123456789" class="whatsapp-float" target="_blank">
+        <span>💬 Hubungi Bantuan</span>
+    </a>
+
+    <!-- Footer Sistem Semakan -->
+    <footer>
+        <p>&copy; 2026 <a href="#">Kasuhanet</a>. Hak Cipta Terpelihara.</p>
+    </footer>
+
+    <!-- JavaScript Ringkas Untuk Fungsi Tapis (Filter) -->
+    <script>
+        function filterProducts(category) {
+            // Tukar status aktif butang tapis
+            const buttons = document.querySelectorAll('.badge-tag');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Proses tapis kad produk
+            const ownItems = document.querySelectorAll('.item-type-own');
+            const affiliateItems = document.querySelectorAll('.item-type-affiliate');
+
+            if (category === 'all') {
+                ownItems.forEach(item => item.style.display = 'flex');
+                affiliateItems.forEach(item => item.style.display = 'flex');
+            } else if (category === 'own') {
+                ownItems.forEach(item => item.style.display = 'flex');
+                affiliateItems.forEach(item => item.style.display = 'none');
+            } else if (category === 'affiliate') {
+                ownItems.forEach(item => item.style.display = 'none');
+                affiliateItems.forEach(item => item.style.display = 'flex');
+            }
+        }
+    </script>
+
+</body>
+</html>
