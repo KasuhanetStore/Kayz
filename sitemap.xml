@@ -4,12 +4,14 @@
     <loc>https://kasuhanet.store/</loc>
   </url>
   <url>
-    <loc>https://kasuhanet.store/About.html</loc>
+    <loc>https://kasuhanet.store/indexEnglishVersion.html</loc>
   </url>
+   <loc>https://kasuhanet.store/indexMalayVersi.html</loc>
   <url>
-    <loc>https://kasuhanet.store/Support.html</loc>
+    <loc>https://kasuhanet.store/SupportENVersion.html</loc>
   </url>
+      <loc>https://kasuhanet.store/SupportBMVersi.html</loc>
   <url>
-    <loc>https://kasuhanet.store/Website-Service.html</loc>
+    <loc>https://kasuhanet.store/index.html</loc>
   </url>
 </urlset>
