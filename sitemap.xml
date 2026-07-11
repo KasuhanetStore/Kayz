@@ -2,19 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kasuhanet.store/</loc>
-  <url>
-    <loc>https://kasuhanet.store/indexEnglishVersion.html</loc>
   </url>
-   <loc>https://kasuhanet.store/indexMalayVersi.html</loc>
-  <url>
-    <loc>https://kasuhanet.store/SupportENVersion.html</loc>
-  </url>
-      <loc>https://kasuhanet.store/SupportBMVersi.html</loc>
   <url>
     <loc>https://kasuhanet.store/index.html</loc>
   </url>
-      <loc>https://kasuhanet.store/termsEnglishVersion.html</loc>
+  <url>
+    <loc>https://kasuhanet.store/indexEnglishVersion.html</loc>
   </url>
-      <loc>https://kasuhanet.store/termsMalayVersi.html</loc>
-    </url>
+  <url>
+    <loc>https://kasuhanet.store/indexMalayVersi.html</loc>
+  </url>
+  <url>
+    <loc>https://kasuhanet.store/SupportENVersion.html</loc>
+  </url>
+  <url>
+    <loc>https://kasuhanet.store/SupportBMVersi.html</loc>
+  </url>
+  <url>
+    <loc>https://kasuhanet.store/termsEnglishVersion.html</loc>
+  </url>
+  <url>
+    <loc>https://kasuhanet.store/termsMalayVersi.html</loc>
+  </url>
 </urlset>
