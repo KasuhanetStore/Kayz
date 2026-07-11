@@ -1,5 +1,7 @@
+
+
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="en">
 <head>
 
 <meta charset="UTF-8">
@@ -40,14 +42,14 @@
 
 <meta property="og:site_name" content="KasuhaNET.STORE">
 
-<meta property="og:locale" content="ms_MY">
+<meta property="og:locale" content="en_US">
 
 <!-- TWITTER -->
 <meta name="twitter:card" content="summary_large_image">
 
 <meta name="twitter:title" content="KasuhaNET.STORE | Multi-Service Digital Platform">
 
-<meta name="twitter:description" content="Platform digital moden meliputi servis teknikal, pembangunan website dan HMS ecosystem.">
+<meta name="twitter:description" content="Modern digital platform covering technical services, website development and HMS ecosystem.">
 
 <meta name="twitter:image" content="https://kasuhanet.store/img/logo3.webp">
 
@@ -97,24 +99,6 @@ nav a {
     text-decoration: none;
     margin: 0 10px;
     font-size: 13px;
-}
-
-/* LANG BUTTONS DESIGN */
-.lang button {
-    background: transparent;
-    border: 1px solid rgba(0, 240, 255, 0.4);
-    color: #00F0FF;
-    padding: 4px 10px;
-    font-size: 12px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-}
-
-.lang button:hover, .lang button.active {
-    background: #00F0FF;
-    color: #05070d;
-    box-shadow: 0 0 10px #00F0FF;
 }
 
 /* GRID SYSTEM BAHAGIAN TENGAH */
@@ -338,36 +322,26 @@ nav a {
     </div>
 
     <nav>
-        <a href="index.html">HOME</a>
+        <a href="indexEnglishVersion.html">HOME</a>
         <a href="AboutENversion.html">ABOUT</a>
-        <a href="terms.html">TERM POLICY</a>
-        <a href="Support.html">SUPPORT</a>
-    </header> <!-- Tag sedia ada kau -->
+        <a href="termsEnglishVersion.html">TERM POLICY</a>
+        <a href="SupportENVersion.html">SUPPORT</a>
+    </nav>
+</header>
 
-<!-- TAMBAH BAHAGIAN KREDIT KERJASAMA DI SINI -->
+<!-- PARTNER CREDIT BAR -->
 <div class="partner-credit-bar">
-    <div class="credit-text" data-en="Web powered by collaboration of Joint Organisations & Companies" data-ms="Web dikuasakan Oleh dengan KerjaSama Pertubuhan dan Syarikat Bersama">
-        Web dikuasakan Oleh dengan KerjaSama Pertubuhan dan Syarikat Bersama
+    <div class="credit-text">
+        Web powered by collaboration of Joint Organisations & Companies
     </div>
     <div class="partner-logos">
         <span class="partner-name">Kasuha Okulus Organisation</span>
         <div class="partner-logo-box">
-            <!-- Gantikan img/logo-small.png dengan path file logo kecil kau -->
-            <img src="OculusLogo.png" alt="Logo Kerjasama">
+            <img src="OculusLogo.png" alt="Collaboration Logo">
         </div>
-        <span class="partner-name">KasuhaNET Resources</span></div>
-</header>
-    <div class="lang-wrapper">
-        <div class="reflect"></div>
-        <div class="lang">
-            <!-- Button EN ke versi Inggeris -->
-            <button onclick="window.location.href='indexEnglishVersion.html'" id="btn-en">EN</button>
-            
-            <!-- Button BM ke versi Melayu -->
-            <button onclick="window.location.href='indexMalayVersi.html'" id="btn-ms" class="active">BM</button>
-        </div>
+        <span class="partner-name">KasuhaNET Resources</span>
     </div>
-  </section>
+</div>
 
 <main>
 
@@ -376,14 +350,13 @@ nav a {
         <h1 class="neon-title">Kasuha<span>NET.STORE</span></h1>
         
         <div class="typing-box">
-            <!-- Menambah ID / Atribut Bahasa Khusus Untuk Pemilihan Teks Sub-Title Yang Dinamik -->
-            <h2 style="font-size: 18px; margin: 10px 0; color:#4F31E8;" id="sub-title" data-en="KasuhaNET • Shop Platform Site" data-ms="KasuhaNET • Laman Platform">
+            <h2 style="font-size: 18px; margin: 10px 0; color:#4F31E8;">
                 <span style="color:#4F31E8; text-shadow:0 0 20px #E600A4;">KasuhaNET •</span>
-                <span style="color:#E600A4; text-shadow:0 0 20px #E600A4;">Laman Platform</span>
+                <span style="color:#E600A4; text-shadow:0 0 20px #E600A4;">Shop Platform Site</span>
             </h2>
             
-            <p class="neon-desc" id="hero-desc" data-en="Hybrid selling platform and Multi-Service Digital Tools." data-ms="Platform jualan hibrid dan Servis pelbagai Tools Digital.">
-                Platform jualan hibrid dan Servis pelbagai Tools Digital.
+            <p class="neon-desc">
+                Hybrid selling platform and Multi-Service Digital Tools.
             </p>
         </div>
     </section>
@@ -406,52 +379,50 @@ nav a {
 
     <!-- SOLUTIONS SECTION -->
     <section class="section">
-        <h2 style="color:#4F31E8; font-size: 18px; margin-bottom: 15px;" id="sol-title" data-en="• SOLUTION FOR YOU •" data-ms="• SOLUSI UNTUK ANDA •">
-            • SOLUSI UNTUK ANDA •
+        <h2 style="color:#4F31E8; font-size: 18px; margin-bottom: 15px;">
+            • SOLUTION FOR YOU •
         </h2>
 
         <div class="grid">
             <div class="card">
-                <h3 id="rc-title" data-en="READ CENTRE" data-ms="PUSAT BACAAN">PUSAT BACAAN</h3>
-                <p id="rc-desc" 
-                   data-en="Terminal Command.CODEX-Got 1 command combine in 1 Prepared install Depencies with less Command Typing + Terminal linux,Penguin and Other manage data contained web data.Running on process Done."
-                   data-ms="CODEX arahan terminal digabungkan dalam satu sistem pemasangan dependency dengan penggunaan command lebih ringkas untuk Linux Terminal, Penguin dan lain-lain. Membantu pengurusan data web dan proses selesai."> 
-                    CODEX arahan terminal digabungkan dalam satu sistem pemasangan dependency dengan penggunaan command lebih ringkas untuk Linux Terminal, Penguin dan lain-lain. Membantu pengurusan data web dan proses selesai.
+                <h3>READ CENTRE</h3>
+                <p>
+                    Terminal Command.CODEX-Got 1 command combine in 1 Prepared install Depencies with less Command Typing + Terminal linux,Penguin and Other manage data contained web data.Running on process Done.
                 </p>
             </div>
         </div>
-    </section></div>
+    </section>
 
- <!-- E-LEARN SECTION -->
-<section class="section">
-    <h2 style="font-size: 18px; margin-bottom: 15px;" id="learn-title" data-en="Plan E-Learn" data-ms="Plan E-PANDUAN">Plan E-PANDUAN</h2>
+    <!-- E-LEARN SECTION -->
+    <section class="section">
+        <h2 style="font-size: 18px; margin-bottom: 15px;">Plan E-Learn</h2>
 
-    <div class="grid">
-        
-        <!-- KAD 1: WEB SERVICE -->
-        <a href="Website-Service.html" class="card-bg-box" style="background-image: url('PreviewCodingWeb.jpg');">
-            <div class="card-overlay"></div>
-            <div class="card-content">
-                <h3 id="step-title" data-en="Get STEP NOW!" data-ms="Dapatkan LANGKAH SETERUSNYA SEKARANG!">Dapatkan LANGKAH SETERUSNYA SEKARANG!</h3>
-                <p id="step-desc" data-en="E-Learn Web Design Plan after success Purchase Web Price RM299-RM345!" data-ms="E-Panduan Pelan Laman Web selepas berjaya beli Web berharga anggaran RM299-RM345!">
-                    E-Panduan Pelan Laman Web selepas berjaya beli Web berharga anggaran RM299-RM345!
-                </p>
-            </div>
-        </a>
+        <div class="grid">
+            
+            <!-- CARD 1: WEB SERVICE -->
+            <a href="Website-Service.html" class="card-bg-box" style="background-image: url('PreviewCodingWeb.jpg');">
+                <div class="card-overlay"></div>
+                <div class="card-content">
+                    <h3>Get STEP NOW!</h3>
+                    <p>
+                        E-Learn Web Design Plan after success Purchase Web Price RM299-RM345!
+                    </p>
+                </div>
+            </a>
 
-        <!-- KAD 2: CASHOUT PAYLATER -->
-        <a href="CashOutServicePayLater.html" class="card-bg-box" style="background-image: url('BNPLclick.webp');">
-            <div class="card-overlay"></div>
-            <div class="card-content">
-                <h3 id="fin-title" data-en="Finance Urgent Service+" data-ms="Servis+ Kewangan Segera">Servis Kewangan Segera</h3>
-                <p id="fin-desc" data-en="Paylater withdraw" data-ms="Keluarkan Tunai PayLater">Keluarkan Tunai PayLater</p>
-            </div>
-        </a>
+            <!-- CARD 2: CASHOUT PAYLATER -->
+            <a href="CashOutServicePayLaterENVersion.html" class="card-bg-box" style="background-image: url('BNPLclick.webp');">
+                <div class="card-overlay"></div>
+                <div class="card-content">
+                    <h3>Finance Urgent Service+</h3>
+                    <p>Paylater withdraw</p>
+                </div>
+            </a>
 
-    </div>
-</section>
+        </div>
+    </section>
 
-<!-- Tambahan CSS untuk kawal Grid dan Background Gambar -->
+<!-- Additional CSS for Grid and Background Images Control -->
 <style>
     .grid {
         display: grid;
@@ -460,7 +431,6 @@ nav a {
         margin-top: 15px;
     }
 
-    /* Kotak Kad Utama yang memegang Gambar Background */
     .card-bg-box {
         position: relative;
         display: block;
@@ -471,12 +441,11 @@ nav a {
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        min-height: 180px; /* Jamin kotak ada ketinggian yang cukup */
+        min-height: 180px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
         transition: all 0.4s ease;
     }
 
-    /* Lapisan gelap (Overlay) atas gambar supaya teks tak tenggelam dan senang dibaca */
     .card-overlay {
         position: absolute;
         top: 0;
@@ -488,16 +457,15 @@ nav a {
         z-index: 1;
     }
 
-    /* Kandungan teks di dalam kad */
     .card-content {
         position: relative;
         padding: 20px;
-        z-index: 2; /* Letak teks atas daripada overlay */
+        z-index: 2;
     }
 
     .card-content h3 {
         font-family: 'Orbitron', sans-serif;
-        color: #00ffcc; /* Warna neon kegemaran kau */
+        color: #00ffcc;
         font-size: 16px;
         margin-bottom: 8px;
         text-transform: uppercase;
@@ -510,7 +478,6 @@ nav a {
         line-height: 1.4;
     }
 
-    /* Kesan Hover ala Cyberpunk/Modern Website */
     .card-bg-box:hover {
         transform: translateY(-4px);
         border-color: #00ffcc;
@@ -520,67 +487,68 @@ nav a {
     .card-bg-box:hover .card-overlay {
         background: linear-gradient(135deg, rgba(11, 15, 25, 0.7) 10%, rgba(0, 191, 255, 0.4) 100%);
     }
-/* PARTNER CREDIT BAR CSS */
-.partner-credit-bar {
-    background: rgba(9, 13, 22, 0.6);
-    border-bottom: 1px dashed rgba(0, 240, 255, 0.2);
-    padding: 8px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    text-align: center;
-}
 
-.credit-text {
-    font-size: 10px;
-    color: #666;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-.partner-logos {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-}
-
-.partner-name {
-    font-size: 11px;
-    color: #8fa0dd;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-}
-
-.partner-logo-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(5, 7, 13, 0.8);
-    border: 1px solid rgba(230, 0, 164, 0.3);
-    padding: 4px 8px;
-    border-radius: 4px;
-    box-shadow: 0 0 8px rgba(230, 0, 164, 0.1);
-}
-
-.partner-logo-box img {
-    height: 14px; /* Saiz logo dibuat kecil & tidak mengganggu pandangan */
-    width: auto;
-    filter: drop-shadow(0 0 2px #00F0FF);
-}
-
-/* RESPONSIVE UNTUK SKRIN TELEFON */
-@media (max-width: 600px) {
-    .partner-logos {
+    /* PARTNER CREDIT BAR CSS */
+    .partner-credit-bar {
+        background: rgba(9, 13, 22, 0.6);
+        border-bottom: 1px dashed rgba(0, 240, 255, 0.2);
+        padding: 8px 20px;
+        display: flex;
         flex-direction: column;
-        gap: 5px;
-    }
-    .partner-name {
-        font-size: 10px;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        text-align: center;
     }
 
+    .credit-text {
+        font-size: 10px;
+        color: #666;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    .partner-logos {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .partner-name {
+        font-size: 11px;
+        color: #8fa0dd;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+    }
+
+    .partner-logo-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(5, 7, 13, 0.8);
+        border: 1px solid rgba(230, 0, 164, 0.3);
+        padding: 4px 8px;
+        border-radius: 4px;
+        box-shadow: 0 0 8px rgba(230, 0, 164, 0.1);
+    }
+
+    .partner-logo-box img {
+        height: 14px;
+        width: auto;
+        filter: drop-shadow(0 0 2px #00F0FF);
+    }
+
+    /* RESPONSIVE FOR MOBILE */
+    @media (max-width: 600px) {
+        .partner-logos {
+            flex-direction: column;
+            gap: 5px;
+        }
+        .partner-name {
+            font-size: 10px;
+        }
+    }
 </style>
 </main>
 
@@ -593,7 +561,7 @@ nav a {
         </div>
 
         <div class="footer-links">
-            <h4 id="f-serv" data-en="Services" data-ms="Servis">Servis</h4>
+            <h4>Services</h4>
             <a href="CommandCanDoLIST.html">Command Can Do</a>
             <a href="AffliateShopSupport.html">By Affiliate</a>
             <a href="CashOutServicePayLater.html">Finance PL</a>
@@ -601,9 +569,9 @@ nav a {
 
         <div class="footer-links">
             <h4>Resources</h4>
-            <a href="About.html">About</a>
-            <a href="Support.html">Support</a>
-            <a href="termsMalayVersi.html">Terms Policy</a>
+            <a href="AboutENversion.html">About</a>
+            <a href="SupportENVersion.html">Support</a>
+            <a href="termsEnglishVersion.html">Terms Policy</a>
         </div>
 
         <div class="footer-links">
@@ -641,33 +609,6 @@ nav a {
      <path d="M16 3C9.37 3 4 8.37 4 15c0 2.31.66 4.47 1.8 6.32L4 29l7.9-1.75C13.64 28.55 14.78 29 16 29c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 22c-1.1 0-2.16-.2-3.14-.57l-.45-.17-4.69 1.04 1-4.57-.3-.47C7.39 18.35 7 16.72 7 15c0-4.96 4.04-9 9-9s9 4.04 9 9-4.04 10-9 10z"/>
    </svg>
 </a>
-
-<!-- JAVASCRIPT TRANSLATION ENGINE -->
-<script>
-function setLang(lang) {
-    // Cari semua elemen yang mempunyai atribut data-en dan data-ms
-    const elements = document.querySelectorAll('[data-en][data-ms]');
-    
-    elements.forEach(el => {
-        if (el.id === 'sub-title') {
-            // Pengendalian khas untuk sub-title berserta reka bentuk warna span asal
-            if (lang === 'en') {
-                el.innerHTML = '<span style="color:#4F31E8; text-shadow:0 0 20px #E600A4;">KasuhaNET •</span> <span style="color:#E600A4; text-shadow:0 0 20px #E600A4;">Shop Platform Site</span>';
-            } else {
-                el.innerHTML = '<span style="color:#4F31E8; text-shadow:0 0 20px #E600A4;">KasuhaNET •</span> <span style="color:#E600A4; text-shadow:0 0 20px #E600A4;">Laman Platform</span>';
-            }
-        } else {
-            // Tukar teks biasa mengikut bahasa pilihan
-            el.textContent = el.getAttribute('data-' + lang);
-        }
-    });
-
-    // Kemas kini gaya butang aktif
-    document.getElementById('btn-en').classList.remove('active');
-    document.getElementById('btn-ms').classList.remove('active');
-    document.getElementById('btn-' + lang).classList.add('active');
-}
-</script>
 
 </body>
 </html>

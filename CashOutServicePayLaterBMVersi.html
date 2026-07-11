@@ -1,0 +1,303 @@
+      <!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cash Out PayLater - Permohonan</title>
+  
+  <!-- Google Fonts: Orbitron & Rajdhani -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-color: #0b0f19;
+      --card-bg: #131c2e;
+      --primary-neon: #00ffcc;
+      --secondary-neon: #00bfff;
+      --alert-neon: #ff3366;
+      --text-main: #ffffff;
+      --text-muted: #8fa0dd;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Orbitron', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--primary-neon);
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+
+    /* NOTICE & TERMS BOX */
+    .card-box {
+      background-color: var(--card-bg);
+      border: 1px solid rgba(0, 255, 204, 0.2);
+      padding: 25px;
+      border-radius: 8px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .notice-box {
+      border-left: 4px solid var(--alert-neon);
+      background: rgba(255, 51, 102, 0.05);
+    }
+
+    .notice-box h3 {
+      color: var(--alert-neon);
+      margin-bottom: 15px;
+    }
+
+    .terms-box h2 {
+      color: var(--primary-neon);
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 15px 0;
+    }
+
+    ul li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+      color: var(--text-muted);
+    }
+
+    ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--primary-neon);
+    }
+
+    .highlight-alert {
+      color: var(--alert-neon);
+      font-weight: bold;
+    }
+
+    /* INPUT FORMS */
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--primary-neon);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 14px;
+    }
+
+    .input-group input, .input-group select {
+      width: 100%;
+      padding: 12px;
+      background: rgba(11, 15, 25, 0.8);
+      border: 1px solid rgba(143, 160, 221, 0.4);
+      color: #fff;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 18px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .input-group input:focus, .input-group select:focus {
+      outline: none;
+      border-color: var(--primary-neon);
+      box-shadow: 0 0 8px rgba(0, 255, 204, 0.5);
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 20px 0;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 16px;
+    }
+
+    .checkbox-container input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary-neon);
+      margin-top: 3px;
+    }
+
+    /* ACTION BUTTON */
+    .submit-btn {
+      width: 100%;
+      background: linear-gradient(90deg, var(--primary-neon), var(--secondary-neon));
+      border: none;
+      color: var(--bg-color);
+      padding: 15px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
+    }
+
+    .submit-btn:hover {
+      box-shadow: 0 0 25px var(--primary-neon);
+      transform: translateY(-2px);
+    }
+
+    /* UTILITY */
+    .badge {
+      background: rgba(0, 255, 204, 0.1);
+      color: var(--primary-neon);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 14px;
+      border: 1px solid rgba(0, 255, 204, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <h1>Sistem Cash Out PayLater</h1>
+
+  <!-- NOTIS KESELAMATAN -->
+  <div class="card-box notice-box">
+    <h3>! NOTIS KELAYAKAN MUTLAK</h3>
+    <p>Sila pastikan anda memenuhi kriteria wajib di bawah sebelum meneruskan permohonan:</p>
+    <ul>
+      <li class="highlight-alert">HANYA pemohon yang mempunyai ID identiti NAMA YANG SAMA dengan Penama Akaun Bank penerima sahaja akan diproses.</li>
+      <li>Sekiranya NAMA akaun PayLater dan NAMA akaun bank bercanggah, permohonan akan DITOLAK SECARA AUTOMATIK demi keselamatan.</li>
+      <li>Platform Sokongan Rasmi: <span class="badge">Boost PayFlex</span> <span class="badge">SPayLater</span> <span class="badge">Grab PayLater</span> <span class="badge">Atome</span> & platform lain yang bersesuaian.</li>
+    </ul>
+  </div>
+
+  <!-- TERMA & SYARAT DETAIL -->
+  <div class="card-box terms-box">
+    <h2>Terma & Syarat Pengeluaran</h2>
+    <p>Dengan menghantar permohonan ini, anda dianggap telah membaca dan bersetuju dengan ketetapan berikut:</p>
+    <ul>
+      <li>Caj perkhidmatan (processing fee) adalah sebanyak <strong>5%</strong> daripada jumlah keseluruhan pengeluaran.</li>
+      <li>Proses pengesahan mengambil masa bergantung kepada giliran sistem (pemberitahuan akaun syarikat akan diberikan setelah lulus semakan).</li>
+      <li>Sebarang kesilapan transaksi atas kecuaian sendiri (salah nombor akaun/jumlah) adalah tanggungjawab pemohon sepenuhnya.</li>
+    </ul>
+  </div>
+
+  <!-- BORANG PERMOHONAN -->
+  <div class="card-box">
+    <h2 style="color: var(--secondary-neon); margin-bottom: 20px; font-size: 1.4rem;">Borang Permohonan Cash Out</h2>
+    
+    <form onsubmit="processWhatsAppApplication(); return false;">
+      
+      <div class="input-group">
+        <label>Nama Penuh (Mestilah Sama Seperti Dalam Kad Pengenalan & Bank)</label>
+        <input type="text" id="inp-nama" placeholder="CONTOH: ALEX RAFFLES / ALI BIN ABU" required>
+      </div>
+
+      <div class="input-group">
+        <label>Platform PayLater Yang Digunakan</label>
+        <select id="inp-platform" required>
+          <option value="" disabled selected>-- Pilih Platform --</option>
+          <option value="Boost PayFlex">Boost PayFlex</option>
+          <option value="SPayLater">SPayLater</option>
+          <option value="Grab PayLater">Grab PayLater</option>
+          <option value="Atome">Atome</option>
+          <option value="Lain-Lain Bersesuaian">Lain-Lain Bersesuaian</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label>Nama Bank Penerima</label>
+        <input type="text" id="inp-bank" placeholder="Contoh: Maybank / CIMB" required>
+      </div>
+
+      <div class="input-group">
+        <label>Nombor Akaun Bank</label>
+        <input type="text" id="inp-akaun" placeholder="Masukkan nombor akaun tanpa sengkangan (-)" required>
+      </div>
+
+      <div class="input-group">
+        <label>Jumlah Tunai Cash Out (RM)</label>
+        <input type="number" id="inp-jumlah" placeholder="Contoh: 500" min="10" required>
+      </div>
+
+      <div class="input-group">
+        <label>ID / Username / Pautan Profil PayLater</label>
+        <input type="text" id="inp-id" placeholder="Masukkan username atau pautan pengesahan" required>
+      </div>
+
+      <label class="checkbox-container">
+        <input type="checkbox" id="chk-agree" required>
+        <span>Saya mengesahkan nama akaun bank saya adalah SAMA dengan nama akaun PayLater, dan bersetuju dengan semua Terma & Syarat di atas.</span>
+      </label>
+
+      <button type="submit" class="submit-btn">Hantar Permohonan Via WhatsApp</button>
+
+    </form>
+  </div>
+
+</div>
+
+<script>
+function processWhatsAppApplication(){
+  const nama     = document.getElementById("inp-nama").value.toUpperCase();
+  const platform = document.getElementById("inp-platform").value;
+  const bank     = document.getElementById("inp-bank").value;
+  const akaun    = document.getElementById("inp-akaun").value;
+  const jumlah   = document.getElementById("inp-jumlah").value;
+  const plId     = document.getElementById("inp-id").value;
+
+  const textMessage = 
+`! PERMOHONAN CASH OUT BNPL !
+----------------------------------
+Nama Pemohon  : ${nama}
+Platform PL   : ${platform}
+Nama Bank     : ${bank}
+No Akaun Bank : ${akaun}
+Jumlah Req    : RM ${jumlah}
+ID / Link PL  : ${plId}
+----------------------------------
+*Status Identiti: Nama Bank & BNPL adalah SAMA.*
+*Pemohon bersetuju dengan Terma & Syarat (Caj 5%).*`;
+
+  const targetPhone = "60167390501"; 
+  const whatsappUrl = `https://wa.me/${targetPhone}?text=${encodeURIComponent(textMessage)}`;
+
+  window.open(whatsappUrl, "_blank");
+}
+</script>
+
+</body>
+</html>
