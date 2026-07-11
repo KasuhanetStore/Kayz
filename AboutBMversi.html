@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- MAIN SEO -->
+    <title>Tentang Kita | KasuhaNET.STORE</title>
+    <meta name="description" content="Ketahui lebih lanjut mengenai KasuhaNET.STORE, platform digital pelbagai servis yang merangkumi pembangunan laman web, sistem Linux, dan alatan digital.">
+    <meta name="keywords" content="Tentang KasuhaNET, Kasuha Zukarnain, Kasuha Okulus, KasuhaNET Resources, konfigurasi Linux, pembangunan web">
+    <meta name="author" content="Kasuhanet Resources">
+    <meta name="robots" content="index, follow">
+
+    <!-- CANONICAL -->
+    <link rel="canonical" href="https://kasuhanet.store/AboutMalayVersi.html">
+
+    <!-- FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- OPEN GRAPH -->
+    <meta property="og:title" content="Tentang Kita | KasuhaNET.STORE">
+    <meta property="og:description" content="Ketahui lebih lanjut mengenai KasuhaNET.STORE, platform digital pelbagai servis yang merangkumi pembangunan laman web, sistem Linux, dan alatan digital.">
+    <meta property="og:image" content="https://kasuhanet.store/img/logo3.webp">
+    <meta property="og:url" content="https://kasuhanet.store/AboutMalayVersi.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="KasuhaNET.STORE">
+
+    <!-- MOBILE -->
+    <meta name="theme-color" content="#05070d">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/home-main.js"></script>
+
+    <style>
+        /* GLOBAL CYBER FONT & RESET */
+        * {
+            font-family: 'Orbitron', sans-serif !important;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #05070d;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 15px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: rgba(5, 7, 13, 0.9);
+            border-bottom: 1px solid rgba(79, 49, 232, 0.2);
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 13px;
+        }
+
+        /* GRID SYSTEM */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin: 20px auto;
+            width: 100%;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(79, 49, 232, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .card:hover {
+            border-color: #00F0FF;
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        /* ABOUT CONTENT CUSTOM STYLING */
+        .about-section {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(79, 49, 232, 0.3);
+            border-radius: 8px;
+            padding: 35px 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+
+        .about-title {
+            color: #fff;
+            font-size: clamp(28px, 5vw, 50px);
+            line-height: 1.2;
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .about-title span {
+            color: #E600A4;
+            text-shadow: 0 0 10px #E600A4, 0 0 20px #E600A4;
+        }
+
+        .about-text {
+            color: #ccc;
+            font-size: 14px;
+            line-height: 1.8;
+            text-align: justify;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* DESIGN FOOTER BERBENTUK & BERWARNA KEMAS */
+        .footer {
+            background: #090d16;
+            border-top: 2px solid #4F31E8;
+            box-shadow: 0 -5px 25px rgba(79, 49, 232, 0.15);
+            margin-top: 60px;
+            padding: 30px 20px 15px 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer h3 {
+            color: #fff;
+            margin: 0 0 10px 0;
+            font-size: 18px;
+        }
+
+        .footer h4 {
+            color: #E600A4;
+            margin: 0 0 10px 0;
+            font-size: 14px;
+        }
+
+        .footer p {
+            color: #999;
+            font-size: 12px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 12px;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #00F0FF;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            font-size: 11px;
+            color: #666;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 25px;
+        }
+
+        /* PARTNER CREDIT BAR CSS */
+        .partner-credit-bar {
+            background: rgba(9, 13, 22, 0.6);
+            border-bottom: 1px dashed rgba(0, 240, 255, 0.2);
+            padding: 8px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            text-align: center;
+        }
+
+        .credit-text {
+            font-size: 10px;
+            color: #666;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .partner-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .partner-name {
+            font-size: 11px;
+            color: #8fa0dd;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .partner-logo-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(5, 7, 13, 0.8);
+            border: 1px solid rgba(230, 0, 164, 0.3);
+            padding: 4px 8px;
+            border-radius: 4px;
+            box-shadow: 0 0 8px rgba(230, 0, 164, 0.1);
+        }
+
+        .partner-logo-box img {
+            height: 14px;
+            width: auto;
+            filter: drop-shadow(0 0 2px #00F0FF);
+        }
+
+        /* MOBILE RESPONSIVE FIXES */
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .partner-logos {
+                flex-direction: column;
+                gap: 5px;
+            }
+            .partner-name {
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="bg-animation"></div>
+<div class="stars"></div>
+
+<header>
+    <div class="logo">
+        <img src="img/logo3.png" style="height:25px; width:auto;" alt="Logo">
+    </div>
+
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="AboutMalayVersi.html">ABOUT</a>
+        <a href="termsMalayVersi.html">TERM POLICY</a>
+        <a href="SupportMalayVersi.html">SUPPORT</a>
+    </nav>
+</header>
+
+<!-- BAHAGIAN KREDIT KERJASAMA -->
+<div class="partner-credit-bar">
+    <div class="credit-text">
+        Web dikuasakan dengan KerjaSama Pertubuhan dan Syarikat Bersama
+    </div>
+    <div class="partner-logos">
+        <span class="partner-name">Kasuha Okulus Organisation</span>
+        <div class="partner-logo-box">
+            <img src="OculusLogo.png" alt="Logo Kerjasama">
+        </div>
+        <span class="partner-name">KasuhaNET Resources</span>
+    </div>
+</div>
+
+<!-- MAIN CONTENT BLOCK -->
+<main>
+    <section class="about-section">
+        <!-- TAJUK UTAMA BESAR MALAY VERSION -->
+        <h1 class="about-title" id="about-heading">
+            TENTANG <span>KITA</span>
+        </h1>
+        
+        <!-- PENGENALAN SYARIKAT (MALAY ONLY) -->
+        <div class="about-text">
+            KasuhaNET Resources (202503248308) ialah hab digital termaju yang direka khusus untuk merapatkan jurang antara teknologi sumber terbuka (open-source) yang kompleks dengan ekosistem monetisasi moden. Diinspirasikan daripada visi untuk menyatukan konfigurasi teknikal berprestasi tinggi dengan keperluan digital harian, kami beroperasi dalam paksi sistem Linux, seni bina web tersuai, dan utiliti kewangan pintar.
+        </div>
+
+        <br><br>
+
+        <!-- SUB-TAJUK ECOSYSTEM -->
+        <h2 style="color: #E600A4; font-size: 18px; text-transform: uppercase; margin-bottom: 15px;">
+            • Ekosistem Teras Kami •
+        </h2>
+
+        <!-- TIGA KAD PILAR PEMPERKASAAN -->
+        <div class="grid" style="margin-top: 10px;">
+            <div class="card" style="text-align: left; background: rgba(5, 7, 13, 0.6);">
+                <h3 style="color: #00F0FF; font-size: 14px; margin: 5px 0;">Automasi Linux & Terminal</h3>
+                <p style="font-size: 12px; color: #aaa; margin: 5px 0 0 0; line-height: 1.5;">
+                    Kami mempermudahkan proses deployment dengan menyusun konfigurasi dependency yang kompleks ke dalam rangka kerja satu arahan (CODEX) untuk shell Linux dan persekitaran natif.
+                </p>
+            </div>
+
+            <div class="card" style="text-align: left; background: rgba(5, 7, 13, 0.6);">
+                <h3 style="color: #00F0FF; font-size: 14px; margin: 5px 0;">Web & Monetisasi Hibrid</h3>
+                <p style="font-size: 12px; color: #aaa; margin: 5px 0 0 0; line-height: 1.5;">
+                    Memperkasakan platform affiliate yang dinamik, pengehosan web moden, serta e-panduan berstruktur yang direka khas untuk model perniagaan dalam talian yang sedang berkembang.
+                </p>
+            </div>
+
+            <div class="card" style="text-align: left; background: rgba(5, 7, 13, 0.6);">
+                <h3 style="color: #00F0FF; font-size: 14px; margin: 5px 0;">Kolaborasi Strategik</h3>
+                <p style="font-size: 12px; color: #aaa; margin: 5px 0 0 0; line-height: 1.5;">
+                    Disokong oleh rangka kerja kolaboratif Kasuha Okulus Organisation, kami aktif membina laluan perisian praktikal dan ciri-ciri perdagangan taktikal yang lancar.
+                </p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- BOXED CYBER FOOTER -->
+<footer class="footer">
+    <div class="footer-grid">
+        <div>
+            <h3>KasuhaNET.STORE</h3>
+            <p>Ekosistem digital pelbagai servis yang memfokuskan kepada penyelesaian Linux, sistem affiliate, monetisasi dan pembelajaran digital.</p>
+        </div>
+
+        <div class="footer-links">
+            <h4>Servis</h4>
+            <a href="CommandCanDoLIST.html">Command Can Do</a>
+            <a href="AffliateShopSupport.html">By Affiliate</a>
+            <a href="CashOutServicePayLater.html">Finance PL</a>
+        </div>
+
+        <div class="footer-links">
+            <h4>Sumber</h4>
+            <a href="AboutMalayVersi.html">About</a>
+            <a href="SupportMalayVersi.html">Support</a>
+            <a href="termsMalayVersi.html">Terms Policy</a>
+        </div>
+
+        <div class="footer-links">
+            <h4>Ikuti Kami</h4>
+            <a href="https://facebook.com" target="_blank">Facebook</a>
+            <a href="https://tiktok.com" target="_blank">TikTok</a>
+            <a href="https://telegram.org" target="_blank">Telegram</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 KasuhaNET Resources (202503248308). Hak Cipta Terpelihara.
+    </div>
+</footer>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/60167390501?text=Assalamualaikum,%20saya%20ingin%20bertanya%20tentang%20perkhidmatan%20KasuhaNET.STORE"
+   style="
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    width:60px;
+    height:60px;
+    background:#25D366;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:999999;
+    box-shadow:0 5px 20px rgba(0,0,0,.25);
+   "
+   target="_blank">
+   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="white">
+     <path d="M19.11 17.53c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.28-.73.9-.9 1.09-.17.19-.33.21-.61.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.66-1.55-1.94-.17-.28-.03-.43.11-.57.13-.13.28-.33.42-.49.14-.16.19-.28.28-.46.09-.18.05-.33-.02-.47-.07-.14-.63-1.53-.87-2.1-.23-.55-.47-.48-.64-.48-.16 0-.35-.02-.54-.02s-.51.07-.78.37c-.26.29-1.02 1-1.02 2.44 0 1.44 1.05 2.83 1.2 3.03.15.2 2.07 3.16 5.01 4.43.7.3 1.25.48 1.68.62.7.22 1.34.19 1.84.11.56-.08 1.71-.7 1.96-1.38.25-.68.25-1.26.17-1.38-.08-.13-.28-.2-.56-.34z"/>
+     <path d="M16 3C9.37 3 4 8.37 4 15c0 2.31.66 4.47 1.8 6.32L4 29l7.9-1.75C13.64 28.55 14.78 29 16 29c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 22c-1.1 0-2.16-.2-3.14-.57l-.45-.17-4.67 1.04 1.06-4.52-.19-.4A9.94 9.94 0 0 1 6 15c0-5.51 4.49-10 10-10s10 4.49 10 10-4.49 10-10 10z"/>
+   </svg>
+</a>
+
+</body>
+</html>
