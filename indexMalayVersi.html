@@ -371,11 +371,40 @@ nav a {
             <img src="ShopAffliateSupportLogo.jpg" alt="Sokongan Affiliate">
         </a>
     </div>
+<!-- MIDDLE BANNER (BOLEH DIKLIK DENGAN EFEK CYBERPUNK HOVER) -->
+<section class="hero-banner" style="text-align: center; margin: 25px auto; max-width: 100%;">
+    <a href="WebSellBM.html" class="banner-link">
+        <img src="BannerWebSite.png" alt="Banner" class="banner-img">
+    </a>
+</section>
 
-    <!-- MIDDLE BANNER -->
-    <section class="hero-banner">
-        <img src="BannerWebSite.png" alt="Banner">
-    </section>
+<!-- Sila letakkan CSS ini di dalam bahagian <style> sedia ada anda -->
+<style>
+    .banner-link {
+        display: block; 
+        width: 100%; 
+        overflow: hidden; 
+        border-radius: 8px; 
+        border: 1px solid rgba(79, 49, 232, 0.3); 
+        box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        transition: all 0.3s ease;
+    }
+    .banner-img {
+        width: 100%; 
+        height: auto; 
+        display: block; 
+        transition: transform 0.3s ease;
+    }
+    /* Efek apabila tetikus melintasi banner */
+    .banner-link:hover {
+        border-color: #00F0FF;
+        box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+    }
+    .banner-link:hover .banner-img {
+        transform: scale(1.02); /* Gambar membesar sedikit */
+    }
+</style>
+    
 
     <!-- SOLUTIONS SECTION -->
     <section class="section">
