@@ -1,6 +1,11 @@
 User-agent: *
 Allow: /
 
+Disallow: /css/
+Disallow: /js/
+Disallow: /img/
+Disallow: /config/
+
 User-agent: GPTBot
 Disallow: /
 
