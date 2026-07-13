@@ -1,0 +1,12 @@
+# KasuhaNET.STORE
+
+> Pusat Rasmi Sumber KasuhaNET (KasuhaNET Resources Official Centre). Sebuah platform perkhidmatan perniagaan (Business Service Platform) yang menawarkan pelbagai solusi teknikal dan perkhidmatan.
+
+Dokumentasi ini menyediakan peta laman dan panduan ringkas mengenai struktur perkhidmatan yang ditawarkan di kasuhanet.store untuk kegunaan ejen AI dan pengindeksan pintar.
+
+## Perkhidmatan & Halaman Utama
+
+- [Home](https://kasuhanet.store/index.html): Halaman utama Pusat Rasmi Sumber KasuhaNET.
+- [Services](https://kasuhanet.store/#categories): Senarai penuh perkhidmatan perniagaan dan solusi yang ditawarkan.
+- [Term Policy](https://kasuhanet.store/terms.html): Halaman terma perkhidmatan, polisi, dan syarat penggunaan perniagaan.
+- [Support](https://kasuhanet.store/Support.html): Halaman bantuan, sokongan teknikal, dan saluran komunikasi untuk pelanggan.
