@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- MAIN SEO -->
+<title>KasuhaNET.STORE | Platform Digital Pelbagai Perkhidmatan</title>
+<meta name="google-adsense-account" content="ca-pub-4280897190566760">
+<meta property="og:image" content="https://kasuhanet.store/img/logo3.png">
+<meta name="description" content="KasuhaNET.STORE adalah platform digital pelbagai perkhidmatan merangkumi pembangunan laman web, sistem Linux, penyelesaian pasaran, perkhidmatan teknikal, alat digital dan ekosistem HMS.">
+
+<meta name="keywords" content="Kasuha Zukarnain,Kasuha Okulus,KasuhaNET, Kasuhanet Resources, bina laman web, tetapan Linux, pasaran, perkhidmatan digital, HMS, sistem pemodelan hibrid, iklan bisnes, perkhidmatan teknikal">
+
+<meta name="author" content="Kasuhanet Resources">
+<meta name="robots" content="index, follow">
+
+<!-- CANONICAL -->
+<link rel="canonical" href="https://kasuhanet.store/">
+
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- SWIPER CSS (PENTING UNTUK SLIDER) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+<!-- FAVICON -->
+<link rel="icon" type="img/favicon.png" href="favicon.png">
+
+<!-- OPEN GRAPH -->
+<meta property="og:title" content="KasuhaNET.STORE | Platform Digital Pelbagai Perkhidmatan">
+<meta property="og:description" content="KasuhaNET.STORE adalah platform digital pelbagai perkhidmatan merangkumi pembangunan laman web, sistem Linux, penyelesaian pasaran dan perkhidmatan teknikal.">
+<meta property="og:image" content="https://kasuhanet.store/img/logo3.webp">
+<meta property="og:url" content="https://kasuhanet.store/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KasuhaNET.STORE">
+<meta property="og:locale" content="ms_MY">
+
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="KasuhaNET.STORE | Platform Digital Pelbagai Perkhidmatan">
+<meta name="twitter:description" content="Platform digital moden merangkumi perkhidmatan teknikal, pembangunan laman web dan ekosistem HMS.">
+<meta name="twitter:image" content="https://kasuhanet.store/img/logo3.webp">
+
+<!-- MOBILE -->
+<meta name="theme-color" content="#05070d">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="googlebot" content="index, follow">
+
+<!-- CSS -->
+<link rel="stylesheet" href="css/main.css">
+
+<style>
+/* GLOBAL CYBER FONT & RESET */
+* {
+    font-family: 'Orbitron', sans-serif !important;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #05070d;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 15px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(5, 7, 13, 0.9);
+    border-bottom: 1px solid rgba(79, 49, 232, 0.2);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 13px;
+}
+
+/* BUTTON LANGUAGE TOGGLE */
+.lang-wrapper {
+    display: inline-block;
+}
+
+.lang {
+    display: flex;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 3px;
+    border-radius: 6px;
+    border: 1px solid rgba(79, 49, 232, 0.4);
+}
+
+.lang button {
+    background: transparent;
+    border: none;
+    color: #8fa0dd;
+    padding: 4px 10px;
+    font-size: 11px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.lang button.active {
+    background: #4F31E8;
+    color: #fff;
+    box-shadow: 0 0 8px #4F31E8;
+}
+
+.lang button:hover:not(.active) {
+    color: #00F0FF;
+}
+
+/* GRID SYSTEM BAHAGIAN TENGAH */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+    margin: 20px auto;
+    width: 100%;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(79, 49, 232, 0.3);
+    border-radius: 8px;
+    padding: 15px;
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.card:hover {
+    border-color: #00F0FF;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.card h3 {
+    margin: 8px 0 5px 0;
+    font-size: 16px;
+    color: #00F0FF;
+}
+
+.card p {
+    margin: 5px 0 0 0;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #ccc;
+}
+
+/* STYLES KHAS UNTUK SWIPER SLIDER */
+.hero-slider-container {
+    width: 100%;
+    margin: 25px 0;
+}
+
+.swiper {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid rgba(79, 49, 232, 0.4);
+    box-shadow: 0 0 15px rgba(79, 49, 232, 0.2);
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #05070d;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: auto;
+    max-height: 380px;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
+}
+
+.swiper-button-next, .swiper-button-prev {
+    color: #00F0FF !important;
+}
+
+.swiper-pagination-bullet-active {
+    background: #E600A4 !important;
+}
+
+/* TYPOGRAPHY & NEON EFFECTS */
+.section {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.neon-title {
+    font-size: clamp(32px, 7vw, 65px);
+    line-height: 1.1;
+    position: relative;
+    display: inline-block;
+    color: #fff;
+    margin: 15px 0;
+}
+
+.neon-title span {
+    color: #E600A4;
+    text-shadow: 0 0 10px #E600A4, 0 0 20px #E600A4;
+}
+
+.neon-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #4F31E8, #E600A4, #00F0FF, #4F31E8);
+    background-size: 300% 100%;
+    animation: neonMove 3s linear infinite;
+    box-shadow: 0 0 10px #E600A4, 0 0 15px #00F0FF;
+}
+
+.neon-desc {
+    font-size: clamp(12px, 2vw, 16px);
+    color: #aaa;
+    line-height: 1.5;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 8px;
+    margin-top: 5px;
+}
+
+.neon-desc::after {
+    content: '';
+    position: absolute;
+    left: 5%;
+    bottom: 0;
+    width: 90%;
+    height: 2px;
+    background: linear-gradient(90deg, #4F31E8, #E600A4, #00F0FF, #4F31E8);
+    background-size: 300% 100%;
+    animation: neonMove 3s linear infinite;
+}
+
+/* DESIGN FOOTER BERBENTUK & BERWARNA KEMAS */
+.footer {
+    background: #090d16;
+    border-top: 2px solid #4F31E8;
+    box-shadow: 0 -5px 25px rgba(79, 49, 232, 0.15);
+    margin-top: 40px;
+    padding: 30px 20px 15px 20px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer h3 {
+    color: #fff;
+    margin: 0 0 10px 0;
+    font-size: 18px;
+}
+
+.footer h4 {
+    color: #E600A4;
+    margin: 0 0 10px 0;
+    font-size: 14px;
+}
+
+.footer p {
+    color: #999;
+    font-size: 12px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.footer-links a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 12px;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #00F0FF;
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 11px;
+    color: #666;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: 25px;
+}
+
+@keyframes neonMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+}
+
+/* MOBILE RESPONSIVE FIXES */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    .header-right {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+/* CARDS & PARTNER BAR EXTRA STYLES */
+.card-bg-box {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(143, 160, 221, 0.2);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 180px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s ease;
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(11, 15, 25, 0.9) 30%, rgba(19, 28, 46, 0.6) 100%);
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.card-content {
+    position: relative;
+    padding: 20px;
+    z-index: 2;
+}
+
+.card-content h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: #00ffcc;
+    font-size: 16px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card-content p {
+    color: #8fa0dd;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.card-bg-box:hover {
+    transform: translateY(-4px);
+    border-color: #00ffcc;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
+}
+
+.card-bg-box:hover .card-overlay {
+    background: linear-gradient(135deg, rgba(11, 15, 25, 0.7) 10%, rgba(0, 191, 255, 0.4) 100%);
+}
+
+.partner-credit-bar {
+    background: rgba(9, 13, 22, 0.6);
+    border-bottom: 1px dashed rgba(0, 240, 255, 0.2);
+    padding: 8px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-align: center;
+}
+
+.credit-text {
+    font-size: 10px;
+    color: #666;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.partner-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.partner-name {
+    font-size: 11px;
+    color: #8fa0dd;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.partner-logo-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(5, 7, 13, 0.8);
+    border: 1px solid rgba(230, 0, 164, 0.3);
+    padding: 4px 8px;
+    border-radius: 4px;
+    box-shadow: 0 0 8px rgba(230, 0, 164, 0.1);
+}
+
+.partner-logo-box img {
+    height: 14px;
+    width: auto;
+    filter: drop-shadow(0 0 2px #00F0FF);
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="bg-animation"></div>
+<div class="stars"></div>
+
+<header>
+    <div class="logo">
+        <img src="img/logo3.png" style="height:25px; width:auto;" alt="Logo">
+    </div>
+
+    <div class="header-right">
+        <nav>
+            <a href="index.html">UTAMA</a>
+            <a href="Tentang-Kami.html">TENTANG KAMI</a>
+            <a href="terms-MS.html">TERMA & POLISI</a>
+            <a href="pusat-bantuan.html">BANTUAN</a>
+        </nav>
+
+        <!-- LANGUAGE DIRECT SWITCHER -->
+        <div class="lang-wrapper">
+            <div class="lang">
+                <a href="homepage-EN.html"><button id="btn-en">EN</button></a>
+                <a href="homepage-MS.html"><button id="btn-ms" class="active">BM</button></a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- PARTNER CREDIT BAR -->
+<div class="partner-credit-bar">
+    <div class="credit-text">
+        Laman web dikuasakan oleh kolaborasi Gabungan Organisasi & Syarikat
+    </div>
+    <div class="partner-logos">
+        <span class="partner-name">Kasuha Okulus Organisation</span>
+        <div class="partner-logo-box">
+            <img src="OculusLogo.png" alt="Logo Kolaborasi">
+        </div>
+        <span class="partner-name">KasuhaNET Resources</span>
+    </div>
+</div>
+
+<main>
+
+    <!-- MAIN TITLE -->
+    <section class="section">
+        <h1 class="neon-title">Kasuha<span>NET.STORE</span></h1>
+        
+        <div class="typing-box">
+            <h2 style="font-size: 18px; margin: 10px 0; color:#4F31E8;">
+                <span style="color:#4F31E8; text-shadow:0 0 20px #E600A4;">KasuhaNET •</span>
+                <span style="color:#E600A4; text-shadow:0 0 20px #E600A4;">Platform Kedai Digital</span>
+            </h2>
+            
+            <p class="neon-desc">
+                Platform Jualan Hibrid dan Alat Digital Pelbagai Perkhidmatan.
+            </p>
+        </div>
+    </section>
+
+    <!-- MAIN GRID CARDS -->
+    <div class="grid">
+        <a href="CommandCanDoLIST.html" class="card">
+            <img src="ManyTerminalChoice.webp" alt="Pilihan Terminal">
+            <h3>Pilihan Terminal</h3>
+        </a>
+
+        <a href="Shop-MyAffliate-homeMS.html" class="card">
+            <img src="ShopAffliateSupportLogo.jpg" alt="Sokongan Afiliasi">
+            <h3>Sokongan Afiliasi</h3>
+        </a>
+    </div>
+
+    <!-- BANNER SLIDER -->
+    <section class="hero-slider-container">
+        <div class="swiper myBannerSwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <a href="Banner-WebSale-MS.html">
+                        <img src="BannerWebSite.png" alt="Servis Pembangunan Web">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="CashOutServicePayLater.html">
+                        <img src="PAYLATER-MS.png" alt="Iklan PayLater BM">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="Banner-WebSale-MS.html">
+                        <img src="BannerWebSite.png" alt="Linux Terminal Codex">
+                    </a>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section>
+
+    <!-- SOLUTIONS SECTION -->
+    <section class="section">
+        <h2 style="color:#4F31E8; font-size: 18px; margin-bottom: 15px;">
+            • PENYELESAIAN UNTUK ANDA •
+        </h2>
+
+        <div class="grid">
+            <div class="card">
+                <h3>PUSAT BACAAN</h3>
+                <p>
+                    Arahan Terminal Codex - Menggabungkan arahan untuk pemasangan kebergantungan (dependencies) dengan penaipan yang minimum pada Linux, Penguin, serta pengurusan data web.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- E-LEARN SECTION -->
+    <section class="section">
+        <h2 style="font-size: 18px; margin-bottom: 15px;">Pelan E-Pembelajaran</h2>
+
+        <div class="grid">
+            
+            <!-- CARD 1: WEB SERVICE -->
+            <a href="Website-Service.html" class="card-bg-box" style="background-image: url('PreviewCodingWeb.jpg');">
+                <div class="card-overlay"></div>
+                <div class="card-content">
+                    <h3>MULA SEKARANG!</h3>
+                    <p>
+                        Pelan E-Pembelajaran Reka Bentuk Web selepas pembelian pakej Web bermula RM299-RM345!
+                    </p>
+                </div>
+            </a>
+
+            <!-- CARD 2: CASHOUT PAYLATER -->
+            <a href="CashOutServicePayLater.html" class="card-bg-box" style="background-image: url('BNPLclick.webp');">
+                <div class="card-overlay"></div>
+                <div class="card-content">
+                    <h3>Perkhidmatan Kewangan Kecemasan+</h3>
+                    <p>Pencairan Paylater</p>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+</main>
+
+<!-- BOXED CYBER FOOTER -->
+<footer class="footer">
+    <div class="footer-grid">
+        <div>
+            <h3>KasuhaNET.STORE</h3>
+            <p>Ekosistem digital pelbagai perkhidmatan yang berfokus pada penyelesaian Linux, sistem afiliasi, penjanaan pendapatan, dan pembelajaran digital.</p>
+        </div>
+
+        <div class="footer-links">
+            <h4>Perkhidmatan</h4>
+            <a href="CommandCanDoLIST.html">Command Can Do</a>
+            <a href="Shop-MyAffliate-homeMS.html">MyAffliate</a>
+            <a href="CashOutServicePayLater.html">Kewangan PayLater</a>
+        </div>
+
+        <div class="footer-links">
+            <h4>Sumber</h4>
+            <a href="Tentang-Kami.html">Tentang Kami</a>
+            <a href="Support.html">Bantuan</a>
+            <a href="terms-MS.html">Terma & Polisi</a>
+        </div>
+
+        <div class="footer-links">
+            <h4>Ikuti Kami</h4>
+            <a href="https://facebook.com" target="_blank">Facebook</a>
+            <a href="https://tiktok.com" target="_blank">TikTok</a>
+            <a href="https://telegram.org" target="_blank">Telegram</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 KasuhaNET Resources (202503248308). Hak Cipta Terpelihara.
+    </div>
+</footer>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/60167390501?text=Assalamualaikum,%20saya%20ingin%20bertanya%20tentang%20perkhidmatan%20KasuhaNET.STORE"
+   style="
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    width:60px;
+    height:60px;
+    background:#25D366;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:999999;
+    box-shadow:0 5px 20px rgba(0,0,0,.25);
+   "
+   target="_blank">
+   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="white">
+     <path d="M19.11 17.53c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.28-.73.9-.9 1.09-.17.19-.33.21-.61.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.66-1.55-1.94-.17-.28-.02-.43.12-.57.13-.13.28-.33.42-.5.14-.17.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.64-1.55-.88-2.12-.23-.56-.47-.48-.64-.49h-.55c-.19 0-.49.07-.74.35-.25.28-.95.93-.95 2.26s.97 2.62 1.11 2.8c.14.19 1.9 2.9 4.6 4.07.64.28 1.14.45 1.53.57.64.2 1.22.17 1.68.1.51-.08 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.12-.26-.19-.54-.33z"/>
+     <path d="M16 3C9.37 3 4 8.37 4 15c0 2.31.66 4.47 1.8 6.32L4 29l7.9-1.75C13.64 28.55 14.78 29 16 29c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 22c-1.1 0-2.16-.2-3.14-.57l-.45-.17-4.69 1.04 1-4.57-.3-.47C7.39 18.35 7 16.72 7 15c0-4.96 4.04-9 9-9s9 4.04 9 9-4.04 10-9 10z"/>
+   </svg>
+</a>
+
+<!-- SWIPER JS LIBRARY (PENTING) -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- INITIALIZATION SCRIPT FOR SWIPER SLIDER -->
+<script>
+  const swiper = new Swiper(".myBannerSwiper", {
+    loop: true,
+    autoplay: {
+      delay: 3500,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+</script>
+
+</body>
+</html>
