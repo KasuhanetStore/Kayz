@@ -256,6 +256,19 @@ main {
     box-shadow: 0 0 15px #E600A4;
 }
 
+.btn-submit:disabled {
+    background: #444;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+#responseMsg {
+    margin-top: 15px;
+    font-size: 13px;
+    text-align: center;
+    font-weight: bold;
+}
+
 /* BACK LINK BAWAH */
 .back-link-box {
     text-align: center;
@@ -369,14 +382,14 @@ main {
             <a href="homepage-MS.html">UTAMA</a>
             <a href="AboutMSversion.html">TENTANG KAMI</a>
             <a href="terms-MS.html">TERMA & POLISI</a>
-            <a href="Support.html" class="active">BANTUAN</a>
+            <a href="pusat-bantuan.html" class="active">BANTUAN</a>
         </nav>
 
         <!-- LANGUAGE DIRECT SWITCHER -->
         <div class="lang-wrapper">
             <div class="lang">
                 <a href="support-centre.html"><button id="btn-en">EN</button></a>
-                <a href="Support.html"><button id="btn-ms" class="active">BM</button></a>
+                <a href="pusat-bantuan.html"><button id="btn-ms" class="active">BM</button></a>
             </div>
         </div>
     </div>
@@ -401,17 +414,18 @@ main {
 
   <!-- Top Back Button -->
   <div class="top-nav-back">
-    <a href="index.html">← Kembali ke Menu Utama</a>
+    <a href="homepage-MS.html">← Kembali ke Menu Utama</a>
   </div>
 
   <div class="terms-container">
 
-    <h1 class="neon-title-terms">BANTUAN <span>SOKONGAN</span></h1>
+    <h1 class="neon-title-terms">PUSAT <span>BANTUAN</span></h1>
     <p style="text-align:center; font-size:13px; color:#8fa0dd; margin-bottom:30px;">
       Ada sebarang masalah atau pertanyaan? Hubungi pasukan kami di bawah.
     </p>
 
-    <form action="#" method="POST">
+    <!-- BORANG DISAMBUNG KE WORKER -->
+    <form id="aduanForm">
       <div class="form-group">
         <label for="name">NAMA ANDA</label>
         <input type="text" id="name" placeholder="Masukkan nama penuh anda..." required>
@@ -427,8 +441,10 @@ main {
         <textarea id="message" rows="5" placeholder="Terangkan isu atau pertanyaan anda dengan terperinci..." required></textarea>
       </div>
 
-      <button type="submit" class="btn-submit">HANTAR MESEJ</button>
+      <button type="submit" id="btnSubmit" class="btn-submit">HANTAR MESEJ</button>
     </form>
+
+    <div id="responseMsg"></div>
 
     <div class="back-link-box">
       <a href="homepage-MS.html">← KEMBALI KE MENU UTAMA</a>
@@ -494,6 +510,59 @@ main {
      <path d="M16 3C9.37 3 4 8.37 4 15c0 2.31.66 4.47 1.8 6.32L4 29l7.9-1.75C13.64 28.55 14.78 29 16 29c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 22c-1.1 0-2.16-.2-3.14-.57l-.45-.17-4.69 1.04 1-4.57-.3-.47C7.39 18.35 7 16.72 7 15c0-4.96 4.04-9 9-9s9 4.04 9 9-4.04 10-9 10z"/>
    </svg>
 </a>
+
+<!-- SCRIPT UNTUK HANTAR BORANG KE WORKER (VERSI BM) -->
+<script>
+  const form = document.getElementById('aduanForm');
+  const btnSubmit = document.getElementById('btnSubmit');
+  const responseMsg = document.getElementById('responseMsg');
+  
+  // URL WORKER KAU
+  const WORKER_URL = 'https://aduan-backend-worker.kasuhanet.workers.dev';
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // Disable butang & tunjuk status
+    btnSubmit.disabled = true;
+    btnSubmit.innerText = "MENGHANTAR...";
+    responseMsg.style.color = "#00F0FF";
+    responseMsg.innerText = "Penghantaran mesej sedang diproses...";
+
+    const payload = {
+      nama: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      aduan: document.getElementById('message').value
+    };
+
+    try {
+      const res = await fetch(WORKER_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await res.json();
+
+      if (res.ok) {
+        responseMsg.style.color = "#00FF66";
+        responseMsg.innerText = "Mesej berjaya dihantar! Pasukan kami akan menghubungi anda secepat mungkin.";
+        form.reset();
+      } else {
+        responseMsg.style.color = "#FF0055";
+        responseMsg.innerText = "Gagal: " + (result.message || "Terdapat ralat semasa penghantaran.");
+      }
+    } catch (err) {
+      responseMsg.style.color = "#FF0055";
+      responseMsg.innerText = "Ralat rangkaian. Sila cuba lagi sebentar lagi.";
+    } finally {
+      btnSubmit.disabled = false;
+      btnSubmit.innerText = "HANTAR MESEJ";
+    }
+  });
+</script>
 
 </body>
 </html>
