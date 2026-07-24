@@ -7,21 +7,27 @@
     <loc>https://kasuhanet.store/index.html</loc>
   </url>
   <url>
-    <loc>https://kasuhanet.store/indexEnglishVersion.html</loc>
+    <loc>https://kasuhanet.store/homepage-EN.html</loc>
   </url>
   <url>
-    <loc>https://kasuhanet.store/indexMalayVersi.html</loc>
+    <loc>https://kasuhanet.store/homepage-MS.html</loc>
   </url>
   <url>
-    <loc>https://kasuhanet.store/SupportENVersion.html</loc>
+    <loc>https://kasuhanet.store/support-centre.html</loc>
   </url>
   <url>
-    <loc>https://kasuhanet.store/SupportBMVersi.html</loc>
+    <loc>https://kasuhanet.store/pusat-bantuan.html</loc>
   </url>
   <url>
-    <loc>https://kasuhanet.store/termsEnglishVersion.html</loc>
+    <loc>https://kasuhanet.store/terms-EN.html</loc>
   </url>
   <url>
-    <loc>https://kasuhanet.store/termsMalayVersi.html</loc>
+    <loc>https://kasuhanet.store/terms-MS.html</loc>
   </url>
-</urlset>
+  <url>
+    <loc>https://kasuhanet.store/About-Us.html</loc>
+  </url>
+  <url>
+    <loc>https://kasuhanet.store/Tentang-Kami.html</loc>
+  </url>
+  </urlset>
