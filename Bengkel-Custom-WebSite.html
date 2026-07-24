@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- MAIN SEO -->
+<title>Bengkel Custom WebSite | KasuhaNET.STORE</title>
+<meta name="description" content="Khidmat Setup & Pemasangan Website, VPS, dan Penjualan Tools Affiliate Developer Sah di KasuhaNET.STORE.">
+<meta name="robots" content="index, follow">
+
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<!-- FAVICON -->
+<link rel="icon" type="image/png" href="favicon.png">
+
+<!-- CSS KORPORAT -->
+<link rel="stylesheet" href="css/main.css">
+
+<style>
+/* GLOBAL CYBER FONT & RESET */
+* {
+    font-family: 'Orbitron', sans-serif !important;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #05070d;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(5, 7, 13, 0.9);
+    border-bottom: 1px solid rgba(79, 49, 232, 0.2);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 13px;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #00F0FF;
+}
+
+/* BUTTON LANGUAGE TOGGLE */
+.lang-wrapper {
+    display: inline-block;
+}
+
+.lang {
+    display: flex;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 3px;
+    border-radius: 6px;
+    border: 1px solid rgba(79, 49, 232, 0.4);
+}
+
+.lang button {
+    background: transparent;
+    border: none;
+    color: #8fa0dd;
+    padding: 4px 10px;
+    font-size: 11px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.lang button.active {
+    background: #4F31E8;
+    color: #fff;
+    box-shadow: 0 0 8px #4F31E8;
+}
+
+.lang button:hover:not(.active) {
+    color: #00F0FF;
+}
+
+/* PARTNER CREDIT BAR */
+.partner-credit-bar {
+    background: rgba(9, 13, 22, 0.6);
+    border-bottom: 1px dashed rgba(0, 240, 255, 0.2);
+    padding: 8px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-align: center;
+}
+
+.credit-text {
+    font-size: 10px;
+    color: #666;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.partner-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.partner-name {
+    font-size: 11px;
+    color: #8fa0dd;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.partner-logo-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(5, 7, 13, 0.8);
+    border: 1px solid rgba(230, 0, 164, 0.3);
+    padding: 4px 8px;
+    border-radius: 4px;
+    box-shadow: 0 0 8px rgba(230, 0, 164, 0.1);
+}
+
+.partner-logo-box img {
+    height: 14px;
+    width: auto;
+    filter: drop-shadow(0 0 2px #00F0FF);
+}
+
+/* MAIN CONTAINER */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.top-nav-back {
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.top-nav-back a {
+    color: #00F0FF;
+    text-decoration: none;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: 0.3s;
+}
+
+.top-nav-back a:hover {
+    text-shadow: 0 0 10px #00F0FF;
+    color: #fff;
+}
+
+.workshop-container {
+    max-width: 900px;
+    width: 100%;
+    padding: 40px;
+    background: #151923;
+    border-radius: 12px;
+    border: 1px solid rgba(79, 49, 232, 0.3);
+    box-shadow: 0 0 25px rgba(230, 0, 164, 0.12);
+    text-align: left;
+}
+
+/* INTRO BANNER IMAGE CONTAINER */
+.intro-trademark-box {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+    background: rgba(5, 7, 13, 0.6);
+}
+
+.intro-trademark-box img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* HEADINGS */
+.neon-title-workshop {
+    font-size: clamp(24px, 4.5vw, 36px);
+    color: #fff;
+    text-align: center;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.neon-title-workshop span {
+    color: #E600A4;
+    text-shadow: 0 0 10px #E600A4;
+}
+
+.subtitle-intro {
+    text-align: center;
+    font-size: 14px;
+    color: #aaa;
+    line-height: 1.6;
+    margin-bottom: 35px;
+    border-bottom: 1px dashed rgba(79, 49, 232, 0.4);
+    padding-bottom: 20px;
+}
+
+.section-head {
+    color: #00F0FF;
+    margin-top: 35px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    border-bottom: 1px solid #4F31E8;
+    padding-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* CARDS / SERVICE GRID */
+.service-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.service-card {
+    background: rgba(9, 13, 22, 0.8);
+    border: 1px solid rgba(79, 49, 232, 0.3);
+    border-left: 4px solid #00F0FF;
+    border-radius: 8px;
+    padding: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.service-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 240, 255, 0.1);
+}
+
+.service-card.card-purple {
+    border-left-color: #E600A4;
+}
+
+.service-card h3 {
+    color: #fff;
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.service-card p {
+    color: #bbb;
+    font-size: 13.5px;
+    line-height: 1.6;
+    margin: 6px 0;
+}
+
+.service-card strong {
+    color: #00F0FF;
+}
+
+.badge-tag {
+    display: inline-block;
+    background: rgba(79, 49, 232, 0.3);
+    color: #00F0FF;
+    border: 1px solid rgba(0, 240, 255, 0.4);
+    padding: 2px 8px;
+    font-size: 11px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+/* WORKSHOP HIGHLIGHT BOX */
+.workshop-highlight-box {
+    background: rgba(79, 49, 232, 0.12);
+    border: 1px solid rgba(79, 49, 232, 0.5);
+    border-radius: 8px;
+    padding: 25px;
+    margin-top: 25px;
+}
+
+.workshop-highlight-box h3 {
+    color: #E600A4;
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+/* NOTICE CALLOUT */
+.notice-box {
+    background: rgba(230, 0, 164, 0.08);
+    border: 1px solid rgba(230, 0, 164, 0.4);
+    border-radius: 8px;
+    padding: 18px;
+    margin-top: 20px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.notice-icon {
+    color: #E600A4;
+    font-size: 20px;
+    line-height: 1;
+}
+
+.notice-content {
+    font-size: 13px;
+    color: #ddd;
+    line-height: 1.6;
+}
+
+.notice-content strong {
+    color: #E600A4;
+}
+
+/* SUPPORT / CONTACT BOX */
+.support-box {
+    background: rgba(0, 240, 255, 0.05);
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    border-radius: 8px;
+    padding: 25px;
+    margin-top: 35px;
+    text-align: center;
+}
+
+.support-box h3 {
+    color: #00F0FF;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.support-box p {
+    color: #ccc;
+    font-size: 13.5px;
+    margin-bottom: 20px;
+}
+
+.email-link {
+    color: #00F0FF;
+    text-decoration: underline;
+    word-break: break-all;
+}
+
+.contact-btn {
+    display: inline-block;
+    background: #25D366;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 13px;
+    box-shadow: 0 0 10px rgba(37, 211, 102, 0.3);
+    transition: 0.3s;
+}
+
+.contact-btn:hover {
+    background: #1ebc57;
+    box-shadow: 0 0 18px rgba(37, 211, 102, 0.6);
+}
+
+/* BACK LINK BAWAH */
+.back-link-box {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.back-link-box a {
+    color: #00F0FF;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.back-link-box a:hover {
+    text-shadow: 0 0 10px #00F0FF;
+}
+
+/* FOOTER */
+.footer {
+    background: #090d16;
+    border-top: 2px solid #4F31E8;
+    box-shadow: 0 -5px 25px rgba(79, 49, 232, 0.15);
+    margin-top: 50px;
+    padding: 30px 20px 15px 20px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer h3 {
+    color: #fff;
+    margin: 0 0 10px 0;
+    font-size: 18px;
+}
+
+.footer h4 {
+    color: #E600A4;
+    margin: 0 0 10px 0;
+    font-size: 14px;
+}
+
+.footer p {
+    color: #999;
+    font-size: 12px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.footer-links a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 12px;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #00F0FF;
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 11px;
+    color: #666;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: 25px;
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    .header-right {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .workshop-container {
+        padding: 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="logo">
+        <img src="img/logo3.png" style="height:25px; width:auto;" alt="KasuhaNET Logo">
+    </div>
+
+    <div class="header-right">
+        <nav>
+            <a href="homepage-MS.html">UTAMA</a>
+            <a href="Bengkel-Custom-WebSite-MS.html" style="color:#00F0FF;">BENGKEL CUSTOM</a>
+            <a href="AboutMSversion.html">TENTANG KAMI</a>
+            <a href="terms-MS.html">TERMA & POLISI</a>
+            <a href="support-centre.html">BANTUAN</a>
+        </nav>
+
+        <!-- LANGUAGE SWITCHER -->
+        <div class="lang-wrapper">
+            <div class="lang">
+                <a href="Custom-Web-Workshop-EN.html"><button id="btn-en">EN</button></a>
+                <a href="Bengkel-Custom-WebSite-MS.html"><button id="btn-ms" class="active">BM</button></a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- PARTNER CREDIT BAR -->
+<div class="partner-credit-bar">
+    <div class="credit-text">
+        Website powered by the collaboration of Organizations & Companies
+    </div>
+    <div class="partner-logos">
+        <span class="partner-name">Kasuha Okulus Organisation</span>
+        <div class="partner-logo-box">
+            <img src="OculusLogo.png" alt="Collaboration Logo">
+        </div>
+        <span class="partner-name">KasuhaNET Resources</span>
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main>
+
+  <div class="top-nav-back">
+    <a href="homepage-MS.html">← Kembali ke Menu Utama</a>
+  </div>
+
+  <div class="workshop-container">
+
+    <!-- INTRO TRADEMARK IMAGE BANNER PLACEHOLDER -->
+    <div class="intro-trademark-box">
+        <img src="Bengkel-Custom-WebSite.png" alt="Bengkel Custom WebSite Official Trademark Banner">
+    </div>
+
+    <h1 class="neon-title-workshop">BENGKEL CUSTOM <span>WEBSITE</span> OFFICIAL</h1>
+    
+    <p class="subtitle-intro">
+        Selamat datang ke <strong>kasuhanet.store</strong>! Bagi anda yang ingin membina atau menaik taraf laman web, kami kini menawarkan Servis Setup & Deploy mengikut keperluan dan bajet anda secara telus.
+        Di sini, anda mempunyai kebebasan sepenuhnya untuk memilih kaedah pembelian dan pemasangan.
+    </p>
+
+    <!-- SECTION 1 -->
+    <div class="section-head">
+        <span>✓</span> Pilihan Pemasangan & Servis
+    </div>
+
+    <div class="service-cards-grid">
+        <!-- Option 1 -->
+        <div class="service-card">
+            <span class="badge-tag">PILIHAN 01</span>
+            <h3>1. Servis Setup Sahaja (Caj Mengikut Servis)</h3>
+            <p><strong>Sesuai untuk:</strong> Anda yang dah ada Tools sendiri (Domain, Script/Source Code, VPS/Hosting, atau akaun Developer).</p>
+            <p><strong>Cara kerja:</strong> Anda sediakan alatan/aset, kami uruskan proses pemasangan, konfigurasi, dan deployment sehingga laman web anda siap sedia untuk diakses!</p>
+            <p style="margin-top:10px; color:#00F0FF; font-weight:bold;">Caj: Dikira berdasarkan per-servis yang anda pilih sahaja.</p>
+        </div>
+
+        <!-- Option 2 -->
+        <div class="service-card card-purple">
+            <span class="badge-tag" style="color:#E600A4; border-color:rgba(230,0,164,0.4);">PILIHAN 02</span>
+            <h3>2. Pakej Siap Setup (Termasuk VPS & Tools)</h3>
+            <p><strong>Sesuai untuk:</strong> Anda yang nak terima serba siap tanpa pening kepala urus alatan teknikal.</p>
+            <p><strong>Cara kerja:</strong> Kami sediakan alatan asas yang diperlukan (termasuk persediaan VPS dan alatan sokongan) dan terus uruskan pendaftaran serta konfigurasi akaun profil (Account Overview) anda.</p>
+        </div>
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="workshop-highlight-box">
+        <h3>✓ "Bengkel Custom" (Custom Workshop)</h3>
+        <p style="color:#ddd; font-size:14px; line-height:1.6; margin:0 0 15px 0;">
+            Mahu fleksibiliti mengikut bajet? Gunakan bahagian Bengkel Custom kami!
+        </p>
+        <p style="color:#ccc; font-size:13.5px; line-height:1.6; margin:0;">
+            Di bahagian ini, setiap servis dan alatan (tool) dipisahkan secara jelas mengikut bahagian (part). Anda boleh pilih dan tambah (add-on) alatan yang diperlukan sahaja untuk persediaan pantas.
+        </p>
+
+        <!-- NOTICE -->
+        <div class="notice-box">
+            <div class="notice-icon">!</div>
+            <div class="notice-content">
+                <strong>Nota Pembelian Tools & Part:</strong><br>
+                Sesetengah tools atau akaun di Bengkel Custom dijual secara rasmi melalui rangkaian Affiliate Developer yang Sah. Ini membolehkan anda mendapatkan Lesen/Tool pilihan secara terus dan selamat untuk persediaan akaun anda.
+            </div>
+        </div>
+    </div>
+
+    <!-- SUPPORT / CONTACT SECTION -->
+    <div class="support-box">
+        <h3>• Perlukan Bantuan / Pertanyaan?</h3>
+        <p>
+            Jika anda tidak pasti tools apa yang diperlukan untuk projek anda, hubungi kami terus ke butang WhatsApp atau Email ke <a href="mailto:kasuhaoculusorganisation@kasuhanet.store" class="email-link">kasuhaoculusorganisation@kasuhanet.store</a>. Kami sedia membantu semakan teknikal awal sebelum anda membuat pesanan!
+        </p>
+        <a href="https://wa.me/60167390501?text=Hello,%20saya%20nak%20tanya%20pasal%20Bengkel%20Custom%20WebSite" class="contact-btn" target="_blank">
+            Hubungi WhatsApp Sekarang
+        </a>
+    </div>
+
+    <div class="back-link-box">
+      <a href="homepage-MS.html">← KEMBALI KE MENU UTAMA</a>
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER KORPORAT -->
+<footer class="footer">
+    <div class="footer-grid">
+        <div>
+            <h3>KasuhaNET.STORE</h3>
+            <p>Ekosistem digital pelbagai perkhidmatan berteraskan solusi Linux, sistem affiliate, penjanai pendapatan, dan pembelajaran digital.</p>
+        </div>
+
+        <div class="footer-links">
+            <h4>Perkhidmatan</h4>
+            <a href="Bengkel-Custom-WebSite-MS.html">Bengkel Custom Website</a>
+            <a href="CommandCanDoLIST.html">Senarai Arahan</a>
+            <a href="AffliateShopSupport.html">Sistem Affiliate</a>
+            <a href="CashOutServicePayLater.html">Kewangan PayLater</a>
+        </div>
+
+        <div class="footer-links">
+            <h4>Sumber</h4>
+            <a href="AboutMSversion.html">Tentang Kami</a>
+            <a href="support-centre.html">Bantuan</a>
+            <a href="terms-MS.html">Terma & Polisi</a>
+        </div>
+
+        <div class="footer-links">
+            <h4>Ikuti Kami</h4>
+            <a href="https://facebook.com" target="_blank">Facebook</a>
+            <a href="https://tiktok.com" target="_blank">TikTok</a>
+            <a href="https://telegram.org" target="_blank">Telegram</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 KasuhaNET Resources (202503248308). Hak Cipta Terelihara.
+    </div>
+</footer>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/60167390501?text=Hello,%20saya%20nak%20bertanya%20berkenaan%20servis%20Bengkel%20Custom%20KasuhaNET.STORE"
+   style="
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    width:60px;
+    height:60px;
+    background:#25D366;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:999999;
+    box-shadow:0 5px 20px rgba(0,0,0,.25);
+   "
+   target="_blank">
+   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="white">
+     <path d="M19.11 17.53c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.28-.73.9-.9 1.09-.17.19-.33.21-.61.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.66-1.55-1.94-.17-.28-.02-.43.12-.57.13-.13.28-.33.42-.5.14-.17.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.64-1.55-.88-2.12-.23-.56-.47-.48-.64-.49h-.55c-.19 0-.49.07-.74.35-.25.28-.95.93-.95 2.26s.97 2.62 1.11 2.8c.14.19 1.9 2.9 4.6 4.07.64.28 1.14.45 1.53.57.64.2 1.22.17 1.68.1.51-.08 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.12-.26-.19-.54-.33z"/>
+     <path d="M16 3C9.37 3 4 8.37 4 15c0 2.31.66 4.47 1.8 6.32L4 29l7.9-1.75C13.64 28.55 14.78 29 16 29c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 22c-1.1 0-2.16-.2-3.14-.57l-.45-.17-4.69 1.04 1-4.57-.3-.47C7.39 18.35 7 16.72 7 15c0-4.96 4.04-9 9-9s9 4.04 9 9-4.04 10-9 10z"/>
+   </svg>
+</a>
+
+</body>
+</html>
