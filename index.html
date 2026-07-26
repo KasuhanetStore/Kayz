@@ -883,7 +883,7 @@ nav a {
         input.value = '';
 
         // TUKAR URL NI KE URL WORKER KAU
-        await fetch('https://chat-api.chatapi.workers.dev/send', {
+        await fetch('https://chat-api.chatapi.workers.dev[https://chat-api.chatapi.kasuhanet.workers.dev/telegram-webhook]/send', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ userId, message: text })
@@ -899,7 +899,7 @@ nav a {
     setInterval(async () => {
         try {
             // TUKAR URL NI KE URL WORKER KAU
-            const res = await fetch(`https://chat-api.chatapi.workers.dev/messages?userId=${userId}`);
+            const res = await fetch(`https://chat-api.chatapi.kasuhanet.workers.dev/telegram-webhook/messages?userId=${userId}`);
             const data = await res.json();
             
             if (data.length > 0) {
