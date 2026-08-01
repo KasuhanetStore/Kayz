@@ -26,6 +26,7 @@
     box-sizing: border-box;
 }
 
+/* SUSUNAN FLEXBOX FULL HEIGHT PADA BODY */
 body {
     background-color: #05070d;
     color: #fff;
@@ -33,15 +34,24 @@ body {
     padding: 0;
     overflow-x: hidden;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
+/* HEADER STICKY DENGAN BACKDROP BLUR */
 header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background: rgba(5, 7, 13, 0.9);
-    border-bottom: 1px solid rgba(79, 49, 232, 0.2);
+    background: rgba(5, 7, 13, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(79, 49, 232, 0.3);
 }
 
 .header-right {
@@ -58,7 +68,7 @@ nav a {
     transition: color 0.3s;
 }
 
-nav a:hover {
+nav a:hover, nav a.active {
     color: #00F0FF;
 }
 
@@ -148,11 +158,13 @@ nav a:hover {
     filter: drop-shadow(0 0 2px #00F0FF);
 }
 
-/* CONTAINER UTAMA TERMA */
+/* MAIN FLEX GROW UNTUK MENOLAK FOOTER KE KAKI SKRIN */
 main {
+    flex: 1 0 auto;
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px 15px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -252,13 +264,14 @@ ul li {
     text-shadow: 0 0 10px #00F0FF;
 }
 
-/* FOOTER KORPORAT BERBENTUK & BERWARNA KEMAS */
+/* FOOTER KORPORAT BERBENTUK & BERWARNA KEMAS (RAPAT DI DASAR PAGE) */
 .footer {
     background: #090d16;
     border-top: 2px solid #4F31E8;
     box-shadow: 0 -5px 25px rgba(79, 49, 232, 0.15);
-    margin-top: 40px;
+    margin-top: 60px;
     padding: 30px 20px 15px 20px;
+    width: 100%;
 }
 
 .footer-grid {
@@ -329,6 +342,16 @@ ul li {
         grid-template-columns: 1fr;
         gap: 20px;
     }
+    .partner-logos {
+        flex-direction: column;
+        gap: 5px;
+    }
+    .partner-name {
+        font-size: 10px;
+    }
+    .terms-container {
+        padding: 25px 18px;
+    }
 }
 </style>
 </head>
@@ -338,7 +361,7 @@ ul li {
 <div class="bg-animation"></div>
 <div class="stars"></div>
 
-<!-- HEADER -->
+<!-- HEADER STICKY -->
 <header>
     <div class="logo">
         <img src="img/logo3.png" style="height:25px; width:auto;" alt="Logo">
@@ -348,7 +371,7 @@ ul li {
         <nav>
             <a href="homepage-MS.html">UTAMA</a>
             <a href="AboutMSversion.html">TENTANG KAMI</a>
-            <a href="terms-MS.html">TERMA & POLISI</a>
+            <a href="terms-MS.html" class="active">TERMA & POLISI</a>
             <a href="pusat-bantuan.html">BANTUAN</a>
         </nav>
 
@@ -433,7 +456,7 @@ ul li {
   </div>
 </main>
 
-<!-- BOXED CYBER FOOTER -->
+<!-- BOXED CYBER FOOTER (RAPAT DI DASAR SKRIN) -->
 <footer class="footer">
     <div class="footer-grid">
         <div>
