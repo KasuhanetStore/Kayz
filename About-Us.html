@@ -43,27 +43,32 @@
             box-sizing: border-box;
         }
 
+        /* SUSUNAN FLEXBOX FULL HEIGHT DENGAN BODY */
         body {
             background-color: #05070d;
             color: #fff;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 15px;
-        }
-
+        /* HEADER STICKY & BACKDROP BLUR */
         header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 15px 20px;
-            background: rgba(5, 7, 13, 0.9);
-            border-bottom: 1px solid rgba(79, 49, 232, 0.2);
+            background: rgba(5, 7, 13, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(79, 49, 232, 0.3);
         }
 
         nav a {
@@ -71,6 +76,15 @@
             text-decoration: none;
             margin: 0 10px;
             font-size: 13px;
+        }
+
+        /* MAIN FLEX GROW UNTUK TOLAK FOOTER KE PADA KAKI SKRIN */
+        main {
+            flex: 1 0 auto;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 15px;
+            width: 100%;
         }
 
         /* GRID SYSTEM */
@@ -135,13 +149,14 @@
             margin: 0 auto;
         }
 
-        /* DESIGN FOOTER BERBENTUK & BERWARNA KEMAS */
+        /* DESIGN FOOTER BERBENTUK & BERWARNA KEMAS (DI DASAR PAGE) */
         .footer {
             background: #090d16;
             border-top: 2px solid #4F31E8;
             box-shadow: 0 -5px 25px rgba(79, 49, 232, 0.15);
             margin-top: 60px;
             padding: 30px 20px 15px 20px;
+            width: 100%;
         }
 
         .footer-grid {
@@ -277,6 +292,7 @@
 <div class="bg-animation"></div>
 <div class="stars"></div>
 
+<!-- HEADER STICKY -->
 <header>
     <div class="logo">
         <img src="img/logo3.png" style="height:25px; width:auto;" alt="Logo">
@@ -304,7 +320,7 @@
     </div>
 </div>
 
-    <main>
+<main>
     <section class="about-section">
         <!-- TAJUK UTAMA BESAR -->
         <h1 class="about-title" id="about-heading">
@@ -349,7 +365,7 @@
     </section>
 </main>
 
-<!-- BOXED CYBER FOOTER -->
+<!-- BOXED CYBER FOOTER (RA PAT DI DASAR SKRIN) -->
 <footer class="footer">
     <div class="footer-grid">
         <div>
