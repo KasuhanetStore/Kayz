@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- MAIN SEO -->
-<title>Terms & Policy | KasuhaNET.STORE</title>
+<title>Terms & Privacy Policy | KasuhaNET.STORE</title>
 <meta name="description" content="Terms of Service and Privacy Policy for KasuhaNET.STORE under Kasuhanet Resources.">
 <meta name="robots" content="index, follow">
 
@@ -26,6 +26,7 @@
     box-sizing: border-box;
 }
 
+/* SUSUNAN FLEXBOX FULL HEIGHT PADA BODY */
 body {
     background-color: #05070d;
     color: #fff;
@@ -33,15 +34,24 @@ body {
     padding: 0;
     overflow-x: hidden;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
+/* HEADER STICKY DENGAN BACKDROP BLUR */
 header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background: rgba(5, 7, 13, 0.9);
-    border-bottom: 1px solid rgba(79, 49, 232, 0.2);
+    background: rgba(5, 7, 13, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(79, 49, 232, 0.3);
 }
 
 .header-right {
@@ -58,7 +68,7 @@ nav a {
     transition: color 0.3s;
 }
 
-nav a:hover {
+nav a:hover, nav a.active {
     color: #00F0FF;
 }
 
@@ -148,11 +158,13 @@ nav a:hover {
     filter: drop-shadow(0 0 2px #00F0FF);
 }
 
-/* CONTAINER UTAMA TERMA */
+/* MAIN FLEX GROW UNTUK MENOLAK FOOTER KE KAKI SKRIN */
 main {
+    flex: 1 0 auto;
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px 15px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -252,13 +264,14 @@ ul li {
     text-shadow: 0 0 10px #00F0FF;
 }
 
-/* FOOTER KORPORAT BERBENTUK & BERWARNA KEMAS */
+/* FOOTER KORPORAT BERBENTUK & BERWARNA KEMAS (RAPAT DI DASAR PAGE) */
 .footer {
     background: #090d16;
     border-top: 2px solid #4F31E8;
     box-shadow: 0 -5px 25px rgba(79, 49, 232, 0.15);
-    margin-top: 40px;
+    margin-top: 60px;
     padding: 30px 20px 15px 20px;
+    width: 100%;
 }
 
 .footer-grid {
@@ -329,6 +342,16 @@ ul li {
         grid-template-columns: 1fr;
         gap: 20px;
     }
+    .partner-logos {
+        flex-direction: column;
+        gap: 5px;
+    }
+    .partner-name {
+        font-size: 10px;
+    }
+    .terms-container {
+        padding: 25px 18px;
+    }
 }
 </style>
 </head>
@@ -338,7 +361,7 @@ ul li {
 <div class="bg-animation"></div>
 <div class="stars"></div>
 
-<!-- HEADER -->
+<!-- HEADER STICKY -->
 <header>
     <div class="logo">
         <img src="img/logo3.png" style="height:25px; width:auto;" alt="Logo">
@@ -348,14 +371,14 @@ ul li {
         <nav>
             <a href="homepage-EN.html">HOME</a>
             <a href="About-Us.html">ABOUT US</a>
-            <a href="KasuhaNET-Terms_Policy.html">TERMS & POLICY</a>
+            <a href="KasuhaNET-Terms_Policy.html" class="active">TERMS & POLICY</a>
             <a href="support-centre.html">SUPPORT</a>
         </nav>
 
         <!-- LANGUAGE DIRECT SWITCHER -->
         <div class="lang-wrapper">
             <div class="lang">
-                <a href="terms-EN.html"><button id="btn-en" class="active">EN</button></a>
+                <a href="KasuhaNET-Terms_Policy.html"><button id="btn-en" class="active">EN</button></a>
                 <a href="terms-MS.html"><button id="btn-ms">BM</button></a>
             </div>
         </div>
@@ -378,15 +401,10 @@ ul li {
 
 <!-- ISI TERMA & POLISI -->
 <main>
-
-  <!-- Top Back Button -->
-  <div class="top-nav-back">
-    <a href="homepage-EN.html">← Back to Main Menu</a>
-  </div>
-
+    
   <div class="terms-container">
 
-    <h1 class="neon-title-terms">TERMS & <span>POLICY</span></h1>
+    <h1 class="neon-title-terms">TERMS <span>POLICY</span></h1>
     <p style="text-align:center; font-size:12px; color:#666;">Last Updated: June 2026</p>
 
     <!-- SECTION 1 -->
@@ -433,7 +451,7 @@ ul li {
   </div>
 </main>
 
-<!-- BOXED CYBER FOOTER -->
+<!-- BOXED CYBER FOOTER (RAPAT DI DASAR SKRIN) -->
 <footer class="footer">
     <div class="footer-grid">
         <div>
