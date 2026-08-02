@@ -210,6 +210,21 @@
       transform: translateY(-2px);
     }
 
+    .submit-btn:disabled {
+      background: #4a5568;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    /* STATUS RESPONSE MESSAGE */
+    #responseMsg {
+      margin-top: 15px;
+      text-align: center;
+      font-weight: bold;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 14px;
+    }
+
     /* UTILITY */
     .badge {
       background: rgba(0, 255, 204, 0.1);
@@ -218,6 +233,59 @@
       border-radius: 4px;
       font-size: 14px;
       border: 1px solid rgba(0, 255, 204, 0.3);
+    }
+
+    .back-link-box {
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .back-link-box a {
+      color: var(--secondary-neon);
+      text-decoration: none;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 14px;
+    }
+
+    .back-link-box a:hover {
+      text-decoration: underline;
+    }
+
+    /* FOOTER */
+    .footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(0, 255, 204, 0.2);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .footer-links h4 {
+      color: var(--primary-neon);
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      display: block;
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-bottom: 5px;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary-neon);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-top: 20px;
     }
   </style>
 </head>
@@ -277,7 +345,7 @@
   <div class="card-box">
     <h2 id="form-title" style="color: var(--secondary-neon); margin-bottom: 20px; font-size: 1.4rem;">Borang Permohonan</h2>
     
-    <form onsubmit="processWhatsAppApplication(); return false;">
+    <form id="cashOutForm">
       
       <div class="input-group">
         <label id="lbl-nama">Nama Penuh (Mestilah Sama Seperti Dalam Kad Pengenalan & Bank)</label>
@@ -312,8 +380,8 @@
       </div>
 
       <div class="input-group">
-        <label id="lbl-id">ID / Username / Pautan Profil PayLater</label>
-        <input type="text" id="inp-id" placeholder="Masukkan username atau pautan pengesahan" required>
+        <label id="lbl-id">Nombor Telefon / E-mail</label>
+        <input type="text" id="inp-id" placeholder="Masukkan nombor telefon atau e-mel" required>
       </div>
 
       <label class="checkbox-container">
@@ -323,25 +391,71 @@
 
       <button type="submit" class="submit-btn" id="btn-submit">Hantar Permohonan</button>
 
+      <!-- MSG STATUS LOG -->
+      <div id="responseMsg"></div>
+
     </form>
+  </div>
+
+  <div class="back-link-box">
+    <a href="homepage-EN.html">← BACK TO MAIN MENU</a>
   </div>
 
 </div>
 
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+        <div>
+            <h3 style="font-size: 1rem; color: var(--primary-neon);">KasuhaNET.STORE</h3>
+            <p style="font-size: 14px; color: var(--text-muted);">A multi-service digital ecosystem focusing on Linux solutions, affiliate systems, income generation, and digital learning.</p>
+        </div>
+
+        <div class="footer-links">
+            <h4>Services</h4>
+            <a href="CommandCanDoLIST.html">CommandCanDo</a>
+            <a href="Shop-MyAffliate-homeEN.html">MyAffiliate</a>
+            <a href="CashOutServicePayLater.html">PayLater BNPL</a>
+        </div>
+
+        <div class="footer-links">
+            <h4>Resources</h4>
+            <a href="About-Us.html">About Us</a>
+            <a href="support-centre.html">Support</a>
+            <a href="terms-EN.html">Terms & Policy</a>
+        </div>
+
+        <div class="footer-links">
+            <h4>Follow Us</h4>
+            <a href="https://facebook.com" target="_blank">Facebook</a>
+            <a href="https://tiktok.com" target="_blank">TikTok</a>
+            <a href="https://telegram.org" target="_blank">Telegram</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 KasuhaNET Resources (202503248308). All Rights Reserved.
+    </div>
+  </div>
+</footer>
+
 <script>
-// Fungsi tukar bahasa yang interaktif dan lancar untuk keseluruhan UI text
+// Global variable untuk menyimpan bahasa pilihan semasa
+let currentLang = 'bm';
+
+// Fungsi tukar bahasa
 function toggleLanguage(lang) {
-  // Reset active classes for buttons
+  currentLang = lang;
+  
   document.getElementById('btn-bm').classList.remove('active');
   document.getElementById('btn-en').classList.remove('active');
   document.getElementById('terms-bm').classList.remove('active');
   document.getElementById('terms-en').classList.remove('active');
 
-  // Activate selected elements
   document.getElementById('btn-' + lang).classList.add('active');
   document.getElementById('terms-' + lang).classList.add('active');
 
-  // Text dynamic updating based on lang
   if (lang === 'bm') {
     document.getElementById('notice-title').innerText = "⚠️ NOTIS KELAYAKAN MUTLAK";
     document.getElementById('notice-desc').innerText = "Sila pastikan anda memenuhi kriteria wajib di bawah sebelum meneruskan permohonan:";
@@ -373,78 +487,66 @@ function toggleLanguage(lang) {
   }
 }
 
-// Format penghantaran mesej kemas terus ke WhatsApp
-function processWhatsAppApplication(){
-  const nama     = document.getElementById("inp-nama").value.toUpperCase();
-  const platform = document.getElementById("inp-platform").value;
-  const bank     = document.getElementById("inp-bank").value;
-  const akaun    = document.getElementById("inp-akaun").value;
-  const jumlah   = document.getElementById("inp-jumlah").value;
-  const NoHP     = document.getElementById("inp-id").value;
+// SCRIPT HANTAR DATA BORANG KE WORKER
+const form = document.getElementById('cashOutForm');
+const btnSubmit = document.getElementById('btn-submit');
+const responseMsg = document.getElementById('responseMsg');
 
-  const textMessage = 
-`⚡ PERMOHONAN CASH OUT BNPL ⚡
-----------------------------------
-Nama Pemohon  : ${nama}
-Platform PL   : ${platform}
-Nama Bank     : ${bank}
-No Akaun Bank : ${akaun}
-Jumlah Keluar : RM ${jumlah}
-Nombor Telefon: ${plId}
-----------------------------------
-*Status Identiti: Nama Bank & BNPL adalah SAMA.*
-*Pemohon bersetuju dengan Terma & Syarat (Caj 5%).*`;
+// URL Worker Backend
+const WORKER_URL = 'https://aduan-backend-worker.kasuhanet.workers.dev';
 
-  const targetEmail = "kasuhaoculusorganisation@kasuhanet.store"; // Tukar ke e-mel anda
-  const emailSubject = "DataBase Borang Permohonan CashOut"; // Tajuk e-mel
-  const mailtoUrl = `mailto:${targetEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(textMessage)}`;
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  // Kunci butang semasa menghantar
+  btnSubmit.disabled = true;
+  btnSubmit.innerText = currentLang === 'bm' ? "MENGHANTAR..." : "SENDING...";
+  responseMsg.style.color = "var(--secondary-neon)";
+  responseMsg.innerText = currentLang === 'bm' ? "Menghantar permohonan ke pelayan..." : "Sending application to server...";
 
-  window.location.href = mailtoUrl;
-}
+  // Payload data dari borang
+  const payload = {
+    nama: document.getElementById('inp-nama').value.toUpperCase(),
+    platform: document.getElementById('inp-platform').value,
+    bank: document.getElementById('inp-bank').value,
+    akaun: document.getElementById('inp-akaun').value,
+    jumlah: document.getElementById('inp-jumlah').value,
+    contactInfo: document.getElementById('inp-id').value,
+    type: "PAYLATER_CASHOUT"
+  };
+
+  try {
+    const res = await fetch(WORKER_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const result = await res.json();
+
+    if (res.ok) {
+      responseMsg.style.color = "var(--primary-neon)";
+      responseMsg.innerText = currentLang === 'bm' 
+        ? "Permohonan berjaya dihantar! Kami akan menghubungi anda tidak lama lagi." 
+        : "Application submitted successfully! We will contact you soon.";
+      form.reset();
+    } else {
+      responseMsg.style.color = "var(--alert-neon)";
+      responseMsg.innerText = (currentLang === 'bm' ? "Gagal: " : "Failed: ") + (result.message || "Ralat berlaku.");
+    }
+  } catch (err) {
+    responseMsg.style.color = "var(--alert-neon)";
+    responseMsg.innerText = currentLang === 'bm' 
+      ? "Ralat rangkaian. Sila cuba lagi kemudian." 
+      : "Network error. Please try again later.";
+  } finally {
+    btnSubmit.disabled = false;
+    btnSubmit.innerText = currentLang === 'bm' ? "Hantar Permohonan" : "Submit Application";
+  }
+});
 </script>
 
-  <div class="back-link-box">
-      <a href="homepage-EN.html">← BACK TO MAIN MENU</a>
-    </div>
-
-  </div>
-</main>
-
-<!-- BOXED CYBER FOOTER (RAPAT DI DASAR SKRIN) -->
-<footer class="footer">
-    <div class="footer-grid">
-        <div>
-            <h3>KasuhaNET.STORE</h3>
-            <p>A multi-service digital ecosystem focusing on Linux solutions, affiliate systems, income generation, and digital learning.</p>
-        </div>
-
-        <div class="footer-links">
-            <h4>Services</h4>
-            <a href="CommandCanDoLIST.html">CommandCanDo</a>
-            <a href="Shop-MyAffliate-homeEN.html">MyAffiliate</a>
-            <a href="CashOutServicePayLater.html">PayLater BNPL</a>
-        </div>
-
-        <div class="footer-links">
-            <h4>Resources</h4>
-            <a href="About-Us.html">About Us</a>
-            <a href="support-centre.html">Support</a>
-            <a href="terms-EN.html">Terms & Policy</a>
-        </div>
-
-        <div class="footer-links">
-            <h4>Follow Us</h4>
-            <a href="https://facebook.com" target="_blank">Facebook</a>
-            <a href="https://tiktok.com" target="_blank">TikTok</a>
-            <a href="https://telegram.org" target="_blank">Telegram</a>
-        </div>
-    </div>
-
-    <div class="footer-bottom">
-        © 2026 KasuhaNET Resources (202503248308). All Rights Reserved.
-    </div>
-</footer>
-  
 </body>
 </html>
-
