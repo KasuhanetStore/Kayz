@@ -509,6 +509,65 @@ nav a {
     width: auto;
     filter: drop-shadow(0 0 2px #00F0FF);
 }
+
+/* STYLES SCAMMER WARNING NOTICE EN */
+.notice-section {
+    width: 280px;
+    margin: 0 auto 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+.header-box {
+    background-color: #C0C0C0;
+    padding: 3px 8px;
+    border-radius: 3px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.header-text {
+    color: red;
+    font-size: 6.5px;
+    font-weight: bold;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.flicker-text {
+    color: white;
+    font-size: 8px;
+    line-height: 1.35;
+    margin: 0;
+    text-align: centre;
+    text-justify: inter-word;
+    text-shadow: 
+        -1px -1px 0 #0000FF,  
+         1px -1px 0 #0000FF,
+        -1px  1px 0 #0000FF,
+         1px  1px 0 #0000FF;
+    animation: pulseFlicker 2s infinite ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 5px; 
+}.flicker-text p {
+    margin: 0;
+}
+
+.company-name {
+    font-weight: bold;
+}
+.company-name {
+    font-weight: bold;
+}
+
+@keyframes pulseFlicker {
+    0% { opacity: 1; }
+    50% { opacity: 0.25; }
+    100% { opacity: 1; }
+}
 </style>
 
 </head>
@@ -560,7 +619,6 @@ nav a {
 </div>
 
 <main>
-
     <!-- MAIN TITLE -->
     <section class="section">
         <h1 class="neon-title">Kasuha<span>NET.STORE</span></h1>
@@ -625,6 +683,26 @@ nav a {
             <div class="swiper-button-prev"></div>
         </div>
     </section>
+    <!-- SCAMMER WARNING NOTICE EN -->
+    <div class="notice-section">
+        <div class="header-box">
+            <h2 class="header-text">BEWARE OF SCAMMER FRAUD!</h2>
+        </div>
+
+        <div class="flicker-text">
+            <p><strong>Please take note:</strong></p>
+            <p>
+                We take any fraudulent activities very seriously. There is a possibility that certain parties are attempting to take advantage by using the NAME of the company or the OWNER of <span class="company-name">KasuhaNET.STORE</span> for financial scams.
+            </p>
+            <p>
+                <strong>CLARIFICATION for everyone:</strong><br>
+                We ONLY conduct buy-and-sell transactions through registered Bank Accounts under the names of <span class="company-name">KasuhaNET Resources</span> and <span class="company-name">KasuhaOculus Organisation</span> Sahaja.
+            </p>
+            <p>
+                We will NOT be held responsible for any fraud or losses incurred as a result of being deceived by SCAMMERS.
+            </p>
+        </div>
+    </div>
 
     <!-- SOLUTIONS SECTION -->
     <section class="section">
@@ -739,28 +817,3 @@ nav a {
      <path d="M16 3C9.37 3 4 8.37 4 15c0 2.31.66 4.47 1.8 6.32L4 29l7.9-1.75C13.64 28.55 14.78 29 16 29c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 22c-1.1 0-2.16-.2-3.14-.57l-.45-.17-4.69 1.04 1-4.57-.3-.47C7.39 18.35 7 16.72 7 15c0-4.96 4.04-9 9-9s9 4.04 9 9-4.04 10-9 10z"/>
    </svg>
 </a>
-
-<!-- SWIPER JS LIBRARY (PENTING) -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-<!-- INITIALIZATION SCRIPT FOR SWIPER SLIDER -->
-<script>
-  const swiper = new Swiper(".myBannerSwiper", {
-    loop: true,
-    autoplay: {
-      delay: 3500,
-      disableOnInteraction: false,
-    },
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-  },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-  });
-</script>
-
-</body>
-</html>

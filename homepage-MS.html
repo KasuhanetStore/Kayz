@@ -70,7 +70,7 @@ body {
 main {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 10px 15px 0 15px; /* Margin bawah dibuang supaya rapat ke footer */
+    padding: 10px 15px 0 15px;
 }
 
 header {
@@ -287,10 +287,69 @@ nav a {
     animation: neonMove 3s linear infinite;
 }
 
-/* GAMBAR DEKO MINI BAWAH (TIADA FRAME / PETAK) */
+/* STYLES NOTIS AMARAN */
+.notice-section {
+    width: 280px;
+    margin: 0 auto 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.header-box {
+    background-color: #C0C0C0;
+    padding: 3px 8px;
+    border-radius: 3px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.header-text {
+    color: red;
+    font-size: 6.5px;
+    font-weight: bold;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.flicker-text {
+    color: white;
+    font-size: 8px;
+    line-height: 1.35;
+    margin: 0;
+    text-align: justify;
+    text-justify: inter-word;
+    text-shadow: 
+        -1px -1px 0 #0000FF,  
+         1px -1px 0 #0000FF,
+        -1px  1px 0 #0000FF,
+         1px  1px 0 #0000FF;
+    animation: pulseFlicker 2s infinite ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 5px; 
+}
+
+.flicker-text p {
+    margin: 0;
+}
+
+.company-name {
+    font-weight: bold;
+}
+
+@keyframes pulseFlicker {
+    0% { opacity: 1; }
+    50% { opacity: 0.25; }
+    100% { opacity: 1; }
+}
+
+/* GAMBAR DEKO MINI BAWAH */
 .mini-deko-section {
     margin-top: 25px;
-    margin-bottom: -5px; /* Rapat dengan footer */
+    margin-bottom: -5px;
     width: 100%;
     text-align: center;
     line-height: 0;
@@ -298,22 +357,22 @@ nav a {
 
 .mini-deko-img {
     width: 100%;
-    max-width: 320px; /* Saiz mini comel khas untuk deko */
+    max-width: 320px;
     height: auto;
     border: none !important;
     outline: none !important;
     background: transparent !important;
     box-shadow: none !important;
     display: inline-block;
-    filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.35)); /* Glowing ikut lekuk PNG */
+    filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.35));
 }
 
-/* DESIGN FOOTER BERBENTUK & BERWARNA KEMAS */
+/* DESIGN FOOTER */
 .footer {
     background: #090d16;
     border-top: 2px solid #4F31E8;
     box-shadow: 0 -5px 25px rgba(79, 49, 232, 0.15);
-    margin-top: 0px; /* Rapat terus dengan deko */
+    margin-top: 0px;
     padding: 30px 20px 15px 20px;
 }
 
@@ -394,7 +453,7 @@ nav a {
         gap: 20px;
     }
     .mini-deko-img {
-        max-width: 230px; /* Lebih mini untuk skrin phone */
+        max-width: 230px;
     }
 }
 
@@ -621,6 +680,19 @@ nav a {
         </div>
     </section>
 
+    <!-- NOTIS AMARAN SECTION -->
+    <div class="notice-section">
+        <div class="header-box">
+            <h2 class="header-text">WASPADA TERHADAP PENIPUAN SCAMMER!</h2>
+        </div>
+
+        <div class="flicker-text">
+            <p><strong>Sila ambil perhatian:</strong> Berkaitan aktiviti penipuan pihak saya memandang serius. Kemungkinan ada pihak cuba ambil kesempatan dengan menggunakan NAMA syarikat atau pun PEMILIK <span class="company-name">KasuhaNET.STORE</span> untuk penipuan kewangan.</p>
+            <p><strong>PENJELASAN pada semua individu:</strong> Pihak saya hanya berurusan melibatkan jualan beli atas Akaun Bank berdaftar atas nama <span class="company-name">Kasuhanet Resources</span> dan <span class="company-name">KasuhaOculus Organisation</span> Sahaja.</p>
+            <p>Pihak saya tidak bertanggungjawab berlaku penipuan akibat terpedaya dengan SCAMMER.</p>
+        </div>
+    </div>
+
     <!-- SOLUTIONS SECTION -->
     <section class="section">
         <h2 style="color:#4F31E8; font-size: 18px; margin-bottom: 15px;">
@@ -628,7 +700,7 @@ nav a {
         </h2>
 
         <div class="grid">
-            <div class="card">
+            <div class="card card-center">
                 <h3>PUSAT BACAAN</h3>
                 <p>
                     Arahan Terminal Codex - Menggabungkan arahan untuk pemasangan kebergantungan (dependencies) dengan penaipan yang minimum pada Linux, Penguin, serta pengurusan data web.
@@ -688,22 +760,7 @@ nav a {
             <a href="CashOutServicePayLater.html">PayLater BNPL</a>
         </div>
 
-        <div class="footer-links">
-            <h4>Sumber</h4>
-            <a href="Tentang-Kami.html">Tentang Kami</a>
-            <a href="pusat-bantuan.html">Bantuan</a>
-            <a href="terms-MS.html">Terma & Polisi</a>
-        </div>
-
-        <div class="footer-links">
-            <h4>Ikuti Kami</h4>
-            <a href="https://www.facebook.com/share/1BfeDZJqjP/" target="_blank">Facebook</a>
-            <a href="https://tiktok.com/@kasuhanet.store" target="_blank">TikTok</a>
-            <a href="https://t.me/kasuhanetstorebot" target="_blank">Telegram</a>
-        </div>
-    </div>
-
-    <div class="footer-bottom">
+        <div class="footer-bottom">
         © 2026 KasuhaNET Resources (202503248308). Hak Cipta Terpelihara.
     </div>
 </footer>
@@ -727,7 +784,7 @@ nav a {
    target="_blank">
    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="white">
      <path d="M19.11 17.53c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.28-.73.9-.9 1.09-.17.19-.33.21-.61.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.66-1.55-1.94-.17-.28-.02-.43.12-.57.13-.13.28-.33.42-.5.14-.17.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.64-1.55-.88-2.12-.23-.56-.47-.48-.64-.49h-.55c-.19 0-.49.07-.74.35-.25.28-.95.93-.95 2.26s.97 2.62 1.11 2.8c.14.19 1.9 2.9 4.6 4.07.64.28 1.14.45 1.53.57.64.2 1.22.17 1.68.1.51-.08 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.12-.26-.19-.54-.33z"/>
-     <path d=M16 3C9.37 3 4 8.37 4 15c0 2.31.66 4.47 1.8 6.32L4 29l7.9-1.75C13.64 28.55 14.78 29 16 29c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 22c-1.1 0-2.16-.2-3.14-.57l-.45-.17-4.69 1.04 1-4.57-.3-.47C7.39 18.35 7 16.72 7 15c0-4.96 4.04-9 9-9s9 4.04 9 9-4.04 10-9 10z"/>
+     <path d="M16 3C9.37 3 4 8.37 4 15c0 2.31.66 4.47 1.8 6.32L4 29l7.9-1.75C13.64 28.55 14.78 29 16 29c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 22c-1.1 0-2.16-.2-3.14-.57l-.45-.17-4.69 1.04 1-4.57-.3-.47C7.39 18.35 7 16.72 7 15c0-4.96 4.04-9 9-9s9 4.04 9 9-4.04 10-9 10z"/>
    </svg>
 </a>
 
