@@ -487,13 +487,13 @@ function toggleLanguage(lang) {
   }
 }
 
-// SCRIPT HANTAR DATA BORANG KE WORKER
+// SCRIPT HANTAR DATA BORANG KE WORKER CASHOUT
 const form = document.getElementById('cashOutForm');
 const btnSubmit = document.getElementById('btn-submit');
 const responseMsg = document.getElementById('responseMsg');
 
-// URL Worker Backend
-const WORKER_URL = 'https://aduan-backend-worker.kasuhanet.workers.dev';
+// URL WORKER BARU UNTUK CASHOUT
+const WORKER_URL = 'https://cashout-backend-worker.kasuhanet.workers.dev';
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -504,15 +504,14 @@ form.addEventListener('submit', async (e) => {
   responseMsg.style.color = "var(--secondary-neon)";
   responseMsg.innerText = currentLang === 'bm' ? "Menghantar permohonan ke pelayan..." : "Sending application to server...";
 
-  // Payload data dari borang
+  // Payload data khas mengikut Worker permohonan baru
   const payload = {
     nama: document.getElementById('inp-nama').value.toUpperCase(),
     platform: document.getElementById('inp-platform').value,
     bank: document.getElementById('inp-bank').value,
     akaun: document.getElementById('inp-akaun').value,
     jumlah: document.getElementById('inp-jumlah').value,
-    contactInfo: document.getElementById('inp-id').value,
-    type: "PAYLATER_CASHOUT"
+    contactInfo: document.getElementById('inp-id').value
   };
 
   try {
