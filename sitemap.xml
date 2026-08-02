@@ -1,33 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Utama / Homepage -->
   <url>
     <loc>https://kasuhanet.store/</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kasuhanet.store/homepage-EN.html"/>
+    <xhtml:link rel="alternate" hreflang="ms" href="https://kasuhanet.store/homepage-MS.html"/>
   </url>
-  <url>
-    <loc>https://kasuhanet.store/index.html</loc>
-  </url>
+
+  <!-- Homepage Bahasa Inggeris -->
   <url>
     <loc>https://kasuhanet.store/homepage-EN.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ms" href="https://kasuhanet.store/homepage-MS.html"/>
   </url>
+
+  <!-- Homepage Bahasa Melayu -->
   <url>
     <loc>https://kasuhanet.store/homepage-MS.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kasuhanet.store/homepage-EN.html"/>
   </url>
+
+  <!-- Pusat Bantuan / Support -->
   <url>
     <loc>https://kasuhanet.store/support-centre.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="ms" href="https://kasuhanet.store/pusat-bantuan.html"/>
   </url>
   <url>
     <loc>https://kasuhanet.store/pusat-bantuan.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kasuhanet.store/support-centre.html"/>
   </url>
+
+  <!-- Terma & Syarat / Terms -->
   <url>
     <loc>https://kasuhanet.store/terms-EN.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="ms" href="https://kasuhanet.store/terms-MS.html"/>
   </url>
   <url>
     <loc>https://kasuhanet.store/terms-MS.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kasuhanet.store/terms-EN.html"/>
   </url>
+
+  <!-- Tentang Kami / About Us -->
   <url>
     <loc>https://kasuhanet.store/About-Us.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="ms" href="https://kasuhanet.store/Tentang-Kami.html"/>
   </url>
   <url>
     <loc>https://kasuhanet.store/Tentang-Kami.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kasuhanet.store/About-Us.html"/>
   </url>
-  </urlset>
+
+</urlset>
