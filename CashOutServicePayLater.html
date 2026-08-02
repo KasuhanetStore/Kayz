@@ -321,7 +321,7 @@
         <span id="lbl-checkbox">Saya mengesahkan nama akaun bank saya adalah SAMA dengan nama akaun PayLater, dan bersetuju dengan semua Terma & Syarat di atas.</span>
       </label>
 
-      <button type="submit" class="submit-btn" id="btn-submit">Hantar Permohonan Via WhatsApp</button>
+      <button type="submit" class="submit-btn" id="btn-submit">Hantar Permohonan</button>
 
     </form>
   </div>
@@ -353,9 +353,9 @@ function toggleLanguage(lang) {
     document.getElementById('lbl-bank').innerText = "Nama Bank Penerima";
     document.getElementById('lbl-akaun').innerText = "Nombor Akaun Bank";
     document.getElementById('lbl-jumlah').innerText = "Jumlah Tunai Cash Out (RM)";
-    document.getElementById('lbl-id').innerText = "ID / Username / Pautan Profil PayLater";
+    document.getElementById('lbl-id').innerText = "Nombor Telefon / E-mail";
     document.getElementById('lbl-checkbox').innerText = "Saya mengesahkan nama akaun bank saya adalah SAMA dengan nama akaun PayLater, dan bersetuju dengan semua Terma & Syarat di atas.";
-    document.getElementById('btn-submit').innerText = "Hantar Permohonan Via WhatsApp";
+    document.getElementById('btn-submit').innerText = "Hantar Permohonan";
   } else {
     document.getElementById('notice-title').innerText = "⚠️ ABSOLUTE ELIGIBILITY NOTICE";
     document.getElementById('notice-desc').innerText = "Please ensure you fulfill the mandatory criteria below before submitting your request:";
@@ -367,9 +367,9 @@ function toggleLanguage(lang) {
     document.getElementById('lbl-bank').innerText = "Recipient Bank Name";
     document.getElementById('lbl-akaun').innerText = "Bank Account Number";
     document.getElementById('lbl-jumlah').innerText = "Cash Out Amount Requested (RM)";
-    document.getElementById('lbl-id').innerText = "PayLater ID / Username / Profile Link";
+    document.getElementById('lbl-id').innerText = "Number Phone / E-mail";
     document.getElementById('lbl-checkbox').innerText = "I confirm my bank account name MATCHES my PayLater profile name, and I agree to all Terms & Conditions.";
-    document.getElementById('btn-submit').innerText = "Submit Application Via WhatsApp";
+    document.getElementById('btn-submit').innerText = "Submit Application";
   }
 }
 
@@ -380,7 +380,7 @@ function processWhatsAppApplication(){
   const bank     = document.getElementById("inp-bank").value;
   const akaun    = document.getElementById("inp-akaun").value;
   const jumlah   = document.getElementById("inp-jumlah").value;
-  const plId     = document.getElementById("inp-id").value;
+  const NoHP     = document.getElementById("inp-id").value;
 
   const textMessage = 
 `⚡ PERMOHONAN CASH OUT BNPL ⚡
@@ -389,19 +389,62 @@ Nama Pemohon  : ${nama}
 Platform PL   : ${platform}
 Nama Bank     : ${bank}
 No Akaun Bank : ${akaun}
-Jumlah Req    : RM ${jumlah}
-ID / Link PL  : ${plId}
+Jumlah Keluar : RM ${jumlah}
+Nombor Telefon: ${plId}
 ----------------------------------
 *Status Identiti: Nama Bank & BNPL adalah SAMA.*
 *Pemohon bersetuju dengan Terma & Syarat (Caj 5%).*`;
 
-  const targetPhone = "60167390501"; 
-  const whatsappUrl = `https://wa.me/${targetPhone}?text=${encodeURIComponent(textMessage)}`;
+  const targetEmail = "kasuhaoculusorganisation@kasuhanet.store"; // Tukar ke e-mel anda
+  const emailSubject = "DataBase Borang Permohonan CashOut"; // Tajuk e-mel
+  const mailtoUrl = `mailto:${targetEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(textMessage)}`;
 
-  window.open(whatsappUrl, "_blank");
+  window.location.href = mailtoUrl;
 }
 </script>
 
+  <div class="back-link-box">
+      <a href="homepage-EN.html">← BACK TO MAIN MENU</a>
+    </div>
+
+  </div>
+</main>
+
+<!-- BOXED CYBER FOOTER (RAPAT DI DASAR SKRIN) -->
+<footer class="footer">
+    <div class="footer-grid">
+        <div>
+            <h3>KasuhaNET.STORE</h3>
+            <p>A multi-service digital ecosystem focusing on Linux solutions, affiliate systems, income generation, and digital learning.</p>
+        </div>
+
+        <div class="footer-links">
+            <h4>Services</h4>
+            <a href="CommandCanDoLIST.html">CommandCanDo</a>
+            <a href="Shop-MyAffliate-homeEN.html">MyAffiliate</a>
+            <a href="CashOutServicePayLater.html">PayLater BNPL</a>
+        </div>
+
+        <div class="footer-links">
+            <h4>Resources</h4>
+            <a href="About-Us.html">About Us</a>
+            <a href="support-centre.html">Support</a>
+            <a href="terms-EN.html">Terms & Policy</a>
+        </div>
+
+        <div class="footer-links">
+            <h4>Follow Us</h4>
+            <a href="https://facebook.com" target="_blank">Facebook</a>
+            <a href="https://tiktok.com" target="_blank">TikTok</a>
+            <a href="https://telegram.org" target="_blank">Telegram</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 KasuhaNET Resources (202503248308). All Rights Reserved.
+    </div>
+</footer>
+  
 </body>
 </html>
 
