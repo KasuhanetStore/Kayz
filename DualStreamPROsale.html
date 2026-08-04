@@ -361,6 +361,39 @@
         const savedLang = localStorage.getItem('selectedLanguage') || 'ms'; 
         applyLang(savedLang);
     });
+
+        // SKRIP AUTOMATIK PEMBAYARAN KASUHANET
+
+function jalankanSistemPembayaranAuto(namaCustomer, noPhone, amaunRM) {
+    
+    // Data hantar ke enjin pembayaran
+    const dataBayaran = new URLSearchParams({
+        'userSecretKey': 'MASUKKAN_API_KEY_KAU',
+        'categoryCode': 'MASUKKAN_KOD_KATEGORI_KAU',
+        'billName': 'Pesanan Servis KasuhaNET',
+        'billDescription': 'Pembayaran Automatik Sistem',
+        'billPriceSetting': '1',
+        'billPayorInfo': '1',
+        'billAmount': (amaunRM * 100).toString(), // Tukar RM ke sen automatik
+        'billTo': namaCustomer,
+        'billPhone': noPhone,
+        'billReturnUrl': 'https://kasuhanet.store/success.html' // Muka surat lepas siap bayar
+    });
+
+    // Panggil enjin gateway secara automatik
+    fetch('https://toyyibpay.com/index.php/api/createBill', {
+        method: 'POST',
+        body: dataBayaran
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data[0] && data[0].BillCode) {
+            // TERUS BUKA PAPARAN PAYMENT (QR / FPX) UNTUK CUSTOMER
+            window.location.href = 'https://toyyibpay.com/' + data[0].BillCode;
+        }
+    })
+    .catch(err => console.error('Error auto-payment:', err));
+}
     </script>
 </body>
 </html>
