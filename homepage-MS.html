@@ -741,34 +741,57 @@ nav a {
             text-align: center;
         }
     </style>
+/* Copy CSS ni sahaja */
+<style>
+    .profile-card {
+        background: #161b22;
+        border: 1px solid #30363d;
+        border-radius: 15px;
+        padding: 40px;
+        max-width: 600px;
+        width: 100%;
+        margin: 20px auto; /* Auto margin untuk tengah */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        box-sizing: border-box;
+    }
+    .profile-header { border-bottom: 1px solid #21262d; padding-bottom: 20px; margin-bottom: 25px; }
+    .profile-header h1 { margin: 0; color: #58a6ff; font-size: 1.8rem; }
+    .callsign { color: #8b949e; font-size: 0.95rem; font-weight: 600; margin-top: 5px; text-transform: uppercase; }
+    .exp-badge { display: inline-block; background: rgba(56, 139, 253, 0.1); color: #58a6ff; padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; margin-top: 15px; border: 1px solid rgba(56, 139, 253, 0.3); }
+    .profile-list { list-style: none; padding: 0; margin: 0; }
+    .profile-list li { padding-left: 25px; margin-bottom: 20px; line-height: 1.6; font-size: 0.95rem; position: relative; color: #c9d1d9; }
+    .profile-list li::before { content: "•"; position: absolute; left: 5px; color: #238636; font-size: 1.2rem; }
+    .highlight { color: #ffffff; font-weight: 700; }
+    .profile-footer { margin-top: 30px; padding-top: 20px; border-top: 1px dashed #21262d; font-size: 0.85rem; color: #8b949e; font-family: monospace; text-align: center; letter-spacing: 1px; }
+</style>
+    
+    <!-- Copy HTML ni sahaja -->
+<div class="profile-card">
+    <div class="profile-header">
+        <h1>Hi, aku Kasuha Zukarnain</h1>
+        <div class="callsign">CallSign: Kasuha Zukarnain</div>
+        <span class="exp-badge">8 - 9 Tahun Pengalaman Developer</span>
+    </div>
 
-    <!-- Petak Empat Segi Berada di Tengah -->
-    <div class="profile-card">
-        
-        <div class="profile-header">
-            <h1>Hi, aku Kasuha Zukarnain</h1>
-            <div class="callsign">CallSign: Kasuha Zukarnain</div>
-            <span class="exp-badge">8 - 9 Tahun Pengalaman Developer</span>
-        </div>
+    <ul class="profile-list">
+        <li>
+            <span class="highlight">Pembangunan &amp; Pengasasan:</span> Aku merupakan pembina utama di sebalik platform <span class="highlight">Kasuhanet.Store</span>, mengasaskan <span class="highlight">Kasuhanet Resources</span> untuk bidang perniagaan, serta membentuk organisasi <span class="highlight">Kasuha Oculus</span>.
+        </li>
+        <li>
+            <span class="highlight">Ketelitian Kod:</span> Amat gemar mengemaskan susunan struktur <i>coding</i> dan bahasa pengaturcaraan hingga mampu mereka bentuk serta menghasilkan fungsi yang lancar.
+        </li>
+        <li>
+            <span class="highlight">Keobsesan OS &amp; Android:</span> Berkait rapat dengan sistem dalaman Android atau Operating System (OS). Obses mencari "formula <i>codex</i>" yang mampu mengubah wajah, rupa, dan keupayaan sesebuah <i>software</i>.
+        </li>
+        <li>
+            <span class="highlight">Strategi &amp; Monetisasi:</span> Semua sistem dan analisis dirumuskan dalam satu aktiviti dan tujuan utama — iaitu menjana nilai kewangan melalui ekosistem perniagaan yang kukuh.
+        </li>
+    </ul>
 
-        <ul class="profile-list">
-            <li>
-                <span class="highlight">Pembangunan &amp; Pengasasan:</span> Aku merupakan pembina utama di sebalik platform <span class="highlight">Kasuhanet.Store</span>, mengasaskan <span class="highlight">Kasuhanet Resources</span> untuk bidang perniagaan, serta membentuk organisasi <span class="highlight">Kasuha Oculus</span>.
-            </li>
-            <li>
-                <span class="highlight">Ketelitian Kod:</span> Amat gemar mengemaskan susunan struktur <i>coding</i> dan bahasa pengaturcaraan hingga mampu mereka bentuk serta menghasilkan fungsi yang lancar.
-            </li>
-            <li>
-                <span class="highlight">Keobsesan OS &amp; Android:</span> Berkait rapat dengan sistem dalaman Android atau Operating System (OS). Obses mencari "formula <i>codex</i>" yang mampu mengubah wajah, rupa, dan keupayaan sesebuah <i>software</i>.
-            </li>
-            <li>
-                <span class="highlight">Strategi &amp; Monetisasi:</span> Semua sistem dan analisis dirumuskan dalam satu aktiviti dan tujuan utama — iaitu menjana nilai kewangan melalui ekosistem perniagaan yang kukuh.
-            </li>
-        </ul>
-
-        <div class="profile-footer">
-            System &amp; Architecture | Kasuha Oculus Framework
-        </div>
+    <div class="profile-footer">
+        System &amp; Architecture | Kasuha Oculus Framework
+    </div>
+</div>
     
     <!-- MAIN GRID CARDS -->
     <div class="grid">
