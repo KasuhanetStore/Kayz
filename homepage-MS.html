@@ -16,7 +16,7 @@
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://kasuhanet.store/homepage-MS.html">
 
-    <!-- FONT -->
+<!-- FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
 <!-- SWIPER CSS (PENTING UNTUK SLIDER) -->
@@ -46,7 +46,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="googlebot" content="index, follow">
 
-<!-- CSS -->
+<!-- CSS UTAMA -->
 <link rel="stylesheet" href="css/main.css">
 
 <style>
@@ -102,43 +102,21 @@ nav a {
     gap: 4px;
     background: rgba(255, 255, 255, 0.05);
     padding: 3px;
-    border-radius: 6px;
+    border-radius: 8px;
     border: 1px solid rgba(79, 49, 232, 0.4);
 }
 
-.lang button {
-    background: transparent;
-    border: none;
-    color: #8fa0dd;
-    padding: 4px 10px;
-    font-size: 11px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-}
-
-.lang button.active {
-    background: #4F31E8;
-    color: #fff;
-    box-shadow: 0 0 8px #4F31E8;
-}
-
-.lang button:hover:not(.active) {
-    color: #00F0FF;
-}
-
-/* GRID SYSTEM BAHAGIAN TENGAH */
+/* GRID LAYOUT FOR MAIN CARDS */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 15px;
-    margin: 20px auto;
-    width: 100%;
+    gap: 20px;
+    margin-bottom: 25px;
 }
 
 .card {
     background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(79, 49, 232, 0.3);
+    border: 1px solid rgba(79, 49, 232, 0.4);
     border-radius: 8px;
     padding: 15px;
     text-decoration: none;
@@ -149,7 +127,6 @@ nav a {
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-/* CLASS KHAS KAD TEKS CENTER */
 .card-center {
     text-align: center;
     align-items: center;
@@ -158,7 +135,7 @@ nav a {
 .card:hover {
     border-color: #00F0FF;
     box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
 }
 
 .card img {
@@ -192,7 +169,103 @@ nav a {
     color: #ccc;
 }
 
-/* STYLES KHAS UNTUK SWIPER SLIDER */
+/* KASUHA ZUKARNAIN PROFILE CARD STYLES */
+.profile-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.profile-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 700px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: border-color 0.3s ease;
+}
+
+.profile-card:hover {
+    border-color: #58a6ff;
+}
+
+.profile-header {
+    border-bottom: 1px solid #21262d;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.profile-header h1 {
+    margin: 0;
+    color: #58a6ff;
+    font-size: 1.6rem;
+    letter-spacing: 0.5px;
+}
+
+.callsign {
+    color: #8b949e;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 5px;
+    text-transform: uppercase;
+}
+
+.exp-badge {
+    display: inline-block;
+    background: rgba(56, 139, 253, 0.15);
+    color: #58a6ff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-top: 10px;
+    border: 1px solid rgba(56, 139, 253, 0.4);
+}
+
+.profile-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+.profile-list li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 15px;
+    line-height: 1.6;
+    font-size: 0.9rem;
+    color: #c9d1d9;
+}
+
+.profile-list li::before {
+    content: "❯";
+    position: absolute;
+    left: 0;
+    color: #238636;
+    font-weight: bold;
+}
+
+.highlight {
+    color: #f0f6fc;
+    font-weight: 600;
+}
+
+.profile-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px dashed #21262d;
+    font-size: 0.8rem;
+    color: #8b949e;
+    font-style: italic;
+    text-align: center;
+}
+
+/* STYLES UNTUK SWIPER SLIDER */
 .hero-slider-container {
     width: 100%;
     margin: 25px 0;
@@ -561,6 +634,22 @@ nav a {
     width: auto;
     filter: drop-shadow(0 0 2px #00F0FF);
 }
+
+.trust-banner-container {
+    width: 85%;
+    max-width: 600px;
+    margin: 40px auto 15px auto;
+    padding: 0 16px;
+    text-align: center;
+}
+
+.trust-banner-img {
+    width: 85%;
+    height: auto !important;
+    max-width: 600px;
+    display: block !important;
+    margin: 15px auto !important;
+}
 </style>
 
 </head>
@@ -599,7 +688,7 @@ nav a {
         Laman web dikuasakan oleh kolaborasi Gabungan Organisasi & Syarikat
     </div>
     <div class="partner-logos">
-        <span class="partner-name">Kasuha Okulus Organisation</span>
+        <span class="partner-name">Kasuha Oculus Organisation</span>
         <div class="partner-logo-box">
             <img src="OculusLogo.png" alt="Logo Kolaborasi">
         </div>
@@ -608,7 +697,6 @@ nav a {
 </div>
 
 <main>
-
     <!-- MAIN TITLE -->
     <section class="section">
         <h1 class="neon-title">Kasuha<span>NET.STORE</span></h1>
@@ -638,161 +726,35 @@ nav a {
         </div>
     </div>
     
-    <title>Kasuha Zukarnain | PROFIL dab PENGUMUMAN RASMI</title>
-    <style>
-        /* Tetapan Asas Latar Belakang & Fon */
-        body {
-            margin: 0;
-            padding: 20px;
-            background-color: #0d1117;
-            color: #c9d1d9;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            box-sizing: border-box;
-        }
-
-        /* Rekabentuk Petak Empat Segi di Tengah */
-        .profile-card {
-            background: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 12px;
-            padding: 35px;
-            max-width: 650px;
-            width: 100%;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            transition: border-color 0.3s ease;
-        }
-
-        .profile-card:hover {
-            border-color: #58a6ff;
-        }
-
-        /* Tajuk Utama */
-        .profile-header {
-            border-bottom: 1px solid #21262d;
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-        }
-
-        .profile-header h1 {
-            margin: 0;
-            color: #58a6ff;
-            font-size: 1.8rem;
-            letter-spacing: 0.5px;
-        }
-
-        .callsign {
-            color: #8b949e;
-            font-size: 0.95rem;
-            font-weight: 600;
-            margin-top: 5px;
-        }
-
-        .exp-badge {
-            display: inline-block;
-            background: rgba(56, 139, 253, 0.15);
-            color: #58a6ff;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            margin-top: 10px;
-            border: 1px solid rgba(56, 139, 253, 0.4);
-        }
-
-        /* Senarai Poin */
-        .profile-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .profile-list li {
-            position: relative;
-            padding-left: 28px;
-            margin-bottom: 18px;
-            line-height: 1.6;
-            font-size: 0.98rem;
-        }
-
-        .profile-list li::before {
-            content: "❯";
-            position: absolute;
-            left: 0;
-            color: #238636;
-            font-weight: bold;
-        }
-
-        .highlight {
-            color: #f0f6fc;
-            font-weight: 600;
-        }
-
-        /* Kod Penutup Ringkas */
-        .profile-footer {
-            margin-top: 25px;
-            padding-top: 15px;
-            border-top: 1px dashed #21262d;
-            font-size: 0.88rem;
-            color: #8b949e;
-            font-style: italic;
-            text-align: center;
-        }
-    </style>
-/* Copy CSS ni sahaja */
-<style>
-    .profile-card {
-        background: #161b22;
-        border: 1px solid #30363d;
-        border-radius: 15px;
-        padding: 40px;
-        max-width: 600px;
-        width: 100%;
-        margin: 20px auto; /* Auto margin untuk tengah */
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        box-sizing: border-box;
-    }
-    .profile-header { border-bottom: 1px solid #21262d; padding-bottom: 20px; margin-bottom: 25px; }
-    .profile-header h1 { margin: 0; color: #58a6ff; font-size: 1.8rem; }
-    .callsign { color: #8b949e; font-size: 0.95rem; font-weight: 600; margin-top: 5px; text-transform: uppercase; }
-    .exp-badge { display: inline-block; background: rgba(56, 139, 253, 0.1); color: #58a6ff; padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; margin-top: 15px; border: 1px solid rgba(56, 139, 253, 0.3); }
-    .profile-list { list-style: none; padding: 0; margin: 0; }
-    .profile-list li { padding-left: 25px; margin-bottom: 20px; line-height: 1.6; font-size: 0.95rem; position: relative; color: #c9d1d9; }
-    .profile-list li::before { content: "•"; position: absolute; left: 5px; color: #238636; font-size: 1.2rem; }
-    .highlight { color: #ffffff; font-weight: 700; }
-    .profile-footer { margin-top: 30px; padding-top: 20px; border-top: 1px dashed #21262d; font-size: 0.85rem; color: #8b949e; font-family: monospace; text-align: center; letter-spacing: 1px; }
-</style>
-    
-    <!-- Copy HTML ni sahaja -->
+    <!-- KAD PROFIL KASUHA ZUKARNAIN -->
     <div class="profile-wrapper">
-<div class="profile-card">
-    <div class="profile-header">
-        <h1>Hi, aku Kasuha Zukarnain</h1>
-        <div class="callsign">CallSign: Kasuha Zukarnain</div>
-        <span class="exp-badge">8 - 9 Tahun Pengalaman Developer</span>
-    </div>
+        <div class="profile-card">
+            <div class="profile-header">
+                <h1>Hi, aku Kasuha Zukarnain</h1>
+                <div class="callsign">CallSign: Kasuha Zukarnain</div>
+                <span class="exp-badge">8 - 9 Tahun Pengalaman Developer</span>
+            </div>
 
-    <ul class="profile-list">
-        <li>
-            <span class="highlight">Pembangunan &amp; Pengasasan:</span> Aku merupakan pembina utama di sebalik platform <span class="highlight">Kasuhanet.Store</span>, mengasaskan <span class="highlight">Kasuhanet Resources</span> untuk bidang perniagaan, serta membentuk organisasi <span class="highlight">Kasuha Oculus</span>.
-        </li>
-        <li>
-            <span class="highlight">Ketelitian Kod:</span> Amat gemar mengemaskan susunan struktur <i>coding</i> dan bahasa pengaturcaraan hingga mampu mereka bentuk serta menghasilkan fungsi yang lancar.
-        </li>
-        <li>
-            <span class="highlight">Keobsesan OS &amp; Android:</span> Berkait rapat dengan sistem dalaman Android atau Operating System (OS). Obses mencari "formula <i>codex</i>" yang mampu mengubah wajah, rupa, dan keupayaan sesebuah <i>software</i>.
-        </li>
-        <li>
-            <span class="highlight">Strategi &amp; Monetisasi:</span> Semua sistem dan analisis dirumuskan dalam satu aktiviti dan tujuan utama — iaitu menjana nilai kewangan melalui ekosistem perniagaan yang kukuh.
-        </li>
-    </ul>
+            <ul class="profile-list">
+                <li>
+                    <span class="highlight">Pembangunan &amp; Pengasasan:</span> Aku merupakan pembina utama di sebalik platform <span class="highlight">Kasuhanet.Store</span>, mengasaskan <span class="highlight">Kasuhanet Resources</span> untuk bidang perniagaan, serta membentuk organisasi <span class="highlight">Kasuha Oculus</span>.
+                </li>
+                <li>
+                    <span class="highlight">Ketelitian Kod:</span> Amat gemar mengemaskan susunan struktur <i>coding</i> dan bahasa pengaturcaraan hingga mampu mereka bentuk serta menghasilkan fungsi yang lancar.
+                </li>
+                <li>
+                    <span class="highlight">Keobsesan OS &amp; Android:</span> Berkait rapat dengan sistem dalaman Android atau Operating System (OS). Obses mencari "formula <i>codex</i>" yang mampu mengubah wajah, rupa, dan keupayaan sesebuah <i>software</i>.
+                </li>
+                <li>
+                    <span class="highlight">Strategi &amp; Monetisasi:</span> Semua sistem dan analisis dirumuskan dalam satu aktiviti dan tujuan utama — iaitu menjana nilai kewangan melalui ekosistem perniagaan yang kukuh.
+                </li>
+            </ul>
 
-    <div class="profile-footer">
-        System &amp; Architecture | Kasuha Oculus Framework
+            <div class="profile-footer">
+                System &amp; Architecture | Kasuha Oculus Framework
+            </div>
+        </div>
     </div>
-</div>
     
     <!-- MAIN GRID CARDS -->
     <div class="grid">
@@ -840,7 +802,7 @@ nav a {
         </div>
 
         <div class="flicker-text">
-            <p><strong>Sila ambil perhatian:</strong> Berkaitan aktiviti penipuan pihak saya memandang serius. Kemungkinan ada pihak cuba ambil kesempatan dengan menggunakan NAMA syarikat atau pun PEMILIK <span class="company-name">KasuhaNET.STORE</span> untuk penipuan kewangan.</p>
+            <p><strong>Sila ambil perhatian:</strong> Berkaitan aktiviti penipuan pihak saya memandang serius. Kemungkinan ada pihak coba ambil kesempatan dengan menggunakan NAMA syarikat atau pun PEMILIK <span class="company-name">KasuhaNET.STORE</span> untuk penipuan kewangan.</p>
             <p><strong>PENJELASAN pada semua individu:</strong> Pihak saya hanya berurusan melibatkan jualan beli atas Akaun Bank berdaftar atas nama <span class="company-name">Kasuhanet Resources</span> dan <span class="company-name">KasuhaOculus Organisation</span> Sahaja.</p>
             <p>Pihak saya tidak bertanggungjawab berlaku penipuan akibat terpedaya dengan SCAMMER.</p>
         </div>
@@ -896,30 +858,12 @@ nav a {
         <img src="KasuhaKZintro.png" alt="Kasuha Zukarnain Intro" class="mini-deko-img">
     </div>
 
+    <!-- Trust Badges Banner Section -->
+    <div class="trust-banner-container">
+        <img src="broadcast.png" alt="KasuhaNET Supported Technologies & Payments" class="trust-banner-img" />
+    </div>
+
 </main>
-
-<!-- Trust Badges Banner Section -->
-<div class="trust-banner-container">
-  <img src="broadcast.png" alt="KasuhaNET Supported Technologies & Payments" class="trust-banner-img" />
-</div>
-
-<style>
-.trust-banner-container {
-  width: 85%;
-  max-width: 600px;
-  margin: 40px auto 15px auto;
-  padding: 0 16px;
-  text-align: center;
-}
-
-.trust-banner-img {
-  width: 85%;
-  height: auto !important;
-  max-width: 600px; /* Boleh ubah saiz mengikut kesesuaian layout */
-  display: block !important;
-  margin: 15px auto !important;
-}
-</style>
 
 <!-- BOXED CYBER FOOTER -->
 <footer class="footer">
@@ -931,11 +875,12 @@ nav a {
 
         <div class="footer-links">
             <h4>Perkhidmatan</h4>
-         <a href="CommandCanDoLIST.html">CommandCanDo</a>
-          <a href="Shop-MyAffliate-homeMS.html">MyAffliate</a>
-          <a href="CashOutServicePayLater.html">PayLater BNPL</a>       </div>
+            <a href="CommandCanDoLIST.html">CommandCanDo</a>
+            <a href="Shop-MyAffliate-homeMS.html">MyAffliate</a>
+            <a href="CashOutServicePayLater.html">PayLater BNPL</a>
+        </div>
 
-<div class="footer-links">
+        <div class="footer-links">
             <h4>Sumber</h4>
             <a href="Tentang-Kami.html">Tentang Kami</a>
             <a href="pusat-bantuan.html">Bantuan</a>
@@ -948,8 +893,9 @@ nav a {
             <a href="https://tiktok.com/@kasuhanet.store" target="_blank">TikTok</a>
             <a href="https://t.me/kasuhanetstorebot" target="_blank">Telegram</a>
         </div>
+    </div>
 
-        <div class="footer-bottom">
+    <div class="footer-bottom">
         © 2026 KasuhaNET Resources (202503248308). Hak Cipta Terpelihara.
     </div>
 </footer>
@@ -977,7 +923,7 @@ nav a {
    </svg>
 </a>
 
-<!-- SWIPER JS LIBRARY (PENTING) -->
+<!-- SWIPER JS LIBRARY -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <!-- INITIALIZATION SCRIPT FOR SWIPER SLIDER -->
