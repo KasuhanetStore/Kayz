@@ -1,6 +1,13 @@
 User-agent: *
 Allow: /
 
+# Sekat Panel Admin & API internal
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /api/
+Disallow: /wp-admin/
+Disallow: /login/
+
 # Menghalang crawler daripada akses fail sistem / sensitif
 Disallow: /config/
 Disallow: /*.json$
@@ -26,6 +33,46 @@ User-agent: Bytespider
 Disallow: /
 
 User-agent: CCBot
+Disallow: /
+
+# Bot Scraping Agresif Tambahan
+User-agent: Diffbot
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+User-agent: Meta-ExternalFetcher
+Disallow: /
+
+User-agent: Cohere-training
+Disallow: /
+
+User-agent: YouBot
+Disallow: /
+
+User-agent: OMGilibot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
 Disallow: /
 
 # Pautan ke Sitemap
