@@ -105,7 +105,27 @@ nav a {
     border-radius: 8px;
     border: 1px solid rgba(79, 49, 232, 0.4);
 }
+    
+.lang button {
+    background: transparent;
+    border: none;
+    color: #8fa0dd;
+    padding: 4px 10px;
+    font-size: 11px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+    .lang button.active {
+    background: #4F31E8;
+    color: #fff;
+    box-shadow: 0 0 8px #4F31E8;
+}
 
+.lang button:hover:not(.active) {
+    color: #00F0FF;
+}
+    
 /* GRID LAYOUT FOR MAIN CARDS */
 .grid {
     display: grid;
