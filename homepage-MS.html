@@ -746,6 +746,29 @@ nav a {
             </p>
         </div>
     </section>
+    
+    /* Mengecilkan & mengawal saiz gambar banner */
+.banner-img {
+    max-width: 100%;      /* Gambar tak akan melimpah keluar container */
+    height: auto;         /* Mengekalkan nisbah (aspect ratio) gambar */
+    display: block;       /* Mengelakkan ruang kosong kat bawah gambar */
+    margin: 0 auto 15px;  /* Menyusun gambar ke tengah (center) & tambah jarak bawah */
+    border-radius: 8px;   /* (Opsional) Melengkungkan sedikit bucu gambar */
+}
+
+/* Menyusun tajuk H3 ke tengah secara tepat */
+.web-workshop-container h3 {
+    text-align: center;   /* Ratakan teks ke tengah */
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+/* Mengemaskan kontena utama supaya responsive */
+.web-workshop-container {
+    max-width: 800px;     /* Hadkan lebar maksimum bekas (adjust ikut kesesuaian) */
+    margin: 0 auto;       /* Ratakan keseluruhan bekas ke tengah skrin */
+    padding: 20px;
+}
     <!-- CARD KEMASKINI TEKS DI TENGAH (CENTER) -->  
 <div class="web-workshop-container">
     <img src="img/BannerWebMAIN.png" alt="Pilihan Terminal" class="banner-img">
