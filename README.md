@@ -1,1 +1,2 @@
 # Kayz
+Updated workflow configuration
