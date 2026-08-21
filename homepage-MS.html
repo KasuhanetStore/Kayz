@@ -690,6 +690,20 @@ nav a {
     display: block !important;
     margin: 15px auto !important;
 }
+
+    /* Animasi kelip-kelip */
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.1; }
+  100% { opacity: 1; }
+}
+
+.blinking-red {
+  color: #ff3366;           /* Warna merah neon */
+  font-weight: bold;         /* Teks tebal */
+  animation: blink 1s infinite; /* Kelip-kelip setiap 1 saat tanpa henti */
+  text-decoration: none;
+}
 </style>
 
 </head>
@@ -758,7 +772,7 @@ nav a {
     <a href="https://kasuhanet.store/Bengkel-Custom-WebSite.html" style="text-decoration: none; color: inherit; display: block;">
         <div class="web-workshop-container">
             <img src="img/BannerWebMAIN.png" alt="Terminal Choice" style="max-width: 100%; width: 400px; display: block; margin: 0 auto;">   
-            <h3 style="text-align: center;">Bengkel Custom WEB⬅️<span style="color: #00bfff; font-weight: bold;">KLIK</span>🛠️</h3>
+            <h3 style="text-align: center;">Bengkel Custom WEB⬅️<span class="blinking-red">KLIK</span>🛠️</h3>
             <div class="card card-center">
                 <p>
                     Selamat datang ke <strong>kasuhanet.store</strong>! Bagi anda yang ingin membina atau menaik taraf laman web, 
