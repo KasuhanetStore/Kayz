@@ -704,6 +704,23 @@ nav a {
   animation: blink 1s infinite; /* Kelip-kelip setiap 1 saat tanpa henti */
   text-decoration: none;
 }
+    /* Animasi bertukar warna Biru & Merah */
+@keyframes colorShift {
+  0%, 100% {
+    color: #00bfff; /* Biru Neon */
+    text-shadow: 0 0 8px rgba(0, 191, 255, 0.8);
+  }
+  50% {
+    color: #ff3366; /* Merah Neon */
+    text-shadow: 0 0 8px rgba(255, 51, 102, 0.8);
+  }
+}
+
+.blinking-blue-red {
+  font-weight: bold;
+  animation: colorShift 1s infinite; /* Tukar warna setiap 1 saat */
+  text-decoration: none;
+}
 </style>
 
 </head>
@@ -896,9 +913,9 @@ nav a {
             <a href="Banner-WebSale-MS.html" class="card-bg-box" style="background-image: url('PreviewCodingWeb.jpg');">
                 <div class="card-overlay"></div>
                 <div class="card-content">
-                    <h3>MULA SEKARANG!</h3>
+                    <h3><span class="blinking-blue-red">MULA SEKARANG!</span></h3>
                     <p>
-                        Pelan E-Pembelajaran Reka Bentuk Web selepas pembelian pakej Web bermula RM299-RM345!
+                        Pelan E-Pembelajaran Reka Bentuk Web selepas pembelian pakej Web bermula RM299-RM345!<span class="blinking-blue-red">⬅️</span>
                     </p>
                 </div>
             </a>
