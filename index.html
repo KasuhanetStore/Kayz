@@ -681,6 +681,19 @@ nav a {
     display: block !important;
     margin: 15px auto !important;
 }
+        /* Animasi kelip-kelip */
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.1; }
+  100% { opacity: 1; }
+}
+
+.blinking-red {
+  color: #ff3366;           /* Warna merah neon */
+  font-weight: bold;         /* Teks tebal */
+  animation: blink 1s infinite; /* Kelip-kelip setiap 1 saat tanpa henti */
+  text-decoration: none;
+}
 </style>
 
 </head>
@@ -748,7 +761,7 @@ nav a {
     <a href="https://kasuhanet.store/Custom-Web-Workshop-EN" style="text-decoration: none; color: inherit; display: block;">
         <div class="web-workshop-container">
             <img src="Bengkel-Custom-WebSite-EN.png" alt="Terminal Choice" style="max-width: 100%; width: 400px; display: block; margin: 0 auto;">   
-            <h3 style="text-align: center;">Custom WEB Workshop⬅️CLICK🛠️</h3>
+            <h3 style="text-align: center;">Custom WEB Workshop⬅️<span class="blinking-red">CLICK</span>🛠️</h3>
             <div class="card card-center">
                 <p>
                     Welcome to <strong>kasuhanet.store</strong>! For those looking to build or upgrade a website, 
@@ -757,7 +770,7 @@ nav a {
                 </p>
                 <p>
                     <strong>Looking for maximum flexibility?</strong> Explore our Custom Workshop! In this section, services and tools 
-                    are listed modularly. You can choose, match, and add specific tools or services required for quick deployment.⬅️CLICK HERE🔎
+                    are listed modularly. You can choose, match, and add specific tools or services required for quick deployment.⬅️<span class="blinking-red">CLICK HERE</span>🔎
                 </p>
             </div>
         </div>
