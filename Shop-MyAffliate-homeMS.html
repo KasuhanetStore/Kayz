@@ -431,7 +431,7 @@
             
             <div class="product-content">
                 <h3 class="product-title">Baru | Skrin LCD Gantian Penggantian Komponen Realme C11 / C12 / C15 / C25 / OPPO A15 / A16</h3>
-                <p class="product-price">RM 29.80</p>
+                <p class="product-price">RM 104.50</p>
                 <a href="https://s.shopee.com.my/7VEDMfaWVE" target="_blank" rel="noopener noreferrer" class="btn-action btn-shopee">Beli</a>
             </div>
         </div>
@@ -450,6 +450,17 @@
 
     </div>
 </main>
+    
+<!-- FADE ANIMATION POPUP PREVIEW MODAL -->
+<div class="modal-overlay" id="previewModal" onclick="closePreview(event)">
+    <div class="modal-container" onclick="event.stopPropagation()">
+        <span class="modal-close" onclick="forceClosePreview()">&times;</span>
+        <img src="" id="modalImg" class="modal-img" alt="Preview">
+        <h3 id="modalTitle" class="modal-title">Product Title</h3>
+        <p id="modalPrice" class="modal-price">RM 0.00</p>
+        <a id="modalBuyBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn-action btn-shopee">PASTI MEMBELI</a>
+    </div>
+</div>
 
 <!-- BOXED CYBER FOOTER -->
 <footer class="footer">
