@@ -711,6 +711,31 @@ nav a {
   animation: colorShift 1s infinite; /* Tukar warna setiap 1 saat */
   text-decoration: none;
 }
+
+  /* Tetapan saiz teks khusus untuk telefon */
+  @media screen and (max-width: 768px) {
+    body {
+      font-size: 16px !important;
+      line-height: 1.6 !important;
+    }
+
+    /* Besarkan semua teks perenggan & kandungan kad intro */
+    p, span, li {
+      font-size: 1rem !important; /* Saiz teks normal mudah dibaca */
+    }
+
+    /* Besarkan tajuk utama */
+    h1, h2, h3 {
+      font-size: 1.4rem !important;
+    }
+
+    /* Besarkan menu footer & pautan */
+    .footer-links a {
+      font-size: 1rem !important;
+      display: inline-block;
+      padding: 6px 0; /* Senang tekan guna jari */
+    }
+  }
 </style>
 
 </head>
