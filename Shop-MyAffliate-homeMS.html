@@ -4,24 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- MAIN SEO -->
-    <title>Sokongan Pemasaran Afiliasi Malaysia | KasuhaNET MyAffiliate</title>
-<meta name="description" content="Sertai program MyAffiliate KasuhaNET - jana pendapatan dalam talian dengan alat sokongan pemasaran afiliasi yang direka untuk rakyat Malaysia.">
-<meta property="og:title" content="Jana Pendapatan dengan KasuhaNET MyAffiliate - Afiliasi Malaysia">
-<meta property="og:description" content="Mulakan perjalanan afiliasi anda bersama KasuhaNET. Kami menyediakan alat, pautan, dan sokongan yang anda perlukan untuk berjaya dalam talian di Malaysia.">
-<meta property="og:url" content="https://kasuhanet.store/Shop-MyAffliate-homeMS.html">
-<meta property="og:type" content="website">
-<link rel="canonical" href="https://kasuhanet.store/Shop-MyAffliate-homeMS.html">
-   
+    <!-- SEO UTAMA -->
+    <title>Sokongan Pemasaran Bapa / Affiliate Malaysia | KasuhaNET MyAffiliate</title>
+    <meta name="description" content="Sertai program MyAffiliate KasuhaNET - jana pendapatan dalam talian dengan alatan sokongan pemasaran affiliate khas untuk rakyat Malaysia.">
+    <meta property="og:title" content="Jana Pendapatan Dalam Talian dengan KasuhaNET MyAffiliate - Pemasaran Affiliate Malaysia">
+    <meta property="og:description" content="Mula menjana pendapatan melalui pemasaran affiliate. KasuhaNET MyAffiliate menyediakan alatan, pautan, dan sokongan yang anda perlukan untuk berjaya secara dalam talian di Malaysia.">
+    <meta property="og:url" content="https://kasuhanet.store/Shop-MyAffliate-homeMS.html">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://kasuhanet.store/Shop-MyAffliate-homeMS.html">
+    
     <!-- FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <!-- Favicon Untuk Google & Browser Biasa -->
-<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
-<!-- Favicon Khas Untuk Apple (iOS/Safari) -->
-<link rel="apple-touch-icon" sizes="180x180" href="/favicon-512x512.png">
-    
-    <!-- MOBILE -->
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-512x512.png">
+
+    <!-- MUDAL / MOBILE -->
     <meta name="theme-color" content="#05070d">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -41,7 +40,7 @@
             line-height: 1.6;
         }
 
-        /* HEADER (BERGERAK IKUT SKROL / NOT STICKY) */
+        /* HEADER */
         header {
             display: flex;
             justify-content: space-between;
@@ -49,7 +48,7 @@
             padding: 15px 20px;
             background: rgba(5, 7, 13, 0.9);
             border-bottom: 1px solid rgba(79, 49, 232, 0.2);
-            position: relative; /* Bergerak ikut skrol ke atas */
+            position: relative;
             z-index: 100;
         }
 
@@ -198,6 +197,7 @@
             transition: all 0.3s ease;
             position: relative;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            cursor: pointer;
         }
 
         .card-product:hover {
@@ -237,10 +237,6 @@
         .label-shopee { 
             background-color: #EE4D2D; 
             box-shadow: 0 0 8px rgba(238, 77, 45, 0.5);
-        }
-        .label-affiliate { 
-            background-color: #E600A4; 
-            box-shadow: 0 0 8px rgba(230, 0, 164, 0.5);
         }
 
         .product-title {
@@ -289,12 +285,88 @@
             color: #fff;
         }
 
-        .btn-affiliate {
-            background-color: #4F31E8;
-            color: #fff;
+        /* STYLES UNTUK FADE POPUP PREVIEW MODAL */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 7, 13, 0.85);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
-        /* DESIGN FOOTER BERBENTUK & BERWARNA KEMAS */
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-container {
+            background: #090d16;
+            border: 1px solid #00F0FF;
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
+            border-radius: 8px;
+            max-width: 450px;
+            width: 90%;
+            padding: 20px;
+            position: relative;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            color: #E600A4;
+            cursor: pointer;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: #00F0FF;
+        }
+
+        .modal-img {
+            width: 100%;
+            max-height: 280px;
+            object-fit: contain;
+            border-radius: 6px;
+            border: 1px solid rgba(79, 49, 232, 0.4);
+            background: rgba(0,0,0,0.5);
+            margin-bottom: 15px;
+        }
+
+        .modal-title {
+            font-size: 13px;
+            color: #fff;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .modal-price {
+            font-size: 18px;
+            color: #00F0FF;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+        }
+
+        /* FOOTER */
         .footer {
             background: #090d16;
             border-top: 2px solid #4F31E8;
@@ -379,24 +451,24 @@
 </head>
 <body>
 
-<!-- HEADER UTAMA (MENGGUNAKAN HTML ANDA & BERGERAK IKUT SKROL) -->
+<!-- HEADER UTAMA -->
 <header>
     <div class="logo">
         <img src="img/logo3.png" alt="Logo">
     </div>
 
     <nav>
-        <a href="homepage-MS.html">UTAMA</a>
-        <a href="Tentang-Kami.html">TENTANG KAMI</a>
-        <a href="terms-MS.html">TERMA & POLISI</a>
-        <a href="pusat-bantuan.html">BANTUAN</a>
+        <a href="index.html">UTAMA</a>
+        <a href="About-us.html">TENTANG KAMI</a>
+        <a href="terms-MS.html">TERMA & SYARAT</a>
+        <a href="support-centre.html">SOKONGAN</a>
     </nav>
 </header>
 
 <!-- BAHAGIAN KREDIT KERJASAMA -->
 <div class="partner-credit-bar">
     <div class="credit-text">
-        Laman web dikuasakan oleh gabungan Kerjasama Organisasi & Syarikat
+        Laman web dikuasakan oleh kerjasama Gabungan Organisasi & Syarikat
     </div>
     <div class="partner-logos">
         <span class="partner-name">Kasuha Okulus Organisation</span>
@@ -409,14 +481,14 @@
 
 <!-- HERO BANNER PROMOSI -->
 <section class="hero-section">
-    <h1>KESELURUHAN KEDAI AFFILIATE</h1>
-    <p>Himpunan semua platform produk affiliate di satu tempat utama..</p>
+    <h1>KEDAI AFFILIATE KESELURUHAN</h1>
+    <p>Himpunan semua pautan affiliate platform dalam satu tempat..</p>
 </section>
 
 <!-- KANDUNGAN UTAMA / GRID PRODUK -->
 <main id="kedai">
     
-    <h2 class="section-title">Katalog Kemaskini Terkini</h2>
+    <h2 class="section-title">Katalog TERKINI.</h2>
     
     <div class="filter-tags">
         <button class="badge-tag">Produk Affiliate</button>
@@ -424,41 +496,41 @@
 
     <div class="grid-products">
         
-        <!-- Kad Produk 1 (Shopee Affiliate) -->
-        <div class="card-product">
+        <!-- Kad Produk 1 -->
+        <div class="card-product" onclick="openPreview('Lcd11.png', 'Baru | Skrin LCD Realme C11 / C12 / C15 / C25 / OPPO A15 / A16 Pemasangan Alat Ganti', 'RM 29.80', 'https://s.shopee.com.my/7VEDMfaWVE')">
             <span class="product-label label-shopee">Shopee</span>
             <img src="Lcd11.png" alt="LCD Realme" class="product-img" onerror="this.src='https://via.placeholder.com/250x200?text=Gambar+Produk'">
             
             <div class="product-content">
-                <h3 class="product-title">Baru | Skrin LCD Gantian Penggantian Komponen Realme C11 / C12 / C15 / C25 / OPPO A15 / A16</h3>
-                <p class="product-price">RM 104.50</p>
-                <a href="https://s.shopee.com.my/7VEDMfaWVE" target="_blank" rel="noopener noreferrer" class="btn-action btn-shopee">Beli</a>
+                <h3 class="product-title">Baru | Skrin LCD Realme C11 / C12 / C15 / C25 / OPPO A15 / A16 Pemasangan Alat Ganti</h3>
+                <p class="product-price">RM 29.80</p>
+                <button class="btn-action btn-shopee">Beli / Pratonton</button>
             </div>
         </div>
 
-        <!-- Kad Produk 2 (Tawaran Affiliate Lain) -->
-        <div class="card-product">
+        <!-- Kad Produk 2 -->
+        <div class="card-product" onclick="openPreview('KeelatSale.png', 'Kipas Bateri Litium KEELAT 8 Dalam 1', 'RM 359.00', 'https://s.shopee.com.my/1qau7MiBua')">
             <span class="product-label label-shopee">Shopee</span>
-            <img src="KeelatSale.png" alt="Keelat Kipas" class="product-img">
+            <img src="KeelatSale.png" alt="Keelat Fan" class="product-img" onerror="this.src='https://via.placeholder.com/250x200?text=Gambar+Produk'">
             
             <div class="product-content">
-                <h3 class="product-title">KEELAT Kipas 8 DALAM 1</h3>
+                <h3 class="product-title">Kipas Bateri Litium KEELAT 8 Dalam 1</h3>
                 <p class="product-price">RM 359.00</p>
-                <a href="https://s.shopee.com.my/1qau7MiBua" target="_blank" rel="noopener noreferrer" class="btn-action btn-shopee">Beli</a>
+                <button class="btn-action btn-shopee">Beli / Pratonton</button>
             </div>
         </div>
 
     </div>
 </main>
-    
+
 <!-- FADE ANIMATION POPUP PREVIEW MODAL -->
 <div class="modal-overlay" id="previewModal" onclick="closePreview(event)">
     <div class="modal-container" onclick="event.stopPropagation()">
         <span class="modal-close" onclick="forceClosePreview()">&times;</span>
-        <img src="" id="modalImg" class="modal-img" alt="Preview">
-        <h3 id="modalTitle" class="modal-title">Product Title</h3>
+        <img src="" id="modalImg" class="modal-img" alt="Pratonton Gambar">
+        <h3 id="modalTitle" class="modal-title">Tajuk Produk</h3>
         <p id="modalPrice" class="modal-price">RM 0.00</p>
-        <a id="modalBuyBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn-action btn-shopee">PASTI MEMBELI</a>
+        <a id="modalBuyBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn-action btn-shopee">Teruskan Ke Shopee</a>
     </div>
 </div>
 
@@ -467,7 +539,7 @@
     <div class="footer-grid">
         <div>
             <h3>KasuhaNET.STORE</h3>
-            <p>Ekosistem digital pelbagai perkhidmatan yang berfokus pada penyelesaian Linux, sistem affiliate, penjanawangan dan pembelajaran digital.</p>
+            <p>Ekosistem digital pelbagai perkhidmatan fokus kepada penyelesaian Linux, sistem affiliate, penjanaan pendapatan dan pembelajaran digital.</p>
         </div>
 
         <div class="footer-links">
@@ -479,9 +551,9 @@
 
         <div class="footer-links">
             <h4>Sumber</h4>
-            <a href="Tentang-Kami.html">Tentang Kami</a>
-            <a href="pusat-bantuan.html">Bantuan</a>
-            <a href="terms-MS.html">Terma & Polisi</a>
+            <a href="About-Us.html">Tentang Kami</a>
+            <a href="Support.html">Sokongan</a>
+            <a href="Terms-MS.html">Terma & Polisi</a>
         </div>
 
         <div class="footer-links">
@@ -510,7 +582,7 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    z-index:999999;
+    z-index:99999;
     box-shadow:0 5px 20px rgba(0,0,0,.25);
    "
    target="_blank"
@@ -521,6 +593,28 @@
      <path d="M16 3C9.37 3 4 8.37 4 15c0 2.31.66 4.47 1.8 6.32L4 29l7.9-1.75C13.64 28.55 14.78 29 16 29c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 22c-1.1 0-2.16-.2-3.14-.57l-.45-.17-4.67 1.04 1.06-4.52-.19-.4A9.94 9.94 0 0 1 6 15c0-5.51 4.49-10 10-10s10 4.49 10 10-4.49 10-10 10z"/>
    </svg>
 </a>
+
+<!-- JAVASCRIPT UNTUK PREVIEW POPUP -->
+<script>
+    function openPreview(imgSrc, title, price, buyUrl) {
+        document.getElementById('modalImg').src = imgSrc;
+        document.getElementById('modalTitle').innerText = title;
+        document.getElementById('modalPrice').innerText = price;
+        document.getElementById('modalBuyBtn').href = buyUrl;
+        
+        document.getElementById('previewModal').classList.add('active');
+    }
+
+    function closePreview(event) {
+        if (event.target.id === 'previewModal') {
+            document.getElementById('previewModal').classList.remove('active');
+        }
+    }
+
+    function forceClosePreview() {
+        document.getElementById('previewModal').classList.remove('active');
+    }
+</script>
 
 </body>
 </html>
