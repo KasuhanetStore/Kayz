@@ -1,101 +1,99 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DualStreamPro - KasuhaNET</title>
+    <title>PRO DOWNLOADER - KasuhaNET.STORE</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-mono { font-family: 'Fira Code', monospace; }
+    </style>
 </head>
-<body class="bg-[#0a0a0f] text-white">
+<body class="bg-[#050814] text-white min-h-screen flex flex-col justify-between py-6 px-4">
 
-    <section class="py-12 px-4 max-w-6xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <div class="max-w-4xl mx-auto w-full space-y-8">
+
+        <!-- HEADER MENU BAR -->
+        <header class="w-full border border-blue-500/30 bg-blue-950/20 rounded-xl py-3 text-center tracking-widest font-mono text-sm text-blue-400 shadow-lg backdrop-blur">
+            [ MENU ]
+        </header>
+
+        <!-- MAIN HERO BOX -->
+        <section class="border-2 border-blue-500/50 bg-gradient-to-b from-blue-950/40 to-slate-900/60 rounded-2xl p-8 text-center shadow-2xl relative overflow-hidden">
+            <div class="absolute -top-10 -left-10 w-32 h-32 bg-blue-600/20 rounded-full blur-3xl pointer-events-none"></div>
             
-            <!-- KIRI: KAD PENGGUNA & APLIKASI TERMINAL -->
-            <div class="order-2 lg:order-1 space-y-4">
-                <div class="bg-gray-900/50 border border-gray-800 rounded-xl p-6">
-                    <div class="flex items-center gap-3 mb-3">
-                        <span id="card-t2" class="font-bold text-sm">Pencinta Terminal</span>
-                    </div>
-                    <p id="card-d2" class="text-sm text-gray-400">Lebih gemar CLI berbanding GUI? Ini alatan anda.</p>
-                </div>
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-3 text-white">
+                PRO DOWNLOADER
+            </h1>
+            <h2 class="text-xl md:text-2xl font-mono font-semibold text-blue-400 mb-6">
+                Media Script By Terminal
+            </h2>
+            <p class="text-gray-300 max-w-xl mx-auto text-sm md:text-base leading-relaxed">
+                Download any video without complex setup tasks. Just copy the URL, paste it into the terminal, and run.
+            </p>
+        </section>
 
-                <div class="bg-gray-900/50 border border-gray-800 rounded-xl p-6">
-                    <div class="flex items-center gap-3 mb-3">
-                        <span id="card-t3" class="font-bold text-sm">Pelaksana Skrip</span>
-                    </div>
-                    <p id="card-d3" class="text-sm text-gray-400">Faham asas pelaksanaan skrip? Anda sudah bersedia.</p>
-                </div>
+        <!-- TWO COLUMN GRID -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                <!-- TAMPILAN ELEMEN TERMINAL -->
-                <div class="bg-black/80 border border-gray-800 rounded-xl p-4 font-mono text-xs md:text-sm space-y-2">
-                    <div id="term-opt1"><span class="text-[#6015e0]">[1]</span> Muat Turun dari YouTube</div>
-                    <div id="term-opt2"><span class="text-[#6015e0]">[2]</span> Muat Turun dari TikTok</div>
-                    <div id="term-opt3"><span class="text-[#6015e0]">[3]</span> Semak Kemas Kini</div>
+            <!-- PRICE & VALUE CARD -->
+            <div class="border border-blue-500/30 bg-slate-900/50 rounded-2xl p-6 flex flex-col justify-between shadow-xl relative">
+                <div>
+                    <!-- PRICE BADGE -->
+                    <div class="inline-block bg-yellow-400 text-slate-950 font-black text-xl px-6 py-2 rounded-lg mb-6 shadow-md">
+                        RM 50.00 <span class="text-xs font-bold uppercase tracking-wider block text-slate-800">ONE-TIME PAY</span>
+                    </div>
+
+                    <ul class="space-y-4 text-sm text-gray-300">
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-400 font-bold">•</span>
+                            <span><strong>Fast & Simple:</strong> High-speed media downloads completed in 10–15 seconds, even for long-duration videos.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-blue-400 font-bold">•</span>
+                            <span><strong>Zero Complexity:</strong> Straightforward execution steps designed for immediate use.</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- KANAN: PENERANGAN PRODUK -->
-            <div class="order-1 lg:order-2">
-                <h2 id="cli-title" class="text-3xl md:text-4xl font-bold mb-6">Dibina untuk Pengguna CLI</h2>
-                <p id="cli-sub" class="text-lg text-gray-300 mb-6">Ringan. Terstruktur. Fokus Aliran Kerja.</p>
-                <p id="cli-desc" class="text-gray-400 mb-8">DualStreamPro direka untuk mereka yang hidup di dalam terminal. Tiada abstraksi tidak penting, tiada antaramuka yang menyusahkan — hanya skrip bersih yang melakukan apa yang anda perlukan.</p>
-                
-                <ul class="space-y-3 text-gray-300">
-                    <li id="li-1" class="flex items-center gap-3">Menggunakan Linux setiap hari</li>
-                    <li id="li-2" class="flex items-center gap-3">Lebih mengutamakan terminal berbanding GUI</li>
-                    <li id="li-3" class="flex items-center gap-3">Memahami asas pelaksanaan skrip</li>
+            <!-- FEATURES & SKILLS CARD -->
+            <div class="border border-blue-500/30 bg-slate-900/50 rounded-2xl p-6 shadow-xl flex flex-col justify-center">
+                <ul class="space-y-4 text-sm md:text-base text-gray-200">
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-400 font-bold text-lg">✓</span>
+                        <span>Learn new automated workflow steps.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-400 font-bold text-lg">✓</span>
+                        <span>Explore advanced program capabilities.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-green-400 font-bold text-lg">✓</span>
+                        <span>Gain practical technical skills to integrate into your own projects.</span>
+                    </li>
                 </ul>
             </div>
 
         </div>
-    </section>
+
+        <!-- MAIN CTA BUTTON BOX -->
+        <div class="text-center pt-2">
+            <a href="#" class="inline-block w-full border-2 border-blue-400 bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-2xl md:text-3xl py-5 rounded-2xl shadow-xl hover:shadow-blue-500/50 transition-all duration-300 transform hover:-translate-y-1">
+                Get Now Automation!
+            </a>
+        </div>
+
+    </div>
 
     <!-- FOOTER -->
-    <footer class="w-full text-center py-6 border-t border-gray-800 bg-[#0a0a0f] text-gray-500 text-xs md:text-sm tracking-widest">
-        <span id="footer-text">
-            2026©KasuhaNET Resources Copyright All Right Reserved
+    <footer class="max-w-4xl mx-auto w-full border border-blue-500/30 bg-blue-950/20 rounded-xl py-3 text-center mt-10">
+        <span class="font-mono text-xs md:text-sm text-gray-400 tracking-wider">
+            KasuhaNET.STORE
         </span>
     </footer>
 
-    <!-- BUTANG WHATSAPP -->
-    <a href="https://wa.me/60167390501?text=Assalamualaikum,%20saya%20ingin%20bertanya%20tentang%20perkhidmatan%20KasuhaNET.STORE"
-       style="position:fixed; right:20px; bottom:20px; width:60px; height:60px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; z-index:999999; box-shadow:0 5px 20px rgba(0,0,0,.25);"
-       target="_blank" rel="noopener noreferrer">
-       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="white">
-         <path d="M19.11 17.53c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.28-.73.9-.9 1.09-.17.19-.33.21-.61.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.66-1.55-1.94-.17-.28-.02-.43.12-.57.13-.13.28-.33.42-.5.14-.17.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.64-1.55-.88-2.12-.23-.56-.47-.48-.64-.49h-.55c-.19 0-.49.07-.74.35-.25.28-.95.93-.95 2.26s.97 2.62 1.11 2.8c.14.19 1.9 2.9 4.6 4.07.64.28 1.14.45 1.53.57.64.2 1.22.17 1.68.1.51-.08 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.12-.26-.19-.54-.33z"/>
-         <path d="M16 3C9.37 3 4 8.37 4 15c0 2.31.66 4.47 1.8 6.32L4 29l7.9-1.75C13.64 28.55 14.78 29 16 29c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 22c-1.1 0-2.16-.2-3.14-.57l-.45-.17-4.69 1.04 1-4.57-.3-.47C7.39 18.35 7 16.72 7 15c0-4.96 4.04-9 9-9s9 4.04 9 9-4.04 10-9 10z"/>
-       </svg>
-    </a>
-
-    <!-- SKRIP AUTOMATIK PEMBAYARAN TOYYIBPAY -->
-    <script>
-    function jalankanSistemPembayaranAuto(namaCustomer, noPhone, amaunRM) {
-        const dataBayaran = new URLSearchParams({
-            'userSecretKey': 'MASUKKAN_API_KEY_KAU',
-            'categoryCode': 'MASUKKAN_KOD_KATEGORI_KAU',
-            'billName': 'Pesanan Servis KasuhaNET',
-            'billDescription': 'Pembayaran Automatik Sistem',
-            'billPriceSetting': '1',
-            'billPayorInfo': '1',
-            'billAmount': (amaunRM * 100).toString(),
-            'billTo': namaCustomer,
-            'billPhone': noPhone,
-            'billReturnUrl': 'https://kasuhanet.store/success.html'
-        });
-
-        fetch('https://toyyibpay.com/index.php/api/createBill', {
-            method: 'POST',
-            body: dataBayaran
-        })
-        .then(response => response.json())
-        .then(data => {
-            if(data && data[0] && data[0].BillCode) {
-                window.location.href = 'https://toyyibpay.com/' + data[0].BillCode;
-            }
-        })
-        .catch(err => console.error('Error auto-payment:', err));
-    }
-    </script>
 </body>
 </html>
