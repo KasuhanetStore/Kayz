@@ -482,13 +482,15 @@
 <!-- HERO BANNER PROMOSI -->
 <section class="hero-section">
     <h1>KEDAI AFFILIATE KESELURUHAN</h1>
-    <p>Himpunan semua pautan affiliate platform dalam satu tempat..</p>
+    <p>Selamat datang ke hab affiliate rasmi KasuhaNET. Kami menghimpunkan pelbagai tawaran produk dan servis terbaik daripada pelbagai platform dalam satu tempat untuk memudahkan carian anda.</p>
 </section>
 
 <!-- KANDUNGAN UTAMA / GRID PRODUK -->
 <main id="kedai">
     
     <h2 class="section-title">Katalog TERKINI.</h2>
+    <p class="section-subtext">*Harga yang dipaparkan adalah harga asal. Tekan <strong>BELI</strong> untuk menyemak dan menikmati harga promosi terkini yang lebih rendah di platform rasmi.</p>
+
     
     <div class="filter-tags">
         <button class="badge-tag">Produk Affiliate</button>
@@ -520,9 +522,18 @@
             </div>
         </div>
 
+         <!-- Kad Produk 3 -->
+        <div class="card-product" onclick="openPreview('Raspberry Case.png', 'Raspberry Casing CUSTOM', 'RM 89.00', 'https://s.shopee.com.my/1qau7MiBua')">
+            <span class="product-label label-shopee">Shopee</span>
+            <img src="Raspberry Case.png" alt="Raspberry Case" class="product-img" onerror="this.src='https://via.placeholder.com/250x200?text=Gambar+Produk'">
+            <div class="product-content">
+                <h3 class="product-title">Raspberry Case</h3>
+                <p class="product-price">RM 89.00</p>
+                <button class="btn-action btn-shopee">BUY</button>
+            </div>
+        </div>
     </div>
 </main>
-
 <!-- FADE ANIMATION POPUP PREVIEW MODAL -->
 <div class="modal-overlay" id="previewModal" onclick="closePreview(event)">
     <div class="modal-container" onclick="event.stopPropagation()">
