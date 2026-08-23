@@ -261,8 +261,8 @@
       </div>
 
       <div class="input-group">
-        <label>ID / Username / Pautan Profil PayLater</label>
-        <input type="text" id="inp-id" placeholder="Masukkan username atau pautan pengesahan" required>
+        <label>Nombor Akaun PayLater</label>
+        <input type="text" id="inp-id" placeholder="Masukkan nombor akaun PayLater" required>
       </div>
 
       <label class="checkbox-container">
@@ -290,7 +290,7 @@ function processWhatsAppApplication(){
   const bank     = document.getElementById("inp-bank").value;
   const akaun    = document.getElementById("inp-akaun").value;
   const jumlah   = document.getElementById("inp-jumlah").value;
-  const plId     = document.getElementById("inp-id").value;
+  const plAkaun  = document.getElementById("inp-id").value;
 
   const textMessage = 
 `! PERMOHONAN CASH OUT BNPL !
@@ -300,7 +300,7 @@ Platform PL   : ${platform}
 Nama Bank     : ${bank}
 No Akaun Bank : ${akaun}
 Jumlah Req    : RM ${jumlah}
-PL Akaun Pay  : ${plId}
+No Akaun PL   : ${plAkaun}
 ----------------------------------
 *Status Identiti: Nama Bank & BNPL adalah SAMA.*
 *Pemohon bersetuju dengan Terma & Syarat (Caj 5%).*`;
