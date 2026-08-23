@@ -210,7 +210,7 @@
     <ul>
       <li class="highlight-alert">ONLY applicants whose identity ID name MATCHES the recipient's Bank Account Holder Name will be processed.</li>
       <li>If the PayLater account NAME and bank account NAME conflict, the application will be AUTOMATICALLY REJECTED for security purposes.</li>
-      <li>Officially Supported Platforms: <span class="badge">Boost PayFlex</span> <span class="badge">SPayLater</span> <span class="badge">Grab PayLater</span> <span class="badge">Atome</span> & other applicable platforms.</li>
+      <li>Officially Supported Platforms: <span class="badge">Boost PayFlex</span> <span class="badge">Ryt PayLater</span></li>
     </ul>
   </div>
 
@@ -241,10 +241,7 @@
         <select id="inp-platform" required>
           <option value="" disabled selected>-- Select Platform --</option>
           <option value="Boost PayFlex">Boost PayFlex</option>
-          <option value="SPayLater">SPayLater</option>
-          <option value="Grab PayLater">Grab PayLater</option>
-          <option value="Atome">Atome</option>
-          <option value="Other Applicable">Other Applicable</option>
+          <option value="Ryt PayLater">Ryt PayLater</option>
         </select>
       </div>
 
@@ -260,7 +257,7 @@
 
       <div class="input-group">
         <label>Cash Out Amount (RM)</label>
-        <input type="number" id="inp-jumlah" placeholder="Example: 500" min="10" required>
+        <input type="number" id="inp-jumlah" value="200" readonly style="background: rgba(255, 255, 255, 0.1); cursor: not-allowed;">
       </div>
 
       <div class="input-group">
@@ -277,14 +274,14 @@
 
     </form>
   </div>
+
+  <div class="flicker-text">
+    <p><strong>Please take note:</strong> We take fraudulent activities very seriously. Unauthorized parties may attempt to misuse the company name or owner identity of <span class="company-name">KasuhaNET.STORE</span> for financial scams.</p>
+    <p><strong>IMPORTANT NOTICE:</strong> Official business transactions are strictly conducted through registered bank accounts under <span class="company-name">Kasuhanet Resources</span> and <span class="company-name">KasuhaOculus Organisation</span> ONLY.</p>
+    <p>We accept no liability for any financial losses caused by unauthorized third-party scammers.</p>
+  </div>
 </div>
 
-<div class="flicker-text">
-            <p><strong>Please take note:</strong> We take fraudulent activities very seriously. Unauthorized parties may attempt to misuse the company name or owner identity of <span class="company-name">KasuhaNET.STORE</span> for financial scams.</p>
-            <p><strong>IMPORTANT NOTICE:</strong> Official business transactions are strictly conducted through registered bank accounts under <span class="company-name">Kasuhanet Resources</span> and <span class="company-name">KasuhaOculus Organisation</span> ONLY.</p>
-            <p>We accept no liability for any financial losses caused by unauthorized third-party scammers.</p>
-        </div>
-    </div>
 <script>
 function processWhatsAppApplication(){
   const nama     = document.getElementById("inp-nama").value.toUpperCase();
@@ -297,12 +294,12 @@ function processWhatsAppApplication(){
   const textMessage = 
 `! BNPL CASH OUT APPLICATION !
 ----------------------------------
-Applicant Name  : ${name}
+Applicant Name  : ${nama}
 PL Platform     : ${platform}
 Bank Name       : ${bank}
-Bank Account No : ${account}
-Req Amount      : RM ${total}
-PL Account Pay  : ${PLAccPay}
+Bank Account No : ${akaun}
+Req Amount      : RM ${jumlah}
+PL Account Pay  : ${plId}
 ----------------------------------
 *Identity Status: Bank & BNPL Names MATCH.*
 *Applicant agrees to Terms & Conditions (5% Fee).*`;
@@ -316,4 +313,3 @@ PL Account Pay  : ${PLAccPay}
 
 </body>
 </html>
-
