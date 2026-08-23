@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ms">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
@@ -209,7 +210,7 @@
     <ul>
       <li class="highlight-alert">HANYA pemohon yang mempunyai ID identiti NAMA YANG SAMA dengan Penama Akaun Bank penerima sahaja akan diproses.</li>
       <li>Sekiranya NAMA akaun PayLater dan NAMA akaun bank bercanggah, permohonan akan DITOLAK SECARA AUTOMATIK demi keselamatan.</li>
-      <li>Platform Sokongan Rasmi: <span class="badge">Boost PayFlex</span> <span class="badge">SPayLater</span> <span class="badge">Grab PayLater</span> <span class="badge">Atome</span> & platform lain yang bersesuaian.</li>
+      <li>Platform Sokongan Rasmi: <span class="badge">Boost PayFlex</span> <span class="badge">Ryt PayLater</span></li>
     </ul>
   </div>
 
@@ -240,10 +241,7 @@
         <select id="inp-platform" required>
           <option value="" disabled selected>-- Pilih Platform --</option>
           <option value="Boost PayFlex">Boost PayFlex</option>
-          <option value="SPayLater">SPayLater</option>
-          <option value="Grab PayLater">Grab PayLater</option>
-          <option value="Atome">Atome</option>
-          <option value="Lain-Lain Bersesuaian">Lain-Lain Bersesuaian</option>
+          <option value="Ryt PayLater">Ryt PayLater</option>
         </select>
       </div>
 
@@ -259,7 +257,7 @@
 
       <div class="input-group">
         <label>Jumlah Tunai Cash Out (RM)</label>
-        <input type="number" id="inp-jumlah" placeholder="Contoh: 500" min="10" required>
+        <input type="number" id="inp-jumlah" value="200" readonly style="background: rgba(255, 255, 255, 0.1); cursor: not-allowed;">
       </div>
 
       <div class="input-group">
@@ -277,13 +275,13 @@
     </form>
   </div>
 
+  <div class="flicker-text">
+    <p><strong>Sila ambil perhatian:</strong> Berkaitan aktiviti penipuan pihak saya memandang serius. Kemungkinan ada pihak coba ambil kesempatan dengan menggunakan NAMA syarikat atau pun PEMILIK <span class="company-name">KasuhaNET.STORE</span> untuk penipuan kewangan.</p>
+    <p><strong>PENJELASAN pada semua individu:</strong> Pihak saya hanya berurusan melibatkan jualan beli atas Akaun Bank berdaftar atas nama <span class="company-name">Kasuhanet Resources</span> dan <span class="company-name">KasuhaOculus Organisation</span> Sahaja.</p>
+    <p>Pihak saya tidak bertanggungjawab berlaku penipuan akibat terpedaya dengan SCAMMER.</p>
+  </div>
+
 </div>
-<div class="flicker-text">
-            <p><strong>Sila ambil perhatian:</strong> Berkaitan aktiviti penipuan pihak saya memandang serius. Kemungkinan ada pihak coba ambil kesempatan dengan menggunakan NAMA syarikat atau pun PEMILIK <span class="company-name">KasuhaNET.STORE</span> untuk penipuan kewangan.</p>
-            <p><strong>PENJELASAN pada semua individu:</strong> Pihak saya hanya berurusan melibatkan jualan beli atas Akaun Bank berdaftar atas nama <span class="company-name">Kasuhanet Resources</span> dan <span class="company-name">KasuhaOculus Organisation</span> Sahaja.</p>
-            <p>Pihak saya tidak bertanggungjawab berlaku penipuan akibat terpedaya dengan SCAMMER.</p>
-        </div>
-    </div>
 
 <script>
 function processWhatsAppApplication(){
@@ -302,7 +300,7 @@ Platform PL   : ${platform}
 Nama Bank     : ${bank}
 No Akaun Bank : ${akaun}
 Jumlah Req    : RM ${jumlah}
-PL Akaun Pay  : ${PLAccPay}
+PL Akaun Pay  : ${plId}
 ----------------------------------
 *Status Identiti: Nama Bank & BNPL adalah SAMA.*
 *Pemohon bersetuju dengan Terma & Syarat (Caj 5%).*`;
