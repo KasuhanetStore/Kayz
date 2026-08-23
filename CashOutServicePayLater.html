@@ -261,8 +261,8 @@
       </div>
 
       <div class="input-group">
-        <label>PayLater ID / Username / Profile Link</label>
-        <input type="text" id="inp-id" placeholder="Enter username or verification link" required>
+        <label>PayLater Account Number</label>
+        <input type="text" id="inp-id" placeholder="Enter PayLater account number" required>
       </div>
 
       <label class="checkbox-container">
@@ -284,12 +284,12 @@
 
 <script>
 function processWhatsAppApplication(){
-  const nama     = document.getElementById("inp-nama").value.toUpperCase();
-  const platform = document.getElementById("inp-platform").value;
-  const bank     = document.getElementById("inp-bank").value;
-  const akaun    = document.getElementById("inp-akaun").value;
-  const jumlah   = document.getElementById("inp-jumlah").value;
-  const plId     = document.getElementById("inp-id").value;
+  const nama      = document.getElementById("inp-nama").value.toUpperCase();
+  const platform  = document.getElementById("inp-platform").value;
+  const bank      = document.getElementById("inp-bank").value;
+  const akaun     = document.getElementById("inp-akaun").value;
+  const jumlah    = document.getElementById("inp-jumlah").value;
+  const plAccount = document.getElementById("inp-id").value;
 
   const textMessage = 
 `! BNPL CASH OUT APPLICATION !
@@ -299,7 +299,7 @@ PL Platform     : ${platform}
 Bank Name       : ${bank}
 Bank Account No : ${akaun}
 Req Amount      : RM ${jumlah}
-PL Account Pay  : ${plId}
+PL Account No   : ${plAccount}
 ----------------------------------
 *Identity Status: Bank & BNPL Names MATCH.*
 *Applicant agrees to Terms & Conditions (5% Fee).*`;
