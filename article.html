@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Collection</title>
+    <style>
+        /* Base Page Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1.page-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        /* Article Grid Layout */
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        /* Article Card Styles */
+        .article-card {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .article-card h2 {
+            font-size: 1.25rem;
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #1a252f;
+        }
+
+        .article-card p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .article-card a.read-btn {
+            display: inline-block;
+            text-align: center;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .article-card a.read-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Page Title -->
+        <h1 class="page-title">Article Collection</h1>
+
+        <!-- Article Card Grid -->
+        <div class="article-grid">
+            
+            <!-- Article Card 1 -->
+            <div class="article-card">
+                <h2>First Article Title</h2>
+                <p>A short summary of this article. You can place a quick overview or introduction here...</p>
+                <a href="read-article-1.html" class="read-btn">Read More</a>
+            </div>
+
+            <!-- Article Card 2 -->
+            <div class="article-card">
+                <h2>Second Article Title</h2>
+                <p>A short summary of the second article. Briefly describe the main topic here...</p>
+                <a href="read-article-2.html" class="read-btn">Read More</a>
+            </div>
+
+            <!-- Article Card 3 -->
+            <div class="article-card">
+                <h2>Third Article Title</h2>
+                <p>A short summary of the third article. Add more cards based on your needs...</p>
+                <a href="read-article-3.html" class="read-btn">Read More</a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
