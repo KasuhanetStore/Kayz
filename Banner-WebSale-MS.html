@@ -53,20 +53,24 @@
             padding: 0;
             overflow-x: hidden;
 
-            /* DIKEMASKINI: Memastikan halaman fleksibel mengikut tinggi skrin */
+            /* MEMASTIKAN PAGE MEMPUNYAI TINGGI MINIMUM SKRIN */
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
+        /* MEMPOSISIKAN KANDUNGAN TEPAT DI TENAN-TENGAH (CENTER) */
         main {
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px 15px;
 
-            /* DIKEMASKINI: Menolak footer ke bawah jika kandungan pendek */
             flex: 1;
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center Menegak */
+            align-items: center;     /* Center Mendatar */
         }
 
         header {
@@ -76,6 +80,7 @@
             padding: 15px 20px;
             background: rgba(5, 7, 13, 0.9);
             border-bottom: 1px solid rgba(79, 49, 232, 0.2);
+            width: 100%;
         }
 
         nav a {
@@ -132,6 +137,8 @@
             padding: 35px 30px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             text-align: center;
+            width: 100%;
+            max-width: 1000px; /* Memastikan box kekal seimbang & bersaiz ideal */
         }
 
         .about-title {
@@ -234,12 +241,12 @@
             box-shadow: 0 0 10px #E600A4;
         }
 
-        /* TAMBAHAN BARU: TERMA & SYARAT NOTE CSS */
+        /* TERMA & SYARAT NOTE CSS */
         .tc-note {
             text-align: center;
             font-size: 11px;
             color: #8a8d9b;
-            margin-top: 35px; /* Jarak dengan kad harga */
+            margin-top: 35px;
             letter-spacing: 0.5px;
         }
         .tc-note a {
@@ -251,13 +258,14 @@
             color: #00F0FF;
         }
 
-        /* DESIGN FOOTER BERBENTUK & BERWARNA KEMAS */
+        /* DESIGN FOOTER */
         .footer {
             background: #090d16;
             border-top: 2px solid #4F31E8;
             box-shadow: 0 -5px 25px rgba(79, 49, 232, 0.15);
-            margin-top: 60px;
+            margin-top: auto;
             padding: 30px 20px 15px 20px;
+            width: 100%;
         }
 
         .footer-grid {
@@ -324,6 +332,7 @@
             justify-content: center;
             gap: 6px;
             text-align: center;
+            width: 100%;
         }
 
         .credit-text {
@@ -385,6 +394,9 @@
             .partner-name {
                 font-size: 10px;
             }
+            main {
+                padding: 20px 10px;
+            }
         }
     </style>
 </head>
@@ -420,7 +432,7 @@
     </div>
 </div>
 
-<!-- MAIN CONTENT BLOCK (HALAMAN JUALAN) -->
+<!-- MAIN CONTENT BLOCK (HALAMAN JUALAN - DIPOSISI TEPAT DI TENGAH) -->
 <main>
     <section class="about-section">
         <!-- TAJUK JUALAN -->
@@ -443,14 +455,13 @@
             <!-- PAKEJ LANDING PAGE (PROMO RARE) -->
             <div class="card">
                 <h3 class="package-title" style="color: #00F0FF;">Pakej Landing Page</h3>
-                <div class="package-price" style="color: #fff;">RM 299<span style="font-size: 14px; color:#00F0FF; font-weight: normal; block; margin-left: 5px; text-shadow: 0 0 5px rgba(0,240,255,0.5);"></span></div>
+                <div class="package-price" style="color: #fff;">RM 299<span style="font-size: 14px; color:#00F0FF; font-weight: normal; margin-left: 5px; text-shadow: 0 0 5px rgba(0,240,255,0.5);"></span></div>
                 <p style="font-size: 12px; color: #999; margin: 0 0 15px 0;">Sesuai untuk kempen pemasaran, pelancaran produk pantas, dan portfolio mini kedai.</p>
                 <ul class="package-features">
                     <li class="check">1 Landing Page (SATU Halaman Tema)</li>
                     <li class="check">Kod Arkitek tindakbalas (MESRA SMARTPHONE)</li>
                     <li class="check">GOOGLE Adsense-Sedia Optimasi</li>
                     <li class="check">Hubungi terus-ke-Aplikasi WhatsApp</li>
-                    <!-- DIKEMASKINI: Ejaan Exception Include ditukar ke Bahasa Melayu -->
                     <li class="cross" style="color: #ff4a4a; font-weight: bold; margin-top: 10px;">* Tidak Termasuk</li>
                     <li style="list-style-type: none; padding-left: 20px; color: #aaa; font-style: italic;">Domain Add-On &amp; Setup.</li>
                 </ul>
@@ -476,7 +487,7 @@
             
         </div> <!-- TAMAT GRID PAKEJ -->
 
-        <!-- TAMBAHAN BARU: NOTA TERMA & SYARAT -->
+        <!-- NOTA TERMA & SYARAT -->
         <p class="tc-note">
             * Pembelian dan langganan pakej di atas adalah tertakluk kepada <a href="terms-MS.html">Terma &amp; Syarat</a> KasuhaNET.
         </p>
@@ -519,7 +530,7 @@
     </div>
 </footer>
 
-<!-- WHATSAPP FLOATING BUTTON (DIKEMASKINI: DUDUK SENTIASA DI PENJURU BAWAH KANAN) -->
+<!-- WHATSAPP FLOATING BUTTON -->
 <a href="https://wa.me/60167390501?text=Assalamualaikum,%20saya%20ingin%20bertanya%20tentang%20perkhidmatan%20KasuhaNET.STORE"
    style="
     position: fixed !important;
@@ -544,4 +555,5 @@
 </a>
 
 </body>
-</html>
+    </html>
+    
