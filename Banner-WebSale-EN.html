@@ -51,8 +51,6 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-
-            /* MEMASTIKAN TINGGI SEKURANG-KURANGNYA 100% TINGGI SKRIN */
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -63,13 +61,12 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px 15px;
-
             flex: 1;
             width: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Center Menegak */
-            align-items: center;     /* Center Mendatar */
+            justify-content: center;
+            align-items: center;
         }
 
         header {
@@ -137,7 +134,7 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             text-align: center;
             width: 100%;
-            max-width: 1000px; /* Saiz ideal dan seimbang */
+            max-width: 1000px;
         }
 
         .about-title {
@@ -223,6 +220,24 @@
             background: #E600A4;
             color: #fff;
             box-shadow: 0 0 10px #E600A4;
+        }
+
+        /* STYLES FOR TERMS & CONDITIONS NOTE */
+        .tc-note {
+            font-size: 11px;
+            color: #aaa;
+            margin-top: 25px;
+            margin-bottom: 0;
+            text-align: center;
+            line-height: 1.6;
+        }
+        .tc-note a {
+            color: #E600A4;
+            text-decoration: underline;
+            transition: color 0.2s ease;
+        }
+        .tc-note a:hover {
+            color: #00F0FF;
         }
 
         /* DESIGN FOOTER */
@@ -449,13 +464,15 @@
                     <li>Premium Cyberpunk UI/UX Styling</li>
                 </ul>
                 <a href="https://toyyibpay.com/P-MS-Pay-PREMIUM-STANDARD" class="cta-btn premium-btn" target="_blank">Upgrade To Premium</a>
-</div>
-            
-<!-- TAMBAHAN BARU: NOTA TERMA & SYARAT (EN) -->
-<p class="tc-note">
-    * Purchases and package subscriptions above are subject to KasuhaNET's <a href="terms-EN.html">Terms &amp; Conditions</a>.
-</p>
-            
+            </div>
+
+        </div> <!-- /GRID ENDS HERE -->
+
+        <!-- NOTA TERMA & SYARAT (EN) - DILUAR GRID SUPAYA CENTERED -->
+        <p class="tc-note">
+            * Purchases and package subscriptions above are subject to KasuhaNET's <a href="terms-EN.html">Terms &amp; Conditions</a>.
+        </p>
+
     </section>
 </main>
 
