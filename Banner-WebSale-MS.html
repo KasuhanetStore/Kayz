@@ -38,7 +38,6 @@
     <!-- CSS & JS -->
     <link rel="stylesheet" href="css/main.css">
     <script src="js/home-main.js" defer></script>
-</head>
     
     <style>
         /* GLOBAL CYBER FONT & RESET */
@@ -233,6 +232,23 @@
             background: #E600A4;
             color: #fff;
             box-shadow: 0 0 10px #E600A4;
+        }
+
+        /* TAMBAHAN BARU: TERMA & SYARAT NOTE CSS */
+        .tc-note {
+            text-align: center;
+            font-size: 11px;
+            color: #8a8d9b;
+            margin-top: 35px; /* Jarak dengan kad harga */
+            letter-spacing: 0.5px;
+        }
+        .tc-note a {
+            color: #E600A4;
+            text-decoration: underline;
+            transition: color 0.3s;
+        }
+        .tc-note a:hover {
+            color: #00F0FF;
         }
 
         /* DESIGN FOOTER BERBENTUK & BERWARNA KEMAS */
@@ -434,8 +450,9 @@
                     <li class="check">Kod Arkitek tindakbalas (MESRA SMARTPHONE)</li>
                     <li class="check">GOOGLE Adsense-Sedia Optimasi</li>
                     <li class="check">Hubungi terus-ke-Aplikasi WhatsApp</li>
-                    <li class="cross" style="color: #ff4a4a; font-weight: bold; margin-top: 10px;">Exception Include</li>
-                    <li style="list-style-type: none; padding-left: 20px; color: #aaa; font-style: italic;">* DOMAIN~Add-On~ Domain + Setup.</li>
+                    <!-- DIKEMASKINI: Ejaan Exception Include ditukar ke Bahasa Melayu -->
+                    <li class="cross" style="color: #ff4a4a; font-weight: bold; margin-top: 10px;">* Tidak Termasuk</li>
+                    <li style="list-style-type: none; padding-left: 20px; color: #aaa; font-style: italic;">Domain Add-On &amp; Setup.</li>
                 </ul>
                 <a href="https://toyyibpay.com/L-P-P-LPP299" class="cta-btn" target="_blank">Langgan Sekarang</a>
             </div>
@@ -456,8 +473,14 @@
                 </ul>
                 <a href="https://toyyibpay.com/P-MS-Pay-PREMIUM-STANDARD" class="cta-btn premium-btn" target="_blank">Upgrade Ke Premium</a>
             </div>
+            
+        </div> <!-- TAMAT GRID PAKEJ -->
 
-        </div>
+        <!-- TAMBAHAN BARU: NOTA TERMA & SYARAT -->
+        <p class="tc-note">
+            * Pembelian dan langganan pakej di atas adalah tertakluk kepada <a href="terms-MS.html">Terma &amp; Syarat</a> KasuhaNET.
+        </p>
+
     </section>
 </main>
 
