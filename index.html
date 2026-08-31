@@ -18,7 +18,7 @@
 <meta property="og:url" content="https://kasuhanet.store/index.html">
 <meta property="og:type" content="website">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="kasuhanet.store">
+<link rel="canonical" href="https://kasuhanet.store/">
 
 <!-- FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
@@ -712,24 +712,17 @@ nav a {
   text-decoration: none;
 }
 
+/* KEMAS KINI: Dibuang '!important' berlebihan supaya tak kacau teks khas */
 @media screen and (max-width: 768px) {
     body {
-      font-size: 16px !important;
-      line-height: 1.6 !important;
-    }
-
-    p, span, li {
-      font-size: 1rem !important;
-    }
-
-    h1, h2, h3 {
-      font-size: 1.4rem !important;
+      font-size: 15px;
+      line-height: 1.5;
     }
 
     .footer-links a {
-      font-size: 1rem !important;
+      font-size: 0.9rem;
       display: inline-block;
-      padding: 6px 0;
+      padding: 4px 0;
     }
 }
 
@@ -1011,24 +1004,25 @@ nav a {
         </div>
     </section>
         
-    <!-- CUSTOM WEB WORKSHOP CARD -->  
-    <a href="https://kasuhanet.store/Custom-Web-Workshop-EN" style="text-decoration: none; color: inherit; display: block;">
-        <div class="web-workshop-container">
+    <!-- CUSTOM WEB WORKSHOP CARD (FIXED NESTED TAGS) -->  
+    <div class="web-workshop-container">
+        <a href="https://kasuhanet.store/Custom-Web-Workshop-EN" style="text-decoration: none; color: inherit; display: block;">
             <img src="Bengkel-Custom-WebSite-EN.png" alt="Terminal Choice" style="max-width: 100%; width: 400px; display: block; margin: 0 auto;">   
             <h3 style="text-align: center;">Custom WEB Workshop⬅️<span class="blinking-red">CLICK</span>🛠️</h3>
-            <div class="card card-center">
-                <p>
-                    Welcome to <strong>kasuhanet.store</strong>! For those looking to build or upgrade a website, 
-                    we offer flexible and transparent Setup &amp; Deployment Services, 
-                    tailored specifically to your budget and needs.
-                </p>
-                <p>
-                    <strong>Looking for maximum flexibility?</strong> Explore our Custom Workshop! In this section, services and tools 
-                    are listed modularly. You can choose, match, and add specific tools or services required for quick deployment.⬅️<span class="blinking-red">CLICK HERE</span>🔎
-                </p>
-            </div>
+        </a>
+        <div class="card card-center">
+            <p>
+                Welcome to <strong>kasuhanet.store</strong>! For those looking to build or upgrade a website, 
+                we offer flexible and transparent Setup &amp; Deployment Services, 
+                tailored specifically to your budget and needs.
+            </p>
+            <p>
+                <strong>Looking for maximum flexibility?</strong> Explore our Custom Workshop! In this section, services and tools 
+                are listed modularly. You can choose, match, and add specific tools or services required for quick deployment.
+                <a href="https://kasuhanet.store/Custom-Web-Workshop-EN" style="color:inherit;"><span class="blinking-red">⬅️CLICK HERE</span></a>🔎
+            </p>
         </div>
-    </a>
+    </div>
 
     <!-- PROFILE CARD -->
     <div class="profile-wrapper">
@@ -1074,7 +1068,7 @@ nav a {
     </div>
    
     <!-- MAIN GRID CARDS -->
-    <div class="grid">
+    <div class="grid" style="margin-top:20px;">
         <a href="CommandCanDoLIST.html" class="card card-center">
             <img src="ManyTerminalChoice.webp" alt="Terminal Choice">
             <h3>Terminal Options</h3>
