@@ -26,10 +26,10 @@
 <!-- SWIPER CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-<!-- Favicon Standard Pelayar (Desktop/Laptop) -->
+<!-- Favicon Standard Pelayar -->
 <link rel="icon" type="image/png" sizes="32x32" href="https://kasuhanet.store/favicon.ico">
 
-<!-- Favicon Google Search & Android (Syarat Utama Google) -->
+<!-- Favicon Google Search & Android -->
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
@@ -681,7 +681,7 @@ nav a {
     display: block !important;
     margin: 15px auto !important;
 }
-        /* Animasi kelip-kelip */
+
 @keyframes blink {
   0% { opacity: 1; }
   50% { opacity: 0.1; }
@@ -689,54 +689,51 @@ nav a {
 }
 
 .blinking-red {
-  color: #ff3366;           /* Warna merah neon */
-  font-weight: bold;         /* Teks tebal */
-  animation: blink 1s infinite; /* Kelip-kelip setiap 1 saat tanpa henti */
+  color: #ff3366;
+  font-weight: bold;
+  animation: blink 1s infinite;
   text-decoration: none;
 }
-/* Animasi bertukar warna Biru & Merah */
+
 @keyframes colorShift {
   0%, 100% {
-    color: #00bfff; /* Biru Neon */
+    color: #00bfff;
     text-shadow: 0 0 8px rgba(0, 191, 255, 0.8);
   }
   50% {
-    color: #ff3366; /* Merah Neon */
+    color: #ff3366;
     text-shadow: 0 0 8px rgba(255, 51, 102, 0.8);
   }
 }
 
 .blinking-blue-red {
   font-weight: bold;
-  animation: colorShift 1s infinite; /* Tukar warna setiap 1 saat */
+  animation: colorShift 1s infinite;
   text-decoration: none;
 }
 
-  /* Tetapan saiz teks khusus untuk telefon */
-  @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
     body {
       font-size: 16px !important;
       line-height: 1.6 !important;
     }
 
-    /* Besarkan semua teks perenggan & kandungan kad intro */
     p, span, li {
-      font-size: 1rem !important; /* Saiz teks normal mudah dibaca */
+      font-size: 1rem !important;
     }
 
-    /* Besarkan tajuk utama */
     h1, h2, h3 {
       font-size: 1.4rem !important;
     }
 
-    /* Besarkan menu footer & pautan */
     .footer-links a {
       font-size: 1rem !important;
       display: inline-block;
-      padding: 6px 0; /* Senang tekan guna jari */
+      padding: 6px 0;
     }
-  }
-            .hlb-banner {
+}
+
+.hlb-banner {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -800,6 +797,160 @@ nav a {
   display: block;
 }
 
+/* BANNER BJAK STYLES */
+.bjak-cyber-banner {
+    width: 100%;
+    max-width: 1200px;
+    margin: 25px auto;
+    background: linear-gradient(135deg, #05070d 0%, #0a1026 50%, #05070d 100%);
+    border: 1px solid #00F0FF;
+    border-radius: 12px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.2), inset 0 0 15px rgba(230, 0, 164, 0.1);
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.bjak-cyber-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0,240,255,0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.bjak-cyber-content {
+    z-index: 2;
+    max-width: 65%;
+}
+
+.bjak-cyber-tag {
+    display: inline-block;
+    background: rgba(230, 0, 164, 0.2);
+    border: 1px solid #E600A4;
+    color: #ff3366;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.bjak-cyber-title {
+    font-family: 'Orbitron', sans-serif !important;
+    font-size: clamp(18px, 3vw, 28px);
+    color: #ffffff;
+    margin: 0 0 10px 0;
+    line-height: 1.2;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.bjak-cyber-title span {
+    color: #00F0FF;
+    text-shadow: 0 0 10px #00F0FF;
+}
+
+.bjak-cyber-desc {
+    color: #8fa0dd;
+    font-size: clamp(12px, 1.5vw, 14px);
+    margin: 0 0 18px 0;
+    line-height: 1.5;
+}
+
+.bjak-cyber-features {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.bjak-feature-item {
+    font-size: 11px;
+    color: #00ffcc;
+    background: rgba(0, 255, 204, 0.08);
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 255, 204, 0.3);
+}
+
+.bjak-cyber-btn {
+    display: inline-block;
+    background: linear-gradient(90deg, #ff8a00, #ff5500);
+    color: #ffffff !important;
+    font-family: 'Orbitron', sans-serif !important;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 15px rgba(255, 138, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.bjak-cyber-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(255, 138, 0, 0.7);
+    background: linear-gradient(90deg, #ff9d26, #ff661a);
+}
+
+.bjak-cyber-badge {
+    z-index: 2;
+    text-align: center;
+    background: rgba(5, 7, 13, 0.8);
+    border: 1px solid #E600A4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(230, 0, 164, 0.2);
+}
+
+.bjak-reward-amount {
+    font-family: 'Orbitron', sans-serif !important;
+    font-size: 32px;
+    font-weight: bold;
+    color: #E600A4;
+    text-shadow: 0 0 10px #E600A4;
+    margin: 5px 0;
+}
+
+.bjak-reward-text {
+    font-size: 11px;
+    color: #ccc;
+    letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+    .bjak-cyber-banner {
+      flex-direction: column;
+      text-align: center;
+      padding: 20px 15px;
+    }
+
+    .bjak-cyber-content {
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .bjak-cyber-features {
+      justify-content: center;
+    }
+
+    .bjak-cyber-badge {
+      width: 100%;
+      box-sizing: border-box;
+    }
+}
+</style>
 </head>
 
 <body>
@@ -820,7 +971,6 @@ nav a {
             <a href="support-centre.html">SUPPORT</a>
         </nav>
 
-        <!-- LANGUAGE DIRECT SWITCHER -->
         <div class="lang-wrapper">
             <div class="lang">
                 <a href="index.html"><button id="btn-en" class="active">EN</button></a>
@@ -861,7 +1011,7 @@ nav a {
         </div>
     </section>
         
-        <!-- CUSTOM WEB WORKSHOP CARD (CLICKABLE) -->  
+    <!-- CUSTOM WEB WORKSHOP CARD -->  
     <a href="https://kasuhanet.store/Custom-Web-Workshop-EN" style="text-decoration: none; color: inherit; display: block;">
         <div class="web-workshop-container">
             <img src="Bengkel-Custom-WebSite-EN.png" alt="Terminal Choice" style="max-width: 100%; width: 400px; display: block; margin: 0 auto;">   
@@ -880,7 +1030,7 @@ nav a {
         </div>
     </a>
 
-    <!-- KASUHA ZUKARNAIN PROFILE CARD -->
+    <!-- PROFILE CARD -->
     <div class="profile-wrapper">
         <div class="profile-card">
             <div class="profile-header">
@@ -909,19 +1059,19 @@ nav a {
             </div>
         </div>
     </div>
-<div class="hlb-banner">
-  <div class="hlb-content">
-    <div class="hlb-tag">New Program Referral</div>
-    <h1>Register for a Hong Leong Bank Account</h1>
-    <p>Use your referral code & enjoy special sign-up rewards today!</p>
-    
-    <!-- Pautan yang telah dibetulkan -->
-    <a href="https://www.hlb.com.my/en/personal-banking/deposits/apply-at-hlb-connect.html" class="hlb-btn" target="_blank" rel="noopener noreferrer">SignUp Now</a>
-  </div>
-  <div class="hlb-logo-container">
-    <img src="LogoHLBrefer.png" alt="Hong Leong Bank Logo" class="hlb-logo">
-  </div>
-</div>
+
+    <!-- HONG LEONG BANK BANNER -->
+    <div class="hlb-banner">
+      <div class="hlb-content">
+        <div class="hlb-tag">New Program Referral</div>
+        <h1>Register for a Hong Leong Bank Account</h1>
+        <p>Use your referral code & enjoy special sign-up rewards today!</p>
+        <a href="https://www.hlb.com.my/en/personal-banking/deposits/apply-at-hlb-connect.html" class="hlb-btn" target="_blank" rel="noopener noreferrer">SignUp Now</a>
+      </div>
+      <div class="hlb-logo-container">
+        <img src="LogoHLBrefer.png" alt="Hong Leong Bank Logo" class="hlb-logo">
+      </div>
+    </div>
    
     <!-- MAIN GRID CARDS -->
     <div class="grid">
@@ -990,193 +1140,37 @@ nav a {
             </div>
         </div>
     </section>
-        <!-- BANNER BJAK TEMA KASUHANET (CYBERPUNK) -->
-<style>
-  .bjak-cyber-banner {
-    width: 100%;
-    max-width: 1200px;
-    margin: 25px auto;
-    background: linear-gradient(135deg, #05070d 0%, #0a1026 50%, #05070d 100%);
-    border: 1px solid #00F0FF;
-    border-radius: 12px;
-    padding: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 0 20px rgba(0, 240, 255, 0.2), inset 0 0 15px rgba(230, 0, 164, 0.1);
-    position: relative;
-    overflow: hidden;
-    box-sizing: border-box;
-  }
 
-  .bjak-cyber-banner::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(0,240,255,0.05) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .bjak-cyber-content {
-    z-index: 2;
-    max-width: 65%;
-  }
-
-  .bjak-cyber-tag {
-    display: inline-block;
-    background: rgba(230, 0, 164, 0.2);
-    border: 1px solid #E600A4;
-    color: #ff3366;
-    font-size: 11px;
-    font-weight: bold;
-    padding: 4px 10px;
-    border-radius: 4px;
-    letter-spacing: 1px;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-  }
-
-  .bjak-cyber-title {
-    font-family: 'Orbitron', sans-serif !important;
-    font-size: clamp(18px, 3vw, 28px);
-    color: #ffffff;
-    margin: 0 0 10px 0;
-    line-height: 1.2;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
-  }
-
-  .bjak-cyber-title span {
-    color: #00F0FF;
-    text-shadow: 0 0 10px #00F0FF;
-  }
-
-  .bjak-cyber-desc {
-    color: #8fa0dd;
-    font-size: clamp(12px, 1.5vw, 14px);
-    margin: 0 0 18px 0;
-    line-height: 1.5;
-  }
-
-  .bjak-cyber-features {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-  }
-
-  .bjak-feature-item {
-    font-size: 11px;
-    color: #00ffcc;
-    background: rgba(0, 255, 204, 0.08);
-    padding: 5px 10px;
-    border-radius: 4px;
-    border: 1px solid rgba(0, 255, 204, 0.3);
-  }
-
-  .bjak-cyber-btn {
-    display: inline-block;
-    background: linear-gradient(90deg, #ff8a00, #ff5500);
-    color: #ffffff !important;
-    font-family: 'Orbitron', sans-serif !important;
-    font-size: 13px;
-    font-weight: bold;
-    padding: 12px 24px;
-    border-radius: 6px;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 0 15px rgba(255, 138, 0, 0.4);
-    transition: all 0.3s ease;
-  }
-
-  .bjak-cyber-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 25px rgba(255, 138, 0, 0.7);
-    background: linear-gradient(90deg, #ff9d26, #ff661a);
-  }
-
-  .bjak-cyber-badge {
-    z-index: 2;
-    text-align: center;
-    background: rgba(5, 7, 13, 0.8);
-    border: 1px solid #E600A4;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(230, 0, 164, 0.2);
-  }
-
-  .bjak-reward-amount {
-    font-family: 'Orbitron', sans-serif !important;
-    font-size: 32px;
-    font-weight: bold;
-    color: #E600A4;
-    text-shadow: 0 0 10px #E600A4;
-    margin: 5px 0;
-  }
-
-  .bjak-reward-text {
-    font-size: 11px;
-    color: #ccc;
-    letter-spacing: 0.5px;
-  }
-
-  /* MEDIA QUERIES UNTUK SKRIN TELEFON */
-  @media (max-width: 768px) {
-    .bjak-cyber-banner {
-      flex-direction: column;
-      text-align: center;
-      padding: 20px 15px;
-    }
-
-    .bjak-cyber-content {
-      max-width: 100%;
-      margin-bottom: 20px;
-    }
-
-    .bjak-cyber-features {
-      justify-content: center;
-    }
-
-    .bjak-cyber-badge {
-      width: 100%;
-      box-sizing: border-box;
-    }
-  }
-</style>
-
-<div class="bjak-cyber-banner">
-  <div class="bjak-cyber-content">
-    <span class="bjak-cyber-tag">Rakan Kongsi Rasmi</span>
-    <h2 class="bjak-cyber-title">RENEU INSURANS & CUKAI JALAN DENGAN <span>BJAK</span></h2>
-    <p class="bjak-cyber-desc">Bandingkan sebut harga percuma daripada 15+ syarikat insurans kereta & motosikal secara dalam talian dalam 5 minit.</p>
-    
-    <div class="bjak-cyber-features">
-      <span class="bjak-feature-item">✓ 100% Online</span>
-      <span class="bjak-feature-item">✓ Diskaun Segera</span>
-      <span class="bjak-feature-item">✓ Penghantaran Roadtax</span>
-    </div>
-
-    <a href="https://bjak.my/ref/mohamadslbr" target="_blank" rel="noopener noreferrer" class="bjak-cyber-btn">
-      Dapatkan Sebut Harga ❯
-    </a>
-  </div>
-
-  <div class="bjak-cyber-badge">
-    <div class="bjak-reward-text">Gunakan Link Referral & Dapatkan</div>
-    <div class="bjak-reward-amount">RM25</div>
-    <div class="bjak-reward-text">Ganjaran / Rebat</div>
-  </div>
-</div>
+    <!-- BANNER BJAK (SINGLE INSTANCE) -->
+    <div class="bjak-cyber-banner">
+      <div class="bjak-cyber-content">
+        <span class="bjak-cyber-tag">Rakan Kongsi Rasmi</span>
+        <h2 class="bjak-cyber-title">RENEU INSURANS & CUKAI JALAN DENGAN <span>BJAK</span></h2>
+        <p class="bjak-cyber-desc">Bandingkan sebut harga percuma daripada 15+ syarikat insurans kereta & motosikal secara dalam talian dalam 5 minit.</p>
         
-    <!-- E-LEARN SECTION -->
+        <div class="bjak-cyber-features">
+          <span class="bjak-feature-item">✓ 100% Online</span>
+          <span class="bjak-feature-item">✓ Diskaun Segera</span>
+          <span class="bjak-feature-item">✓ Penghantaran Roadtax</span>
+        </div>
+
+        <a href="https://bjak.my/ref/mohamadslbr" target="_blank" rel="noopener noreferrer" class="bjak-cyber-btn">
+          Dapatkan Sebut Harga ❯
+        </a>
+      </div>
+
+      <div class="bjak-cyber-badge">
+        <div class="bjak-reward-text">Gunakan Link Referral & Dapatkan</div>
+        <div class="bjak-reward-amount">RM25</div>
+        <div class="bjak-reward-text">Ganjaran / Rebat</div>
+      </div>
+    </div>
+        
+    <!-- E-LEARNING SECTION -->
     <section class="section">
         <h2 style="font-size: 18px; margin-bottom: 15px;">E-Learning Plans</h2>
 
         <div class="grid">
-            
             <!-- CARD 1: WEB SERVICE -->
             <a href="Banner-WebSale-EN.html" class="card-bg-box" style="background-image: url('PreviewCodingWeb.jpg');">
                 <div class="card-overlay"></div>
@@ -1184,7 +1178,6 @@ nav a {
                     <h3><span class="blinking-blue-red">START NOW!</span></h3>
                     <p>
                         Web Design E-Learning Plan following web package purchases starting RM299-RM345!<span class="blinking-blue-red">click</span>
-                            
                     </p>
                 </div>
             </a>
@@ -1197,7 +1190,6 @@ nav a {
                     <p>Paylater Cashout</p>
                 </div>
             </a>
-
         </div>
     </section>
 
