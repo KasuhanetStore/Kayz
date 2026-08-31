@@ -296,6 +296,194 @@
 </head>
 <body>
 
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #0d0d0d; /* Latar belakang luar yang gelap */
+        font-family: Arial, sans-serif;
+    }
+
+    .promo-container {
+        width: 360px; /* Lebar bekas seperti saiz telefon */
+        height: 640px; /* Tinggi bekas */
+        border: 2px solid;
+        border-image: linear-gradient(to bottom, cyan, magenta) 1; /* Bingkai bercahaya */
+        position: relative;
+        overflow: hidden;
+        background-color: #000;
+        display: flex;
+        flex-direction: column;
+        color: white;
+    }
+
+    /* Bahagian pengepala atas */
+    .header-section {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .partner-label {
+        border: 1px solid magenta;
+        color: magenta;
+        display: inline-block;
+        padding: 5px 15px;
+        font-size: 12px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    }
+
+    .logo-box {
+        background-color: #0047AB; /* Warna biru BJAK */
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    /* Bahagian kandungan utama dengan gambar latar belakang */
+    .content-section {
+        flex: 1;
+        position: relative;
+        padding: 20px;
+        text-align: center;
+    }
+
+    /* Menggunakan Bjak.png sebagai latar belakang yang digelapkan */
+    .content-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('Bjak.png'); /* Guna fail Bjak.png anda di sini */
+        background-size: cover;
+        background-position: center;
+        filter: brightness(30%); /* Ini untuk menggelapkan gambar latar belakang sebanyak 70% */
+        z-index: 1;
+    }
+
+    /* Memastikan teks berada di atas latar belakang yang digelapkan */
+    .text-overlay {
+        position: relative;
+        z-index: 2;
+    }
+
+    .main-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        line-height: 1.3;
+    }
+
+    .description {
+        font-size: 14px;
+        color: #ccc;
+        margin-bottom: 20px;
+        line-height: 1.4;
+    }
+
+    .features-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+
+    .feature-tag {
+        background-color: rgba(0, 128, 128, 0.3); /* Warna teal lutsinar */
+        border: 1px solid teal;
+        color: teal;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+    }
+
+    .feature-tag::before {
+        content: "✓ ";
+        font-weight: bold;
+    }
+
+    .quote-button {
+        background-color: #FF7F00; /* Warna oren */
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 4px;
+        cursor: pointer;
+        text-transform: uppercase;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+
+    /* Bahagian ganjaran bawah */
+    .reward-section {
+        background-color: #1a1a1a;
+        padding: 20px;
+        text-align: center;
+        border-top: 1px solid #333;
+    }
+
+    .referral-text {
+        font-size: 14px;
+        color: #aaa;
+        margin-bottom: 10px;
+    }
+
+    .amount {
+        font-size: 36px;
+        font-weight: bold;
+        color: magenta;
+        text-shadow: 0 0 10px magenta; /* Kesan cahaya neon */
+    }
+
+    .cashback-text {
+        font-size: 14px;
+        color: #aaa;
+        margin-top: 5px;
+    }
+</style>
+</head>
+<body>
+
+<div class="promo-container">
+    <div class="header-section">
+        <div class="partner-label">Official Partner</div>
+        <div class="logo-box">
+            <img src="Bjak.png" alt="BJAK Logo" style="width: 100%; height: auto;">
+        </div>
+    </div>
+
+    <div class="content-section">
+        <div class="text-overlay">
+            <div class="partner-label">Official Partner</div>
+            <div class="main-title">RENEW INSURANCE & ROADTAX WITH BJAK</div>
+            <p class="description">Compare free quotes from 15+ car & motorcycle insurance companies online in just 5 minutes.</p>
+            
+            <div class="features-container">
+                <div class="feature-tag">100% Online</div>
+                <div class="feature-tag">Instant Discount</div>
+                <div class="feature-tag">Roadtax Delivery</div>
+            </div>
+
+            <button class="quote-button">Get Free Quote ></button>
+        </div>
+    </div>
+
+    <div class="reward-section">
+        <p class="referral-text">Use Referral Link & Get</p>
+        <div class="amount">RM25</div>
+        <p class="cashback-text">Reward / Cashback</p>
+    </div>
+</div>
+    
 <div class="bg-animation"></div>
 <div class="stars"></div>
 
