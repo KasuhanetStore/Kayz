@@ -799,94 +799,6 @@ nav a {
   height: auto;
   display: block;
 }
-        <style>     
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #f4f7f9;
-        }
-
-        /* Container utama banner untuk pastikan ia responsif */
-        .bjak-banner-container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 20px auto;
-            position: relative;
-            cursor: pointer;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        /* Gaya teks "RENEU" yang ditukar menjadi butang atau sorotan */
-        .reneu-text {
-            color: #ff8a00;
-            font-weight: bold;
-            display: block;
-            background-color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            transform: rotate(5deg);
-            z-index: 10;
-        }
-
-        /* Menukar teks "dengan BJAK" menjadi butang CTA dengan pautan referral */
-        .cta-button {
-            display: inline-block;
-            background-color: #ff8a00;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 30px;
-            font-weight: bold;
-            font-size: 1.1em;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(255, 138, 0, 0.4);
-            margin-top: 15px;
-            position: absolute;
-            bottom: 40px;
-            right: 60px;
-            z-index: 10;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 6px 20px rgba(255, 138, 0, 0.5);
-        }
-
-        /* Menampilkan banner sebagai imej responsif */
-        .bjak-banner-img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* Media queries untuk skrin yang lebih kecil */
-        @media (max-width: 768px) {
-            .bjak-banner-container {
-                border-radius: 8px;
-                margin: 10px;
-            }
-
-            .reneu-text {
-                font-size: 0.8em;
-                padding: 5px 10px;
-                top: 10px;
-                right: 10px;
-            }
-
-            .cta-button {
-                font-size: 0.9em;
-                padding: 10px 20px;
-                bottom: 25px;
-                right: 25px;
-            }
-        }
-</style>
 
 </head>
 
@@ -1078,15 +990,187 @@ nav a {
             </div>
         </div>
     </section>
-        
-<body>
-    <div class="bjak-banner-container">
-        <a href="https://bjak.my/ref/mohamadslbr" class="cta-button">DAFTAR SEKARANG</a>
+        <!-- BANNER BJAK TEMA KASUHANET (CYBERPUNK) -->
+<style>
+  .bjak-cyber-banner {
+    width: 100%;
+    max-width: 1200px;
+    margin: 25px auto;
+    background: linear-gradient(135deg, #05070d 0%, #0a1026 50%, #05070d 100%);
+    border: 1px solid #00F0FF;
+    border-radius: 12px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.2), inset 0 0 15px rgba(230, 0, 164, 0.1);
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
 
-        <img src="https://example.com/path/to/your/image_2.png" alt="Reneu Insurans BJAK" class="bjak-banner-img">
+  .bjak-cyber-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0,240,255,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .bjak-cyber-content {
+    z-index: 2;
+    max-width: 65%;
+  }
+
+  .bjak-cyber-tag {
+    display: inline-block;
+    background: rgba(230, 0, 164, 0.2);
+    border: 1px solid #E600A4;
+    color: #ff3366;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  .bjak-cyber-title {
+    font-family: 'Orbitron', sans-serif !important;
+    font-size: clamp(18px, 3vw, 28px);
+    color: #ffffff;
+    margin: 0 0 10px 0;
+    line-height: 1.2;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+  }
+
+  .bjak-cyber-title span {
+    color: #00F0FF;
+    text-shadow: 0 0 10px #00F0FF;
+  }
+
+  .bjak-cyber-desc {
+    color: #8fa0dd;
+    font-size: clamp(12px, 1.5vw, 14px);
+    margin: 0 0 18px 0;
+    line-height: 1.5;
+  }
+
+  .bjak-cyber-features {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .bjak-feature-item {
+    font-size: 11px;
+    color: #00ffcc;
+    background: rgba(0, 255, 204, 0.08);
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 255, 204, 0.3);
+  }
+
+  .bjak-cyber-btn {
+    display: inline-block;
+    background: linear-gradient(90deg, #ff8a00, #ff5500);
+    color: #ffffff !important;
+    font-family: 'Orbitron', sans-serif !important;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 15px rgba(255, 138, 0, 0.4);
+    transition: all 0.3s ease;
+  }
+
+  .bjak-cyber-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(255, 138, 0, 0.7);
+    background: linear-gradient(90deg, #ff9d26, #ff661a);
+  }
+
+  .bjak-cyber-badge {
+    z-index: 2;
+    text-align: center;
+    background: rgba(5, 7, 13, 0.8);
+    border: 1px solid #E600A4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(230, 0, 164, 0.2);
+  }
+
+  .bjak-reward-amount {
+    font-family: 'Orbitron', sans-serif !important;
+    font-size: 32px;
+    font-weight: bold;
+    color: #E600A4;
+    text-shadow: 0 0 10px #E600A4;
+    margin: 5px 0;
+  }
+
+  .bjak-reward-text {
+    font-size: 11px;
+    color: #ccc;
+    letter-spacing: 0.5px;
+  }
+
+  /* MEDIA QUERIES UNTUK SKRIN TELEFON */
+  @media (max-width: 768px) {
+    .bjak-cyber-banner {
+      flex-direction: column;
+      text-align: center;
+      padding: 20px 15px;
+    }
+
+    .bjak-cyber-content {
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .bjak-cyber-features {
+      justify-content: center;
+    }
+
+    .bjak-cyber-badge {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+</style>
+
+<div class="bjak-cyber-banner">
+  <div class="bjak-cyber-content">
+    <span class="bjak-cyber-tag">Rakan Kongsi Rasmi</span>
+    <h2 class="bjak-cyber-title">RENEU INSURANS & CUKAI JALAN DENGAN <span>BJAK</span></h2>
+    <p class="bjak-cyber-desc">Bandingkan sebut harga percuma daripada 15+ syarikat insurans kereta & motosikal secara dalam talian dalam 5 minit.</p>
+    
+    <div class="bjak-cyber-features">
+      <span class="bjak-feature-item">✓ 100% Online</span>
+      <span class="bjak-feature-item">✓ Diskaun Segera</span>
+      <span class="bjak-feature-item">✓ Penghantaran Roadtax</span>
     </div>
-</body>
 
+    <a href="https://bjak.my/ref/mohamadslbr" target="_blank" rel="noopener noreferrer" class="bjak-cyber-btn">
+      Dapatkan Sebut Harga ❯
+    </a>
+  </div>
+
+  <div class="bjak-cyber-badge">
+    <div class="bjak-reward-text">Gunakan Link Referral & Dapatkan</div>
+    <div class="bjak-reward-amount">RM25</div>
+    <div class="bjak-reward-text">Ganjaran / Rebat</div>
+  </div>
+</div>
+        
     <!-- E-LEARN SECTION -->
     <section class="section">
         <h2 style="font-size: 18px; margin-bottom: 15px;">E-Learning Plans</h2>
