@@ -4,24 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- MAIN SEO -->
     <title>Mengenai Kami | KasuhaNET.STORE</title>
     <meta name="description" content="KasuhaNET.STORE Laman Platform digital pelbagai Jualan dan Servis Konfigurasi Melibatkan Website, Terminal Code, E-Digital dan alatan digital.">
     <meta name="keywords" content="Tentang KasuhaNET, Kasuha Zukarnain, Organisasi Kasuha Okulus, KasuhaNET Resources, Konfigurasi Pelbagai Terutamanya Bina Website.">
     <meta name="author" content="Kasuhanet Resources">
     <meta name="robots" content="index, follow">
 
-    <!-- CANONICAL -->
     <link rel="canonical" href="https://kasuhanet.store/">
 
-    <!-- FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- Favicon Untuk Google & Browser Biasa -->
-<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
-<!-- Favicon Khas Untuk Apple (iOS/Safari) -->
-<link rel="apple-touch-icon" sizes="180x180" href="/favicon-512x512.png">
-    <!-- OPEN GRAPH -->
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-512x512.png">
+
     <meta property="og:title" content="Tentang Kami | KasuhaNET.STORE">
     <meta property="og:description" content="Ketahui lebih lanjut mengenai KasuhaNET.STORE, platform digital pelbagai servis yang merangkumi pembangunan laman web, sistem Linux, dan alatan digital.">
     <meta property="og:image" content="https://kasuhanet.store/img/logo3.webp">
@@ -29,11 +24,9 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="KasuhaNET.STORE">
 
-    <!-- MOBILE -->
     <meta name="theme-color" content="#05070d">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <!-- CSS -->
     <link rel="stylesheet" href="css/main.css">
     <script src="js/home-main.js"></script>
 
@@ -101,13 +94,14 @@
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(79, 49, 232, 0.3);
             border-radius: 8px;
-            padding: 15px;
+            padding: 20px;
             text-decoration: none;
             color: #fff;
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            text-align: center; /* DIUBAH KEPADA CENTER */
         }
 
         .card:hover {
@@ -123,7 +117,7 @@
             border-radius: 8px;
             padding: 35px 30px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            text-align: center;
+            text-align: center; /* DIUBAH KEPADA CENTER */
         }
 
         .about-title {
@@ -145,9 +139,17 @@
             color: #ccc;
             font-size: 14px;
             line-height: 1.8;
-            text-align: justify;
+            text-align: center; /* DIUBAH DARIPADA JUSTIFY KEPADA CENTER */
             max-width: 900px;
             margin: 0 auto;
+        }
+
+        .section-divider {
+            color: #E600A4;
+            font-size: 18px;
+            text-transform: uppercase;
+            margin: 35px 0 15px 0;
+            letter-spacing: 1px;
         }
 
         /* DESIGN FOOTER BERBENTUK & BERWARNA KEMAS (DI DASAR PAGE) */
@@ -293,7 +295,6 @@
 <div class="bg-animation"></div>
 <div class="stars"></div>
 
-<!-- HEADER STICKY -->
 <header>
     <div class="logo">
         <img src="img/logo3.png" style="height:25px; width:auto;" alt="Logo">
@@ -307,7 +308,6 @@
     </nav>
 </header>
 
-<!-- BAHAGIAN KREDIT KERJASAMA -->
 <div class="partner-credit-bar">
     <div class="credit-text">
         Web dikuasakan dengan KerjaSama Pertubuhan dan Syarikat Bersama
@@ -321,53 +321,72 @@
     </div>
 </div>
 
-<!-- MAIN CONTENT BLOCK -->
 <main>
     <section class="about-section">
-        <!-- TAJUK UTAMA BESAR MALAY VERSION -->
         <h1 class="about-title" id="about-heading">
             MENGENAI <span>KAMI</span>
         </h1>
         
-        <!-- PENGENALAN SYARIKAT (MALAY ONLY) -->
         <div class="about-text">
             KasuhaNET Resources (202503248308) ialah hab digital termaju yang direka khusus untuk merapatkan jurang antara teknologi sumber terbuka (open-source) yang kompleks dengan ekosistem monetisasi moden. Diinspirasikan daripada visi untuk menyatukan konfigurasi teknikal berprestasi tinggi dengan keperluan digital harian, kami beroperasi dalam paksi sistem Linux, seni bina web tersuai, dan utiliti kewangan pintar.
         </div>
 
-        <br><br>
-
-        <!-- SUB-TAJUK ECOSYSTEM -->
-        <h2 style="color: #E600A4; font-size: 18px; text-transform: uppercase; margin-bottom: 15px;">
+        <h2 class="section-divider">
             • Ekosistem Teras Kami •
         </h2>
 
-        <!-- TIGA KAD PILAR PEMPERKASAAN -->
-        <div class="grid" style="margin-top: 10px;">
-            <div class="card" style="text-align: left; background: rgba(5, 7, 13, 0.6);">
+        <div class="grid">
+            <div class="card" style="background: rgba(5, 7, 13, 0.6);">
                 <h3 style="color: #00F0FF; font-size: 14px; margin: 5px 0;">Automasi Linux & Terminal</h3>
-                <p style="font-size: 12px; color: #aaa; margin: 5px 0 0 0; line-height: 1.5;">
+                <p style="font-size: 12px; color: #aaa; margin: 8px 0 0 0; line-height: 1.5;">
                     Kami mempermudahkan proses deployment dengan menyusun konfigurasi dependency yang kompleks ke dalam rangka kerja satu arahan (CODEX) untuk shell Linux dan persekitaran natif.
                 </p>
             </div>
 
-            <div class="card" style="text-align: left; background: rgba(5, 7, 13, 0.6);">
+            <div class="card" style="background: rgba(5, 7, 13, 0.6);">
                 <h3 style="color: #00F0FF; font-size: 14px; margin: 5px 0;">Web & Monetisasi Hibrid</h3>
-                <p style="font-size: 12px; color: #aaa; margin: 5px 0 0 0; line-height: 1.5;">
+                <p style="font-size: 12px; color: #aaa; margin: 8px 0 0 0; line-height: 1.5;">
                     Memperkasakan platform affiliate yang dinamik, pengehosan web moden, serta e-panduan berstruktur yang direka khas untuk model perniagaan dalam talian yang sedang berkembang.
                 </p>
             </div>
 
-            <div class="card" style="text-align: left; background: rgba(5, 7, 13, 0.6);">
+            <div class="card" style="background: rgba(5, 7, 13, 0.6);">
                 <h3 style="color: #00F0FF; font-size: 14px; margin: 5px 0;">Kolaborasi Strategik</h3>
-                <p style="font-size: 12px; color: #aaa; margin: 5px 0 0 0; line-height: 1.5;">
+                <p style="font-size: 12px; color: #aaa; margin: 8px 0 0 0; line-height: 1.5;">
                     Disokong oleh rangka kerja kolaboratif Kasuha Okulus Organisation, kami aktif membina laluan perisian praktikal dan ciri-ciri perdagangan taktikal yang lancar.
                 </p>
             </div>
         </div>
+
+        <h2 class="section-divider">
+            • Misi & Visi •
+        </h2>
+        <div class="grid">
+            <div class="card" style="background: rgba(5, 7, 13, 0.6);">
+                <h3 style="color: #E600A4; font-size: 14px; margin: 5px 0;">Misi Kami</h3>
+                <p style="font-size: 12px; color: #aaa; margin: 8px 0 0 0; line-height: 1.5;">
+                    Inovasi, mempermudah, dan menyediakan alatan digital berprestasi tinggi, skrip automasi terminal, serta penyelesaian affiliate yang meningkatkan kecekapan operasi digital.
+                </p>
+            </div>
+
+            <div class="card" style="background: rgba(5, 7, 13, 0.6);">
+                <h3 style="color: #E600A4; font-size: 14px; margin: 5px 0;">Visi Kami</h3>
+                <p style="font-size: 12px; color: #aaa; margin: 8px 0 0 0; line-height: 1.5;">
+                    Menjadi platform digital hibrid teraju di Malaysia—memupuk kerjasama erat antara kejuruteraan sistem teknikal dan perdagangan dalam talian moden.
+                </p>
+            </div>
+        </div>
+
+        <h2 class="section-divider">
+            • Mengapa KasuhaNET.Store? •
+        </h2>
+        <div class="about-text" style="max-width: 800px;">
+            Kami memberi tumpuan kepada pelaksanaan praktikal. Dengan mengadunkan kebolehaliran sistem sumber terbuka bersama servis utiliti terlaras, platform kami menyediakan alatan yang diyakini, panduan telus, dan penyelesaian terautomasi yang dibina khas untuk lanskap digital masa kini.
+        </div>
+
     </section>
 </main>
 
-<!-- BOXED CYBER FOOTER (RAPAT DI DASAR SKRIN) -->
 <footer class="footer">
     <div class="footer-grid">
         <div>
@@ -402,7 +421,6 @@
     </div>
 </footer>
 
-<!-- WHATSAPP FLOATING BUTTON -->
 <a href="https://wa.me/60167390501?text=Assalamualaikum,%20saya%20ingin%20bertanya%20tentang%20perkhidmatan%20KasuhaNET.STORE"
    style="
     position:fixed;
