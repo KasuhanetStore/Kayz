@@ -107,13 +107,14 @@
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(79, 49, 232, 0.3);
             border-radius: 8px;
-            padding: 15px;
+            padding: 20px;
             text-decoration: none;
             color: #fff;
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            text-align: center; /* DIUBAH KEPADA CENTER */
         }
 
         .card:hover {
@@ -129,7 +130,7 @@
             border-radius: 8px;
             padding: 35px 30px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            text-align: center;
+            text-align: center; /* DIUBAH KEPADA CENTER */
         }
 
         .about-title {
@@ -151,9 +152,17 @@
             color: #ccc;
             font-size: 14px;
             line-height: 1.8;
-            text-align: justify;
+            text-align: center; /* DIUBAH DARIPADA JUSTIFY KEPADA CENTER */
             max-width: 900px;
             margin: 0 auto;
+        }
+
+        .section-divider {
+            color: #E600A4;
+            font-size: 18px;
+            text-transform: uppercase;
+            margin: 35px 0 15px 0;
+            letter-spacing: 1px;
         }
 
         /* DESIGN FOOTER BERBENTUK & BERWARNA KEMAS (DI DASAR PAGE) */
@@ -334,41 +343,68 @@
             ABOUT <span>US</span>
         </h1>
         
-        <!-- PENGENALAN SYARIKAT (ENGLISH ONLY) -->
+        <!-- PENGENALAN SYARIKAT -->
         <div class="about-text">
             KasuhaNET Resources (202503248308) is a cutting-edge digital hub engineered to bridge the gap between complex open-source technologies and modern monetization ecosystems. Born from the vision of integrating highly-optimized technical setups with everyday digital requirements, we operate at the intersection of Linux systems, custom web architecture, and smart financial utility tools.
         </div>
 
-        <br><br>
-
         <!-- SUB-TAJUK ECOSYSTEM -->
-        <h2 style="color: #E600A4; font-size: 18px; text-transform: uppercase; margin-bottom: 15px;">
+        <h2 class="section-divider">
             • The Core Ecosystem •
         </h2>
 
         <!-- TIGA KAD PILAR PEMPERKASAAN -->
-        <div class="grid" style="margin-top: 10px;">
-            <div class="card" style="text-align: left; background: rgba(5, 7, 13, 0.6);">
+        <div class="grid">
+            <div class="card" style="background: rgba(5, 7, 13, 0.6);">
                 <h3 style="color: #00F0FF; font-size: 14px; margin: 5px 0;">Linux & Terminal Automation</h3>
-                <p style="font-size: 12px; color: #aaa; margin: 5px 0 0 0; line-height: 1.5;">
+                <p style="font-size: 12px; color: #aaa; margin: 8px 0 0 0; line-height: 1.5;">
                     We simplify deployment by nesting complex dependency setups into streamlined, single-command frameworks (CODEX) for standard Linux shells and native environments.
                 </p>
             </div>
 
-            <div class="card" style="text-align: left; background: rgba(5, 7, 13, 0.6);">
+            <div class="card" style="background: rgba(5, 7, 13, 0.6);">
                 <h3 style="color: #00F0FF; font-size: 14px; margin: 5px 0;">Hybrid Monetization & Web</h3>
-                <p style="font-size: 12px; color: #aaa; margin: 5px 0 0 0; line-height: 1.5;">
+                <p style="font-size: 12px; color: #aaa; margin: 8px 0 0 0; line-height: 1.5;">
                     Empowering dynamic affiliate platforms, modern web hosting, and structural digital guidance tailored for emerging online businesses.
                 </p>
             </div>
 
-            <div class="card" style="text-align: left; background: rgba(5, 7, 13, 0.6);">
+            <div class="card" style="text-align: center; background: rgba(5, 7, 13, 0.6);">
                 <h3 style="color: #00F0FF; font-size: 14px; margin: 5px 0;">Strategic Collaboration</h3>
-                <p style="font-size: 12px; color: #aaa; margin: 5px 0 0 0; line-height: 1.5;">
+                <p style="font-size: 12px; color: #aaa; margin: 8px 0 0 0; line-height: 1.5;">
                     Backed by the collaborative framework of Kasuha Okulus Organisation, we actively engineer practical software paths and tactical commerce features.
                 </p>
             </div>
         </div>
+
+        <!-- BAHAGIAN BAHARU 1: MISSION & VISION -->
+        <h2 class="section-divider">
+            • Mission & Vision •
+        </h2>
+        <div class="grid">
+            <div class="card" style="background: rgba(5, 7, 13, 0.6);">
+                <h3 style="color: #E600A4; font-size: 14px; margin: 5px 0;">Our Mission</h3>
+                <p style="font-size: 12px; color: #aaa; margin: 8px 0 0 0; line-height: 1.5;">
+                    To innovate, simplify, and deliver accessible high-performance digital tools, terminal automation scripts, and affiliate solutions that drive business efficiency.
+                </p>
+            </div>
+
+            <div class="card" style="background: rgba(5, 7, 13, 0.6);">
+                <h3 style="color: #E600A4; font-size: 14px; margin: 5px 0;">Our Vision</h3>
+                <p style="font-size: 12px; color: #aaa; margin: 8px 0 0 0; line-height: 1.5;">
+                    To stand as Malaysia's premier hybrid digital platform—fostering seamless collaboration between technical system engineering and modern online commerce.
+                </p>
+            </div>
+        </div>
+
+        <!-- BAHAGIAN BAHARU 2: WHY CHOOSE US -->
+        <h2 class="section-divider">
+            • Why KasuhaNET.Store? •
+        </h2>
+        <div class="about-text" style="max-width: 800px;">
+            We focus on practical execution over pure theory. By fusing open-source flexibility with tailored utility services, our platform provides users with trusted tools, transparent guidance, and automated solutions built for the modern digital landscape.
+        </div>
+
     </section>
 </main>
 
