@@ -158,28 +158,6 @@ main {
     align-items: center;
 }
 
-.top-nav-back {
-    width: 100%;
-    max-width: 900px;
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-.top-nav-back a {
-    color: #00F0FF;
-    text-decoration: none;
-    font-size: 13px;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    transition: 0.3s;
-}
-
-.top-nav-back a:hover {
-    text-shadow: 0 0 10px #00F0FF;
-    color: #fff;
-}
-
 .workshop-container {
     max-width: 900px;
     width: 100%;
@@ -301,6 +279,53 @@ main {
     font-size: 11px;
     border-radius: 4px;
     margin-bottom: 10px;
+}
+
+/* BENGKEL CUSTOM ITEM LIST STYLES */
+.custom-services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.custom-item-card {
+    background: rgba(5, 7, 13, 0.7);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    border-radius: 6px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 0.3s;
+}
+
+.custom-item-card:hover {
+    border-color: #E600A4;
+    box-shadow: 0 0 10px rgba(230, 0, 164, 0.2);
+}
+
+.custom-item-title {
+    color: #00F0FF;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.custom-item-desc {
+    color: #aaa;
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.custom-item-price {
+    color: #25D366;
+    font-size: 14px;
+    font-weight: 900;
+    text-align: right;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    padding-top: 8px;
 }
 
 /* WORKSHOP HIGHLIGHT BOX */
@@ -532,88 +557,204 @@ main {
         <span class="partner-name">KasuhaNET Resources</span>
     </div>
 </div>
+
 <main>
-    <div class="intro-trademark-box">
-    <img src="Bengkel-Custom-WebSite.png" alt="Bengkel Custom WebSite Official Trademark Banner">
-</div>
-    
     <div class="workshop-container">    
-    <!-- INTRO TRADEMARK IMAGE BANNER PLACEHOLDER -->
-    <div class="intro-trademark-box">
+        <!-- INTRO TRADEMARK IMAGE BANNER -->
+        <div class="intro-trademark-box">
+            <img src="Bengkel-Custom-WebSite.png" alt="Bengkel Custom WebSite Official Trademark Banner">
+        </div>
         
-    <h1 class="neon-title-workshop">BENGKEL CUSTOM <span>WEBSITE</span></h1>
-    
-    <p class="subtitle-intro">
-        Selamat datang ke <strong>kasuhanet.store</strong>! Bagi anda yang ingin membina atau menaik taraf laman web, kami kini menawarkan Servis Setup & Deploy mengikut keperluan dan bajet anda secara telus.
-        Di sini, anda mempunyai kebebasan sepenuhnya untuk memilih kaedah pembelian dan pemasangan.
-    </p>
-
-    <!-- SECTION 1 -->
-    <div class="section-head">
-        <span>✓</span> Pilihan Pemasangan & Servis
-    </div>
-
-    <div class="service-cards-grid">
-        <!-- Option 1 -->
-        <div class="service-card">
-            <span class="badge-tag">PILIHAN 01</span>
-            <h3>1. Servis Setup Sahaja (Caj Mengikut Servis)</h3>
-            <p><strong>Sesuai untuk:</strong> Anda yang dah ada Tools sendiri (Domain, Script/Source Code, VPS/Hosting, atau akaun Developer).</p>
-            <p><strong>Cara kerja:</strong> Anda sediakan alatan/aset, kami uruskan proses pemasangan, konfigurasi, dan deployment sehingga laman web anda siap sedia untuk diakses!</p>
-            <p style="margin-top:10px; color:#00F0FF; font-weight:bold;">Caj: Dikira berdasarkan per-servis yang anda pilih sahaja.</p>
-        </div>
-
-        <!-- Option 2 -->
-        <div class="service-card card-purple">
-            <span class="badge-tag" style="color:#E600A4; border-color:rgba(230,0,164,0.4);">PILIHAN 02</span>
-            <h3>2. Pakej Siap Setup (Termasuk VPS & Tools)</h3>
-            <p><strong>Sesuai untuk:</strong> Anda yang nak terima serba siap tanpa pening kepala urus alatan teknikal.</p>
-            <p><strong>Cara kerja:</strong> Kami sediakan alatan asas yang diperlukan (termasuk persediaan VPS dan alatan sokongan) dan terus uruskan pendaftaran serta konfigurasi akaun profil (Account Overview) anda.</p>
-        </div>
-    </div>
+        <h1 class="neon-title-workshop">BENGKEL CUSTOM <span>WEBSITE</span></h1>
         
-        <div class="separator" style="clear: both; text-align: center;">
-            <iframe class="BLOG_video_class" allowfullscreen="" youtube-src-id="nHHD66opUqk" 
-                width="350" height="302" src="https://www.youtube.com/embed/nHHD66opUqk">
-            </iframe>
-        </div>
-      
-    <!-- SECTION 2 -->
-    <div class="workshop-highlight-box">
-        <h3>✓ "Bengkel Custom" (Custom Workshop)</h3>
-        <p style="color:#ddd; font-size:14px; line-height:1.6; margin:0 0 15px 0;">
-            Mahu fleksibiliti mengikut bajet? Gunakan bahagian Bengkel Custom kami!
-        </p>
-        <p style="color:#ccc; font-size:13.5px; line-height:1.6; margin:0;">
-            Di bahagian ini, setiap servis dan alatan (tool) dipisahkan secara jelas mengikut bahagian (part). Anda boleh pilih dan tambah (add-on) alatan yang diperlukan sahaja untuk persediaan pantas.
+        <p class="subtitle-intro">
+            Selamat datang ke <strong>kasuhanet.store</strong>! Bagi anda yang ingin membina atau menaik taraf laman web, kami kini menawarkan Servis Setup & Deploy mengikut keperluan dan bajet anda secara telus.
+            Di sini, anda mempunyai kebebasan sepenuhnya untuk memilih kaedah pembelian dan pemasangan.
         </p>
 
-        <!-- NOTICE -->
-        <div class="notice-box">
-            <div class="notice-icon">!</div>
-            <div class="notice-content">
-                <strong>Nota Pembelian Tools & Part:</strong><br>
-                Sesetengah tools atau akaun di Bengkel Custom dijual secara rasmi melalui rangkaian Affiliate Developer yang Sah. Ini membolehkan anda mendapatkan Lesen/Tool pilihan secara terus dan selamat untuk persediaan akaun anda.
+        <!-- SECTION 1 -->
+        <div class="section-head">
+            <span>✓</span> Pilihan Pemasangan & Servis
+        </div>
+
+        <div class="service-cards-grid">
+            <!-- Option 1 -->
+            <div class="service-card">
+                <span class="badge-tag">PILIHAN 01</span>
+                <h3>1. Servis Setup Sahaja (Caj Mengikut Servis)</h3>
+                <p><strong>Sesuai untuk:</strong> Anda yang dah ada Tools sendiri (Domain, Script/Source Code, VPS/Hosting, atau akaun Developer).</p>
+                <p><strong>Cara kerja:</strong> Anda sediakan alatan/aset, kami uruskan proses pemasangan, konfigurasi, dan deployment sehingga laman web anda siap sedia untuk diakses!</p>
+                <p style="margin-top:10px; color:#00F0FF; font-weight:bold;">Caj: Dikira berdasarkan per-servis yang anda pilih sahaja.</p>
+            </div>
+
+            <!-- Option 2 -->
+            <div class="service-card card-purple">
+                <span class="badge-tag" style="color:#E600A4; border-color:rgba(230,0,164,0.4);">PILIHAN 02</span>
+                <h3>2. Pakej Siap Setup (Termasuk VPS & Tools)</h3>
+                <p><strong>Sesuai untuk:</strong> Anda yang nak terima serba siap tanpa pening kepala urus alatan teknikal.</p>
+                <p><strong>Cara kerja:</strong> Kami sediakan alatan asas yang diperlukan (termasuk persediaan VPS dan alatan sokongan) dan terus uruskan pendaftaran serta konfigurasi akaun profil (Account Overview) anda.</p>
             </div>
         </div>
-    </div>
+            
+        <div class="separator" style="clear: both; text-align: center; margin: 25px 0;">
+            <iframe class="BLOG_video_class" allowfullscreen="" youtube-src-id="nHHD66opUqk" 
+                width="350" height="200" src="https://www.youtube.com/embed/nHHD66opUqk" style="border:1px solid rgba(0,240,255,0.3); border-radius:8px;">
+            </iframe>
+        </div>
+          
+        <!-- SECTION 2 -->
+        <div class="workshop-highlight-box">
+            <h3>✓ "Bengkel Custom" (Custom Workshop)</h3>
+            <p style="color:#ddd; font-size:14px; line-height:1.6; margin:0 0 10px 0;">
+                Mahu fleksibiliti mengikut bajet? Gunakan bahagian Bengkel Custom kami!
+            </p>
+            <p style="color:#ccc; font-size:13.5px; line-height:1.6; margin:0 0 20px 0;">
+                Di bahagian ini, setiap servis dipisahkan secara jelas. Anda boleh pilih servis yang diperlukan sahaja untuk persediaan pantas mengikut kadar harga pasaran tempatan.
+            </p>
 
-    <!-- SUPPORT / CONTACT SECTION -->
-    <div class="support-box">
-        <h3>• Perlukan Bantuan / Pertanyaan?</h3>
-        <p>
-            Jika anda tidak pasti tools apa yang diperlukan untuk projek anda, hubungi kami terus ke butang WhatsApp atau Email ke <a href="mailto:kasuhaoculusorganisation@kasuhanet.store" class="email-link">kasuhaoculusorganisation@kasuhanet.store</a>. Kami sedia membantu semakan teknikal awal sebelum anda membuat pesanan!
-        </p>
-        <a href="https://wa.me/qr/4K2RBZZQAPL4G1" class="contact-btn" target="_blank">
-            Hubungi WhatsApp Sekarang
-        </a>
-    </div>
+            <!-- SENARAI 14 SERVIS UTAMA BENGKEL CUSTOM -->
+            <div class="custom-services-grid">
+                
+                <div class="custom-item-card">
+                    <div>
+                        <div class="custom-item-title">1. Pengurusan Domain & DNS Routing</div>
+                        <div class="custom-item-desc">Setup, sambungkan domain ke server/VPS, atau selesaikan masalah ralat DNS/records (MX, TXT, SPF, DKIM).</div>
+                    </div>
+                    <div class="custom-item-price">RM 50</div>
+                </div>
 
-    <div class="back-link-box">
-      <a href="homepage-MS.html">← KEMBALI KE MENU UTAMA</a>
-    </div>
+                <div class="custom-item-card">
+                    <div>
+                        <div class="custom-item-title">2. Pemasangan & Setup Server / VPS</div>
+                        <div class="custom-item-desc">Setup asas web server (Nginx/Apache), Control Panel (aaPanel/CyberPanel/cPanel), dan kawalan keselamatan asas.</div>
+                    </div>
+                    <div class="custom-item-price">RM 120</div>
+                </div>
 
-  </div>
+                <div class="custom-item-card">
+                    <div>
+                        <div class="custom-item-title">3. Konfigurasi Sijil SSL (HTTPS)</div>
+                        <div class="custom-item-desc">Pemasangan & aktivasi sijil keselamatan SSL untuk memastikan sambungan selamat (padlock icon).</div>
+                    </div>
+                    <div class="custom-item-price">RM 50</div>
+                </div>
+
+                <div class="custom-item-card">
+                    <div>
+                        <div class="custom-item-title">4. Deploy CMS & Script / Source Code</div>
+                        <div class="custom-item-desc">Pemasangan WordPress / CMS, atau muat naik & konfigurasi script custom (PHP, Laravel, CodeCanyon) ke server.</div>
+                    </div>
+                    <div class="custom-item-price">RM 150</div>
+                </div>
+
+                <div class="custom-item-card">
+                    <div>
+                        <div class="custom-item-title">5. Setup & Migrasi Database</div>
+                        <div class="custom-item-desc">Setup pangkalan data (MySQL/MariaDB), import/export pangkalan data, dan pembaikan connection error.</div>
+                    </div>
+                    <div class="custom-item-price">RM 100</div>
+                </div>
+
+                <div class="custom-item-card">
+                    <div>
+                        <div class="custom-item-title">6. Payment Gateway Tempatan</div>
+                        <div class="custom-item-desc">Sambungkan laman web dengan sistem pembayaran automatik (ToyyibPay, Billplz, Chip, atau SenangPay).</div>
+                    </div>
+                    <div class="custom-item-price">RM 150</div>
+                </div>
+
+                <div class="custom-item-card">
+                    <div>
+                        <div class="custom-item-title">7. Setup Emel Rasmi Domain</div>
+                        <div class="custom-item-desc">Konfigurasi emel perniagaan guna nama domain sendiri (Google Workspace/Zoho/Private Email) & anti-spam.</div>
+                    </div>
+                    <div class="custom-item-price">RM 100</div>
+                </div>
+
+                <div class="custom-item-card">
+                    <div>
+                        <div class="custom-item-title">8. Troubleshooting & Fix Error</div>
+                        <div class="custom-item-desc">Membaiki ralat teknikal seperti 500 Internal Server Error, 502 Bad Gateway, atau White Screen of Death.</div>
+                    </div>
+                    <div class="custom-item-price">RM 100</div>
+                </div>
+
+                <div class="custom-item-card">
+                    <div>
+                        <div class="custom-item-title">9. Pembersihan Malware / Virus Web</div>
+                        <div class="custom-item-desc">Imbasan penuh, pembersihan kod jahat/malware, dan pemulihan laman web yang digodam atau di-sekat.</div>
+                    </div>
+                    <div class="custom-item-price">RM 250</div>
+                </div>
+
+                <div class="custom-item-card">
+                    <div>
+                        <div class="custom-item-title">10. Optimasi Kelajuan & Prestasi</div>
+                        <div class="custom-item-desc">Meningkatkan kelajuan loading laman web, optimasi imej/database, dan tetapan CDN Cloudflare.</div>
+                    </div>
+                    <div class="custom-item-price">RM 150</div>
+                </div>
+
+                <div class="custom-item-card">
+                    <div>
+                        <div class="custom-item-title">11. Migrasi Lengkap Web & Server</div>
+                        <div class="custom-item-desc">Pindahan keseluruhan laman web, pangkalan data, dan emel dari hosting/server lama ke server baru tanpa downtime.</div>
+                    </div>
+                    <div class="custom-item-price">RM 200</div>
+                </div>
+
+                <div class="custom-item-card">
+                    <div>
+                        <div class="custom-item-title">12. Integrasi Analytics & Pixel</div>
+                        <div class="custom-item-desc">Pemasangan Google Analytics, Google Search Console, Meta Pixel, atau TikTok Pixel untuk tujuan pemasaran.</div>
+                    </div>
+                    <div class="custom-item-price">RM 80</div>
+                </div>
+
+                <div class="custom-item-card">
+                    <div>
+                        <div class="custom-item-title">13. Custom Upgrade Blogspot / Platform</div>
+                        <div class="custom-item-desc">Menukar paparan asas Blogger/Blogspot kepada struktur profesional, custom domain, & kemas kini layout.</div>
+                    </div>
+                    <div class="custom-item-price">RM 120</div>
+                </div>
+
+                <div class="custom-item-card">
+                    <div>
+                        <div class="custom-item-title">14. Page Design Script (HTML/CSS/JS)</div>
+                        <div class="custom-item-desc">Perekaan halaman khas (landing page/single page) guna kod custom HTML/CSS/JS yang mesra peranti mudah alih.</div>
+                    </div>
+                    <div class="custom-item-price">RM 180</div>
+                </div>
+
+            </div>
+
+            <!-- NOTICE -->
+            <div class="notice-box">
+                <div class="notice-icon">!</div>
+                <div class="notice-content">
+                    <strong>Nota Pembelian Tools & Part:</strong><br>
+                    Sesetengah tools atau akaun di Bengkel Custom dijual secara rasmi melalui rangkaian Affiliate Developer yang Sah. Ini membolehkan anda mendapatkan Lesen/Tool pilihan secara terus dan selamat untuk persediaan akaun anda.
+                </div>
+            </div>
+        </div>
+
+        <!-- SUPPORT / CONTACT SECTION -->
+        <div class="support-box">
+            <h3>• Perlukan Bantuan / Pertanyaan?</h3>
+            <p>
+                Jika anda tidak pasti servis atau tools apa yang diperlukan untuk projek anda, hubungi kami terus melalui WhatsApp atau Email ke <a href="mailto:kasuhaoculusorganisation@kasuhanet.store" class="email-link">kasuhaoculusorganisation@kasuhanet.store</a>. Kami sedia membantu semakan teknikal awal sebelum anda membuat pesanan!
+            </p>
+            <a href="https://wa.me/qr/4K2RBZZQAPL4G1" class="contact-btn" target="_blank">
+                Hubungi WhatsApp Sekarang
+            </a>
+        </div>
+
+        <div class="back-link-box">
+          <a href="homepage-MS.html">← KEMBALI KE MENU UTAMA</a>
+        </div>
+
+    </div>
 </main>
 
 <!-- FOOTER KORPORAT -->
