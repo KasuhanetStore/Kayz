@@ -52,25 +52,22 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-
-            /* MEMASTIKAN PAGE MEMPUNYAI TINGGI MINIMUM SKRIN */
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
-        /* MEMPOSISIKAN KANDUNGAN TEPAT DI TENAN-TENGAH (CENTER) */
+        /* FLEXBOX CENTER DENGAN ALIGNMENT BALANCED */
         main {
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px 15px;
-
             flex: 1;
             width: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Center Menegak */
-            align-items: center;     /* Center Mendatar */
+            justify-content: center;
+            align-items: center;
         }
 
         header {
@@ -138,7 +135,7 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             text-align: center;
             width: 100%;
-            max-width: 1000px; /* Memastikan box kekal seimbang & bersaiz ideal */
+            max-width: 1000px;
         }
 
         .about-title {
@@ -185,29 +182,14 @@
             color: #ccc;
             line-height: 2;
         }
-        .package-features li {
-            position: relative;
-            padding-left: 20px;
-        }
-        .package-features li.check::before {
+        .package-features li::before {
             content: "✓ ";
             color: #00F0FF;
             font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-        .package-features li.cross::before {
-            content: "❌ ";
-            position: absolute;
-            left: 0;
-            font-size: 11px;
+            margin-right: 5px;
         }
         .premium-card .package-features li::before {
-            content: "✓ ";
             color: #E600A4;
-            font-weight: bold;
-            position: absolute;
-            left: 0;
         }
 
         .cta-btn {
@@ -241,18 +223,19 @@
             box-shadow: 0 0 10px #E600A4;
         }
 
-        /* TERMA & SYARAT NOTE CSS */
+        /* STYLES FOR TERMS & CONDITIONS NOTE */
         .tc-note {
-            text-align: center;
             font-size: 11px;
-            color: #8a8d9b;
-            margin-top: 35px;
-            letter-spacing: 0.5px;
+            color: #aaa;
+            margin-top: 25px;
+            margin-bottom: 0;
+            text-align: center;
+            line-height: 1.6;
         }
         .tc-note a {
             color: #E600A4;
             text-decoration: underline;
-            transition: color 0.3s;
+            transition: color 0.2s ease;
         }
         .tc-note a:hover {
             color: #00F0FF;
@@ -432,7 +415,7 @@
     </div>
 </div>
 
-<!-- MAIN CONTENT BLOCK (HALAMAN JUALAN - DIPOSISI TEPAT DI TENGAH) -->
+<!-- MAIN CONTENT BLOCK (HALAMAN JUALAN - CENTERED) -->
 <main>
     <section class="about-section">
         <!-- TAJUK JUALAN -->
@@ -450,20 +433,19 @@
         </h2>
 
         <!-- GRID PAKEJ JUALAN -->
-        <div id="DapatbuatcepatWeb" ,class="grid">
+        <div class="grid">
             
-            <!-- PAKEJ LANDING PAGE (PROMO RARE) -->
+            <!-- PAKEJ LANDING PAGE -->
             <div class="card">
                 <h3 class="package-title" style="color: #00F0FF;">Pakej Landing Page</h3>
-                <div class="package-price" style="color: #fff;">RM 299<span style="font-size: 14px; color:#00F0FF; font-weight: normal; margin-left: 5px; text-shadow: 0 0 5px rgba(0,240,255,0.5);"></span></div>
+                <div class="package-price" style="color: #fff;">RM 299<span style="font-size: 16px; color:#aaa;">++</span></div>
                 <p style="font-size: 12px; color: #999; margin: 0 0 15px 0;">Sesuai untuk kempen pemasaran, pelancaran produk pantas, dan portfolio mini kedai.</p>
                 <ul class="package-features">
-                    <li class="check">1 Landing Page (SATU Halaman Tema)</li>
-                    <li class="check">Kod Arkitek tindakbalas (MESRA SMARTPHONE)</li>
-                    <li class="check">GOOGLE Adsense-Sedia Optimasi</li>
-                    <li class="check">Hubungi terus-ke-Aplikasi WhatsApp</li>
-                    <li class="cross" style="color: #ff4a4a; font-weight: bold; margin-top: 10px;">* Tidak Termasuk</li>
-                    <li style="list-style-type: none; padding-left: 20px; color: #aaa; font-style: italic;">Domain Add-On &amp; Setup.</li>
+                    <li>1 Utama Landing Page (Satu Halaman Reka Bentuk)</li>
+                    <li>Seni Bina Kod Responsif (Mesra Telefon Pintar)</li>
+                    <li>Optimasi Penuh Google Adsense</li>
+                    <li>Panggilan Tindakan Terus ke WhatsApp / Borang</li>
+                    <li style="color: #ff4a4a; font-weight: bold;">* Tidak termasuk domain tersuai</li>
                 </ul>
                 <a href="https://toyyibpay.com/L-P-P-LPP299" class="cta-btn" target="_blank">Langgan Sekarang</a>
             </div>
@@ -475,17 +457,17 @@
                 <div class="package-price" style="color: #fff;">RM 900<span style="font-size: 16px; color:#aaa;">++</span></div>
                 <p style="font-size: 12px; color: #999; margin: 0 0 15px 0;">Sistem lengkap untuk pengurusan Kelab, Persatuan, dan profil Perniagaan Kedai yang dinamik.</p>
                 <ul class="package-features">
-                    <li>Halaman Pelbagai Fungsi (Multi-Page Website)</li>
+                    <li>Pelancaran Laman Web Pelbagai Halaman</li>
                     <li>Sistem Pengurusan Kandungan Tersuai</li>
-                    <li>Optimasi Penuh Google Adsense & SEO</li>
-                    <li>Sistem Paparan Produk / Aktiviti Kelab</li>
-                    <li>Sokongan Integrasi Domain Sendiri (.com/.my)</li>
-                    <li>Premium Cyberpunk UI/UX Styling</li>
+                    <li>Optimasi Penuh Google Adsense & SEO Lanjutan</li>
+                    <li>Sistem Paparan Produk / Pameran Aktiviti Kelab</li>
+                    <li>Sokongan Integrasi Penuh Domain Tersuai (.com/.my)</li>
+                    <li>Gaya Cyberpunk UI/UX Premium</li>
                 </ul>
                 <a href="https://toyyibpay.com/P-MS-Pay-PREMIUM-STANDARD" class="cta-btn premium-btn" target="_blank">Upgrade Ke Premium</a>
             </div>
-            
-        </div> <!-- TAMAT GRID PAKEJ -->
+
+        </div> <!-- /GRID ENDS HERE -->
 
         <!-- NOTA TERMA & SYARAT -->
         <p class="tc-note">
@@ -554,6 +536,18 @@
    </svg>
 </a>
 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4280897190566760" crossorigin="anonymous"></script>
+
+<!-- Iklan Everyday -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4280897190566760"
+     data-ad-slot="2457847760"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 </body>
-    </html>
-    
+</html>
