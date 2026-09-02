@@ -6,16 +6,15 @@
 
 <!-- MAIN SEO -->
 <title>Custom Web Workshop | KasuhaNET.STORE</title>
-<meta name="description" content="Website Setup & Deployment Services, VPS configuration, and Official Developer Affiliate Tools at KasuhaNET.STORE.">
+<meta name="description" content="Website Setup & Deployment Services, VPS configuration, and Custom Services at KasuhaNET.STORE.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://kasuhanet.store/">
     
 <!-- FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
 
-<!-- Favicon Untuk Google & Browser Biasa -->
+<!-- FAVICON -->
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
-<!-- Favicon Khas Untuk Apple (iOS/Safari) -->
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon-512x512.png">
 
 <!-- CSS KORPORAT -->
@@ -160,28 +159,6 @@ main {
     align-items: center;
 }
 
-.top-nav-back {
-    width: 100%;
-    max-width: 900px;
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-.top-nav-back a {
-    color: #00F0FF;
-    text-decoration: none;
-    font-size: 13px;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    transition: 0.3s;
-}
-
-.top-nav-back a:hover {
-    text-shadow: 0 0 10px #00F0FF;
-    color: #fff;
-}
-
 .workshop-container {
     max-width: 900px;
     width: 100%;
@@ -303,6 +280,53 @@ main {
     font-size: 11px;
     border-radius: 4px;
     margin-bottom: 10px;
+}
+
+/* BENGKEL CUSTOM ITEM LIST STYLES */
+.custom-services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.custom-item-card {
+    background: rgba(5, 7, 13, 0.7);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    border-radius: 6px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 0.3s;
+}
+
+.custom-item-card:hover {
+    border-color: #E600A4;
+    box-shadow: 0 0 10px rgba(230, 0, 164, 0.2);
+}
+
+.custom-item-title {
+    color: #00F0FF;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.custom-item-desc {
+    color: #aaa;
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.custom-item-price {
+    color: #25D366;
+    font-size: 14px;
+    font-weight: 900;
+    text-align: right;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    padding-top: 8px;
 }
 
 /* WORKSHOP HIGHLIGHT BOX */
@@ -515,7 +539,7 @@ main {
         <div class="lang-wrapper">
             <div class="lang">
                 <a href="Custom-Web-Workshop-EN.html"><button id="btn-en" class="active">EN</button></a>
-                <a href="Bengkel-Custom-WebSite.html"><button id="btn-ms">BM</button></a>
+                <a href="Bengkel-Custom-WebSite-MS.html"><button id="btn-ms">BM</button></a>
             </div>
         </div>
     </div>
@@ -535,67 +559,67 @@ main {
     </div>
 </div>
 
-<!-- MAIN CONTENT -->
 <main>
-<div class="intro-trademark-box">
-    <img src="Bengkel-Custom-WebSite-EN.png" alt="Bengkel Custom WebSite Official Trademark Banner">
-</div>
-    
-  <div class="workshop-container">
-    <!-- INTRO TRADEMARK IMAGE BANNER PLACEHOLDER -->
-    <div class="intro-trademark-box">
-    <h1 class="neon-title-workshop">CUSTOM WEB <span>WORKSHOP</span></h1>
-    
-    <p class="subtitle-intro">
-        Welcome to <strong>kasuhanet.store</strong>! For those looking to build or upgrade their website, we now offer flexible and transparent Setup & Deployment Services tailored to your budget and needs.
-        We give you complete freedom to choose how you want to purchase tools and manage your setup.
-    </p>
+    <div class="workshop-container">    
+        <!-- INTRO TRADEMARK IMAGE BANNER -->
+        <div class="intro-trademark-box">
+            <img src="Bengkel-Custom-WebSite-EN.png" alt="Custom Web Workshop Official Trademark Banner">
+        </div>
+        
+        <h1 class="neon-title-workshop">CUSTOM WEB <span>WORKSHOP</span></h1>
+        
+        <p class="subtitle-intro">
+            Welcome to <strong>kasuhanet.store</strong>! For those looking to build or upgrade their website, we now offer transparent Setup & Deployment Services tailored to your specific budget and needs.
+            You have full freedom to select your preferred purchasing and setup options.
+        </p>
 
-    <!-- SECTION 1 -->
-    <div class="section-head">
-        <span>✓</span> Service & Installation Options
-    </div>
-
-    <div class="service-cards-grid">
-        <!-- Option 1 -->
-        <div class="service-card">
-            <span class="badge-tag">OPTION 01</span>
-            <h3>1. Setup Service Only (Pay-Per-Service)</h3>
-            <p><strong>Best for:</strong> Clients who already own their tools (Domain, Script/Source Code, VPS/Hosting, or Developer Accounts).</p>
-            <p><strong>How it works:</strong> You provide the tools and assets; we handle the full installation, configuration, and deployment until your site is live and ready!</p>
-            <p style="margin-top:10px; color:#00F0FF; font-weight:bold;">Pricing: Charged per individual service selected.</p>
+        <!-- SECTION 1 -->
+        <div class="section-head">
+            <span>✓</span> Service & Installation Options
         </div>
 
-        <!-- Option 2 -->
-        <div class="service-card card-purple">
-            <span class="badge-tag" style="color:#E600A4; border-color:rgba(230,0,164,0.4);">OPTION 02</span>
-            <h3>2. Complete Setup Package (Includes VPS & Tools)</h3>
-            <p><strong>Best for:</strong> Clients who want a hassle-free, ready-to-go solution.</p>
-            <p><strong>How it works:</strong> We supply the essential tools (including VPS setup and supporting utilities) and fully configure your account overview profile for you.</p>
-        </div>
-    </div>
+        <div class="service-cards-grid">
+            <!-- Option 1 -->
+            <div class="service-card">
+                <span class="badge-tag">OPTION 01</span>
+                <h3>1. Setup Service Only (Pay-Per-Service)</h3>
+                <p><strong>Best for:</strong> Clients who already own their tools (Domain, Script/Source Code, VPS/Hosting, or Developer Accounts).</p>
+                <p><strong>How it works:</strong> You provide the tools and assets; we handle the installation, configuration, and deployment until your website is live and ready!</p>
+                <p style="margin-top:10px; color:#00F0FF; font-weight:bold;">Pricing: Charged based on selected individual services only.</p>
+            </div>
 
-        <div class="separator" style="clear: both; text-align: center;">
+            <!-- Option 2 -->
+            <div class="service-card card-purple">
+                <span class="badge-tag" style="color:#E600A4; border-color:rgba(230,0,164,0.4);">OPTION 02</span>
+                <h3>2. Complete Setup Package (Includes VPS & Tools)</h3>
+                <p><strong>Best for:</strong> Clients who want a hassle-free, fully managed solution without handling technical details.</p>
+                <p><strong>How it works:</strong> We supply all essential tools (including VPS setup and supporting utilities) and manage the registration and account overview profile setup directly.</p>
+            </div>
+        </div>
+            
+        <div class="separator" style="clear: both; text-align: center; margin: 25px 0;">
             <iframe class="BLOG_video_class" allowfullscreen="" youtube-src-id="nHHD66opUqk" 
-                width="350" height="302" src="https://www.youtube.com/embed/nHHD66opUqk">
+                width="350" height="200" src="https://www.youtube.com/embed/nHHD66opUqk" style="border:1px solid rgba(0,240,255,0.3); border-radius:8px;">
             </iframe>
         </div>
+          
         <!-- SECTION 2 -->
-    <div class="workshop-highlight-box">
-        <h3>✓ Custom Workshop</h3>
-        <p style="color:#ddd; font-size:14px; line-height:1.6; margin:0 0 15px 0;">
-            Looking for maximum flexibility? Explore our Custom Workshop!
-        </p>
-        <p style="color:#ccc; font-size:13.5px; line-height:1.6; margin:0;">
-            In this section, services and tools are listed modularly by part. You can easily mix, match, and add-on only the specific tools or setup services required for immediate deployment.
-        </p>
-                <!-- LIST OF 14 MAIN CUSTOM WORKSHOP SERVICES -->
+        <div class="workshop-highlight-box">
+            <h3>✓ "Custom Workshop"</h3>
+            <p style="color:#ddd; font-size:14px; line-height:1.6; margin:0 0 10px 0;">
+                Looking for maximum flexibility according to your budget? Explore our Custom Workshop section!
+            </p>
+            <p style="color:#ccc; font-size:13.5px; line-height:1.6; margin:0 0 20px 0;">
+                In this section, every service is listed clearly. You can pick only the required services for quick deployment at competitive local market rates.
+            </p>
+
+            <!-- LIST OF 14 MAIN CUSTOM WORKSHOP SERVICES -->
             <div class="custom-services-grid">
                 
                 <div class="custom-item-card">
                     <div>
                         <div class="custom-item-title">1. Domain & DNS Routing Management</div>
-                        <div class="custom-item-desc">Setup, connect domain to server/VPS, or resolve DNS record errors (MX, TXT, SPF, DKIM).</div>
+                        <div class="custom-item-desc">Setup, connect domain to server/VPS, or resolve DNS record issues (MX, TXT, SPF, DKIM).</div>
                     </div>
                     <div class="custom-item-price">RM 50</div>
                 </div>
@@ -603,7 +627,7 @@ main {
                 <div class="custom-item-card">
                     <div>
                         <div class="custom-item-title">2. Server / VPS Installation & Setup</div>
-                        <div class="custom-item-desc">Basic web server setup (Nginx/Apache), Control Panel (aaPanel/CyberPanel/cPanel), and essential security configuration.</div>
+                        <div class="custom-item-desc">Basic web server setup (Nginx/Apache), Control Panel (aaPanel/CyberPanel/cPanel), and basic security configuration.</div>
                     </div>
                     <div class="custom-item-price">RM 120</div>
                 </div>
@@ -611,7 +635,7 @@ main {
                 <div class="custom-item-card">
                     <div>
                         <div class="custom-item-title">3. SSL Certificate Configuration (HTTPS)</div>
-                        <div class="custom-item-desc">Installation & activation of SSL security certificates to ensure a secure connection (padlock icon).</div>
+                        <div class="custom-item-desc">Installation & activation of SSL security certificates to ensure secure connection (padlock icon).</div>
                     </div>
                     <div class="custom-item-price">RM 50</div>
                 </div>
@@ -619,7 +643,7 @@ main {
                 <div class="custom-item-card">
                     <div>
                         <div class="custom-item-title">4. Deploy CMS & Script / Source Code</div>
-                        <div class="custom-item-desc">WordPress / CMS installation, or uploading & configuring custom scripts (PHP, Laravel, CodeCanyon) to the server.</div>
+                        <div class="custom-item-desc">WordPress / CMS installation, or uploading & configuring custom scripts (PHP, Laravel, CodeCanyon) to server.</div>
                     </div>
                     <div class="custom-item-price">RM 150</div>
                 </div>
@@ -704,40 +728,42 @@ main {
                     <div class="custom-item-price">RM 180</div>
                 </div>
 
-        <!-- NOTICE -->
-        <div class="notice-box">
-            <div class="notice-icon">!</div>
-            <div class="notice-content">
-                <strong>Note on Tools & Parts:</strong><br>
-                Certain tools or software accounts available in the Custom Workshop are provided through official Authorized Developer Affiliate links. This ensures you get genuine licenses and quick access directly from official sources for your account setup.
+            </div>
+
+            <!-- NOTICE -->
+            <div class="notice-box">
+                <div class="notice-icon">!</div>
+                <div class="notice-content">
+                    <strong>Note on Purchasing Tools & Parts:</strong><br>
+                    Certain tools or accounts in the Custom Workshop are officially sold through Authorized Affiliate Developer networks. This allows you to obtain your chosen Licenses/Tools directly and securely for your account setup.
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- SUPPORT / CONTACT SECTION -->
-    <div class="support-box">
-        <h3>• Need Assistance or Custom Advice?</h3>
-        <p>
-            Not sure which tools or specifications you need for your project? Contact us anytime via WhatsApp or Email at <a href="mailto:kasuhaoculusorganisation@kasuhanet.store" class="email-link">kasuhaoculusorganisation@kasuhanet.store</a>. We are happy to assist with a technical pre-check before you place an order!
-        </p>
-        <a href="https://wa.me/qr/4K2RBZZQAPL4G1" class="contact-btn" target="_blank">
-            Contact WhatsApp Now
-        </a>
-    </div>
+        <!-- SUPPORT / CONTACT SECTION -->
+        <div class="support-box">
+            <h3>• Need Assistance / Inquiries?</h3>
+            <p>
+                If you're unsure which service or tool is needed for your project, contact us directly via WhatsApp or email at <a href="mailto:kasuhaoculusorganisation@kasuhanet.store" class="email-link">kasuhaoculusorganisation@kasuhanet.store</a>. We are ready to assist with an initial technical review before you place an order!
+            </p>
+            <a href="https://wa.me/qr/4K2RBZZQAPL4G1" class="contact-btn" target="_blank">
+                Contact WhatsApp Now
+            </a>
+        </div>
 
-    <div class="back-link-box">
-      <a href="index.html">← BACK TO MAIN MENU</a>
-    </div>
+        <div class="back-link-box">
+          <a href="index.html">← BACK TO MAIN MENU</a>
+        </div>
 
-  </div>
+    </div>
 </main>
 
-<!-- FOOTER -->
+<!-- FOOTER KORPORAT -->
 <footer class="footer">
     <div class="footer-grid">
         <div>
             <h3>KasuhaNET.STORE</h3>
-            <p>A multi-service digital ecosystem focusing on Linux solutions, affiliate systems, income generation, and digital learning.</p>
+            <p>Multi-service digital ecosystem focused on Linux solutions, affiliate systems, revenue generation, and digital learning.</p>
         </div>
 
         <div class="footer-links">
@@ -751,13 +777,13 @@ main {
             <h4>Resources</h4>
             <a href="About-Us.html">About Us</a>
             <a href="support-centre.html">Support</a>
-            <a href="terms-EN.html">Terms & Policy</a>
+            <a href="Terms-EN.html">Terms & Policy</a>
         </div>
 
         <div class="footer-links">
             <h4>Follow Us</h4>
-            <a href="https://www.facebook.com/share/1BfeDZJqjP/" target="_blank">Facebook</a>
-            <a href="tiktok.com/@kasuhanet.store" target="_blank">TikTok</a>
+            <a href="https://www.facebook.com/share/1GeJNW5bok/" target="_blank">Facebook</a>
+            <a href="https://tiktok.com/@kasuhanet.store" target="_blank">TikTok</a>
             <a href="https://t.me/kasuhanetstorebot" target="_blank">Telegram</a>
         </div>
     </div>
@@ -789,6 +815,6 @@ main {
      <path d="M16 3C9.37 3 4 8.37 4 15c0 2.31.66 4.47 1.8 6.32L4 29l7.9-1.75C13.64 28.55 14.78 29 16 29c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 22c-1.1 0-2.16-.2-3.14-.57l-.45-.17-4.69 1.04 1-4.57-.3-.47C7.39 18.35 7 16.72 7 15c0-4.96 4.04-9 9-9s9 4.04 9 9-4.04 10-9 10z"/>
    </svg>
 </a>
-
+    
 </body>
 </html>
