@@ -937,7 +937,31 @@ nav a {
       width: 100%;
       box-sizing: border-box;
     }
-}
+
+    <!-- CUSTOM WEB WORKSHOP CARD -->
+    /* Animasi Berkelip */
+  @keyframes blinker {
+    50% { opacity: 0.2; }
+  }
+
+  .blinking-text {
+    animation: blinker 1.2s linear infinite;
+    display: inline-block;
+  }
+
+  .blue-text {
+    color: #007bff;
+    font-weight: bold;
+  }
+
+  .red-btn {
+    background-color: #dc3545;
+    color: #ffffff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    margin-left: 5px;
+  }
 </style>
 </head>
 
@@ -998,14 +1022,32 @@ nav a {
             </p>
         </div>
     </section>
+
+    <div class="grid">
+<div class="card card-center">
+<h3>🌐 PROLOG WEB DEVELOPMENT & DIGITAL INFRASTRUCTURE SERVICES - KASUHANET.STORE</h3>
+<p>
+Do you want a digital presence that looks professional, performs at a high standard, and is built to the latest industry specifications?
+<strong>KasuhaNET Resources</strong> provides comprehensive web development solutions ranging from essential setups (Landing Pages) to full enterprise systems (Premium Package), backed by expert server management and optimal terminal configurations.
+</p>
+<h4>🎯 WHY CHOOSE KASUHANET.STORE SERVICES?</h4>
+<ul class="feature-list">
+<li><strong>Maximum Performance & Speed:</strong> Every website is optimized for code efficiency, image compression, and server resource management to ensure lighting-fast loading times.</li>
+<li><strong>Mobile-Friendly (Responsive Design):</strong> Flawless rendering automatically tailored for smartphones, tablets, laptops, and desktop screens.</li>
+<li><strong>Data Security & Licensing:</strong> Clean web architecture, HTTPS / SSL security protocols, and properly configured file permissions.</li>
+<li><strong>Terminal & Linux Server Expertise:</strong> Efficient Linux environment management (including Linux on Penguin/ChromeOS) to ensure library dependency setups and system scripts run with minimal typing required.</li>
+</ul>
+</div>
+    </div>
         
     <!-- CUSTOM WEB WORKSHOP CARD -->  
-    <div class="web-workshop-container">
+    <div class="profile-wrapper">
+        <div class="profile-card">
         <a href="https://kasuhanet.store/Custom-Web-Workshop-EN" style="text-decoration: none; color: inherit; display: block;">
-            <img src="Bengkel-Custom-WebSite-EN.png" alt="Terminal Choice" style="max-width: 100%; width: 400px; display: block; margin: 0 auto;">   
-            <h3 style="text-align: center;">Custom WEB Workshop⬅️<span class="blinking-red">CLICK</span>🛠️</h3>
-        </a>
-        <div class="card card-center">
+            <img src="Bengkel-Custom-WebSite-EN.png" alt="Terminal Choice" style="max-width: 100%; width: 400px; display: block; margin: 0 auto;"> 
+            <h1 style="text-align: center; margin-top: 12px; font-family: sans-serif;">
+                <span class="blinking-red"><span class="blinking-red">Bengkel Custom WEB</span></a></span></a>
+        </h1>
             <p>
                 Welcome to <strong>kasuhanet.store</strong>! For those looking to build or upgrade a website, 
                 we offer flexible and transparent Setup &amp; Deployment Services, 
@@ -1020,8 +1062,8 @@ nav a {
     </div>
 
     <!-- PROFILE CARD -->
-    <div class="profile-wrapper">
-        <div class="profile-card">
+    <div class="grid">
+        <div class="card card-center">
             <div class="profile-header">
                 <h1>Hi, I'm Kasuha Zukarnain</h1>
                 <div class="callsign">CallSign: Kasuha Zukarnain</div>
@@ -1048,22 +1090,7 @@ nav a {
             </div>
         </div>
     </div>
-<div class="grid">
-<div class="card card-center">
-<h3>🌐 PROLOG WEB DEVELOPMENT & DIGITAL INFRASTRUCTURE SERVICES - KASUHANET.STORE</h3>
-<p>
-Do you want a digital presence that looks professional, performs at a high standard, and is built to the latest industry specifications?
-<strong>KasuhaNET Resources</strong> provides comprehensive web development solutions ranging from essential setups (Landing Pages) to full enterprise systems (Premium Package), backed by expert server management and optimal terminal configurations.
-</p>
-<h4>🎯 WHY CHOOSE KASUHANET.STORE SERVICES?</h4>
-<ul class="feature-list">
-<li><strong>Maximum Performance & Speed:</strong> Every website is optimized for code efficiency, image compression, and server resource management to ensure lighting-fast loading times.</li>
-<li><strong>Mobile-Friendly (Responsive Design):</strong> Flawless rendering automatically tailored for smartphones, tablets, laptops, and desktop screens.</li>
-<li><strong>Data Security & Licensing:</strong> Clean web architecture, HTTPS / SSL security protocols, and properly configured file permissions.</li>
-<li><strong>Terminal & Linux Server Expertise:</strong> Efficient Linux environment management (including Linux on Penguin/ChromeOS) to ensure library dependency setups and system scripts run with minimal typing required.</li>
-</ul>
-</div>
-</div>
+    
     <!-- HONG LEONG BANK BANNER -->
     <div class="hlb-banner">
       <div class="hlb-content">
@@ -1076,9 +1103,13 @@ Do you want a digital presence that looks professional, performs at a high stand
         <img src="LogoHLBrefer.png" alt="Hong Leong Bank Logo" class="hlb-logo">
       </div>
     </div>
+    
     <hr>
+    
 <div class="grid">
 <div class="card card-center">
+<div class="profile-header">
+    
 <h3>📑 SERVICE PACKAGE DETAILS</h3>
 <div class="package-box">
 <h4>🟢 PACKAGE 1: LANDING PAGE (SINGLE PAGE)</h4>
@@ -1094,8 +1125,10 @@ Do you want a digital presence that looks professional, performs at a high stand
 <li><strong>Basic Optimization:</strong> Basic meta tag setup for Google search and core system file preparation.</li>
 </ul>
 </div>
+    
 <!-- SALES PACKAGE GRID -->
 <div class="grid">
+    
 <!-- LANDING PAGE PACKAGE -->
 <div class="card">
 <h3 class="package-title" style="color: #00F0FF;">Landing Page Package</h3>
@@ -1110,6 +1143,7 @@ Do you want a digital presence that looks professional, performs at a high stand
 </ul>
 <a href="https://toyyibpay.com/L-P-P-LPP299" class="cta-btn" target="_blank">Subscribe Now</a>
 </div>
+    
 <!-- PREMIUM STANDARD PACKAGE -->
 <div class="card premium-card">
 <div style="position: absolute; top: 10px; right: 15px; background: #E600A4; color: #fff; font-size: 9px; padding: 2px 6px; border-radius: 3px; font-weight: bold;">POPULAR</div>
@@ -1126,6 +1160,7 @@ Do you want a digital presence that looks professional, performs at a high stand
 </ul>
 <a href="https://toyyibpay.com/P-MS-Pay-PREMIUM-STANDARD" class="cta-btn premium-btn" target="_blank">Upgrade to Premium</a>
 </div>
+    
 </div> <!-- /GRID ENDS HERE -->
 <div class="package-box">
 <h4>🟣 PACKAGE 2: PREMIUM WEBSITE (MULTI-PAGE SYSTEM)</h4>
@@ -1139,6 +1174,7 @@ Do you want a digital presence that looks professional, performs at a high stand
 <li><strong>Social Media & Payment Integration:</strong> Complete links to social media accounts (Facebook, Instagram, TikTok, YouTube) plus Payment Gateway integration if needed.</li>
 <li><strong>Speed & SEO Optimization Upgrade:</strong> Keyword management, heading structure setup (H1, H2, H3), XML sitemap, and Google Search Console integration.</li>
 </ul>
+</div>
 </div>
 </div>
 </div>
