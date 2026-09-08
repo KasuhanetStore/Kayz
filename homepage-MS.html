@@ -933,6 +933,30 @@ nav a {
       width: 100%;
       box-sizing: border-box;
     }
+
+    /* Animasi Berkelip */
+  @keyframes blinker {
+    50% { opacity: 0.2; }
+  }
+
+  .blinking-text {
+    animation: blinker 1.2s linear infinite;
+    display: inline-block;
+  }
+
+  .blue-text {
+    color: #007bff;
+    font-weight: bold;
+  }
+
+  .red-btn {
+    background-color: #dc3545;
+    color: #ffffff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    margin-left: 5px;
+  }
 }
 </style>
 </head>
@@ -1000,8 +1024,10 @@ nav a {
         <div class="profile-card">
         <a href="https://kasuhanet.store/Bengkel-Custom-WebSite.html" style="text-decoration: none; color: inherit; display: block;">
             <img src="img/BannerWebMAIN.png" alt="Pilihan Terminal" style="max-width: 100%; width: 400px; display: block; margin: 0 auto;">   
-            <h3 style="text-align: center;">Bengkel Custom WEB⬅️<span class="blinking-red">KLIK</span>🛠️</h3>
-        </a>
+           <h3 style="text-align: center; margin-top: 12px; font-family: sans-serif;">
+        <span class="blinking-text blue-text">Bengkel Custom WEB ⬅️</span>
+        <span class="blinking-text red-btn">KLIK 🛠️</span>
+      </h3>
             <p>
                 Selamat datang ke <strong>kasuhanet.store</strong>! Bagi anda yang ingin membina atau menaik taraf laman web, 
                 kami menawarkan Perkhidmatan Pemasangan &amp; Penyebaran (Setup &amp; Deployment) yang fleksibel dan telus, 
