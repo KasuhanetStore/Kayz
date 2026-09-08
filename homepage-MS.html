@@ -1195,18 +1195,90 @@ nav a {
             <h2 class="header-text">WASPADA PENIPUAN SCAMMER!</h2>
         </div>
 
-         <!-- E-LEARNING SECTION -->
+         <style>
+/* CSS Asas Responsif */
+.section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+    width: 100%;
+}
+
+.card-bg-box {
+    display: block;
+    width: 100%;
+    min-height: 160px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.bjak-cyber-banner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    background: #080d1a;
+    border: 1px solid #00F0FF;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    box-sizing: border-box;
+}
+
+.bjak-cyber-content {
+    flex: 1 1 300px;
+}
+
+.bjak-cyber-badge {
+    flex: 0 0 auto;
+    text-align: center;
+    background: rgba(0, 240, 255, 0.1);
+    border: 1px solid #00F0FF;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* Responsif Khusus Telefon */
+@media (max-width: 768px) {
+    .bjak-cyber-banner {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .bjak-cyber-badge {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+</style>
+
+<main>
+    <!-- E-LEARNING SECTION -->
     <section class="section">
-        <h2 style="font-size: 18px; margin-bottom: 15px;">Pelan E-Pembelajaran</h2>
+        <h2 style="font-size: 18px; margin-bottom: 15px; color: #fff;">Pelan E-Pembelajaran</h2>
 
         <div class="grid">
             <!-- CARD 1: WEB SERVICE -->
             <a href="Banner-WebSale-MS.html" class="card-bg-box" style="background-image: url('PreviewCodingWeb.jpg');">
                 <div class="card-overlay"></div>
-                <div class="card-content">
+                <div class="card-content" style="padding: 15px; color: #fff;">
                     <h3><span class="blinking-blue-red">MULA SEKARANG!</span></h3>
                     <p>
-                        Pelan E-Pembelajaran Reka Bentuk Web mengikut pembelian pakej web bermula RM299-RM345!<span class="blinking-blue-red">klik</span>
+                        Pelan E-Pembelajaran Reka Bentuk Web mengikut pembelian pakej web bermula RM299-RM345! <span class="blinking-blue-red">klik</span>
                     </p>
                 </div>
             </a>
@@ -1214,7 +1286,7 @@ nav a {
             <!-- CARD 2: CASHOUT PAYLATER -->
             <a href="CashOutServicePayLaterBMVersi.html" class="card-bg-box" style="background-image: url('BNPLclick.webp');">
                 <div class="card-overlay"></div>
-                <div class="card-content">
+                <div class="card-content" style="padding: 15px; color: #fff;">
                     <h3>Perkhidmatan Kewangan Kecemasan+</h3>
                     <p>Tunai Paylater</p>
                 </div>
@@ -1223,41 +1295,42 @@ nav a {
     </section>
 
     <!-- NOTIS PENIPUAN / FLICKER TEXT -->
-    <div class="flicker-text">
+    <div class="flicker-text" style="padding: 15px; color: #ccc; font-size: 13px;">
         <p><strong>Sila ambil perhatian:</strong> Kami mengambil serius aktiviti penipuan. Pihak yang tidak bertanggungjawab mungkin cuba menyalahgunakan nama syarikat atau identiti pemilik <span class="company-name">KasuhaNET.STORE</span> untuk penipuan kewangan.</p>
         <p><strong>NOTIS PENTING:</strong> Transaksi perniagaan rasmi HANYA dijalankan secara eksklusif menerusi akaun bank berdaftar atas nama <span class="company-name">Kasuhanet Resources</span> dan <span class="company-name">KasuhaOculus Organisation</span> SAHAJA.</p>
         <p>Kami tidak bertanggungjawab atas sebarang kerugian kewangan yang disebabkan oleh penipu pihak ketiga.</p>
     </div>
 
     <!-- BANNER BJAK SECTION -->
-    <section class="bjak-cyber-banner">
-        <div class="bjak-cyber-content">
-            <!-- GAMBAR BANNER BJAK -->
-            <div style="width: 100%; text-align: center; margin: 25px 0;">
-                <a href="https://bjak.my/ref/mohamadslbr" target="_blank" rel="noopener noreferrer">
-                    <img src="Bjak.png" alt="BJAK Promo Banner" style="width: 100%; max-width: 1200px; height: auto; border-radius: 12px; border: 1px solid #00F0FF; box-shadow: 0 0 15px rgba(0,240,255,0.3);">
+    <section class="section">
+        <div class="bjak-cyber-banner">
+            <div class="bjak-cyber-content">
+                <div style="width: 100%; text-align: center; margin-bottom: 15px;">
+                    <a href="https://bjak.my/ref/mohamadslbr" target="_blank" rel="noopener noreferrer">
+                        <img src="Bjak.png" alt="BJAK Promo Banner" style="width: 100%; max-width: 100%; height: auto; border-radius: 12px; border: 1px solid #00F0FF; box-shadow: 0 0 15px rgba(0,240,255,0.3);">
+                    </a>
+                </div>
+
+                <span class="bjak-cyber-tag" style="color: #00F0FF;">Rakan Kongsi Rasmi</span>
+                <h2 class="bjak-cyber-title" style="color: #fff; margin: 10px 0;">RENEW INSURANS & CUKAI JALAN DENGAN <span style="color: #00F0FF;">BJAK</span></h2>
+                <p class="bjak-cyber-desc" style="color: #aaa; font-size: 14px;">Bandingkan sebut harga percuma daripada 15+ syarikat insurans kereta & motosikal secara dalam talian dalam 5 minit.</p>
+                
+                <div class="bjak-cyber-features" style="margin: 15px 0; color: #fff;">
+                    <span class="bjak-feature-item">✓ 100% Online</span> | 
+                    <span class="bjak-feature-item">✓ Diskaun Segera</span> | 
+                    <span class="bjak-feature-item">✓ Penghantaran Roadtax</span>
+                </div>
+
+                <a href="https://bjak.my/ref/mohamadslbr" target="_blank" rel="noopener noreferrer" class="bjak-cyber-btn" style="display: inline-block; padding: 10px 20px; background: #00F0FF; color: #000; font-weight: bold; border-radius: 5px; text-decoration: none;">
+                    Dapatkan Sebut Harga ❯
                 </a>
             </div>
 
-            <span class="bjak-cyber-tag">Rakan Kongsi Rasmi</span>
-            <h2 class="bjak-cyber-title">RENEW INSURANS & CUKAI JALAN DENGAN <span>BJAK</span></h2>
-            <p class="bjak-cyber-desc">Bandingkan sebut harga percuma daripada 15+ syarikat insurans kereta & motosikal secara dalam talian dalam 5 minit.</p>
-            
-            <div class="bjak-cyber-features">
-                <span class="bjak-feature-item">✓ 100% Online</span>
-                <span class="bjak-feature-item">✓ Diskaun Segera</span>
-                <span class="bjak-feature-item">✓ Penghantaran Roadtax</span>
+            <div class="bjak-cyber-badge">
+                <div class="bjak-reward-text" style="color: #fff;">Gunakan Link Referral & Dapatkan</div>
+                <div class="bjak-reward-amount" style="font-size: 28px; color: #00F0FF; font-weight: bold;">RM25</div>
+                <div class="bjak-reward-text" style="color: #fff;">Ganjaran / Rebat</div>
             </div>
-
-            <a href="https://bjak.my/ref/mohamadslbr" target="_blank" rel="noopener noreferrer" class="bjak-cyber-btn">
-                Dapatkan Sebut Harga ❯
-            </a>
-        </div>
-
-        <div class="bjak-cyber-badge">
-            <div class="bjak-reward-text">Gunakan Link Referral & Dapatkan</div>
-            <div class="bjak-reward-amount">RM25</div>
-            <div class="bjak-reward-text">Ganjaran / Rebat</div>
         </div>
     </section>
 
@@ -1267,7 +1340,7 @@ nav a {
             • PENYELESAIAN UNTUK ANDA •
         </h2>
         <div class="grid">
-            <div class="card card-center">
+            <div class="card card-center" style="background: #111; padding: 20px; border-radius: 10px; color: #fff;">
                 <h2>PUSAT BACAAN</h2>
                 <p class="subtitle">
                     <strong>Arahan Terminal Codex:</strong> Mengumpulkan arahan persediaan dependensi dengan penaipan minima pada Linux, Penguin, dan pengurusan data web.
@@ -1280,23 +1353,23 @@ nav a {
                     <li><strong>Pengurusan Data Web:</strong> Pembersihan fail log, konfigurasi pangkalan data (database optimization), dan backup automatik.</li>
                 </ul>
 
-                <hr>
+                <hr style="border-color: #333;">
 
                 <h3>📋 PROSES KERJA DARI MULA HINGGA SIAP</h3>
                 <ol>
                     <li><strong>Pembelian di Shopee:</strong> Pilih variasi pakej yang anda inginkan (Landing Page / Premium) dan buat pembayaran.</li>
-                    <li><strong>Sesi Pengumpulan Maklumat (Briefing):</strong> Hubungi kami menerusi ruangan Chat Shopee. Kami akan memberikan borang senarai maklumat yang diperlukan (logo, teks, gambar produk, pautan media sosial).</li>
-                    <li><strong>Peringkat Pembangunan & Reka Bentuk:</strong> Pasukan kami akan mula menyusun struktur kod, susun atur visual, dan integrasi sistem mengikut pakej terpilih.</li>
+                    <li><strong>Sesi Pengumpulan Maklumat (Briefing):</strong> Hubungi kami menerusi ruangan Chat Shopee. Kami akan memberikan borang senarai maklumat yang diperlukan.</li>
+                    <li><strong>Peringkat Pembangunan & Reka Bentuk:</strong> Pasukan kami akan mula menyusun struktur kod, susun atur visual, dan integrasi sistem.</li>
                     <li><strong>Semakan & Ujian Prestasi (Review & Testing):</strong> Anda akan diberikan pautan pratonton untuk membuat semakan. Ujian kelajuan skrin dan responsif mobil dijalankan.</li>
-                    <li><strong>Pelancaran Laman Web & Penyerahan:</strong> Laman web dilancarkan secara rasmi (Go Live) di bawah domain anda (seperti nama perniagaan anda atau kasuhanet.store). Akses pentadbir dan dokumentasi diserahkan kepada anda.</li>
+                    <li><strong>Pelancaran Laman Web & Penyerahan:</strong> Laman web dilancarkan secara rasmi (Go Live) di bawah domain anda.</li>
                 </ol>
 
-                <hr>
+                <hr style="border-color: #333;">
 
                 <h3>⚠️ TERMA & SYARAT PERKHIDMATAN</h3>
                 <ul>
                     <li><strong>Domain & Hosting:</strong> Kos pakej tertakluk kepada persetujuan penggunaan domain/hosting sedia ada atau persediaan baru.</li>
-                    <li><strong>Kandungan:</strong> Maklumat teks dan gambar adalah daripada pihak pembeli (bantuan susunan semula teks boleh disediakan atas permintaan).</li>
+                    <li><strong>Kandungan:</strong> Maklumat teks dan gambar adalah daripada pihak pembeli.</li>
                     <li><strong>Sokongan Lepas Jualan:</strong> Percuma sokongan teknikal asas selama 30 hari selepas penyerahan tugasan.</li>
                 </ul>
             </div>
@@ -1304,16 +1377,16 @@ nav a {
     </section>
 
     <!-- MINI DEKO SECTION -->
-    <div class="mini-deko-section">
-        <img src="KasuhaKZintroMS.png" alt="Pengenalan Kasuha Zukarnain" class="mini-deko-img">
+    <div class="mini-deko-section" style="text-align: center; margin: 20px 0;">
+        <img src="KasuhaKZintroMS.png" alt="Pengenalan Kasuha Zukarnain" class="mini-deko-img" style="max-width: 100%; height: auto;">
     </div>
 
     <!-- TRUST BANNER CONTAINER -->
-    <div class="trust-banner-container">
-        <img src="broadcast.png" alt="Teknologi & Pembayaran Disokong KasuhaNET" class="trust-banner-img" />
+    <div class="trust-banner-container" style="text-align: center; margin: 20px 0;">
+        <img src="broadcast.png" alt="Teknologi & Pembayaran Disokong KasuhaNET" class="trust-banner-img" style="max-width: 100%; height: auto;" />
     </div>
 </main>
-
+        
 <!-- BOXED CYBER FOOTER -->
 <footer class="footer">
     <div class="footer-grid">
