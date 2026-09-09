@@ -72,22 +72,38 @@
             font-size: 13px;
         }
 
-        /* MAIN FLEX GROW UNTUK TOLAK FOOTER KE PALING BAWAH */
+        /* MAIN FLEX GROW DENGAN ALIGNMENT KE TENGAH PAGE VIEW */
         main {
             flex: 1 0 auto;
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 40px 15px;
+            padding: 40px 20px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* SECTION HERO/TITLE CENTERED */
+        .hero-section {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
             width: 100%;
         }
 
-        /* GRID SYSTEM */
+        /* GRID SYSTEM CENTERED */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 15px;
             margin: 20px auto;
             width: 100%;
+            justify-content: center;
         }
 
         .card {
@@ -101,7 +117,8 @@
             display: flex;
             flex-direction: column;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            text-align: center; /* DIUBAH KEPADA CENTER */
+            text-align: center;
+            align-items: center;
         }
 
         .card:hover {
@@ -110,14 +127,18 @@
             transform: translateY(-1px);
         }
 
-        /* ABOUT CONTENT CUSTOM STYLING */
+        /* ABOUT CONTENT CUSTOM STYLING CENTERED */
         .about-section {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(79, 49, 232, 0.3);
             border-radius: 8px;
             padding: 35px 30px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            text-align: center; /* DIUBAH KEPADA CENTER */
+            text-align: center;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .about-title {
@@ -128,6 +149,7 @@
             margin-bottom: 25px;
             text-transform: uppercase;
             letter-spacing: 2px;
+            text-align: center;
         }
 
         .about-title span {
@@ -139,8 +161,8 @@
             color: #ccc;
             font-size: 14px;
             line-height: 1.8;
-            text-align: center; /* DIUBAH DARIPADA JUSTIFY KEPADA CENTER */
-            max-width: 900px;
+            text-align: center;
+            max-width: 850px;
             margin: 0 auto;
         }
 
@@ -148,8 +170,17 @@
             color: #E600A4;
             font-size: 18px;
             text-transform: uppercase;
-            margin: 35px 0 15px 0;
+            margin: 35px 0 20px 0;
             letter-spacing: 1px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .trust-banner-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 25px;
         }
 
         /* DESIGN FOOTER BERBENTUK & BERWARNA KEMAS (DI DASAR PAGE) */
@@ -323,22 +354,23 @@
 
 <main>
     
-<!-- MAIN TITLE -->
-<section class="section" style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-    <h1 class="neon-title">Kasuha<span>NET.STORE</span></h1>
-    
-    <div class="typing-box" style="text-align: center;">
-        <h2 style="font-size: 18px; margin: 10px 0; color:#4F31E8; text-align: center;">
-            <span style="color:#4F31E8; text-shadow:0 0 20px #E600A4;">KasuhaNET •</span>
-            <span style="color:#E600A4; text-shadow:0 0 20px #E600A4;">Platform Kedai Digital</span>
-        </h2>
+    <!-- MAIN TITLE SECTION -->
+    <section class="hero-section">
+        <h1 class="neon-title" style="text-align: center;">Kasuha<span>NET.STORE</span></h1>
         
-        <p class="neon-desc" style="text-align: center;">
-            Platform Jualan Hibrid dan Alat Digital Pelbagai Perkhidmatan.
-        </p>
-    </div>
-</section>
+        <div class="typing-box" style="text-align: center;">
+            <h2 style="font-size: 18px; margin: 10px 0; color:#4F31E8; text-align: center;">
+                <span style="color:#4F31E8; text-shadow:0 0 20px #E600A4;">KasuhaNET •</span>
+                <span style="color:#E600A4; text-shadow:0 0 20px #E600A4;">Platform Kedai Digital</span>
+            </h2>
+            
+            <p class="neon-desc" style="text-align: center;">
+                Platform Jualan Hibrid dan Alat Digital Pelbagai Perkhidmatan.
+            </p>
+        </div>
+    </section>
     
+    <!-- ABOUT CONTENT SECTION -->
     <section class="about-section">
         <h1 class="about-title" id="about-heading">
             MENGENAI <span>KAMI</span>
@@ -348,9 +380,7 @@
             KasuhaNET Resources (202503248308) ialah hab digital termaju yang direka khusus untuk merapatkan jurang antara teknologi sumber terbuka (open-source) yang kompleks dengan ekosistem monetisasi moden. Diinspirasikan daripada visi untuk menyatukan konfigurasi teknikal berprestasi tinggi dengan keperluan digital harian, kami beroperasi dalam paksi sistem Linux, seni bina web tersuai, dan utiliti kewangan pintar.
         </div>
 
-        <h2 class="section-divider">
-            • Ekosistem Teras Kami •
-        </h2>
+        <h2 class="section-divider">• Ekosistem Teras Kami •</h2>
 
         <div class="grid">
             <div class="card" style="background: rgba(5, 7, 13, 0.6);">
@@ -375,9 +405,8 @@
             </div>
         </div>
 
-        <h2 class="section-divider">
-            • Misi & Visi •
-        </h2>
+        <h2 class="section-divider">• Misi & Visi •</h2>
+
         <div class="grid">
             <div class="card" style="background: rgba(5, 7, 13, 0.6);">
                 <h3 style="color: #E600A4; font-size: 14px; margin: 5px 0;">Misi Kami</h3>
@@ -394,9 +423,8 @@
             </div>
         </div>
 
-        <h2 class="section-divider">
-            • Mengapa KasuhaNET.Store? •
-        </h2>
+        <h2 class="section-divider">• Mengapa KasuhaNET.Store? •</h2>
+
         <div class="about-text" style="max-width: 800px;">
             Kami memberi tumpuan kepada pelaksanaan praktikal. Dengan mengadunkan kebolehaliran sistem sumber terbuka bersama servis utiliti terlaras, platform kami menyediakan alatan yang diyakini, panduan telus, dan penyelesaian terautomasi yang dibina khas untuk lanskap digital masa kini.
         </div>
