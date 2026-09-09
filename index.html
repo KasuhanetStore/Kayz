@@ -65,9 +65,8 @@
 </script>
 
 <style>
-/* GLOBAL CYBER FONT & RESET */
+/* GLOBAL RESET & TYPOGRAPHY STANDARDS */
 * {
-    font-family: 'Orbitron', sans-serif !important;
     box-sizing: border-box;
 }
 
@@ -77,6 +76,21 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    /* Font asas sans-serif yang sangat jelas dibaca di peranti mudah alih */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px; /* Standard saiz mudah alih */
+    line-height: 1.6;
+}
+
+/* TAJUK & HEADER UTAMA SAHAJA MENGGUNAKAN ORBITRON */
+h1, h2, h3, h4, h5, h6, 
+.neon-title, 
+.callsign, 
+.bjak-cyber-title, 
+.package-title,
+.hlb-content h1,
+.card-content h3 {
+    font-family: 'Orbitron', sans-serif !important;
 }
 
 main {
@@ -104,7 +118,8 @@ nav a {
     color: #fff;
     text-decoration: none;
     margin: 0 10px;
-    font-size: 13px;
+    font-size: 0.95rem; /* ~15px */
+    font-weight: 500;
 }
 
 /* BUTTON LANGUAGE TOGGLE */
@@ -125,11 +140,12 @@ nav a {
     background: transparent;
     border: none;
     color: #8fa0dd;
-    padding: 4px 10px;
-    font-size: 11px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
     cursor: pointer;
     border-radius: 4px;
     transition: all 0.3s ease;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .lang button.active {
@@ -154,7 +170,7 @@ nav a {
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(79, 49, 232, 0.4);
     border-radius: 8px;
-    padding: 15px;
+    padding: 20px;
     text-decoration: none;
     color: #fff;
     transition: all 0.3s ease;
@@ -183,16 +199,16 @@ nav a {
 }
 
 .card h3 {
-    margin: 8px 0 5px 0;
-    font-size: 16px;
+    margin: 12px 0 8px 0;
+    font-size: 1.15rem; /* ~18.4px */
     color: #00F0FF;
 }
 
 .card p {
-    margin: 5px 0 0 0;
-    font-size: 12px;
-    line-height: 1.4;
-    color: #ccc;
+    margin: 8px 0 0 0;
+    font-size: 1rem; /* Standard 16px */
+    line-height: 1.6;
+    color: #d1d5db;
 }
 
 /* PROFILE CARD STYLES */
@@ -208,11 +224,16 @@ nav a {
     background: #161b22;
     border: 1px solid #30363d;
     border-radius: 12px;
-    padding: 30px;
+    padding: 25px;
     max-width: 700px;
     width: 100%;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     transition: border-color 0.3s ease;
+}
+
+.profile-card p {
+    font-size: 1rem;
+    line-height: 1.6;
 }
 
 .profile-card:hover {
@@ -229,13 +250,13 @@ nav a {
 .profile-header h1 {
     margin: 0;
     color: #58a6ff;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     letter-spacing: 0.5px;
 }
 
 .callsign {
     color: #8b949e;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     font-weight: 600;
     margin-top: 5px;
     text-transform: uppercase;
@@ -245,9 +266,9 @@ nav a {
     display: inline-block;
     background: rgba(56, 139, 253, 0.15);
     color: #58a6ff;
-    padding: 4px 12px;
+    padding: 6px 14px;
     border-radius: 20px;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     margin-top: 10px;
     border: 1px solid rgba(56, 139, 253, 0.4);
 }
@@ -261,10 +282,10 @@ nav a {
 
 .profile-list li {
     position: relative;
-    padding-left: 22px;
+    padding-left: 24px;
     margin-bottom: 15px;
     line-height: 1.6;
-    font-size: 0.9rem;
+    font-size: 1rem; /* Standard 16px */
     color: #c9d1d9;
 }
 
@@ -285,7 +306,7 @@ nav a {
     margin-top: 20px;
     padding-top: 15px;
     border-top: 1px dashed #21262d;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     color: #8b949e;
     font-style: italic;
     text-align: center;
@@ -362,9 +383,9 @@ nav a {
 }
 
 .neon-desc {
-    font-size: clamp(12px, 2vw, 16px);
+    font-size: clamp(14px, 2.5vw, 18px);
     color: #aaa;
-    line-height: 1.5;
+    line-height: 1.6;
     position: relative;
     display: inline-block;
     padding-bottom: 8px;
@@ -385,18 +406,19 @@ nav a {
 
 /* SCAMMER WARNING NOTICE */
 .notice-section {
-    width: 280px;
+    width: 100%;
+    max-width: 400px;
     margin: 0 auto 20px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
 }
 
 .header-box {
     background-color: #C0C0C0;
-    padding: 3px 8px;
-    border-radius: 3px;
+    padding: 6px 12px;
+    border-radius: 4px;
     width: 100%;
     box-sizing: border-box;
     text-align: center;
@@ -404,7 +426,7 @@ nav a {
 
 .header-text {
     color: red;
-    font-size: 6.5px;
+    font-size: 0.85rem;
     font-weight: bold;
     margin: 0;
     text-transform: uppercase;
@@ -412,11 +434,10 @@ nav a {
 
 .flicker-text {
     color: white;
-    font-size: 8px;
-    line-height: 1.35;
+    font-size: 0.95rem; /* Saiz teks notis dinaikkan supaya boleh dibaca */
+    line-height: 1.5;
     margin: 0;
-    text-align: justify;
-    text-justify: inter-word;
+    text-align: center;
     text-shadow: 
         -1px -1px 0 #0000FF,  
          1px -1px 0 #0000FF,
@@ -425,7 +446,7 @@ nav a {
     animation: pulseFlicker 2s infinite ease-in-out;
     display: flex;
     flex-direction: column;
-    gap: 5px; 
+    gap: 8px; 
 }
 
 .flicker-text p {
@@ -438,7 +459,7 @@ nav a {
 
 @keyframes pulseFlicker {
     0% { opacity: 1; }
-    50% { opacity: 0.25; }
+    50% { opacity: 0.4; }
     100% { opacity: 1; }
 }
 
@@ -483,32 +504,32 @@ nav a {
 .footer h3 {
     color: #fff;
     margin: 0 0 10px 0;
-    font-size: 18px;
+    font-size: 1.2rem;
 }
 
 .footer h4 {
     color: #E600A4;
     margin: 0 0 10px 0;
-    font-size: 14px;
+    font-size: 1rem;
 }
 
 .footer p {
     color: #999;
-    font-size: 12px;
-    line-height: 1.5;
+    font-size: 0.95rem; /* Dinaikkan dari 12px */
+    line-height: 1.6;
     margin: 0;
 }
 
 .footer-links {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
 }
 
 .footer-links a {
     color: #ccc;
     text-decoration: none;
-    font-size: 12px;
+    font-size: 0.95rem; /* Dinaikkan dari 12px */
     transition: color 0.2s;
 }
 
@@ -518,8 +539,8 @@ nav a {
 
 .footer-bottom {
     text-align: center;
-    font-size: 11px;
-    color: #666;
+    font-size: 0.85rem;
+    color: #888;
     padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     margin-top: 25px;
@@ -534,12 +555,15 @@ nav a {
 @media (max-width: 600px) {
     header {
         flex-direction: column;
-        gap: 10px;
+        gap: 12px;
         text-align: center;
     }
     .header-right {
         flex-direction: column;
-        gap: 10px;
+        gap: 12px;
+    }
+    nav a {
+        font-size: 1rem;
     }
     .grid {
         grid-template-columns: 1fr;
@@ -587,9 +611,8 @@ nav a {
 }
 
 .card-content h3 {
-    font-family: 'Orbitron', sans-serif;
     color: #00ffcc;
-    font-size: 16px;
+    font-size: 1.1rem;
     margin-bottom: 8px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -597,8 +620,8 @@ nav a {
 
 .card-content p {
     color: #8fa0dd;
-    font-size: 14px;
-    line-height: 1.4;
+    font-size: 1rem;
+    line-height: 1.5;
 }
 
 .card-bg-box:hover {
@@ -614,7 +637,7 @@ nav a {
 .partner-credit-bar {
     background: rgba(9, 13, 22, 0.6);
     border-bottom: 1px dashed rgba(0, 240, 255, 0.2);
-    padding: 8px 20px;
+    padding: 10px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -624,8 +647,8 @@ nav a {
 }
 
 .credit-text {
-    font-size: 10px;
-    color: #666;
+    font-size: 0.8rem;
+    color: #888;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
@@ -635,10 +658,11 @@ nav a {
     align-items: center;
     justify-content: center;
     gap: 12px;
+    flex-wrap: wrap;
 }
 
 .partner-name {
-    font-size: 11px;
+    font-size: 0.85rem;
     color: #8fa0dd;
     font-weight: 700;
     letter-spacing: 0.5px;
@@ -656,7 +680,7 @@ nav a {
 }
 
 .partner-logo-box img {
-    height: 14px;
+    height: 16px;
     width: auto;
     filter: drop-shadow(0 0 2px #00F0FF);
 }
@@ -707,19 +731,6 @@ nav a {
   text-decoration: none;
 }
 
-@media screen and (max-width: 768px) {
-    body {
-      font-size: 15px;
-      line-height: 1.5;
-    }
-
-    .footer-links a {
-      font-size: 0.9rem;
-      display: inline-block;
-      padding: 4px 0;
-    }
-}
-
 .hlb-banner {
   display: flex;
   justify-content: space-between;
@@ -729,14 +740,13 @@ nav a {
   border-radius: 12px;
   padding: 30px 40px;
   color: #ffffff;
-  font-family: 'Arial', sans-serif;
   box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
 
 .hlb-tag {
   background-color: #e31b23;
   color: #fff;
-  font-size: 12px;
+  font-size: 0.8rem;
   font-weight: bold;
   text-transform: uppercase;
   padding: 4px 12px;
@@ -747,25 +757,27 @@ nav a {
 
 .hlb-content h1 {
   margin: 0 0 10px 0;
-  font-size: 28px;
+  font-size: 1.8rem;
   color: #ffffff;
 }
 
 .hlb-content p {
   margin: 0 0 20px 0;
   color: #d1d5db;
-  font-size: 15px;
+  font-size: 1rem;
 }
 
 .hlb-btn {
   background-color: #e31b23;
   color: #ffffff;
-  padding: 10px 24px;
+  padding: 12px 24px;
   text-decoration: none;
   font-weight: bold;
   border-radius: 6px;
   display: inline-block;
   transition: background 0.3s;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
 }
 
 .hlb-btn:hover {
@@ -784,7 +796,7 @@ nav a {
   display: block;
 }
 
-/* BANNER BJAK STYLES */
+/* BANNER BJAK (ENGLISH TRANSLATED) */
 .bjak-cyber-banner {
     width: 100%;
     max-width: 1200px;
@@ -823,7 +835,7 @@ nav a {
     background: rgba(230, 0, 164, 0.2);
     border: 1px solid #E600A4;
     color: #ff3366;
-    font-size: 11px;
+    font-size: 0.8rem;
     font-weight: bold;
     padding: 4px 10px;
     border-radius: 4px;
@@ -833,7 +845,6 @@ nav a {
 }
 
 .bjak-cyber-title {
-    font-family: 'Orbitron', sans-serif !important;
     font-size: clamp(18px, 3vw, 28px);
     color: #ffffff;
     margin: 0 0 10px 0;
@@ -848,7 +859,7 @@ nav a {
 
 .bjak-cyber-desc {
     color: #8fa0dd;
-    font-size: clamp(12px, 1.5vw, 14px);
+    font-size: 1rem;
     margin: 0 0 18px 0;
     line-height: 1.5;
 }
@@ -861,10 +872,10 @@ nav a {
 }
 
 .bjak-feature-item {
-    font-size: 11px;
+    font-size: 0.85rem;
     color: #00ffcc;
     background: rgba(0, 255, 204, 0.08);
-    padding: 5px 10px;
+    padding: 6px 12px;
     border-radius: 4px;
     border: 1px solid rgba(0, 255, 204, 0.3);
 }
@@ -874,7 +885,7 @@ nav a {
     background: linear-gradient(90deg, #ff8a00, #ff5500);
     color: #ffffff !important;
     font-family: 'Orbitron', sans-serif !important;
-    font-size: 13px;
+    font-size: 0.9rem;
     font-weight: bold;
     padding: 12px 24px;
     border-radius: 6px;
@@ -903,7 +914,7 @@ nav a {
 
 .bjak-reward-amount {
     font-family: 'Orbitron', sans-serif !important;
-    font-size: 32px;
+    font-size: 2rem;
     font-weight: bold;
     color: #E600A4;
     text-shadow: 0 0 10px #E600A4;
@@ -911,7 +922,7 @@ nav a {
 }
 
 .bjak-reward-text {
-    font-size: 11px;
+    font-size: 0.85rem;
     color: #ccc;
     letter-spacing: 0.5px;
 }
@@ -935,6 +946,12 @@ nav a {
     .bjak-cyber-badge {
       width: 100%;
       box-sizing: border-box;
+    }
+    
+    .hlb-banner {
+      flex-direction: column;
+      text-align: center;
+      gap: 20px;
     }
 }
 
@@ -960,6 +977,23 @@ nav a {
     border-radius: 4px;
     font-size: 0.9em;
     margin-left: 5px;
+}
+
+/* SENARAI PAKEJ AKHIR FIX */
+.package-box h4 {
+    font-size: 1.1rem;
+    color: #00F0FF;
+    margin-top: 15px;
+}
+
+.package-box p, .package-box ul li {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.package-features li {
+    font-size: 0.95rem !important;
+    margin-bottom: 6px;
 }
 </style>
 </head>
@@ -1011,7 +1045,7 @@ nav a {
         <h1 class="neon-title">Kasuha<span>NET.STORE</span></h1>
         
         <div class="typing-box">
-            <h2 style="font-size: 18px; margin: 10px 0; color:#4F31E8;">
+            <h2 style="font-size: 1.25rem; margin: 10px 0; color:#4F31E8;">
                 <span style="color:#4F31E8; text-shadow:0 0 20px #E600A4;">KasuhaNET •</span>
                 <span style="color:#E600A4; text-shadow:0 0 20px #E600A4;">Digital Store Platform</span>
             </h2>
@@ -1029,8 +1063,8 @@ nav a {
             Do you want a digital presence that looks professional, performs at a high standard, and is built to the latest industry specifications?
             <strong>KasuhaNET Resources</strong> provides comprehensive web development solutions ranging from essential setups (Landing Pages) to full enterprise systems (Premium Package), backed by expert server management and optimal terminal configurations.
             </p>
-            <h4>🎯 WHY CHOOSE KASUHANET.STORE SERVICES?</h4>
-            <ul class="feature-list" style="text-align: left;">
+            <h4 style="color:#E600A4; margin-top:15px; font-size:1.1rem;">🎯 WHY CHOOSE KASUHANET.STORE SERVICES?</h4>
+            <ul class="feature-list" style="text-align: left; font-size: 1rem; line-height: 1.6;">
                 <li><strong>Maximum Performance & Speed:</strong> Every website is optimized for code efficiency, image compression, and server resource management to ensure lighting-fast loading times.</li>
                 <li><strong>Mobile-Friendly (Responsive Design):</strong> Flawless rendering automatically tailored for smartphones, tablets, laptops, and desktop screens.</li>
                 <li><strong>Data Security & Licensing:</strong> Clean web architecture, HTTPS / SSL security protocols, and properly configured file permissions.</li>
@@ -1044,7 +1078,7 @@ nav a {
         <div class="profile-card">
             <a href="https://kasuhanet.store/Custom-Web-Workshop-EN" style="text-decoration: none; color: inherit; display: block;">
                 <img src="Bengkel-Custom-WebSite-EN.png" alt="Terminal Choice" style="max-width: 100%; width: 400px; display: block; margin: 0 auto;"> 
-                <h2 style="text-align: center; margin-top: 12px; font-family: sans-serif;">
+                <h2 style="text-align: center; margin-top: 12px;">
                     <span class="blinking-red">Bengkel Custom WEB</span>
                 </h2>
             </a>
@@ -1130,9 +1164,9 @@ nav a {
                     <!-- LANDING PAGE PACKAGE -->
                     <div class="card">
                         <h3 class="package-title" style="color: #00F0FF;">Landing Page Package</h3>
-                        <div class="package-price" style="color: #fff; font-size: 24px; font-weight: bold;">RM 299<span style="font-size: 16px; color:#aaa;">++</span></div>
-                        <p style="font-size: 12px; color: #999; margin: 0 0 15px 0;">Ideal for marketing campaigns, quick product launches, and mini shop portfolios.</p>
-                        <ul class="package-features" style="text-align: left; font-size: 12px;">
+                        <div class="package-price" style="color: #fff; font-size: 1.8rem; font-weight: bold; font-family: 'Orbitron';">RM 299<span style="font-size: 1rem; color:#aaa;">++</span></div>
+                        <p style="font-size: 0.95rem; color: #999; margin: 0 0 15px 0;">Ideal for marketing campaigns, quick product launches, and mini shop portfolios.</p>
+                        <ul class="package-features" style="text-align: left;">
                             <li>1 Main Landing Page (Single Page Design)</li>
                             <li>Responsive Code Architecture (Mobile-Friendly)</li>
                             <li>Full Google AdSense Optimization</li>
@@ -1144,11 +1178,11 @@ nav a {
                         
                     <!-- PREMIUM STANDARD PACKAGE -->
                     <div class="card premium-card" style="position: relative;">
-                        <div style="position: absolute; top: 10px; right: 15px; background: #E600A4; color: #fff; font-size: 9px; padding: 2px 6px; border-radius: 3px; font-weight: bold;">POPULAR</div>
+                        <div style="position: absolute; top: 10px; right: 15px; background: #E600A4; color: #fff; font-size: 0.75rem; padding: 2px 8px; border-radius: 3px; font-weight: bold; font-family: 'Orbitron';">POPULAR</div>
                         <h3 class="package-title" style="color: #E600A4;">Premium Standard</h3>
-                        <div class="package-price" style="color: #fff; font-size: 24px; font-weight: bold;">RM 900<span style="font-size: 16px; color:#aaa;">++</span></div>
-                        <p style="font-size: 12px; color: #999; margin: 0 0 15px 0;">Complete management system for Clubs, Associations, and dynamic Business profiles.</p>
-                        <ul class="package-features" style="text-align: left; font-size: 12px;">
+                        <div class="package-price" style="color: #fff; font-size: 1.8rem; font-weight: bold; font-family: 'Orbitron';">RM 900<span style="font-size: 1rem; color:#aaa;">++</span></div>
+                        <p style="font-size: 0.95rem; color: #999; margin: 0 0 15px 0;">Complete management system for Clubs, Associations, and dynamic Business profiles.</p>
+                        <ul class="package-features" style="text-align: left;">
                             <li>Multi-Page Website Deployment</li>
                             <li>Custom Content Management System</li>
                             <li>Full Google AdSense & Advanced SEO Optimization</li>
@@ -1179,7 +1213,7 @@ nav a {
 
     <!-- SOLUTIONS SECTION -->
     <section class="section">
-        <h2 style="color:#4F31E8; font-size: 18px; margin-bottom: 15px;">
+        <h2 style="color:#4F31E8; font-size: 1.25rem; margin-bottom: 15px;">
             • SOLUTIONS FOR YOU •
         </h2>
         
@@ -1199,7 +1233,7 @@ nav a {
 
     <!-- E-LEARNING SECTION -->
     <section class="section">
-        <h2 style="font-size: 18px; margin-bottom: 15px;">E-Learning Plans</h2>
+        <h2 style="font-size: 1.25rem; margin-bottom: 15px;">E-Learning Plans</h2>
 
         <div class="grid">
             <!-- CARD 1: WEB SERVICE -->
@@ -1300,16 +1334,16 @@ nav a {
             <p class="subtitle">
             <strong>Terminal Codex Commands:</strong> A collection of dependency setup commands with minimal typing for Linux, Penguin, and web data management.
             </p>
-            <h3>🛠️ ADDITIONAL FUNCTIONS & SERVER TECHNICAL SUPPORT</h3>
+            <h3 style="margin-top:15px;">🛠️ ADDITIONAL FUNCTIONS & SERVER TECHNICAL SUPPORT</h3>
             <p><em>(READING CENTER & TERMINAL CODEX)</em></p>
             <p>For clients requiring custom web environments or software management on VPS / Linux Servers, KasuhaNET also provides scripts and terminal setup commands (Terminal Codex):</p>
-            <ul style="text-align: left;">
+            <ul style="text-align: left; font-size: 1rem; line-height: 1.6;">
                 <li><strong>Dependency Setup:</strong> A collection of terminal commands for installing software packages on Linux and Penguin environments with minimal typing.</li>
                 <li><strong>Web Data Management:</strong> Log file cleanup, database optimization, and automated backups.</li>
             </ul>
             
-            <h3>📋 END-TO-END WORKFLOW</h3>
-            <ul style="text-align: left;">
+            <h3 style="margin-top:15px;">📋 END-TO-END WORKFLOW</h3>
+            <ul style="text-align: left; font-size: 1rem; line-height: 1.6;">
                 <li><strong>Shopee Purchase:</strong> Select your desired package variant (Landing Page / Premium) and complete the payment.</li>
                 <li><strong>Briefing Session:</strong> Contact us via Shopee Chat. We will provide a form listing the required details (logo, text content, product images, social media links).</li>
                 <li><strong>Development & Design Phase:</strong> Our team will begin assembling the code structure, visual layout, and system integration based on your selected package.</li>
@@ -1317,8 +1351,8 @@ nav a {
                 <li><strong>Website Launch & Handover:</strong> The website goes live officially under your domain (such as your business name or kasuhanet.store). Admin access credentials and documentation will be handed over to you.</li>
             </ul>
 
-            <h3>⚠️ TERMS & CONDITIONS OF SERVICE</h3>
-            <ul style="text-align: left;">
+            <h3 style="margin-top:15px;">⚠️ TERMS & CONDITIONS OF SERVICE</h3>
+            <ul style="text-align: left; font-size: 1rem; line-height: 1.6;">
                 <li><strong>Domain & Hosting:</strong> Package costs are subject to agreement on using an existing domain/hosting setup or establishing a new one.</li>
                 <li><strong>Content:</strong> Text and image materials must be provided by the buyer (assistance with text restructuring can be provided upon request).</li>
                 <li><strong>After-Sales Support:</strong> Free basic technical support is provided for 30 days after project delivery.</li>
