@@ -188,19 +188,22 @@ main {
     text-align: left;
 }
 
-/* TRUST BANNER CONTAINER & IMAGE - DISAMAKAN MENGIKUT LEBAR KOTAK (850px) */
+/* TRUST BANNER CONTAINER & IMAGE - DILARAS SUPAYA TIDAK TERLALU BESAR */
 .trust-banner-container {
     width: 100%;
-    max-width: 850px;
+    max-width: 850px; /* Menyelaraskan dengan lebar kotak borang */
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-top: 25px;
+    padding: 0 10px;
 }
 
 .trust-banner-img {
     width: 100%;
-    max-width: 100%;
+    max-width: 550px; /* Saiz dikecilkan agar pas dan tidak terlalu dominan */
     height: auto;
+    object-fit: contain;
     display: block;
     border-radius: 8px;
     border: 1px solid rgba(79, 49, 232, 0.3);
@@ -395,6 +398,9 @@ main {
     .terms-container {
         padding: 25px 18px;
     }
+    .trust-banner-img {
+        max-width: 100%; /* Sesuai penuh mengikut skrin telefon */
+    }
 }
 </style>
 </head>
@@ -497,7 +503,7 @@ main {
 
   </div>
 
-  <!-- TRUST BANNER CONTAINER (SEKARANG SAIZ IKUT LEBAR KOTAK 850px) -->
+  <!-- TRUST BANNER CONTAINER (DENGAN KAWALAN SAIZ IMAG) -->
   <div class="trust-banner-container">
       <img src="broadcast.png" alt="KasuhaNET Supported Technologies & Payments" class="trust-banner-img" />
   </div>
