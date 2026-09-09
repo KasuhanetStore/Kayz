@@ -174,7 +174,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Mengetengahkan kandungan secara menegak */
+    justify-content: center;
 }
 
 .terms-container {
@@ -186,6 +186,25 @@ main {
     border: 1px solid rgba(79, 49, 232, 0.3);
     box-shadow: 0 0 20px rgba(230, 0, 164, 0.1);
     text-align: left;
+}
+
+/* TRUST BANNER CONTAINER & IMAGE - DISAMAKAN MENGIKUT LEBAR KOTAK (850px) */
+.trust-banner-container {
+    width: 100%;
+    max-width: 850px;
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.trust-banner-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    border: 1px solid rgba(79, 49, 232, 0.3);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
 /* BUTTON NAVIGASI ATAS */
@@ -286,22 +305,6 @@ main {
     font-size: 13px;
     text-align: center;
     font-weight: bold;
-}
-
-/* BACK LINK BAWAH */
-.back-link-box {
-    text-align: center;
-    margin-top: 30px;
-}
-
-.back-link-box a {
-    color: #00F0FF;
-    text-decoration: none;
-    font-size: 13px;
-}
-
-.back-link-box a:hover {
-    text-shadow: 0 0 10px #00F0FF;
 }
 
 /* FOOTER KORPORAT BERBENTUK & BERWARNA KEMAS (RAPAT DI DASAR PAGE) */
@@ -442,7 +445,7 @@ main {
 <!-- ISI KANDUNGAN PUSAT BANTUAN -->
 <main>
 
-        <!-- MAIN TITLE SECTION -->
+    <!-- MAIN TITLE SECTION -->
     <section class="hero-section">
         <h1 class="neon-title" style="text-align: center;">Kasuha<span>NET.STORE</span></h1>
         
@@ -494,10 +497,10 @@ main {
 
   </div>
 
-<!-- TRUST BANNER CONTAINER (SEKARANG MENGIKUT LEBAR CONTAINER/PAGE) -->
-    <div class="trust-banner-container">
-        <img src="broadcast.png" alt="KasuhaNET Supported Technologies & Payments" class="trust-banner-img" />
-    </div>
+  <!-- TRUST BANNER CONTAINER (SEKARANG SAIZ IKUT LEBAR KOTAK 850px) -->
+  <div class="trust-banner-container">
+      <img src="broadcast.png" alt="KasuhaNET Supported Technologies & Payments" class="trust-banner-img" />
+  </div>
     
 </main>
 
@@ -571,7 +574,6 @@ main {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    // Disable butang & tunjuk status
     btnSubmit.disabled = true;
     btnSubmit.innerText = "MENGHANTAR...";
     responseMsg.style.color = "#00F0FF";
