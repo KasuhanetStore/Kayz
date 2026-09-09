@@ -5,41 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- MAIN SEO -->
-    <title>About KasuhaNET.Store | Digital Platform Malaysia - KasuhaNET Resources</title>
-    <meta name="description" content="Learn about KasuhaNET.Store - a multi-service digital ecosystem by KasuhaNET Resources and Kasuha Okulus Organisation. Linux, affiliate, web learning & more.">
-    <meta property="og:title" content="About KasuhaNET.Store - Digital Ecosystem Malaysia">
-    <meta property="og:description" content="KasuhaNET.Store is powered by KasuhaNET Resources and Kasuha Okulus Organisation. Discover our story, mission, and digital services for Malaysians.">
-    <meta property="og:url" content="https://kasuhanet.store/About-Us.html">
-    <meta property="og:type" content="website">
+    <title>About Us | KasuhaNET.STORE</title>
+    <meta name="description" content="Learn about KasuhaNET.STORE - a multi-service digital platform covering website development, Linux terminal scripts, e-digital tools, and web hosting.">
+    <meta name="keywords" content="About KasuhaNET, Kasuha Zukarnain, Kasuha Okulus Organisation, KasuhaNET Resources, Web Development, Linux Automation.">
+    <meta name="author" content="KasuhaNET Resources">
+    <meta name="robots" content="index, follow">
+
     <link rel="canonical" href="https://kasuhanet.store/About-Us.html">
 
     <!-- FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- Favicon Standard Pelayar (Desktop/Laptop) -->
+    <!-- FAVICON -->
     <link rel="icon" type="image/png" sizes="32x32" href="https://kasuhanet.store/favicon.png">
-
-    <!-- Favicon Google Search & Android (Syarat Utama Google) -->
     <link rel="icon" type="image/png" sizes="48x48" href="https://kasuhanet.store/favicon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="https://kasuhanet.store/favicon.png">
     <link rel="icon" type="image/png" sizes="512x512" href="https://kasuhanet.store/favicon.png">
-
-    <!-- Favicon Khas Untuk Apple (iOS/Safari) -->
     <link rel="apple-touch-icon" sizes="180x180" href="https://kasuhanet.store/favicon.png">
-    
+
     <!-- OPEN GRAPH -->
     <meta property="og:title" content="About Us | KasuhaNET.STORE">
     <meta property="og:description" content="Learn more about KasuhaNET.STORE, a multi-service digital platform covering website development, Linux systems, and digital tools.">
     <meta property="og:image" content="https://kasuhanet.store/img/WebLogoShare.png">
-    <meta property="og:url" content="https://kasuhanet.store/About.html">
+    <meta property="og:url" content="https://kasuhanet.store/About-Us.html">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="KasuhaNET.STORE">
 
-    <!-- MOBILE -->
+    <!-- MOBILE & THEME -->
     <meta name="theme-color" content="#05070d">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <!-- CSS -->
+    <!-- CSS & JS -->
     <link rel="stylesheet" href="css/main.css">
     <script src="js/home-main.js"></script>
 
@@ -50,7 +46,7 @@
             box-sizing: border-box;
         }
 
-        /* SUSUNAN FLEXBOX FULL HEIGHT DENGAN BODY */
+        /* FLEXBOX LAYOUT PADA BODY SUPAYA KEKAL FULL HEIGHT */
         body {
             background-color: #05070d;
             color: #fff;
@@ -63,7 +59,7 @@
             justify-content: space-between;
         }
 
-        /* HEADER STICKY & BACKDROP BLUR */
+        /* HEADER STICKY DENGAN BACKDROP BLUR */
         header {
             position: sticky;
             top: 0;
@@ -85,22 +81,38 @@
             font-size: 13px;
         }
 
-        /* MAIN FLEX GROW UNTUK TOLAK FOOTER KE PADA KAKI SKRIN */
+        /* MAIN FLEX GROW DENGAN ALIGNMENT KE TENGAH PAGE VIEW */
         main {
             flex: 1 0 auto;
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 40px 15px;
+            padding: 40px 20px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* SECTION HERO/TITLE CENTERED */
+        .hero-section {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
             width: 100%;
         }
 
-        /* GRID SYSTEM */
+        /* GRID SYSTEM CENTERED */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 15px;
             margin: 20px auto;
             width: 100%;
+            justify-content: center;
         }
 
         .card {
@@ -114,7 +126,8 @@
             display: flex;
             flex-direction: column;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            text-align: center; /* DIUBAH KEPADA CENTER */
+            text-align: center;
+            align-items: center;
         }
 
         .card:hover {
@@ -123,24 +136,29 @@
             transform: translateY(-1px);
         }
 
-        /* ABOUT CONTENT CUSTOM STYLING */
+        /* ABOUT CONTENT CUSTOM STYLING CENTERED */
         .about-section {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(79, 49, 232, 0.3);
             border-radius: 8px;
             padding: 35px 30px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            text-align: center; /* DIUBAH KEPADA CENTER */
+            text-align: center;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .about-title {
             color: #fff;
-            font-size: clamp(32px, 6vw, 55px);
+            font-size: clamp(28px, 5vw, 50px);
             line-height: 1.2;
             margin-top: 0;
             margin-bottom: 25px;
             text-transform: uppercase;
             letter-spacing: 2px;
+            text-align: center;
         }
 
         .about-title span {
@@ -152,8 +170,8 @@
             color: #ccc;
             font-size: 14px;
             line-height: 1.8;
-            text-align: center; /* DIUBAH DARIPADA JUSTIFY KEPADA CENTER */
-            max-width: 900px;
+            text-align: center;
+            max-width: 850px;
             margin: 0 auto;
         }
 
@@ -161,8 +179,25 @@
             color: #E600A4;
             font-size: 18px;
             text-transform: uppercase;
-            margin: 35px 0 15px 0;
+            margin: 35px 0 20px 0;
             letter-spacing: 1px;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* TRUST BANNER CSS FIX */
+        .trust-banner-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 25px;
+        }
+
+        .trust-banner-img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
         }
 
         /* DESIGN FOOTER BERBENTUK & BERWARNA KEMAS (DI DASAR PAGE) */
@@ -337,23 +372,35 @@
 </div>
 
 <main>
+    
+    <!-- MAIN TITLE SECTION -->
+    <section class="hero-section">
+        <h1 class="neon-title" style="text-align: center;">Kasuha<span>NET.STORE</span></h1>
+        
+        <div class="typing-box" style="text-align: center;">
+            <h2 style="font-size: 18px; margin: 10px 0; color:#4F31E8; text-align: center;">
+                <span style="color:#4F31E8; text-shadow:0 0 20px #E600A4;">KasuhaNET •</span>
+                <span style="color:#E600A4; text-shadow:0 0 20px #E600A4;">Digital Store Platform</span>
+            </h2>
+            
+            <p class="neon-desc" style="text-align: center;">
+                Hybrid Store Platform and Multi-Service Digital Utility Tools.
+            </p>
+        </div>
+    </section>
+    
+    <!-- ABOUT CONTENT SECTION -->
     <section class="about-section">
-        <!-- TAJUK UTAMA BESAR -->
         <h1 class="about-title" id="about-heading">
             ABOUT <span>US</span>
         </h1>
         
-        <!-- PENGENALAN SYARIKAT -->
         <div class="about-text">
             KasuhaNET Resources (202503248308) is a cutting-edge digital hub engineered to bridge the gap between complex open-source technologies and modern monetization ecosystems. Born from the vision of integrating highly-optimized technical setups with everyday digital requirements, we operate at the intersection of Linux systems, custom web architecture, and smart financial utility tools.
         </div>
 
-        <!-- SUB-TAJUK ECOSYSTEM -->
-        <h2 class="section-divider">
-            • The Core Ecosystem •
-        </h2>
+        <h2 class="section-divider">• The Core Ecosystem •</h2>
 
-        <!-- TIGA KAD PILAR PEMPERKASAAN -->
         <div class="grid">
             <div class="card" style="background: rgba(5, 7, 13, 0.6);">
                 <h3 style="color: #00F0FF; font-size: 14px; margin: 5px 0;">Linux & Terminal Automation</h3>
@@ -369,7 +416,7 @@
                 </p>
             </div>
 
-            <div class="card" style="text-align: center; background: rgba(5, 7, 13, 0.6);">
+            <div class="card" style="background: rgba(5, 7, 13, 0.6);">
                 <h3 style="color: #00F0FF; font-size: 14px; margin: 5px 0;">Strategic Collaboration</h3>
                 <p style="font-size: 12px; color: #aaa; margin: 8px 0 0 0; line-height: 1.5;">
                     Backed by the collaborative framework of Kasuha Okulus Organisation, we actively engineer practical software paths and tactical commerce features.
@@ -377,10 +424,8 @@
             </div>
         </div>
 
-        <!-- BAHAGIAN BAHARU 1: MISSION & VISION -->
-        <h2 class="section-divider">
-            • Mission & Vision •
-        </h2>
+        <h2 class="section-divider">• Mission & Vision •</h2>
+
         <div class="grid">
             <div class="card" style="background: rgba(5, 7, 13, 0.6);">
                 <h3 style="color: #E600A4; font-size: 14px; margin: 5px 0;">Our Mission</h3>
@@ -397,18 +442,22 @@
             </div>
         </div>
 
-        <!-- BAHAGIAN BAHARU 2: WHY CHOOSE US -->
-        <h2 class="section-divider">
-            • Why KasuhaNET.Store? •
-        </h2>
+        <h2 class="section-divider">• Why KasuhaNET.Store? •</h2>
+
         <div class="about-text" style="max-width: 800px;">
             We focus on practical execution over pure theory. By fusing open-source flexibility with tailored utility services, our platform provides users with trusted tools, transparent guidance, and automated solutions built for the modern digital landscape.
         </div>
 
     </section>
+
+    <!-- TRUST BANNER CONTAINER -->
+    <div class="trust-banner-container">
+        <img src="broadcast.png" alt="KasuhaNET Supported Technologies & Payments" class="trust-banner-img" />
+    </div>
+    
 </main>
 
-<!-- BOXED CYBER FOOTER (RA PAT DI DASAR SKRIN) -->
+<!-- BOXED CYBER FOOTER -->
 <footer class="footer">
     <div class="footer-grid">
         <div>
