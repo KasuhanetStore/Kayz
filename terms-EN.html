@@ -161,7 +161,7 @@ nav a:hover, nav a.active {
     filter: drop-shadow(0 0 2px #00F0FF);
 }
 
-/* MAIN FLEX GROW UNTUK MENOLAK FOOTER KE KAKI SKRIN */
+/* MAIN FLEX GROW UNTUK MENOLAK FOOTER & CENTER KANDUNGAN */
 main {
     flex: 1 0 auto;
     max-width: 1200px;
@@ -171,6 +171,13 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* MEMASTIKAN KANDUNGAN DI TENGAH */
+}
+
+.hero-section {
+    width: 100%;
+    max-width: 850px;
+    margin-bottom: 20px;
 }
 
 .terms-container {
@@ -267,7 +274,7 @@ ul li {
     text-shadow: 0 0 10px #00F0FF;
 }
 
-/* FOOTER KORPORAT BERBENTUK & BERWARNA KEMAS (RAPAT DI DASAR PAGE) */
+/* FOOTER KORPORAT BERBENTUK & BERWARNA KEMAS (RAPAT DI DASAR SKRIN) */
 .footer {
     background: #090d16;
     border-top: 2px solid #4F31E8;
@@ -402,8 +409,29 @@ ul li {
     </div>
 </div>
 
-<!-- ISI TERMA & POLISI -->
+<!-- ISI TERMA & POLISI (DITENGAHKAN DALAM MAIN) -->
 <main>
+
+  <!-- MAIN TITLE SECTION -->
+  <section class="hero-section">
+      <h1 class="neon-title" style="text-align: center;">Kasuha<span>NET.STORE</span></h1>
+      
+      <div class="typing-box" style="text-align: center;">
+          <h2 style="font-size: 18px; margin: 10px 0; color:#4F31E8; text-align: center; border:none; padding:0;">
+              <span style="color:#4F31E8; text-shadow:0 0 20px #E600A4;">KasuhaNET •</span>
+              <span style="color:#E600A4; text-shadow:0 0 20px #E600A4;">Digital Store Platform</span>
+          </h2>
+          
+          <p class="neon-desc" style="text-align: center;">
+              Hybrid Sales Platform and Multi-Service Digital Tools.
+          </p>
+      </div>
+  </section>
+
+  <!-- BUTTON NAVIGASI ATAS TERMA -->
+  <div class="top-nav-back">
+      <a href="index.html">← Back to Main Menu</a>
+  </div>
 
   <div class="terms-container">
 
