@@ -74,6 +74,8 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    font-size: 14px;
+    line-height: 1.6;
 }
 
 main {
@@ -101,7 +103,7 @@ nav a {
     color: #fff;
     text-decoration: none;
     margin: 0 10px;
-    font-size: 13px;
+    font-size: clamp(11px, 1.5vw, 13px) !important;
 }
 
 /* BUTTON LANGUAGE TOGGLE */
@@ -180,16 +182,30 @@ nav a {
     object-fit: cover;
 }
 
-.card h3 {
-    margin: 8px 0 5px 0;
-    font-size: 16px;
-    color: #00F0FF;
+/* OPTIMASI SAIZ TEKS PADA KAD & TAJUK */
+.card h2 {
+    font-size: clamp(16px, 2.5vw, 20px) !important;
+    line-height: 1.3 !important;
 }
 
-.card p {
+.card h3 {
+    margin: 8px 0 5px 0;
+    font-size: clamp(14px, 2.2vw, 17px) !important;
+    color: #00F0FF;
+    line-height: 1.3 !important;
+}
+
+.card h4 {
+    font-size: clamp(13px, 2vw, 15px) !important;
+    margin: 12px 0 6px 0;
+}
+
+.card p, 
+.profile-card p,
+.package-box p {
     margin: 5px 0 0 0;
-    font-size: 12px;
-    line-height: 1.4;
+    font-size: clamp(12px, 1.8vw, 14px) !important;
+    line-height: 1.6 !important;
     color: #ccc;
 }
 
@@ -227,13 +243,13 @@ nav a {
 .profile-header h1, .profile-header h3 {
     margin: 0;
     color: #58a6ff;
-    font-size: 1.6rem;
+    font-size: clamp(1.2rem, 3vw, 1.6rem) !important;
     letter-spacing: 0.5px;
 }
 
 .callsign {
     color: #8b949e;
-    font-size: 0.85rem;
+    font-size: clamp(0.75rem, 1.5vw, 0.85rem) !important;
     font-weight: 600;
     margin-top: 5px;
     text-transform: uppercase;
@@ -245,24 +261,27 @@ nav a {
     color: #58a6ff;
     padding: 4px 12px;
     border-radius: 20px;
-    font-size: 0.8rem;
+    font-size: clamp(0.75rem, 1.5vw, 0.85rem) !important;
     margin-top: 10px;
     border: 1px solid rgba(56, 139, 253, 0.4);
 }
 
-.profile-list {
+.profile-list, .feature-list, .package-features {
     list-style: none;
     padding: 0;
     margin: 0;
     text-align: left;
 }
 
-.profile-list li {
+.profile-list li, 
+.feature-list li, 
+.package-box ul li,
+.package-features li {
     position: relative;
     padding-left: 22px;
-    margin-bottom: 15px;
-    line-height: 1.6;
-    font-size: 0.9rem;
+    margin-bottom: 12px;
+    line-height: 1.6 !important;
+    font-size: clamp(12px, 1.8vw, 13.5px) !important;
     color: #c9d1d9;
 }
 
@@ -283,7 +302,7 @@ nav a {
     margin-top: 20px;
     padding-top: 15px;
     border-top: 1px dashed #21262d;
-    font-size: 0.8rem;
+    font-size: clamp(0.75rem, 1.5vw, 0.85rem) !important;
     color: #8b949e;
     font-style: italic;
     text-align: center;
@@ -333,7 +352,7 @@ nav a {
 }
 
 .neon-title {
-    font-size: clamp(32px, 7vw, 65px);
+    font-size: clamp(28px, 6vw, 55px) !important;
     line-height: 1.1;
     position: relative;
     display: inline-block;
@@ -360,7 +379,7 @@ nav a {
 }
 
 .neon-desc {
-    font-size: clamp(12px, 2vw, 16px);
+    font-size: clamp(12px, 1.8vw, 15px) !important;
     color: #aaa;
     line-height: 1.5;
     position: relative;
@@ -402,7 +421,7 @@ nav a {
 
 .header-text {
     color: red;
-    font-size: 6.5px;
+    font-size: 8px !important;
     font-weight: bold;
     margin: 0;
     text-transform: uppercase;
@@ -410,8 +429,8 @@ nav a {
 
 .flicker-text {
     color: white;
-    font-size: 8px;
-    line-height: 1.35;
+    font-size: 9px !important;
+    line-height: 1.4;
     margin: 0;
     text-align: justify;
     text-justify: inter-word;
@@ -481,18 +500,18 @@ nav a {
 .footer h3 {
     color: #fff;
     margin: 0 0 10px 0;
-    font-size: 18px;
+    font-size: clamp(15px, 2vw, 18px) !important;
 }
 
 .footer h4 {
     color: #E600A4;
     margin: 0 0 10px 0;
-    font-size: 14px;
+    font-size: clamp(13px, 1.8vw, 15px) !important;
 }
 
 .footer p {
     color: #999;
-    font-size: 12px;
+    font-size: clamp(11px, 1.5vw, 12px) !important;
     line-height: 1.5;
     margin: 0;
 }
@@ -506,7 +525,7 @@ nav a {
 .footer-links a {
     color: #ccc;
     text-decoration: none;
-    font-size: 12px;
+    font-size: clamp(11px, 1.5vw, 12.5px) !important;
     transition: color 0.2s;
 }
 
@@ -516,7 +535,7 @@ nav a {
 
 .footer-bottom {
     text-align: center;
-    font-size: 11px;
+    font-size: clamp(10px, 1.2vw, 11px) !important;
     color: #666;
     padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -564,7 +583,7 @@ nav a {
 .card-content h3 {
     font-family: 'Orbitron', sans-serif;
     color: #00ffcc;
-    font-size: 16px;
+    font-size: clamp(14px, 2vw, 16px) !important;
     margin-bottom: 8px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -572,7 +591,7 @@ nav a {
 
 .card-content p {
     color: #8fa0dd;
-    font-size: 14px;
+    font-size: clamp(12px, 1.8vw, 14px) !important;
     line-height: 1.4;
 }
 
@@ -599,7 +618,7 @@ nav a {
 }
 
 .credit-text {
-    font-size: 10px;
+    font-size: clamp(9px, 1.2vw, 10.5px) !important;
     color: #666;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -613,7 +632,7 @@ nav a {
 }
 
 .partner-name {
-    font-size: 11px;
+    font-size: clamp(10px, 1.5vw, 11.5px) !important;
     color: #8fa0dd;
     font-weight: 700;
     letter-spacing: 0.5px;
@@ -699,7 +718,7 @@ nav a {
 .hlb-tag {
   background-color: #e31b23;
   color: #fff;
-  font-size: 12px;
+  font-size: 11px !important;
   font-weight: bold;
   text-transform: uppercase;
   padding: 4px 12px;
@@ -710,14 +729,14 @@ nav a {
 
 .hlb-content h1 {
   margin: 0 0 10px 0;
-  font-size: 28px;
+  font-size: clamp(20px, 3.5vw, 28px) !important;
   color: #ffffff;
 }
 
 .hlb-content p {
   margin: 0 0 20px 0;
   color: #d1d5db;
-  font-size: 15px;
+  font-size: clamp(13px, 1.8vw, 15px) !important;
 }
 
 .hlb-btn {
@@ -728,6 +747,7 @@ nav a {
   font-weight: bold;
   border-radius: 6px;
   display: inline-block;
+  font-size: clamp(12px, 1.5vw, 14px) !important;
   transition: background 0.3s;
 }
 
@@ -786,7 +806,7 @@ nav a {
     background: rgba(230, 0, 164, 0.2);
     border: 1px solid #E600A4;
     color: #ff3366;
-    font-size: 11px;
+    font-size: 11px !important;
     font-weight: bold;
     padding: 4px 10px;
     border-radius: 4px;
@@ -797,7 +817,7 @@ nav a {
 
 .bjak-cyber-title {
     font-family: 'Orbitron', sans-serif !important;
-    font-size: clamp(18px, 3vw, 28px);
+    font-size: clamp(18px, 3vw, 28px) !important;
     color: #ffffff;
     margin: 0 0 10px 0;
     line-height: 1.2;
@@ -811,7 +831,7 @@ nav a {
 
 .bjak-cyber-desc {
     color: #8fa0dd;
-    font-size: clamp(12px, 1.5vw, 14px);
+    font-size: clamp(12px, 1.5vw, 14px) !important;
     margin: 0 0 18px 0;
     line-height: 1.5;
 }
@@ -824,7 +844,7 @@ nav a {
 }
 
 .bjak-feature-item {
-    font-size: 11px;
+    font-size: 11px !important;
     color: #00ffcc;
     background: rgba(0, 255, 204, 0.08);
     padding: 5px 10px;
@@ -837,7 +857,7 @@ nav a {
     background: linear-gradient(90deg, #ff8a00, #ff5500);
     color: #ffffff !important;
     font-family: 'Orbitron', sans-serif !important;
-    font-size: 13px;
+    font-size: 13px !important;
     font-weight: bold;
     padding: 12px 24px;
     border-radius: 6px;
@@ -866,7 +886,7 @@ nav a {
 
 .bjak-reward-amount {
     font-family: 'Orbitron', sans-serif !important;
-    font-size: 32px;
+    font-size: clamp(24px, 4vw, 32px) !important;
     font-weight: bold;
     color: #E600A4;
     text-shadow: 0 0 10px #E600A4;
@@ -874,7 +894,7 @@ nav a {
 }
 
 .bjak-reward-text {
-    font-size: 11px;
+    font-size: 11px !important;
     color: #ccc;
     letter-spacing: 0.5px;
 }
@@ -903,8 +923,12 @@ nav a {
     margin-left: 5px;
 }
 
-/* MOBILE RESPONSIVE FIXES */
+/* MOBILE RESPONSIVE FIXES & TYPOGRAPHY ADJUSTMENTS */
 @media (max-width: 768px) {
+    body {
+      font-size: 13.5px;
+      line-height: 1.5;
+    }
     header {
         flex-direction: column;
         gap: 10px;
@@ -924,15 +948,10 @@ nav a {
     .mini-deko-img {
         max-width: 230px;
     }
-    body {
-      font-size: 15px;
-      line-height: 1.5;
-    }
-
     .footer-links a {
-      font-size: 0.9rem;
+      font-size: 12px !important;
       display: inline-block;
-      padding: 4px 0;
+      padding: 2px 0;
     }
     .hlb-banner {
       flex-direction: column;
@@ -945,16 +964,13 @@ nav a {
       text-align: center;
       padding: 20px 15px;
     }
-
     .bjak-cyber-content {
       max-width: 100%;
       margin-bottom: 20px;
     }
-
     .bjak-cyber-features {
       justify-content: center;
     }
-
     .bjak-cyber-badge {
       width: 100%;
       box-sizing: border-box;
@@ -1010,7 +1026,7 @@ nav a {
         <h1 class="neon-title">Kasuha<span>NET.STORE</span></h1>
         
         <div class="typing-box">
-            <h2 style="font-size: 18px; margin: 10px 0; color:#4F31E8;">
+            <h2 style="margin: 10px 0; color:#4F31E8;">
                 <span style="color:#4F31E8; text-shadow:0 0 20px #E600A4;">KasuhaNET •</span>
                 <span style="color:#E600A4; text-shadow:0 0 20px #E600A4;">Platform Kedai Digital</span>
             </h2>
@@ -1029,7 +1045,7 @@ nav a {
                 <strong>KasuhaNET Resources</strong> menyediakan penyelesaian pembangunan laman web komprehensif dari peringkat asas (Landing Page) sehingga sistem perniagaan lengkap (Pakej Premium), disokong oleh kepakaran pengurusan server dan konfigurasi terminal yang optimum.
             </p>
             <h4>🎯 MENGAPA PILIH PERKHIDMATAN KASUHANET.STORE?</h4>
-            <ul class="feature-list" style="text-align: left; font-size: 12px; color: #ccc; line-height: 1.6;">
+            <ul class="feature-list">
                 <li><strong>Prestasi & Kelajuan Maksimum:</strong> Setiap laman web dioptimumkan dari segi kod, pemampatan imej, dan pengurusan sumber server supaya masa muat turun (loading time) berada pada tahap terpantas.</li>
                 <li><strong>Mesra Peranti Mobil (Responsive Design):</strong> Paparan yang sempurna dan automatik disesuaikan untuk skrin telefon pintar, tablet, laptop, serta skrin desktop.</li>
                 <li><strong>Keselamatan Data & Lesen:</strong> Struktur persekitaran web yang bersih, penggunaan protokol keselamatan HTTPS / SSL, serta susunan kebenaran fail yang teratur.</li>
@@ -1131,15 +1147,15 @@ nav a {
                     <div class="card">
                         <h3 class="package-title" style="color: #00F0FF;">Pakej Landing Page</h3>
                         <div class="package-price" style="color: #fff; font-size: 24px; font-weight: bold;">RM 299<span style="font-size: 16px; color:#aaa;">++</span></div>
-                        <p style="font-size: 12px; color: #999; margin: 0 0 15px 0;">Sesuai untuk kempen pemasaran, pelancaran produk pantas, dan portfolio mini kedai.</p>
-                        <ul class="package-features" style="text-align: left; font-size: 12px;">
+                        <p style="margin: 0 0 15px 0;">Sesuai untuk kempen pemasaran, pelancaran produk pantas, dan portfolio mini kedai.</p>
+                        <ul class="package-features">
                             <li>1 Utama Landing Page (Satu Halaman Reka Bentuk)</li>
                             <li>Seni Bina Kod Responsif (Mesra Telefon Pintar)</li>
                             <li>Optimasi Penuh Google AdSense</li>
                             <li>Panggilan Tindakan Terus ke WhatsApp / Borang</li>
                             <li style="color: #ff4a4a; font-weight: bold;">* Tidak termasuk domain tersuai</li>
                         </ul>
-                        <a href="https://toyyibpay.com/L-P-P-LPP299" class="hlb-btn" style="text-align:center; margin-top: auto;" target="_blank">Langgan Sekarang</a>
+                        <a href="https://toyyibpay.com/L-P-P-LPP299" class="hlb-btn" style="text-align:center; margin-top: auto;" target="_blank" rel="noopener noreferrer">Langgan Sekarang</a>
                     </div>
                         
                     <!-- PREMIUM STANDARD PACKAGE -->
@@ -1147,8 +1163,8 @@ nav a {
                         <div style="position: absolute; top: 10px; right: 15px; background: #E600A4; color: #fff; font-size: 9px; padding: 2px 6px; border-radius: 3px; font-weight: bold;">POPULAR</div>
                         <h3 class="package-title" style="color: #E600A4;">Premium Standard</h3>
                         <div class="package-price" style="color: #fff; font-size: 24px; font-weight: bold;">RM 900<span style="font-size: 16px; color:#aaa;">++</span></div>
-                        <p style="font-size: 12px; color: #999; margin: 0 0 15px 0;">Sistem lengkap untuk pengurusan Kelab, Persatuan, dan profil Perniagaan Kedai yang dinamik.</p>
-                        <ul class="package-features" style="text-align: left; font-size: 12px;">
+                        <p style="margin: 0 0 15px 0;">Sistem lengkap untuk pengurusan Kelab, Persatuan, dan profil Perniagaan Kedai yang dinamik.</p>
+                        <ul class="package-features">
                             <li>Pelancaran Laman Web Pelbagai Halaman</li>
                             <li>Sistem Pengurusan Kandungan Tersuai</li>
                             <li>Optimasi Penuh Google AdSense & SEO Lanjutan</li>
@@ -1156,7 +1172,7 @@ nav a {
                             <li>Sokongan Integrasi Penuh Domain Tersuai (.com/.my)</li>
                             <li>Gaya Cyberpunk UI/UX Premium</li>
                         </ul>
-                        <a href="https://toyyibpay.com/P-MS-Pay-PREMIUM-STANDARD" class="hlb-btn" style="background-color: #E600A4; text-align:center; margin-top: auto;" target="_blank">Naik Taraf Ke Premium</a>
+                        <a href="https://toyyibpay.com/P-MS-Pay-PREMIUM-STANDARD" class="hlb-btn" style="background-color: #E600A4; text-align:center; margin-top: auto;" target="_blank" rel="noopener noreferrer">Naik Taraf Ke Premium</a>
                     </div>
                 </div> <!-- /GRID ENDS HERE -->
 
@@ -1179,7 +1195,7 @@ nav a {
 
     <!-- SOLUTIONS SECTION -->
     <section class="section">
-        <h2 style="color:#4F31E8; font-size: 18px; margin-bottom: 15px;">• PENYELESAIAN UNTUK ANDA •</h2>
+        <h2 style="color:#4F31E8; margin-bottom: 15px;">• PENYELESAIAN UNTUK ANDA •</h2>
         <div class="grid" style="margin-top:20px;">
             <a href="CommandCanDoLIST.html" class="card card-center">
                 <img src="ManyTerminalChoice.webp" alt="Pilihan Terminal">
@@ -1194,7 +1210,7 @@ nav a {
 
     <!-- E-LEARNING SECTION -->
     <section class="section">
-        <h2 style="font-size: 18px; margin-bottom: 15px;">Pelan E-Pembelajaran</h2>
+        <h2 style="margin-bottom: 15px;">Pelan E-Pembelajaran</h2>
         <div class="grid">
             <a href="Banner-WebSale-MS.html" class="card-bg-box" style="background-image: url('PreviewCodingWeb.jpg');">
                 <div class="card-overlay"></div>
@@ -1290,13 +1306,13 @@ nav a {
             <h3>🛠️ FUNGSI TAMBAHAN & SOKONGAN TEKNIKAL SERVER</h3>
             <p><em>(PUSAT BACAAN & TERMINAL CODEX)</em></p>
             <p>Bagi klien yang memerlukan persekitaran web khas atau pengurusan perisian pada VPS / Pelayan Linux, KasuhaNET turut menyediakan skrip dan arahan persediaan terminal (Terminal Codex):</p>
-            <ul style="text-align: left;">
+            <ul style="text-align: left;" class="feature-list">
                 <li><strong>Persediaan Kebergantungan (Dependency Setup):</strong> Koleksi arahan terminal untuk memasang pakej perisian pada persekitaran Linux dan Penguin dengan penaipan minima.</li>
                 <li><strong>Pengurusan Data Web:</strong> Pembersihan fail log, optimasi pangkalan data, dan sandaran (backup) automatik.</li>
             </ul>
             
             <h3>📋 ALIRAN KERJA DARI MULA HINGGA SIAP</h3>
-            <ul style="text-align: left;">
+            <ul style="text-align: left;" class="feature-list">
                 <li><strong>Pembelian di Shopee:</strong> Pilih variasi pakej yang anda inginkan (Landing Page / Premium) dan selesaikan pembayaran.</li>
                 <li><strong>Sesi Sembang / Taklimat:</strong> Hubungi kami melalui Sembang Shopee. Kami akan menyediakan borang yang menyenaraikan butiran yang diperlukan (logo, kandungan teks, gambar produk, pautan media sosial).</li>
                 <li><strong>Fasa Pembangunan & Reka Bentuk:</strong> Pasukan kami akan mula menyusun struktur kod, susun atur visual, dan integrasi sistem berdasarkan pakej pilihan anda.</li>
@@ -1305,7 +1321,7 @@ nav a {
             </ul>
 
             <h3>⚠️ TERMA & SYARAT PERKHIDMATAN</h3>
-            <ul style="text-align: left;">
+            <ul style="text-align: left;" class="feature-list">
                 <li><strong>Domain & Hosting:</strong> Kos pakej tertakluk kepada persetujuan untuk menggunakan persediaan domain/hosting sedia ada atau mewujudkan yang baharu.</li>
                 <li><strong>Kandungan:</strong> Bahan teks dan gambar mesti disediakan oleh pembeli (bantuan penyusunan semula teks boleh disediakan atas permintaan).</li>
                 <li><strong>Sokongan Selepas Jualan:</strong> Sokongan teknikal asas percuma disediakan selama 30 hari selepas projek diserahkan.</li>
@@ -1348,14 +1364,14 @@ nav a {
 
         <div class="footer-links">
             <h4>Ikuti Kami</h4>
-            <a href="https://www.facebook.com/share/1BfeDZJqjP/" target="_blank">Facebook</a>
-            <a href="https://tiktok.com/@kasuhanet.store" target="_blank">TikTok</a>
-            <a href="https://t.me/kasuhanetstorebot" target="_blank">Telegram</a>
+            <a href="https://www.facebook.com/share/1BfeDZJqjP/" target="_blank" rel="noopener noreferrer">Facebook</a>
+            <a href="https://tiktok.com/@kasuhanet.store" target="_blank" rel="noopener noreferrer">TikTok</a>
+            <a href="https://t.me/kasuhanetstorebot" target="_blank" rel="noopener noreferrer">Telegram</a>
         </div>
     </div>
 
     <div class="footer-bottom">
-        © 2026 KasuhaNET Resources (202503248308). Hak Cipta Terelihara.
+        © 2026 KasuhaNET Resources (202503248308). Hak Cipta Terpelihara.
     </div>
 </footer>
 
