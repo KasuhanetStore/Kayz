@@ -10,23 +10,23 @@
     <meta name="keywords" content="Nak buat website sendiri, platform kedai digital Malaysia, alat terminal, pemasaran afiliasi Malaysia, servis buat website, Ebook dalam talian">
     <meta name="author" content="Kasuhanet Resources">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://kasuhanet.store/homepage-MS.html">
+    <link rel="canonical" href="https://kasuhanet.store/">
 
     <!-- FONT -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- SWIPER CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-    <!-- FAVICON -->
+    <!-- Favicon Standard Pelayar -->
     <link rel="icon" type="image/png" sizes="32x32" href="https://kasuhanet.store/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon.ico">
+
+    <!-- Favicon Google Search & Android -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
     <link rel="shortcut icon" href="https://kasuhanet.store/favicon.ico">
-    <link rel="manifest" href="site.webmanifest">
+    <link rel="manifest" href="/site.webmanifest">
 
     <!-- OPEN GRAPH -->
     <meta property="og:title" content="KasuhaNET.STORE | Platform Digital Pelbagai Perkhidmatan">
@@ -41,7 +41,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="KasuhaNET.STORE | Platform Digital Pelbagai Perkhidmatan">
     <meta name="twitter:description" content="Platform digital moden merangkumi perkhidmatan teknikal, pembangunan laman web, dan ekosistem HMS.">
-    <meta name="twitter:image" content="https://kasuhanet.store/PreviewLink.jpg">
+    <meta name="twitter:image" content="https://kasuhanet.store/img/favicon.ico">
 
     <!-- MOBILE -->
     <meta name="theme-color" content="#05070d">
@@ -50,12 +50,11 @@
 
     <!-- CSS UTAMA -->
     <link rel="stylesheet" href="css/main.css">
-    
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Organization",
-      "name": "KasuhaNET Resources",
+      "name": "Kasuha Oculus",
       "url": "https://kasuhanet.store/",
       "logo": "https://kasuhanet.store/OculusLogo.png",
       "description": "Perkhidmatan pembangunan laman web, rekaan perisian, dan integrasi sistem."
@@ -75,7 +74,7 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.6;
 }
 
@@ -90,12 +89,8 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background: rgba(5, 7, 13, 0.95);
-    border-bottom: 1px solid rgba(79, 49, 232, 0.3);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    backdrop-filter: blur(10px);
+    background: rgba(5, 7, 13, 0.9);
+    border-bottom: 1px solid rgba(79, 49, 232, 0.2);
 }
 
 .header-right {
@@ -108,12 +103,7 @@ nav a {
     color: #fff;
     text-decoration: none;
     margin: 0 10px;
-    font-size: clamp(13px, 1.5vw, 15px) !important;
-    transition: color 0.3s ease;
-}
-
-nav a:hover {
-    color: #00F0FF;
+    font-size: clamp(11px, 1.5vw, 13px) !important;
 }
 
 /* BUTTON LANGUAGE TOGGLE */
@@ -135,7 +125,7 @@ nav a:hover {
     border: none;
     color: #8fa0dd;
     padding: 4px 10px;
-    font-size: 13px;
+    font-size: 11px;
     cursor: pointer;
     border-radius: 4px;
     transition: all 0.3s ease;
@@ -163,7 +153,7 @@ nav a:hover {
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(79, 49, 232, 0.4);
     border-radius: 8px;
-    padding: 20px;
+    padding: 15px;
     text-decoration: none;
     color: #fff;
     transition: all 0.3s ease;
@@ -194,29 +184,27 @@ nav a:hover {
 
 /* OPTIMASI SAIZ TEKS PADA KAD & TAJUK */
 .card h2 {
-    font-size: clamp(18px, 2.5vw, 22px) !important;
+    font-size: clamp(16px, 2.5vw, 20px) !important;
     line-height: 1.3 !important;
-    color: #fff;
 }
 
 .card h3 {
     margin: 8px 0 5px 0;
-    font-size: clamp(16px, 2.2vw, 19px) !important;
+    font-size: clamp(14px, 2.2vw, 17px) !important;
     color: #00F0FF;
     line-height: 1.3 !important;
 }
 
 .card h4 {
-    font-size: clamp(14px, 2vw, 17px) !important;
+    font-size: clamp(13px, 2vw, 15px) !important;
     margin: 12px 0 6px 0;
-    color: #E600A4;
 }
 
 .card p, 
 .profile-card p,
 .package-box p {
     margin: 5px 0 0 0;
-    font-size: clamp(14px, 1.8vw, 16px) !important;
+    font-size: clamp(12px, 1.8vw, 14px) !important;
     line-height: 1.6 !important;
     color: #ccc;
 }
@@ -234,8 +222,8 @@ nav a:hover {
     background: #161b22;
     border: 1px solid #30363d;
     border-radius: 12px;
-    padding: 25px;
-    max-width: 800px;
+    padding: 30px;
+    max-width: 700px;
     width: 100%;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     transition: border-color 0.3s ease;
@@ -252,14 +240,7 @@ nav a:hover {
     text-align: left;
 }
 
-.profile-header h1 {
-    margin: 0;
-    color: #58a6ff;
-    font-size: clamp(1.5rem, 3.5vw, 2rem) !important;
-    letter-spacing: 0.5px;
-}
-
-.profile-header h3 {
+.profile-header h1, .profile-header h3 {
     margin: 0;
     color: #58a6ff;
     font-size: clamp(1.2rem, 3vw, 1.6rem) !important;
@@ -268,7 +249,7 @@ nav a:hover {
 
 .callsign {
     color: #8b949e;
-    font-size: clamp(0.85rem, 1.5vw, 1rem) !important;
+    font-size: clamp(0.75rem, 1.5vw, 0.85rem) !important;
     font-weight: 600;
     margin-top: 5px;
     text-transform: uppercase;
@@ -280,7 +261,7 @@ nav a:hover {
     color: #58a6ff;
     padding: 4px 12px;
     border-radius: 20px;
-    font-size: clamp(0.85rem, 1.5vw, 0.95rem) !important;
+    font-size: clamp(0.75rem, 1.5vw, 0.85rem) !important;
     margin-top: 10px;
     border: 1px solid rgba(56, 139, 253, 0.4);
 }
@@ -300,13 +281,11 @@ nav a:hover {
     padding-left: 22px;
     margin-bottom: 12px;
     line-height: 1.6 !important;
-    font-size: clamp(13.5px, 1.8vw, 15px) !important;
+    font-size: clamp(12px, 1.8vw, 13.5px) !important;
     color: #c9d1d9;
 }
 
-.profile-list li::before,
-.feature-list li::before,
-.package-box ul li::before {
+.profile-list li::before {
     content: "❯";
     position: absolute;
     left: 0;
@@ -323,7 +302,7 @@ nav a:hover {
     margin-top: 20px;
     padding-top: 15px;
     border-top: 1px dashed #21262d;
-    font-size: clamp(0.8rem, 1.5vw, 0.9rem) !important;
+    font-size: clamp(0.75rem, 1.5vw, 0.85rem) !important;
     color: #8b949e;
     font-style: italic;
     text-align: center;
@@ -373,7 +352,7 @@ nav a:hover {
 }
 
 .neon-title {
-    font-size: clamp(32px, 7vw, 65px) !important;
+    font-size: clamp(28px, 6vw, 55px) !important;
     line-height: 1.1;
     position: relative;
     display: inline-block;
@@ -400,7 +379,7 @@ nav a:hover {
 }
 
 .neon-desc {
-    font-size: clamp(14px, 2vw, 19px) !important;
+    font-size: clamp(12px, 1.8vw, 15px) !important;
     color: #aaa;
     line-height: 1.5;
     position: relative;
@@ -423,43 +402,47 @@ nav a:hover {
 
 /* SCAMMER WARNING NOTICE */
 .notice-section {
-    width: 100%;
-    max-width: 450px;
-    margin: 0 auto 25px auto;
+    width: 280px;
+    margin: 0 auto 20px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .header-box {
     background-color: #C0C0C0;
-    padding: 4px 10px;
-    border-radius: 4px;
+    padding: 3px 8px;
+    border-radius: 3px;
     width: 100%;
     box-sizing: border-box;
     text-align: center;
 }
 
 .header-text {
-    color: #d9534f;
-    font-size: 11px !important;
+    color: red;
+    font-size: 8px !important;
     font-weight: bold;
     margin: 0;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
 }
 
 .flicker-text {
     color: white;
-    font-size: 11px !important;
-    line-height: 1.5;
+    font-size: 9px !important;
+    line-height: 1.4;
     margin: 0;
-    text-align: center;
-    animation: pulseFlicker 2.5s infinite ease-in-out;
+    text-align: justify;
+    text-justify: inter-word;
+    text-shadow: 
+        -1px -1px 0 #0000FF,  
+         1px -1px 0 #0000FF,
+        -1px  1px 0 #0000FF,
+         1px  1px 0 #0000FF;
+    animation: pulseFlicker 2s infinite ease-in-out;
     display: flex;
     flex-direction: column;
-    gap: 6px; 
+    gap: 5px; 
 }
 
 .flicker-text p {
@@ -468,12 +451,11 @@ nav a:hover {
 
 .company-name {
     font-weight: bold;
-    color: #00F0FF;
 }
 
 @keyframes pulseFlicker {
     0% { opacity: 1; }
-    50% { opacity: 0.4; }
+    50% { opacity: 0.25; }
     100% { opacity: 1; }
 }
 
@@ -503,7 +485,7 @@ nav a:hover {
     background: #090d16;
     border-top: 2px solid #4F31E8;
     box-shadow: 0 -5px 25px rgba(79, 49, 232, 0.15);
-    margin-top: 20px;
+    margin-top: 0px;
     padding: 30px 20px 15px 20px;
 }
 
@@ -518,18 +500,18 @@ nav a:hover {
 .footer h3 {
     color: #fff;
     margin: 0 0 10px 0;
-    font-size: clamp(16px, 2vw, 20px) !important;
+    font-size: clamp(15px, 2vw, 18px) !important;
 }
 
 .footer h4 {
     color: #E600A4;
     margin: 0 0 10px 0;
-    font-size: clamp(14px, 1.8vw, 16px) !important;
+    font-size: clamp(13px, 1.8vw, 15px) !important;
 }
 
 .footer p {
     color: #999;
-    font-size: clamp(12px, 1.5vw, 14px) !important;
+    font-size: clamp(11px, 1.5vw, 12px) !important;
     line-height: 1.5;
     margin: 0;
 }
@@ -543,7 +525,7 @@ nav a:hover {
 .footer-links a {
     color: #ccc;
     text-decoration: none;
-    font-size: clamp(12px, 1.5vw, 14px) !important;
+    font-size: clamp(11px, 1.5vw, 12.5px) !important;
     transition: color 0.2s;
 }
 
@@ -553,7 +535,7 @@ nav a:hover {
 
 .footer-bottom {
     text-align: center;
-    font-size: clamp(11px, 1.2vw, 13px) !important;
+    font-size: clamp(10px, 1.2vw, 11px) !important;
     color: #666;
     padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -601,7 +583,7 @@ nav a:hover {
 .card-content h3 {
     font-family: 'Orbitron', sans-serif;
     color: #00ffcc;
-    font-size: clamp(15px, 2vw, 18px) !important;
+    font-size: clamp(14px, 2vw, 16px) !important;
     margin-bottom: 8px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -609,7 +591,7 @@ nav a:hover {
 
 .card-content p {
     color: #8fa0dd;
-    font-size: clamp(13px, 1.8vw, 16px) !important;
+    font-size: clamp(12px, 1.8vw, 14px) !important;
     line-height: 1.4;
 }
 
@@ -636,7 +618,7 @@ nav a:hover {
 }
 
 .credit-text {
-    font-size: clamp(10px, 1.2vw, 12px) !important;
+    font-size: clamp(9px, 1.2vw, 10.5px) !important;
     color: #666;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -650,7 +632,7 @@ nav a:hover {
 }
 
 .partner-name {
-    font-size: clamp(11px, 1.5vw, 13px) !important;
+    font-size: clamp(10px, 1.5vw, 11.5px) !important;
     color: #8fa0dd;
     font-weight: 700;
     letter-spacing: 0.5px;
@@ -728,7 +710,7 @@ nav a:hover {
   border-radius: 12px;
   padding: 30px 40px;
   color: #ffffff;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Arial', sans-serif;
   box-shadow: 0 4px 15px rgba(0,0,0,0.15);
   margin-bottom: 25px;
 }
@@ -736,7 +718,7 @@ nav a:hover {
 .hlb-tag {
   background-color: #e31b23;
   color: #fff;
-  font-size: 13px !important;
+  font-size: 11px !important;
   font-weight: bold;
   text-transform: uppercase;
   padding: 4px 12px;
@@ -745,16 +727,16 @@ nav a:hover {
   margin-bottom: 10px;
 }
 
-.hlb-content h2 {
+.hlb-content h1 {
   margin: 0 0 10px 0;
-  font-size: clamp(20px, 3vw, 28px) !important;
+  font-size: clamp(20px, 3.5vw, 28px) !important;
   color: #ffffff;
 }
 
 .hlb-content p {
   margin: 0 0 20px 0;
   color: #d1d5db;
-  font-size: clamp(14px, 1.8vw, 17px) !important;
+  font-size: clamp(13px, 1.8vw, 15px) !important;
 }
 
 .hlb-btn {
@@ -765,8 +747,8 @@ nav a:hover {
   font-weight: bold;
   border-radius: 6px;
   display: inline-block;
+  font-size: clamp(12px, 1.5vw, 14px) !important;
   transition: background 0.3s;
-  font-size: 14px;
 }
 
 .hlb-btn:hover {
@@ -824,7 +806,7 @@ nav a:hover {
     background: rgba(230, 0, 164, 0.2);
     border: 1px solid #E600A4;
     color: #ff3366;
-    font-size: 13px !important;
+    font-size: 11px !important;
     font-weight: bold;
     padding: 4px 10px;
     border-radius: 4px;
@@ -835,7 +817,7 @@ nav a:hover {
 
 .bjak-cyber-title {
     font-family: 'Orbitron', sans-serif !important;
-    font-size: clamp(20px, 3vw, 28px) !important;
+    font-size: clamp(18px, 3vw, 28px) !important;
     color: #ffffff;
     margin: 0 0 10px 0;
     line-height: 1.2;
@@ -849,7 +831,7 @@ nav a:hover {
 
 .bjak-cyber-desc {
     color: #8fa0dd;
-    font-size: clamp(14px, 1.5vw, 16px) !important;
+    font-size: clamp(12px, 1.5vw, 14px) !important;
     margin: 0 0 18px 0;
     line-height: 1.5;
 }
@@ -862,7 +844,7 @@ nav a:hover {
 }
 
 .bjak-feature-item {
-    font-size: 13px !important;
+    font-size: 11px !important;
     color: #00ffcc;
     background: rgba(0, 255, 204, 0.08);
     padding: 5px 10px;
@@ -875,7 +857,7 @@ nav a:hover {
     background: linear-gradient(90deg, #ff8a00, #ff5500);
     color: #ffffff !important;
     font-family: 'Orbitron', sans-serif !important;
-    font-size: 15px;
+    font-size: 13px !important;
     font-weight: bold;
     padding: 12px 24px;
     border-radius: 6px;
@@ -904,7 +886,7 @@ nav a:hover {
 
 .bjak-reward-amount {
     font-family: 'Orbitron', sans-serif !important;
-    font-size: 32px !important;
+    font-size: clamp(24px, 4vw, 32px) !important;
     font-weight: bold;
     color: #E600A4;
     text-shadow: 0 0 10px #E600A4;
@@ -912,41 +894,12 @@ nav a:hover {
 }
 
 .bjak-reward-text {
-    font-size: 13px !important;
+    font-size: 11px !important;
     color: #ccc;
     letter-spacing: 0.5px;
 }
 
-@media (max-width: 768px) {
-    .bjak-cyber-banner {
-      flex-direction: column;
-      text-align: center;
-      padding: 20px 15px;
-    }
-
-    .bjak-cyber-content {
-      max-width: 100%;
-      margin-bottom: 20px;
-    }
-
-    .bjak-cyber-features {
-      justify-content: center;
-    }
-
-    .bjak-cyber-badge {
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    .hlb-banner {
-      flex-direction: column;
-      text-align: center;
-      gap: 15px;
-      padding: 20px;
-    }
-}
-
-/* CUSTOM WEB WORKSHOP CARD */
+/* ANIMASI & BTN CUSTOM WORKSHOP */
 @keyframes blinker {
     50% { opacity: 0.2; }
 }
@@ -969,6 +922,60 @@ nav a:hover {
     font-size: 0.9em;
     margin-left: 5px;
 }
+
+/* MOBILE RESPONSIVE FIXES & TYPOGRAPHY ADJUSTMENTS */
+@media (max-width: 768px) {
+    body {
+      font-size: 13.5px;
+      line-height: 1.5;
+    }
+    header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    .header-right {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .mini-deko-img {
+        max-width: 230px;
+    }
+    .footer-links a {
+      font-size: 12px !important;
+      display: inline-block;
+      padding: 2px 0;
+    }
+    .hlb-banner {
+      flex-direction: column;
+      text-align: center;
+      padding: 20px 15px;
+      gap: 15px;
+    }
+    .bjak-cyber-banner {
+      flex-direction: column;
+      text-align: center;
+      padding: 20px 15px;
+    }
+    .bjak-cyber-content {
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
+    .bjak-cyber-features {
+      justify-content: center;
+    }
+    .bjak-cyber-badge {
+      width: 100%;
+      box-sizing: border-box;
+    }
+}
 </style>
 </head>
 
@@ -985,9 +992,9 @@ nav a:hover {
     <div class="header-right">
         <nav>
             <a href="homepage-MS.html">UTAMA</a>
-            <a href="About-Us.html">TENTANG KAMI</a>
-            <a href="terms-EN.html">TERMA & POLISI</a>
-            <a href="support-centre.html">SOKONGAN</a>
+            <a href="Tentang-Kami.html">TENTANG KAMI</a>
+            <a href="terms-MS.html">TERMA & POLISI</a>
+            <a href="pusat-bantuan.html">BANTUAN</a>
         </nav>
 
         <div class="lang-wrapper">
@@ -1002,12 +1009,12 @@ nav a:hover {
 <!-- PARTNER CREDIT BAR -->
 <div class="partner-credit-bar">
     <div class="credit-text">
-        Laman web dijana melalui kolaborasi Gabungan Organisasi & Syarikat
+        Laman web dikuasakan oleh kolaborasi Gabungan Organisasi & Syarikat
     </div>
     <div class="partner-logos">
         <span class="partner-name">Kasuha Oculus Organisation</span>
         <div class="partner-logo-box">
-            <img src="OculusLogo.png" alt="Collaboration Logo">
+            <img src="OculusLogo.png" alt="Logo Kolaborasi">
         </div>
         <span class="partner-name">KasuhaNET Resources</span>
     </div>
@@ -1019,30 +1026,30 @@ nav a:hover {
         <h1 class="neon-title">Kasuha<span>NET.STORE</span></h1>
         
         <div class="typing-box">
-            <h2 style="font-size: clamp(18px, 3vw, 24px); margin: 10px 0; color:#4F31E8;">
+            <h2 style="margin: 10px 0; color:#4F31E8;">
                 <span style="color:#4F31E8; text-shadow:0 0 20px #E600A4;">KasuhaNET •</span>
                 <span style="color:#E600A4; text-shadow:0 0 20px #E600A4;">Platform Kedai Digital</span>
             </h2>
             
             <p class="neon-desc">
-                Platform Jualan Hibrid & Alat Digital Pelbagai Perkhidmatan.
+                Platform Jualan Hibrid dan Alat Digital Pelbagai Perkhidmatan.
             </p>
         </div>
     </section>
 
     <div class="grid">
         <div class="card card-center">
-            <h3>🌐 PROLOG PERKHIDMATAN PEMBANGUNAN WEB & INFRASTRUKTUR DIGITAL - KASUHANET.STORE</h3>
+            <h3>🌐 PERKHIDMATAN BINA LAMAN WEB PROLOG & INFRASTRUKTUR DIGITAL - KASUHANET.STORE</h3>
             <p>
-            Adakah anda mahukan kehadiran digital yang kelihatan profesional, berprestasi tinggi, dan dibina mengikut spesifikasi industri terkini?
-            <strong>KasuhaNET Resources</strong> menyediakan penyelesaian pembangunan web komprehensif merangkumi persediaan asas (Landing Page) hingga sistem enterprise penuh (Pakej Premium), disokong oleh pengurusan pelayan pakar dan konfigurasi terminal optimum.
+                Adakah anda mahukan kehadiran digital yang kelihatan profesional, berprestasi tinggi, dan dibina mengikut standard industri terkini? 
+                <strong>KasuhaNET Resources</strong> menyediakan penyelesaian pembangunan laman web komprehensif dari peringkat asas (Landing Page) sehingga sistem perniagaan lengkap (Pakej Premium), disokong oleh kepakaran pengurusan server dan konfigurasi terminal yang optimum.
             </p>
-            <h4>🎯 MENGAPA MEMILIH PERKHIDMATAN KASUHANET.STORE?</h4>
-            <ul class="feature-list" style="text-align: left;">
-                <li><strong>Prestasi & Kelajuan Maksimum:</strong> Setiap laman web dioptimumkan untuk kecekapan kod, pemampatan imej, dan pengurusan sumber pelayan bagi memastikan kelajuan pemuatan pantas.</li>
-                <li><strong>Mesra Peranti Mudah Alih (Responsive Design):</strong> Paparan sempurna diimbangi secara automatik untuk telefon pintar, tablet, laptop, dan skrin desktop.</li>
-                <li><strong>Keselamatan Data & Pelesenan:</strong> Seni bina web bersih, protokol keselamatan HTTPS / SSL, serta konfigurasi kebenaran fail yang betul.</li>
-                <li><strong>Kepakaran Terminal & Pelayan Linux:</strong> Pengurusan persekitaran Linux berkesan (termasuk Linux pada Penguin/ChromeOS) bagi memastikan persediaan kebergantungan perpustakaan dan skrip sistem berjalan dengan penaipan minimum.</li>
+            <h4>🎯 MENGAPA PILIH PERKHIDMATAN KASUHANET.STORE?</h4>
+            <ul class="feature-list">
+                <li><strong>Prestasi & Kelajuan Maksimum:</strong> Setiap laman web dioptimumkan dari segi kod, pemampatan imej, dan pengurusan sumber server supaya masa muat turun (loading time) berada pada tahap terpantas.</li>
+                <li><strong>Mesra Peranti Mobil (Responsive Design):</strong> Paparan yang sempurna dan automatik disesuaikan untuk skrin telefon pintar, tablet, laptop, serta skrin desktop.</li>
+                <li><strong>Keselamatan Data & Lesen:</strong> Struktur persekitaran web yang bersih, penggunaan protokol keselamatan HTTPS / SSL, serta susunan kebenaran fail yang teratur.</li>
+                <li><strong>Kepakaran Terminal & Linux Server:</strong> Pengurusan persekitaran Linux (termasuk Linux pada persekitaran Penguin/ChromeOS) bagi memastikan kebergantungan perpustakaan (dependency setup) dan skrip sistem berjalan dengan penaipan minima (minimal typing).</li>
             </ul>
         </div>
     </div>
@@ -1050,21 +1057,22 @@ nav a:hover {
     <!-- CUSTOM WEB WORKSHOP CARD -->  
     <div class="profile-wrapper">
         <div class="profile-card">
-            <a href="https://kasuhanet.store/Custom-Web-Workshop-EN" style="text-decoration: none; color: inherit; display: block;">
-                <img src="Bengkel-Custom-WebSite-EN.png" alt="Terminal Choice" style="max-width: 100%; width: 400px; display: block; margin: 0 auto;"> 
-                <h2 style="text-align: center; margin-top: 12px; font-family: sans-serif;">
+            <a href="https://kasuhanet.store/Bengkel-Custom-WebSite.html" style="text-decoration: none; color: inherit; display: block;">
+                <img src="img/BannerWebMAIN.png" alt="Pilihan Terminal" style="max-width: 100%; width: 400px; display: block; margin: 0 auto;">   
+                <h1 style="text-align: center; margin-top: 12px; font-family: sans-serif;">
                     <span class="blinking-red">Bengkel Custom WEB</span>
-                </h2>
+                </h1>
             </a>
             <p>
-                Selamat datang ke <strong>kasuhanet.store</strong>! Bagi mereka yang ingin membina atau menaik taraf laman web,
-                kami menawarkan Perkhidmatan Persediaan & Peluncuran yang fleksibel dan telus,
-                disesuaikan khusus mengikut bajet dan keperluan anda.
+                Selamat datang ke <strong>kasuhanet.store</strong>! Bagi anda yang ingin membina atau menaik taraf laman web, 
+                kami menawarkan Perkhidmatan Pemasangan &amp; Penyebaran (Setup &amp; Deployment) yang fleksibel dan telus, 
+                disesuaikan khas mengikut bajet dan keperluan anda.
             </p>
             <p>
-                <strong>Mencari fleksibiliti maksimum?</strong> Terokai Bengkel Custom kami! Dalam bahagian ini, perkhidmatan dan alatan
-                disenaraikan secara modular. Anda boleh memilih, menyesuaikan, dan menambah alat atau perkhidmatan khusus yang diperlukan untuk peluncuran pantas.
-                <a href="https://kasuhanet.store/Custom-Web-Workshop-EN" style="color:inherit;"><span class="blinking-red">⬅️KLIK DI SINI</span></a>🔎
+                <strong>Mahu fleksibiliti maksimum?</strong> Terokai Bengkel Khusus (Custom Workshop) kami! Dalam bahagian ini, 
+                perkhidmatan dan alatan disenaraikan secara modular. Anda boleh memilih, mepadankan, dan menambah alatan atau 
+                perkhidmatan khusus yang diperlukan untuk peluncuran pantas.
+                <a href="https://kasuhanet.store/Bengkel-Custom-WebSite.html" style="color:inherit;"><span class="blinking-red">⬅️KLIK SINI</span></a>🔎
             </p>
         </div>
     </div>
@@ -1073,63 +1081,63 @@ nav a:hover {
     <div class="grid">
         <div class="card card-center">
             <div class="profile-header">
-                <h1>Hai, Saya Kasuha Zukarnain</h1>
+                <h3>Hi,Saya Kasuha Zukarnain</h3>
                 <div class="callsign">CallSign: Kasuha Zukarnain</div>
-                <span class="exp-badge">Pengalaman Pembangun 8 - 9 Tahun</span>
+                <span class="exp-badge">8 - 9 Tahun Pengalaman Developer</span>
             </div>
 
             <ul class="profile-list">
                 <li>
-                    <span class="highlight">Pembangunan & Pengasas:</span> Pembangun utama di sebalik platform <span class="highlight">Kasuhanet.Store</span>, pengasas <span class="highlight">Kasuhanet Resources</span> untuk operasi perniagaan, dan pencipta organisasi <span class="highlight">Kasuha Oculus</span>.
+                    <span class="highlight">Pembangunan &amp; Pengasasan:</span> Aku merupakan pembina utama di sebalik platform <span class="highlight">Kasuhanet.Store</span>, mengasaskan <span class="highlight">Kasuhanet Resources</span> untuk bidang perniagaan, serta membentuk organisasi <span class="highlight">Kasuha Oculus</span>.
                 </li>
                 <li>
-                    <span class="highlight">Ketepatan Kod:</span> Komited terhadap struktur kod yang kemas dan logik pengaturcaraan untuk mereka bentuk serta menyampaikan fungsi digital yang lancar.
+                    <span class="highlight">Ketelitian Kod:</span> Amat gemar mengemaskan susunan struktur <i>coding</i> dan bahasa pengaturcaraan hingga mampu mereka bentuk serta menghasilkan fungsi yang lancar.
                 </li>
                 <li>
-                    <span class="highlight">Peminat OS & Android:</span> Berfokus mendalam pada sistem dalaman Android dan Sistem Operasi (OS). Berminat meneroka "formula kod" yang mengubah prestasi dan reka bentuk perisian.
+                    <span class="highlight">Keobsesan OS &amp; Android:</span> Berkait rapat dengan sistem dalaman Android atau Operating System (OS). Obses mencari "formula <i>codex</i>" yang mampu mengubah wajah, rupa, dan keupayaan sesebuah <i>software</i>.
                 </li>
                 <li>
-                    <span class="highlight">Strategi & Penjana Pendapatan:</span> Merangka sistem dan analisis data menuju matlamat teras — memacu pertumbuhan kewangan mampan melalui ekosistem perniagaan yang kukuh.
+                    <span class="highlight">Strategi &amp; Monetisasi:</span> Semua sistem dan analisis dirumuskan dalam satu aktiviti dan tujuan utama — iaitu menjana nilai kewangan melalui ekosistem perniagaan yang kukuh.
                 </li>
             </ul>
 
             <div class="profile-footer">
-                Sistem & Seni Bina | Kerangka Kasuha Oculus
+                System &amp; Architecture | Kasuha Oculus Framework
             </div>
         </div>
     </div>
-    
+
     <!-- HONG LEONG BANK BANNER -->
     <div class="hlb-banner">
       <div class="hlb-content">
-        <div class="hlb-tag">Program Rujukan Baharu</div>
-        <h2>Daftar Akaun Hong Leong Bank</h2>
-        <p>Gunakan kod rujukan anda & nikmati ganjaran pendaftaran istimewa hari ini!</p>
-        <a href="https://www.hlb.com.my/en/personal-banking/deposits/apply-at-hlb-connect.html" class="hlb-btn" target="_blank" rel="noopener noreferrer">Daftar Sekarang</a>
+        <div class="hlb-tag">Program Referral Baharu</div>
+        <h1>Daftar Akaun Hong Leong Bank</h1>
+        <p>Gunakan kod rujukan anda & nikmati ganjaran pendaftaran khas hari ini!</p>
+        <a href="https://www.hlb.com.my/ms/personal-banking/deposits/apply-at-hlb-connect.html" class="hlb-btn" target="_blank" rel="noopener noreferrer">Daftar Sekarang</a>
       </div>
       <div class="hlb-logo-container">
         <img src="LogoHLBrefer.png" alt="Hong Leong Bank Logo" class="hlb-logo">
       </div>
     </div>
-    
+        
     <hr style="border: 0; border-top: 1px solid rgba(79, 49, 232, 0.3); margin: 30px 0;">
     
     <div class="grid">
         <div class="card card-center">
             <div class="profile-card">
-                <h3>📑 BUTIRAN PAKEJ PERKHIDMATAN</h3>
+                <h3>📑 PERINCIAN PAKEJ PERKHIDMATAN</h3>
                 <div class="package-box" style="text-align: left;">
-                    <h4>🟢 PAKEJ 1: LANDING PAGE (SATU HALAMAN)</h4>
-                    <p>Sangat sesuai untuk kempen produk tunggal, borang pesanan pantas, promosi iklan (FB/TikTok/Google Ads), atau pengenalan profil perniagaan.</p>
-                    <p><strong>Struktur Halaman:</strong> 1 Halaman Lengkap (Seni Bina Satu Halaman) dengan navigasi tatalan lancar.</p>
+                    <h4>🟢 PAKEJ 1: LANDING PAGE (1 MUKA SURAT)</h4>
+                    <p>Sesuai untuk kempen produk tunggal, borang tempahan pantas, promosi iklan (FB/TikTok/Google Ads), atau pengenalan profil perniagaan.</p>
+                    <p><strong>Struktur Halaman:</strong> 1 Halaman Muka Surat Lengkap (Single Page Architecture) dengan navigasi scroll yang lancar.</p>
                     <p><strong>Elemen Utama:</strong></p>
                     <ul>
-                        <li><strong>Hero Section:</strong> Tajuk utama yang menarik, sub-tajuk, dan butang Seruan Tindakan (CTA) utama.</li>
-                        <li><strong>Pameran Produk/Perkhidmatan:</strong> Ruang visual yang memperincikan ciri-ciri, kelebihan, dan spesifikasi.</li>
-                        <li><strong>Galeri & Visual:</strong> Paparan imej dioptimumkan yang memuatkan kandungan pantas tanpa menjejaskan kelajuan.</li>
-                        <li><strong>Sistem Butang WhatsApp Langsung:</strong> Pelanggan boleh mengklik butang untuk memulakan perbualan di WhatsApp secara serta-merta tanpa menyimpan nombor.</li>
-                        <li><strong>Lokasi & Hubungi:</strong> Integrasi Google Maps bersama maklumat perhubungan penting.</li>
-                        <li><strong>Pengoptimuman Asas:</strong> Tetapan tag meta asas untuk carian Google dan penyediaan fail sistem teras.</li>
+                        <li><strong>Hero Section:</strong> Tajuk utama yang menarik, sub-tajuk, dan butang tindakan utama (CTA).</li>
+                        <li><strong>Pengenalan Produk/Perkhidmatan:</strong> Ruang perincian fungsi, kelebihan, dan spesifikasi secara visual.</li>
+                        <li><strong>Galeri & Visual:</strong> Paparan gambar bersaiz dioptimumkan yang memuatkan kandungan pantas tanpa memperlahankan kelajuan.</li>
+                        <li><strong>Sistem Butang WhatsApp Direct:</strong> Pelanggan boleh terus menekan butang untuk memulakan perbualan di WhatsApp secara paparan terus tanpa menyimpan nombor.</li>
+                        <li><strong>Lokasi & Hubungi:</strong> Integrasi Google Maps serta maklumat perhubungan asas.</li>
+                        <li><strong>Optimasi Asas:</strong> Penetapan meta tag asas untuk carian Google dan persediaan fail asas sistem.</li>
                     </ul>
                 </div>
                     
@@ -1138,47 +1146,47 @@ nav a:hover {
                     <!-- LANDING PAGE PACKAGE -->
                     <div class="card">
                         <h3 class="package-title" style="color: #00F0FF;">Pakej Landing Page</h3>
-                        <div class="package-price" style="color: #fff; font-size: 26px; font-weight: bold;">RM 299<span style="font-size: 18px; color:#aaa;">++</span></div>
-                        <p style="font-size: 14px; color: #999; margin: 0 0 15px 0;">Sesuai untuk kempen pemasaran, peluncuran produk pantas, dan portfolio kedai mini.</p>
-                        <ul class="package-features" style="text-align: left; font-size: 14px;">
-                            <li>1 Halaman Utama Landing Page (Reka Bentuk Satu Halaman)</li>
-                            <li>Seni Bina Kod Responsif (Mesra Peranti Mudah Alih)</li>
-                            <li>Pengoptimuman Penuh Google AdSense</li>
-                            <li>Seruan Tindakan Langsung ke WhatsApp / Borang</li>
-                            <li style="color: #ff4a4a; font-weight: bold;">* Domain custom tidak disertakan</li>
+                        <div class="package-price" style="color: #fff; font-size: 24px; font-weight: bold;">RM 299<span style="font-size: 16px; color:#aaa;">++</span></div>
+                        <p style="margin: 0 0 15px 0;">Sesuai untuk kempen pemasaran, pelancaran produk pantas, dan portfolio mini kedai.</p>
+                        <ul class="package-features">
+                            <li>1 Utama Landing Page (Satu Halaman Reka Bentuk)</li>
+                            <li>Seni Bina Kod Responsif (Mesra Telefon Pintar)</li>
+                            <li>Optimasi Penuh Google AdSense</li>
+                            <li>Panggilan Tindakan Terus ke WhatsApp / Borang</li>
+                            <li style="color: #ff4a4a; font-weight: bold;">* Tidak termasuk domain tersuai</li>
                         </ul>
-                        <a href="https://toyyibpay.com/L-P-P-LPP299" class="hlb-btn" style="text-align:center; margin-top: auto;" target="_blank">Langgan Sekarang</a>
+                        <a href="https://toyyibpay.com/L-P-P-LPP299" class="hlb-btn" style="text-align:center; margin-top: auto;" target="_blank" rel="noopener noreferrer">Langgan Sekarang</a>
                     </div>
                         
                     <!-- PREMIUM STANDARD PACKAGE -->
                     <div class="card premium-card" style="position: relative;">
-                        <div style="position: absolute; top: 10px; right: 15px; background: #E600A4; color: #fff; font-size: 11px; padding: 2px 6px; border-radius: 3px; font-weight: bold;">POPULAR</div>
+                        <div style="position: absolute; top: 10px; right: 15px; background: #E600A4; color: #fff; font-size: 9px; padding: 2px 6px; border-radius: 3px; font-weight: bold;">POPULAR</div>
                         <h3 class="package-title" style="color: #E600A4;">Premium Standard</h3>
-                        <div class="package-price" style="color: #fff; font-size: 26px; font-weight: bold;">RM 900<span style="font-size: 18px; color:#aaa;">++</span></div>
-                        <p style="font-size: 14px; color: #999; margin: 0 0 15px 0;">Sistem pengurusan lengkap untuk Kelab, Persatuan, dan profil Perniagaan dinamik.</p>
-                        <ul class="package-features" style="text-align: left; font-size: 14px;">
-                            <li>Peluncuran Laman Web Pelbagai Halaman</li>
-                            <li>Sistem Pengurusan Kandungan Custom</li>
-                            <li>Google AdSense Penuh & Pengoptimuman SEO Lanjutan</li>
-                            <li>Pameran Produk / Sistem Galeri Aktiviti Kelab</li>
-                            <li>Sokongan Domain Custom Penuh (.com/.my)</li>
-                            <li>Gaya UI/UX Cyberpunk Premium</li>
+                        <div class="package-price" style="color: #fff; font-size: 24px; font-weight: bold;">RM 900<span style="font-size: 16px; color:#aaa;">++</span></div>
+                        <p style="margin: 0 0 15px 0;">Sistem lengkap untuk pengurusan Kelab, Persatuan, dan profil Perniagaan Kedai yang dinamik.</p>
+                        <ul class="package-features">
+                            <li>Pelancaran Laman Web Pelbagai Halaman</li>
+                            <li>Sistem Pengurusan Kandungan Tersuai</li>
+                            <li>Optimasi Penuh Google AdSense & SEO Lanjutan</li>
+                            <li>Sistem Paparan Produk / Pameran Aktiviti Kelab</li>
+                            <li>Sokongan Integrasi Penuh Domain Tersuai (.com/.my)</li>
+                            <li>Gaya Cyberpunk UI/UX Premium</li>
                         </ul>
-                        <a href="https://toyyibpay.com/P-MS-Pay-PREMIUM-STANDARD" class="hlb-btn" style="background-color: #E600A4; text-align:center; margin-top: auto;" target="_blank">Naik Taraf ke Premium</a>
+                        <a href="https://toyyibpay.com/P-MS-Pay-PREMIUM-STANDARD" class="hlb-btn" style="background-color: #E600A4; text-align:center; margin-top: auto;" target="_blank" rel="noopener noreferrer">Naik Taraf Ke Premium</a>
                     </div>
                 </div> <!-- /GRID ENDS HERE -->
 
                 <div class="package-box" style="text-align: left; margin-top: 20px;">
-                    <h4>🟣 PAKEJ 2: LAMAN WEB PREMIUM (SISTEM PELBAGAI HALAMAN)</h4>
-                    <p>Sangat sesuai untuk perniagaan korporat, agensi, penyedia perkhidmatan teknikal, kedai dalam talian, dan organisasi yang memerlukan struktur maklumat terperinci.</p>
-                    <p><strong>Struktur Halaman:</strong> Pembangunan sehingga 5 hingga 10 Halaman Utama (cth: Utama, Tentang Kami, Perkhidmatan, Pusat Blog & Dokumentasi, Hubungi Kami).</p>
-                    <p><strong>Ciri & Elemen Lanjutan:</strong></p>
+                    <h4>🟣 PAKEJ 2: PREMIUM WEBSITE (SISTEM PELBAGAI MUKA SURAT)</h4>
+                    <p>Sesuai untuk perniagaan korporat, agensi, penyedia perkhidmatan teknikal, kedai dalam talian, dan organisasi yang memerlukan struktur maklumat terperinci.</p>
+                    <p><strong>Struktur Halaman:</strong> Pembangunan sehingga 5 ke 10 Muka Surat Utama (Contoh: Utama, Mengenai Kami, Perkhidmatan, Pusat Bacaan & Dokumentasi, Hubungi Kami).</p>
+                    <p><strong>Elemen & Fungsi Lanjutan:</strong></p>
                     <ul>
-                        <li><strong>Reka Bentuk Eksklusif:</strong> Reka bentuk custom yang disesuaikan dengan jenama dan identiti visual perniagaan anda.</li>
-                        <li><strong>Pusat Dokumentasi & Bacaan (Bahagian Blog / Codex):</strong> Ruang khas untuk menerbitkan artikel, panduan teknikal, atau arahan terminal (sesuai untuk penyimpanan dokumen teknikal).</li>
-                        <li><strong>Sistem Borang Pertanyaan & Tempahan:</strong> Borang maklum balas pintar yang menghantar pemberitahuan secara terus ke e-mel atau pangkalan data.</li>
+                        <li><strong>Reka Bentuk Eksklusif:</strong> Reka bentuk khas mengikut penjenamaan perniagaan dan identiti visual anda.</li>
+                        <li><strong>Pusat Bacaan & Dokumentasi (Blog / Codex Section):</strong> Ruang khas untuk penerbitan artikel, panduan teknikal, atau arahan terminal (sesuai untuk simpanan dokumen teknikal).</li>
+                        <li><strong>Sistem Borang Pertanyaan & Tempahan:</strong> Borang maklum balas pintar yang menghantar notifikasi terus ke e-mel atau pangkalan data.</li>
                         <li><strong>Integrasi Media Sosial & Pembayaran:</strong> Pautan lengkap ke akaun media sosial (Facebook, Instagram, TikTok, YouTube) serta integrasi Gerbang Pembayaran jika diperlukan.</li>
-                        <li><strong>Naik Taraf Kelajuan & Pengoptimuman SEO:</strong> Pengurusan kata kunci, struktur tajuk (H1, H2, H3), sitemap XML, dan integrasi Google Search Console.</li>
+                        <li><strong>Penaiktarafan Kelajuan & Optimasi SEO:</strong> Pengurusan kata kunci, struktur heading (H1, H2, H3), sitemap XML, dan integrasi Google Search Console.</li>
                     </ul>
                 </div>
             </div>
@@ -1187,19 +1195,14 @@ nav a:hover {
 
     <!-- SOLUTIONS SECTION -->
     <section class="section">
-        <h2 style="color:#4F31E8; font-size: clamp(18px, 2.5vw, 22px); margin-bottom: 15px;">
-            • PENYELESAIAN UNTUK ANDA •
-        </h2>
-        
-        <!-- MAIN GRID CARDS -->
+        <h2 style="color:#4F31E8; margin-bottom: 15px;">• PENYELESAIAN UNTUK ANDA •</h2>
         <div class="grid" style="margin-top:20px;">
             <a href="CommandCanDoLIST.html" class="card card-center">
-                <img src="ManyTerminalChoice.webp" alt="Terminal Choice">
+                <img src="ManyTerminalChoice.webp" alt="Pilihan Terminal">
                 <h3>Pilihan Terminal</h3>
             </a>
-
-            <a href="Shop-MyAffliate-homeEN.html" class="card card-center">
-                <img src="ShopAffliateSupportLogo.jpg" alt="Affiliate Support">
+            <a href="Shop-MyAffliate-homeMS.html" class="card card-center">
+                <img src="ShopAffliateSupportLogo.jpg" alt="Sokongan Afiliasi">
                 <h3>Sokongan Afiliasi</h3>
             </a>
         </div>
@@ -1207,47 +1210,42 @@ nav a:hover {
 
     <!-- E-LEARNING SECTION -->
     <section class="section">
-        <h2 style="font-size: clamp(18px, 2.5vw, 22px); margin-bottom: 15px;">Pelan E-Pembelajaran</h2>
-
+        <h2 style="margin-bottom: 15px;">Pelan E-Pembelajaran</h2>
         <div class="grid">
-            <!-- CARD 1: WEB SERVICE -->
-            <a href="Banner-WebSale-EN.html" class="card-bg-box" style="background-image: url('PreviewCodingWeb.jpg');">
+            <a href="Banner-WebSale-MS.html" class="card-bg-box" style="background-image: url('PreviewCodingWeb.jpg');">
                 <div class="card-overlay"></div>
                 <div class="card-content">
                     <h3><span class="blinking-blue-red">MULA SEKARANG!</span></h3>
-                    <p>
-                        Pelan E-Pembelajaran Reka Bentuk Web mengikut pembelian pakej web bermula RM299-RM345!<span class="blinking-blue-red">klik</span>
-                    </p>
+                    <p>Pelan E-Pembelajaran Reka Bentuk Web mengikut pembelian pakej web bermula RM299-RM345! <span class="blinking-blue-red">klik</span></p>
                 </div>
             </a>
-
-            <!-- CARD 2: CASHOUT PAYLATER -->
-            <a href="CashOutServicePayLater.html" class="card-bg-box" style="background-image: url('BNPLclick.webp');">
+            
+            <a href="CashOutServicePayLaterBMVersi.html" class="card-bg-box" style="background-image: url('BNPLclick.webp');">
                 <div class="card-overlay"></div>
                 <div class="card-content">
                     <h3>Perkhidmatan Kewangan Kecemasan+</h3>
-                    <p>Pencairan Paylater</p>
+                    <p>Tunai Paylater</p>
                 </div>
             </a>
         </div>
     </section>
-    
+
     <!-- BANNER SLIDER -->
     <section class="hero-slider-container">
         <div class="swiper myBannerSwiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <a href="https://referrals.rytbank.my/MCoA/gq8xkdot">
-                        <img src="Banner-RytSignUp-EN.png" alt="Ryt Register Invite">
+                        <img src="Banner-RytSignUp-EN.png" alt="Jemputan Daftar Ryt">
                     </a>
                 </div>
                 <div class="swiper-slide">
                     <a href="https://vpsmalaysia.com.my/system/aff.php?aff=2530">
-                        <img src="BannerADS-VPSmyr-EN.png" alt="Banner Ads VPSmalaysia">
+                        <img src="BannerADS-VPSmyr-EN.png" alt="Banner Iklan VPSmalaysia">
                     </a>
                 </div>
                 <div class="swiper-slide">
-                    <a href="Banner-WebSale-EN.html">
+                    <a href="Banner-WebSale-MS.html">
                         <img src="BannerWebSite.png" alt="Linux Terminal Codex">
                     </a>
                 </div>
@@ -1258,126 +1256,122 @@ nav a:hover {
         </div>
     </section>
 
-    <!-- BANNER BJAK -->
-    <div id="bjak" class="bjak-cyber-banner">
-      <div class="bjak-cyber-content">
-        <div style="width: 100%; text-align: center; margin: 25px 0;">
-          <a href="https://bjak.my/ref/mohamadslbr" target="_blank" rel="noopener noreferrer">
-            <img src="Bjak.png" alt="BJAK Promo Banner" style="width: 100%; max-width: 1200px; height: auto; border-radius: 12px; border: 1px solid #00F0FF; box-shadow: 0 0 15px rgba(0,240,255,0.3);">
-          </a>
+    <!-- BANNER BJAK SECTION -->
+    <section id="bjak" class="bjak-cyber-banner">
+        <div class="bjak-cyber-content">
+            <div style="width: 100%; text-align: center; margin: 15px 0;">
+                <a href="https://bjak.my/ref/mohamadslbr" target="_blank" rel="noopener noreferrer">
+                    <img src="Bjak.png" alt="BJAK Promo Banner" style="width: 100%; max-width: 1200px; height: auto; border-radius: 12px; border: 1px solid #00F0FF; box-shadow: 0 0 15px rgba(0,240,255,0.3);">
+                </a>
+            </div>
+            <span class="bjak-cyber-tag">Rakan Kongsi Rasmi</span>
+            <h2 class="bjak-cyber-title">RENEW INSURANS & CUKAI JALAN DENGAN <span>BJAK</span></h2>
+            <p class="bjak-cyber-desc">Bandingkan sebut harga percuma daripada 15+ syarikat insurans kereta & motosikal secara dalam talian dalam 5 minit.</p>
+            <div class="bjak-cyber-features">
+                <span class="bjak-feature-item">✓ 100% Online</span>
+                <span class="bjak-feature-item">✓ Diskaun Segera</span>
+                <span class="bjak-feature-item">✓ Penghantaran Roadtax</span>
+            </div>
+            <a href="https://bjak.my/ref/mohamadslbr" target="_blank" rel="noopener noreferrer" class="bjak-cyber-btn">
+                Dapatkan Sebut Harga ❯
+            </a>
         </div>
-
-        <span class="bjak-cyber-tag">Rakan Kongsi Rasmi</span>
-        <h2 class="bjak-cyber-title">PERBAHARUI INSURANS & ROADTAX DENGAN <span>BJAK</span></h2>
-        <p class="bjak-cyber-desc">Dapatkan sebut harga percuma daripada 15+ syarikat insurans kereta & motosikal secara dalam talian dalam masa 5 minit sahaja.</p>
-        
-        <div class="bjak-cyber-features">
-          <span class="bjak-feature-item">✓ 100% Dalam Talian</span>
-          <span class="bjak-feature-item">✓ Diskaun Serta-merta</span>
-          <span class="bjak-feature-item">✓ Penghantaran Roadtax</span>
+        <div class="bjak-cyber-badge">
+            <div class="bjak-reward-text">Gunakan Link Referral & Dapatkan</div>
+            <div class="bjak-reward-amount">RM25</div>
+            <div class="bjak-reward-text">Ganjaran / Rebat</div>
         </div>
-
-        <a href="https://bjak.my/ref/mohamadslbr" target="_blank" rel="noopener noreferrer" class="bjak-cyber-btn">
-          Dapatkan Sebut Harga Percuma ❯
-        </a>
-      </div>
-
-      <div class="bjak-cyber-badge">
-        <div class="bjak-reward-text">Gunakan Pautan Rujukan & Dapatkan</div>
-        <div class="bjak-reward-amount">RM25</div>
-        <div class="bjak-reward-text">Ganjaran / Pulangan Tunai</div>
-      </div>
-    </div>
+    </section>
 
     <!-- SCAMMER WARNING NOTICE -->
     <div class="notice-section">
         <div class="header-box">
-            <h2 class="header-text">WASPADA PENIPUAN SCAMMER!</h2>
+            <h2 class="header-text">WASAPADA AKTIVITI PENIPUAN</h2>
         </div>
-
+    
+        <!-- NOTIS PENIPUAN / FLICKER TEXT -->
         <div class="flicker-text">
             <p><strong>Sila ambil perhatian:</strong> Kami mengambil serius aktiviti penipuan. Pihak yang tidak bertanggungjawab mungkin cuba menyalahgunakan nama syarikat atau identiti pemilik <span class="company-name">KasuhaNET.STORE</span> untuk penipuan kewangan.</p>
-            <p><strong>NOTIS PENTING:</strong> Urus niaga perniagaan rasmi hanya dijalankan secara ketat melalui akaun bank berdaftar di bawah <span class="company-name">Kasuhanet Resources</span> dan <span class="company-name">KasuhaOculus Organisation</span> SAHAJA.</p>
-            <p>Kami tidak bertanggungjawab atas sebarang kerugian kewangan yang disebabkan oleh penipu pihak ketiga tanpa kebenaran.</p>
+            <p><strong>NOTIS PENTING:</strong> Transaksi perniagaan rasmi HANYA dijalankan secara eksklusif menerusi akaun bank berdaftar atas nama <span class="company-name">Kasuhanet Resources</span> dan <span class="company-name">KasuhaOculus Organisation</span> SAHAJA.</p>
+            <p>Kami tidak bertanggungjawab atas sebarang kerugian kewangan yang disebabkan oleh penipu pihak ketiga.</p>
         </div>
     </div>
-
+    
     <div class="grid">
         <div class="card card-center">
             <h2>PUSAT BACAAN</h2>
             <p class="subtitle">
-            <strong>Arahan Codex Terminal:</strong> Koleksi arahan persediaan kebergantungan dengan penaipan minimum untuk Linux, Penguin, dan pengurusan data web.
+            <strong>Arahan Terminal Codex:</strong> Koleksi arahan persediaan dependensi dengan penaipan minima untuk pengurusan data Linux, Penguin, dan web.
             </p>
-            <h3>🛠️ FUNGSI TAMBAHAN & SOKONGAN TEKNIKAL PELAYAN</h3>
-            <p><em>(PUSAT BACAAN & CODEX TERMINAL)</em></p>
-            <p>Bagi pelanggan yang memerlukan persekitaran web custom atau pengurusan perisian pada Pelayan VPS / Linux, KasuhaNET turut menyediakan skrip dan arahan persediaan terminal (Terminal Codex):</p>
-            <ul style="text-align: left;">
-                <li><strong>Persediaan Kebergantungan:</strong> Koleksi arahan terminal untuk memasang pakej perisian pada persekitaran Linux dan Penguin dengan penaipan minimum.</li>
-                <li><strong>Pengurusan Data Web:</strong> Pembersihan fail log, pengoptimuman pangkalan data, dan sandaran automatik.</li>
+            <h3>🛠️ FUNGSI TAMBAHAN & SOKONGAN TEKNIKAL SERVER</h3>
+            <p><em>(PUSAT BACAAN & TERMINAL CODEX)</em></p>
+            <p>Bagi klien yang memerlukan persekitaran web khas atau pengurusan perisian pada VPS / Pelayan Linux, KasuhaNET turut menyediakan skrip dan arahan persediaan terminal (Terminal Codex):</p>
+            <ul style="text-align: left;" class="feature-list">
+                <li><strong>Persediaan Kebergantungan (Dependency Setup):</strong> Koleksi arahan terminal untuk memasang pakej perisian pada persekitaran Linux dan Penguin dengan penaipan minima.</li>
+                <li><strong>Pengurusan Data Web:</strong> Pembersihan fail log, optimasi pangkalan data, dan sandaran (backup) automatik.</li>
             </ul>
             
-            <h3>📋 ALIRAN KERJA HUJUNG KE HUJUNG</h3>
-            <ul style="text-align: left;">
-                <li><strong>Pembelian Shopee:</strong> Pilih varian pakej pilihan anda (Landing Page / Premium) dan selesaikan pembayaran.</li>
-                <li><strong>Sesi Taklimat:</strong> Hubungi kami melalui Sembang Shopee. Kami akan menyediakan borang yang menyenaraikan butiran yang diperlukan (logo, kandungan teks, imej produk, pautan media sosial).</li>
+            <h3>📋 ALIRAN KERJA DARI MULA HINGGA SIAP</h3>
+            <ul style="text-align: left;" class="feature-list">
+                <li><strong>Pembelian di Shopee:</strong> Pilih variasi pakej yang anda inginkan (Landing Page / Premium) dan selesaikan pembayaran.</li>
+                <li><strong>Sesi Sembang / Taklimat:</strong> Hubungi kami melalui Sembang Shopee. Kami akan menyediakan borang yang menyenaraikan butiran yang diperlukan (logo, kandungan teks, gambar produk, pautan media sosial).</li>
                 <li><strong>Fasa Pembangunan & Reka Bentuk:</strong> Pasukan kami akan mula menyusun struktur kod, susun atur visual, dan integrasi sistem berdasarkan pakej pilihan anda.</li>
                 <li><strong>Semakan & Ujian Prestasi:</strong> Anda akan diberikan pautan pratonton untuk semakan. Ujian kelajuan skrin dan kebolehresponsifan mudah alih akan dijalankan.</li>
-                <li><strong>Peluncuran & Penyerahan Laman Web:</strong> Laman web disiarkan secara rasmi di bawah domain anda (seperti nama perniagaan anda atau kasuhanet.store). Kredensial akses pentadbir dan dokumentasi akan diserahkan kepada anda.</li>
+                <li><strong>Pelancaran & Penyerahan Laman Web:</strong> Laman web akan bersiaran secara rasmi di bawah domain anda (seperti nama perniagaan anda atau kasuhanet.store). Kredensial akses pentadbir (admin) dan dokumentasi akan diserahkan kepada anda.</li>
             </ul>
 
             <h3>⚠️ TERMA & SYARAT PERKHIDMATAN</h3>
-            <ul style="text-align: left;">
-                <li><strong>Domain & Hosting:</strong> Kos pakej tertakluk kepada persetujuan untuk menggunakan persediaan domain/hosting sedia ada atau membina persediaan baharu.</li>
-                <li><strong>Kandungan:</strong> Bahan teks dan imej mesti disediakan oleh pembeli (bantuan penyusunan semula teks boleh disediakan atas permintaan).</li>
-                <li><strong>Sokongan Purna Jual:</strong> Sokongan teknikal asas percuma disediakan selama 30 hari selepas penyerahan projek.</li>
+            <ul style="text-align: left;" class="feature-list">
+                <li><strong>Domain & Hosting:</strong> Kos pakej tertakluk kepada persetujuan untuk menggunakan persediaan domain/hosting sedia ada atau mewujudkan yang baharu.</li>
+                <li><strong>Kandungan:</strong> Bahan teks dan gambar mesti disediakan oleh pembeli (bantuan penyusunan semula teks boleh disediakan atas permintaan).</li>
+                <li><strong>Sokongan Selepas Jualan:</strong> Sokongan teknikal asas percuma disediakan selama 30 hari selepas projek diserahkan.</li>
             </ul>
         </div>
     </div>
 
     <!-- MINI DEKO SECTION -->
     <div class="mini-deko-section">
-        <img src="KasuhaKZintroEN.png" alt="Pengenalan Kasuha Zukarnain" class="mini-deko-img">
+        <img src="KasuhaKZintro.png" alt="Pengenalan Kasuha Zukarnain" class="mini-deko-img">
     </div>
 
     <!-- TRUST BANNER CONTAINER -->
     <div class="trust-banner-container">
         <img src="broadcast.png" alt="Teknologi & Pembayaran Disokong KasuhaNET" class="trust-banner-img" />
     </div>
-
 </main>
-
+        
 <!-- BOXED CYBER FOOTER -->
 <footer class="footer">
     <div class="footer-grid">
         <div>
             <h3>KasuhaNET.STORE</h3>
-            <p>Ekosistem digital pelbagai perkhidmatan yang berfokus pada penyelesaian Linux, sistem afiliasi, penjanaan pendapatan, dan e-pembelajaran digital.</p>
+            <p>Ekosistem digital pelbagai perkhidmatan yang berfokus pada penyelesaian Linux, sistem afiliasi, penjanaan pendapatan, dan pembelajaran digital.</p>
         </div>
 
         <div class="footer-links">
             <h4>Perkhidmatan</h4>
             <a href="CommandCanDoLIST.html">CommandCanDo</a>
-            <a href="Shop-MyAffliate-homeEN.html">MyAffiliate</a>
-            <a href="CashOutServicePayLater.html">PayLater BNPL</a>
+            <a href="Shop-MyAffliate-homeMS.html">MyAffiliate</a>
+            <a href="CashOutServicePayLaterBMVersi.html">PayLater BNPL</a>
         </div>
 
         <div class="footer-links">
             <h4>Sumber</h4>
-            <a href="About-Us.html">Tentang Kami</a>
-            <a href="support-centre.html">Sokongan</a>
-            <a href="terms-EN.html">Terma & Polisi</a>
+            <a href="Tentang-Kami.html">Tentang Kami</a>
+            <a href="pusat-bantuan.html">Pusat Bantuan</a>
+            <a href="terms-MS.html">Terma & Polisi</a>
         </div>
 
         <div class="footer-links">
             <h4>Ikuti Kami</h4>
-            <a href="https://www.facebook.com/share/1BfeDZJqjP/" target="_blank">Facebook</a>
-            <a href="https://tiktok.com/@kasuhanet.store" target="_blank">TikTok</a>
-            <a href="https://t.me/kasuhanetstorebot" target="_blank">Telegram</a>
+            <a href="https://www.facebook.com/share/1BfeDZJqjP/" target="_blank" rel="noopener noreferrer">Facebook</a>
+            <a href="https://tiktok.com/@kasuhanet.store" target="_blank" rel="noopener noreferrer">TikTok</a>
+            <a href="https://t.me/kasuhanetstorebot" target="_blank" rel="noopener noreferrer">Telegram</a>
         </div>
     </div>
 
     <div class="footer-bottom">
-        © 2026 KasuhaNET Resources (202503248308). Hak Cipta Terelihara.
+        © 2026 KasuhaNET Resources (202503248308). Hak Cipta Terpelihara.
     </div>
 </footer>
 
@@ -1397,8 +1391,7 @@ nav a:hover {
     z-index:999999;
     box-shadow:0 5px 20px rgba(0,0,0,.25);
    "
-   target="_blank"
-   aria-label="Hubungi kami di WhatsApp">
+   target="_blank" rel="noopener noreferrer">
    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="white">
      <path d="M19.11 17.53c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.28-.73.9-.9 1.09-.17.19-.33.21-.61.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.66-1.55-1.94-.17-.28-.02-.43.12-.57.13-.13.28-.33.42-.50.14-.17.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.64-1.55-.88-2.12-.23-.56-.47-.48-.64-.49h-.55c-.19 0-.49.07-.74.35-.25.28-.95.93-.95 2.26s.97 2.62 1.11 2.8c.14.19 1.9 2.9 4.6 4.07.64.28 1.14.45 1.53.57.64.2 1.22.17 1.68.1.51-.08 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.12-.26-.19-.54-.33z"/>
      <path d="M16 3C9.37 3 4 8.37 4 15c0 2.31.66 4.47 1.8 6.32L4 29l7.9-1.75C13.64 28.55 14.78 29 16 29c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 22c-1.1 0-2.16-.2-3.14-.57l-.45-.17-4.69 1.04 1-4.57-.3-.47C7.39 18.35 7 16.72 7 15c0-4.96 4.04-9 9-9s9 4.04 9 9-4.04 10-9 10z"/>
