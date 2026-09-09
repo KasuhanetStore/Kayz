@@ -160,7 +160,7 @@ nav a:hover, nav a.active {
     filter: drop-shadow(0 0 2px #00F0FF);
 }
 
-/* MAIN FLEX GROW UNTUK MENOLAK FOOTER KE KAKI SKRIN */
+/* MAIN FLEX GROW UNTUK MENOLAK FOOTER KE KAKI SKRIN & CENTER KANDUNGAN */
 main {
     flex: 1 0 auto;
     max-width: 1200px;
@@ -170,6 +170,13 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* MEMASTIKAN KANDUNGAN DITENGAH-TENGAH MENDATAR & MENEGAK */
+}
+
+.hero-section {
+    width: 100%;
+    max-width: 850px;
+    margin-bottom: 20px;
 }
 
 .terms-container {
@@ -401,12 +408,15 @@ ul li {
     </div>
 </div>
 
-        <!-- MAIN TITLE SECTION -->
+<!-- ISI TERMA & POLISI (DITENGAHKAN PENUH DALAM MAIN) -->
+<main>
+
+    <!-- MAIN TITLE SECTION -->
     <section class="hero-section">
         <h1 class="neon-title" style="text-align: center;">Kasuha<span>NET.STORE</span></h1>
         
         <div class="typing-box" style="text-align: center;">
-            <h2 style="font-size: 18px; margin: 10px 0; color:#4F31E8; text-align: center;">
+            <h2 style="font-size: 18px; margin: 10px 0; color:#4F31E8; text-align: center; border:none; padding:0;">
                 <span style="color:#4F31E8; text-shadow:0 0 20px #E600A4;">KasuhaNET •</span>
                 <span style="color:#E600A4; text-shadow:0 0 20px #E600A4;">Platform Kedai Digital</span>
             </h2>
@@ -417,56 +427,58 @@ ul li {
         </div>
     </section>
 
-<!-- ISI TERMA & POLISI -->
-<main>
-
-  <div class="terms-container">
-
-    <h1 class="neon-title-terms">TERMA <span>POLISI</span></h1>
-    <p style="text-align:center; font-size:12px; color:#666;">Kemaskini Terakhir: Jun 2026</p>
-
-    <!-- SECTION 1 -->
-    <h2>1. Terma & Syarat</h2>
-    <p>
-      Selamat datang ke KasuhaNET.STORE. Dengan mengakses dan menggunakan laman web ini, anda bersetuju untuk mematuhi dan terikat dengan terma dan syarat berikut. Jika anda tidak bersetuju dengan mana-mana bahagian terma ini, sila hentikan penggunaan laman web ini serta-merta.
-    </p>
-
-    <h3>Tanggungjawab Pengguna & Penggunaan Yang Dibenarkan</h3>
-    <ul>
-      <li>Anda bersetuju untuk tidak menggunakan laman web ini untuk sebarang tujuan yang menyalahi undang-undang, tidak sah, atau berunsur penipuan.</li>
-      <li>Sebarang percubaan untuk mengganggu, menggodam, merekayasa semula (reverse-engineer), atau menjejaskan keselamatan laman web atau rangkaian adalah dilarang sama sekali.</li>
-      <li>Semua hak cipta intelektual, kod sumber, dan grafik adalah milik Kasuhanet Resources dan tidak boleh ditiru tanpa kebenaran.</li>
-    </ul>
-
-    <h3>Had Liabiliti</h3>
-    <p>
-      KasuhaNET.STORE dan Kasuhanet Resources menyediakan perkhidmatan atas dasar 'seperti adanya' (as-is). Kami tidak bertanggungjawab atas sebarang kerugian kewangan, kerosakan, atau gangguan sistem yang timbul daripada penggunaan platform kami.
-    </p>
-
-    <!-- SECTION 2 -->
-    <h2>2. Polisi Privasi (PDPA)</h2>
-    <p>
-      Kami menghormati privasi anda dan mematuhi Akta Perlindungan Data Peribadi 2010 (PDPA) Malaysia.
-    </p>
-
-    <h3>Pengumpulan & Penggunaan Data</h3>
-    <ul>
-      <li>Kami mungkin mengumpul data peribadi seperti nama, alamat e-mel, dan rekod transaksi anda semasa pembelian atau pendaftaran.</li>
-      <li>Data anda digunakan secara khusus untuk pemprosesan pesanan, penyediaan sokongan teknikal, dan penambahbaikan perkhidmatan kami.</li>
-      <li>Kami tidak akan menjual, menyewa, atau memajakkan data peribadi anda kepada mana-mana pihak ketiga.</li>
-    </ul>
-
-    <!-- SECTION 3 -->
-    <h2>3. Undang-Undang Pengawal & Akses Antarabangsa</h2>
-    <p>
-      Terma-terma ini ditadbir dan ditafsirkan mengikut undang-undang Malaysia. Bagi pengguna antarabangsa yang mengakses platform ini dari luar Malaysia, anda bertanggungjawab sepenuhnya untuk mematuhi semua undang-undang digital tempatan, rantau, dan antarabangsa, peraturan privasi (termasuk GDPR atau yang setara), serta polisi pemindahan data merentasi sempadan. Sebarang pertikaian undang-undang adalah tertakluk kepada bidang kuasa eksklusif mahkamah di Malaysia.
-    </p>
-
-    <div class="back-link-box">
-      <a href="homepage-MS.html">← KEMBALI KE MENU UTAMA</a>
+    <!-- BUTTON NAVIGASI ATAS TERMA -->
+    <div class="top-nav-back">
+        <a href="homepage-MS.html">← Kembali ke Menu Utama</a>
     </div>
 
-  </div>
+    <div class="terms-container">
+
+        <h1 class="neon-title-terms">TERMA <span>POLISI</span></h1>
+        <p style="text-align:center; font-size:12px; color:#666;">Kemaskini Terakhir: Jun 2026</p>
+
+        <!-- SECTION 1 -->
+        <h2>1. Terma & Syarat</h2>
+        <p>
+            Selamat datang ke KasuhaNET.STORE. Dengan mengakses dan menggunakan laman web ini, anda bersetuju untuk mematuhi dan terikat dengan terma dan syarat berikut. Jika anda tidak bersetuju dengan mana-mana bahagian terma ini, sila hentikan penggunaan laman web ini serta-merta.
+        </p>
+
+        <h3>Tanggungjawab Pengguna & Penggunaan Yang Dibenarkan</h3>
+        <ul>
+            <li>Anda bersetuju untuk tidak menggunakan laman web ini untuk sebarang tujuan yang menyalahi undang-undang, tidak sah, atau berunsur penipuan.</li>
+            <li>Sebarang percubaan untuk mengganggu, menggodam, merekayasa semula (reverse-engineer), atau menjejaskan keselamatan laman web atau rangkaian adalah dilarang sama sekali.</li>
+            <li>Semua hak cipta intelektual, kod sumber, dan grafik adalah milik Kasuhanet Resources dan tidak boleh ditiru tanpa kebenaran.</li>
+        </ul>
+
+        <h3>Had Liabiliti</h3>
+        <p>
+            KasuhaNET.STORE dan Kasuhanet Resources menyediakan perkhidmatan atas dasar 'seperti adanya' (as-is). Kami tidak bertanggungjawab atas sebarang kerugian kewangan, kerosakan, atau gangguan sistem yang timbul daripada penggunaan platform kami.
+        </p>
+
+        <!-- SECTION 2 -->
+        <h2>2. Polisi Privasi (PDPA)</h2>
+        <p>
+            Kami menghormati privasi anda dan mematuhi Akta Perlindungan Data Peribadi 2010 (PDPA) Malaysia.
+        </p>
+
+        <h3>Pengumpulan & Penggunaan Data</h3>
+        <ul>
+            <li>Kami mungkin mengumpul data peribadi seperti nama, alamat e-mel, dan rekod transaksi anda semasa pembelian atau pendaftaran.</li>
+            <li>Data anda digunakan secara khusus untuk pemprosesan pesanan, penyediaan sokongan teknikal, dan penambahbaikan perkhidmatan kami.</li>
+            <li>Kami tidak akan menjual, menyewa, atau memajakkan data peribadi anda kepada mana-mana pihak ketiga.</li>
+        </ul>
+
+        <!-- SECTION 3 -->
+        <h2>3. Undang-Undang Pengawal & Akses Antarabangsa</h2>
+        <p>
+            Terma-terma ini ditadbir dan ditafsirkan mengikut undang-undang Malaysia. Bagi pengguna antarabangsa yang mengakses platform ini dari luar Malaysia, anda bertanggungjawab sepenuhnya untuk mematuhi semua undang-undang digital tempatan, rantau, dan antarabangsa, peraturan privasi (termasuk GDPR atau yang setara), serta polisi pemindahan data merentasi sempadan. Sebarang pertikaian undang-undang adalah tertakluk kepada bidang kuasa eksklusif mahkamah di Malaysia.
+        </p>
+
+        <div class="back-link-box">
+            <a href="homepage-MS.html">← KEMBALI KE MENU UTAMA</a>
+        </div>
+
+    </div>
 </main>
 
 <!-- BOXED CYBER FOOTER (RAPAT DI DASAR SKRIN) -->
