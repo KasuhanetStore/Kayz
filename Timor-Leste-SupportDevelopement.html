@@ -19,7 +19,7 @@
             background-color: var(--light-bg);
         }
 
-        /* Top Header Bar (Brand Identity & Language Switcher) */
+        /* Top Header Bar */
         .top-header {
             background-color: #061729;
             padding: 12px 20px;
@@ -77,6 +77,30 @@
             display: inline-block;
         }
         
+        /* Mission Section Style */
+        .mission-box {
+            background: #ffffff;
+            border-left: 5px solid var(--accent-red);
+            padding: 25px 30px;
+            margin: 30px auto;
+            max-width: 840px;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            text-align: justify;
+        }
+        .mission-box h3 {
+            margin-top: 0;
+            color: var(--primary-blue);
+            font-size: 1.3rem;
+            text-align: left;
+        }
+        .mission-box p {
+            line-height: 1.7;
+            margin-bottom: 0;
+            color: #333;
+            font-size: 0.98rem;
+        }
+
         .container {
             max-width: 900px;
             margin: 40px auto;
@@ -103,9 +127,10 @@
             border-radius: 8px;
             border-top: 4px solid var(--primary-blue);
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
         }
         
-        /* Footer & Developer Credits */
+        /* Footer */
         .footer {
             background-color: var(--primary-blue);
             color: var(--pure-white);
@@ -145,6 +170,16 @@
         <a href="https://wa.me/your-number" class="btn-red" id="hero-btn">Ko'alia Kona-ba Demo Ne'e iha WhatsApp</a>
     </div>
 
+    <!-- Section Misi & Tujuan (Panjang ~200-250 Patah Perkataan) -->
+    <div class="container">
+        <div class="mission-box">
+            <h3 id="mission-title">Misaun Ami: Hamutuk Apoiu Pertumbuhan Negósiu Lokal</h3>
+            <p id="mission-desc">
+                Plataforma ne'e kria ho objetivu klaru hodi apoia no hametin negósiu sira iha Timor-Leste. Ami mai ho fiar katak empreza lokal sira iha potensi boot atu buras iha era dijital, liu-liu iha tempu ne'ebé Timor-Leste preparu an atu sai membru plenáriu ASEAN nian. Ho mudansa ekonomia rejionál ne'e, ami hakarak ajuda negósiu sira iha ne'e atu matenek no prontu atu kompete ho merkadu internasionál. Kasuhanet Resources hadir hodi fornese solusaun teknolójika ne'ebé kmaan no ho folin ne'ebé razoável, liu husi dezenvolvimentu Landing Page modernu no mós modúl edukasaun dijital (E-book) hodi tulun ita-boot sira komprende estratéjia pemasaran online. Ami fiar katak ho apoiu mutuu no hanoin ne'ebé nakloke, ita bele hamutuk hodi haburas ekonomia lokal no lori produtu no servisu Timor-Leste ba nivel ne'ebé altu liu.
+            </p>
+        </div>
+    </div>
+
     <!-- Content Section -->
     <div class="container" style="text-align: center;">
         <h2 class="section-title" id="sec-title">Funsaun Oioin Iha Plataforma Ida De'it</h2>
@@ -164,14 +199,14 @@
         </div>
     </div>
 
-    <!-- Footer dengan Pengesahan Diri & Jenama -->
+    <!-- Footer -->
     <div class="footer">
-        <h3>Kasuha Zukarnain — Web Developer</h3>
+        <h3>Syafiq — Web Developer</h3>
         <p id="footer-desc">Hahú hametin ita-boot nia negósiu iha mundu dijital ohin loron.</p>
-        <a href="https://wa.me/60167390501" class="btn-red" id="footer-btn">Konta K'utuk iha WhatsApp</a>p
+        <a href="https://wa.me/your-number" class="btn-red" id="footer-btn">Konta K'utuk iha WhatsApp</a>
         
         <div class="copyright">
-            <p id="credit-text">Desenvolvidu no jere husi <strong>Kasuhanet Resources</strong> | Pemasaran & Pembangunan Digital</p>
+            <p id="credit-text">Desenvolvidu no jere husi <strong>Kasuhanet Resources</strong> | Solusaun Dijital & Web Developer</p>
         </div>
     </div>
 
@@ -182,6 +217,8 @@
                 heroTitle: "Transformasaun Dijital ba Negósiu Iha Timor-Leste",
                 heroDesc: "Website ne'ebé lalais, kmaan, no fasil atu uza ba negósiu lokal. Siap integrasi ho sistema selu lokal.",
                 heroBtn: "Ko'alia Kona-ba Demo Ne'e iha WhatsApp",
+                missionTitle: "Misaun Ami: Hamutuk Apoiu Pertumbuhan Negósiu Lokal",
+                missionDesc: "Plataforma ne'e kria ho objetivu klaru hodi apoia no hametin negósiu sira iha Timor-Leste. Ami mai ho fiar katak empreza lokal sira iha potensi boot atu buras iha era dijital, liu-liu iha tempu ne'ebé Timor-Leste preparu an atu sai membru plenáriu ASEAN nian. Ho mudansa ekonomia rejionál ne'e, ami hakarak ajuda negósiu sira iha ne'e atu matenek no prontu atu kompete ho merkadu internasionál. Kasuhanet Resources hadir hodi fornese solusaun teknolójika ne'ebé kmaan no ho folin ne'ebé razoável, liu husi dezenvolvimentu Landing Page modernu no mós modúl edukasaun dijital (E-book) hodi tulun ita-boot sira komprende estratéjia pemasaran online. Ami fiar katak ho apoiu mutuu no hanoin ne'ebé nakloke, ita bele hamutuk hodi haburas ekonomia lokal no lori produtu no servisu Timor-Leste ba nivel ne'ebé altu liu.",
                 secTitle: "Funsaun Oioin Iha Plataforma Ida De'it",
                 card1Title: "Lojing Online (E-Commerce)",
                 card1Desc: "Fasilita kliente hodi hili produtu no halo pagamentu diretu no seguru.",
@@ -197,6 +234,8 @@
                 heroTitle: "Transformasi Digital Bisnis di Timor-Leste",
                 heroDesc: "Website cepat, ringan, dan mudah digunakan untuk bisnis lokal. Siap diintegrasikan dengan sistem pembayaran lokal.",
                 heroBtn: "Diskusikan Demo Ini di WhatsApp",
+                missionTitle: "Misi Kami: Bersama Membantu Pertumbuhan Bisnis Lokal",
+                missionDesc: "Platform ini diwujudkan dengan tujuan jelas untuk memberikan dukungan penuh bagi para pelaku usaha di Timor-Leste. Kami hadir membawa keyakinan bahwa bisnis lokal memiliki potensi luar biasa untuk berkembang di era digital, terutama dalam menyambut langkah bersejarah Timor-Leste menjadi anggota penuh ASEAN. Seiring keterbukaan ekonomi regional ini, kami ingin membantu para wirausahawan agar lebih siap bersaing dan memanfaatkan peluang pasar yang lebih luas. Kasuhanet Resources hadir menyediakan solusi teknologi yang terjangkau dan praktis, mulai dari pembuatan Landing Page profesional hingga penyediaan panduan edukasi digital (E-book) untuk menguasai strategi pemasaran online. Kami percaya bahwa dengan semangat saling mendukung dan keterbukaan pikiran, kita dapat bersama-sama memperkuat ekonomi lokal serta membawa produk dan layanan Timor-Leste ke tingkat yang lebih tinggi.",
                 secTitle: "Beragam Fungsi Dalam Satu Platform",
                 card1Title: "Toko Online (E-Commerce)",
                 card1Desc: "Memudahkan pelanggan memilih produk dan melakukan pembayaran secara langsung dan aman.",
@@ -212,6 +251,8 @@
                 heroTitle: "Digital Business Transformation in Timor-Leste",
                 heroDesc: "Fast, lightweight, and easy-to-use websites for local businesses. Ready for local payment integrations.",
                 heroBtn: "Discuss This Demo on WhatsApp",
+                missionTitle: "Our Mission: Empowering Local Economic Growth Together",
+                missionDesc: "This platform was established with a clear objective: to support and empower local entrepreneurs across Timor-Leste. We firmly believe that local businesses possess immense potential to thrive in the digital era, especially as Timor-Leste prepares to become a full member of ASEAN. With this regional economic integration on the horizon, our goal is to equip local businesses with the digital tools needed to remain competitive in a wider market. Kasuhanet Resources provides accessible and cost-effective technological solutions, ranging from high-converting Landing Pages to practical digital learning modules (E-books) focused on online marketing strategies. We believe that through mutual collaboration and an open-minded approach, we can collectively strengthen the local economy and elevate Timor-Leste's products and services to new heights.",
                 secTitle: "Multiple Features in One Platform",
                 card1Title: "Online Store (E-Commerce)",
                 card1Desc: "Allows customers to browse products and make direct, secure payments.",
@@ -229,6 +270,10 @@
             document.getElementById('hero-title').innerText = content[lang].heroTitle;
             document.getElementById('hero-desc').innerText = content[lang].heroDesc;
             document.getElementById('hero-btn').innerText = content[lang].heroBtn;
+            
+            document.getElementById('mission-title').innerText = content[lang].missionTitle;
+            document.getElementById('mission-desc').innerText = content[lang].missionDesc;
+
             document.getElementById('sec-title').innerText = content[lang].secTitle;
             
             document.getElementById('card1-title').innerText = content[lang].card1Title;
