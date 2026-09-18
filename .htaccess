@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^kasuhanet\.store$ [NC]
+# Pastikan RewriteRule mengarah ke fail/folder asal, bukan menggandakan domain
