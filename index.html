@@ -51,9 +51,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="googlebot" content="index, follow">
 
-<!-- CSS UTAMA -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- CSS UTAMA & FONT AWESOME -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="css/main.css">
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -66,23 +67,6 @@
 </script>
   
 <style>
-  .social-icons {
-    display: flex;
-    gap: 15px;
-    margin-top: 10px;
-}
-
-.social-icons a {
-    color: #ff85a1;
-    font-size: 24px;
-    transition: 0.3s;
-}
-
-.social-icons a:hover {
-    color: #d63384;
-    transform: scale(1.2);
-}
-  
 /* GLOBAL CYBER FONT & RESET */
 * {
     font-family: 'Orbitron', sans-serif !important;
@@ -118,11 +102,39 @@ header {
     gap: 15px;
 }
 
+nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 nav a {
     color: #fff;
     text-decoration: none;
-    margin: 0 10px;
     font-size: 13px;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #00F0FF;
+}
+
+/* SOCIAL ICONS STYLES */
+.social-icons-wrapper {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icons-wrapper a {
+    color: #ff85a1;
+    font-size: 22px;
+    transition: 0.3s ease;
+}
+
+.social-icons-wrapper a:hover {
+    color: #00F0FF;
+    transform: scale(1.2);
 }
 
 /* BUTTON LANGUAGE TOGGLE */
@@ -158,6 +170,44 @@ nav a {
 
 .lang button:hover:not(.active) {
     color: #00F0FF;
+}
+
+/* DROPDOWN MENU (CYBERPUNK THEME) */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #090d16;
+    min-width: 220px;
+    box-shadow: 0 8px 20px rgba(0, 240, 255, 0.25);
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1001;
+    border: 1px solid rgba(0, 240, 255, 0.4);
+}
+
+.dropdown-content a {
+    color: #8fa0dd;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 12px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(79, 49, 232, 0.3);
+    color: #00F0FF;
+}
+
+.dropdown:hover .dropdown-content, .dropdown-content.show {
+    display: block;
 }
 
 /* GRID LAYOUT FOR MAIN CARDS */
@@ -979,48 +1029,6 @@ nav a {
     font-size: 0.9em;
     margin-left: 5px;
 }
-  /* Dropdown Container */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-/* Dropdown Menu (Pilihan Memanjang ke Bawah) */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #ffffff;
-    min-width: 200px;
-    box-shadow: 0 8px 20px rgba(214, 51, 132, 0.2);
-    border-radius: 12px;
-    overflow: hidden;
-    z-index: 1001;
-    border: 1px solid #ffe3ec;
-}
-
-/* Item dalam Dropdown */
-.dropdown-content a {
-    color: #4a3e3e;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    font-size: 14px;
-    transition: background 0.3s, color 0.3s;
-}
-
-/* Effect Hover pada Item Dropdown */
-.dropdown-content a:hover {
-    background-color: #ffe3ec;
-    color: #d63384;
-}
-
-/* Tunjukkan Dropdown bila Tetikus lalui (Hover) atau apabila kelas 'show' ditambah */
-.dropdown:hover .dropdown-content, .dropdown-content.show {
-    display: block;
-}
-  
 </style>
 </head>
 
@@ -1036,14 +1044,14 @@ nav a {
 
     <div class="header-right">
         <nav>
-          <!-- Butang Services dengan Dropdown -->
-    <li class="dropdown">
-        <a href="javascript:void(0)" onclick="toggleDropdown()">Oversea▾</a>
-        <div class="dropdown-content" id="servicesDropdown">
-          <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">RWANDA (Africa)</a>
-            <a href="https://kasuhanet.store/Timor-Leste-SupportDevelopement.html">TIMOR LESTE (Asia)</a>
-        </div>
-    </li>
+            <!-- Dropdown Menu Oversea -->
+            <div class="dropdown">
+                <a href="javascript:void(0)" onclick="toggleDropdown()">Oversea ▾</a>
+                <div class="dropdown-content" id="servicesDropdown">
+                    <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">RWANDA (Africa)</a>
+                    <a href="https://kasuhanet.store/Timor-Leste-SupportDevelopement.html">TIMOR LESTE (Asia)</a>
+                </div>
+            </div>
             <a href="index.html">HOME</a>
             <a href="About-Us.html">ABOUT US</a>
             <a href="terms-EN.html">TERMS & POLICY</a>
@@ -1090,30 +1098,29 @@ nav a {
         </div>
     </section>
 
-  <section class="section">  
-    <div class="grid">
-    <div class="card card-center">
-      <h3>ANNOUNCEMENT-PLANNED ADDITION OF SERVICE+ TO KASUHANET.STORE <strong>9/9/2026</strong></h3>
-      <P>
-        <ul class="feature-list" style="text-align: left;">
-        <strong>For the Information of Kasuhanet Customers & Visitors Kasuhanet</strong> planning the introduction of Service+, Scope of services and business opportunities offered through the Kasuhanet.store platform.
-Service Providers, depending on relevant field and customer requirements.</p>
-<p>🔹 1. <strong>TAKAFUL & INSURANCE</strong></p>
-<p>🔹 2. <strong>PROPERTY CONSULTANCY / REAL ESTATE</strong></p>
-<p>🔹 3. <strong>EMPLOYMENT AGENCY SERVICES</strong></p>
-<p>🔹 4. <strong>DIY CUSTOM ELECTRONIC DESIGN</strong></p>
-<p>🔹 5. <strong>PRIVATE DELIVERY RIDER-</strong></P>
-      <p>
-        SERVICE+ DIRECTION-
-The introduction of Servis+ is part of Kasuhanet's plan to develop a broader service ecosystem — .
-New services and developments will be announced from time to time through Kasuhanet.store.
-Thank you for your continued support and trust in Kasuhanet.
-      </p>
-    </div>
-    </div>
-  </section>
+    <!-- ANNOUNCEMENT SECTION -->
+    <section class="section">  
+        <div class="grid">
+            <div class="card card-center">
+                <h3>ANNOUNCEMENT-PLANNED ADDITION OF SERVICE+ TO KASUHANET.STORE <strong>9/9/2026</strong></h3>
+                <p style="text-align: left; margin-bottom: 10px;">
+                    <strong>For the Information of Kasuhanet Customers & Visitors:</strong> Kasuhanet planning the introduction of Service+, Scope of services and business opportunities offered through the Kasuhanet.store platform. Service Providers, depending on relevant field and customer requirements.
+                </p>
+                <div style="text-align: left; font-size: 13px;">
+                    <p>🔹 1. <strong>TAKAFUL & INSURANCE</strong></p>
+                    <p>🔹 2. <strong>PROPERTY CONSULTANCY / REAL ESTATE</strong></p>
+                    <p>🔹 3. <strong>EMPLOYMENT AGENCY SERVICES</strong></p>
+                    <p>🔹 4. <strong>DIY CUSTOM ELECTRONIC DESIGN</strong></p>
+                    <p>🔹 5. <strong>PRIVATE DELIVERY RIDER</strong></p>
+                </div>
+                <p style="text-align: left; margin-top: 10px;">
+                    <strong>SERVICE+ DIRECTION:</strong> The introduction of Servis+ is part of Kasuhanet's plan to develop a broader service ecosystem. New services and developments will be announced from time to time through Kasuhanet.store. Thank you for your continued support and trust in Kasuhanet.
+                </p>
+            </div>
+        </div>
+    </section>
   
-  <div class="grid">
+    <div class="grid">
         <div class="card card-center">
             <h2>🌐 PROLOG WEB DEVELOPMENT & DIGITAL INFRASTRUCTURE SERVICES - KASUHANET.STORE</h2>
             <p>
@@ -1451,13 +1458,14 @@ Thank you for your continued support and trust in Kasuhanet.
             <a href="terms-EN.html">Terms & Policy</a>
         </div>
 
-      <li class="social-icons">
-        <h4>Follow Us</h4>
-        <a href="https://www.facebook.com/share/1BfeDZJqjP/" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-        <a href="https://tiktok.com/@kasuhanet.store" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="https://t.me/kasuhanetstorebot" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
-    </li>
-    </ul>
+        <div class="footer-links">
+            <h4>Follow Us</h4>
+            <div class="social-icons-wrapper">
+                <a href="https://www.facebook.com/share/1BfeDZJqjP/" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://tiktok.com/@kasuhanet.store" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://t.me/kasuhanetstorebot" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+            </div>
+        </div>
     </div>
 
     <div class="footer-bottom">
@@ -1492,14 +1500,14 @@ Thank you for your continued support and trust in Kasuhanet.
 <!-- SWIPER JS LIBRARY -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-<!-- INITIALIZATION SCRIPT FOR SWIPER SLIDER -->
+<!-- INITIALIZATION SCRIPT FOR SWIPER SLIDER & DROPDOWN -->
 <script>
   function toggleDropdown() {
     document.getElementById("servicesDropdown").classList.toggle("show");
-}
+  }
 
-// Tutup dropdown jika pengguna menekan di luar menu
-window.addEventListener('click', function(e) {
+  // Tutup dropdown jika pengguna menekan di luar menu
+  window.addEventListener('click', function(e) {
     if (!e.target.matches('.dropdown a')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
         for (var i = 0; i < dropdowns.length; i++) {
@@ -1509,7 +1517,7 @@ window.addEventListener('click', function(e) {
             }
         }
     }
-});
+  });
   
   const swiper = new Swiper(".myBannerSwiper", {
     loop: true,
