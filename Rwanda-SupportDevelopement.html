@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="kin" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- SEO Asas & Kebolehcapaian Carian -->
+    <title id="meta-title">KasuhaNET & Rwanda - Digital Business Growth Solutions</title>
+    <meta name="description" id="meta-desc" content="Developer & Digital Technical Business Solution official support for Rwanda businesses. E-commerce services, product catalogs, and fast mobile-friendly websites.">
+    <meta name="keywords" content="KasuhaNET Rwanda Web Developer, Rwanda, Website Development, E-Commerce Kigali, Digital Business Solutions, Kasuha Zukarnain, Economic Support, East Africa, Low Cost Website">
+    <meta name="author" content="Kasuhanet Resources">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://kasuhanet.store/">
+
+    <!-- Geo-Targeting / Wilayah Sasaran (Kigali, Rwanda) -->
+    <meta name="geo.region" content="RW-01">
+    <meta name="geo.placename" content="Kigali">
+    <meta name="geo.position" content="-1.944072;30.061885">
+    <meta name="ICBM" content="-1.944072, 30.061885">
+
+    <!-- Open Graph / Meta Preview -->
+    <meta property="og:locale" content="rw_RW">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:type" content="website">
+    <meta property="og:title" id="og-title" content="KasuhaNET | Developer & Digital Technical Business Solution - Rwanda">
+    <meta property="og:description" id="og-desc" content="Urubuga rwihuse, rworoshye, no kumenyera gukoresha kubucuruzi bwo mu Rwanda.">
+    <meta property="og:url" content="https://kasuhanet.store/">
+    <meta property="og:site_name" content="Rwanda - Dev.Technical | Economy Support">
+    <meta property="og:image" content="https://kasuhanet.store/assets/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Kasuhanet Resources Digital Banner">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" id="tw-title" content="KasuhaNET | Technical Business Rwanda">
+    <meta name="twitter:description" id="tw-desc" content="Urubuga rwihuse, rworoshye, no kumenyera gukoresha kubucuruzi bwo mu Rwanda.">
+    <meta name="twitter:image" content="https://kasuhanet.store/assets/og-image.jpg">
+
+    <!-- Favicon & PWA Theme Color -->
+    <meta name="theme-color" content="#061729">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+    <!-- Font Optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Kasuhanet Resources",
+      "image": "https://kasuhanet.store/assets/og-image.jpg",
+      "@id": "https://kasuhanet.store/#organization",
+      "url": "https://kasuhanet.store/",
+      "telephone": "+60167390501",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "RW"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -1.944072,
+        "longitude": 30.061885
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "08:00",
+        "closes": "22:00"
+      },
+      "sameAs": [
+        "https://wa.me/60167390501"
+      ],
+      "areaServed": [
+        "Rwanda",
+        "Malaysia"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Digital & Web Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Online Store / E-Commerce Website"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Product Catalog & Landing Page"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "System Development & VPS Hosting"
+            }
+          }
+        ]
+      }
+    }
+    </script>
+    
+    <style>
+        :root {
+            --primary-blue: #0A2540;
+            --header-blue: #061729;
+            --accent-red: #E63946;
+            --pure-white: #FFFFFF;
+            --light-bg: #F8F9FA;
+            --transition-fast: all 0.25s ease-in-out;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--primary-blue);
+            background-color: var(--light-bg);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .top-header {
+            background-color: var(--header-blue);
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--accent-red);
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .brand-logo {
+            color: var(--pure-white);
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+        }
+        .brand-logo span {
+            color: var(--accent-red);
+        }
+        .lang-switcher {
+            display: flex;
+            align-items: center;
+        }
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--pure-white);
+            color: var(--pure-white);
+            padding: 5px 12px;
+            margin-left: 6px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: var(--transition-fast);
+        }
+        .lang-btn.active, .lang-btn:hover, .lang-btn:focus {
+            background-color: var(--accent-red);
+            border-color: var(--accent-red);
+            outline: none;
+        }
+
+        .main-content {
+            flex: 1 0 auto;
+            width: 100%;
+        }
+
+        .hero {
+            background-color: var(--primary-blue);
+            color: var(--pure-white);
+            padding: 50px 20px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .hero h1 { 
+            font-size: clamp(1.8rem, 4vw, 2.3rem); 
+            margin-bottom: 12px; 
+            font-weight: 700;
+        }
+        .hero p { 
+            font-size: clamp(0.98rem, 2vw, 1.1rem); 
+            max-width: 650px; 
+            margin: 0 auto 25px auto; 
+            opacity: 0.95; 
+            line-height: 1.6; 
+        }
+        
+        .btn-red {
+            background-color: var(--accent-red);
+            color: var(--pure-white);
+            padding: 12px 26px;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 6px;
+            display: inline-block;
+            box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
+            transition: var(--transition-fast);
+        }
+        .btn-red:hover, .btn-red:focus {
+            background-color: #d62839;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(230, 57, 70, 0.4);
+        }
+        
+        .mission-box {
+            background: var(--pure-white);
+            border-left: 5px solid var(--accent-red);
+            padding: 25px 30px;
+            margin: 35px auto;
+            max-width: 840px;
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: justify;
+        }
+        .mission-box h3 {
+            margin-top: 0;
+            color: var(--primary-blue);
+            font-size: 1.3rem;
+            text-align: left;
+            font-weight: 700;
+        }
+        .mission-box p {
+            line-height: 1.7;
+            margin-bottom: 0;
+            color: #333333;
+            font-size: 0.98rem;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto 40px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        
+        .section-title {
+            text-align: center;
+            border-bottom: 3px solid var(--accent-red);
+            display: inline-block;
+            padding-bottom: 6px;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+        
+        .card {
+            background: var(--pure-white);
+            padding: 24px;
+            border-radius: 8px;
+            border-top: 4px solid var(--primary-blue);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: var(--transition-fast);
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+        }
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+        }
+        .card p {
+            color: #4A5568;
+            line-height: 1.55;
+            margin-bottom: 0;
+            font-size: 0.93rem;
+        }
+        
+        .footer {
+            background-color: var(--primary-blue);
+            color: var(--pure-white);
+            text-align: center;
+            padding: 35px 20px 20px 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            flex-shrink: 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .footer h3 {
+            margin-top: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .copyright {
+            margin-top: 25px;
+            font-size: 0.85rem;
+            opacity: 0.75;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigasi Utama -->
+    <header class="top-header">
+        <a href="/" class="brand-logo" title="Kasuhanet Resources Home">
+            Kasuha<span>NET oversea | Rwanda</span>
+        </a>
+        <nav class="lang-switcher" aria-label="Language Switcher">
+            <span style="color: #fff; font-size: 0.85rem; margin-right: 8px;">Ururimi / Language:</span>
+            <button class="lang-btn active" onclick="changeLang('kin', this)" aria-label="Tukura Kinyarwanda">KIN</button>
+            <button class="lang-btn" onclick="changeLang('eng', this)" aria-label="Switch to English">ENG</button>
+        </nav>
+    </header>
+
+    <!-- Content Utama Wrapper -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero" aria-labelledby="hero-title">
+            <h1 id="hero-title">Ihinduka mu Bya Dijital ku Ubucuruzi mu Rwanda</h1>
+            <p id="hero-desc">Urubuga rwihuse, rworoshye, no kumenyera gukoresha kubucuruzi bwo mu Rwanda. Rwiteguye guhuza na sisitemu zo kwishyura zo mu gihugu.</p>
+            <a href="https://wa.me/60167390501?text=Mwaramutse%20Kasuhanet%20Resources,%20nashakaga%20kubaza%20ibijyanye%20no%20gukora%20website" class="btn-red" id="hero-btn" target="_blank" rel="noopener noreferrer">Ganira Nayo Kuri WhatsApp</a>
+        </section>
+
+        <!-- Section Misi & Tujuan -->
+        <section class="container" aria-labelledby="mission-title">
+            <div class="mission-box">
+                <h3 id="mission-title">Intego Yacu: Gushyigikira Izamuka ly'Ubucuruzi bwo mu Rwanda</h3>
+                <p id="mission-desc">
+                    Iyi mbuga yashinzwe ku ntego igaragara yo gushyigikira no gukomeza ubucuruzi bwo mu Rwanda. Twizeye ko ubucuruzi bwo mu gihugu bufite ubushobozi bukomeye bwo gukura mu gihe cya dijital, cyane cyane mu gihe u Rwanda rukomeza kubaka ubukungu bw'ikoranabuhanga nka hub y'akarere. Kasuhanet Resources iza itanga ibisubizo by'ikoranabuhanga bifite igiciro giciriritse kandi byoroshye gukoresha, Uhereye ku gukora Landing Page zigezweho kugeza ku bitabo by'amashuri bya dijital (E-book) kugira ngo bafashe gusobanukirwa amayeri yo kwamamaza ku mbuga nkoranyambaga. Twizeye ko binyuze mu gushyigikirana, dushobora gufatanya kuzamura ubukungu bwo mu gihugu no kuzamura ibicuruzwa na serivisi byo mu Rwanda ku rwego rwo hejuru.
+                </p>
+            </div>
+        </section>
+
+        <!-- Features Content Section -->
+        <section class="container" style="text-align: center;" aria-labelledby="sec-title">
+            <h2 class="section-title" id="sec-title">Ibintu Bitandukanye mu Rubuga Rumwe</h2>
+            <div class="grid">
+                <article class="card">
+                    <h3 id="card1-title">Iduka ryo mu Tangarutse (E-Commerce)</h3>
+                    <p id="card1-desc">Guhitamo ibicuruzwa no kwishyura mu buryo butaziguye no mu mutekano ku bakiriya.</p>
+                </article>
+                <article class="card">
+                    <h3 id="card2-title">Ikarita y'Ibicuruzwa (Catalog)</h3>
+                    <p id="card2-desc">Kwerekana ibicuruzwa na serivisi zawe mu buryo bugezweho, bwiza, no ku terefone ngendanwa.</p>
+                </article>
+                <article class="card">
+                    <h3 id="card3-title">Amakuru & Blog y'Ubucuruzi</h3>
+                    <p id="card3-desc">Umuyoboro w official wo gusangira amakuru y'isosiyete no kubaka icyizere cy'abakiriya.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Pricing Card Container -->
+        <div style="border: 2px solid #000; border-radius: 16px; padding: 24px; max-width: 350px; margin: 0 auto 40px auto; background: #fff; box-shadow: 4px 4px 0px #000; font-family: sans-serif; text-align: left;">
+            <h3 id="pkg-title" style="margin: 0; font-size: 20px; font-weight: bold; text-align: center;">Pakej Startup</h3>
+            <p id="pkg-desc" style="color: #666; font-size: 14px; margin: 8px 0 16px; text-align: center;">Kijyanye n'ubucuruzi buciriritse & kwamamaza igicuruzwa kimwe.</p>
+            
+            <div style="font-size: 28px; font-weight: bold; margin-bottom: 20px; text-align: center;">
+                18,927.64 RWF <span id="pkg-rate" style="font-size: 14px; font-weight: normal; color: #666;">/inshuro imwe</span>
+            </div>
+
+            <ul style="list-style: none; padding: 0; margin: 0 0 20px 0; line-height: 2;">
+                <li style="color: #2e7d32;">✓ <span id="f1" style="color: #333;">Landing Page Single-Page</span></li>
+                <li style="color: #2e7d32;">✓ <span id="f2" style="color: #333;">Igishushanyo mbonera cy'Ubucuruzi</span></li>
+                <li style="color: #2e7d32;">✓ <span id="f3" style="color: #333;">Domain y'Urubuga ku Buntu</span></li>
+                <li style="color: #2e7d32;">✓ <span id="f4" style="color: #333;">Hosting Platform</span></li>
+                <li style="color: #2e7d32;">✓ <span id="f5" style="color: #333;">Ahabona Bwo Twandikire</span></li>
+                <li style="color: #2e7d32;">✓ <span id="f6" style="color: #333;">Igenamiterere rya SEO</span></li>
+            </ul>
+
+            <p id="pkg-footer" style="font-size: 12px; color: #777; font-style: italic; margin-bottom: 20px; text-align: center;">
+                Icyiciro cy'ibanze cyo gushyigikira izamuka rya sisitemu y'ubucuruzi.
+            </p>
+
+            <a href="https://wa.me/60167390501?text=Halo%20Kasuhanet%20Resources,%20ha'u%20nakunda%20gugura%20Pakej%20Startup%2018927.64%20RWF" id="pkg-btn" style="display: block; text-align: center; border: 2px solid #000; padding: 12px; border-radius: 8px; font-weight: bold; color: #000; text-decoration: none; background: #fff;" target="_blank" rel="noopener noreferrer">Gura Sasa</a>
+        </div>
+        
+    </main>
+
+    <!-- Footer Sticky -->
+    <footer class="footer">
+        <h3>Kasuha Zukarnain — Web Developer</h3>
+        <p id="footer-desc">Tangira gukomeza ubucuruzi bwawe mu isi ya dijital uyu munsi.</p>
+        <a href="https://wa.me/60167390501?text=Mwaramutse%20Kasuhanet%20Resources,%20nashakaga%20kubaza%20ibijyanye%20no%20gukora%20website" class="btn-red" id="footer-btn" target="_blank" rel="noopener noreferrer">Tuvugane Kuri WhatsApp</a>
+        <a href="/" class="brand-logo" style="display: block; margin-top: 15px;" title="Kasuhanet Resources Home">
+            Kasuha<span>NET oversea | Rwanda</span>
+        </a>
+        
+        <div class="copyright">
+            <p id="credit-text">Yakozwe mu buryo bw'umwuga na <strong>Kasuhanet Resources</strong> | Digital Solutions & Web Developer</p>
+        </div>
+    </footer>
+
+    <!-- Multilingual & Dynamic Script -->
+    <script>
+        const content = {
+            kin: {
+                heroTitle: "Ihinduka mu Bya Dijital ku Ubucuruzi mu Rwanda",
+                heroDesc: "Urubuga rwihuse, rworoshye, no kumenyera gukoresha kubucuruzi bwo mu Rwanda. Rwiteguye guhuza na sisitemu zo kwishyura zo mu gihugu.",
+                heroBtn: "Ganira Nayo Kuri WhatsApp",
+                missionTitle: "Intego Yacu: Gushyigikira Izamuka ly'Ubucuruzi bwo mu Rwanda",
+                missionDesc: "Iyi mbuga yashinzwe ku ntego igaragara yo gushyigikira no gukomeza ubucuruzi bwo mu Rwanda. Twizeye ko ubucuruzi bwo mu gihugu bufite ubushobozi bukomeye bwo gukura mu gihe cya dijital, cyane cyane mu gihe u Rwanda rukomeza kubaka ubukungu bw'ikoranabuhanga nka hub y'akarere. Kasuhanet Resources iza itanga ibisubizo by'ikoranabuhanga bifite igiciro giciriritse kandi byoroshye gukoresha, Uhereye ku gukora Landing Page zigezweho kugeza ku bitabo by'amashuri bya dijital (E-book) kugira ngo bafashe gusobanukirwa amayeri yo kwamamaza ku mbuga nkoranyambaga. Twizeye ko binyuze mu gushyigikirana, dushobora gufatanya kuzamura ubukungu bwo mu gihugu no kuzamura ibicuruzwa na serivisi byo mu Rwanda ku rwego rwo hejuru.",
+                secTitle: "Ibintu Bitandukanye mu Rubuga Rumwe",
+                card1Title: "Iduka ryo mu Tangarutse (E-Commerce)",
+                card1Desc: "Guhitamo ibicuruzwa no kwishyura mu buryo butaziguye no mu mutekano ku bakiriya.",
+                card2Title: "Ikarita y'Ibicuruzwa (Catalog)",
+                card2Desc: "Kwerekana ibicuruzwa na serivisi zawe mu buryo bugezweho, bwiza, no ku terefone ngendanwa.",
+                card3Title: "Amakuru & Blog y'Ubucuruzi",
+                card3Desc: "Umuyoboro w official wo gusangira amakuru y'isosiyete no kubaka icyizere cy'abakiriya.",
+                pkgTitle: "Pakej Startup",
+                pkgDesc: "Kijyanye n'ubucuruzi buciriritse & kwamamaza igicuruzwa kimwe.",
+                pkgRate: "/inshuro imwe",
+                f1: "Landing Page Single-Page",
+                f2: "Igishushanyo mbonera cy'Ubucuruzi",
+                f3: "Domain y'Urubuga ku Buntu",
+                f4: "Hosting Platform",
+                f5: "Ahabona Bwo Twandikire",
+                f6: "Igenamiterere rya SEO",
+                pkgFooter: "Icyiciro cy'ibanze cyo gushyigikira izamuka rya sisitemu y'ubucuruzi.",
+                pkgBtn: "Gura Sasa",
+                footerDesc: "Tangira gukomeza ubucuruzi bwawe mu isi ya dijital uyu munsi.",
+                footerBtn: "Tuvugane Kuri WhatsApp",
+                creditText: "Yakozwe mu buryo bw'umwuga na Kasuhanet Resources | Digital Solutions & Web Developer"
+            },
+            eng: {
+                heroTitle: "Digital Business Transformation in Rwanda",
+                heroDesc: "Fast, lightweight, and easy-to-use websites for local Rwandan businesses. Ready for local payment integrations.",
+                heroBtn: "Discuss This Demo on WhatsApp",
+                missionTitle: "Our Mission: Empowering Local Rwandan Business Growth",
+                missionDesc: "This platform was established with a clear objective: to support and empower local entrepreneurs across Rwanda. We firmly believe that local businesses possess immense potential to thrive in the digital era, especially as Rwanda expands its footprint as a regional tech hub. Kasuhanet Resources provides accessible and cost-effective technological solutions, ranging from high-converting Landing Pages to practical digital learning modules (E-books) focused on online marketing strategies. We believe that through mutual collaboration, we can collectively strengthen the local economy and elevate Rwanda's products and services to new heights.",
+                secTitle: "Multiple Features in One Platform",
+                card1Title: "Online Store (E-Commerce)",
+                card1Desc: "Allows customers to browse products and make direct, secure payments.",
+                card2Title: "Product Catalog",
+                card2Desc: "Display your products and services in a clean, modern, and mobile-friendly layout.",
+                card3Title: "Info & Business Blog",
+                card3Desc: "Official channel to share company news and build customer trust.",
+                pkgTitle: "Startup Package",
+                pkgDesc: "Ideal for small businesses & single product promotions.",
+                pkgRate: "/one-time",
+                f1: "Single-Page Landing Page",
+                f2: "Business Layout Design",
+                f3: "Free Platform Subdomain",
+                f4: "Platform Hosting Included",
+                f5: "Contact Button Integration",
+                f6: "Basic SEO Configuration",
+                pkgFooter: "Essential baseline support to accelerate local business digitisation.",
+                pkgBtn: "Buy Now",
+                footerDesc: "Start growing your business in the digital space today.",
+                footerBtn: "Contact via WhatsApp",
+                creditText: "Developed and managed by Kasuhanet Resources | Digital Solutions & Web Development"
+            }
+        };
+
+        function changeLang(lang, btnElement) {
+            document.documentElement.lang = lang;
+
+            document.getElementById('hero-title').innerText = content[lang].heroTitle;
+            document.getElementById('hero-desc').innerText = content[lang].heroDesc;
+            document.getElementById('hero-btn').innerText = content[lang].heroBtn;
+            
+            document.getElementById('mission-title').innerText = content[lang].missionTitle;
+            document.getElementById('mission-desc').innerText = content[lang].missionDesc;
+
+            document.getElementById('sec-title').innerText = content[lang].secTitle;
+            
+            document.getElementById('card1-title').innerText = content[lang].card1Title;
+            document.getElementById('card1-desc').innerText = content[lang].card1Desc;
+            document.getElementById('card2-title').innerText = content[lang].card2Title;
+            document.getElementById('card2-desc').innerText = content[lang].card2Desc;
+            document.getElementById('card3-title').innerText = content[lang].card3Title;
+            document.getElementById('card3-desc').innerText = content[lang].card3Desc;
+
+            document.getElementById('pkg-title').innerText = content[lang].pkgTitle;
+            document.getElementById('pkg-desc').innerText = content[lang].pkgDesc;
+            document.getElementById('pkg-rate').innerText = content[lang].pkgRate;
+            document.getElementById('f1').innerText = content[lang].f1;
+            document.getElementById('f2').innerText = content[lang].f2;
+            document.getElementById('f3').innerText = content[lang].f3;
+            document.getElementById('f4').innerText = content[lang].f4;
+            document.getElementById('f5').innerText = content[lang].f5;
+            document.getElementById('f6').innerText = content[lang].f6;
+            document.getElementById('pkg-footer').innerText = content[lang].pkgFooter;
+            document.getElementById('pkg-btn').innerText = content[lang].pkgBtn;
+
+            document.getElementById('footer-desc').innerText = content[lang].footerDesc;
+            document.getElementById('footer-btn').innerText = content[lang].footerBtn;
+            document.getElementById('credit-text').innerText = content[lang].creditText;
+
+            // Toggle Active Class Pada Butang
+            const buttons = document.querySelectorAll('.lang-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            if (btnElement) {
+                btnElement.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
