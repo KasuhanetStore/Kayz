@@ -53,6 +53,7 @@
 
 <!-- CSS UTAMA -->
 <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -64,7 +65,25 @@
 }
 </script>
 
+  /* ICON SOCIAL MEDIA */
 <style>
+  .social-icons {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+.social-icons a {
+    font-size: 20px;
+    color: #6c584c;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #d63384;
+    transform: translateY(-3px);
+}
+  
 /* GLOBAL CYBER FONT & RESET */
 * {
     font-family: 'Orbitron', sans-serif !important;
@@ -1433,12 +1452,13 @@ Thank you for your continued support and trust in Kasuhanet.
             <a href="terms-EN.html">Terms & Policy</a>
         </div>
 
-        <div class="footer-links">
-            <h4>Follow Us</h4>
-            <a href="https://www.facebook.com/share/1BfeDZJqjP/" target="_blank">Facebook</a>
-            <a href="https://tiktok.com/@kasuhanet.store" target="_blank">TikTok</a>
-            <a href="https://t.me/kasuhanetstorebot" target="_blank">Telegram</a>
-        </div>
+      <li class="social-icons">
+        <h4>Follow Us</h4>
+        <a href="https://www.facebook.com/share/1BfeDZJqjP/" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://tiktok.com/@kasuhanet.store" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://t.me/kasuhanetstorebot" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+    </li>
+    </ul>
     </div>
 
     <div class="footer-bottom">
