@@ -22,7 +22,7 @@
         
   <!-- Homepage Bahasa Melayu -->
   <url>
-    <loc>https://kasuhanet.store/homepage-MS.html</loc>
+    <loc>https://kasuhanet.store/MS.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -51,9 +51,17 @@
     <lastmod>2026-08-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://kasuhanet.store/terms-MS.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kasuhanet.store/terms-EN.html"/>
   </url>
-        
+
+        <url>
+    <loc>https://kasuhanet.store/terms-MS.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="ms" href="https://kasuhanet.store/terms-MS.html"/>
+  </url>
+
         <url>
     <loc>https://kasuhanet.store/Banner-WebSale-EN.html</loc>
     <lastmod>2026-08-02</lastmod>
@@ -63,21 +71,28 @@
   </url>
 
         <url>
+    <loc>https://kasuhanet.store/Bengkel-Custom-WebSite.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+    <html:link rel="alternate" hreflang="en" href="https://kasuhanet.store/Custom-Web-Workshop-EN.html"/>
+  </url>
+        
+        <url>
+    <loc>https://kasuhanet.store/Custom-Web-Workshop-EN.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+    <html:link rel="alternate" hreflang="ms" href="https://kasuhanet.store/Bengkel-Custom-WebSite.html"/>
+  </url>
+
+        <url>
     <loc>https://kasuhanet.store/Banner-WebSale-MS.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
     <xhtml:link rel="alternate" hreflang="ms" href="https://kasuhanet.store/Banner-WebSale-MD.html"/>
   </url>
-        
-  <url>
-    <loc>https://kasuhanet.store/terms-MS.html</loc>
-    <lastmod>2026-08-02</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-    <xhtml:link rel="alternate" hreflang="ms" href="https://kasuhanet.store/terms-EN.html"/>
-  </url>
-
   <!-- Tentang Kami / About Us -->
   <url>
     <loc>https://kasuhanet.store/About-Us.html</loc>
