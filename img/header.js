@@ -50,7 +50,6 @@ function loadHeader() {
     </section>
     `;
 }
-
 if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", loadHeader);
 } else {
