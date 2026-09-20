@@ -632,39 +632,8 @@ main {
 
 <body>
 
-<!-- HEADER -->
-<header>
-    <div class="logo">
-        <img src="img/logo3.png" style="height:25px; width:auto;" alt="KasuhaNET Logo">
-    </div>
-
-    <div class="header-right">
-        <nav>
-            <a href="homepage-EN.html">HOME</a>
-            
-            <!-- DROPDOWN OVERSEA -->
-            <div class="dropdown">
-                <button class="dropbtn">OVERSEA ▾</button>
-                <div class="dropdown-content">
-                    <a href="Rwanda-EN.html">Rwanda Portal</a>
-                    <a href="TimorLeste-EN.html">Timor Leste Portal</a>
-                </div>
-            </div>
-
-            <a href="About-Us.html">ABOUT US</a>
-            <a href="terms-EN.html">TERMS & POLICY</a>
-            <a href="help-center.html">HELP CENTER</a>
-        </nav>
-
-        <!-- LANGUAGE SWITCHER -->
-        <div class="lang-wrapper">
-            <div class="lang">
-                <a href="Custom-Web-Workshop-EN.html"><button id="btn-en" class="active">EN</button></a>
-                <a href="Bengkel-Custom-WebSite.html"><button id="btn-ms">BM</button></a>
-            </div>
-        </div>
-    </div>
-</header>
+<!-- DYNAMIC HEADER -->
+<div id="main-header"></div>
 
 <!-- PARTNER CREDIT BAR -->
 <div class="partner-credit-bar">
@@ -938,6 +907,9 @@ main {
      <path d="M16 3C9.37 3 4 8.37 4 15c0 2.31.66 4.47 1.8 6.32L4 29l7.9-1.75C13.64 28.55 14.78 29 16 29c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 22c-1.1 0-2.16-.2-3.14-.57l-.45-.17-4.69 1.04 1-4.57-.3-.47C7.39 18.35 7 16.72 7 15c0-4.96 4.04-9 9-9s9 4.04 9 9-4.04 10-9 10z"/>
    </svg>
 </a>
+
+<!-- HEADER LOADER SCRIPT -->
+<script src="header.js"></script>
 
 <!-- SCRIPT FADE-IN / FADE-OUT PAGE TRANSITIONS -->
 <script>
