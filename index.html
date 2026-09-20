@@ -127,7 +127,7 @@ nav a:hover {
 }
 
 /* =========================================================
-   DROPDOWN MENU MODERN CYBERPUNK (OVERLAP FIX & HD GLOW)
+   DROPDOWN MENU MODERN CYBERPUNK
    ========================================================= */
 .dropdown {
     position: relative;
@@ -144,20 +144,15 @@ nav a:hover {
     left: 0;
     min-width: 230px;
     padding: 8px 0;
-    
-    /* Glassmorphism HD Dark */
-    background: rgba(5, 8, 18, 0.95) !important;
+    background: rgba(5, 8, 18, 0.95);
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
-    
-    /* Border & Neon Glow Cyan */
-    border: 1px solid #00F0FF !important;
+    border: 1px solid #00F0FF;
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.95),
                 0 0 18px rgba(0, 240, 255, 0.4),
-                inset 0 0 10px rgba(0, 240, 255, 0.15) !important;
-                
-    z-index: 999999 !important;
+                inset 0 0 10px rgba(0, 240, 255, 0.15);
+    z-index: 999999;
     transform: translateY(-8px) scale(0.98);
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -542,7 +537,7 @@ nav a:hover {
 
 .header-text {
     color: red;
-    font-size: 6.5px;
+    font-size: 10px;
     font-weight: bold;
     margin: 0;
     text-transform: uppercase;
@@ -550,7 +545,7 @@ nav a:hover {
 
 .flicker-text {
     color: white;
-    font-size: 8px;
+    font-size: 9px;
     line-height: 1.35;
     margin: 0;
     text-align: justify;
@@ -1125,6 +1120,7 @@ nav a:hover {
 
 <body>
 
+<div id="main-header"></div>
 <div class="bg-animation"></div>
 <div class="stars"></div>
 
@@ -1135,7 +1131,6 @@ nav a:hover {
 
     <div class="header-right">
         <nav>
-            <!-- Dropdown Menu Oversea Modern -->
             <div class="dropdown">
                 <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
                     Oversea <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #00F0FF;"></i>
@@ -1200,24 +1195,20 @@ nav a:hover {
         <div class="grid">
             <div class="card card-center">
                 <h3>ANNOUNCEMENT-PLANNED ADDITION OF SERVICE+ TO KASUHANET.STORE <strong>9/9/2026</strong></h3>
-                <p>
-                  <ul class="feature-list" style="text-align: left;">
-                    <strong>For the Information of Kasuhanet Customers & Visitors:</strong> Kasuhanet planning the introduction of Service+, Scope of services and business opportunities offered through the Kasuhanet.store platform. Service Providers, depending on relevant field and customer requirements.
-                </p>
                 <div style="text-align: left; font-size: 13px;">
+                    <p><strong>For the Information of Kasuhanet Customers & Visitors:</strong> Kasuhanet planning the introduction of Service+, Scope of services and business opportunities offered through the Kasuhanet.store platform. Service Providers, depending on relevant field and customer requirements.</p>
                     <p>🔹 1. <strong>TAKAFUL & INSURANCE</strong></p>
                     <p>🔹 2. <strong>PROPERTY CONSULTANCY / REAL ESTATE</strong></p>
                     <p>🔹 3. <strong>EMPLOYMENT AGENCY SERVICES</strong></p>
                     <p>🔹 4. <strong>DIY CUSTOM ELECTRONIC DESIGN</strong></p>
                     <p>🔹 5. <strong>PRIVATE DELIVERY RIDER</strong></p>
-
-              <p>
-                SERVICE+ DIRECTION+-
-                The introduction of Servis+ is part of Kasuhanet's plan to develop a broader service ecosystem. 
-                New services and developments will be announced from time to time through Kasuhanet.store. 
-                Thank you for your continued support and trust in Kasuhanet.
-                </p>
-                  
+                    <p>
+                    SERVICE+ DIRECTION:-
+                    The introduction of Servis+ is part of Kasuhanet's plan to develop a broader service ecosystem. 
+                    New services and developments will be announced from time to time through Kasuhanet.store. 
+                    Thank you for your continued support and trust in Kasuhanet.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
@@ -1661,6 +1652,6 @@ nav a:hover {
     },
   });
 </script>
-
+<script src="header.js"></script>
 </body>
 </html>
