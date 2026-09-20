@@ -31,7 +31,7 @@
 <meta name="twitter:image" content="https://kasuhanet.store/broadcast.png">
 
 <!-- FONTS & CSS LIBRARIES -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="css/main.css">
@@ -60,11 +60,26 @@
 }
 
 body {
-    background-color: #05070d;
+    background-color: #030509;
     color: #fff;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    animation: pageFadeIn 0.8s ease-out forwards;
+}
+
+.page-fade-out {
+    animation: pageFadeOut 0.5s ease-in forwards !important;
+}
+
+@keyframes pageFadeIn {
+    0% { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pageFadeOut {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-8px); }
 }
 
 main {
@@ -78,8 +93,12 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background: rgba(5, 7, 13, 0.9);
-    border-bottom: 1px solid rgba(79, 49, 232, 0.2);
+    background: rgba(5, 7, 13, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 240, 255, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 240, 255, 0.15);
+    position: relative;
+    z-index: 10000;
 }
 
 .header-right {
@@ -95,14 +114,85 @@ nav {
 }
 
 nav a {
-    color: #fff;
+    color: #b0c0f0;
     text-decoration: none;
     font-size: 13px;
-    transition: color 0.3s;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 5px rgba(0, 240, 255, 0.2);
 }
 
 nav a:hover {
     color: #00F0FF;
+    text-shadow: 0 0 12px #00F0FF, 0 0 20px #00F0FF;
+}
+
+/* =========================================================
+   DROPDOWN MENU MODERN CYBERPUNK (OVERLAP FIX & HD GLOW)
+   ========================================================= */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    z-index: 99999;
+}
+
+.dropdown-content {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 130%;
+    left: 0;
+    min-width: 230px;
+    padding: 8px 0;
+    
+    /* Glassmorphism HD Dark */
+    background: rgba(5, 8, 18, 0.95) !important;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    
+    /* Border & Neon Glow Cyan */
+    border: 1px solid #00F0FF !important;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.95),
+                0 0 18px rgba(0, 240, 255, 0.4),
+                inset 0 0 10px rgba(0, 240, 255, 0.15) !important;
+                
+    z-index: 999999 !important;
+    transform: translateY(-8px) scale(0.98);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dropdown-content.show,
+.dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.dropdown-content a {
+    color: #d1d5db !important;
+    padding: 12px 18px !important;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 11px !important;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+.dropdown-content a:hover {
+    background: linear-gradient(90deg, rgba(0, 240, 255, 0.18), rgba(230, 0, 164, 0.18)) !important;
+    color: #00F0FF !important;
+    border-left: 3px solid #00F0FF;
+    padding-left: 22px !important;
+    text-shadow: 0 0 10px #00F0FF, 0 0 20px rgba(0, 240, 255, 0.6);
+}
+
+.dropdown-content a:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 240, 255, 0.1);
 }
 
 /* SOCIAL ICONS STYLES */
@@ -116,11 +206,13 @@ nav a:hover {
     color: #ff85a1;
     font-size: 22px;
     transition: 0.3s ease;
+    filter: drop-shadow(0 0 5px #ff85a1);
 }
 
 .social-icons-wrapper a:hover {
     color: #00F0FF;
     transform: scale(1.2);
+    filter: drop-shadow(0 0 10px #00F0FF);
 }
 
 /* BUTTON LANGUAGE TOGGLE */
@@ -134,7 +226,7 @@ nav a:hover {
     background: rgba(255, 255, 255, 0.05);
     padding: 3px;
     border-radius: 6px;
-    border: 1px solid rgba(79, 49, 232, 0.4);
+    border: 1px solid rgba(79, 49, 232, 0.6);
 }
 
 .lang button {
@@ -149,51 +241,15 @@ nav a:hover {
 }
 
 .lang button.active {
-    background: #4F31E8;
+    background: linear-gradient(135deg, #4F31E8, #00F0FF);
     color: #fff;
-    box-shadow: 0 0 8px #4F31E8;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.8);
+    font-weight: bold;
 }
 
 .lang button:hover:not(.active) {
     color: #00F0FF;
-}
-
-/* DROPDOWN MENU (CYBERPUNK THEME) */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #090d16;
-    min-width: 220px;
-    box-shadow: 0 8px 20px rgba(0, 240, 255, 0.25);
-    border-radius: 8px;
-    overflow: hidden;
-    z-index: 1001;
-    border: 1px solid rgba(0, 240, 255, 0.4);
-}
-
-.dropdown-content a {
-    color: #8fa0dd;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    font-size: 12px;
-    transition: background 0.3s, color 0.3s;
-}
-
-.dropdown-content a:hover {
-    background-color: rgba(79, 49, 232, 0.3);
-    color: #00F0FF;
-}
-
-.dropdown-content.show {
-    display: block;
+    text-shadow: 0 0 8px #00F0FF;
 }
 
 /* GRID LAYOUT FOR MAIN CARDS */
@@ -205,16 +261,17 @@ nav a:hover {
 }
 
 .card {
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(13, 18, 30, 0.6);
+    backdrop-filter: blur(8px);
     border: 1px solid rgba(79, 49, 232, 0.4);
-    border-radius: 8px;
-    padding: 15px;
+    border-radius: 10px;
+    padding: 18px;
     text-decoration: none;
     color: #fff;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     display: flex;
     flex-direction: column;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
 
 .card-center {
@@ -224,8 +281,8 @@ nav a:hover {
 
 .card:hover {
     border-color: #00F0FF;
-    box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
-    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4), inset 0 0 10px rgba(0, 240, 255, 0.1);
+    transform: translateY(-4px);
 }
 
 .card img {
@@ -234,19 +291,25 @@ nav a:hover {
     max-height: 200px;
     border-radius: 6px;
     object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.card:hover img {
+    transform: scale(1.02);
 }
 
 .card h3 {
-    margin: 8px 0 5px 0;
+    margin: 10px 0 6px 0;
     font-size: 16px;
     color: #00F0FF;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
 }
 
 .card p {
     margin: 5px 0 0 0;
     font-size: 12px;
-    line-height: 1.4;
-    color: #ccc;
+    line-height: 1.5;
+    color: #d0d8f0;
 }
 
 /* PROFILE CARD STYLES */
@@ -259,22 +322,23 @@ nav a:hover {
 }
 
 .profile-card {
-    background: #161b22;
-    border: 1px solid #30363d;
+    background: linear-gradient(145deg, #0e131f, #161b22);
+    border: 1px solid rgba(88, 166, 255, 0.4);
     border-radius: 12px;
     padding: 30px;
     max-width: 700px;
     width: 100%;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    transition: border-color 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 15px rgba(88, 166, 255, 0.15);
+    transition: all 0.4s ease;
 }
 
 .profile-card:hover {
-    border-color: #58a6ff;
+    border-color: #00F0FF;
+    box-shadow: 0 10px 35px rgba(0, 240, 255, 0.25);
 }
 
 .profile-header {
-    border-bottom: 1px solid #21262d;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding-bottom: 15px;
     margin-bottom: 20px;
     text-align: left;
@@ -285,6 +349,7 @@ nav a:hover {
     color: #58a6ff;
     font-size: 1.6rem;
     letter-spacing: 0.5px;
+    text-shadow: 0 0 10px rgba(88, 166, 255, 0.5);
 }
 
 .callsign {
@@ -297,13 +362,14 @@ nav a:hover {
 
 .exp-badge {
     display: inline-block;
-    background: rgba(56, 139, 253, 0.15);
-    color: #58a6ff;
+    background: linear-gradient(90deg, rgba(56, 139, 253, 0.2), rgba(0, 240, 255, 0.2));
+    color: #00F0FF;
     padding: 4px 12px;
     border-radius: 20px;
     font-size: 0.8rem;
     margin-top: 10px;
-    border: 1px solid rgba(56, 139, 253, 0.4);
+    border: 1px solid rgba(0, 240, 255, 0.5);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
 }
 
 .profile-list {
@@ -326,19 +392,21 @@ nav a:hover {
     content: "❯";
     position: absolute;
     left: 0;
-    color: #238636;
+    color: #00ffcc;
     font-weight: bold;
+    text-shadow: 0 0 8px #00ffcc;
 }
 
 .highlight {
-    color: #f0f6fc;
+    color: #00F0FF;
     font-weight: 600;
+    text-shadow: 0 0 5px rgba(0, 240, 255, 0.4);
 }
 
 .profile-footer {
     margin-top: 20px;
     padding-top: 15px;
-    border-top: 1px dashed #21262d;
+    border-top: 1px dashed rgba(255, 255, 255, 0.15);
     font-size: 0.8rem;
     color: #8b949e;
     font-style: italic;
@@ -353,9 +421,9 @@ nav a:hover {
 
 .swiper {
     width: 100%;
-    border-radius: 10px;
-    border: 1px solid rgba(79, 49, 232, 0.4);
-    box-shadow: 0 0 15px rgba(79, 49, 232, 0.2);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 240, 255, 0.4);
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.2);
 }
 
 .swiper-slide {
@@ -363,6 +431,7 @@ nav a:hover {
     justify-content: center;
     align-items: center;
     background: #05070d;
+    overflow: hidden;
 }
 
 .swiper-slide img {
@@ -372,17 +441,24 @@ nav a:hover {
     object-fit: cover;
     display: block;
     border-radius: 8px;
+    transition: transform 0.5s ease;
+}
+
+.swiper-slide:hover img {
+    transform: scale(1.01);
 }
 
 .swiper-button-next, .swiper-button-prev {
     color: #00F0FF !important;
+    text-shadow: 0 0 10px #00F0FF;
 }
 
 .swiper-pagination-bullet-active {
     background: #E600A4 !important;
+    box-shadow: 0 0 10px #E600A4;
 }
 
-/* TYPOGRAPHY & NEON EFFECTS */
+/* TYPOGRAPHY & NEON EFFECTS MODEN */
 .section {
     margin-bottom: 25px;
     text-align: center;
@@ -393,13 +469,18 @@ nav a:hover {
     line-height: 1.1;
     position: relative;
     display: inline-block;
-    color: #fff;
+    color: #ffffff;
     margin: 15px 0;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
 }
 
 .neon-title span {
-    color: #E600A4;
-    text-shadow: 0 0 10px #E600A4, 0 0 20px #E600A4;
+    background: linear-gradient(135deg, #E600A4, #ff3366, #00F0FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 12px rgba(230, 0, 164, 0.8));
 }
 
 .neon-title::after {
@@ -412,17 +493,19 @@ nav a:hover {
     background: linear-gradient(90deg, #4F31E8, #E600A4, #00F0FF, #4F31E8);
     background-size: 300% 100%;
     animation: neonMove 3s linear infinite;
-    box-shadow: 0 0 10px #E600A4, 0 0 15px #00F0FF;
+    box-shadow: 0 0 12px #E600A4, 0 0 20px #00F0FF;
+    border-radius: 3px;
 }
 
 .neon-desc {
     font-size: clamp(12px, 2vw, 16px);
-    color: #aaa;
+    color: #b0c0f0;
     line-height: 1.5;
     position: relative;
     display: inline-block;
     padding-bottom: 8px;
     margin-top: 5px;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
 }
 
 .neon-desc::after {
@@ -454,6 +537,7 @@ nav a:hover {
     width: 100%;
     box-sizing: border-box;
     text-align: center;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
 }
 
 .header-text {
@@ -492,7 +576,7 @@ nav a:hover {
 
 @keyframes pulseFlicker {
     0% { opacity: 1; }
-    50% { opacity: 0.25; }
+    50% { opacity: 0.3; }
     100% { opacity: 1; }
 }
 
@@ -514,16 +598,16 @@ nav a:hover {
     background: transparent !important;
     box-shadow: none !important;
     display: inline-block;
-    filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.35));
+    filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.5));
 }
 
-/* FOOTER DESIGN */
+/* FOOTER DESIGN MODEN */
 .footer {
-    background: #090d16;
-    border-top: 2px solid #4F31E8;
-    box-shadow: 0 -5px 25px rgba(79, 49, 232, 0.15);
+    background: #060911;
+    border-top: 2px solid #00F0FF;
+    box-shadow: 0 -5px 30px rgba(0, 240, 255, 0.2);
     margin-top: 0px;
-    padding: 30px 20px 15px 20px;
+    padding: 35px 20px 15px 20px;
 }
 
 .footer-grid {
@@ -538,44 +622,48 @@ nav a:hover {
     color: #fff;
     margin: 0 0 10px 0;
     font-size: 18px;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
 }
 
 .footer h4 {
     color: #E600A4;
     margin: 0 0 10px 0;
     font-size: 14px;
+    text-shadow: 0 0 8px #E600A4;
 }
 
 .footer p {
-    color: #999;
+    color: #a0aec0;
     font-size: 12px;
-    line-height: 1.5;
+    line-height: 1.6;
     margin: 0;
 }
 
 .footer-links {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
 }
 
 .footer-links a {
-    color: #ccc;
+    color: #cbd5e0;
     text-decoration: none;
     font-size: 12px;
-    transition: color 0.2s;
+    transition: all 0.3s ease;
 }
 
 .footer-links a:hover {
     color: #00F0FF;
+    padding-left: 5px;
+    text-shadow: 0 0 8px #00F0FF;
 }
 
 .footer-bottom {
     text-align: center;
     font-size: 11px;
-    color: #666;
+    color: #718096;
     padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     margin-top: 25px;
 }
 
@@ -612,14 +700,14 @@ nav a:hover {
     position: relative;
     display: block;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
-    border: 1px solid rgba(143, 160, 221, 0.2);
+    border: 1px solid rgba(0, 240, 255, 0.3);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     min-height: 180px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
     transition: all 0.4s ease;
 }
 
@@ -629,7 +717,7 @@ nav a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(11, 15, 25, 0.9) 30%, rgba(19, 28, 46, 0.6) 100%);
+    background: linear-gradient(135deg, rgba(5, 8, 15, 0.92) 30%, rgba(19, 28, 46, 0.7) 100%);
     transition: all 0.4s ease;
     z-index: 1;
 }
@@ -647,28 +735,30 @@ nav a:hover {
     margin-bottom: 8px;
     text-transform: uppercase;
     letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.6);
 }
 
 .card-content p {
-    color: #8fa0dd;
+    color: #a0aec0;
     font-size: 14px;
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
 .card-bg-box:hover {
     transform: translateY(-4px);
-    border-color: #00ffcc;
-    box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
+    border-color: #00F0FF;
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
 }
 
 .card-bg-box:hover .card-overlay {
-    background: linear-gradient(135deg, rgba(11, 15, 25, 0.7) 10%, rgba(0, 191, 255, 0.4) 100%);
+    background: linear-gradient(135deg, rgba(5, 8, 15, 0.8) 10%, rgba(0, 191, 255, 0.45) 100%);
 }
 
 .partner-credit-bar {
-    background: rgba(9, 13, 22, 0.6);
-    border-bottom: 1px dashed rgba(0, 240, 255, 0.2);
-    padding: 8px 20px;
+    background: rgba(9, 13, 22, 0.8);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px dashed rgba(0, 240, 255, 0.3);
+    padding: 10px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -679,7 +769,7 @@ nav a:hover {
 
 .credit-text {
     font-size: 10px;
-    color: #666;
+    color: #8fa0dd;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
@@ -693,26 +783,27 @@ nav a:hover {
 
 .partner-name {
     font-size: 11px;
-    color: #8fa0dd;
+    color: #00F0FF;
     font-weight: 700;
     letter-spacing: 0.5px;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
 }
 
 .partner-logo-box {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(5, 7, 13, 0.8);
-    border: 1px solid rgba(230, 0, 164, 0.3);
+    background: rgba(5, 7, 13, 0.9);
+    border: 1px solid rgba(230, 0, 164, 0.5);
     padding: 4px 8px;
     border-radius: 4px;
-    box-shadow: 0 0 8px rgba(230, 0, 164, 0.1);
+    box-shadow: 0 0 12px rgba(230, 0, 164, 0.3);
 }
 
 .partner-logo-box img {
     height: 14px;
     width: auto;
-    filter: drop-shadow(0 0 2px #00F0FF);
+    filter: drop-shadow(0 0 3px #00F0FF);
 }
 
 .trust-banner-container {
@@ -729,11 +820,12 @@ nav a:hover {
     max-width: 600px;
     display: block !important;
     margin: 15px auto !important;
+    filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.2));
 }
 
 @keyframes blink {
   0% { opacity: 1; }
-  50% { opacity: 0.1; }
+  50% { opacity: 0.2; }
   100% { opacity: 1; }
 }
 
@@ -742,22 +834,23 @@ nav a:hover {
   font-weight: bold;
   animation: blink 1s infinite;
   text-decoration: none;
+  text-shadow: 0 0 8px rgba(255, 51, 102, 0.8);
 }
 
 @keyframes colorShift {
   0%, 100% {
     color: #00bfff;
-    text-shadow: 0 0 8px rgba(0, 191, 255, 0.8);
+    text-shadow: 0 0 10px rgba(0, 191, 255, 0.9);
   }
   50% {
     color: #ff3366;
-    text-shadow: 0 0 8px rgba(255, 51, 102, 0.8);
+    text-shadow: 0 0 10px rgba(255, 51, 102, 0.9);
   }
 }
 
 .blinking-blue-red {
   font-weight: bold;
-  animation: colorShift 1s infinite;
+  animation: colorShift 1.2s infinite;
   text-decoration: none;
 }
 
@@ -784,7 +877,12 @@ nav a:hover {
   padding: 30px 40px;
   color: #ffffff;
   font-family: 'Arial', sans-serif;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4), 0 0 15px rgba(227, 27, 35, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.hlb-banner:hover {
+  transform: translateY(-2px);
 }
 
 .hlb-tag {
@@ -797,6 +895,7 @@ nav a:hover {
   border-radius: 20px;
   display: inline-block;
   margin-bottom: 10px;
+  box-shadow: 0 0 10px rgba(227, 27, 35, 0.5);
 }
 
 .hlb-content h1 {
@@ -812,24 +911,28 @@ nav a:hover {
 }
 
 .hlb-btn {
-  background-color: #e31b23;
+  background: linear-gradient(90deg, #e31b23, #ff3333);
   color: #ffffff;
   padding: 10px 24px;
   text-decoration: none;
   font-weight: bold;
   border-radius: 6px;
   display: inline-block;
-  transition: background 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 12px rgba(227, 27, 35, 0.4);
 }
 
 .hlb-btn:hover {
-  background-color: #b81218;
+  background: linear-gradient(90deg, #ff3333, #e31b23);
+  box-shadow: 0 0 20px rgba(227, 27, 35, 0.8);
+  transform: translateY(-2px);
 }
 
 .hlb-logo-container {
   background: #ffffff;
   padding: 15px 25px;
   border-radius: 8px;
+  box-shadow: 0 0 15px rgba(255,255,255,0.2);
 }
 
 .hlb-logo {
@@ -850,7 +953,7 @@ nav a:hover {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 0 20px rgba(0, 240, 255, 0.2), inset 0 0 15px rgba(230, 0, 164, 0.1);
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.25), inset 0 0 15px rgba(230, 0, 164, 0.15);
     position: relative;
     overflow: hidden;
     box-sizing: border-box;
@@ -863,7 +966,7 @@ nav a:hover {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(0,240,255,0.05) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(0,240,255,0.08) 0%, transparent 70%);
     pointer-events: none;
 }
 
@@ -884,6 +987,7 @@ nav a:hover {
     letter-spacing: 1px;
     margin-bottom: 10px;
     text-transform: uppercase;
+    box-shadow: 0 0 8px rgba(230, 0, 164, 0.4);
 }
 
 .bjak-cyber-title {
@@ -897,7 +1001,7 @@ nav a:hover {
 
 .bjak-cyber-title span {
     color: #00F0FF;
-    text-shadow: 0 0 10px #00F0FF;
+    text-shadow: 0 0 12px #00F0FF;
 }
 
 .bjak-cyber-desc {
@@ -920,7 +1024,8 @@ nav a:hover {
     background: rgba(0, 255, 204, 0.08);
     padding: 5px 10px;
     border-radius: 4px;
-    border: 1px solid rgba(0, 255, 204, 0.3);
+    border: 1px solid rgba(0, 255, 204, 0.4);
+    box-shadow: 0 0 8px rgba(0, 255, 204, 0.15);
 }
 
 .bjak-cyber-btn {
@@ -935,24 +1040,24 @@ nav a:hover {
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 1px;
-    box-shadow: 0 0 15px rgba(255, 138, 0, 0.4);
+    box-shadow: 0 0 18px rgba(255, 138, 0, 0.5);
     transition: all 0.3s ease;
 }
 
 .bjak-cyber-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 25px rgba(255, 138, 0, 0.7);
+    box-shadow: 0 0 28px rgba(255, 138, 0, 0.8);
     background: linear-gradient(90deg, #ff9d26, #ff661a);
 }
 
 .bjak-cyber-badge {
     z-index: 2;
     text-align: center;
-    background: rgba(5, 7, 13, 0.8);
+    background: rgba(5, 7, 13, 0.85);
     border: 1px solid #E600A4;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 15px rgba(230, 0, 164, 0.2);
+    box-shadow: 0 0 20px rgba(230, 0, 164, 0.3);
 }
 
 .bjak-reward-amount {
@@ -960,7 +1065,7 @@ nav a:hover {
     font-size: 32px;
     font-weight: bold;
     color: #E600A4;
-    text-shadow: 0 0 10px #E600A4;
+    text-shadow: 0 0 12px #E600A4;
     margin: 5px 0;
 }
 
@@ -1030,12 +1135,18 @@ nav a:hover {
 
     <div class="header-right">
         <nav>
-            <!-- Dropdown Menu Oversea -->
+            <!-- Dropdown Menu Oversea Modern -->
             <div class="dropdown">
-                <a href="javascript:void(0)" onclick="toggleDropdown()">Oversea ▾</a>
+                <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
+                    Oversea <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #00F0FF;"></i>
+                </a>
                 <div class="dropdown-content" id="servicesDropdown">
-                    <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">RWANDA (Africa)</a>
-                    <a href="https://kasuhanet.store/Timor-Leste-SupportDevelopement.html">TIMOR LESTE (Asia)</a>
+                    <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">
+                        <i class="fa-solid fa-globe" style="margin-right: 8px; color: #00F0FF;"></i> RWANDA (Africa)
+                    </a>
+                    <a href="https://kasuhanet.store/Timor-Leste-SupportDevelopement.html">
+                        <i class="fa-solid fa-globe" style="margin-right: 8px; color: #E600A4;"></i> TIMOR LESTE (Asia)
+                    </a>
                 </div>
             </div>
             <a href="index.html">HOME</a>
@@ -1074,7 +1185,7 @@ nav a:hover {
         
         <div class="typing-box">
             <h2 style="font-size: 18px; margin: 10px 0; color:#4F31E8;">
-                <span style="color:#4F31E8; text-shadow:0 0 20px #E600A4;">KasuhaNET •</span>
+                <span style="color:#4F31E8; text-shadow:0 0 20px #4F31E8;">KasuhaNET •</span>
                 <span style="color:#E600A4; text-shadow:0 0 20px #E600A4;">Digital Store Platform</span>
             </h2>
             
@@ -1193,7 +1304,7 @@ nav a:hover {
       </div>
     </div>
     
-    <hr style="border: 0; border-top: 1px solid rgba(79, 49, 232, 0.3); margin: 30px 0;">
+    <hr style="border: 0; border-top: 1px solid rgba(0, 240, 255, 0.4); margin: 30px 0;">
     
     <div class="grid">
         <div class="card card-center">
@@ -1219,23 +1330,23 @@ nav a:hover {
                     <!-- LANDING PAGE PACKAGE -->
                     <div class="card">
                         <h3 class="package-title" style="color: #00F0FF;">Landing Page Package</h3>
-                        <div class="package-price" style="color: #fff; font-size: 24px; font-weight: bold;">RM 299<span style="font-size: 16px; color:#aaa;">++</span></div>
+                        <div class="package-price" style="color: #fff; font-size: 24px; font-weight: bold; text-shadow: 0 0 10px rgba(255,255,255,0.5);">RM 299<span style="font-size: 16px; color:#aaa;">++</span></div>
                         <p style="font-size: 12px; color: #999; margin: 0 0 15px 0;">Ideal for marketing campaigns, quick product launches, and mini shop portfolios.</p>
                         <ul class="package-features" style="text-align: left; font-size: 12px;">
                             <li>1 Main Landing Page (Single Page Design)</li>
                             <li>Responsive Code Architecture (Mobile-Friendly)</li>
                             <li>Full Google AdSense Optimization</li>
                             <li>Direct Call-to-Action to WhatsApp / Forms</li>
-                            <li style="color: #ff4a4a; font-weight: bold;">* Custom domain not included</li>
+                            <li style="color: #ff4a4a; font-weight: bold; text-shadow: 0 0 5px rgba(255,74,74,0.5);">* Custom domain not included</li>
                         </ul>
                         <a href="https://toyyibpay.com/L-P-P-LPP299" class="hlb-btn" style="text-align:center; margin-top: auto;" target="_blank">Subscribe Now</a>
                     </div>
                         
                     <!-- PREMIUM STANDARD PACKAGE -->
                     <div class="card premium-card" style="position: relative;">
-                        <div style="position: absolute; top: 10px; right: 15px; background: #E600A4; color: #fff; font-size: 9px; padding: 2px 6px; border-radius: 3px; font-weight: bold;">POPULAR</div>
-                        <h3 class="package-title" style="color: #E600A4;">Premium Standard</h3>
-                        <div class="package-price" style="color: #fff; font-size: 24px; font-weight: bold;">RM 900<span style="font-size: 16px; color:#aaa;">++</span></div>
+                        <div style="position: absolute; top: 10px; right: 15px; background: #E600A4; color: #fff; font-size: 9px; padding: 2px 6px; border-radius: 3px; font-weight: bold; box-shadow: 0 0 8px #E600A4;">POPULAR</div>
+                        <h3 class="package-title" style="color: #E600A4; text-shadow: 0 0 8px #E600A4;">Premium Standard</h3>
+                        <div class="package-price" style="color: #fff; font-size: 24px; font-weight: bold; text-shadow: 0 0 10px rgba(255,255,255,0.5);">RM 900<span style="font-size: 16px; color:#aaa;">++</span></div>
                         <p style="font-size: 12px; color: #999; margin: 0 0 15px 0;">Complete management system for Clubs, Associations, and dynamic Business profiles.</p>
                         <ul class="package-features" style="text-align: left; font-size: 12px;">
                             <li>Multi-Page Website Deployment</li>
@@ -1245,7 +1356,7 @@ nav a:hover {
                             <li>Full Custom Domain Support (.com/.my)</li>
                             <li>Premium Cyberpunk UI/UX Style</li>
                         </ul>
-                        <a href="https://toyyibpay.com/P-MS-Pay-PREMIUM-STANDARD" class="hlb-btn" style="background-color: #E600A4; text-align:center; margin-top: auto;" target="_blank">Upgrade to Premium</a>
+                        <a href="https://toyyibpay.com/P-MS-Pay-PREMIUM-STANDARD" class="hlb-btn" style="background: linear-gradient(90deg, #E600A4, #ff0077); text-align:center; margin-top: auto; box-shadow: 0 0 12px rgba(230,0,164,0.5);" target="_blank">Upgrade to Premium</a>
                     </div>
                 </div> <!-- /GRID ENDS HERE -->
 
@@ -1268,7 +1379,7 @@ nav a:hover {
 
     <!-- SOLUTIONS SECTION -->
     <section class="section">
-        <h2 style="color:#4F31E8; font-size: 18px; margin-bottom: 15px;">
+        <h2 style="color:#00F0FF; font-size: 18px; margin-bottom: 15px; text-shadow: 0 0 10px #00F0FF;">
             • SOLUTIONS FOR YOU •
         </h2>
         
@@ -1288,7 +1399,7 @@ nav a:hover {
 
     <!-- E-LEARNING SECTION -->
     <section class="section">
-        <h2 style="font-size: 18px; margin-bottom: 15px;">E-Learning Plans</h2>
+        <h2 style="font-size: 18px; margin-bottom: 15px; text-shadow: 0 0 10px rgba(255,255,255,0.4);">E-Learning Plans</h2>
 
         <div class="grid">
             <!-- CARD 1: WEB SERVICE -->
@@ -1344,7 +1455,7 @@ nav a:hover {
       <div class="bjak-cyber-content">
         <div style="width: 100%; text-align: center; margin: 25px 0;">
           <a href="https://bjak.my/ref/mohamadslbr" target="_blank" rel="noopener noreferrer">
-            <img src="Bjak.png" alt="BJAK Promo Banner" style="width: 100%; max-width: 1200px; height: auto; border-radius: 12px; border: 1px solid #00F0FF; box-shadow: 0 0 15px rgba(0,240,255,0.3);">
+            <img src="Bjak.png" alt="BJAK Promo Banner" style="width: 100%; max-width: 1200px; height: auto; border-radius: 12px; border: 1px solid #00F0FF; box-shadow: 0 0 20px rgba(0,240,255,0.4);">
           </a>
         </div>
 
@@ -1478,8 +1589,11 @@ nav a:hover {
     align-items:center;
     justify-content:center;
     z-index:999999;
-    box-shadow:0 5px 20px rgba(0,0,0,.25);
+    box-shadow:0 5px 20px rgba(37,211,102,0.5);
+    transition: transform 0.3s ease;
    "
+   onmouseover="this.style.transform='scale(1.1)'"
+   onmouseout="this.style.transform='scale(1)'"
    target="_blank"
    rel="noopener"
    aria-label="Contact us on WhatsApp">
@@ -1492,7 +1606,7 @@ nav a:hover {
 <!-- SWIPER JS LIBRARY -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-<!-- INITIALIZATION SCRIPT FOR SWIPER SLIDER & DROPDOWN -->
+<!-- INITIALIZATION SCRIPT FOR SWIPER SLIDER & DROPDOWN & PAGE FADE OUT -->
 <script>
   function toggleDropdown() {
     document.getElementById("servicesDropdown").classList.toggle("show");
@@ -1500,7 +1614,7 @@ nav a:hover {
 
   // Tutup dropdown jika pengguna menekan di luar menu
   window.addEventListener('click', function(e) {
-    if (!e.target.matches('.dropdown a')) {
+    if (!e.target.matches('.dropdown a') && !e.target.matches('.dropdown i')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
         for (var i = 0; i < dropdowns.length; i++) {
             var openDropdown = dropdowns[i];
@@ -1511,6 +1625,26 @@ nav a:hover {
     }
   });
   
+  // SCRIPT UNTUK KESAN FADE OUT APABILA MENEKAN PAUTAN (PAGE TRANSITION)
+  document.addEventListener("DOMContentLoaded", function() {
+    var links = document.querySelectorAll("a");
+    links.forEach(function(link) {
+      link.addEventListener("click", function(e) {
+        var href = this.getAttribute("href");
+        var target = this.getAttribute("target");
+
+        // Hanya jalankan fade-out untuk link dalaman biasa
+        if (href && !href.startsWith("#") && !href.startsWith("javascript") && target !== "_blank") {
+          e.preventDefault();
+          document.body.classList.add("page-fade-out");
+          setTimeout(function() {
+            window.location.href = href;
+          }, 450); // Menunggu animasi fade-out selesai
+        }
+      });
+    });
+  });
+
   const swiper = new Swiper(".myBannerSwiper", {
     loop: true,
     autoplay: {
