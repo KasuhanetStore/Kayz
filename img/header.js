@@ -5,13 +5,13 @@ function loadHeader() {
     container.innerHTML = `
     <header>
         <div class="logo">
-            <a href="homepage-EN.html" style="text-decoration:none; color:#fff; font-weight:900; font-size:18px;">
+            <a href="index.html" style="text-decoration:none; color:#fff; font-weight:900; font-size:18px;">
                 KasuhaNET<span style="color:#00F0FF;">.STORE</span>
             </a>
         </div>
         <div class="header-right">
             <nav>
-                <a href="homepage-EN.html">HOME</a>
+                <a href="index.html">HOME</a>
                 <a href="CommandCanDoLIST.html">COMMAND CANDO</a>
                 <a href="Shop-MyAffliate-homeMS.html">MY AFFILIATE</a>
                 <div class="dropdown">
