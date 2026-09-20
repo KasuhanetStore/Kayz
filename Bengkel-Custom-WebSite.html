@@ -76,7 +76,8 @@ nav a:hover {
     border: 1px solid rgba(79, 49, 232, 0.4);
 }
 
-.lang button {
+.lang-btn {
+    display: inline-block;
     background: transparent;
     border: none;
     color: #8fa0dd;
@@ -84,16 +85,17 @@ nav a:hover {
     font-size: 11px;
     cursor: pointer;
     border-radius: 4px;
+    text-decoration: none;
     transition: all 0.3s ease;
 }
 
-.lang button.active {
+.lang-btn.active {
     background: #4F31E8;
     color: #fff;
     box-shadow: 0 0 8px #4F31E8;
 }
 
-.lang button:hover:not(.active) {
+.lang-btn:hover:not(.active) {
     color: #00F0FF;
 }
 
@@ -279,6 +281,15 @@ main {
     font-size: 11px;
     border-radius: 4px;
     margin-bottom: 10px;
+}
+
+/* RESPONSIVE VIDEO */
+.BLOG_video_class {
+    max-width: 100%;
+    width: 350px;
+    height: 200px;
+    border: 1px solid rgba(0,240,255,0.3); 
+    border-radius: 8px;
 }
 
 /* BENGKEL CUSTOM ITEM LIST STYLES */
@@ -537,8 +548,8 @@ main {
         <!-- LANGUAGE SWITCHER -->
         <div class="lang-wrapper">
             <div class="lang">
-                <a href="Custom-Web-Workshop-EN.html"><button id="btn-en">EN</button></a>
-                <a href="Bengkel-Custom-WebSite.html"><button id="btn-ms" class="active">BM</button></a>
+                <a href="Custom-Web-Workshop-EN.html" class="lang-btn">EN</a>
+                <a href="Bengkel-Custom-WebSite.html" class="lang-btn active">BM</a>
             </div>
         </div>
     </div>
@@ -598,7 +609,7 @@ main {
             
         <div class="separator" style="clear: both; text-align: center; margin: 25px 0;">
             <iframe class="BLOG_video_class" allowfullscreen="" youtube-src-id="nHHD66opUqk" 
-                width="350" height="200" src="https://www.youtube.com/embed/nHHD66opUqk" style="border:1px solid rgba(0,240,255,0.3); border-radius:8px;">
+                src="https://www.youtube.com/embed/nHHD66opUqk">
             </iframe>
         </div>
           
@@ -774,7 +785,7 @@ main {
 
         <div class="footer-links">
             <h4>Sumber</h4>
-            <a href="Tentang-Kami">Tentang Kami</a>
+            <a href="Tentang-Kami.html">Tentang Kami</a>
             <a href="pusat-bantuan.html">Bantuan</a>
             <a href="terms-MS.html">Terma & Polisi</a>
         </div>
@@ -788,7 +799,7 @@ main {
     </div>
 
     <div class="footer-bottom">
-        © 2026 KasuhaNET Resources (202503248308). Hak Cipta Terelihara.
+        © 2026 KasuhaNET Resources (202503248308). Hak Cipta Terpelihara.
     </div>
 </footer>
 
@@ -808,7 +819,8 @@ main {
     z-index:999999;
     box-shadow:0 5px 20px rgba(0,0,0,.25);
    "
-   target="_blank">
+   target="_blank"
+   aria-label="WhatsApp Contact">
    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="white">
      <path d="M19.11 17.53c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.28-.73.9-.9 1.09-.17.19-.33.21-.61.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.66-1.55-1.94-.17-.28-.02-.43.12-.57.13-.13.28-.33.42-.5.14-.17.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.64-1.55-.88-2.12-.23-.56-.47-.48-.64-.49h-.55c-.19 0-.49.07-.74.35-.25.28-.95.93-.95 2.26s.97 2.62 1.11 2.8c.14.19 1.9 2.9 4.6 4.07.64.28 1.14.45 1.53.57.64.2 1.22.17 1.68.1.51-.08 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.12-.26-.19-.54-.33z"/>
      <path d="M16 3C9.37 3 4 8.37 4 15c0 2.31.66 4.47 1.8 6.32L4 29l7.9-1.75C13.64 28.55 14.78 29 16 29c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 22c-1.1 0-2.16-.2-3.14-.57l-.45-.17-4.69 1.04 1-4.57-.3-.47C7.39 18.35 7 16.72 7 15c0-4.96 4.04-9 9-9s9 4.04 9 9-4.04 10-9 10z"/>
