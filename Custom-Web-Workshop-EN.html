@@ -5,17 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- MAIN SEO -->
-<title>Custom Web Workshop | KasuhaNET.STORE</title>
-<meta name="description" content="Website Setup & Deployment Services, VPS configuration, and Custom Services at KasuhaNET.STORE.">
+<title>Not Just Packages, Get Individual Services Based on Your Needs!</title>
+<meta name="description" content="Various Web Services for Your Website. CLICK here to check official KasuhaNET.STORE service prices.">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://kasuhanet.store/">
-    
+
 <!-- FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
 
 <!-- FAVICON -->
-<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/favicon-512x512.png">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
 
 <!-- CSS KORPORAT -->
 <link rel="stylesheet" href="css/main.css">
@@ -34,15 +33,30 @@ body {
     padding: 0;
     overflow-x: hidden;
     min-height: 100vh;
+    opacity: 0;
+    transition: opacity 0.45s ease-in-out;
 }
 
+body.fade-in {
+    opacity: 1;
+}
+
+body.fade-out {
+    opacity: 0;
+}
+
+/* HEADER & NAVIGATION */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background: rgba(5, 7, 13, 0.9);
-    border-bottom: 1px solid rgba(79, 49, 232, 0.2);
+    background: rgba(5, 7, 13, 0.95);
+    border-bottom: 1px solid rgba(79, 49, 232, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(8px);
 }
 
 .header-right {
@@ -51,16 +65,76 @@ header {
     gap: 15px;
 }
 
+nav {
+    display: flex;
+    align-items: center;
+}
+
 nav a {
     color: #fff;
     text-decoration: none;
     margin: 0 10px;
-    font-size: 13px;
-    transition: color 0.3s;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    transition: color 0.3s, text-shadow 0.3s;
 }
 
 nav a:hover {
     color: #00F0FF;
+    text-shadow: 0 0 8px #00F0FF;
+}
+
+/* DROPDOWN OVERSEA */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background: transparent;
+    color: #fff;
+    border: none;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 5px 10px;
+    letter-spacing: 0.5px;
+    transition: color 0.3s;
+}
+
+.dropbtn:hover {
+    color: #00F0FF;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(9, 13, 22, 0.95);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,240,255,0.2);
+    border: 1px solid rgba(79, 49, 232, 0.4);
+    border-radius: 6px;
+    z-index: 1001;
+    top: 100%;
+    left: 0;
+}
+
+.dropdown-content a {
+    color: #ccc;
+    padding: 10px 14px;
+    text-decoration: none;
+    display: block;
+    font-size: 11px;
+    margin: 0;
+    transition: background 0.3s, color 0.3s;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(79, 49, 232, 0.3);
+    color: #00F0FF;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
 }
 
 /* BUTTON LANGUAGE TOGGLE */
@@ -163,11 +237,12 @@ main {
     max-width: 900px;
     width: 100%;
     padding: 40px;
-    background: #151923;
+    background: rgba(21, 25, 35, 0.85);
     border-radius: 12px;
-    border: 1px solid rgba(79, 49, 232, 0.3);
-    box-shadow: 0 0 25px rgba(230, 0, 164, 0.12);
+    border: 1px solid rgba(79, 49, 232, 0.4);
+    box-shadow: 0 0 30px rgba(79, 49, 232, 0.2), inset 0 0 15px rgba(0, 240, 255, 0.05);
     text-align: left;
+    backdrop-filter: blur(10px);
 }
 
 /* INTRO BANNER IMAGE CONTAINER */
@@ -177,8 +252,8 @@ main {
     margin-bottom: 30px;
     border-radius: 8px;
     overflow: hidden;
-    border: 1px solid rgba(0, 240, 255, 0.3);
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+    border: 1px solid rgba(0, 240, 255, 0.4);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
     background: rgba(5, 7, 13, 0.6);
 }
 
@@ -198,11 +273,12 @@ main {
     margin-bottom: 15px;
     text-transform: uppercase;
     letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(255,255,255,0.3);
 }
 
 .neon-title-workshop span {
     color: #E600A4;
-    text-shadow: 0 0 10px #E600A4;
+    text-shadow: 0 0 12px #E600A4;
 }
 
 .subtitle-intro {
@@ -215,9 +291,17 @@ main {
     padding-bottom: 20px;
 }
 
+/* NEON SECTION DIVIDER MODERN */
+.section-divider-fade {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #00F0FF, #E600A4, transparent);
+    margin: 35px 0 25px 0;
+    box-shadow: 0 0 10px #00F0FF;
+}
+
 .section-head {
     color: #00F0FF;
-    margin-top: 35px;
+    margin-top: 25px;
     margin-bottom: 20px;
     font-size: 20px;
     border-bottom: 1px solid #4F31E8;
@@ -225,6 +309,7 @@ main {
     display: flex;
     align-items: center;
     gap: 8px;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
 }
 
 /* CARDS / SERVICE GRID */
@@ -236,21 +321,27 @@ main {
 }
 
 .service-card {
-    background: rgba(9, 13, 22, 0.8);
-    border: 1px solid rgba(79, 49, 232, 0.3);
+    background: rgba(9, 13, 22, 0.85);
+    border: 1px solid rgba(79, 49, 232, 0.4);
     border-left: 4px solid #00F0FF;
     border-radius: 8px;
     padding: 20px;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: all 0.3s ease;
 }
 
 .service-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 240, 255, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 240, 255, 0.25);
+    border-color: #00F0FF;
 }
 
 .service-card.card-purple {
     border-left-color: #E600A4;
+}
+
+.service-card.card-purple:hover {
+    box-shadow: 0 8px 25px rgba(230, 0, 164, 0.25);
+    border-color: #E600A4;
 }
 
 .service-card h3 {
@@ -282,7 +373,7 @@ main {
     margin-bottom: 10px;
 }
 
-/* BENGKEL CUSTOM ITEM LIST STYLES */
+/* CUSTOM WORKSHOP ITEM LIST STYLES WITH FADE GLOW */
 .custom-services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -290,20 +381,22 @@ main {
     margin-top: 20px;
 }
 
-.custom-item-card {
-    background: rgba(5, 7, 13, 0.7);
-    border: 1px solid rgba(0, 240, 255, 0.2);
-    border-radius: 6px;
+.card-fade {
+    background: rgba(5, 7, 13, 0.75);
+    border: 1px solid rgba(0, 240, 255, 0.25);
+    border-radius: 8px;
     padding: 15px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: 0.3s;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 10px rgba(0, 240, 255, 0.02);
 }
 
-.custom-item-card:hover {
+.card-fade:hover {
     border-color: #E600A4;
-    box-shadow: 0 0 10px rgba(230, 0, 164, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(230, 0, 164, 0.3), inset 0 0 8px rgba(230, 0, 164, 0.1);
 }
 
 .custom-item-title {
@@ -311,6 +404,7 @@ main {
     font-size: 14px;
     font-weight: 700;
     margin-bottom: 6px;
+    text-shadow: 0 0 5px rgba(0, 240, 255, 0.3);
 }
 
 .custom-item-desc {
@@ -327,6 +421,7 @@ main {
     text-align: right;
     border-top: 1px dashed rgba(255, 255, 255, 0.1);
     padding-top: 8px;
+    text-shadow: 0 0 6px rgba(37, 211, 102, 0.3);
 }
 
 /* WORKSHOP HIGHLIGHT BOX */
@@ -336,6 +431,7 @@ main {
     border-radius: 8px;
     padding: 25px;
     margin-top: 25px;
+    box-shadow: 0 0 20px rgba(79, 49, 232, 0.15);
 }
 
 .workshop-highlight-box h3 {
@@ -343,6 +439,7 @@ main {
     font-size: 18px;
     margin-top: 0;
     margin-bottom: 12px;
+    text-shadow: 0 0 8px rgba(230, 0, 164, 0.4);
 }
 
 /* NOTICE CALLOUT */
@@ -381,6 +478,7 @@ main {
     padding: 25px;
     margin-top: 35px;
     text-align: center;
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
 }
 
 .support-box h3 {
@@ -420,7 +518,7 @@ main {
     box-shadow: 0 0 18px rgba(37, 211, 102, 0.6);
 }
 
-/* BACK LINK BAWAH */
+/* BACK LINK BOTTOM */
 .back-link-box {
     text-align: center;
     margin-top: 30px;
@@ -430,17 +528,18 @@ main {
     color: #00F0FF;
     text-decoration: none;
     font-size: 13px;
+    transition: 0.3s;
 }
 
 .back-link-box a:hover {
     text-shadow: 0 0 10px #00F0FF;
 }
 
-/* FOOTER */
+/* FOOTER CORPORATE BERKOTAK */
 .footer {
     background: #090d16;
     border-top: 2px solid #4F31E8;
-    box-shadow: 0 -5px 25px rgba(79, 49, 232, 0.15);
+    box-shadow: 0 -5px 25px rgba(79, 49, 232, 0.2);
     margin-top: 50px;
     padding: 30px 20px 15px 20px;
 }
@@ -453,16 +552,27 @@ main {
     margin: 0 auto;
 }
 
+.footer-box {
+    background: rgba(15, 20, 32, 0.6);
+    border: 1px solid rgba(79, 49, 232, 0.3);
+    padding: 15px;
+    border-radius: 8px;
+}
+
 .footer h3 {
     color: #fff;
     margin: 0 0 10px 0;
-    font-size: 18px;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(0, 240, 255, 0.3);
+    padding-bottom: 6px;
 }
 
 .footer h4 {
     color: #E600A4;
     margin: 0 0 10px 0;
-    font-size: 14px;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(230, 0, 164, 0.3);
+    padding-bottom: 4px;
 }
 
 .footer p {
@@ -482,11 +592,12 @@ main {
     color: #ccc;
     text-decoration: none;
     font-size: 12px;
-    transition: color 0.2s;
+    transition: color 0.2s, padding-left 0.2s;
 }
 
 .footer-links a:hover {
     color: #00F0FF;
+    padding-left: 4px;
 }
 
 .footer-bottom {
@@ -510,7 +621,7 @@ main {
     }
     .footer-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 15px;
     }
     .workshop-container {
         padding: 20px;
@@ -529,10 +640,20 @@ main {
 
     <div class="header-right">
         <nav>
-            <a href="index.html">HOME</a>
+            <a href="homepage-EN.html">HOME</a>
+            
+            <!-- DROPDOWN OVERSEA -->
+            <div class="dropdown">
+                <button class="dropbtn">OVERSEA ▾</button>
+                <div class="dropdown-content">
+                    <a href="Rwanda-EN.html">Rwanda Portal</a>
+                    <a href="TimorLeste-EN.html">Timor Leste Portal</a>
+                </div>
+            </div>
+
             <a href="About-Us.html">ABOUT US</a>
-            <a href="Terms-EN.html">TERMS & POLICY</a>
-            <a href="support-centre.html">SUPPORT</a>
+            <a href="terms-EN.html">TERMS & POLICY</a>
+            <a href="help-center.html">HELP CENTER</a>
         </nav>
 
         <!-- LANGUAGE SWITCHER -->
@@ -548,7 +669,7 @@ main {
 <!-- PARTNER CREDIT BAR -->
 <div class="partner-credit-bar">
     <div class="credit-text">
-        Website powered by the collaboration of Organizations & Companies
+        Website powered by Partnered Organizations & Joint Operations
     </div>
     <div class="partner-logos">
         <span class="partner-name">Kasuha Okulus Organisation</span>
@@ -563,37 +684,37 @@ main {
     <div class="workshop-container">    
         <!-- INTRO TRADEMARK IMAGE BANNER -->
         <div class="intro-trademark-box">
-            <img src="Bengkel-Custom-WebSite-EN.png" alt="Custom Web Workshop Official Trademark Banner">
+            <img src="Bengkel-Custom-WebSite.png" alt="Custom Web Workshop Official Trademark Banner">
         </div>
         
         <h1 class="neon-title-workshop">CUSTOM WEB <span>WORKSHOP</span></h1>
         
         <p class="subtitle-intro">
-            Welcome to <strong>kasuhanet.store</strong>! For those looking to build or upgrade their website, we now offer transparent Setup & Deployment Services tailored to your specific budget and needs.
-            You have full freedom to select your preferred purchasing and setup options.
+            Welcome to <strong>kasuhanet.store</strong>! For those who wish to build or upgrade a website, we now offer transparent Setup & Deployment Services tailored to your needs and budget.
+            Here, you have complete freedom to choose your preferred purchasing and installation methods.
         </p>
 
         <!-- SECTION 1 -->
         <div class="section-head">
-            <span>✓</span> Service & Installation Options
+            <span>✓</span> Installation & Service Options
         </div>
 
         <div class="service-cards-grid">
             <!-- Option 1 -->
             <div class="service-card">
                 <span class="badge-tag">OPTION 01</span>
-                <h3>1. Setup Service Only (Pay-Per-Service)</h3>
-                <p><strong>Best for:</strong> Clients who already own their tools (Domain, Script/Source Code, VPS/Hosting, or Developer Accounts).</p>
-                <p><strong>How it works:</strong> You provide the tools and assets; we handle the installation, configuration, and deployment until your website is live and ready!</p>
-                <p style="margin-top:10px; color:#00F0FF; font-weight:bold;">Pricing: Charged based on selected individual services only.</p>
+                <h3>1. Setup Service Only (Charged Per Service)</h3>
+                <p><strong>Ideal for:</strong> Those who already have their own Tools (Domain, Script/Source Code, VPS/Hosting, or Developer Account).</p>
+                <p><strong>How it works:</strong> You provide the tools/assets, and we handle the installation, configuration, and deployment until your website is fully ready to launch!</p>
+                <p style="margin-top:10px; color:#00F0FF; font-weight:bold;">Charge: Calculated based on your selected per-service options only.</p>
             </div>
 
             <!-- Option 2 -->
             <div class="service-card card-purple">
                 <span class="badge-tag" style="color:#E600A4; border-color:rgba(230,0,164,0.4);">OPTION 02</span>
-                <h3>2. Complete Setup Package (Includes VPS & Tools)</h3>
-                <p><strong>Best for:</strong> Clients who want a hassle-free, fully managed solution without handling technical details.</p>
-                <p><strong>How it works:</strong> We supply all essential tools (including VPS setup and supporting utilities) and manage the registration and account overview profile setup directly.</p>
+                <h3>2. Full Setup Package (Includes VPS & Tools)</h3>
+                <p><strong>Ideal for:</strong> Those who prefer a complete turn-key solution without dealing with technical setups.</p>
+                <p><strong>How it works:</strong> We prepare the essential required tools (including VPS provisioning and supporting tools) and immediately manage the registration and profile account (Account Overview) configuration for you.</p>
             </div>
         </div>
             
@@ -602,128 +723,130 @@ main {
                 width="350" height="200" src="https://www.youtube.com/embed/nHHD66opUqk" style="border:1px solid rgba(0,240,255,0.3); border-radius:8px;">
             </iframe>
         </div>
-          
+        
+        <div class="section-divider-fade"></div>
+
         <!-- SECTION 2 -->
         <div class="workshop-highlight-box">
             <h3>✓ "Custom Workshop"</h3>
             <p style="color:#ddd; font-size:14px; line-height:1.6; margin:0 0 10px 0;">
-                Looking for maximum flexibility according to your budget? Explore our Custom Workshop section!
+                Looking for budget flexibility? Use our Custom Workshop section!
             </p>
             <p style="color:#ccc; font-size:13.5px; line-height:1.6; margin:0 0 20px 0;">
-                In this section, every service is listed clearly. You can pick only the required services for quick deployment at competitive local market rates.
+                In this section, every service is broken down clearly. You can choose only the services you need for quick setup at competitive local market rates.
             </p>
 
-            <!-- LIST OF 14 MAIN CUSTOM WORKSHOP SERVICES -->
+            <!-- LIST OF 14 MAIN CUSTOM WORKSHOP SERVICES WITH FADE CARD -->
             <div class="custom-services-grid">
                 
-                <div class="custom-item-card">
+                <div class="card-fade">
                     <div>
                         <div class="custom-item-title">1. Domain & DNS Routing Management</div>
-                        <div class="custom-item-desc">Setup, connect domain to server/VPS, or resolve DNS record issues (MX, TXT, SPF, DKIM).</div>
+                        <div class="custom-item-desc">Setup, point domain to server/VPS, or resolve DNS record issues (MX, TXT, SPF, DKIM errors).</div>
                     </div>
                     <div class="custom-item-price">RM 50</div>
                 </div>
 
-                <div class="custom-item-card">
+                <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">2. Server / VPS Installation & Setup</div>
-                        <div class="custom-item-desc">Basic web server setup (Nginx/Apache), Control Panel (aaPanel/CyberPanel/cPanel), and basic security configuration.</div>
+                        <div class="custom-item-title">2. Server / VPS Setup & Installation</div>
+                        <div class="custom-item-desc">Basic web server setup (Nginx/Apache), Control Panels (aaPanel/CyberPanel/cPanel), and essential security configuration.</div>
                     </div>
                     <div class="custom-item-price">RM 120</div>
                 </div>
 
-                <div class="custom-item-card">
+                <div class="card-fade">
                     <div>
                         <div class="custom-item-title">3. SSL Certificate Configuration (HTTPS)</div>
-                        <div class="custom-item-desc">Installation & activation of SSL security certificates to ensure secure connection (padlock icon).</div>
+                        <div class="custom-item-desc">Installation & activation of SSL security certificates to ensure encrypted, secure connections (padlock icon).</div>
                     </div>
                     <div class="custom-item-price">RM 50</div>
                 </div>
 
-                <div class="custom-item-card">
+                <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">4. Deploy CMS & Script / Source Code</div>
-                        <div class="custom-item-desc">WordPress / CMS installation, or uploading & configuring custom scripts (PHP, Laravel, CodeCanyon) to server.</div>
+                        <div class="custom-item-title">4. Deploy CMS & Custom Scripts / Source Code</div>
+                        <div class="custom-item-desc">WordPress / CMS installation, or uploading and configuring custom scripts (PHP, Laravel, CodeCanyon) to server.</div>
                     </div>
                     <div class="custom-item-price">RM 150</div>
                 </div>
 
-                <div class="custom-item-card">
+                <div class="card-fade">
                     <div>
                         <div class="custom-item-title">5. Database Setup & Migration</div>
-                        <div class="custom-item-desc">Database setup (MySQL/MariaDB), database import/export, and connection error troubleshooting.</div>
+                        <div class="custom-item-desc">Database creation (MySQL/MariaDB), import/export pangkalan data, and database connection error resolution.</div>
                     </div>
                     <div class="custom-item-price">RM 100</div>
                 </div>
 
-                <div class="custom-item-card">
+                <div class="card-fade">
                     <div>
                         <div class="custom-item-title">6. Local Payment Gateway Integration</div>
-                        <div class="custom-item-desc">Connect website with automated payment systems (ToyyibPay, Billplz, Chip, or SenangPay).</div>
+                        <div class="custom-item-desc">Connect your website to automated payment gateways (ToyyibPay, Billplz, Chip, or SenangPay).</div>
                     </div>
                     <div class="custom-item-price">RM 150</div>
                 </div>
 
-                <div class="custom-item-card">
+                <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">7. Official Domain Email Setup</div>
-                        <div class="custom-item-desc">Configure business email using your custom domain (Google Workspace/Zoho/Private Email) & anti-spam setup.</div>
+                        <div class="custom-item-title">7. Domain Custom Official Email Setup</div>
+                        <div class="custom-item-desc">Business email setup on your custom domain (Google Workspace/Zoho/Private Email) with anti-spam setup.</div>
                     </div>
                     <div class="custom-item-price">RM 100</div>
                 </div>
 
-                <div class="custom-item-card">
+                <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">8. Troubleshooting & Fix Errors</div>
-                        <div class="custom-item-desc">Fix technical issues such as 500 Internal Server Error, 502 Bad Gateway, or White Screen of Death.</div>
+                        <div class="custom-item-title">8. Troubleshooting & Error Fixes</div>
+                        <div class="custom-item-desc">Resolving technical errors such as 500 Internal Server Error, 502 Bad Gateway, or White Screen of Death.</div>
                     </div>
                     <div class="custom-item-price">RM 100</div>
                 </div>
 
-                <div class="custom-item-card">
+                <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">9. Malware / Website Virus Cleanup</div>
-                        <div class="custom-item-desc">Full scan, removal of malicious code/malware, and recovery of hacked or blacklisted websites.</div>
+                        <div class="custom-item-title">9. Malware / Web Virus Removal</div>
+                        <div class="custom-item-desc">Full system scan, malicious code/malware cleanup, and recovery of hacked or blacklisted websites.</div>
                     </div>
                     <div class="custom-item-price">RM 250</div>
                 </div>
 
-                <div class="custom-item-card">
+                <div class="card-fade">
                     <div>
                         <div class="custom-item-title">10. Speed & Performance Optimization</div>
-                        <div class="custom-item-desc">Improve website loading speed, image/database optimization, and Cloudflare CDN configuration.</div>
+                        <div class="custom-item-desc">Enhancing web load speeds, optimizing images/database, and Cloudflare CDN integration.</div>
                     </div>
                     <div class="custom-item-price">RM 150</div>
                 </div>
 
-                <div class="custom-item-card">
+                <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">11. Complete Web & Server Migration</div>
-                        <div class="custom-item-desc">Transfer entire website, database, and email from old hosting/server to a new server with zero downtime.</div>
+                        <div class="custom-item-title">11. Full Website & Server Migration</div>
+                        <div class="custom-item-desc">Complete transfer of website files, databases, and emails from old hosting/server to a new server without downtime.</div>
                     </div>
                     <div class="custom-item-price">RM 200</div>
                 </div>
 
-                <div class="custom-item-card">
+                <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">12. Analytics & Pixel Integration</div>
-                        <div class="custom-item-desc">Installation of Google Analytics, Google Search Console, Meta Pixel, or TikTok Pixel for marketing purposes.</div>
+                        <div class="custom-item-title">12. Analytics & Tracking Pixel Integration</div>
+                        <div class="custom-item-desc">Setup and configuration for Google Analytics, Google Search Console, Meta Pixel, or TikTok Pixel for tracking.</div>
                     </div>
                     <div class="custom-item-price">RM 80</div>
                 </div>
 
-                <div class="custom-item-card">
+                <div class="card-fade">
                     <div>
                         <div class="custom-item-title">13. Custom Blogspot / Platform Upgrade</div>
-                        <div class="custom-item-desc">Convert basic Blogger/Blogspot appearance into a professional layout, setup custom domain, & update theme layout.</div>
+                        <div class="custom-item-desc">Transforming standard Blogger/Blogspot layouts into professional structures with custom domain & layout updates.</div>
                     </div>
                     <div class="custom-item-price">RM 120</div>
                 </div>
 
-                <div class="custom-item-card">
+                <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">14. Script Page Design (HTML/CSS/JS)</div>
-                        <div class="custom-item-desc">Custom page design (landing page/single page) using custom mobile-responsive HTML/CSS/JS code.</div>
+                        <div class="custom-item-title">14. Page Design Script (HTML/CSS/JS)</div>
+                        <div class="custom-item-desc">Custom landing page / single-page design using responsive, mobile-friendly HTML/CSS/JS code.</div>
                     </div>
                     <div class="custom-item-price">RM 180</div>
                 </div>
@@ -735,52 +858,52 @@ main {
                 <div class="notice-icon">!</div>
                 <div class="notice-content">
                     <strong>Note on Purchasing Tools & Parts:</strong><br>
-                    Certain tools or accounts in the Custom Workshop are officially sold through Authorized Affiliate Developer networks. This allows you to obtain your chosen Licenses/Tools directly and securely for your account setup.
+                    Selected tools or developer accounts in the Custom Workshop are sold officially through authorized Developer Affiliate networks. This ensures you acquire genuine licenses/tools directly and safely for your account setup.
                 </div>
             </div>
         </div>
 
         <!-- SUPPORT / CONTACT SECTION -->
         <div class="support-box">
-            <h3>• Need Assistance / Inquiries?</h3>
+            <h3>• Need Assistance / Have Inquiries?</h3>
             <p>
-                If you're unsure which service or tool is needed for your project, contact us directly via WhatsApp or email at <a href="mailto:kasuhaoculusorganisation@kasuhanet.store" class="email-link">kasuhaoculusorganisation@kasuhanet.store</a>. We are ready to assist with an initial technical review before you place an order!
+                If you are unsure which services or tools are required for your project, reach out to us via WhatsApp or Email at <a href="mailto:kasuhaoculusorganisation@kasuhanet.store" class="email-link">kasuhaoculusorganisation@kasuhanet.store</a>. We are ready to assist with initial technical reviews before you place an order!
             </p>
             <a href="https://wa.me/qr/4K2RBZZQAPL4G1" class="contact-btn" target="_blank">
-                Contact WhatsApp Now
+                Contact via WhatsApp Now
             </a>
         </div>
 
         <div class="back-link-box">
-          <a href="index.html">← BACK TO MAIN MENU</a>
+          <a href="homepage-EN.html">← BACK TO MAIN MENU</a>
         </div>
 
     </div>
 </main>
 
-<!-- FOOTER KORPORAT -->
+<!-- FOOTER CORPORATE BERKOTAK -->
 <footer class="footer">
     <div class="footer-grid">
-        <div>
+        <div class="footer-box">
             <h3>KasuhaNET.STORE</h3>
-            <p>Multi-service digital ecosystem focused on Linux solutions, affiliate systems, revenue generation, and digital learning.</p>
+            <p>A multi-service digital ecosystem specializing in Linux solutions, affiliate systems, income generators, and digital learning.</p>
         </div>
 
-        <div class="footer-links">
+        <div class="footer-box footer-links">
             <h4>Services</h4>
             <a href="CommandCanDoLIST.html">CommandCanDo</a>
-            <a href="Shop-MyAffliate-homeEN.html">MyAffiliate</a>
+            <a href="Shop-MyAffliate-homeMS.html">MyAffiliate</a>
             <a href="CashOutServicePayLater.html">PayLater BNPL</a>
         </div>
 
-        <div class="footer-links">
+        <div class="footer-box footer-links">
             <h4>Resources</h4>
             <a href="About-Us.html">About Us</a>
-            <a href="support-centre.html">Support</a>
-            <a href="Terms-EN.html">Terms & Policy</a>
+            <a href="help-center.html">Help Center</a>
+            <a href="terms-EN.html">Terms & Policy</a>
         </div>
 
-        <div class="footer-links">
+        <div class="footer-box footer-links">
             <h4>Follow Us</h4>
             <a href="https://www.facebook.com/share/1GeJNW5bok/" target="_blank">Facebook</a>
             <a href="https://tiktok.com/@kasuhanet.store" target="_blank">TikTok</a>
@@ -815,6 +938,40 @@ main {
      <path d="M16 3C9.37 3 4 8.37 4 15c0 2.31.66 4.47 1.8 6.32L4 29l7.9-1.75C13.64 28.55 14.78 29 16 29c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 22c-1.1 0-2.16-.2-3.14-.57l-.45-.17-4.69 1.04 1-4.57-.3-.47C7.39 18.35 7 16.72 7 15c0-4.96 4.04-9 9-9s9 4.04 9 9-4.04 10-9 10z"/>
    </svg>
 </a>
-    
+
+<!-- SCRIPT FADE-IN / FADE-OUT PAGE TRANSITIONS -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.body.classList.add("fade-in");
+
+    const links = document.querySelectorAll("a[href]");
+
+    links.forEach(link => {
+        link.addEventListener("click", function (e) {
+            const href = this.getAttribute("href");
+
+            // Abaikan pautan anchor, WhatsApp, mailto, atau tab baru
+            if (
+                !href || 
+                href.startsWith("#") || 
+                href.startsWith("mailto:") || 
+                href.startsWith("https://wa.me") ||
+                this.getAttribute("target") === "_blank"
+            ) {
+                return;
+            }
+
+            e.preventDefault();
+            document.body.classList.remove("fade-in");
+            document.body.classList.add("fade-out");
+
+            setTimeout(function () {
+                window.location.href = href;
+            }, 450);
+        });
+    });
+});
+</script>
+
 </body>
 </html>
