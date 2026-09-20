@@ -31,9 +31,18 @@ function loadHeader() {
         </div>
     </header>
 
-    <!-- MAIN TITLE SECTION -->
-    <section class="section">
-        <h1 class="neon-title">Kasuha<span>NET.STORE</span></h1>
+    document.addEventListener("DOMContentLoaded", function() {
+    const headerHTML = `
+        <!-- MAIN TITLE SECTION -->
+        <section class="section">
+            <h1 class="neon-title">Kasuha<span>NET.STORE</span></h1>
+        </section>
+    `;
+    
+    // Memasukkan header ke dalam element <header> atau awal <body>
+    const headerElement = document.querySelector("header") || document.body;
+    headerElement.insertAdjacentHTML("afterbegin", headerHTML);
+});
         
         <div class="typing-box">
             <h2 style="font-size: 18px; margin: 10px 0; color:#4F31E8;">
