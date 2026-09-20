@@ -14,7 +14,7 @@
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://kasuhanet.store/support-centre.html">
 
-<!-- SCHEMA.ORG ORG JSON-LD -->
+<!-- SCHEMA.ORG JSON-LD -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -34,37 +34,60 @@
 }
 </script>
 
-<!-- FONTS & ICONS -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- FONTS & LIBRARIES -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
 <!-- FAVICON -->
 <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/favicon-512x512.png">
 
-<!-- CSS UTAMA -->
-<link rel="stylesheet" href="css/main.css">
-
 <style>
-/* GLOBAL CYBER FONT & RESET */
+/* GLOBAL CYBERPUNK CORE STYLES */
 * {
     font-family: 'Orbitron', sans-serif !important;
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    background-color: #05070d;
-    color: #fff;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+    background-color: #030509;
+    color: #ffffff;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    overflow-x: hidden;
+    opacity: 0;
+    animation: pageFadeIn 0.45s ease-in forwards;
 }
 
-/* HEADER STICKY */
+@keyframes pageFadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.page-fade-out {
+    opacity: 0 !important;
+    transform: translateY(-6px) !important;
+    transition: opacity 0.45s ease, transform 0.45s ease !important;
+}
+
+/* BACKGROUND ANIMATION EFFECT */
+.bg-glow {
+    position: fixed;
+    top: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(79, 49, 232, 0.15) 0%, rgba(3, 5, 9, 0) 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* HEADER & NAVIGATION */
 header {
     position: sticky;
     top: 0;
@@ -72,32 +95,103 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
-    background: rgba(5, 7, 13, 0.85);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(79, 49, 232, 0.3);
+    padding: 15px 30px;
+    background: rgba(3, 5, 9, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(79, 49, 232, 0.35);
+}
+
+.logo img {
+    height: 28px;
+    width: auto;
+    filter: drop-shadow(0 0 6px rgba(0, 240, 255, 0.4));
 }
 
 .header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+nav {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
 nav a {
-    color: #fff;
+    color: #c4c9d4;
     text-decoration: none;
-    margin: 0 10px;
-    font-size: 13px;
-    transition: color 0.3s;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
 }
 
 nav a:hover, nav a.active {
     color: #00F0FF;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
 }
 
-/* LANGUAGE TOGGLE */
+/* DROPDOWN MENU */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-btn {
+    color: #c4c9d4;
+    background: transparent;
+    border: none;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: 0.3s;
+}
+
+.dropdown-btn:hover {
+    color: #00F0FF;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    background: rgba(9, 13, 22, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    border-radius: 6px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    padding: 8px 0;
+    z-index: 1001;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px 16px;
+    font-size: 11px;
+    color: #c4c9d4;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.dropdown-content a:hover {
+    background: rgba(79, 49, 232, 0.3);
+    color: #00F0FF;
+}
+
+.dropdown.show .dropdown-content {
+    display: block;
+}
+
+/* LANGUAGE SWITCHER */
 .lang-wrapper {
     display: inline-block;
 }
@@ -105,7 +199,7 @@ nav a:hover, nav a.active {
 .lang {
     display: flex;
     gap: 4px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
     padding: 3px;
     border-radius: 6px;
     border: 1px solid rgba(79, 49, 232, 0.4);
@@ -117,6 +211,7 @@ nav a:hover, nav a.active {
     color: #8fa0dd;
     padding: 4px 10px;
     font-size: 11px;
+    font-weight: 700;
     cursor: pointer;
     border-radius: 4px;
     transition: all 0.3s ease;
@@ -124,8 +219,8 @@ nav a:hover, nav a.active {
 
 .lang button.active {
     background: #4F31E8;
-    color: #fff;
-    box-shadow: 0 0 8px #4F31E8;
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(79, 49, 232, 0.8);
 }
 
 .lang button:hover:not(.active) {
@@ -134,7 +229,7 @@ nav a:hover, nav a.active {
 
 /* PARTNER CREDIT BAR */
 .partner-credit-bar {
-    background: rgba(9, 13, 22, 0.6);
+    background: rgba(9, 13, 22, 0.7);
     border-bottom: 1px dashed rgba(0, 240, 255, 0.2);
     padding: 8px 20px;
     display: flex;
@@ -170,11 +265,11 @@ nav a:hover, nav a.active {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(5, 7, 13, 0.8);
-    border: 1px solid rgba(230, 0, 164, 0.3);
+    background: rgba(3, 5, 9, 0.8);
+    border: 1px solid rgba(230, 0, 164, 0.4);
     padding: 4px 8px;
     border-radius: 4px;
-    box-shadow: 0 0 8px rgba(230, 0, 164, 0.1);
+    box-shadow: 0 0 8px rgba(230, 0, 164, 0.15);
 }
 
 .partner-logo-box img {
@@ -183,91 +278,85 @@ nav a:hover, nav a.active {
     filter: drop-shadow(0 0 2px #00F0FF);
 }
 
-/* MAIN CONTENT */
+/* MAIN CONTENT CONTAINER */
 main {
     flex: 1 0 auto;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 15px;
+    padding: 40px 20px;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 
-.terms-container {
-    max-width: 850px;
-    width: 100%;
-    padding: 40px;
-    background: #151923;
-    border-radius: 12px;
-    border: 1px solid rgba(79, 49, 232, 0.3);
-    box-shadow: 0 0 20px rgba(230, 0, 164, 0.1);
-    text-align: left;
+.hero-section {
+    text-align: center;
+    margin-bottom: 25px;
 }
 
-.trust-banner-container {
-    width: 100%;
-    max-width: 850px;
-    display: flex;
-    justify-content: center;
-    margin-top: 25px;
+.neon-title {
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: 1px;
 }
 
-.trust-banner-img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 8px;
-    border: 1px solid rgba(79, 49, 232, 0.3);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+.neon-title span {
+    color: #E600A4;
+    text-shadow: 0 0 12px rgba(230, 0, 164, 0.8);
+}
+
+.neon-desc {
+    color: #8fa0dd;
+    font-size: 13px;
+    margin-top: 6px;
 }
 
 .top-nav-back {
     width: 100%;
-    max-width: 850px;
-    margin-bottom: 15px;
+    max-width: 800px;
+    margin-bottom: 20px;
     text-align: left;
 }
 
 .top-nav-back a {
     color: #00F0FF;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 12px;
+    font-weight: 700;
     display: inline-flex;
     align-items: center;
-    gap: 5px;
-    transition: 0.3s;
+    gap: 6px;
+    transition: 0.3s ease;
 }
 
 .top-nav-back a:hover {
     text-shadow: 0 0 10px #00F0FF;
-    color: #fff;
+    color: #ffffff;
 }
 
-/* HEADINGS */
-.neon-title-terms {
-    font-size: clamp(28px, 5vw, 42px);
-    color: #fff;
-    text-align: center;
-    margin-bottom: 10px;
+/* FORM GLASS CONTAINER */
+.terms-container {
+    max-width: 800px;
+    width: 100%;
+    padding: 40px;
+    background: rgba(15, 20, 32, 0.75);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    box-shadow: 0 0 25px rgba(79, 49, 232, 0.2);
+    text-align: left;
 }
 
-.neon-title-terms span {
-    color: #E600A4;
-    text-shadow: 0 0 10px #E600A4;
-}
-
-/* FORM STYLE */
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 }
 
 .form-group label {
     display: block;
-    font-size: 13px;
+    font-size: 12px;
+    font-weight: 700;
     color: #00F0FF;
     margin-bottom: 8px;
     letter-spacing: 0.5px;
@@ -276,11 +365,11 @@ main {
 .form-group input, 
 .form-group textarea {
     width: 100%;
-    padding: 12px 15px;
-    background: rgba(5, 7, 13, 0.8);
+    padding: 14px 16px;
+    background: rgba(3, 5, 9, 0.85);
     border: 1px solid rgba(79, 49, 232, 0.5);
     border-radius: 6px;
-    color: #fff;
+    color: #ffffff;
     font-size: 13px;
     outline: none;
     transition: all 0.3s ease;
@@ -289,89 +378,109 @@ main {
 .form-group input:focus, 
 .form-group textarea:focus {
     border-color: #00F0FF;
-    box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
 }
 
 .btn-submit {
     width: 100%;
-    padding: 14px;
+    padding: 15px;
     background: #4F31E8;
     border: none;
     border-radius: 6px;
-    color: #fff;
-    font-size: 14px;
-    font-weight: bold;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
     cursor: pointer;
-    box-shadow: 0 0 12px #4F31E8;
+    box-shadow: 0 0 15px rgba(79, 49, 232, 0.6);
     transition: all 0.3s ease;
 }
 
 .btn-submit:hover {
     background: #E600A4;
-    box-shadow: 0 0 15px #E600A4;
+    box-shadow: 0 0 20px rgba(230, 0, 164, 0.8);
 }
 
 .btn-submit:disabled {
-    background: #444;
+    background: #333d52;
     cursor: not-allowed;
     box-shadow: none;
 }
 
 #responseMsg {
-    margin-top: 15px;
+    margin-top: 18px;
     font-size: 13px;
     text-align: center;
-    font-weight: bold;
+    font-weight: 700;
 }
 
-/* FOOTER */
-.footer {
-    background: #090d16;
+/* TRUST BANNER */
+.trust-banner-container {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.trust-banner-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    border: 1px solid rgba(79, 49, 232, 0.35);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+/* FOOTER STYLES */
+footer {
+    background: #060911;
     border-top: 2px solid #4F31E8;
-    box-shadow: 0 -5px 25px rgba(79, 49, 232, 0.15);
+    box-shadow: 0 -5px 25px rgba(79, 49, 232, 0.2);
     margin-top: 60px;
-    padding: 30px 20px 15px 20px;
+    padding: 40px 20px 20px 20px;
     width: 100%;
 }
 
 .footer-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .footer h3 {
-    color: #fff;
-    margin: 0 0 10px 0;
-    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 12px;
+    font-size: 16px;
+    font-weight: 700;
 }
 
 .footer h4 {
     color: #E600A4;
-    margin: 0 0 10px 0;
-    font-size: 14px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    font-weight: 700;
 }
 
 .footer p {
-    color: #999;
+    color: #8fa0dd;
     font-size: 12px;
-    line-height: 1.5;
-    margin: 0;
+    line-height: 1.6;
 }
 
 .footer-links {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
 }
 
 .footer-links a {
-    color: #ccc;
+    color: #c4c9d4;
     text-decoration: none;
     font-size: 12px;
-    transition: color 0.2s;
+    transition: color 0.2s ease;
 }
 
 .footer-links a:hover {
@@ -382,35 +491,32 @@ main {
     text-align: center;
     font-size: 11px;
     color: #666;
-    padding-top: 20px;
+    padding-top: 25px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
-    margin-top: 25px;
+    margin-top: 30px;
 }
 
-/* MOBILE RESPONSIVE */
-@media (max-width: 600px) {
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
     header {
         flex-direction: column;
-        gap: 10px;
-        text-align: center;
+        gap: 12px;
+        padding: 15px;
     }
     .header-right {
         flex-direction: column;
-        gap: 10px;
+        gap: 12px;
     }
-    .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .terms-container {
+        padding: 25px 20px;
     }
     .partner-logos {
         flex-direction: column;
-        gap: 5px;
-    }
-    .partner-name {
-        font-size: 10px;
-    }
-    .terms-container {
-        padding: 25px 18px;
+        gap: 6px;
     }
 }
 </style>
@@ -418,18 +524,31 @@ main {
 
 <body>
 
-<div class="bg-animation"></div>
-<div class="stars"></div>
+<div class="bg-glow"></div>
 
 <!-- HEADER STICKY -->
 <header>
     <div class="logo">
-        <img src="img/logo3.png" style="height:25px; width:auto;" alt="KasuhaNET Logo">
+        <a href="index.html">
+            <img src="img/logo3.png" alt="KasuhaNET Logo">
+        </a>
     </div>
 
     <div class="header-right">
         <nav>
             <a href="index.html">HOME</a>
+            
+            <!-- OVERSEA DROPDOWN -->
+            <div class="dropdown" id="overseaDropdown">
+                <button class="dropdown-btn" onclick="toggleDropdown(event)">
+                    OVERSEA <i class="fa-solid => fa-chevron-down" style="font-size: 10px;"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="Rwanda-SupportDevelopement.html">Rwanda Support</a>
+                    <a href="Timor-Leste-SupportDevelopement.html">Timor Leste Support</a>
+                </div>
+            </div>
+
             <a href="About-Us.html">ABOUT US</a>
             <a href="terms-EN.html">TERMS & POLICY</a>
             <a href="support-centre.html" class="active">SUPPORT</a>
@@ -462,62 +581,55 @@ main {
 <main>
 
     <section class="hero-section">
-        <h1 class="neon-title" style="text-align: center;">Kasuha<span style="color:#E600A4;">NET.STORE</span></h1>
-        
-        <div class="typing-box" style="text-align: center;">
-            <h2 style="font-size: 18px; margin: 10px 0; text-align: center;">
-                <span style="color:#4F31E8; text-shadow:0 0 20px #4F31E8;">KasuhaNET •</span>
-                <span style="color:#E600A4; text-shadow:0 0 20px #E600A4;">Digital Store Platform</span>
-            </h2>
-            
-            <p class="neon-desc" style="text-align: center; color:#8fa0dd; font-size:13px;">
-                Hybrid Sales Platform and Multi-Service Digital Tools
-            </p>
-        </div>
+        <h1 class="neon-title">Kasuha<span>NET.STORE</span></h1>
+        <p class="neon-desc">Hybrid Sales Platform & Multi-Service Digital Tools</p>
     </section>
 
-  <div class="top-nav-back">
-    <a href="index.html">← Back to Main Menu</a>
-  </div>
+    <div class="top-nav-back">
+        <a href="index.html"><i class="fa-solid fa-arrow-left"></i> Back to Main Menu</a>
+    </div>
 
-  <div class="terms-container">
+    <div class="terms-container">
+        <h2 style="font-size: 24px; text-align: center; color: #ffffff; margin-bottom: 8px;">
+            SUPPORT <span style="color: #E600A4;">CENTRE</span>
+        </h2>
+        <p style="text-align: center; font-size: 12px; color: #8fa0dd; margin-bottom: 30px;">
+            Have any issues or inquiries? Submit your message directly to our support team below.
+        </p>
 
-    <h1 class="neon-title-terms">SUPPORT <span>CENTRE</span></h1>
-    <p style="text-align:center; font-size:13px; color:#8fa0dd; margin-bottom:30px;">
-      Have any issues or inquiries? Get in touch with our team below.
-    </p>
+        <!-- BACKEND WORKER FORM -->
+        <form id="aduanForm">
+            <div class="form-group">
+                <label for="name"><i class="fa-solid fa-user"></i> YOUR NAME</label>
+                <input type="text" id="name" placeholder="Enter your full name..." required>
+            </div>
 
-    <!-- FORM WORKER -->
-    <form id="aduanForm">
-      <div class="form-group">
-        <label for="name">YOUR NAME</label>
-        <input type="text" id="name" placeholder="Enter your full name..." required>
-      </div>
+            <div class="form-group">
+                <label for="email"><i class="fa-solid fa-envelope"></i> YOUR EMAIL</label>
+                <input type="email" id="email" placeholder="example@gmail.com" required>
+            </div>
 
-      <div class="form-group">
-        <label for="email">YOUR EMAIL</label>
-        <input type="email" id="email" placeholder="example@gmail.com" required>
-      </div>
+            <div class="form-group">
+                <label for="message"><i class="fa-solid fa-message"></i> YOUR MESSAGE / ISSUE</label>
+                <textarea id="message" rows="5" placeholder="Describe your issue or inquiry in detail..." required></textarea>
+            </div>
 
-      <div class="form-group">
-        <label for="message">YOUR MESSAGE / ISSUE</label>
-        <textarea id="message" rows="5" placeholder="Describe your issue or inquiry in detail..." required></textarea>
-      </div>
+            <button type="submit" id="btnSubmit" class="btn-submit">
+                <i class="fa-solid fa-paper-plane"></i> SEND MESSAGE
+            </button>
+        </form>
 
-      <button type="submit" id="btnSubmit" class="btn-submit">SEND MESSAGE</button>
-    </form>
-
-    <div id="responseMsg"></div>
-  </div>
+        <div id="responseMsg"></div>
+    </div>
     
-  <div class="trust-banner-container">
-      <img src="broadcast.png" alt="KasuhaNET Supported Technologies & Payments" class="trust-banner-img" />
-  </div>
-    
+    <div class="trust-banner-container">
+        <img src="broadcast.png" alt="KasuhaNET Supported Technologies & Payments" class="trust-banner-img" />
+    </div>
+
 </main>
 
 <!-- FOOTER -->
-<footer class="footer">
+<footer>
     <div class="footer-grid">
         <div>
             <h3>KasuhaNET.STORE</h3>
@@ -540,9 +652,9 @@ main {
 
         <div class="footer-links">
             <h4>Follow Us</h4>
-            <a href="https://www.facebook.com/share/1GeJNW5bok/" target="_blank">Facebook</a>
-            <a href="https://tiktok.com/@kasuhanet.store" target="_blank">TikTok</a>
-            <a href="https://t.me/kasuhanetstorebot" target="_blank">Telegram</a>
+            <a href="https://www.facebook.com/share/1GeJNW5bok/" target="_blank"><i class="fa-brands fa-facebook"></i> Facebook</a>
+            <a href="https://tiktok.com/@kasuhanet.store" target="_blank"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+            <a href="https://t.me/kasuhanetstorebot" target="_blank"><i class="fa-brands fa-telegram"></i> Telegram</a>
         </div>
     </div>
 
@@ -554,42 +666,82 @@ main {
 <!-- WHATSAPP FLOATING BUTTON -->
 <a href="https://wa.me/qr/4K2RBZZQAPL4G1"
    style="
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    width:60px;
-    height:60px;
-    background:#25D366;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    z-index:999999;
-    box-shadow:0 5px 20px rgba(0,0,0,.25);
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 55px;
+    height: 55px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    transition: transform 0.3s ease;
    "
    target="_blank"
-   aria-label="Contact Support on WhatsApp">
-   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="white">
+   aria-label="Contact Support on WhatsApp"
+   onmouseover="this.style.transform='scale(1.1)'"
+   onmouseout="this.style.transform='scale(1.0)'">
+   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="30" height="30" fill="white">
      <path d="M19.11 17.53c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.28-.73.9-.9 1.09-.17.19-.33.21-.61.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.66-1.55-1.94-.17-.28-.02-.43.12-.57.13-.13.28-.33.42-.5.14-.17.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.64-1.55-.88-2.12-.23-.56-.47-.48-.64-.49h-.55c-.19 0-.49.07-.74.35-.25.28-.95.93-.95 2.26s.97 2.62 1.11 2.8c.14.19 1.9 2.9 4.6 4.07.64.28 1.14.45 1.53.57.64.2 1.22.17 1.68.1.51-.08 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.12-.26-.19-.54-.33z"/>
      <path d="M16 3C9.37 3 4 8.37 4 15c0 2.31.66 4.47 1.8 6.32L4 29l7.9-1.75C13.64 28.55 14.78 29 16 29c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 22c-1.1 0-2.16-.2-3.14-.57l-.45-.17-4.69 1.04 1-4.57-.3-.47C7.39 18.35 7 16.72 7 15c0-4.96 4.04-9 9-9s9 4.04 9 9-4.04 10-9 10z"/>
    </svg>
 </a>
 
-<!-- SCRIPT WORKER (ADUAN BACKEND) -->
+<!-- JAVASCRIPT LOGIC -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
+  // DROPDOWN MENU TOGGLE
+  function toggleDropdown(event) {
+    event.stopPropagation();
+    const dropdown = document.getElementById('overseaDropdown');
+    dropdown.classList.toggle('show');
+  }
+
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropdown-btn') && !event.target.matches('.dropdown-btn *')) {
+      const dropdowns = document.getElementsByClassName("dropdown");
+      for (let i = 0; i < dropdowns.length; i++) {
+        const openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+
+  // SMOOTH PAGE FADE-OUT TRANSITION
+  document.addEventListener('DOMContentLoaded', () => {
+    const links = document.querySelectorAll('a[href]');
+    links.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (href && !href.startsWith('#') && !href.startsWith('javascript') && !href.startsWith('http') && link.target !== '_blank') {
+          e.preventDefault();
+          document.body.classList.add('page-fade-out');
+          setTimeout(() => {
+            window.location.href = href;
+          }, 450);
+        }
+      });
+    });
+  });
+
+  // BACKEND WORKER (ADUAN FORM SUBMISSION)
   const form = document.getElementById('aduanForm');
   const btnSubmit = document.getElementById('btnSubmit');
   const responseMsg = document.getElementById('responseMsg');
-  
   const WORKER_URL = 'https://aduan-backend-worker.kasuhanet.workers.dev';
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     btnSubmit.disabled = true;
-    btnSubmit.innerText = "SENDING...";
+    btnSubmit.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> SENDING...';
     responseMsg.style.color = "#00F0FF";
-    responseMsg.innerText = "Sending message to server...";
+    responseMsg.innerText = "Connecting to server...";
 
     const payload = {
       nama: document.getElementById('name').value,
@@ -610,7 +762,7 @@ main {
 
       if (res.ok) {
         responseMsg.style.color = "#00FF66";
-        responseMsg.innerText = "Message sent successfully! We will get back to you soon.";
+        responseMsg.innerText = "Message sent successfully! Our team will contact you shortly.";
         form.reset();
       } else {
         responseMsg.style.color = "#FF0055";
@@ -621,7 +773,7 @@ main {
       responseMsg.innerText = "Network error. Please try again later.";
     } finally {
       btnSubmit.disabled = false;
-      btnSubmit.innerText = "SEND MESSAGE";
+      btnSubmit.innerHTML = '<i class="fa-solid fa-paper-plane"></i> SEND MESSAGE';
     }
   });
 </script>
