@@ -11,12 +11,14 @@ function loadHeader() {
         </div>
         <div class="header-right">
             <nav>
+            <button class="dropbtn">OVERSEA SERVICES ▼</button>
+            <div class="dropdown-content">
+            <div class="dropdown">
+            
                 <a href="index.html">HOME</a>
                 <a href="CommandCanDoLIST.html">COMMAND CANDO</a>
                 <a href="Shop-MyAffliate-homeMS.html">MY AFFILIATE</a>
-                <div class="dropdown">
-                    <button class="dropbtn">OVERSEA SERVICES ▼</button>
-                    <div class="dropdown-content">
+                    
                         <a href="custom-web-EN.html">CUSTOM WEB WORKSHOP</a>
                         <a href="CashOutServicePayLater.html">PAYLATER CASH OUT</a>
                     </div>
