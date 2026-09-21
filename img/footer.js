@@ -1,73 +1,117 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const footerHTML = `
-<!-- BOXED CYBER FOOTER -->
-<footer class="footer">
-    <div class="footer-grid">
-    
-        <div><h3 class="neon-title">Kasuha<span>NET.STORE</span></h3>
-            <p>Digital Shop Platform Service digital Developer and Hybrid Sales Digital.</p>
-        </div>
+    // 1. Cari container main-footer
+    let footerContainer = document.getElementById("main-footer");
 
-        <div class="footer-links">
-            <h4>Services</h4>
-            <a href="CommandCanDoLIST.html">CommandCanDo</a>
-            <a href="Shop-MyAffliate-homeEN.html">MyAffiliate</a>
-            <a href="CashOutServicePayLater.html">PayLater BNPL</a>
-        </div>
-
-        <div class="footer-links">
-            <h4>Resources</h4>
-            <a href="About-Us.html">About Us</a>
-            <a href="support-centre.html">Support</a>
-            <a href="terms-EN.html">Terms & Policy</a>
-        </div>
-
-        <div class="footer-links">
-            <h4>Follow Us</h4>
-            <div class="social-icons-wrapper">
-                <a href="https://www.facebook.com/share/1BfeDZJqjP/" target="_blank" rel="noopener" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-                <a href="https://tiktok.com/@kasuhanet.store" target="_blank" rel="noopener" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                <a href="https://t.me/kasuhanetstorebot" target="_blank" rel="noopener" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
-            </div>
-        </div>
-    </div>
-
-    <div class="footer-bottom">
-        © 2026 KasuhaNET Resources (202503248308). All Rights Reserved.
-    </div>
-</footer>
-
-<!-- WHATSAPP FLOATING BUTTON -->
-<a href="https://wa.me/qr/4K2RBZZQAPL4G1"
-   style="
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    width:60px;
-    height:60px;
-    background:#25D366;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    z-index:999999;
-    box-shadow:0 5px 20px rgba(37,211,102,0.5);
-    transition: transform 0.3s ease;
-   "
-   onmouseover="this.style.transform='scale(1.1)'"
-   onmouseout="this.style.transform='scale(1)'"
-   target="_blank"
-   rel="noopener"
-   aria-label="Contact us on WhatsApp">
-   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="white">
-     <path d="M19.11 17.53c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.28-.73.9-.9 1.09-.17.19-.33.21-.61.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.66-1.55-1.94-.17-.28-.02-.43.12-.57.13-.13.28-.33.42-.50.14-.17.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.64-1.55-.88-2.12-.23-.56-.47-.48-.64-.49h-.55c-.19 0-.49.07-.74.35-.25.28-.95.93-.95 2.26s.97 2.62 1.11 2.8c.14.19 1.9 2.9 4.6 4.07.64.28 1.14.45 1.53.57.64.2 1.22.17 1.68.1.51-.08 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.12-.26-.19-.54-.33z"/>
-     <path d="M16 3C9.37 3 4 8.37 4 15c0 2.31.66 4.47 1.8 6.32L4 29l7.9-1.75C13.64 28.55 14.78 29 16 29c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 22c-1.1 0-2.16-.2-3.14-.57l-.45-.17-4.69 1.04 1-4.57-.3-.47C7.39 18.35 7 16.72 7 15c0-4.96 4.04-9 9-9s9 4.04 9 9-4.04 10-9 10z"/>
-   </svg>
-</a>
-    `;
-
-    const target = document.getElementById("main-footer");
-    if (target) {
-        target.innerHTML = footerHTML;
+    // Jika container tiada dalam HTML, cipta satu di bahagian bawah body
+    if (!footerContainer) {
+        footerContainer = document.createElement("div");
+        footerContainer.id = "main-footer";
+        document.body.appendChild(footerContainer);
     }
+
+    // 2. Inject HTML Footer secara selamat
+    footerContainer.innerHTML = `
+        <style>
+            #main-footer {
+                width: 100%;
+                background: #090d16;
+                border-top: 2px solid #4F31E8;
+                box-shadow: 0 -5px 25px rgba(79, 49, 232, 0.2);
+                margin-top: 50px;
+                padding: 40px 20px 20px 20px;
+                color: #fff;
+                font-family: 'Orbitron', sans-serif !important;
+                clear: both;
+                position: relative;
+                z-index: 999;
+            }
+            .footer-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                gap: 30px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+            .footer-col h3 {
+                color: #00F0FF;
+                font-size: 16px;
+                margin-bottom: 12px;
+                text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+            }
+            .footer-col h4 {
+                color: #E600A4;
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+            .footer-col p {
+                color: #aaa;
+                font-size: 11px;
+                line-height: 1.6;
+            }
+            .footer-links {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+            .footer-links a {
+                color: #ccc;
+                text-decoration: none;
+                font-size: 12px;
+                transition: color 0.2s;
+            }
+            .footer-links a:hover {
+                color: #00F0FF;
+            }
+            .footer-socials {
+                display: flex;
+                gap: 15px;
+                margin-top: 10px;
+            }
+            .footer-socials a {
+                color: #00F0FF;
+                font-size: 18px;
+                transition: transform 0.2s;
+            }
+            .footer-socials a:hover {
+                transform: scale(1.2);
+                color: #E600A4;
+            }
+            .footer-bottom {
+                text-align: center;
+                font-size: 11px;
+                color: #666;
+                padding-top: 20px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                margin-top: 30px;
+            }
+        </style>
+
+        <footer class="footer-grid">
+            <div class="footer-col">
+                <h3>KASUHANET</h3>
+                <p>Official Affiliate & Digital Solution Hub. Connecting users with verified products, tech components, and server management tools.</p>
+            </div>
+            <div class="footer-col">
+                <h4>QUICK LINKS</h4>
+                <div class="footer-links">
+                    <a href="https://kasuhanet.store/">Home</a>
+                    <a href="https://kasuhanet.store/Shop-MyAffliate-homeEN.html">Affiliate Store</a>
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>CONNECT WITH US</h4>
+                <p>Follow our socials or direct line for support:</p>
+                <div class="footer-socials">
+                    <a href="https://wa.me/601139318182" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+        </footer>
+        <div class="footer-bottom">
+            &copy; ${new Date().getFullYear()} KasuhaNET Resources. All Rights Reserved.
+        </div>
+    `;
 });
