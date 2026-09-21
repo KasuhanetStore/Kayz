@@ -5,19 +5,51 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- MAIN SEO -->
-<title>Not Just Packages, Get Individual Services Based on Your Needs!</title>
-<meta name="description" content="Various Web Services for Your Website. CLICK here to check official KasuhaNET.STORE service prices.">
+<title>Custom Web Workshop | KasuhaNET.STORE - Transparent Web Setup & Deployment Services</title>
+<meta name="description" content="Various Web Services for Your Website. CLICK here to check official KasuhaNET.STORE service prices. Transparent Setup & Deployment Services tailored to your needs and budget.">
+<meta name="keywords" content="digital shop platform Malaysia, Custom Web Workshop, web setup services, VPS installation, SSL certificate setup, payment gateway integration, KasuhaNET">
+<meta property="og:title" content="Custom Web Workshop | KasuhaNET.STORE">
+<meta property="og:description" content="Not Just Packages, Get Individual Services Based on Your Needs! Transparent Setup & Deployment Services.">
+<meta property="og:url" content="https://kasuhanet.store/Custom-Web-Workshop.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://kasuhanet.store/Bengkel-Custom-WebSite.png">
+<meta property="og:site_name" content="KasuhaNET.STORE">
+<meta property="og:locale" content="en_US">
 <meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow">
+<meta name="theme-color" content="#05070d">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="canonical" href="https://kasuhanet.store/Custom-Web-Workshop.html">
+<link rel="alternate" hreflang="en" href="https://kasuhanet.store/Custom-Web-Workshop-EN.html">
+<link rel="alternate" hreflang="ms" href="https://kasuhanet.store/Custom-Web-Workshop.html">
+<link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/Custom-Web-Workshop.html">
 
-<!-- FONT -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Custom Web Workshop | KasuhaNET.STORE">
+<meta name="twitter:description" content="Not Just Packages, Get Individual Services Based on Your Needs!">
+<meta name="twitter:image" content="https://kasuhanet.store/Bengkel-Custom-WebSite.png">
 
-<!-- FAVICON -->
-<link rel="icon" type="image/png" href="favicon.png">
-<link rel="apple-touch-icon" href="favicon.png">
-
-<!-- CSS KORPORAT -->
+<!-- FONTS & CSS LIBRARIES -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="css/main.css">
+
+<!-- FAVICONS -->
+<link rel="icon" type="image/png" sizes="32x32" href="https://kasuhanet.store/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="https://kasuhanet.store/favicon.ico">
+<link rel="shortcut icon" href="https://kasuhanet.store/favicon.ico">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Kasuha Oculus",
+  "url": "https://kasuhanet.store/",
+  "logo": "https://kasuhanet.store/OculusLogo.png",
+  "description": "Website development services, software design, and system integration."
+}
+</script>
 
 <style>
 /* GLOBAL CYBER FONT & RESET */
@@ -27,22 +59,26 @@
 }
 
 body {
-    background-color: #05070d;
+    background-color: #030509;
     color: #fff;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    min-height: 100vh;
-    opacity: 0;
-    transition: opacity 0.45s ease-in-out;
+    animation: pageFadeIn 0.8s ease-out forwards;
 }
 
-body.fade-in {
-    opacity: 1;
+.page-fade-out {
+    animation: pageFadeOut 0.5s ease-in forwards !important;
 }
 
-body.fade-out {
-    opacity: 0;
+@keyframes pageFadeIn {
+    0% { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pageFadeOut {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-8px); }
 }
 
 /* HEADER & NAVIGATION */
@@ -51,12 +87,12 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background: rgba(5, 7, 13, 0.95);
-    border-bottom: 1px solid rgba(79, 49, 232, 0.3);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    backdrop-filter: blur(8px);
+    background: rgba(5, 7, 13, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 240, 255, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 240, 255, 0.15);
+    position: relative;
+    z-index: 10000;
 }
 
 .header-right {
@@ -68,73 +104,82 @@ header {
 nav {
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
 nav a {
-    color: #fff;
+    color: #b0c0f0;
     text-decoration: none;
-    margin: 0 10px;
-    font-size: 12px;
-    letter-spacing: 0.5px;
-    transition: color 0.3s, text-shadow 0.3s;
+    font-size: 13px;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 5px rgba(0, 240, 255, 0.2);
 }
 
 nav a:hover {
     color: #00F0FF;
-    text-shadow: 0 0 8px #00F0FF;
+    text-shadow: 0 0 12px #00F0FF, 0 0 20px #00F0FF;
 }
 
-/* DROPDOWN OVERSEA */
+/* DROPDOWN MENU MODERN CYBERPUNK */
 .dropdown {
     position: relative;
     display: inline-block;
-}
-
-.dropbtn {
-    background: transparent;
-    color: #fff;
-    border: none;
-    font-size: 12px;
-    cursor: pointer;
-    padding: 5px 10px;
-    letter-spacing: 0.5px;
-    transition: color 0.3s;
-}
-
-.dropbtn:hover {
-    color: #00F0FF;
+    z-index: 99999;
 }
 
 .dropdown-content {
-    display: none;
+    display: block;
+    opacity: 0;
+    visibility: hidden;
     position: absolute;
-    background-color: rgba(9, 13, 22, 0.95);
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,240,255,0.2);
-    border: 1px solid rgba(79, 49, 232, 0.4);
-    border-radius: 6px;
-    z-index: 1001;
-    top: 100%;
+    top: 130%;
     left: 0;
+    min-width: 230px;
+    padding: 8px 0;
+    background: rgba(5, 8, 18, 0.95);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid #00F0FF;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.95),
+                0 0 18px rgba(0, 240, 255, 0.4),
+                inset 0 0 10px rgba(0, 240, 255, 0.15);
+    z-index: 999999;
+    transform: translateY(-8px) scale(0.98);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dropdown-content.show,
+.dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
 }
 
 .dropdown-content a {
-    color: #ccc;
-    padding: 10px 14px;
+    color: #d1d5db !important;
+    padding: 12px 18px !important;
     text-decoration: none;
-    display: block;
-    font-size: 11px;
-    margin: 0;
-    transition: background 0.3s, color 0.3s;
+    display: flex;
+    align-items: center;
+    font-size: 11px !important;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease-in-out;
 }
 
 .dropdown-content a:hover {
-    background-color: rgba(79, 49, 232, 0.3);
-    color: #00F0FF;
+    background: linear-gradient(90deg, rgba(0, 240, 255, 0.18), rgba(230, 0, 164, 0.18)) !important;
+    color: #00F0FF !important;
+    border-left: 3px solid #00F0FF;
+    padding-left: 22px !important;
+    text-shadow: 0 0 10px #00F0FF, 0 0 20px rgba(0, 240, 255, 0.6);
 }
 
-.dropdown:hover .dropdown-content {
-    display: block;
+.dropdown-content a:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 240, 255, 0.1);
 }
 
 /* BUTTON LANGUAGE TOGGLE */
@@ -148,7 +193,7 @@ nav a:hover {
     background: rgba(255, 255, 255, 0.05);
     padding: 3px;
     border-radius: 6px;
-    border: 1px solid rgba(79, 49, 232, 0.4);
+    border: 1px solid rgba(79, 49, 232, 0.6);
 }
 
 .lang button {
@@ -163,20 +208,23 @@ nav a:hover {
 }
 
 .lang button.active {
-    background: #4F31E8;
+    background: linear-gradient(135deg, #4F31E8, #00F0FF);
     color: #fff;
-    box-shadow: 0 0 8px #4F31E8;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.8);
+    font-weight: bold;
 }
 
 .lang button:hover:not(.active) {
     color: #00F0FF;
+    text-shadow: 0 0 8px #00F0FF;
 }
 
 /* PARTNER CREDIT BAR */
 .partner-credit-bar {
-    background: rgba(9, 13, 22, 0.6);
-    border-bottom: 1px dashed rgba(0, 240, 255, 0.2);
-    padding: 8px 20px;
+    background: rgba(9, 13, 22, 0.8);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px dashed rgba(0, 240, 255, 0.3);
+    padding: 10px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -187,7 +235,7 @@ nav a:hover {
 
 .credit-text {
     font-size: 10px;
-    color: #666;
+    color: #8fa0dd;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
@@ -201,26 +249,27 @@ nav a:hover {
 
 .partner-name {
     font-size: 11px;
-    color: #8fa0dd;
+    color: #00F0FF;
     font-weight: 700;
     letter-spacing: 0.5px;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
 }
 
 .partner-logo-box {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(5, 7, 13, 0.8);
-    border: 1px solid rgba(230, 0, 164, 0.3);
+    background: rgba(5, 7, 13, 0.9);
+    border: 1px solid rgba(230, 0, 164, 0.5);
     padding: 4px 8px;
     border-radius: 4px;
-    box-shadow: 0 0 8px rgba(230, 0, 164, 0.1);
+    box-shadow: 0 0 12px rgba(230, 0, 164, 0.3);
 }
 
 .partner-logo-box img {
     height: 14px;
     width: auto;
-    filter: drop-shadow(0 0 2px #00F0FF);
+    filter: drop-shadow(0 0 3px #00F0FF);
 }
 
 /* MAIN CONTAINER */
@@ -237,10 +286,10 @@ main {
     max-width: 900px;
     width: 100%;
     padding: 40px;
-    background: rgba(21, 25, 35, 0.85);
+    background: rgba(13, 18, 30, 0.75);
     border-radius: 12px;
-    border: 1px solid rgba(79, 49, 232, 0.4);
-    box-shadow: 0 0 30px rgba(79, 49, 232, 0.2), inset 0 0 15px rgba(0, 240, 255, 0.05);
+    border: 1px solid rgba(0, 240, 255, 0.4);
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.15), inset 0 0 15px rgba(0, 240, 255, 0.05);
     text-align: left;
     backdrop-filter: blur(10px);
 }
@@ -272,23 +321,27 @@ main {
     text-align: center;
     margin-bottom: 15px;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    text-shadow: 0 0 10px rgba(255,255,255,0.3);
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 15px rgba(255,255,255,0.4);
+    font-weight: 900;
 }
 
 .neon-title-workshop span {
-    color: #E600A4;
-    text-shadow: 0 0 12px #E600A4;
+    background: linear-gradient(135deg, #E600A4, #ff3366, #00F0FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 12px rgba(230, 0, 164, 0.8));
 }
 
 .subtitle-intro {
     text-align: center;
     font-size: 14px;
-    color: #aaa;
+    color: #b0c0f0;
     line-height: 1.6;
     margin-bottom: 35px;
     border-bottom: 1px dashed rgba(79, 49, 232, 0.4);
     padding-bottom: 20px;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.2);
 }
 
 /* NEON SECTION DIVIDER MODERN */
@@ -535,13 +588,13 @@ main {
     text-shadow: 0 0 10px #00F0FF;
 }
 
-/* FOOTER CORPORATE BERKOTAK */
+/* FOOTER DESIGN MODEN */
 .footer {
-    background: #090d16;
-    border-top: 2px solid #4F31E8;
-    box-shadow: 0 -5px 25px rgba(79, 49, 232, 0.2);
+    background: #060911;
+    border-top: 2px solid #00F0FF;
+    box-shadow: 0 -5px 30px rgba(0, 240, 255, 0.2);
     margin-top: 50px;
-    padding: 30px 20px 15px 20px;
+    padding: 35px 20px 15px 20px;
 }
 
 .footer-grid {
@@ -552,60 +605,71 @@ main {
     margin: 0 auto;
 }
 
-.footer-box {
-    background: rgba(15, 20, 32, 0.6);
-    border: 1px solid rgba(79, 49, 232, 0.3);
-    padding: 15px;
-    border-radius: 8px;
-}
-
 .footer h3 {
     color: #fff;
     margin: 0 0 10px 0;
-    font-size: 16px;
-    border-bottom: 1px solid rgba(0, 240, 255, 0.3);
-    padding-bottom: 6px;
+    font-size: 18px;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
 }
 
 .footer h4 {
     color: #E600A4;
     margin: 0 0 10px 0;
-    font-size: 13px;
-    border-bottom: 1px solid rgba(230, 0, 164, 0.3);
-    padding-bottom: 4px;
+    font-size: 14px;
+    text-shadow: 0 0 8px #E600A4;
 }
 
 .footer p {
-    color: #999;
+    color: #a0aec0;
     font-size: 12px;
-    line-height: 1.5;
+    line-height: 1.6;
     margin: 0;
 }
 
 .footer-links {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
 }
 
 .footer-links a {
-    color: #ccc;
+    color: #cbd5e0;
     text-decoration: none;
     font-size: 12px;
-    transition: color 0.2s, padding-left 0.2s;
+    transition: all 0.3s ease;
 }
 
 .footer-links a:hover {
     color: #00F0FF;
-    padding-left: 4px;
+    padding-left: 5px;
+    text-shadow: 0 0 8px #00F0FF;
+}
+
+.social-icons-wrapper {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icons-wrapper a {
+    color: #ff85a1;
+    font-size: 22px;
+    transition: 0.3s ease;
+    filter: drop-shadow(0 0 5px #ff85a1);
+}
+
+.social-icons-wrapper a:hover {
+    color: #00F0FF;
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 10px #00F0FF);
 }
 
 .footer-bottom {
     text-align: center;
     font-size: 11px;
-    color: #666;
+    color: #718096;
     padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     margin-top: 25px;
 }
 
@@ -621,7 +685,7 @@ main {
     }
     .footer-grid {
         grid-template-columns: 1fr;
-        gap: 15px;
+        gap: 20px;
     }
     .workshop-container {
         padding: 20px;
@@ -631,7 +695,7 @@ main {
 </head>
 
 <body>
-<!-- DYNAMIC HEADER -->
+
 <header>
     <div class="logo">
         <img src="img/logo3.png" style="height:25px; width:auto;" alt="KasuhaNET Logo">
@@ -660,8 +724,8 @@ main {
 
         <div class="lang-wrapper">
             <div class="lang">
-                <a href="index.html"><button id="btn-en" class="active">EN</button></a>
-                <a href="MS.html"><button id="btn-ms">BM</button></a>
+                <a href="Custom-Web-Workshop-EN.html"><button id="btn-en" class="active">EN</button></a>
+                <a href="Custom-Web-Workshop.html"><button id="btn-ms">BM</button></a>
             </div>
         </div>
     </div>
@@ -670,10 +734,10 @@ main {
 <!-- PARTNER CREDIT BAR -->
 <div class="partner-credit-bar">
     <div class="credit-text">
-        Website powered by Partnered Organizations & Joint Operations
+        Website powered by the collaboration of Organizations & Companies
     </div>
     <div class="partner-logos">
-        <span class="partner-name">Kasuha Okulus Organisation</span>
+        <span class="partner-name">Kasuha Oculus Organisation</span>
         <div class="partner-logo-box">
             <img src="OculusLogo.png" alt="Collaboration Logo">
         </div>
@@ -691,31 +755,31 @@ main {
         <h1 class="neon-title-workshop">CUSTOM WEB <span>WORKSHOP</span></h1>
         
         <p class="subtitle-intro">
-            Welcome to <strong>kasuhanet.store</strong>! For those who wish to build or upgrade a website, we now offer transparent Setup & Deployment Services tailored to your needs and budget.
-            Here, you have complete freedom to choose your preferred purchasing and installation methods.
+            Selamat datang ke <strong>kasuhanet.store</strong>! Bagi anda yang ingin membina atau menaik taraf laman web, kami kini menawarkan Perkhidmatan Pemasangan & Persediaan Telus mengikut keperluan dan bajet anda.
+            Di sini, anda mempunyai kebebasan sepenuhnya untuk memilih kaedah pembelian dan pemasangan pilihan anda.
         </p>
 
         <!-- SECTION 1 -->
         <div class="section-head">
-            <span>✓</span> Installation & Service Options
+            <span>✓</span> Pilihan Pemasangan & Perkhidmatan
         </div>
 
         <div class="service-cards-grid">
             <!-- Option 1 -->
             <div class="service-card">
-                <span class="badge-tag">OPTION 01</span>
-                <h3>1. Setup Service Only (Charged Per Service)</h3>
-                <p><strong>Ideal for:</strong> Those who already have their own Tools (Domain, Script/Source Code, VPS/Hosting, or Developer Account).</p>
-                <p><strong>How it works:</strong> You provide the tools/assets, and we handle the installation, configuration, and deployment until your website is fully ready to launch!</p>
-                <p style="margin-top:10px; color:#00F0FF; font-weight:bold;">Charge: Calculated based on your selected per-service options only.</p>
+                <span class="badge-tag">PILIHAN 01</span>
+                <h3>1. Servis Pemasangan Sahaja (Caj Mengikut Servis)</h3>
+                <p><strong>Sesuai untuk:</strong> Mereka yang sudah mempunyai Alatan/Aset sendiri (Domain, Skrip/Kod Sumber, VPS/Hosting, atau Akaun Pembangun).</p>
+                <p><strong>Cara ia berfungsi:</strong> Anda sediakan alatan/aset, dan kami uruskan pemasangan, konfigurasi, dan penempatan sehingga laman web anda sedia untuk dilancarkan!</p>
+                <p style="margin-top:10px; color:#00F0FF; font-weight:bold;">Caj: Dikira berdasarkan pilihan setiap perkhidmatan yang anda pilih sahaja.</p>
             </div>
 
             <!-- Option 2 -->
             <div class="service-card card-purple">
-                <span class="badge-tag" style="color:#E600A4; border-color:rgba(230,0,164,0.4);">OPTION 02</span>
-                <h3>2. Full Setup Package (Includes VPS & Tools)</h3>
-                <p><strong>Ideal for:</strong> Those who prefer a complete turn-key solution without dealing with technical setups.</p>
-                <p><strong>How it works:</strong> We prepare the essential required tools (including VPS provisioning and supporting tools) and immediately manage the registration and profile account (Account Overview) configuration for you.</p>
+                <span class="badge-tag" style="color:#E600A4; border-color:rgba(230,0,164,0.4);">PILIHAN 02</span>
+                <h3>2. Pakej Pemasangan Penuh (Termasuk VPS & Alatan)</h3>
+                <p><strong>Sesuai untuk:</strong> Mereka yang mahukan penyelesaian lengkap tanpa perlu berurusan dengan persediaan teknikal.</p>
+                <p><strong>Cara ia berfungsi:</strong> Kami sediakan alatan penting yang diperlukan (termasuk penyediaan VPS dan alatan sokongan) dan terus menguruskan pendaftaran serta konfigurasi akaun untuk anda.</p>
             </div>
         </div>
             
@@ -731,123 +795,123 @@ main {
         <div class="workshop-highlight-box">
             <h3>✓ "Custom Workshop"</h3>
             <p style="color:#ddd; font-size:14px; line-height:1.6; margin:0 0 10px 0;">
-                Looking for budget flexibility? Use our Custom Workshop section!
+                Mencari fleksibiliti bajet? Gunakan bahagian Custom Workshop kami!
             </p>
             <p style="color:#ccc; font-size:13.5px; line-height:1.6; margin:0 0 20px 0;">
-                In this section, every service is broken down clearly. You can choose only the services you need for quick setup at competitive local market rates.
+                Dalam bahagian ini, setiap perkhidmatan dipecahkan dengan jelas. Anda boleh memilih perkhidmatan yang anda perlukan sahaja pada kadar pasaran tempatan yang kompetitif.
             </p>
 
-            <!-- LIST OF 14 MAIN CUSTOM WORKSHOP SERVICES WITH FADE CARD -->
+            <!-- LIST OF 14 MAIN CUSTOM WORKSHOP SERVICES -->
             <div class="custom-services-grid">
                 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">1. Domain & DNS Routing Management</div>
-                        <div class="custom-item-desc">Setup, point domain to server/VPS, or resolve DNS record issues (MX, TXT, SPF, DKIM errors).</div>
+                        <div class="custom-item-title">1. Pengurusan Domain & Haloan DNS</div>
+                        <div class="custom-item-desc">Persediaan, hala domain ke pelayan/VPS, atau selesaikan masalah rekod DNS (ralat MX, TXT, SPF, DKIM).</div>
                     </div>
                     <div class="custom-item-price">RM 50</div>
                 </div>
 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">2. Server / VPS Setup & Installation</div>
-                        <div class="custom-item-desc">Basic web server setup (Nginx/Apache), Control Panels (aaPanel/CyberPanel/cPanel), and essential security configuration.</div>
+                        <div class="custom-item-title">2. Tetapan & Pemasangan Server / VPS</div>
+                        <div class="custom-item-desc">Pemasangan pelayan web asas (Nginx/Apache), Panel Kawalan (aaPanel/CyberPanel/cPanel), dan konfigurasi keselamatan asas.</div>
                     </div>
                     <div class="custom-item-price">RM 120</div>
                 </div>
 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">3. SSL Certificate Configuration (HTTPS)</div>
-                        <div class="custom-item-desc">Installation & activation of SSL security certificates to ensure encrypted, secure connections (padlock icon).</div>
+                        <div class="custom-item-title">3. Konfigurasi Sijil SSL (HTTPS)</div>
+                        <div class="custom-item-desc">Pemasangan & pengaktifan sijil keselamatan SSL untuk memastikan sambungan selamat dan tersulit (ikon mangga).</div>
                     </div>
                     <div class="custom-item-price">RM 50</div>
                 </div>
 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">4. Deploy CMS & Custom Scripts / Source Code</div>
-                        <div class="custom-item-desc">WordPress / CMS installation, or uploading and configuring custom scripts (PHP, Laravel, CodeCanyon) to server.</div>
+                        <div class="custom-item-title">4. Pemasangan CMS & Skrip Kustom / Source Code</div>
+                        <div class="custom-item-desc">Pemasangan WordPress / CMS, atau memuat naik dan mengkonfigurasi skrip tersuai (PHP, Laravel, CodeCanyon) ke pelayan.</div>
                     </div>
                     <div class="custom-item-price">RM 150</div>
                 </div>
 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">5. Database Setup & Migration</div>
-                        <div class="custom-item-desc">Database creation (MySQL/MariaDB), import/export pangkalan data, and database connection error resolution.</div>
+                        <div class="custom-item-title">5. Persediaan & Migrasi Pangkalan Data</div>
+                        <div class="custom-item-desc">Pembuatan pangkalan data (MySQL/MariaDB), import/eksport data, dan penyelesaian ralat sambungan pangkalan data.</div>
                     </div>
                     <div class="custom-item-price">RM 100</div>
                 </div>
 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">6. Local Payment Gateway Integration</div>
-                        <div class="custom-item-desc">Connect your website to automated payment gateways (ToyyibPay, Billplz, Chip, or SenangPay).</div>
+                        <div class="custom-item-title">6. Integrasi Gerbang Pembayaran Tempatan</div>
+                        <div class="custom-item-desc">Menghubungkan laman web anda ke gerbang pembayaran automatik (ToyyibPay, Billplz, Chip, atau SenangPay).</div>
                     </div>
                     <div class="custom-item-price">RM 150</div>
                 </div>
 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">7. Domain Custom Official Email Setup</div>
-                        <div class="custom-item-desc">Business email setup on your custom domain (Google Workspace/Zoho/Private Email) with anti-spam setup.</div>
+                        <div class="custom-item-title">7. Setup E-mel Rasmi Domain Tersuai</div>
+                        <div class="custom-item-desc">Persediaan e-mel perniagaan pada domain anda sendiri (Google Workspace/Zoho/Private Email) berserta tetapan anti-spam.</div>
                     </div>
                     <div class="custom-item-price">RM 100</div>
                 </div>
 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">8. Troubleshooting & Error Fixes</div>
-                        <div class="custom-item-desc">Resolving technical errors such as 500 Internal Server Error, 502 Bad Gateway, or White Screen of Death.</div>
+                        <div class="custom-item-title">8. Troubleshooting & Pembaikan Ralat</div>
+                        <div class="custom-item-desc">Menyelesaikan masalah teknikal seperti 500 Internal Server Error, 502 Bad Gateway, atau White Screen of Death.</div>
                     </div>
                     <div class="custom-item-price">RM 100</div>
                 </div>
 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">9. Malware / Web Virus Removal</div>
-                        <div class="custom-item-desc">Full system scan, malicious code/malware cleanup, and recovery of hacked or blacklisted websites.</div>
+                        <div class="custom-item-title">9. Pembersihan Malware / Virus Web</div>
+                        <div class="custom-item-desc">Imbasan penuh sistem, pembersihan kod berbahaya/malware, dan pemulihan laman web yang digodam atau disenarai hitam.</div>
                     </div>
                     <div class="custom-item-price">RM 250</div>
                 </div>
 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">10. Speed & Performance Optimization</div>
-                        <div class="custom-item-desc">Enhancing web load speeds, optimizing images/database, and Cloudflare CDN integration.</div>
+                        <div class="custom-item-title">10. Optimasi Kelajuan & Prestasi Web</div>
+                        <div class="custom-item-desc">Meningkatkan kelajuan muat turun web, optimasi imej/pangkalan data, dan integrasi CDN Cloudflare.</div>
                     </div>
                     <div class="custom-item-price">RM 150</div>
                 </div>
 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">11. Full Website & Server Migration</div>
-                        <div class="custom-item-desc">Complete transfer of website files, databases, and emails from old hosting/server to a new server without downtime.</div>
+                        <div class="custom-item-title">11. Migrasi Penuh Web & Pelayan</div>
+                        <div class="custom-item-desc">Pemindahan lengkap fail laman web, pangkalan data, dan e-mel dari hosting/pelayan lama ke pelayan baharu tanpa masa terhenti (downtime).</div>
                     </div>
                     <div class="custom-item-price">RM 200</div>
                 </div>
 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">12. Analytics & Tracking Pixel Integration</div>
-                        <div class="custom-item-desc">Setup and configuration for Google Analytics, Google Search Console, Meta Pixel, or TikTok Pixel for tracking.</div>
+                        <div class="custom-item-title">12. Integrasi Analytics & Tracking Pixel</div>
+                        <div class="custom-item-desc">Persediaan dan konfigurasi Google Analytics, Google Search Console, Meta Pixel, atau TikTok Pixel untuk penjejakan.</div>
                     </div>
                     <div class="custom-item-price">RM 80</div>
                 </div>
 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">13. Custom Blogspot / Platform Upgrade</div>
-                        <div class="custom-item-desc">Transforming standard Blogger/Blogspot layouts into professional structures with custom domain & layout updates.</div>
+                        <div class="custom-item-title">13. Naiktaraf Blogspot / Platform Tersuai</div>
+                        <div class="custom-item-desc">Mengubah susun atur standard Blogger/Blogspot kepada struktur profesional dengan domain tersuai & kemas kini susun atur.</div>
                     </div>
                     <div class="custom-item-price">RM 120</div>
                 </div>
 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">14. Page Design Script (HTML/CSS/JS)</div>
-                        <div class="custom-item-desc">Custom landing page / single-page design using responsive, mobile-friendly HTML/CSS/JS code.</div>
+                        <div class="custom-item-title">14. Skrip Reka Bentuk Halaman (HTML/CSS/JS)</div>
+                        <div class="custom-item-desc">Reka bentuk landing page tersuai / satu halaman menggunakan kod HTML/CSS/JS yang responsif dan mesra peranti mudah alih.</div>
                     </div>
                     <div class="custom-item-price">RM 180</div>
                 </div>
@@ -858,25 +922,25 @@ main {
             <div class="notice-box">
                 <div class="notice-icon">!</div>
                 <div class="notice-content">
-                    <strong>Note on Purchasing Tools & Parts:</strong><br>
-                    Selected tools or developer accounts in the Custom Workshop are sold officially through authorized Developer Affiliate networks. This ensures you acquire genuine licenses/tools directly and safely for your account setup.
+                    <strong>Nota Pembelian Alatan & Komponen:</strong><br>
+                    Alatan atau akaun pembangun yang dipilih dalam Custom Workshop dijual secara rasmi melalui rangkaian Rakan Kongsi Pembangun berdaftar. Ini memastikan anda memperoleh lesen/alatan tulen secara terus dan selamat untuk akaun anda.
                 </div>
             </div>
         </div>
 
         <!-- SUPPORT / CONTACT SECTION -->
         <div class="support-box">
-            <h3>• Need Assistance / Have Inquiries?</h3>
+            <h3>• Perlukan Bantuan / Ada Pertanyaan?</h3>
             <p>
-                If you are unsure which services or tools are required for your project, reach out to us via WhatsApp or Email at <a href="mailto:kasuhaoculusorganisation@kasuhanet.store" class="email-link">kasuhaoculusorganisation@kasuhanet.store</a>. We are ready to assist with initial technical reviews before you place an order!
+                Jika anda tidak pasti perkhidmatan atau alatan mana yang diperlukan untuk projek anda, hubungi kami melalui WhatsApp atau E-mel di <a href="mailto:support@kasuhanet.store" class="email-link">support@kasuhanet.store</a>. Kami sedia membantu dengan ulasan teknikal awal sebelum anda membuat pesanan!
             </p>
             <a href="https://wa.me/qr/4K2RBZZQAPL4G1" class="contact-btn" target="_blank">
-                Contact via WhatsApp Now
+                Hubungi via WhatsApp Sekarang
             </a>
         </div>
 
         <div class="back-link-box">
-          <a href="homepage-EN.html">← BACK TO MAIN MENU</a>
+          <a href="index.html">← KEMBALI KE MENU UTAMA</a>
         </div>
 
     </div>
@@ -885,11 +949,10 @@ main {
 <!-- FOOTER -->
 <footer class="footer">
     <div class="footer-grid">
-        <div>
-            <div class="logo">
-                <img src="img/logo3.png" style="height:25px; width:auto;" alt="KasuhaNET Logo">
+        <div class="logo">
+        <div><img src="img/logo3.png" style="height:25px; width:auto;" alt="KasuhaNET Logo">
             </div>
-            <p>KasuhaNET•STORE|DIGITAL STORE PLATFORM.</p>
+            <p>KasuhaNET•STORE | Digital Store Platform</p>
         </div>
 
         <div class="footer-links">
@@ -949,38 +1012,44 @@ main {
    </svg>
 </a>
 
-<!-- SCRIPT FADE-IN / FADE-OUT PAGE TRANSITIONS -->
+<!-- DROPDOWN & PAGE FADE OUT SCRIPT -->
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    document.body.classList.add("fade-in");
+  function toggleDropdown() {
+    document.getElementById("servicesDropdown").classList.toggle("show");
+  }
 
-    const links = document.querySelectorAll("a[href]");
-
-    links.forEach(link => {
-        link.addEventListener("click", function (e) {
-            const href = this.getAttribute("href");
-
-            // Abaikan pautan anchor, WhatsApp, mailto, atau tab baru
-            if (
-                !href || 
-                href.startsWith("#") || 
-                href.startsWith("mailto:") || 
-                href.startsWith("https://wa.me") ||
-                this.getAttribute("target") === "_blank"
-            ) {
-                return;
+  // Tutup dropdown jika pengguna menekan di luar menu
+  window.addEventListener('click', function(e) {
+    if (!e.target.matches('.dropdown a') && !e.target.matches('.dropdown i')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
             }
+        }
+    }
+  });
+  
+  // SCRIPT UNTUK KESAN FADE OUT APABILA MENEKAN PAUTAN (PAGE TRANSITION)
+  document.addEventListener("DOMContentLoaded", function() {
+    var links = document.querySelectorAll("a");
+    links.forEach(function(link) {
+      link.addEventListener("click", function(e) {
+        var href = this.getAttribute("href");
+        var target = this.getAttribute("target");
 
-            e.preventDefault();
-            document.body.classList.remove("fade-in");
-            document.body.classList.add("fade-out");
-
-            setTimeout(function () {
-                window.location.href = href;
-            }, 450);
-        });
+        // Hanya jalankan fade-out untuk link dalaman biasa
+        if (href && !href.startsWith("#") && !href.startsWith("javascript") && !href.startsWith("mailto:") && !href.startsWith("https://wa.me") && target !== "_blank") {
+          e.preventDefault();
+          document.body.classList.add("page-fade-out");
+          setTimeout(function() {
+            window.location.href = href;
+          }, 450); // Menunggu animasi fade-out selesai
+        }
+      });
     });
-});
+  });
 </script>
 
 </body>
