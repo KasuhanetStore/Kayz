@@ -1,23 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- MAIN SEO -->
 <title>Terms, Privacy Policy, Refund Policy & Disclaimer | KasuhaNET.STORE</title>
 <meta name="description" content="Terms of Service, Privacy Policy, Refund Policy, and Legal Disclaimer for KasuhaNET.STORE under Kasuhanet Resources.">
+<meta name="keywords" content="terms of service, privacy policy, refund policy, legal disclaimer, KasuhaNET.STORE">
+<meta property="og:title" content="Terms & Policy | KasuhaNET.STORE">
+<meta property="og:description" content="Terms of Service, Privacy Policy, Refund Policy, and Legal Disclaimer for KasuhaNET.STORE.">
+<meta property="og:url" content="https://kasuhanet.store/terms-EN.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://kasuhanet.store/broadcast.png">
+<meta property="og:site_name" content="KasuhaNET.STORE">
+<meta property="og:locale" content="en_US">
 <meta name="robots" content="index, follow">
-
-<!-- CANONICAL & HREFLANG TAGS FOR GOOGLEBOT -->
+<meta name="googlebot" content="index, follow">
+<meta name="theme-color" content="#05070d">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <link rel="canonical" href="https://kasuhanet.store/terms-EN.html">
 <link rel="alternate" hreflang="en" href="https://kasuhanet.store/terms-EN.html">
 <link rel="alternate" hreflang="ms" href="https://kasuhanet.store/terms-MS.html">
 <link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/terms-EN.html">
-    
+
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Terms & Policy | KasuhaNET.STORE">
+<meta name="twitter:description" content="Terms of Service, Privacy Policy, Refund Policy, and Legal Disclaimer for KasuhaNET.STORE.">
+<meta name="twitter:image" content="https://kasuhanet.store/broadcast.png">
+
 <!-- FONTS & CSS LIBRARIES -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="css/main.css">
 
@@ -26,17 +40,16 @@
 <link rel="apple-touch-icon" sizes="180x180" href="https://kasuhanet.store/favicon.ico">
 <link rel="shortcut icon" href="https://kasuhanet.store/favicon.ico">
 
-<!-- OPEN GRAPH -->
-<meta property="og:title" content="Terms & Policy | KasuhaNET.STORE">
-<meta property="og:description" content="Terms of Service, Privacy Policy, Refund Policy, and Legal Disclaimer for KasuhaNET.STORE.">
-<meta property="og:image" content="https://kasuhanet.store/broadcast.png">
-<meta property="og:url" content="https://kasuhanet.store/terms-EN.html">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="KasuhaNET.STORE">
-
-<!-- MOBILE & THEME -->
-<meta name="theme-color" content="#05070d">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Kasuha Oculus",
+  "url": "https://kasuhanet.store/",
+  "logo": "https://kasuhanet.store/OculusLogo.png",
+  "description": "Website development services, software design, and system integration."
+}
+</script>
 
 <style>
 /* GLOBAL CYBER FONT & RESET */
@@ -45,7 +58,6 @@
     box-sizing: border-box;
 }
 
-/* SUSUNAN FLEXBOX FULL HEIGHT PADA BODY W/ ANIMATIONS */
 body {
     background-color: #030509;
     color: #fff;
@@ -77,17 +89,16 @@ body {
 
 /* HEADER STICKY WITH GLASSMORPHISM */
 header {
-    position: relative;
-    z-index: 10000;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
     background: rgba(5, 7, 13, 0.92);
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(0, 240, 255, 0.3);
     box-shadow: 0 4px 20px rgba(0, 240, 255, 0.15);
+    position: relative;
+    z-index: 10000;
 }
 
 .header-right {
@@ -131,15 +142,15 @@ nav a:hover, nav a.active {
     left: 0;
     min-width: 230px;
     padding: 8px 0;
-    background: rgba(5, 8, 18, 0.95) !important;
+    background: rgba(5, 8, 18, 0.95);
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
-    border: 1px solid #00F0FF !important;
+    border: 1px solid #00F0FF;
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.95),
                 0 0 18px rgba(0, 240, 255, 0.4),
-                inset 0 0 10px rgba(0, 240, 255, 0.15) !important;
-    z-index: 999999 !important;
+                inset 0 0 10px rgba(0, 240, 255, 0.15);
+    z-index: 999999;
     transform: translateY(-8px) scale(0.98);
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -267,7 +278,7 @@ nav a:hover, nav a.active {
     filter: drop-shadow(0 0 3px #00F0FF);
 }
 
-/* MAIN FLEX GROW UNTUK MENOLAK FOOTER & CENTER KANDUNGAN */
+/* MAIN CONTENT */
 main {
     flex: 1 0 auto;
     max-width: 1100px;
@@ -280,7 +291,7 @@ main {
     justify-content: center;
 }
 
-.hero-section {
+.section {
     width: 100%;
     max-width: 850px;
     margin-bottom: 25px;
@@ -288,7 +299,7 @@ main {
 }
 
 .neon-title {
-    font-size: clamp(32px, 6vw, 55px);
+    font-size: clamp(32px, 7vw, 65px);
     line-height: 1.1;
     position: relative;
     display: inline-block;
@@ -306,12 +317,46 @@ main {
     filter: drop-shadow(0 0 12px rgba(230, 0, 164, 0.8));
 }
 
+.neon-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #4F31E8, #E600A4, #00F0FF, #4F31E8);
+    background-size: 300% 100%;
+    animation: neonMove 3s linear infinite;
+    box-shadow: 0 0 12px #E600A4, 0 0 20px #00F0FF;
+    border-radius: 3px;
+}
+
 .neon-desc {
-    font-size: clamp(12px, 2vw, 15px);
+    font-size: clamp(12px, 2vw, 16px);
     color: #b0c0f0;
     line-height: 1.5;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 8px;
     margin-top: 5px;
     text-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
+}
+
+.neon-desc::after {
+    content: '';
+    position: absolute;
+    left: 5%;
+    bottom: 0;
+    width: 90%;
+    height: 2px;
+    background: linear-gradient(90deg, #4F31E8, #E600A4, #00F0FF, #4F31E8);
+    background-size: 300% 100%;
+    animation: neonMove 3s linear infinite;
+}
+
+@keyframes neonMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
 }
 
 /* BUTTON NAVIGASI ATAS TERMA */
@@ -359,7 +404,6 @@ main {
     box-shadow: 0 20px 40px rgba(0, 240, 255, 0.2);
 }
 
-/* HEADINGS INSIDE TERMS */
 .neon-title-terms {
     font-size: clamp(26px, 4vw, 38px);
     color: #fff;
@@ -396,7 +440,6 @@ h3 {
     text-shadow: 0 0 6px rgba(255, 51, 102, 0.4);
 }
 
-/* TEXT & LISTS */
 p, li {
     color: #d0d8f0;
     font-size: 14.5px;
@@ -534,6 +577,7 @@ ul li::marker {
 
 <body>
 
+<div id="main-header"></div>
 <div class="bg-animation"></div>
 <div class="stars"></div>
 
@@ -547,7 +591,6 @@ ul li::marker {
 
     <div class="header-right">
         <nav>
-            <!-- Dropdown Menu Oversea Modern -->
             <div class="dropdown">
                 <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
                     Oversea <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #00F0FF;"></i>
@@ -567,7 +610,6 @@ ul li::marker {
             <a href="support-centre.html">SUPPORT</a>
         </nav>
 
-        <!-- LANGUAGE DIRECT SWITCHER -->
         <div class="lang-wrapper">
             <div class="lang">
                 <a href="terms-EN.html"><button id="btn-en" class="active">EN</button></a>
@@ -591,17 +633,17 @@ ul li::marker {
     </div>
 </div>
 
-<!-- ISI TERMA & POLISI -->
+<!-- MAIN CONTENT -->
 <main>
 
   <!-- MAIN TITLE SECTION -->
-  <section class="hero-section">
+  <section class="section">
       <h1 class="neon-title">Kasuha<span>NET.STORE</span></h1>
       
-      <div class="typing-box" style="text-align: center;">
-          <h2 style="font-size: 18px; margin: 10px 0; color:#00F0FF; text-align: center; border:none; padding:0; text-shadow:0 0 12px #00F0FF;">
-              <span>KasuhaNET • </span>
-              <span style="color:#E600A4; text-shadow:0 0 12px #E600A4;">Digital Store Platform</span>
+      <div class="typing-box">
+          <h2 style="font-size: 18px; margin: 10px 0; color:#4F31E8; text-shadow:0 0 20px #4F31E8;">
+              <span style="color:#4F31E8;">KasuhaNET • </span>
+              <span style="color:#E600A4; text-shadow:0 0 20px #E600A4;">Digital Store Platform</span>
           </h2>
           
           <p class="neon-desc">
@@ -693,8 +735,10 @@ ul li::marker {
 <footer class="footer">
     <div class="footer-grid">
         <div>
-            <h3>KasuhaNET.STORE</h3>
-            <p>A multi-service digital ecosystem focusing on Linux solutions, affiliate systems, income generation, and digital learning.</p>
+            <div class="logo" style="margin-bottom: 10px;">
+                <img src="img/logo3.png" style="height:25px; width:auto;" alt="KasuhaNET Logo">
+            </div>
+            <p><strong>K</strong>asuha<strong>NET•STORE | DIGITAL STORE PLATFORM</strong></p>
         </div>
 
         <div class="footer-links">
@@ -722,7 +766,7 @@ ul li::marker {
     </div>
 
     <div class="footer-bottom">
-        © 2026 KasuhaNET Resources (202503248308). All Rights Reserved.
+        © <strong>2026 KasuhaNET Resources (202503248308). All Rights Reserved.</strong>
     </div>
 </footer>
 
@@ -781,13 +825,12 @@ ul li::marker {
         var href = this.getAttribute("href");
         var target = this.getAttribute("target");
 
-        // Hanya jalankan fade-out untuk link dalaman biasa
         if (href && !href.startsWith("#") && !href.startsWith("javascript") && target !== "_blank") {
           e.preventDefault();
           document.body.classList.add("page-fade-out");
           setTimeout(function() {
             window.location.href = href;
-          }, 450); // Menunggu animasi fade-out selesai
+          }, 450);
         }
       });
     });
