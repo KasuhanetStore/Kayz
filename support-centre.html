@@ -1,197 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- MAIN SEO -->
-<title>Support Centre | KasuhaNET.Store Customer Help</title>
-<meta name="description" content="Need help? Visit the KasuhaNET Support Centre for assistance with our digital services, affiliate tools, web setup, and PayLater cashout.">
-<meta property="og:title" content="KasuhaNET Support Centre - Get Help Fast">
-<meta property="og:description" content="Find answers and get support for all KasuhaNET services. We're here to help with Linux tools, affiliate support, web services, and more.">
-<meta property="og:url" content="https://kasuhanet.store/support-centre.html">
+<title>KasuhaNET.Store | Digital Shop Platform Malaysia - Digital Shop Platform</title>
+<meta name="description" content="KasuhaNET.Store Hybrid Sales Platform and Multi-Service Digital Tools.">
+<meta name="keywords" content="KasuhaNET Support, Support Centre, bantuan sokongan kasuhanet, digital shop platform Malaysia, Buat website terbaik, Linux terminal tools, affiliate marketing Malaysia, web design service, online digital services">
+<meta property="og:title" content="KasuhaNET.Store | Digital Shop Platform Malaysia">
+<meta property="og:description" content="If you got problem in KasuhaNET.STORE please Contact Us">
+<meta property="og:url" content="https://kasuhanet.store/index.html">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://kasuhanet.store/broadcast.png">
+<meta property="og:site_name" content="KasuhaNET.STORE Support Centre">
+<meta property="og:locale" content="en_US">
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow">
+<meta name="theme-color" content="#05070d">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <link rel="canonical" href="https://kasuhanet.store/support-centre.html">
+<link rel="alternate" hreflang="en" href="https://kasuhanet.store/index.html">
+<link rel="alternate" hreflang="ms" href="https://kasuhanet.store/MS.html">
+<link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/support-centre.html">
 
-<!-- SCHEMA.ORG JSON-LD -->
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="KasuhaNET.STORE | Hybrid Digital Platform">
+<meta name="twitter:description" content="Hybrid digital platform offering Linux terminal tools, affiliate marketing support, web design e-learning, and website deployment services.">
+<meta name="twitter:image" content="https://kasuhanet.store/broadcast.png">
+
+<!-- FONTS & CSS LIBRARIES -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/main.css">
+
+<!-- FAVICONS -->
+<link rel="icon" type="image/png" sizes="32x32" href="https://kasuhanet.store/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="https://kasuhanet.store/favicon.ico">
+<link rel="shortcut icon" href="https://kasuhanet.store/favicon.ico">
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "KasuhaNET Resources",
-  "url": "https://kasuhanet.store",
-  "logo": "https://kasuhanet.store/img/logo3.png",
-  "founder": {
-    "@type": "Person",
-    "name": "Kasuha Zukarnain"
-  },
-  "sameAs": [
-    "https://www.facebook.com/share/1GeJNW5bok/",
-    "https://tiktok.com/@kasuhanet.store",
-    "https://t.me/kasuhanetstorebot"
-  ]
+  "name": "Kasuha Oculus",
+  "url": "https://kasuhanet.store/",
+  "logo": "https://kasuhanet.store/OculusLogo.png",
+  "description": "Website development services, software design, and system integration."
 }
 </script>
-
-<!-- FONTS & LIBRARIES -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-<!-- FAVICON -->
-<link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/favicon-512x512.png">
-
+  
 <style>
-/* GLOBAL CYBERPUNK CORE STYLES */
+/* GLOBAL CYBER FONT & RESET */
 * {
     font-family: 'Orbitron', sans-serif !important;
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 body {
     background-color: #030509;
-    color: #ffffff;
-    min-height: 100vh;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    animation: pageFadeIn 0.8s ease-out forwards;
+    /* TAMBAHAN FLEXBOX SUPAYA FOOTER MELEKAT DI BAWAH SKRIN */
     display: flex;
     flex-direction: column;
-    overflow-x: hidden;
-    opacity: 0;
-    animation: pageFadeIn 0.45s ease-in forwards;
-}
-
-@keyframes pageFadeIn {
-    from { opacity: 0; transform: translateY(6px); }
-    to { opacity: 1; transform: translateY(0); }
+    min-height: 100vh;
 }
 
 .page-fade-out {
-    opacity: 0 !important;
-    transform: translateY(-6px) !important;
-    transition: opacity 0.45s ease, transform 0.45s ease !important;
+    animation: pageFadeOut 0.5s ease-in forwards !important;
 }
 
-/* BACKGROUND ANIMATION EFFECT */
-.bg-glow {
-    position: fixed;
-    top: -10%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(79, 49, 232, 0.15) 0%, rgba(3, 5, 9, 0) 70%);
-    z-index: -1;
-    pointer-events: none;
+@keyframes pageFadeIn {
+    0% { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
-/* HEADER & NAVIGATION */
+@keyframes pageFadeOut {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-8px); }
+}
+
+main {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px 15px 0 15px;
+    /* PELARASAN UNTUK CENTER-KAN KANDUNGAN MAIN & ISI RUANG */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
 header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
-    background: rgba(3, 5, 9, 0.85);
+    padding: 15px 20px;
+    background: rgba(5, 7, 13, 0.92);
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(79, 49, 232, 0.35);
-}
-
-.logo img {
-    height: 28px;
-    width: auto;
-    filter: drop-shadow(0 0 6px rgba(0, 240, 255, 0.4));
+    border-bottom: 1px solid rgba(0, 240, 255, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 240, 255, 0.15);
+    position: relative;
+    z-index: 10000;
 }
 
 .header-right {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
 }
 
 nav {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
 }
 
 nav a {
-    color: #c4c9d4;
+    color: #b0c0f0;
     text-decoration: none;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
+    font-size: 13px;
     transition: all 0.3s ease;
+    text-shadow: 0 0 5px rgba(0, 240, 255, 0.2);
 }
 
-nav a:hover, nav a.active {
+nav a:hover {
     color: #00F0FF;
-    text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+    text-shadow: 0 0 12px #00F0FF, 0 0 20px #00F0FF;
 }
 
-/* DROPDOWN MENU */
+/* =========================================================
+   DROPDOWN MENU MODERN CYBERPUNK
+   ========================================================= */
 .dropdown {
     position: relative;
     display: inline-block;
-}
-
-.dropdown-btn {
-    color: #c4c9d4;
-    background: transparent;
-    border: none;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    padding: 5px 0;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    transition: 0.3s;
-}
-
-.dropdown-btn:hover {
-    color: #00F0FF;
+    z-index: 99999;
 }
 
 .dropdown-content {
-    display: none;
+    display: block;
+    opacity: 0;
+    visibility: hidden;
     position: absolute;
-    top: 100%;
+    top: 130%;
     left: 0;
-    min-width: 200px;
-    background: rgba(9, 13, 22, 0.95);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 240, 255, 0.3);
-    border-radius: 6px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    min-width: 230px;
     padding: 8px 0;
-    z-index: 1001;
+    background: rgba(5, 8, 18, 0.95);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid #00F0FF;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.95),
+                0 0 18px rgba(0, 240, 255, 0.4),
+                inset 0 0 10px rgba(0, 240, 255, 0.15);
+    z-index: 999999;
+    transform: translateY(-8px) scale(0.98);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dropdown-content.show,
+.dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
 }
 
 .dropdown-content a {
-    display: block;
-    padding: 10px 16px;
-    font-size: 11px;
-    color: #c4c9d4;
+    color: #d1d5db !important;
+    padding: 12px 18px !important;
     text-decoration: none;
-    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    font-size: 11px !important;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease-in-out;
 }
 
 .dropdown-content a:hover {
-    background: rgba(79, 49, 232, 0.3);
+    background: linear-gradient(90deg, rgba(0, 240, 255, 0.18), rgba(230, 0, 164, 0.18)) !important;
+    color: #00F0FF !important;
+    border-left: 3px solid #00F0FF;
+    padding-left: 22px !important;
+    text-shadow: 0 0 10px #00F0FF, 0 0 20px rgba(0, 240, 255, 0.6);
+}
+
+.dropdown-content a:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+}
+
+/* SOCIAL ICONS STYLES */
+.social-icons-wrapper {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icons-wrapper a {
+    color: #ff85a1;
+    font-size: 22px;
+    transition: 0.3s ease;
+    filter: drop-shadow(0 0 5px #ff85a1);
+}
+
+.social-icons-wrapper a:hover {
     color: #00F0FF;
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 10px #00F0FF);
 }
 
-.dropdown.show .dropdown-content {
-    display: block;
-}
-
-/* LANGUAGE SWITCHER */
+/* BUTTON LANGUAGE TOGGLE */
 .lang-wrapper {
     display: inline-block;
 }
@@ -199,10 +230,10 @@ nav a:hover, nav a.active {
 .lang {
     display: flex;
     gap: 4px;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.05);
     padding: 3px;
     border-radius: 6px;
-    border: 1px solid rgba(79, 49, 232, 0.4);
+    border: 1px solid rgba(79, 49, 232, 0.6);
 }
 
 .lang button {
@@ -211,27 +242,624 @@ nav a:hover, nav a.active {
     color: #8fa0dd;
     padding: 4px 10px;
     font-size: 11px;
-    font-weight: 700;
     cursor: pointer;
     border-radius: 4px;
     transition: all 0.3s ease;
 }
 
 .lang button.active {
-    background: #4F31E8;
-    color: #ffffff;
-    box-shadow: 0 0 10px rgba(79, 49, 232, 0.8);
+    background: linear-gradient(135deg, #4F31E8, #00F0FF);
+    color: #fff;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.8);
+    font-weight: bold;
 }
 
 .lang button:hover:not(.active) {
     color: #00F0FF;
+    text-shadow: 0 0 8px #00F0FF;
 }
 
-/* PARTNER CREDIT BAR */
+/* GRID LAYOUT FOR MAIN CARDS */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.card {
+    background: rgba(13, 18, 30, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(79, 49, 232, 0.4);
+    border-radius: 10px;
+    padding: 18px;
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.card-center {
+    text-align: center;
+    align-items: center;
+}
+
+.card:hover {
+    border-color: #00F0FF;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4), inset 0 0 10px rgba(0, 240, 255, 0.1);
+    transform: translateY(-4px);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    border-radius: 6px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.card:hover img {
+    transform: scale(1.02);
+}
+
+.card h3 {
+    margin: 10px 0 6px 0;
+    font-size: 16px;
+    color: #00F0FF;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+}
+
+.card p {
+    margin: 5px 0 0 0;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #d0d8f0;
+}
+
+/* PROFILE CARD STYLES */
+.profile-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.profile-card {
+    background: linear-gradient(145deg, #0e131f, #161b22);
+    border: 1px solid rgba(88, 166, 255, 0.4);
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 700px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 15px rgba(88, 166, 255, 0.15);
+    transition: all 0.4s ease;
+}
+
+.profile-card:hover {
+    border-color: #00F0FF;
+    box-shadow: 0 10px 35px rgba(0, 240, 255, 0.25);
+}
+
+.profile-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.profile-header h1 {
+    margin: 0;
+    color: #58a6ff;
+    font-size: 1.6rem;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 10px rgba(88, 166, 255, 0.5);
+}
+
+.callsign {
+    color: #8b949e;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 5px;
+    text-transform: uppercase;
+}
+
+.exp-badge {
+    display: inline-block;
+    background: linear-gradient(90deg, rgba(56, 139, 253, 0.2), rgba(0, 240, 255, 0.2));
+    color: #00F0FF;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-top: 10px;
+    border: 1px solid rgba(0, 240, 255, 0.5);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+.profile-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+.profile-list li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 15px;
+    line-height: 1.6;
+    font-size: 0.9rem;
+    color: #c9d1d9;
+}
+
+.profile-list li::before {
+    content: "❯";
+    position: absolute;
+    left: 0;
+    color: #00ffcc;
+    font-weight: bold;
+    text-shadow: 0 0 8px #00ffcc;
+}
+
+.highlight {
+    color: #00F0FF;
+    font-weight: 600;
+    text-shadow: 0 0 5px rgba(0, 240, 255, 0.4);
+}
+
+.profile-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.15);
+    font-size: 0.8rem;
+    color: #8b949e;
+    font-style: italic;
+    text-align: center;
+}
+
+/* SWIPER SLIDER */
+.hero-slider-container {
+    width: 100%;
+    margin: 25px 0;
+}
+
+.swiper {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 240, 255, 0.4);
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.2);
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #05070d;
+    overflow: hidden;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: auto;
+    max-height: 380px;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
+    transition: transform 0.5s ease;
+}
+
+.swiper-slide:hover img {
+    transform: scale(1.01);
+}
+
+.swiper-button-next, .swiper-button-prev {
+    color: #00F0FF !important;
+    text-shadow: 0 0 10px #00F0FF;
+}
+
+.swiper-pagination-bullet-active {
+    background: #E600A4 !important;
+    box-shadow: 0 0 10px #E600A4;
+}
+
+/* HERO SECTION CENTERED */
+.hero-section {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+/* TYPOGRAPHY & NEON EFFECTS MODEN */
+.section {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.neon-title {
+    font-size: clamp(32px, 7vw, 65px);
+    line-height: 1.1;
+    position: relative;
+    display: inline-block;
+    color: #ffffff;
+    margin: 15px 0;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    text-align: center;
+}
+
+.neon-title span {
+    background: linear-gradient(135deg, #E600A4, #ff3366, #00F0FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 12px rgba(230, 0, 164, 0.8));
+}
+
+.neon-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #4F31E8, #E600A4, #00F0FF, #4F31E8);
+    background-size: 300% 100%;
+    animation: neonMove 3s linear infinite;
+    box-shadow: 0 0 12px #E600A4, 0 0 20px #00F0FF;
+    border-radius: 3px;
+}
+
+.neon-desc {
+    font-size: clamp(12px, 2vw, 16px);
+    color: #b0c0f0;
+    line-height: 1.5;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 8px;
+    margin-top: 5px;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
+    text-align: center;
+}
+
+.neon-desc::after {
+    content: '';
+    position: absolute;
+    left: 5%;
+    bottom: 0;
+    width: 90%;
+    height: 2px;
+    background: linear-gradient(90deg, #4F31E8, #E600A4, #00F0FF, #4F31E8);
+    background-size: 300% 100%;
+    animation: neonMove 3s linear infinite;
+}
+
+/* SUPPORT CENTRE FORM STYLES */
+.top-nav-back {
+    margin-bottom: 20px;
+}
+
+.top-nav-back a {
+    color: #00F0FF;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+
+.top-nav-back a:hover {
+    color: #E600A4;
+    text-shadow: 0 0 8px #E600A4;
+}
+
+.terms-container {
+    background: rgba(13, 18, 30, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 650px;
+    margin: 0 auto 30px auto;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 11px;
+    color: #00F0FF;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(5, 7, 13, 0.8);
+    border: 1px solid rgba(79, 49, 232, 0.5);
+    border-radius: 6px;
+    color: #fff;
+    font-size: 12px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #00F0FF;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #4F31E8, #E600A4);
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(230, 0, 164, 0.4);
+}
+
+.btn-submit:hover {
+    background: linear-gradient(135deg, #E600A4, #00F0FF);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+}
+
+/* SCAMMER WARNING NOTICE */
+.notice-section {
+    width: 280px;
+    margin: 0 auto 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.header-box {
+    background-color: #C0C0C0;
+    padding: 3px 8px;
+    border-radius: 3px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+.header-text {
+    color: red;
+    font-size: 10px;
+    font-weight: bold;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.flicker-text {
+    color: white;
+    font-size: 9px;
+    line-height: 1.35;
+    margin: 0;
+    text-align: justify;
+    text-justify: inter-word;
+    text-shadow: 
+        -1px -1px 0 #0000FF,  
+         1px -1px 0 #0000FF,
+        -1px  1px 0 #0000FF,
+         1px  1px 0 #0000FF;
+    animation: pulseFlicker 2s infinite ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 5px; 
+}
+
+.flicker-text p {
+    margin: 0;
+}
+
+.company-name {
+    font-weight: bold;
+}
+
+@keyframes pulseFlicker {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+/* MINI DEKO IMAGE */
+.mini-deko-section {
+    margin-top: 25px;
+    margin-bottom: -5px;
+    width: 100%;
+    text-align: center;
+    line-height: 0;
+}
+
+.mini-deko-img {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    display: inline-block;
+    filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.5));
+}
+
+/* FOOTER DESIGN MODEN */
+.footer {
+    background: #060911;
+    border-top: 2px solid #00F0FF;
+    box-shadow: 0 -5px 30px rgba(0, 240, 255, 0.2);
+    /* TAMBAHAN MARGIN AUTO SUPAYA FOOTER MELEKAT DI PALING BAWAH */
+    margin-top: auto;
+    padding: 35px 20px 15px 20px;
+    width: 100%;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer h3 {
+    color: #fff;
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+.footer h4 {
+    color: #E600A4;
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    text-shadow: 0 0 8px #E600A4;
+}
+
+.footer p {
+    color: #a0aec0;
+    font-size: 12px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-links a {
+    color: #cbd5e0;
+    text-decoration: none;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #00F0FF;
+    padding-left: 5px;
+    text-shadow: 0 0 8px #00F0FF;
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 11px;
+    color: #718096;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-top: 25px;
+}
+
+@keyframes neonMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+}
+
+/* MOBILE RESPONSIVE FIXES */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    .header-right {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .mini-deko-img {
+        max-width: 230px;
+    }
+}
+
+/* CARDS & PARTNER BAR EXTRA STYLES */
+.card-bg-box {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 180px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
+    transition: all 0.4s ease;
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(5, 8, 15, 0.92) 30%, rgba(19, 28, 46, 0.7) 100%);
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.card-content {
+    position: relative;
+    padding: 20px;
+    z-index: 2;
+}
+
+.card-content h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: #00ffcc;
+    font-size: 16px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.6);
+}
+
+.card-content p {
+    color: #a0aec0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.card-bg-box:hover {
+    transform: translateY(-4px);
+    border-color: #00F0FF;
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
+}
+
+.card-bg-box:hover .card-overlay {
+    background: linear-gradient(135deg, rgba(5, 8, 15, 0.8) 10%, rgba(0, 191, 255, 0.45) 100%);
+}
+
 .partner-credit-bar {
-    background: rgba(9, 13, 22, 0.7);
-    border-bottom: 1px dashed rgba(0, 240, 255, 0.2);
-    padding: 8px 20px;
+    background: rgba(9, 13, 22, 0.8);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px dashed rgba(0, 240, 255, 0.3);
+    padding: 10px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -242,7 +870,7 @@ nav a:hover, nav a.active {
 
 .credit-text {
     font-size: 10px;
-    color: #666;
+    color: #8fa0dd;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
@@ -256,308 +884,129 @@ nav a:hover, nav a.active {
 
 .partner-name {
     font-size: 11px;
-    color: #8fa0dd;
+    color: #00F0FF;
     font-weight: 700;
     letter-spacing: 0.5px;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
 }
 
 .partner-logo-box {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(3, 5, 9, 0.8);
-    border: 1px solid rgba(230, 0, 164, 0.4);
+    background: rgba(5, 7, 13, 0.9);
+    border: 1px solid rgba(230, 0, 164, 0.5);
     padding: 4px 8px;
     border-radius: 4px;
-    box-shadow: 0 0 8px rgba(230, 0, 164, 0.15);
+    box-shadow: 0 0 12px rgba(230, 0, 164, 0.3);
 }
 
 .partner-logo-box img {
     height: 14px;
     width: auto;
-    filter: drop-shadow(0 0 2px #00F0FF);
+    filter: drop-shadow(0 0 3px #00F0FF);
 }
 
-/* MAIN CONTENT CONTAINER */
-main {
-    flex: 1 0 auto;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.hero-section {
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-.neon-title {
-    font-size: clamp(26px, 4vw, 38px);
-    font-weight: 900;
-    color: #ffffff;
-    letter-spacing: 1px;
-}
-
-.neon-title span {
-    color: #E600A4;
-    text-shadow: 0 0 12px rgba(230, 0, 164, 0.8);
-}
-
-.neon-desc {
-    color: #8fa0dd;
-    font-size: 13px;
-    margin-top: 6px;
-}
-
-.top-nav-back {
-    width: 100%;
-    max-width: 800px;
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-.top-nav-back a {
-    color: #00F0FF;
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: 700;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: 0.3s ease;
-}
-
-.top-nav-back a:hover {
-    text-shadow: 0 0 10px #00F0FF;
-    color: #ffffff;
-}
-
-/* FORM GLASS CONTAINER */
-.terms-container {
-    max-width: 800px;
-    width: 100%;
-    padding: 40px;
-    background: rgba(15, 20, 32, 0.75);
-    backdrop-filter: blur(10px);
-    border-radius: 12px;
-    border: 1px solid rgba(0, 240, 255, 0.3);
-    box-shadow: 0 0 25px rgba(79, 49, 232, 0.2);
-    text-align: left;
-}
-
-.form-group {
-    margin-bottom: 22px;
-}
-
-.form-group label {
-    display: block;
-    font-size: 12px;
-    font-weight: 700;
-    color: #00F0FF;
-    margin-bottom: 8px;
-    letter-spacing: 0.5px;
-}
-
-.form-group input, 
-.form-group textarea {
-    width: 100%;
-    padding: 14px 16px;
-    background: rgba(3, 5, 9, 0.85);
-    border: 1px solid rgba(79, 49, 232, 0.5);
-    border-radius: 6px;
-    color: #ffffff;
-    font-size: 13px;
-    outline: none;
-    transition: all 0.3s ease;
-}
-
-.form-group input:focus, 
-.form-group textarea:focus {
-    border-color: #00F0FF;
-    box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
-}
-
-.btn-submit {
-    width: 100%;
-    padding: 15px;
-    background: #4F31E8;
-    border: none;
-    border-radius: 6px;
-    color: #ffffff;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    cursor: pointer;
-    box-shadow: 0 0 15px rgba(79, 49, 232, 0.6);
-    transition: all 0.3s ease;
-}
-
-.btn-submit:hover {
-    background: #E600A4;
-    box-shadow: 0 0 20px rgba(230, 0, 164, 0.8);
-}
-
-.btn-submit:disabled {
-    background: #333d52;
-    cursor: not-allowed;
-    box-shadow: none;
-}
-
-#responseMsg {
-    margin-top: 18px;
-    font-size: 13px;
-    text-align: center;
-    font-weight: 700;
-}
-
-/* TRUST BANNER */
 .trust-banner-container {
-    width: 100%;
-    max-width: 800px;
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
+    width: 85%;
+    max-width: 600px;
+    margin: 40px auto 15px auto;
+    padding: 0 16px;
+    text-align: center;
 }
 
 .trust-banner-img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 8px;
-    border: 1px solid rgba(79, 49, 232, 0.35);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    width: 85%;
+    height: auto !important;
+    max-width: 600px;
+    display: block !important;
+    margin: 15px auto !important;
+    filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.2));
 }
 
-/* FOOTER STYLES */
-footer {
-    background: #060911;
-    border-top: 2px solid #4F31E8;
-    box-shadow: 0 -5px 25px rgba(79, 49, 232, 0.2);
-    margin-top: 60px;
-    padding: 40px 20px 20px 20px;
-    width: 100%;
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.2; }
+  100% { opacity: 1; }
 }
 
-.footer-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
+.blinking-red {
+  color: #ff3366;
+  font-weight: bold;
+  animation: blink 1s infinite;
+  text-decoration: none;
+  text-shadow: 0 0 8px rgba(255, 51, 102, 0.8);
 }
 
-.footer h3 {
-    color: #ffffff;
-    margin-bottom: 12px;
-    font-size: 16px;
-    font-weight: 700;
+@keyframes colorShift {
+  0%, 100% {
+    color: #00bfff;
+    text-shadow: 0 0 10px rgba(0, 191, 255, 0.9);
+  }
+  50% {
+    color: #ff3366;
+    text-shadow: 0 0 10px rgba(255, 51, 102, 0.9);
+  }
 }
 
-.footer h4 {
-    color: #E600A4;
-    margin-bottom: 12px;
-    font-size: 13px;
-    font-weight: 700;
+.blinking-blue-red {
+  font-weight: bold;
+  animation: colorShift 1.2s infinite;
+  text-decoration: none;
 }
 
-.footer p {
-    color: #8fa0dd;
-    font-size: 12px;
-    line-height: 1.6;
-}
-
-.footer-links {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.footer-links a {
-    color: #c4c9d4;
-    text-decoration: none;
-    font-size: 12px;
-    transition: color 0.2s ease;
-}
-
-.footer-links a:hover {
-    color: #00F0FF;
-}
-
-.footer-bottom {
-    text-align: center;
-    font-size: 11px;
-    color: #666;
-    padding-top: 25px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    margin-top: 30px;
-}
-
-/* RESPONSIVE DESIGN */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        gap: 12px;
-        padding: 15px;
+@media screen and (max-width: 768px) {
+    body {
+      font-size: 15px;
+      line-height: 1.5;
     }
-    .header-right {
-        flex-direction: column;
-        gap: 12px;
-    }
-    nav {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    .terms-container {
-        padding: 25px 20px;
-    }
-    .partner-logos {
-        flex-direction: column;
-        gap: 6px;
+
+    .footer-links a {
+      font-size: 0.9rem;
+      display: inline-block;
+      padding: 4px 0;
     }
 }
+
 </style>
 </head>
 
 <body>
-<div id="main-header"></div>
-<div class="bg-glow"></div>
 
-<!-- HEADER STICKY -->
+<div id="main-header"></div>
+<div class="bg-animation"></div>
+<div class="stars"></div>
+
 <header>
     <div class="logo">
-        <a href="index.html">
-            <img src="img/logo3.png" alt="KasuhaNET Logo">
-        </a>
+        <img src="img/logo3.png" style="height:25px; width:auto;" alt="KasuhaNET Logo">
     </div>
 
     <div class="header-right">
         <nav>
-            
-            <!-- OVERSEA DROPDOWN -->
-            <a href="index.html">HOME</a>
-          <div class="dropdown" id="overseaDropdown">
-                <button class="dropdown-btn" onclick="toggleDropdown(event)">
-                    OVERSEA <i class="fa-solid => fa-chevron-down" style="font-size: 10px;"></i>
-                </button>
-                <div class="dropdown-content">
-                    <a href="Rwanda-SupportDevelopement.html">Rwanda Support</a>
-                    <a href="Timor-Leste-SupportDevelopement.html">Timor Leste Support</a>
+            <div class="dropdown">
+                <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
+                    Oversea <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #00F0FF;"></i>
+                </a>
+                <div class="dropdown-content" id="servicesDropdown">
+                    <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">
+                        <i class="fa-solid fa-globe" style="margin-right: 8px; color: #00F0FF;"></i> RWANDA (Africa)
+                    </a>
+                    <a href="https://kasuhanet.store/Timor-Leste-SupportDevelopement.html">
+                        <i class="fa-solid fa-globe" style="margin-right: 8px; color: #E600A4;"></i> TIMOR LESTE (Asia)
+                    </a>
                 </div>
             </div>
-
+            <a href="index.html">HOME</a>
             <a href="About-Us.html">ABOUT US</a>
             <a href="terms-EN.html">TERMS & POLICY</a>
-            <a href="support-centre.html" class="active">SUPPORT</a>
+            <a href="support-centre.html">SUPPORT</a>
         </nav>
 
         <div class="lang-wrapper">
             <div class="lang">
-                <a href="support-centre.html"><button id="btn-en" class="active">EN</button></a>
-                <a href="pusat-bantuan.html"><button id="btn-ms">BM</button></a>
+                <a href="index.html"><button id="btn-en" class="active">EN</button></a>
+                <a href="MS.html"><button id="btn-ms">BM</button></a>
             </div>
         </div>
     </div>
@@ -566,12 +1015,12 @@ footer {
 <!-- PARTNER CREDIT BAR -->
 <div class="partner-credit-bar">
     <div class="credit-text">
-        Website powered by Organization & Company Collaboration
+        Website powered by the collaboration of Organizations & Companies
     </div>
     <div class="partner-logos">
         <span class="partner-name">Kasuha Oculus Organisation</span>
         <div class="partner-logo-box">
-            <img src="OculusLogo.png" alt="Oculus Collaboration Logo">
+            <img src="OculusLogo.png" alt="Collaboration Logo">
         </div>
         <span class="partner-name">KasuhaNET Resources</span>
     </div>
@@ -580,40 +1029,49 @@ footer {
 <!-- MAIN CONTENT -->
 <main>
 
-    <section class="hero-section">
+       <section class="section">
         <h1 class="neon-title">Kasuha<span>NET.STORE</span></h1>
-        <p class="neon-desc">Hybrid Sales Platform & Multi-Service Digital Tools</p>
+        
+        <div class="typing-box">
+            <h2 style="font-size: 18px; margin: 10px 0; color:#4F31E8;">
+                <span style="color:#4F31E8; text-shadow:0 0 20px #4F31E8;">KasuhaNET •</span>
+                <span style="color:#E600A4; text-shadow:0 0 20px #E600A4;">Digital Store Platform</span>
+            </h2>
+            
+            <p class="neon-desc">
+                Hybrid Sales Platform and Multi-Service Digital Tools.
+            </p>
+        </div>
     </section>
-
     <div class="top-nav-back">
         <a href="index.html"><i class="fa-solid fa-arrow-left"></i> Back to Main Menu</a>
-    </div>
+ </div>
 
-    <div class="terms-container">
-        <h2 style="font-size: 24px; text-align: center; color: #ffffff; margin-bottom: 8px;">
-            SUPPORT <span style="color: #E600A4;">CENTRE</span>
-        </h2>
-        <p style="text-align: center; font-size: 12px; color: #8fa0dd; margin-bottom: 30px;">
-            Have any issues or inquiries? Submit your message directly to our support team below.
-        </p>
+<div class="terms-container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+    <h1 class="neon-title" style="font-size: 24px; text-align: center; margin-bottom: 8px;">
+        SUPPORT<span>CENTRE</span>
+    </h1>
 
+    <p style="text-align: center; font-size: 12px; color: #8fa0dd;">
+        Have any issues or inquiries? Submit your message directly to our support team below.
+    </p>
         <!-- BACKEND WORKER FORM -->
-        <form id="aduanForm">
-            <div class="form-group">
-                <label for="name"><i class="fa-solid fa-user"></i> YOUR NAME</label>
-                <input type="text" id="name" placeholder="Enter your full name..." required>
-            </div>
+<!-- Borang dikekalkan susunan asal rapat ke kiri (left-aligned) -->
+    <form id="aduanForm">
+        <div class="form-group">
+            <label for="name"><i class="fa-solid fa-user"></i> YOUR NAME</label>
+            <input type="text" id="name" placeholder="Enter your full name..." required>
+        </div>
 
-            <div class="form-group">
-                <label for="email"><i class="fa-solid fa-envelope"></i> YOUR EMAIL</label>
-                <input type="email" id="email" placeholder="example@gmail.com" required>
-            </div>
+        <div class="form-group">
+            <label for="email"><i class="fa-solid fa-envelope"></i> YOUR EMAIL</label>
+            <input type="email" id="email" placeholder="example@gmail.com" required>
+        </div>
 
-            <div class="form-group">
-                <label for="message"><i class="fa-solid fa-message"></i> YOUR MESSAGE / ISSUE</label>
-                <textarea id="message" rows="5" placeholder="Describe your issue or inquiry in detail..." required></textarea>
-            </div>
-
+        <div class="form-group">
+            <label for="message"><i class="fa-solid fa-message"></i> YOUR MESSAGE / ISSUE</label>
+            <textarea id="message" rows="5" placeholder="Describe your issue or inquiry in detail..." required></textarea>
+        </div>
             <button type="submit" id="btnSubmit" class="btn-submit">
                 <i class="fa-solid fa-paper-plane"></i> SEND MESSAGE
             </button>
@@ -628,11 +1086,11 @@ footer {
 
 </main>
 
-<!-- FOOTER -->
-<footer>
+<!-- BOXED CYBER FOOTER -->
+<footer class="footer">
     <div class="footer-grid">
         <div>
-            <h3>KasuhaNET.STORE</h3>
+      <h3 class="neon-title">Kasuha<span>NET.STORE</span></h3>
             <p>A multi-service digital ecosystem focusing on Linux solutions, affiliate systems, income generation, and digital learning.</p>
         </div>
 
@@ -652,9 +1110,11 @@ footer {
 
         <div class="footer-links">
             <h4>Follow Us</h4>
-            <a href="https://www.facebook.com/share/1GeJNW5bok/" target="_blank"><i class="fa-brands fa-facebook"></i> Facebook</a>
-            <a href="https://tiktok.com/@kasuhanet.store" target="_blank"><i class="fa-brands fa-tiktok"></i> TikTok</a>
-            <a href="https://t.me/kasuhanetstorebot" target="_blank"><i class="fa-brands fa-telegram"></i> Telegram</a>
+            <div class="social-icons-wrapper">
+                <a href="https://www.facebook.com/share/1BfeDZJqjP/" target="_blank" rel="noopener" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://tiktok.com/@kasuhanet.store" target="_blank" rel="noopener" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://t.me/kasuhanetstorebot" target="_blank" rel="noopener" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+            </div>
         </div>
     </div>
 
@@ -666,115 +1126,87 @@ footer {
 <!-- WHATSAPP FLOATING BUTTON -->
 <a href="https://wa.me/qr/4K2RBZZQAPL4G1"
    style="
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    width: 55px;
-    height: 55px;
-    background: #25D366;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 999999;
-    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    width:60px;
+    height:60px;
+    background:#25D366;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:999999;
+    box-shadow:0 5px 20px rgba(37,211,102,0.5);
     transition: transform 0.3s ease;
    "
-   target="_blank"
-   aria-label="Contact Support on WhatsApp"
    onmouseover="this.style.transform='scale(1.1)'"
-   onmouseout="this.style.transform='scale(1.0)'">
-   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="30" height="30" fill="white">
-     <path d="M19.11 17.53c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.28-.73.9-.9 1.09-.17.19-.33.21-.61.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.66-1.55-1.94-.17-.28-.02-.43.12-.57.13-.13.28-.33.42-.5.14-.17.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.64-1.55-.88-2.12-.23-.56-.47-.48-.64-.49h-.55c-.19 0-.49.07-.74.35-.25.28-.95.93-.95 2.26s.97 2.62 1.11 2.8c.14.19 1.9 2.9 4.6 4.07.64.28 1.14.45 1.53.57.64.2 1.22.17 1.68.1.51-.08 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.12-.26-.19-.54-.33z"/>
+   onmouseout="this.style.transform='scale(1)'"
+   target="_blank"
+   rel="noopener"
+   aria-label="Contact us on WhatsApp">
+   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="white">
+     <path d="M19.11 17.53c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.28-.73.9-.9 1.09-.17.19-.33.21-.61.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.66-1.55-1.94-.17-.28-.02-.43.12-.57.13-.13.28-.33.42-.50.14-.17.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.64-1.55-.88-2.12-.23-.56-.47-.48-.64-.49h-.55c-.19 0-.49.07-.74.35-.25.28-.95.93-.95 2.26s.97 2.62 1.11 2.8c.14.19 1.9 2.9 4.6 4.07.64.28 1.14.45 1.53.57.64.2 1.22.17 1.68.1.51-.08 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.12-.26-.19-.54-.33z"/>
      <path d="M16 3C9.37 3 4 8.37 4 15c0 2.31.66 4.47 1.8 6.32L4 29l7.9-1.75C13.64 28.55 14.78 29 16 29c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 22c-1.1 0-2.16-.2-3.14-.57l-.45-.17-4.69 1.04 1-4.57-.3-.47C7.39 18.35 7 16.72 7 15c0-4.96 4.04-9 9-9s9 4.04 9 9-4.04 10-9 10z"/>
    </svg>
 </a>
 
-<!-- JAVASCRIPT LOGIC -->
+<!-- SWIPER JS LIBRARY -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- INITIALIZATION SCRIPT FOR SWIPER SLIDER & DROPDOWN & PAGE FADE OUT -->
 <script>
-  // DROPDOWN MENU TOGGLE
-  function toggleDropdown(event) {
-    event.stopPropagation();
-    const dropdown = document.getElementById('overseaDropdown');
-    dropdown.classList.toggle('show');
+  function toggleDropdown() {
+    document.getElementById("servicesDropdown").classList.toggle("show");
   }
 
-  window.onclick = function(event) {
-    if (!event.target.matches('.dropdown-btn') && !event.target.matches('.dropdown-btn *')) {
-      const dropdowns = document.getElementsByClassName("dropdown");
-      for (let i = 0; i < dropdowns.length; i++) {
-        const openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
+  // Tutup dropdown jika pengguna menekan di luar menu
+  window.addEventListener('click', function(e) {
+    if (!e.target.matches('.dropdown a') && !e.target.matches('.dropdown i')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
         }
-      }
     }
-  }
+  });
+  
+  // SCRIPT UNTUK KESAN FADE OUT APABILA MENEKAN PAUTAN (PAGE TRANSITION)
+  document.addEventListener("DOMContentLoaded", function() {
+    var links = document.querySelectorAll("a");
+    links.forEach(function(link) {
+      link.addEventListener("click", function(e) {
+        var href = this.getAttribute("href");
+        var target = this.getAttribute("target");
 
-  // SMOOTH PAGE FADE-OUT TRANSITION
-  document.addEventListener('DOMContentLoaded', () => {
-    const links = document.querySelectorAll('a[href]');
-    links.forEach(link => {
-      link.addEventListener('click', (e) => {
-        const href = link.getAttribute('href');
-        if (href && !href.startsWith('#') && !href.startsWith('javascript') && !href.startsWith('http') && link.target !== '_blank') {
+        // Hanya jalankan fade-out untuk link dalaman biasa
+        if (href && !href.startsWith("#") && !href.startsWith("javascript") && target !== "_blank") {
           e.preventDefault();
-          document.body.classList.add('page-fade-out');
-          setTimeout(() => {
+          document.body.classList.add("page-fade-out");
+          setTimeout(function() {
             window.location.href = href;
-          }, 450);
+          }, 450); // Menunggu animasi fade-out selesai
         }
       });
     });
   });
 
-  // BACKEND WORKER (ADUAN FORM SUBMISSION)
-  const form = document.getElementById('aduanForm');
-  const btnSubmit = document.getElementById('btnSubmit');
-  const responseMsg = document.getElementById('responseMsg');
-  const WORKER_URL = 'https://aduan-backend-worker.kasuhanet.workers.dev';
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    btnSubmit.disabled = true;
-    btnSubmit.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> SENDING...';
-    responseMsg.style.color = "#00F0FF";
-    responseMsg.innerText = "Connecting to server...";
-
-    const payload = {
-      nama: document.getElementById('name').value,
-      email: document.getElementById('email').value,
-      aduan: document.getElementById('message').value
-    };
-
-    try {
-      const res = await fetch(WORKER_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
-
-      const result = await res.json();
-
-      if (res.ok) {
-        responseMsg.style.color = "#00FF66";
-        responseMsg.innerText = "Message sent successfully! Our team will contact you shortly.";
-        form.reset();
-      } else {
-        responseMsg.style.color = "#FF0055";
-        responseMsg.innerText = "Failed: " + (result.message || "Something went wrong.");
-      }
-    } catch (err) {
-      responseMsg.style.color = "#FF0055";
-      responseMsg.innerText = "Network error. Please try again later.";
-    } finally {
-      btnSubmit.disabled = false;
-      btnSubmit.innerHTML = '<i class="fa-solid fa-paper-plane"></i> SEND MESSAGE';
-    }
+  const swiper = new Swiper(".myBannerSwiper", {
+    loop: true,
+    autoplay: {
+      delay: 3500,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
   });
 </script>
 <script src="header.js"></script>
