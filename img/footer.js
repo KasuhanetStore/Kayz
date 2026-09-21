@@ -3,9 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
 <!-- BOXED CYBER FOOTER -->
 <footer class="footer">
     <div class="footer-grid">
-        <div>
-            <h3>KasuhaNET.STORE</h3>
-            <p>A multi-service digital ecosystem focusing on Linux solutions, affiliate systems, income generation, and digital learning.</p>
+    
+        <div><h3 class="neon-title">Kasuha<span>NET.STORE</span></h3>
+            <p>Digital Shop Platform Service digital Developer and Hybrid Sales Digital.</p>
         </div>
 
         <div class="footer-links">
