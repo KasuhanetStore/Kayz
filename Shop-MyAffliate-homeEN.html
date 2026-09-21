@@ -376,10 +376,65 @@
             </div>
         </div>
     </main>
-
+    
     <!-- CONTAINER FOOTER -->
     <div id="main-footer"></div>
 
+    <!-- BOXED CYBER FOOTER -->
+<footer class="footer">
+    <div class="footer-grid">
+        <div>
+      <h3 class="neon-title">Kasuha<span>NET.STORE</span></h3>
+            <p>A multi-service digital ecosystem focusing on Linux solutions, affiliate systems, income generation, and digital learning.</p>
+        </div>
+
+        <div class="footer-links">
+            <h4>Services</h4>
+            <a href="CommandCanDoLIST.html">CommandCanDo</a>
+            <a href="Shop-MyAffliate-homeEN.html">MyAffiliate</a>
+            <a href="CashOutServicePayLater.html">PayLater BNPL</a>
+        </div>
+
+        <div class="footer-links">
+            <h4>Resources</h4>
+            <a href="About-Us.html">About Us</a>
+            <a href="support-centre.html">Support</a>
+            <a href="terms-EN.html">Terms & Policy</a>
+        </div>
+
+        <div class="footer-links">
+            <h4>Follow Us</h4>
+            <div class="social-icons-wrapper">
+                <a href="https://www.facebook.com/share/1BfeDZJqjP/" target="_blank" rel="noopener" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://tiktok.com/@kasuhanet.store" target="_blank" rel="noopener" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://t.me/kasuhanetstorebot" target="_blank" rel="noopener" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 KasuhaNET Resources (202503248308). All Rights Reserved.
+    </div>
+</footer>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/qr/4K2RBZZQAPL4G1"
+   style="
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    width:60px;
+    height:60px;
+    background:#25D366;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:999999;
+    box-shadow:0 5px 20px rgba(37,211,102,0.5);
+    transition: transform 0.3s ease;
+   "
+    
     <!-- MODAL POPUP PREVIEW -->
     <div class="modal-overlay" id="previewModal" onclick="closePreview(event)">
         <div class="modal-container" onclick="event.stopPropagation()">
@@ -409,6 +464,62 @@
             document.getElementById('previewModal').classList.remove('active');
         }
     </script>
+
+    <!-- INITIALIZATION SCRIPT FOR SWIPER SLIDER & DROPDOWN & PAGE FADE OUT -->
+<script>
+  function toggleDropdown() {
+    document.getElementById("servicesDropdown").classList.toggle("show");
+  }
+
+  // Tutup dropdown jika pengguna menekan di luar menu
+  window.addEventListener('click', function(e) {
+    if (!e.target.matches('.dropdown a') && !e.target.matches('.dropdown i')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+  });
+  
+  // SCRIPT UNTUK KESAN FADE OUT APABILA MENEKAN PAUTAN (PAGE TRANSITION)
+  document.addEventListener("DOMContentLoaded", function() {
+    var links = document.querySelectorAll("a");
+    links.forEach(function(link) {
+      link.addEventListener("click", function(e) {
+        var href = this.getAttribute("href");
+        var target = this.getAttribute("target");
+
+        // Hanya jalankan fade-out untuk link dalaman biasa
+        if (href && !href.startsWith("#") && !href.startsWith("javascript") && target !== "_blank") {
+          e.preventDefault();
+          document.body.classList.add("page-fade-out");
+          setTimeout(function() {
+            window.location.href = href;
+          }, 450); // Menunggu animasi fade-out selesai
+        }
+      });
+    });
+  });
+
+  const swiper = new Swiper(".myBannerSwiper", {
+    loop: true,
+    autoplay: {
+      delay: 3500,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+</script>
 
     <!-- PANGGILAN SKRIP JAVASCRIPT -->
     <script src="header.js"></script>
