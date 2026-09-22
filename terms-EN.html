@@ -58,19 +58,22 @@
     box-sizing: border-box;
 }
 
+html {
+    height: 100%;
+}
+
 body {
     background-color: #030509;
     color: #fff;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    animation: pageFadeIn 0.8s ease-out forwards;
+    
+    /* FIX FOOTER TO BOTTOM */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    font-size: 15px;
-    line-height: 1.6;
-    animation: pageFadeIn 0.8s ease-out forwards;
 }
 
 .page-fade-out {
@@ -87,7 +90,19 @@ body {
     100% { opacity: 0; transform: translateY(-8px); }
 }
 
-/* HEADER STICKY WITH GLASSMORPHISM */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 25px 15px 0 15px;
+    width: 100%;
+    
+    /* PUSH FOOTER TO BOTTOM WHEN CONTENT IS SHORT */
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 header {
     display: flex;
     justify-content: space-between;
@@ -126,7 +141,9 @@ nav a:hover, nav a.active {
     text-shadow: 0 0 12px #00F0FF, 0 0 20px #00F0FF;
 }
 
-/* DROPDOWN MENU MODERN CYBERPUNK */
+/* =========================================================
+   DROPDOWN MENU MODERN CYBERPUNK
+   ========================================================= */
 .dropdown {
     position: relative;
     display: inline-block;
@@ -278,24 +295,11 @@ nav a:hover, nav a.active {
     filter: drop-shadow(0 0 3px #00F0FF);
 }
 
-/* MAIN CONTENT */
-main {
-    flex: 1 0 auto;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 35px 20px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
+/* TYPOGRAPHY & NEON EFFECTS MODEN */
 .section {
-    width: 100%;
-    max-width: 850px;
     margin-bottom: 25px;
     text-align: center;
+    width: 100%;
 }
 
 .neon-title {
@@ -389,6 +393,7 @@ main {
     max-width: 850px;
     width: 100%;
     padding: 40px 35px;
+    margin-bottom: 30px;
     background: linear-gradient(180deg, rgba(13, 18, 30, 0.85) 0%, rgba(5, 7, 13, 0.4) 100%);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
@@ -465,9 +470,10 @@ ul li::marker {
     background: #060911;
     border-top: 2px solid #00F0FF;
     box-shadow: 0 -5px 30px rgba(0, 240, 255, 0.2);
-    margin-top: 50px;
+    margin-top: auto;
     padding: 35px 20px 15px 20px;
     width: 100%;
+    flex-shrink: 0;
 }
 
 .footer-grid {
@@ -636,11 +642,11 @@ ul li::marker {
 <!-- MAIN CONTENT -->
 <main>
 
-  <!-- MAIN TITLE SECTION -->
+    <!-- MAIN TITLE SECTION -->
     <section class="section">
         <h1 class="neon-title">Kasuha<span>NET.STORE</span></h1>
       
-          <div class="typing-box">
+        <div class="typing-box">
             <h2 style="font-size: 18px; margin: 10px 0; color:#4F31E8;">
                 <span style="color:#4F31E8; text-shadow:0 0 20px #4F31E8;">KasuhaNET •</span>
                 <span style="color:#E600A4; text-shadow:0 0 20px #E600A4;">Digital Store Platform</span>
@@ -652,83 +658,83 @@ ul li::marker {
         </div>
     </section>
 
-  <!-- BUTTON NAVIGASI ATAS TERMA -->
-  <div class="top-nav-back">
-      <a href="index.html"><i class="fa-solid fa-arrow-left"></i> Back to Main Menu</a>
-  </div>
+    <!-- BUTTON NAVIGASI ATAS TERMA -->
+    <div class="top-nav-back">
+        <a href="index.html"><i class="fa-solid fa-arrow-left"></i> Back to Main Menu</a>
+    </div>
 
-  <div class="terms-container">
+    <div class="terms-container">
 
-    <h1 class="neon-title-terms">TERMS & <span>POLICY</span></h1>
-    <p style="text-align:center; font-size:12px; color:#8fa0dd; margin-bottom: 25px;">Last Updated: June 2026</p>
+        <h1 class="neon-title-terms">TERMS & <span>POLICY</span></h1>
+        <p style="text-align:center; font-size:12px; color:#8fa0dd; margin-bottom: 25px;">Last Updated: June 2026</p>
 
-    <!-- SECTION 1 -->
-    <h2>1. Terms & Conditions</h2>
-    <p>
-      Welcome to KasuhaNET.STORE. By accessing and using this website, you agree to comply with and be bound by the following terms. If you disagree with any part of these terms, please discontinue use immediately.
-    </p>
+        <!-- SECTION 1 -->
+        <h2>1. Terms & Conditions</h2>
+        <p>
+          Welcome to KasuhaNET.STORE. By accessing and using this website, you agree to comply with and be bound by the following terms. If you disagree with any part of these terms, please discontinue use immediately.
+        </p>
 
-    <h3>User Responsibilities & Acceptable Use</h3>
-    <ul>
-      <li>You agree not to use this website for any illegal, unauthorized, or fraudulent purposes.</li>
-      <li>Any attempt to disrupt, hack, reverse-engineer, or compromise the security of the website or networks is strictly prohibited.</li>
-      <li>All intellectual property, source code, and graphics belong to Kasuhanet Resources and may not be copied without permission.</li>
-    </ul>
+        <h3>User Responsibilities & Acceptable Use</h3>
+        <ul>
+          <li>You agree not to use this website for any illegal, unauthorized, or fraudulent purposes.</li>
+          <li>Any attempt to disrupt, hack, reverse-engineer, or compromise the security of the website or networks is strictly prohibited.</li>
+          <li>All intellectual property, source code, and graphics belong to Kasuhanet Resources and may not be copied without permission.</li>
+        </ul>
 
-    <h3>Limitation of Liability</h3>
-    <p>
-      KasuhaNET.STORE and Kasuhanet Resources provide services on an 'as-is' basis. We shall not be held liable for any financial losses, damages, or system interruptions resulting from the use of our platform.
-    </p>
+        <h3>Limitation of Liability</h3>
+        <p>
+          KasuhaNET.STORE and Kasuhanet Resources provide services on an 'as-is' basis. We shall not be held liable for any financial losses, damages, or system interruptions resulting from the use of our platform.
+        </p>
 
-    <!-- SECTION 2 -->
-    <h2>2. Privacy Policy (PDPA & Global Compliance)</h2>
-    <p>
-      We respect your privacy and comply with the Personal Data Protection Act 2010 (PDPA) of Malaysia as well as applicable international privacy standards.
-    </p>
+        <!-- SECTION 2 -->
+        <h2>2. Privacy Policy (PDPA & Global Compliance)</h2>
+        <p>
+          We respect your privacy and comply with the Personal Data Protection Act 2010 (PDPA) of Malaysia as well as applicable international privacy standards.
+        </p>
 
-    <h3>Data Collection & Usage</h3>
-    <ul>
-      <li>We may collect personal data such as your name, email address, and transaction logs during purchase or registration.</li>
-      <li>Your data is strictly used for order processing, technical support setup, and improving our services.</li>
-      <li>We do not sell, rent, or lease your personal data to any third parties.</li>
-    </ul>
+        <h3>Data Collection & Usage</h3>
+        <ul>
+          <li>We may collect personal data such as your name, email address, and transaction logs during purchase or registration.</li>
+          <li>Your data is strictly used for order processing, technical support setup, and improving our services.</li>
+          <li>We do not sell, rent, or lease your personal data to any third parties.</li>
+        </ul>
 
-    <h3>Third-Party Advertising & Cookies (Google AdSense)</h3>
-    <ul>
-      <li>We use third-party advertising companies, including Google AdSense, to serve ads when you visit our website.</li>
-      <li>These companies may use cookies and web beacons to collect non-personally identifiable information (such as your IP address, browser type, and browsing behavior) to display personalized advertisements based on your visits to this site and other websites on the Internet.</li>
-      <li>Users may opt out of personalized advertising by visiting Google's Ads Settings or by managing cookie preferences in their web browser.</li>
-    </ul>
+        <h3>Third-Party Advertising & Cookies (Google AdSense)</h3>
+        <ul>
+          <li>We use third-party advertising companies, including Google AdSense, to serve ads when you visit our website.</li>
+          <li>These companies may use cookies and web beacons to collect non-personally identifiable information (such as your IP address, browser type, and browsing behavior) to display personalized advertisements based on your visits to this site and other websites on the Internet.</li>
+          <li>Users may opt out of personalized advertising by visiting Google's Ads Settings or by managing cookie preferences in their web browser.</li>
+        </ul>
 
-    <!-- SECTION 3 -->
-    <h2>3. Refund & Cancellation Policy</h2>
-    <p>
-      Due to the nature of digital goods and instant electronic services, specific refund conditions apply:
-    </p>
-    <ul>
-      <li><strong>Digital Products & Subscriptions:</strong> All sales of digital downloads, license keys, and activated services are final and non-refundable once delivered or accessed.</li>
-      <li><strong>Service Eligibility:</strong> Refunds may only be considered if a technical issue originates from our servers and cannot be resolved within 7 business days by our support team.</li>
-      <li><strong>Refund Requests:</strong> To request a review for a refund, please contact our support team via our official channels with your transaction details and proof of purchase.</li>
-    </ul>
+        <!-- SECTION 3 -->
+        <h2>3. Refund & Cancellation Policy</h2>
+        <p>
+          Due to the nature of digital goods and instant electronic services, specific refund conditions apply:
+        </p>
+        <ul>
+          <li><strong>Digital Products & Subscriptions:</strong> All sales of digital downloads, license keys, and activated services are final and non-refundable once delivered or accessed.</li>
+          <li><strong>Service Eligibility:</strong> Refunds may only be considered if a technical issue originates from our servers and cannot be resolved within 7 business days by our support team.</li>
+          <li><strong>Refund Requests:</strong> To request a review for a refund, please contact our support team via our official channels with your transaction details and proof of purchase.</li>
+        </ul>
 
-    <!-- SECTION 4 -->
-    <h2>4. Legal Disclaimer</h2>
-    <p>
-      All information, tools, and services provided on KasuhaNET.STORE are for general informational, educational, and operational purposes only.
-    </p>
-    <ul>
-      <li><strong>No Financial Guarantees:</strong> Any earnings, income representations, or affiliate results mentioned on this site are illustrative only and do not guarantee future earnings.</li>
-      <li><strong>External Links:</strong> Our platform may contain links to third-party websites. Kasuhanet Resources is not responsible for the content, privacy policies, or practices of external sites.</li>
-      <li><strong>As-Is Provision:</strong> All tools, setups, and scripts are provided "as is" without warranties of any kind, either expressed or implied.</li>
-    </ul>
+        <!-- SECTION 4 -->
+        <h2>4. Legal Disclaimer</h2>
+        <p>
+          All information, tools, and services provided on KasuhaNET.STORE are for general informational, educational, and operational purposes only.
+        </p>
+        <ul>
+          <li><strong>No Financial Guarantees:</strong> Any earnings, income representations, or affiliate results mentioned on this site are illustrative only and do not guarantee future earnings.</li>
+          <li><strong>External Links:</strong> Our platform may contain links to third-party websites. Kasuhanet Resources is not responsible for the content, privacy policies, or practices of external sites.</li>
+          <li><strong>As-Is Provision:</strong> All tools, setups, and scripts are provided "as is" without warranties of any kind, either expressed or implied.</li>
+        </ul>
 
-    <!-- SECTION 5 -->
-    <h2>5. Governing Law & International Access</h2>
-    <p>
-      These terms shall be governed by and construed in accordance with the laws of Malaysia. For international users accessing this platform from outside Malaysia, you are solely responsible for compliance with all applicable local, regional, and international digital laws, privacy regulations (including GDPR or equivalent), and cross-border data transfer policies. Any legal disputes shall be subject to the exclusive jurisdiction of the courts of Malaysia.
-    </p>
+        <!-- SECTION 5 -->
+        <h2>5. Governing Law & International Access</h2>
+        <p>
+          These terms shall be governed by and construed in accordance with the laws of Malaysia. For international users accessing this platform from outside Malaysia, you are solely responsible for compliance with all applicable local, regional, and international digital laws, privacy regulations (including GDPR or equivalent), and cross-border data transfer policies. Any legal disputes shall be subject to the exclusive jurisdiction of the courts of Malaysia.
+        </p>
 
-  </div>
+    </div>
 </main>
 
 <!-- BOXED CYBER FOOTER -->
@@ -837,5 +843,5 @@ ul li::marker {
   });
 </script>
 
-</body>
+<!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "0b80a57abe71483d828cc4cc62861336"}'></script><!-- Cloudflare Pages Analytics --><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3ed22041dd57b14',t:'MTc5MDAzNjMxMQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
