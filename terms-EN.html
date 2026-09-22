@@ -578,6 +578,19 @@ ul li::marker {
         padding: 25px 18px;
     }
 }
+
+  /* Untuk ketajaman rendering teks */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Untuk pastikan gambar dipaparkan tajam bila di-resize */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
 </style>
 </head>
 
