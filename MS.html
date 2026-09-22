@@ -59,6 +59,10 @@
     box-sizing: border-box;
 }
 
+html {
+    height: 100%;
+}
+
 body {
     background-color: #030509;
     color: #fff;
@@ -66,6 +70,11 @@ body {
     padding: 0;
     overflow-x: hidden;
     animation: pageFadeIn 0.8s ease-out forwards;
+    
+    /* FIX FOOTER TO BOTTOM */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .page-fade-out {
@@ -86,6 +95,10 @@ main {
     max-width: 1200px;
     margin: 0 auto;
     padding: 10px 15px 0 15px;
+    width: 100%;
+    
+    /* PUSH FOOTER TO BOTTOM WHEN CONTENT IS SHORT */
+    flex: 1 0 auto;
 }
 
 header {
@@ -142,18 +155,15 @@ nav a:hover {
     left: 0;
     min-width: 230px;
     padding: 8px 0;
-    
-    background: rgba(5, 8, 18, 0.95) !important;
+    background: rgba(5, 8, 18, 0.95);
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
-    
-    border: 1px solid #00F0FF !important;
+    border: 1px solid #00F0FF;
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.95),
                 0 0 18px rgba(0, 240, 255, 0.4),
-                inset 0 0 10px rgba(0, 240, 255, 0.15) !important;
-                
-    z-index: 999999 !important;
+                inset 0 0 10px rgba(0, 240, 255, 0.15);
+    z-index: 999999;
     transform: translateY(-8px) scale(0.98);
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -602,7 +612,7 @@ nav a:hover {
     background: #060911;
     border-top: 2px solid #00F0FF;
     box-shadow: 0 -5px 30px rgba(0, 240, 255, 0.2);
-    margin-top: 0px;
+    margin-top: auto;
     padding: 35px 20px 15px 20px;
 }
 
@@ -1539,10 +1549,11 @@ nav a:hover {
 <footer class="footer">
     <div class="footer-grid">
         <div>
-            <h3>KasuhaNET.STORE</h3>
-            <p>Ekosistem digital pelbagai perkhidmatan yang berfokus pada penyelesaian Linux, sistem afiliasi, penjanaan pendapatan, dan e-pembelajaran digital.</p>
+      <div class="logo">
+        <img src="img/logo3.png" style="height:25px; width:auto;" alt="KasuhaNET Logo">
+      </div>
+            <p><strong>K</strong>asuha<strong>NET•STORE | PLATFORM KEDAI DIGITAL</strong></p>
         </div>
-
         <div class="footer-links">
             <h4>Perkhidmatan</h4>
             <a href="CommandCanDoLIST.html">CommandCanDo</a>
@@ -1568,7 +1579,7 @@ nav a:hover {
     </div>
 
     <div class="footer-bottom">
-        © 2026 KasuhaNET Resources (202503248308). Hak Cipta Terpelihara.
+        © <strong>2026 KasuhaNET Resources (202503248308). Hak Cipta Terpelihara.</strong>
     </div>
 </footer>
 
@@ -1658,6 +1669,5 @@ nav a:hover {
     },
   });
 </script>
-
 </body>
 </html>
