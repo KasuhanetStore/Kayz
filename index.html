@@ -1128,15 +1128,21 @@ img {
   image-rendering: crisp-edges;
 }
 
-  /* Tetapkan semula font untuk Orbitron */
-body, h1, h2, h3, h4, h5, h6, p, a, span, button, input {
+  /* 1. Tetapkan font Orbitron untuk teks sahaja */
+body, h1, h2, h3, h4, h5, h6, p, a, span, button, input, div {
   font-family: 'Orbitron', sans-serif;
 }
 
-/* Fix khas untuk Font Awesome supaya ikon muncul */
-i, .fa-solid, .fas, .far, .fab {
+/* 2. Fix untuk ikon biasa (fa-solid, fa-regular) */
+.fa-solid, .fas, .far {
   font-family: "Font Awesome 6 Free" !important;
   font-weight: 900 !important;
+}
+
+/* 3. Fix KHAS untuk ikon media sosial (fa-brands / Facebook, TikTok, Telegram) */
+.fa-brands, .fab {
+  font-family: "Font Awesome 6 Brands" !important;
+  font-weight: 400 !important;
 }
 
 </style>
