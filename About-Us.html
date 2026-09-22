@@ -1,679 +1,560 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- MAIN SEO -->
-    <title>About Us | KasuhaNET.STORE - Multi-Service Digital Platform</title>
-    <meta name="description" content="Learn about KasuhaNET.STORE - a multi-service digital platform covering website development, Linux terminal scripts, e-digital tools, and web hosting.">
-    <meta name="keywords" content="About KasuhaNET, Kasuha Zukarnain, Kasuha Okulus Organisation, KasuhaNET Resources, Web Development, Linux Automation.">
-    <meta name="author" content="KasuhaNET Resources">
-    <meta name="robots" content="index, follow">
-
-    <link rel="canonical" href="https://kasuhanet.store/About-Us.html">
-
-    <!-- FONTS & CSS LIBRARIES -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="css/main.css">
-
-    <!-- FAVICONS -->
-    <link rel="icon" type="image/png" sizes="32x32" href="https://kasuhanet.store/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://kasuhanet.store/favicon.ico">
-    <link rel="shortcut icon" href="https://kasuhanet.store/favicon.ico">
-
-    <!-- OPEN GRAPH -->
-    <meta property="og:title" content="About Us | KasuhaNET.STORE">
-    <meta property="og:description" content="Learn more about KasuhaNET.STORE, a multi-service digital platform covering website development, Linux systems, and digital tools.">
-    <meta property="og:image" content="https://kasuhanet.store/broadcast.png">
-    <meta property="og:url" content="https://kasuhanet.store/About-Us.html">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="KasuhaNET.STORE">
-
-    <!-- MOBILE & THEME -->
-    <meta name="theme-color" content="#05070d">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <style>
-        /* GLOBAL CYBER FONT & RESET */
-        * {
-            font-family: 'Orbitron', sans-serif !important;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: #030509;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            font-size: 15px;
-            line-height: 1.6;
-            animation: pageFadeIn 0.8s ease-out forwards;
-        }
-
-        .page-fade-out {
-            animation: pageFadeOut 0.5s ease-in forwards !important;
-        }
-
-        @keyframes pageFadeIn {
-            0% { opacity: 0; transform: translateY(8px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes pageFadeOut {
-            0% { opacity: 1; transform: translateY(0); }
-            100% { opacity: 0; transform: translateY(-8px); }
-        }
-
-        /* HEADER STICKY WITH GLASSMORPHISM */
-        header {
-            position: relative;
-            z-index: 10000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            background: rgba(5, 7, 13, 0.92);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0, 240, 255, 0.3);
-            box-shadow: 0 4px 20px rgba(0, 240, 255, 0.15);
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        nav a {
-            color: #b0c0f0;
-            text-decoration: none;
-            font-size: 13px;
-            transition: all 0.3s ease;
-            text-shadow: 0 0 5px rgba(0, 240, 255, 0.2);
-        }
-
-        nav a:hover, nav a.active {
-            color: #00F0FF;
-            text-shadow: 0 0 12px #00F0FF, 0 0 20px #00F0FF;
-        }
-
-        /* DROPDOWN MENU MODERN CYBERPUNK */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-            z-index: 99999;
-        }
-
-        .dropdown-content {
-            display: block;
-            opacity: 0;
-            visibility: hidden;
-            position: absolute;
-            top: 130%;
-            left: 0;
-            min-width: 230px;
-            padding: 8px 0;
-            background: rgba(5, 8, 18, 0.95) !important;
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
-            border: 1px solid #00F0FF !important;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.95),
-                        0 0 18px rgba(0, 240, 255, 0.4),
-                        inset 0 0 10px rgba(0, 240, 255, 0.15) !important;
-            z-index: 999999 !important;
-            transform: translateY(-8px) scale(0.98);
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .dropdown-content.show,
-        .dropdown:hover .dropdown-content {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0) scale(1);
-        }
-
-        .dropdown-content a {
-            color: #d1d5db !important;
-            padding: 12px 18px !important;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            font-size: 11px !important;
-            font-weight: 600;
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
-            border-left: 3px solid transparent;
-            transition: all 0.2s ease-in-out;
-        }
-
-        .dropdown-content a:hover {
-            background: linear-gradient(90deg, rgba(0, 240, 255, 0.18), rgba(230, 0, 164, 0.18)) !important;
-            color: #00F0FF !important;
-            border-left: 3px solid #00F0FF;
-            padding-left: 22px !important;
-            text-shadow: 0 0 10px #00F0FF, 0 0 20px rgba(0, 240, 255, 0.6);
-        }
-
-        .dropdown-content a:not(:last-child) {
-            border-bottom: 1px solid rgba(0, 240, 255, 0.1);
-        }
-
-        /* BUTTON LANGUAGE TOGGLE */
-        .lang-wrapper {
-            display: inline-block;
-        }
-
-        .lang {
-            display: flex;
-            gap: 4px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 3px;
-            border-radius: 6px;
-            border: 1px solid rgba(79, 49, 232, 0.6);
-        }
-
-        .lang button {
-            background: transparent;
-            border: none;
-            color: #8fa0dd;
-            padding: 4px 10px;
-            font-size: 11px;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-
-        .lang button.active {
-            background: linear-gradient(135deg, #4F31E8, #00F0FF);
-            color: #fff;
-            box-shadow: 0 0 12px rgba(0, 240, 255, 0.8);
-            font-weight: bold;
-        }
-
-        .lang button:hover:not(.active) {
-            color: #00F0FF;
-            text-shadow: 0 0 8px #00F0FF;
-        }
-
-        /* PARTNER CREDIT BAR */
-        .partner-credit-bar {
-            background: rgba(9, 13, 22, 0.8);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px dashed rgba(0, 240, 255, 0.3);
-            padding: 10px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            text-align: center;
-        }
-
-        .credit-text {
-            font-size: 10px;
-            color: #8fa0dd;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .partner-logos {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-        }
-
-        .partner-name {
-            font-size: 11px;
-            color: #00F0FF;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
-        }
-
-        .partner-logo-box {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(5, 7, 13, 0.9);
-            border: 1px solid rgba(230, 0, 164, 0.5);
-            padding: 4px 8px;
-            border-radius: 4px;
-            box-shadow: 0 0 12px rgba(230, 0, 164, 0.3);
-        }
-
-        .partner-logo-box img {
-            height: 14px;
-            width: auto;
-            filter: drop-shadow(0 0 3px #00F0FF);
-        }
-
-        /* MAIN CONTAINER */
-        main {
-            flex: 1 0 auto;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 35px 20px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* HERO SECTION */
-        .hero-section {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 30px;
-            width: 100%;
-        }
-
-        .neon-title {
-            font-size: clamp(32px, 6vw, 55px);
-            line-height: 1.1;
-            position: relative;
-            display: inline-block;
-            color: #ffffff;
-            margin: 15px 0;
-            font-weight: 900;
-            letter-spacing: 1.5px;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-        }
-
-        .neon-title span {
-            background: linear-gradient(135deg, #E600A4, #ff3366, #00F0FF);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 12px rgba(230, 0, 164, 0.8));
-        }
-
-        .neon-title::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -8px;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, #4F31E8, #E600A4, #00F0FF, #4F31E8);
-            background-size: 300% 100%;
-            animation: neonMove 3s linear infinite;
-            box-shadow: 0 0 12px #E600A4, 0 0 20px #00F0FF;
-            border-radius: 3px;
-        }
-
-        .neon-desc {
-            font-size: clamp(12px, 2vw, 16px);
-            color: #b0c0f0;
-            line-height: 1.5;
-            position: relative;
-            display: inline-block;
-            padding-bottom: 8px;
-            margin-top: 10px;
-            text-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
-        }
-
-        /* ABOUT CONTENT MAIN CONTAINER (FADE CONTAINER) */
-        .about-section {
-            background: linear-gradient(180deg, rgba(13, 18, 30, 0.85) 0%, rgba(5, 7, 13, 0.4) 100%);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(0, 240, 255, 0.35);
-            border-radius: 16px;
-            padding: 40px 30px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 240, 255, 0.15);
-            text-align: center;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: all 0.4s ease;
-        }
-
-        .about-section:hover {
-            border-color: #00F0FF;
-            box-shadow: 0 20px 40px rgba(0, 240, 255, 0.2);
-        }
-
-        .about-title {
-            color: #fff;
-            font-size: clamp(24px, 4vw, 36px);
-            line-height: 1.2;
-            margin-top: 0;
-            margin-bottom: 22px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 800;
-        }
-
-        .about-title span {
-            color: #E600A4;
-            text-shadow: 0 0 12px #E600A4, 0 0 25px #E600A4;
-        }
-
-        .about-text {
-            color: #d0d8f0;
-            font-size: 15.5px;
-            line-height: 1.8;
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        /* FADE-OUT DIVIDER */
-        .section-divider-fade {
-            width: 100%;
-            height: 1px;
-            margin: 40px 0 25px 0;
-            background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0, 240, 255, 0.7) 50%, rgba(0,0,0,0) 100%);
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .section-divider-text {
-            color: #00F0FF;
-            text-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
-            font-size: 16px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            text-align: center;
-            font-weight: 700;
-            display: inline-block;
-            background: #030509;
-            padding: 0 15px;
-        }
-
-        /* MODERN FADE CARDS GRID */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin: 20px auto;
-            width: 100%;
-            justify-content: center;
-        }
-
-        .card-fade {
-            background: linear-gradient(180deg, rgba(13, 18, 30, 0.8) 0%, rgba(5, 7, 13, 0.3) 100%);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(79, 49, 232, 0.4);
-            border-radius: 12px;
-            padding: 24px;
-            color: #fff;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-        }
-
-        .card-fade:hover {
-            border-color: #00F0FF;
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4), inset 0 0 10px rgba(0, 240, 255, 0.1);
-            transform: translateY(-4px);
-        }
-
-        .card-fade h3 {
-            margin: 0 0 12px 0;
-            font-size: 16px;
-            color: #00F0FF;
-            text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .card-fade p {
-            margin: 0;
-            font-size: 13px;
-            line-height: 1.6;
-            color: #cbd5e1;
-        }
-
-        /* PROFILE CARD INTEGRATION */
-        .profile-wrapper {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 30px 0 10px 0;
-        }
-
-        .profile-card {
-            background: linear-gradient(145deg, #0e131f, #161b22);
-            border: 1px solid rgba(88, 166, 255, 0.4);
-            border-radius: 12px;
-            padding: 30px;
-            max-width: 900px;
-            width: 100%;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 15px rgba(88, 166, 255, 0.15);
-            transition: all 0.4s ease;
-        }
-
-        .profile-card:hover {
-            border-color: #00F0FF;
-            box-shadow: 0 10px 35px rgba(0, 240, 255, 0.25);
-        }
-
-        .profile-header {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .profile-header h2 {
-            margin: 0;
-            color: #58a6ff;
-            font-size: 1.5rem;
-            letter-spacing: 0.5px;
-            text-shadow: 0 0 10px rgba(88, 166, 255, 0.5);
-        }
-
-        .callsign {
-            color: #8b949e;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-top: 5px;
-            text-transform: uppercase;
-        }
-
-        .exp-badge {
-            display: inline-block;
-            background: linear-gradient(90deg, rgba(56, 139, 253, 0.2), rgba(0, 240, 255, 0.2));
-            color: #00F0FF;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-top: 10px;
-            border: 1px solid rgba(0, 240, 255, 0.5);
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
-        }
-
-        .profile-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            text-align: left;
-        }
-
-        .profile-list li {
-            position: relative;
-            padding-left: 22px;
-            margin-bottom: 15px;
-            line-height: 1.6;
-            font-size: 0.9rem;
-            color: #c9d1d9;
-        }
-
-        .profile-list li::before {
-            content: "❯";
-            position: absolute;
-            left: 0;
-            color: #00ffcc;
-            font-weight: bold;
-            text-shadow: 0 0 8px #00ffcc;
-        }
-
-        .highlight {
-            color: #00F0FF;
-            font-weight: 600;
-            text-shadow: 0 0 5px rgba(0, 240, 255, 0.4);
-        }
-
-        /* TRUST BANNER CONTAINER */
-        .trust-banner-container {
-            width: 85%;
-            max-width: 600px;
-            margin: 30px auto 10px auto;
-            padding: 0 16px;
-            text-align: center;
-        }
-
-        .trust-banner-img {
-            width: 85%;
-            height: auto !important;
-            max-width: 600px;
-            display: block !important;
-            margin: 15px auto !important;
-            filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.2));
-        }
-
-        /* FOOTER DESIGN MODEN */
-        .footer {
-            background: #060911;
-            border-top: 2px solid #00F0FF;
-            box-shadow: 0 -5px 30px rgba(0, 240, 255, 0.2);
-            margin-top: 40px;
-            padding: 35px 20px 15px 20px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer h3 {
-            color: #fff;
-            margin: 0 0 10px 0;
-            font-size: 18px;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
-        }
-
-        .footer h4 {
-            color: #E600A4;
-            margin: 0 0 10px 0;
-            font-size: 14px;
-            text-shadow: 0 0 8px #E600A4;
-        }
-
-        .footer p {
-            color: #a0aec0;
-            font-size: 12px;
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .footer-links a {
-            color: #cbd5e0;
-            text-decoration: none;
-            font-size: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: #00F0FF;
-            padding-left: 5px;
-            text-shadow: 0 0 8px #00F0FF;
-        }
-
-        .social-icons-wrapper {
-            display: flex;
-            gap: 15px;
-            margin-top: 10px;
-        }
-
-        .social-icons-wrapper a {
-            color: #ff85a1;
-            font-size: 22px;
-            transition: 0.3s ease;
-            filter: drop-shadow(0 0 5px #ff85a1);
-        }
-
-        .social-icons-wrapper a:hover {
-            color: #00F0FF;
-            transform: scale(1.2);
-            filter: drop-shadow(0 0 10px #00F0FF);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            font-size: 11px;
-            color: #718096;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            margin-top: 25px;
-        }
-
-        @keyframes neonMove {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 300% 50%; }
-        }
-
-        /* MOBILE RESPONSIVE FIXES */
-        @media (max-width: 600px) {
-            header {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
-            }
-            .header-right {
-                flex-direction: column;
-                gap: 10px;
-            }
-            .grid {
-                grid-template-columns: 1fr;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            .about-section {
-                padding: 25px 15px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- MAIN SEO -->
+<title>About Us | KasuhaNET.STORE - Multi-Service Digital Platform</title>
+<meta name="description" content="Learn about KasuhaNET.STORE - a multi-service digital platform covering website development, Linux terminal scripts, e-digital tools, and web hosting.">
+<meta name="keywords" content="About KasuhaNET, Kasuha Zukarnain, Kasuha Okulus Organisation, KasuhaNET Resources, Web Development, Linux Automation">
+<meta name="author" content="KasuhaNET Resources">
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow">
+<meta name="theme-color" content="#05070d">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<link rel="canonical" href="https://kasuhanet.store/About-Us.html">
+<link rel="alternate" hreflang="en" href="https://kasuhanet.store/About-Us.html">
+<link rel="alternate" hreflang="ms" href="https://kasuhanet.store/MS.html">
+<link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/About-Us.html">
+
+<!-- OPEN GRAPH -->
+<meta property="og:title" content="About Us | KasuhaNET.STORE">
+<meta property="og:description" content="Learn more about KasuhaNET.STORE, a multi-service digital platform covering website development, Linux systems, and digital tools.">
+<meta property="og:image" content="https://kasuhanet.store/broadcast.png">
+<meta property="og:url" content="https://kasuhanet.store/About-Us.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KasuhaNET.STORE">
+<meta property="og:locale" content="en_US">
+
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="About Us | KasuhaNET.STORE">
+<meta name="twitter:description" content="Learn more about KasuhaNET.STORE, a multi-service digital platform covering website development, Linux systems, and digital tools.">
+<meta name="twitter:image" content="https://kasuhanet.store/broadcast.png">
+
+<!-- FONTS & CSS LIBRARIES -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/main.css">
+
+<!-- FAVICONS -->
+<link rel="icon" type="image/png" sizes="32x32" href="https://kasuhanet.store/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="https://kasuhanet.store/favicon.ico">
+<link rel="shortcut icon" href="https://kasuhanet.store/favicon.ico">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Kasuha Oculus",
+  "url": "https://kasuhanet.store/",
+  "logo": "https://kasuhanet.store/OculusLogo.png",
+  "description": "Website development services, software design, and system integration."
+}
+</script>
+  
+<style>
+/* GLOBAL CYBER FONT & RESET */
+* {
+    font-family: 'Orbitron', sans-serif !important;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #030509;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    animation: pageFadeIn 0.8s ease-out forwards;
+}
+
+.page-fade-out {
+    animation: pageFadeOut 0.5s ease-in forwards !important;
+}
+
+@keyframes pageFadeIn {
+    0% { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pageFadeOut {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-8px); }
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 15px 0 15px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(5, 7, 13, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 240, 255, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 240, 255, 0.15);
+    position: relative;
+    z-index: 10000;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+nav a {
+    color: #b0c0f0;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 5px rgba(0, 240, 255, 0.2);
+}
+
+nav a:hover, nav a.active {
+    color: #00F0FF;
+    text-shadow: 0 0 12px #00F0FF, 0 0 20px #00F0FF;
+}
+
+/* DROPDOWN MENU MODERN CYBERPUNK */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    z-index: 99999;
+}
+
+.dropdown-content {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 130%;
+    left: 0;
+    min-width: 230px;
+    padding: 8px 0;
+    background: rgba(5, 8, 18, 0.95);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid #00F0FF;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.95),
+                0 0 18px rgba(0, 240, 255, 0.4),
+                inset 0 0 10px rgba(0, 240, 255, 0.15);
+    z-index: 999999;
+    transform: translateY(-8px) scale(0.98);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dropdown-content.show,
+.dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.dropdown-content a {
+    color: #d1d5db !important;
+    padding: 12px 18px !important;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 11px !important;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+.dropdown-content a:hover {
+    background: linear-gradient(90deg, rgba(0, 240, 255, 0.18), rgba(230, 0, 164, 0.18)) !important;
+    color: #00F0FF !important;
+    border-left: 3px solid #00F0FF;
+    padding-left: 22px !important;
+    text-shadow: 0 0 10px #00F0FF, 0 0 20px rgba(0, 240, 255, 0.6);
+}
+
+.dropdown-content a:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+}
+
+/* SOCIAL ICONS STYLES */
+.social-icons-wrapper {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icons-wrapper a {
+    color: #ff85a1;
+    font-size: 22px;
+    transition: 0.3s ease;
+    filter: drop-shadow(0 0 5px #ff85a1);
+}
+
+.social-icons-wrapper a:hover {
+    color: #00F0FF;
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 10px #00F0FF);
+}
+
+/* BUTTON LANGUAGE TOGGLE */
+.lang-wrapper {
+    display: inline-block;
+}
+
+.lang {
+    display: flex;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 3px;
+    border-radius: 6px;
+    border: 1px solid rgba(79, 49, 232, 0.6);
+}
+
+.lang button {
+    background: transparent;
+    border: none;
+    color: #8fa0dd;
+    padding: 4px 10px;
+    font-size: 11px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.lang button.active {
+    background: linear-gradient(135deg, #4F31E8, #00F0FF);
+    color: #fff;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.8);
+    font-weight: bold;
+}
+
+.lang button:hover:not(.active) {
+    color: #00F0FF;
+    text-shadow: 0 0 8px #00F0FF;
+}
+
+/* PARTNER CREDIT BAR */
+.partner-credit-bar {
+    background: rgba(9, 13, 22, 0.8);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px dashed rgba(0, 240, 255, 0.3);
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-align: center;
+}
+
+.credit-text {
+    font-size: 10px;
+    color: #8fa0dd;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.partner-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.partner-name {
+    font-size: 11px;
+    color: #00F0FF;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+}
+
+.partner-logo-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(5, 7, 13, 0.9);
+    border: 1px solid rgba(230, 0, 164, 0.5);
+    padding: 4px 8px;
+    border-radius: 4px;
+    box-shadow: 0 0 12px rgba(230, 0, 164, 0.3);
+}
+
+.partner-logo-box img {
+    height: 14px;
+    width: auto;
+    filter: drop-shadow(0 0 3px #00F0FF);
+}
+
+/* TYPOGRAPHY & NEON EFFECTS MODEN */
+.section {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.neon-title {
+    font-size: clamp(32px, 7vw, 65px);
+    line-height: 1.1;
+    position: relative;
+    display: inline-block;
+    color: #ffffff;
+    margin: 15px 0;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+.neon-title span {
+    background: linear-gradient(135deg, #E600A4, #ff3366, #00F0FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 12px rgba(230, 0, 164, 0.8));
+}
+
+.neon-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #4F31E8, #E600A4, #00F0FF, #4F31E8);
+    background-size: 300% 100%;
+    animation: neonMove 3s linear infinite;
+    box-shadow: 0 0 12px #E600A4, 0 0 20px #00F0FF;
+    border-radius: 3px;
+}
+
+.neon-desc {
+    font-size: clamp(12px, 2vw, 16px);
+    color: #b0c0f0;
+    line-height: 1.5;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 8px;
+    margin-top: 5px;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
+}
+
+/* ABOUT CONTENT MAIN CONTAINER */
+.about-section {
+    background: linear-gradient(180deg, rgba(13, 18, 30, 0.85) 0%, rgba(5, 7, 13, 0.4) 100%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 240, 255, 0.35);
+    border-radius: 16px;
+    padding: 40px 30px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 240, 255, 0.15);
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.4s ease;
+    margin-bottom: 30px;
+}
+
+.about-section:hover {
+    border-color: #00F0FF;
+    box-shadow: 0 20px 40px rgba(0, 240, 255, 0.2);
+}
+
+.about-title {
+    color: #fff;
+    font-size: clamp(24px, 4vw, 36px);
+    line-height: 1.2;
+    margin-top: 0;
+    margin-bottom: 22px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 800;
+}
+
+.about-title span {
+    color: #E600A4;
+    text-shadow: 0 0 12px #E600A4, 0 0 25px #E600A4;
+}
+
+.about-text {
+    color: #d0d8f0;
+    font-size: 15.5px;
+    line-height: 1.8;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* SECTION DIVIDER */
+.section-divider {
+    color: #00F0FF;
+    text-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-align: center;
+    font-weight: 700;
+    margin: 40px 0 20px 0;
+}
+
+/* GRID LAYOUT FOR CARDS */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin: 15px auto;
+    width: 100%;
+    justify-content: center;
+}
+
+.card {
+    background: rgba(13, 18, 30, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(79, 49, 232, 0.4);
+    border-radius: 10px;
+    padding: 20px;
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    text-align: left;
+}
+
+.card:hover {
+    border-color: #00F0FF;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4), inset 0 0 10px rgba(0, 240, 255, 0.1);
+    transform: translateY(-4px);
+}
+
+.card h3 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+}
+
+.card p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #cbd5e1;
+}
+
+/* FOOTER DESIGN MODEN */
+.footer {
+    background: #060911;
+    border-top: 2px solid #00F0FF;
+    box-shadow: 0 -5px 30px rgba(0, 240, 255, 0.2);
+    margin-top: 0px;
+    padding: 35px 20px 15px 20px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer h3 {
+    color: #fff;
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+.footer h4 {
+    color: #E600A4;
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    text-shadow: 0 0 8px #E600A4;
+}
+
+.footer p {
+    color: #a0aec0;
+    font-size: 12px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-links a {
+    color: #cbd5e0;
+    text-decoration: none;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #00F0FF;
+    padding-left: 5px;
+    text-shadow: 0 0 8px #00F0FF;
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 11px;
+    color: #718096;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-top: 25px;
+}
+
+@keyframes neonMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+}
+
+/* MOBILE RESPONSIVE FIXES */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    .header-right {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .about-section {
+        padding: 25px 15px;
+    }
+}
+</style>
 </head>
 
 <body>
 
+<div id="main-header"></div>
 <div class="bg-animation"></div>
 <div class="stars"></div>
 
@@ -686,7 +567,6 @@
 
     <div class="header-right">
         <nav>
-            <!-- Dropdown Menu Oversea Modern -->
             <div class="dropdown">
                 <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
                     Oversea <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #00F0FF;"></i>
@@ -746,7 +626,7 @@
         </div>
     </section>
 
-<!-- ABOUT CONTENT SECTION -->
+    <!-- ABOUT CONTENT SECTION -->
     <section class="about-section">
         <h1 class="about-title" id="about-heading">
             ABOUT <span>US</span>
@@ -759,23 +639,23 @@
         <h2 class="section-divider">• Our Core Ecosystem •</h2>
 
         <div class="grid">
-            <div class="card" style="background: rgba(5, 7, 13, 0.6);">
-                <h3 style="color: #00F0FF; margin: 5px 0;">Linux Automation & Terminal</h3>
-                <p style="color: #aaa; margin: 8px 0 0 0;">
+            <div class="card">
+                <h3 style="color: #00F0FF;">Linux Automation & Terminal</h3>
+                <p>
                     We simplify deployment processes by orchestrating complex dependency configurations into one-command frameworks (CODEX) for Linux shells and native environments.
                 </p>
             </div>
 
-            <div class="card" style="background: rgba(5, 7, 13, 0.6);">
-                <h3 style="color: #00F0FF; margin: 5px 0;">Web & Hybrid Monetization</h3>
-                <p style="color: #aaa; margin: 8px 0 0 0;">
+            <div class="card">
+                <h3 style="color: #00F0FF;">Web & Hybrid Monetization</h3>
+                <p>
                     Empowering dynamic affiliate platforms, modern web hosting, and structured e-guides specifically tailored for growing online business models.
                 </p>
             </div>
 
-            <div class="card" style="background: rgba(5, 7, 13, 0.6);">
-                <h3 style="color: #00F0FF; margin: 5px 0;">Strategic Collaboration</h3>
-                <p style="color: #aaa; margin: 8px 0 0 0;">
+            <div class="card">
+                <h3 style="color: #00F0FF;">Strategic Collaboration</h3>
+                <p>
                     Supported by the collaborative framework of Kasuha Okulus Organisation, we actively build practical software pathways and seamless tactical commerce features.
                 </p>
             </div>
@@ -784,16 +664,16 @@
         <h2 class="section-divider">• Mission & Vision •</h2>
 
         <div class="grid">
-            <div class="card" style="background: rgba(5, 7, 13, 0.6);">
-                <h3 style="color: #E600A4; margin: 5px 0;">Our Mission</h3>
-                <p style="color: #aaa; margin: 8px 0 0 0;">
+            <div class="card">
+                <h3 style="color: #E600A4;">Our Mission</h3>
+                <p>
                     Innovate, simplify, and provide high-performance digital tools, terminal automation scripts, and affiliate solutions that elevate digital operational efficiency.
                 </p>
             </div>
 
-            <div class="card" style="background: rgba(5, 7, 13, 0.6);">
-                <h3 style="color: #E600A4; margin: 5px 0;">Our Vision</h3>
-                <p style="color: #aaa; margin: 8px 0 0 0;">
+            <div class="card">
+                <h3 style="color: #E600A4;">Our Vision</h3>
+                <p>
                     To become the leading hybrid digital platform in Malaysia—fostering close synergy between technical systems engineering and modern online commerce.
                 </p>
             </div>
@@ -804,7 +684,6 @@
         <div class="about-text" style="max-width: 800px;">
             We focus on practical execution. By blending the flexibility of open-source systems with tailored utility services, our platform provides reliable tools, transparent guidance, and automated solutions custom-built for today's digital landscape.
         </div>
-
     </section>
 </main>
 
@@ -812,8 +691,11 @@
 <footer class="footer">
     <div class="footer-grid">
         <div>
-            <h3>KasuhaNET.STORE</h3>
-            <p>A multi-service digital ecosystem focusing on Linux solutions, affiliate systems, income generation, and digital learning.</p>
+            <div class="logo">
+                <img src="img/logo3.png" style="height:25px; width:auto;" alt="KasuhaNET Logo">
+            </div>
+            <p style="margin-top: 10px;"><strong>K</strong>asuha<strong>NET•STORE | DIGITAL STORE PLATFORM</strong></p>
+            <p style="margin-top: 5px;">A multi-service digital ecosystem focusing on Linux solutions, affiliate systems, income generation, and digital learning.</p>
         </div>
 
         <div class="footer-links">
@@ -841,7 +723,7 @@
     </div>
 
     <div class="footer-bottom">
-        © 2026 KasuhaNET Resources (202503248308). All Rights Reserved.
+        © <strong>2026 KasuhaNET Resources (202503248308). All Rights Reserved.</strong>
     </div>
 </footer>
 
@@ -879,7 +761,6 @@
     document.getElementById("servicesDropdown").classList.toggle("show");
   }
 
-  // Tutup dropdown jika pengguna menekan di luar menu
   window.addEventListener('click', function(e) {
     if (!e.target.matches('.dropdown a') && !e.target.matches('.dropdown i')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -892,7 +773,6 @@
     }
   });
   
-  // SCRIPT UNTUK KESAN FADE OUT APABILA MENEKAN PAUTAN (PAGE TRANSITION)
   document.addEventListener("DOMContentLoaded", function() {
     var links = document.querySelectorAll("a");
     links.forEach(function(link) {
@@ -900,13 +780,12 @@
         var href = this.getAttribute("href");
         var target = this.getAttribute("target");
 
-        // Hanya jalankan fade-out untuk link dalaman biasa
         if (href && !href.startsWith("#") && !href.startsWith("javascript") && target !== "_blank") {
           e.preventDefault();
           document.body.classList.add("page-fade-out");
           setTimeout(function() {
             window.location.href = href;
-          }, 450); // Menunggu animasi fade-out selesai
+          }, 450);
         }
       });
     });
