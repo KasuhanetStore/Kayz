@@ -1115,6 +1115,19 @@ nav a:hover {
     font-size: 0.9em;
     margin-left: 5px;
 }
+
+  /* Untuk ketajaman rendering teks */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Untuk pastikan gambar dipaparkan tajam bila di-resize */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
 </style>
 </head>
 
