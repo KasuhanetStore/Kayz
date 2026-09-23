@@ -602,6 +602,38 @@
             .partner-name {
                 font-size: 10px;
             }
+
+            .hero-cover {
+    position: relative;
+    width: 100%;
+    min-height: 450px; /* Laraskan tinggi ruang (boleh tukar ke 500px atau 600px) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    /* Tetapan Gambar Background Cover */
+    background: linear-gradient(rgba(10, 10, 20, 0.75), rgba(10, 10, 20, 0.85)), url('URL_GAMBAR_ANDA_DI_SINI.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* Jarak atas bawah yang luas */
+    padding: 80px 20px;
+    margin-bottom: 30px;
+    border-radius: 0 0 24px 24px; /* Melengkung cantik di penjuru bawah */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+.hero-cover h1 {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+}
+
+.hero-cover p {
+    font-size: 1.1rem;
+    color: #cbd5e1;
+}
         }
     </style>
 </head>
