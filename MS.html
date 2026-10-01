@@ -53,7 +53,7 @@
 </script>
   
 <style>
-/* SEBABKAN IKON KEMBALI NORMAL: */
+/* SEBAGAI ASAS UTAMA TEMA & IKON: */
 * {
     box-sizing: border-box;
 }
@@ -66,8 +66,14 @@ html {
     height: 100%;
 }
 
+/* INTEGRASI GAYA WALLTHEME.JPG PADA BODY */
 body {
     background-color: #030509;
+    background-image: url('Walltheme.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     color: #fff;
     margin: 0;
     padding: 0;
@@ -270,8 +276,8 @@ nav a:hover {
 }
 
 .card {
-    background: rgba(13, 18, 30, 0.6);
-    backdrop-filter: blur(8px);
+    background: rgba(13, 18, 30, 0.75);
+    backdrop-filter: blur(10px);
     border: 1px solid rgba(79, 49, 232, 0.4);
     border-radius: 10px;
     padding: 18px;
@@ -280,7 +286,7 @@ nav a:hover {
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     display: flex;
     flex-direction: column;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.6);
 }
 
 .card-center {
@@ -331,7 +337,8 @@ nav a:hover {
 }
 
 .profile-card {
-    background: linear-gradient(145deg, #0e131f, #161b22);
+    background: linear-gradient(145deg, rgba(14, 19, 31, 0.85), rgba(22, 27, 34, 0.85));
+    backdrop-filter: blur(10px);
     border: 1px solid rgba(88, 166, 255, 0.4);
     border-radius: 12px;
     padding: 30px;
@@ -612,7 +619,8 @@ nav a:hover {
 
 /* FOOTER DESIGN MODERN */
 .footer {
-    background: #060911;
+    background: rgba(6, 9, 17, 0.92);
+    backdrop-filter: blur(12px);
     border-top: 2px solid #00F0FF;
     box-shadow: 0 -5px 30px rgba(0, 240, 255, 0.2);
     margin-top: auto;
@@ -880,7 +888,8 @@ nav a:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(135deg, #002b49 0%, #001f35 100%);
+  background: linear-gradient(135deg, rgba(0, 43, 73, 0.85) 0%, rgba(0, 31, 53, 0.85) 100%);
+  backdrop-filter: blur(10px);
   border-left: 8px solid #e31b23;
   border-radius: 12px;
   padding: 30px 40px;
@@ -955,7 +964,8 @@ nav a:hover {
     width: 100%;
     max-width: 1200px;
     margin: 25px auto;
-    background: linear-gradient(135deg, #05070d 0%, #0a1026 50%, #05070d 100%);
+    background: linear-gradient(135deg, rgba(5, 7, 13, 0.85) 0%, rgba(10, 16, 38, 0.85) 50%, rgba(5, 7, 13, 0.85) 100%);
+    backdrop-filter: blur(10px);
     border: 1px solid #00F0FF;
     border-radius: 12px;
     padding: 25px;
@@ -1552,9 +1562,9 @@ nav a:hover {
 <footer class="footer">
     <div class="footer-grid">
         <div>
-      <div class="logo">
-        <img src="img/logo3.png" style="height:25px; width:auto;" alt="KasuhaNET Logo">
-      </div>
+            <div class="logo">
+                <img src="img/logo3.png" style="height:25px; width:auto;" alt="KasuhaNET Logo">
+            </div>
             <p><strong>K</strong>asuha<strong>NET•STORE | PLATFORM KEDAI DIGITAL</strong></p>
         </div>
         <div class="footer-links">
