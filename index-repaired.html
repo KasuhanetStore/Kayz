@@ -1,0 +1,2287 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <!-- MAIN SEO -->
+  <title>
+   KasuhaNET.Store | Digital Shop Platform Malaysia - Hybrid Sales Platform and Multi-Service Digital Tools
+  </title>
+  <meta content="KasuhaNET.Store is Malaysia's hybrid digital platform offering Linux terminal tools, affiliate marketing support, web design e-learning, and custom website deployment services." name="description"/>
+  <meta content="digital shop platform Malaysia, Buat website terbaik, Linux terminal tools, affiliate marketing Malaysia, web design service, online digital services" name="keywords"/>
+  <meta content="KasuhaNET.Store | Digital Shop Platform Malaysia" property="og:title"/>
+  <meta content="Hybrid Sales Platform and Multi-Service Digital Tools - Linux, Affiliate, Web Learning &amp; PayLater services. Built for Malaysians." property="og:description"/>
+  <meta content="https://kasuhanet.store/index.html" property="og:url"/>
+  <meta content="website" property="og:type"/>
+  <meta content="https://kasuhanet.store/broadcast.png" property="og:image"/>
+  <meta content="KasuhaNET.STORE" property="og:site_name"/>
+  <meta content="en_US" property="og:locale"/>
+  <meta content="index, follow" name="robots"/>
+  <meta content="index, follow" name="googlebot"/>
+  <meta content="#05070d" name="theme-color"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <link href="https://kasuhanet.store/" rel="canonical"/>
+  <link href="https://kasuhanet.store/index.html" hreflang="en" rel="alternate"/>
+  <link href="https://kasuhanet.store/MS.html" hreflang="ms" rel="alternate"/>
+  <link href="https://kasuhanet.store/index.html" hreflang="x-default" rel="alternate"/>
+  <!-- TWITTER -->
+  <meta content="summary_large_image" name="twitter:card"/>
+  <meta content="KasuhaNET.STORE | Hybrid Digital Platform" name="twitter:title"/>
+  <meta content="Hybrid digital platform offering Linux terminal tools, affiliate marketing support, web design e-learning, and website deployment services." name="twitter:description"/>
+  <meta content="https://kasuhanet.store/broadcast.png" name="twitter:image"/>
+  <!-- FONTS & CSS LIBRARIES -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+  <link href="css/main.css" rel="stylesheet"/>
+  <!-- FAVICONS -->
+  <link href="https://kasuhanet.store/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+  <link href="https://kasuhanet.store/favicon.ico" rel="apple-touch-icon" sizes="180x180"/>
+  <link href="https://kasuhanet.store/favicon.ico" rel="shortcut icon"/>
+  <script type="application/ld+json">
+   {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Kasuha Oculus",
+  "url": "https://kasuhanet.store/",
+  "logo": "https://kasuhanet.store/OculusLogo.png",
+  "description": "Website development services, software design, and system integration."
+}
+  </script>
+  <style>
+   /* GLOBAL CYBER FONT & RESET */
+* {
+    font-family: 'Orbitron', sans-serif !important;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #030509;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    animation: pageFadeIn 0.8s ease-out forwards;
+}
+
+.page-fade-out {
+    animation: pageFadeOut 0.5s ease-in forwards !important;
+}
+
+@keyframes pageFadeIn {
+    0% { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pageFadeOut {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-8px); }
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 15px 0 15px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(5, 7, 13, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 240, 255, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 240, 255, 0.15);
+    position: relative;
+    z-index: 10000;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+nav a {
+    color: #b0c0f0;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 5px rgba(0, 240, 255, 0.2);
+}
+
+nav a:hover {
+    color: #00F0FF;
+    text-shadow: 0 0 12px #00F0FF, 0 0 20px #00F0FF;
+}
+
+/* =========================================================
+   DROPDOWN MENU MODERN CYBERPUNK
+   ========================================================= */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    z-index: 99999;
+}
+
+.dropdown-content {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 130%;
+    left: 0;
+    min-width: 230px;
+    padding: 8px 0;
+    background: rgba(5, 8, 18, 0.95);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid #00F0FF;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.95),
+                0 0 18px rgba(0, 240, 255, 0.4),
+                inset 0 0 10px rgba(0, 240, 255, 0.15);
+    z-index: 999999;
+    transform: translateY(-8px) scale(0.98);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dropdown-content.show,
+.dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.dropdown-content a {
+    color: #d1d5db !important;
+    padding: 12px 18px !important;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 11px !important;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+.dropdown-content a:hover {
+    background: linear-gradient(90deg, rgba(0, 240, 255, 0.18), rgba(230, 0, 164, 0.18)) !important;
+    color: #00F0FF !important;
+    border-left: 3px solid #00F0FF;
+    padding-left: 22px !important;
+    text-shadow: 0 0 10px #00F0FF, 0 0 20px rgba(0, 240, 255, 0.6);
+}
+
+.dropdown-content a:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+}
+
+/* SOCIAL ICONS STYLES */
+.social-icons-wrapper {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icons-wrapper a {
+    color: #ff85a1;
+    font-size: 22px;
+    transition: 0.3s ease;
+    filter: drop-shadow(0 0 5px #ff85a1);
+}
+
+.social-icons-wrapper a:hover {
+    color: #00F0FF;
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 10px #00F0FF);
+}
+
+/* BUTTON LANGUAGE TOGGLE */
+.lang-wrapper {
+    display: inline-block;
+}
+
+.lang {
+    display: flex;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 3px;
+    border-radius: 6px;
+    border: 1px solid rgba(79, 49, 232, 0.6);
+}
+
+.lang button {
+    background: transparent;
+    border: none;
+    color: #8fa0dd;
+    padding: 4px 10px;
+    font-size: 11px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.lang button.active {
+    background: linear-gradient(135deg, #4F31E8, #00F0FF);
+    color: #fff;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.8);
+    font-weight: bold;
+}
+
+.lang button:hover:not(.active) {
+    color: #00F0FF;
+    text-shadow: 0 0 8px #00F0FF;
+}
+
+/* GRID LAYOUT FOR MAIN CARDS */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.card {
+    background: rgba(13, 18, 30, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(79, 49, 232, 0.4);
+    border-radius: 10px;
+    padding: 18px;
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.card-center {
+    text-align: center;
+    align-items: center;
+}
+
+.card:hover {
+    border-color: #00F0FF;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4), inset 0 0 10px rgba(0, 240, 255, 0.1);
+    transform: translateY(-4px);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    border-radius: 6px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.card:hover img {
+    transform: scale(1.02);
+}
+
+.card h3 {
+    margin: 10px 0 6px 0;
+    font-size: 16px;
+    color: #00F0FF;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+}
+
+.card p {
+    margin: 5px 0 0 0;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #d0d8f0;
+}
+
+/* PROFILE CARD STYLES */
+.profile-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.profile-card {
+    background: linear-gradient(145deg, #0e131f, #161b22);
+    border: 1px solid rgba(88, 166, 255, 0.4);
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 700px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 15px rgba(88, 166, 255, 0.15);
+    transition: all 0.4s ease;
+}
+
+.profile-card:hover {
+    border-color: #00F0FF;
+    box-shadow: 0 10px 35px rgba(0, 240, 255, 0.25);
+}
+
+.profile-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.profile-header h1 {
+    margin: 0;
+    color: #58a6ff;
+    font-size: 1.6rem;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 10px rgba(88, 166, 255, 0.5);
+}
+
+.callsign {
+    color: #8b949e;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 5px;
+    text-transform: uppercase;
+}
+
+.exp-badge {
+    display: inline-block;
+    background: linear-gradient(90deg, rgba(56, 139, 253, 0.2), rgba(0, 240, 255, 0.2));
+    color: #00F0FF;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-top: 10px;
+    border: 1px solid rgba(0, 240, 255, 0.5);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+.profile-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+.profile-list li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 15px;
+    line-height: 1.6;
+    font-size: 0.9rem;
+    color: #c9d1d9;
+}
+
+.profile-list li::before {
+    content: "❯";
+    position: absolute;
+    left: 0;
+    color: #00ffcc;
+    font-weight: bold;
+    text-shadow: 0 0 8px #00ffcc;
+}
+
+.highlight {
+    color: #00F0FF;
+    font-weight: 600;
+    text-shadow: 0 0 5px rgba(0, 240, 255, 0.4);
+}
+
+.profile-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.15);
+    font-size: 0.8rem;
+    color: #8b949e;
+    font-style: italic;
+    text-align: center;
+}
+
+/* SWIPER SLIDER */
+.hero-slider-container {
+    width: 100%;
+    margin: 25px 0;
+}
+
+.swiper {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 240, 255, 0.4);
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.2);
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #05070d;
+    overflow: hidden;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: auto;
+    max-height: 380px;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
+    transition: transform 0.5s ease;
+}
+
+.swiper-slide:hover img {
+    transform: scale(1.01);
+}
+
+.swiper-button-next, .swiper-button-prev {
+    color: #00F0FF !important;
+    text-shadow: 0 0 10px #00F0FF;
+}
+
+.swiper-pagination-bullet-active {
+    background: #E600A4 !important;
+    box-shadow: 0 0 10px #E600A4;
+}
+
+/* TYPOGRAPHY & NEON EFFECTS MODEN */
+.section {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.neon-title {
+    font-size: clamp(32px, 7vw, 65px);
+    line-height: 1.1;
+    position: relative;
+    display: inline-block;
+    color: #ffffff;
+    margin: 15px 0;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+.neon-title span {
+    background: linear-gradient(135deg, #E600A4, #ff3366, #00F0FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 12px rgba(230, 0, 164, 0.8));
+}
+
+    color: #00ffcc;
+    font-weight: bold;
+    text-shadow: 0 0 8px #00ffcc;
+}
+
+.highlight {
+    color: #00F0FF;
+    font-weight: 600;
+    text-shadow: 0 0 5px rgba(0, 240, 255, 0.4);
+}
+
+.profile-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.15);
+    font-size: 0.8rem;
+    color: #8b949e;
+    font-style: italic;
+    text-align: center;
+}
+
+/* SWIPER SLIDER */
+.hero-slider-container {
+    width: 100%;
+    margin: 25px 0;
+}
+
+.swiper {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 240, 255, 0.4);
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.2);
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #05070d;
+    overflow: hidden;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: auto;
+    max-height: 380px;
+}
+
+.neon-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #4F31E8, #E600A4, #00F0FF, #4F31E8);
+    background-size: 300% 100%;
+    animation: neonMove 3s linear infinite;
+    box-shadow: 0 0 12px #E600A4, 0 0 20px #00F0FF;
+    border-radius: 3px;
+}
+
+.neon-desc {
+    font-size: clamp(12px, 2vw, 16px);
+    color: #b0c0f0;
+    line-height: 1.5;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 8px;
+    margin-top: 5px;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
+}
+
+.neon-desc::after {
+    content: '';
+    position: absolute;
+    left: 5%;
+    bottom: 0;
+    width: 90%;
+    height: 2px;
+    background: linear-gradient(90deg, #4F31E8, #E600A4, #00F0FF, #4F31E8);
+    background-size: 300% 100%;
+    animation: neonMove 3s linear infinite;
+}
+
+/* SCAMMER WARNING NOTICE */
+.notice-section {
+    width: 280px;
+    margin: 0 auto 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.header-box {
+    background-color: #C0C0C0;
+    padding: 3px 8px;
+    border-radius: 3px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+.header-text {
+    color: red;
+    font-size: 10px;
+    font-weight: bold;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.flicker-text {
+    color: white;
+    font-size: 9px;
+    line-height: 1.35;
+    margin: 0;
+    text-align: justify;
+    text-justify: inter-word;
+    text-shadow: 
+        -1px -1px 0 #0000FF,  
+         1px -1px 0 #0000FF,
+        -1px  1px 0 #0000FF,
+         1px  1px 0 #0000FF;
+    animation: pulseFlicker 2s infinite ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 5px; 
+}
+
+.flicker-text p {
+    margin: 0;
+}
+
+.company-name {
+    font-weight: bold;
+}
+
+@keyframes pulseFlicker {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+/* MINI DEKO IMAGE */
+.mini-deko-section {
+    margin-top: 25px;
+    margin-bottom: -5px;
+    width: 100%;
+    text-align: center;
+    line-height: 0;
+}
+
+.mini-deko-img {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    display: inline-block;
+    filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.5));
+}
+
+/* FOOTER DESIGN MODEN */
+.footer {
+    background: #060911;
+    border-top: 2px solid #00F0FF;
+    box-shadow: 0 -5px 30px rgba(0, 240, 255, 0.2);
+    margin-top: 0px;
+    padding: 35px 20px 15px 20px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer h3 {
+    color: #fff;
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+.footer h4 {
+    color: #E600A4;
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    text-shadow: 0 0 8px #E600A4;
+}
+
+.footer p {
+    color: #a0aec0;
+    font-size: 12px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-links a {
+    color: #cbd5e0;
+    text-decoration: none;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #00F0FF;
+    padding-left: 5px;
+    text-shadow: 0 0 8px #00F0FF;
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 11px;
+    color: #718096;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-top: 25px;
+}
+
+@keyframes neonMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+}
+
+/* MOBILE RESPONSIVE FIXES */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    .header-right {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .mini-deko-img {
+        max-width: 230px;
+    }
+}
+
+/* CARDS & PARTNER BAR EXTRA STYLES */
+.card-bg-box {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 180px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
+    transition: all 0.4s ease;
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(5, 8, 15, 0.92) 30%, rgba(19, 28, 46, 0.7) 100%);
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.card-content {
+    position: relative;
+    padding: 20px;
+    z-index: 2;
+}
+
+.card-content h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: #00ffcc;
+    font-size: 16px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.6);
+}
+
+.card-content p {
+    color: #a0aec0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.card-bg-box:hover {
+    transform: translateY(-4px);
+    border-color: #00F0FF;
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
+}
+
+.card-bg-box:hover .card-overlay {
+    background: linear-gradient(135deg, rgba(5, 8, 15, 0.8) 10%, rgba(0, 191, 255, 0.45) 100%);
+}
+
+.partner-credit-bar {
+    background: rgba(9, 13, 22, 0.8);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px dashed rgba(0, 240, 255, 0.3);
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-align: center;
+}
+
+.credit-text {
+    font-size: 10px;
+    color: #8fa0dd;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.partner-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.partner-name {
+    font-size: 11px;
+    color: #00F0FF;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+}
+
+.partner-logo-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(5, 7, 13, 0.9);
+    border: 1px solid rgba(230, 0, 164, 0.5);
+    padding: 4px 8px;
+    border-radius: 4px;
+    box-shadow: 0 0 12px rgba(230, 0, 164, 0.3);
+}
+
+.partner-logo-box img {
+    height: 14px;
+    width: auto;
+    filter: drop-shadow(0 0 3px #00F0FF);
+}
+
+.trust-banner-container {
+    width: 85%;
+    max-width: 600px;
+    margin: 40px auto 15px auto;
+    padding: 0 16px;
+    text-align: center;
+}
+
+.trust-banner-img {
+    width: 85%;
+    height: auto !important;
+    max-width: 600px;
+    display: block !important;
+    margin: 15px auto !important;
+    filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.2));
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.2; }
+  100% { opacity: 1; }
+}
+
+.blinking-red {
+  color: #ff3366;
+  font-weight: bold;
+  animation: blink 1s infinite;
+  text-decoration: none;
+  text-shadow: 0 0 8px rgba(255, 51, 102, 0.8);
+}
+
+@keyframes colorShift {
+  0%, 100% {
+    color: #00bfff;
+    text-shadow: 0 0 10px rgba(0, 191, 255, 0.9);
+  }
+  50% {
+    color: #ff3366;
+    text-shadow: 0 0 10px rgba(255, 51, 102, 0.9);
+  }
+}
+
+.blinking-blue-red {
+  font-weight: bold;
+  animation: colorShift 1.2s infinite;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .footer-links a {
+      font-size: 0.9rem;
+      display: inline-block;
+      padding: 4px 0;
+    }
+}
+
+.hlb-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #002b49 0%, #001f35 100%);
+  border-left: 8px solid #e31b23;
+  border-radius: 12px;
+  padding: 30px 40px;
+  color: #ffffff;
+  font-family: 'Arial', sans-serif;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4), 0 0 15px rgba(227, 27, 35, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.hlb-banner:hover {
+  transform: translateY(-2px);
+}
+
+.hlb-tag {
+  background-color: #e31b23;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 10px;
+  box-shadow: 0 0 10px rgba(227, 27, 35, 0.5);
+}
+
+.hlb-content h1 {
+  margin: 0 0 10px 0;
+  font-size: 28px;
+  color: #ffffff;
+}
+
+.hlb-content p {
+  margin: 0 0 20px 0;
+  color: #d1d5db;
+  font-size: 15px;
+}
+
+.hlb-btn {
+  background: linear-gradient(90deg, #e31b23, #ff3333);
+  color: #ffffff;
+  padding: 10px 24px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 6px;
+  display: inline-block;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 12px rgba(227, 27, 35, 0.4);
+}
+
+.hlb-btn:hover {
+  background: linear-gradient(90deg, #ff3333, #e31b23);
+  box-shadow: 0 0 20px rgba(227, 27, 35, 0.8);
+  transform: translateY(-2px);
+}
+
+.hlb-logo-container {
+  background: #ffffff;
+  padding: 15px 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(255,255,255,0.2);
+}
+
+.hlb-logo {
+  max-width: 180px;
+  height: auto;
+  display: block;
+}
+
+/* BANNER BJAK STYLES */
+.bjak-cyber-banner {
+    width: 100%;
+    max-width: 1200px;
+    margin: 25px auto;
+    background: linear-gradient(135deg, #05070d 0%, #0a1026 50%, #05070d 100%);
+    border: 1px solid #00F0FF;
+    border-radius: 12px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.25), inset 0 0 15px rgba(230, 0, 164, 0.15);
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.bjak-cyber-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0,240,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.bjak-cyber-content {
+    z-index: 2;
+    max-width: 65%;
+}
+
+.bjak-cyber-tag {
+    display: inline-block;
+    background: rgba(230, 0, 164, 0.2);
+    border: 1px solid #E600A4;
+    color: #ff3366;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    box-shadow: 0 0 8px rgba(230, 0, 164, 0.4);
+}
+
+.bjak-cyber-title {
+    font-family: 'Orbitron', sans-serif !important;
+    font-size: clamp(18px, 3vw, 28px);
+    color: #ffffff;
+    margin: 0 0 10px 0;
+    line-height: 1.2;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.bjak-cyber-title span {
+    color: #00F0FF;
+    text-shadow: 0 0 12px #00F0FF;
+}
+
+.bjak-cyber-desc {
+    color: #8fa0dd;
+    font-size: clamp(12px, 1.5vw, 14px);
+    margin: 0 0 18px 0;
+    line-height: 1.5;
+}
+
+.bjak-cyber-features {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.bjak-feature-item {
+    font-size: 11px;
+    color: #00ffcc;
+    background: rgba(0, 255, 204, 0.08);
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 255, 204, 0.4);
+    box-shadow: 0 0 8px rgba(0, 255, 204, 0.15);
+}
+
+.bjak-cyber-btn {
+    display: inline-block;
+    background: linear-gradient(90deg, #ff8a00, #ff5500);
+    color: #ffffff !important;
+    font-family: 'Orbitron', sans-serif !important;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 18px rgba(255, 138, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.bjak-cyber-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 28px rgba(255, 138, 0, 0.8);
+    background: linear-gradient(90deg, #ff9d26, #ff661a);
+}
+
+.bjak-cyber-badge {
+    z-index: 2;
+    text-align: center;
+    background: rgba(5, 7, 13, 0.85);
+    border: 1px solid #E600A4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(230, 0, 164, 0.3);
+}
+
+.bjak-reward-amount {
+    font-family: 'Orbitron', sans-serif !important;
+    font-size: 32px;
+    font-weight: bold;
+    color: #E600A4;
+    text-shadow: 0 0 12px #E600A4;
+    margin: 5px 0;
+}
+
+.bjak-reward-text {
+    font-size: 11px;
+    color: #ccc;
+    letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+    .bjak-cyber-banner {
+      flex-direction: column;
+      text-align: center;
+      padding: 20px 15px;
+    }
+
+    .bjak-cyber-content {
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .bjak-cyber-features {
+      justify-content: center;
+    }
+
+    .bjak-cyber-badge {
+      width: 100%;
+      box-sizing: border-box;
+    }
+}
+
+/* CUSTOM WEB WORKSHOP CARD */
+@keyframes blinker {
+    50% { opacity: 0.2; }
+}
+
+.blinking-text {
+    animation: blinker 1.2s linear infinite;
+    display: inline-block;
+}
+
+.blue-text {
+    color: #007bff;
+    font-weight: bold;
+}
+
+.red-btn {
+    background-color: #dc3545;
+    color: #ffffff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    margin-left: 5px;
+}
+
+  /* Untuk ketajaman rendering teks */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Untuk pastikan gambar dipaparkan tajam bila di-resize */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* 1. Tetapkan font Orbitron untuk teks sahaja */
+body, h1, h2, h3, h4, h5, h6, p, a, span, button, input, div {
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* 2. Fix untuk ikon biasa (fa-solid, fa-regular) */
+.fa-solid, .fas, .far {
+  font-family: "Font Awesome 6 Free" !important;
+  font-weight: 900 !important;
+}
+
+/* 3. Fix KHAS untuk ikon media sosial (fa-brands / Facebook, TikTok, Telegram) */
+.fa-brands, .fab {
+  font-family: "Font Awesome 6 Brands" !important;
+  font-weight: 400 !important;
+}
+  </style>
+  <style>
+   /* =========================================================
+   TEMPLATE REPAIR / STRUCTURE LAYER
+   Based on supplied KasuhaNET template
+   ========================================================= */
+.hero {
+    width: 100%;
+    background: transparent;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.hero-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    background: transparent;
+    mix-blend-mode: screen;
+    object-fit: contain;
+}
+
+.typing-box {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 25px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.typing-box h2 {
+    margin: 15px 0 8px;
+}
+
+.typing-box .neon-desc {
+    margin: 0 auto;
+}
+
+.hero-banner {
+    width: 100%;
+    max-width: 900px;
+    height: 280px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 25px auto;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 240, 255, 0.35);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.12);
+    background: #05070d;
+}
+
+.hero-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+main {
+    position: relative;
+    z-index: 2;
+}
+
+main > .grid:first-of-type {
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .hero-img {
+        min-height: 0;
+    }
+
+    .hero-banner {
+        height: 210px;
+        margin: 20px auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-banner {
+        height: 170px;
+    }
+}
+  </style>
+ </head>
+ <body>
+  <div class="bg-animation">
+  </div>
+  <div class="stars">
+  </div>
+  <header>
+   <div class="logo">
+    <img alt="KasuhaNET Logo" src="img/logo3.png" style="height:25px; width:auto;"/>
+   </div>
+   <div class="header-right">
+    <nav>
+     <div class="dropdown">
+      <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
+       Oversea
+       <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #00F0FF;">
+       </i>
+      </a>
+      <div class="dropdown-content" id="servicesDropdown">
+       <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">
+        <i class="fa-solid fa-globe" style="margin-right: 8px; color: #00F0FF;">
+        </i>
+        RWANDA (Africa)
+       </a>
+       <a href="https://kasuhanet.store/Timor-Leste-SupportDevelopement.html">
+        <i class="fa-solid fa-globe" style="margin-right: 8px; color: #E600A4;">
+        </i>
+        TIMOR LESTE (Asia)
+       </a>
+      </div>
+     </div>
+     <a href="index.html">
+      HOME
+     </a>
+     <a href="About-Us.html">
+      ABOUT US
+     </a>
+     <a href="terms-EN.html">
+      TERMS &amp; POLICY
+     </a>
+     <a href="support-centre.html">
+      SUPPORT
+     </a>
+    </nav>
+    <div class="lang-wrapper">
+     <div class="lang">
+      <a href="index.html">
+       <button class="active" id="btn-en">
+        EN
+       </button>
+      </a>
+      <a href="MS.html">
+       <button id="btn-ms">
+        BM
+       </button>
+      </a>
+     </div>
+    </div>
+   </div>
+  </header>
+  <!-- PARTNER CREDIT BAR -->
+  <div class="partner-credit-bar">
+   <div class="credit-text">
+    Website powered by the collaboration of Organizations &amp; Companies
+   </div>
+   <div class="partner-logos">
+    <span class="partner-name">
+     Kasuha Oculus Organisation
+    </span>
+    <div class="partner-logo-box">
+     <img alt="Collaboration Logo" src="OculusLogo.png"/>
+    </div>
+    <span class="partner-name">
+     KasuhaNET Resources
+    </span>
+   </div>
+  </div>
+  <main>
+   <!-- HERO -->
+   <section class="hero" style="background:transparent;overflow:hidden;">
+    <img alt="KasuhaNET.STORE" class="hero-img" src="img/LogoMain.webp" style="width:100%;display:block;background:transparent;mix-blend-mode:screen;"/>
+   </section>
+   <!-- MAIN TITLE -->
+   <section class="section">
+    <h1 class="neon-title">
+     Kasuha
+     <span>
+      NET.STORE
+     </span>
+    </h1>
+    <div class="typing-box">
+     <h2 data-en="KasuhaNET &bull; Shop Platform Site" data-ms="KasuhaNET &bull; Laman Platform" style="font-family:'Orbitron',sans-serif; line-height:1.1; z-index:1; color:#4F31E8;">
+      <span style="color:#4F31E8; text-shadow:0 0 30px #E600A4;">
+       KasuhaNET &bull;
+      </span>
+      <span style="font-family:'Orbitron',sans-serif; line-height:0.5; z-index:0.8; color:#E600A4; text-shadow:0 0 30px #E600A4;">
+       Shop Platform Site
+      </span>
+     </h2>
+     <p class="neon-desc" data-en="Hybrid selling platform and Multi-Service Digital Tools." data-ms="Platform jualan hibrid dan Servis pelbagai Tools Digital." style="font-family:'Orbitron',sans-serif; line-height:1.1; z-index:1;">
+      Hybrid selling and Multi-Service Digital Platform.
+     </p>
+     <style>
+      .neon-desc{
+font-size:clamp(14px,2vw,20px);
+font-family:'Poppins',sans-serif;
+color:#ccc;
+line-height:1.7;
+position:relative;
+display:inline-block;
+padding-bottom:12px;
+}
+
+/* NEON UNDERLINE */
+.neon-desc::after{
+content:'';
+position:absolute;
+left:0;
+bottom:0;
+width:100%;
+height:3px;
+border-radius:20px;
+
+background:linear-gradient(
+90deg,
+#4F31E8,
+#E600A4,
+#00F0FF,
+#4F31E8
+);
+
+background-size:300% 100%;
+
+animation:neonMove 3s linear infinite;
+
+box-shadow:
+0 0 10px #E600A4,
+0 0 20px #00F0FF,
+0 0 30px #4F31E8;
+}
+
+@keyframes neonMove{
+0%{
+background-position:0% 50%;
+}
+100%{
+background-position:300% 50%;
+}
+}
+     </style>
+    </div>
+   </section>
+   <!-- TEMPLATE INTRO CARDS -->
+   <div class="grid">
+    <a class="card" href="ManyTerminalChoice.html">
+     <img alt="Terminal Options" src="img/ManyTerminalChoice.webp"/>
+    </a>
+    <a class="card" href="ShopAffliateSupport.html">
+     <img alt="Affiliate Support" src="img/ShopAffliateSupportLogo.png"/>
+    </a>
+   </div>
+   <section class="hero-banner" style="width:100%; max-width:900px; height:280px; overflow:hidden; display:flex; justify-content:center; align-items:center; margin:25px auto; border-radius:12px; border:1px solid rgba(0,240,255,0.35);">
+    <img alt="KasuhaNET Website Development Banner" src="BannerWebSite.png" style="width:100%; height:100%; object-fit:cover; object-position:center;"/>
+   </section>
+   <!-- ANNOUNCEMENT SECTION -->
+   <section class="section">
+    <div class="grid">
+     <div class="card card-center">
+      <h3>
+       ANNOUNCEMENT-PLANNED ADDITION OF SERVICE+ TO KASUHANET.STORE
+       <strong>
+        9/9/2026
+       </strong>
+      </h3>
+      <div style="text-align: left; font-size: 13px;">
+       <p>
+        <strong>
+         For the Information of Kasuhanet Customers &amp; Visitors:
+        </strong>
+        Kasuhanet planning the introduction of Service+, Scope of services and business opportunities offered through the Kasuhanet.store platform. Service Providers, depending on relevant field and customer requirements.
+       </p>
+       <p>
+        🔹 1.
+        <strong>
+         TAKAFUL &amp; INSURANCE
+        </strong>
+       </p>
+       <p>
+        🔹 2.
+        <strong>
+         PROPERTY CONSULTANCY / REAL ESTATE
+        </strong>
+       </p>
+       <p>
+        🔹 3.
+        <strong>
+         EMPLOYMENT AGENCY SERVICES
+        </strong>
+       </p>
+       <p>
+        🔹 4.
+        <strong>
+         DIY CUSTOM ELECTRONIC DESIGN
+        </strong>
+       </p>
+       <p>
+        🔹 5.
+        <strong>
+         PRIVATE DELIVERY RIDER
+        </strong>
+       </p>
+       <p>
+        SERVICE+ DIRECTION:-
+                    The introduction of Servis+ is part of Kasuhanet's plan to develop a broader service ecosystem. 
+                    New services and developments will be announced from time to time through Kasuhanet.store. 
+                    Thank you for your continued support and trust in Kasuhanet.
+       </p>
+      </div>
+     </div>
+    </div>
+   </section>
+   <div class="grid">
+    <div class="card card-center">
+     <h2>
+      🌐 PROLOG WEB DEVELOPMENT &amp; DIGITAL INFRASTRUCTURE SERVICES - KASUHANET.STORE
+     </h2>
+     <p>
+      Do you want a digital presence that looks professional, performs at a high standard, and is built to the latest industry specifications?
+      <strong>
+       KasuhaNET Resources
+      </strong>
+      provides comprehensive web development solutions ranging from essential setups (Landing Pages) to full enterprise systems (Premium Package), backed by expert server management and optimal terminal configurations.
+     </p>
+     <h4>
+      🎯 WHY CHOOSE KASUHANET.STORE SERVICES?
+     </h4>
+     <ul class="feature-list" style="text-align: left;">
+      <li>
+       <strong>
+        Maximum Performance &amp; Speed:
+       </strong>
+       Every website is optimized for code efficiency, image compression, and server resource management to ensure lighting-fast loading times.
+      </li>
+      <li>
+       <strong>
+        Mobile-Friendly (Responsive Design):
+       </strong>
+       Flawless rendering automatically tailored for smartphones, tablets, laptops, and desktop screens.
+      </li>
+      <li>
+       <strong>
+        Data Security &amp; Licensing:
+       </strong>
+       Clean web architecture, HTTPS / SSL security protocols, and properly configured file permissions.
+      </li>
+      <li>
+       <strong>
+        Terminal &amp; Linux Server Expertise:
+       </strong>
+       Efficient Linux environment management (including Linux on Penguin/ChromeOS) to ensure library dependency setups and system scripts run with minimal typing required.
+      </li>
+     </ul>
+    </div>
+   </div>
+   <!-- CUSTOM WEB WORKSHOP CARD -->
+   <div class="profile-wrapper">
+    <div class="profile-card">
+     <a href="https://kasuhanet.store/Custom-Web-Workshop-EN" style="text-decoration: none; color: inherit; display: block;">
+      <img alt="Terminal Choice" src="Bengkel-Custom-WebSite-EN.png" style="max-width: 100%; width: 400px; display: block; margin: 0 auto;"/>
+      <h2 style="text-align: center; margin-top: 12px; font-family: sans-serif;">
+       <span class="blinking-red">
+        Bengkel Custom WEB
+       </span>
+      </h2>
+     </a>
+     <p>
+      Welcome to
+      <strong>
+       kasuhanet.store
+      </strong>
+      ! For those looking to build or upgrade a website, 
+                we offer flexible and transparent Setup &amp; Deployment Services, 
+                tailored specifically to your budget and needs.
+     </p>
+     <p>
+      <strong>
+       Looking for maximum flexibility?
+      </strong>
+      Explore our Custom Workshop! In this section, services and tools 
+                are listed modularly. You can choose, match, and add specific tools or services required for quick deployment.
+      <a href="https://kasuhanet.store/Custom-Web-Workshop-EN" style="color:inherit;">
+       <span class="blinking-red">
+        ⬅️CLICK HERE
+       </span>
+      </a>
+      🔎
+     </p>
+    </div>
+   </div>
+   <!-- PROFILE CARD -->
+   <div class="grid">
+    <div class="card card-center">
+     <div class="profile-header">
+      <h1>
+       Hi, I'm Kasuha Zukarnain
+      </h1>
+      <div class="callsign">
+       CallSign: Kasuha Zukarnain
+      </div>
+      <span class="exp-badge">
+       8 - 9 Years Developer Experience
+      </span>
+     </div>
+     <ul class="profile-list">
+      <li>
+       <span class="highlight">
+        Development &amp; Founding:
+       </span>
+       Lead developer behind the
+       <span class="highlight">
+        Kasuhanet.Store
+       </span>
+       platform, founder of
+       <span class="highlight">
+        Kasuhanet Resources
+       </span>
+       for business operations, and creator of
+       <span class="highlight">
+        Kasuha Oculus
+       </span>
+       organization.
+      </li>
+      <li>
+       <span class="highlight">
+        Code Precision:
+       </span>
+       Passionate about clean code structure and programming logic to design and deliver seamless digital functionality.
+      </li>
+      <li>
+       <span class="highlight">
+        OS &amp; Android Enthusiast:
+       </span>
+       Deeply focused on Android internal systems and Operating Systems (OS). Obsessed with discovering "codex formulas" that transform software performance and design.
+      </li>
+      <li>
+       <span class="highlight">
+        Strategy &amp; Monetization:
+       </span>
+       Architecting systems and data analysis toward a core goal &mdash; driving sustainable financial growth through a solid business ecosystem.
+      </li>
+     </ul>
+     <div class="profile-footer">
+      System &amp; Architecture | Kasuha Oculus Framework
+     </div>
+    </div>
+   </div>
+   <!-- HONG LEONG BANK BANNER -->
+   <div class="hlb-banner">
+    <div class="hlb-content">
+     <div class="hlb-tag">
+      New Program Referral
+     </div>
+     <h1>
+      Register for a Hong Leong Bank Account
+     </h1>
+     <p>
+      Use your referral code &amp; enjoy special sign-up rewards today!
+     </p>
+     <a class="hlb-btn" href="https://www.hlb.com.my/en/personal-banking/deposits/apply-at-hlb-connect.html" rel="noopener noreferrer" target="_blank">
+      SignUp Now
+     </a>
+    </div>
+    <div class="hlb-logo-container">
+     <img alt="Hong Leong Bank Logo" class="hlb-logo" src="LogoHLBrefer.png"/>
+    </div>
+   </div>
+   <hr style="border: 0; border-top: 1px solid rgba(0, 240, 255, 0.4); margin: 30px 0;"/>
+   <div class="grid">
+    <div class="card card-center">
+     <div class="profile-card">
+      <h3>
+       📑 SERVICE PACKAGE DETAILS
+      </h3>
+      <div class="package-box" style="text-align: left;">
+       <h4>
+        🟢 PACKAGE 1: LANDING PAGE (SINGLE PAGE)
+       </h4>
+       <p>
+        Ideal for single-product campaigns, quick order forms, ad promotions (FB/TikTok/Google Ads), or business profile intros.
+       </p>
+       <p>
+        <strong>
+         Page Structure:
+        </strong>
+        1 Complete Page (Single Page Architecture) with smooth scrolling navigation.
+       </p>
+       <p>
+        <strong>
+         Key Elements:
+        </strong>
+       </p>
+       <ul>
+        <li>
+         <strong>
+          Hero Section:
+         </strong>
+         Engaging main headline, sub-headline, and primary Call to Action (CTA) button.
+        </li>
+        <li>
+         <strong>
+          Product/Service Showcase:
+         </strong>
+         Visual area detailing features, advantages, and specifications.
+        </li>
+        <li>
+         <strong>
+          Gallery &amp; Visuals:
+         </strong>
+         Optimized image display that loads fast without compromising speed.
+        </li>
+        <li>
+         <strong>
+          Direct WhatsApp Button System:
+         </strong>
+         Customers can click a button to initiate a chat on WhatsApp instantly without saving the number.
+        </li>
+        <li>
+         <strong>
+          Location &amp; Contact:
+         </strong>
+         Google Maps integration along with essential contact information.
+        </li>
+        <li>
+         <strong>
+          Basic Optimization:
+         </strong>
+         Basic meta tag setup for Google search and core system file preparation.
+        </li>
+       </ul>
+      </div>
+      <!-- SALES PACKAGE GRID -->
+      <div class="grid" style="margin-top: 20px;">
+       <!-- LANDING PAGE PACKAGE -->
+       <div class="card">
+        <h3 class="package-title" style="color: #00F0FF;">
+         Landing Page Package
+        </h3>
+        <div class="package-price" style="color: #fff; font-size: 24px; font-weight: bold; text-shadow: 0 0 10px rgba(255,255,255,0.5);">
+         RM 299
+         <span style="font-size: 16px; color:#aaa;">
+          ++
+         </span>
+        </div>
+        <p style="font-size: 12px; color: #999; margin: 0 0 15px 0;">
+         Ideal for marketing campaigns, quick product launches, and mini shop portfolios.
+        </p>
+        <ul class="package-features" style="text-align: left; font-size: 12px;">
+         <li>
+          1 Main Landing Page (Single Page Design)
+         </li>
+         <li>
+          Responsive Code Architecture (Mobile-Friendly)
+         </li>
+         <li>
+          Full Google AdSense Optimization
+         </li>
+         <li>
+          Direct Call-to-Action to WhatsApp / Forms
+         </li>
+         <li style="color: #ff4a4a; font-weight: bold; text-shadow: 0 0 5px rgba(255,74,74,0.5);">
+          * Custom domain not included
+         </li>
+        </ul>
+        <a class="hlb-btn" href="https://toyyibpay.com/L-P-P-LPP299" style="text-align:center; margin-top: auto;" target="_blank">
+         Subscribe Now
+        </a>
+       </div>
+       <!-- PREMIUM STANDARD PACKAGE -->
+       <div class="card premium-card" style="position: relative;">
+        <div style="position: absolute; top: 10px; right: 15px; background: #E600A4; color: #fff; font-size: 9px; padding: 2px 6px; border-radius: 3px; font-weight: bold; box-shadow: 0 0 8px #E600A4;">
+         POPULAR
+        </div>
+        <h3 class="package-title" style="color: #E600A4; text-shadow: 0 0 8px #E600A4;">
+         Premium Standard
+        </h3>
+        <div class="package-price" style="color: #fff; font-size: 24px; font-weight: bold; text-shadow: 0 0 10px rgba(255,255,255,0.5);">
+         RM 900
+         <span style="font-size: 16px; color:#aaa;">
+          ++
+         </span>
+        </div>
+        <p style="font-size: 12px; color: #999; margin: 0 0 15px 0;">
+         Complete management system for Clubs, Associations, and dynamic Business profiles.
+        </p>
+        <ul class="package-features" style="text-align: left; font-size: 12px;">
+         <li>
+          Multi-Page Website Deployment
+         </li>
+         <li>
+          Custom Content Management System
+         </li>
+         <li>
+          Full Google AdSense &amp; Advanced SEO Optimization
+         </li>
+         <li>
+          Product Showcase / Club Activity Gallery System
+         </li>
+         <li>
+          Full Custom Domain Support (.com/.my)
+         </li>
+         <li>
+          Premium Cyberpunk UI/UX Style
+         </li>
+        </ul>
+        <a class="hlb-btn" href="https://toyyibpay.com/P-MS-Pay-PREMIUM-STANDARD" style="background: linear-gradient(90deg, #E600A4, #ff0077); text-align:center; margin-top: auto; box-shadow: 0 0 12px rgba(230,0,164,0.5);" target="_blank">
+         Upgrade to Premium
+        </a>
+       </div>
+      </div>
+      <!-- /GRID ENDS HERE -->
+      <div class="package-box" style="text-align: left; margin-top: 20px;">
+       <h4>
+        🟣 PACKAGE 2: PREMIUM WEBSITE (MULTI-PAGE SYSTEM)
+       </h4>
+       <p>
+        Ideal for corporate businesses, agencies, technical service providers, online stores, and organizations needing detailed information structure.
+       </p>
+       <p>
+        <strong>
+         Page Structure:
+        </strong>
+        Development of up to 5 to 10 Main Pages (e.g., Home, About Us, Services, Blog &amp; Documentation Center, Contact Us).
+       </p>
+       <p>
+        <strong>
+         Advanced Features &amp; Elements:
+        </strong>
+       </p>
+       <ul>
+        <li>
+         <strong>
+          Exclusive Design:
+         </strong>
+         Custom design tailored to your business branding and visual identity.
+        </li>
+        <li>
+         <strong>
+          Documentation &amp; Reading Hub (Blog / Codex Section):
+         </strong>
+         Dedicated space for publishing articles, technical guides, or terminal commands (perfect for technical doc storage).
+        </li>
+        <li>
+         <strong>
+          Inquiry &amp; Booking Form System:
+         </strong>
+         Smart feedback forms sending notifications directly to email or a database.
+        </li>
+        <li>
+         <strong>
+          Social Media &amp; Payment Integration:
+         </strong>
+         Complete links to social media accounts (Facebook, Instagram, TikTok, YouTube) plus Payment Gateway integration if needed.
+        </li>
+        <li>
+         <strong>
+          Speed &amp; SEO Optimization Upgrade:
+         </strong>
+         Keyword management, heading structure setup (H1, H2, H3), XML sitemap, and Google Search Console integration.
+        </li>
+       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+   <!-- SOLUTIONS SECTION -->
+   <section class="section">
+    <h2 style="color:#00F0FF; font-size: 18px; margin-bottom: 15px; text-shadow: 0 0 10px #00F0FF;">
+     &bull; SOLUTIONS FOR YOU &bull;
+    </h2>
+    <!-- MAIN GRID CARDS -->
+    <div class="grid" style="margin-top:20px;">
+     <a class="card card-center" href="CommandCanDoLIST.html">
+      <img alt="Terminal Choice" src="ManyTerminalChoice.webp"/>
+      <h3>
+       Terminal Options
+      </h3>
+     </a>
+     <a class="card card-center" href="Shop-MyAffliate-homeEN.html">
+      <img alt="Affiliate Support" src="ShopAffliateSupportLogo.jpg"/>
+      <h3>
+       Affiliate Support
+      </h3>
+     </a>
+    </div>
+   </section>
+   <!-- E-LEARNING SECTION -->
+   <section class="section">
+    <h2 style="font-size: 18px; margin-bottom: 15px; text-shadow: 0 0 10px rgba(255,255,255,0.4);">
+     E-Learning Plans
+    </h2>
+    <div class="grid">
+     <!-- CARD 1: WEB SERVICE -->
+     <a class="card-bg-box" href="Banner-WebSale-EN.html" style="background-image: url('PreviewCodingWeb.jpg');">
+      <div class="card-overlay">
+      </div>
+      <div class="card-content">
+       <h3>
+        <span class="blinking-blue-red">
+         START NOW!
+        </span>
+       </h3>
+       <p>
+        Web Design E-Learning Plan following web package purchases starting RM299-RM345!
+        <span class="blinking-blue-red">
+         click
+        </span>
+       </p>
+      </div>
+     </a>
+     <!-- CARD 2: CASHOUT PAYLATER -->
+     <a class="card-bg-box" href="CashOutServicePayLater.html" style="background-image: url('BNPLclick.webp');">
+      <div class="card-overlay">
+      </div>
+      <div class="card-content">
+       <h3>
+        Emergency Financial Services+
+       </h3>
+       <p>
+        Paylater Cashout
+       </p>
+      </div>
+     </a>
+    </div>
+   </section>
+   <!-- BANNER SLIDER -->
+   <section class="hero-slider-container">
+    <div class="swiper myBannerSwiper">
+     <div class="swiper-wrapper">
+      <div class="swiper-slide">
+       <a href="https://referrals.rytbank.my/MCoA/gq8xkdot" rel="noopener" target="_blank">
+        <img alt="Ryt Register Invite" src="Banner-RytSignUp-EN.png"/>
+       </a>
+      </div>
+      <div class="swiper-slide">
+       <a href="https://vpsmalaysia.com.my/system/aff.php?aff=2530" rel="noopener" target="_blank">
+        <img alt="Banner Ads VPSmalaysia" src="BannerADS-VPSmyr-EN.png"/>
+       </a>
+      </div>
+      <div class="swiper-slide">
+       <a href="Banner-WebSale-EN.html">
+        <img alt="Linux Terminal Codex" src="BannerWebSite.png"/>
+       </a>
+      </div>
+     </div>
+     <div class="swiper-pagination">
+     </div>
+     <div class="swiper-button-next">
+     </div>
+     <div class="swiper-button-prev">
+     </div>
+    </div>
+   </section>
+   <!-- BANNER BJAK -->
+   <div class="bjak-cyber-banner" id="bjak">
+    <div class="bjak-cyber-content">
+     <div style="width: 100%; text-align: center; margin: 25px 0;">
+      <a href="https://bjak.my/ref/mohamadslbr" rel="noopener noreferrer" target="_blank">
+       <img alt="BJAK Promo Banner" src="Bjak.png" style="width: 100%; max-width: 1200px; height: auto; border-radius: 12px; border: 1px solid #00F0FF; box-shadow: 0 0 20px rgba(0,240,255,0.4);"/>
+      </a>
+     </div>
+     <span class="bjak-cyber-tag">
+      Official Partner
+     </span>
+     <h2 class="bjak-cyber-title">
+      RENEW INSURANCE &amp; ROADTAX WITH
+      <span>
+       BJAK
+      </span>
+     </h2>
+     <p class="bjak-cyber-desc">
+      Get free quotes from 15+ car &amp; motorcycle insurance companies online in just 5 minutes.
+     </p>
+     <div class="bjak-cyber-features">
+      <span class="bjak-feature-item">
+       &checkmark; 100% Online
+      </span>
+      <span class="bjak-feature-item">
+       &checkmark; Instant Discount
+      </span>
+      <span class="bjak-feature-item">
+       &checkmark; Roadtax Delivery
+      </span>
+     </div>
+     <a class="bjak-cyber-btn" href="https://bjak.my/ref/mohamadslbr" rel="noopener noreferrer" target="_blank">
+      Get Free Quote ❯
+     </a>
+    </div>
+    <div class="bjak-cyber-badge">
+     <div class="bjak-reward-text">
+      Use Referral Link &amp; Get
+     </div>
+     <div class="bjak-reward-amount">
+      RM25
+     </div>
+     <div class="bjak-reward-text">
+      Reward / Cashback
+     </div>
+    </div>
+   </div>
+   <!-- SCAMMER WARNING NOTICE -->
+   <div class="notice-section">
+    <div class="header-box">
+     <h2 class="header-text">
+      BEWARE OF SCAMMER FRAUD!
+     </h2>
+    </div>
+    <div class="flicker-text">
+     <p>
+      <strong>
+       Please take note:
+      </strong>
+      We take fraudulent activities very seriously. Unauthorized parties may attempt to misuse the company name or owner identity of
+      <span class="company-name">
+       KasuhaNET.STORE
+      </span>
+      for financial scams.
+     </p>
+     <p>
+      <strong>
+       IMPORTANT NOTICE:
+      </strong>
+      Official business transactions are strictly conducted through registered bank accounts under
+      <span class="company-name">
+       Kasuhanet Resources
+      </span>
+      and
+      <span class="company-name">
+       KasuhaOculus Organisation
+      </span>
+      ONLY.
+     </p>
+     <p>
+      We accept no liability for any financial losses caused by unauthorized third-party scammers.
+     </p>
+    </div>
+   </div>
+   <div class="grid">
+    <div class="card card-center">
+     <h2>
+      READING CENTER
+     </h2>
+     <p class="subtitle">
+      <strong>
+       Terminal Codex Commands:
+      </strong>
+      A collection of dependency setup commands with minimal typing for Linux, Penguin, and web data management.
+     </p>
+     <h3>
+      🛠️ ADDITIONAL FUNCTIONS &amp; SERVER TECHNICAL SUPPORT
+     </h3>
+     <p>
+      <em>
+       (READING CENTER &amp; TERMINAL CODEX)
+      </em>
+     </p>
+     <p>
+      For clients requiring custom web environments or software management on VPS / Linux Servers, KasuhaNET also provides scripts and terminal setup commands (Terminal Codex):
+     </p>
+     <ul style="text-align: left;">
+      <li>
+       <strong>
+        Dependency Setup:
+       </strong>
+       A collection of terminal commands for installing software packages on Linux and Penguin environments with minimal typing.
+      </li>
+      <li>
+       <strong>
+        Web Data Management:
+       </strong>
+       Log file cleanup, database optimization, and automated backups.
+      </li>
+     </ul>
+     <h3>
+      📋 END-TO-END WORKFLOW
+     </h3>
+     <ul style="text-align: left;">
+      <li>
+       <strong>
+        Shopee Purchase:
+       </strong>
+       Select your desired package variant (Landing Page / Premium) and complete the payment.
+      </li>
+      <li>
+       <strong>
+        Briefing Session:
+       </strong>
+       Contact us via Shopee Chat. We will provide a form listing the required details (logo, text content, product images, social media links).
+      </li>
+      <li>
+       <strong>
+        Development &amp; Design Phase:
+       </strong>
+       Our team will begin assembling the code structure, visual layout, and system integration based on your selected package.
+      </li>
+      <li>
+       <strong>
+        Review &amp; Performance Testing:
+       </strong>
+       You will be provided with a preview link for review. Screen speed and mobile responsiveness testing will be conducted.
+      </li>
+      <li>
+       <strong>
+        Website Launch &amp; Handover:
+       </strong>
+       The website goes live officially under your domain (such as your business name or kasuhanet.store). Admin access credentials and documentation will be handed over to you.
+      </li>
+     </ul>
+     <h3>
+      ⚠️ TERMS &amp; CONDITIONS OF SERVICE
+     </h3>
+     <ul style="text-align: left;">
+      <li>
+       <strong>
+        Domain &amp; Hosting:
+       </strong>
+       Package costs are subject to agreement on using an existing domain/hosting setup or establishing a new one.
+      </li>
+      <li>
+       <strong>
+        Content:
+       </strong>
+       Text and image materials must be provided by the buyer (assistance with text restructuring can be provided upon request).
+      </li>
+      <li>
+       <strong>
+        After-Sales Support:
+       </strong>
+       Free basic technical support is provided for 30 days after project delivery.
+      </li>
+     </ul>
+    </div>
+   </div>
+   <!-- MINI DEKO SECTION -->
+   <div class="mini-deko-section">
+    <img alt="Kasuha Zukarnain Intro" class="mini-deko-img" src="KasuhaKZintroEN.png"/>
+   </div>
+   <!-- TRUST BANNER CONTAINER -->
+   <div class="trust-banner-container">
+    <img alt="KasuhaNET Supported Technologies &amp; Payments" class="trust-banner-img" src="broadcast.png"/>
+   </div>
+  </main>
+  <!-- BOXED CYBER FOOTER -->
+  <footer class="footer">
+   <div class="footer-grid">
+    <div>
+     <div class="logo">
+      <img alt="KasuhaNET Logo" src="img/logo3.png" style="height:25px; width:auto;"/>
+     </div>
+     <p>
+      <strong>
+       K
+      </strong>
+      asuha
+      <strong>
+       NET&bull;STORE | DIGITAL STORE PLATFORM
+      </strong>
+     </p>
+    </div>
+    <div class="footer-links">
+     <h4>
+      Services
+     </h4>
+     <a href="CommandCanDoLIST.html">
+      CommandCanDo
+     </a>
+     <a href="Shop-MyAffliate-homeEN.html">
+      MyAffiliate
+     </a>
+     <a href="CashOutServicePayLater.html">
+      PayLater BNPL
+     </a>
+    </div>
+    <div class="footer-links">
+     <h4>
+      Resources
+     </h4>
+     <a href="About-Us.html">
+      About Us
+     </a>
+     <a href="support-centre.html">
+      Support
+     </a>
+     <a href="terms-EN.html">
+      Terms &amp; Policy
+     </a>
+    </div>
+    <div class="footer-links">
+     <h4>
+      Follow Us
+     </h4>
+     <div class="social-icons-wrapper">
+      <a href="https://www.facebook.com/share/1BfeDZJqjP/" rel="noopener" target="_blank" title="Facebook">
+       <i class="fa-brands fa-facebook">
+       </i>
+      </a>
+      <a href="https://tiktok.com/@kasuhanet.store" rel="noopener" target="_blank" title="TikTok">
+       <i class="fa-brands fa-tiktok">
+       </i>
+      </a>
+      <a href="https://t.me/kasuhanetstorebot" rel="noopener" target="_blank" title="Telegram">
+       <i class="fa-brands fa-telegram">
+       </i>
+      </a>
+     </div>
+    </div>
+   </div>
+   <div class="footer-bottom">
+    &copy;
+    <strong>
+     2026 KasuhaNET Resources (202503248308). All Rights Reserved.
+    </strong>
+   </div>
+  </footer>
+  <!-- WHATSAPP FLOATING BUTTON -->
+  <a aria-label="Contact us on WhatsApp" href="https://wa.me/qr/4K2RBZZQAPL4G1" onmouseout="this.style.transform='scale(1)'" onmouseover="this.style.transform='scale(1.1)'" rel="noopener" style="
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    width:60px;
+    height:60px;
+    background:#25D366;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:999999;
+    box-shadow:0 5px 20px rgba(37,211,102,0.5);
+    transition: transform 0.3s ease;
+   " target="_blank">
+   <svg fill="white" height="32" viewbox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg">
+    <path d="M19.11 17.53c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.28-.73.9-.9 1.09-.17.19-.33.21-.61.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.66-1.55-1.94-.17-.28-.02-.43.12-.57.13-.13.28-.33.42-.50.14-.17.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.64-1.55-.88-2.12-.23-.56-.47-.48-.64-.49h-.55c-.19 0-.49.07-.74.35-.25.28-.95.93-.95 2.26s.97 2.62 1.11 2.8c.14.19 1.9 2.9 4.6 4.07.64.28 1.14.45 1.53.57.64.2 1.22.17 1.68.1.51-.08 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.12-.26-.19-.54-.33z">
+    </path>
+    <path d="M16 3C9.37 3 4 8.37 4 15c0 2.31.66 4.47 1.8 6.32L4 29l7.9-1.75C13.64 28.55 14.78 29 16 29c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 22c-1.1 0-2.16-.2-3.14-.57l-.45-.17-4.69 1.04 1-4.57-.3-.47C7.39 18.35 7 16.72 7 15c0-4.96 4.04-9 9-9s9 4.04 9 9-4.04 10-9 10z">
+    </path>
+   </svg>
+  </a>
+  <!-- SWIPER JS LIBRARY -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js">
+  </script>
+  <!-- INITIALIZATION SCRIPT FOR SWIPER SLIDER & DROPDOWN & PAGE FADE OUT -->
+  <script>
+   function toggleDropdown() {
+    document.getElementById("servicesDropdown").classList.toggle("show");
+  }
+
+  // Tutup dropdown jika pengguna menekan di luar menu
+  window.addEventListener('click', function(e) {
+    if (!e.target.matches('.dropdown a') && !e.target.matches('.dropdown i')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+  });
+  
+  // SCRIPT UNTUK KESAN FADE OUT APABILA MENEKAN PAUTAN (PAGE TRANSITION)
+  document.addEventListener("DOMContentLoaded", function() {
+    var links = document.querySelectorAll("a");
+    links.forEach(function(link) {
+      link.addEventListener("click", function(e) {
+        var href = this.getAttribute("href");
+        var target = this.getAttribute("target");
+
+        // Hanya jalankan fade-out untuk link dalaman biasa
+        if (href && !href.startsWith("#") && !href.startsWith("javascript") && target !== "_blank") {
+          e.preventDefault();
+          document.body.classList.add("page-fade-out");
+          setTimeout(function() {
+            window.location.href = href;
+          }, 450); // Menunggu animasi fade-out selesai
+        }
+      });
+    });
+  });
+
+  const swiper = new Swiper(".myBannerSwiper", {
+    loop: true,
+    autoplay: {
+      delay: 3500,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+  </script>
+ </body>
+</html>
