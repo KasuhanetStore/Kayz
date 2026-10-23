@@ -1409,6 +1409,56 @@ footer.footer{width:min(1160px,calc(100% - 32px))!important;margin:0 auto 28px!i
     </div>
    </div>
   </header>
+  <!-- KASUHANET VIDEO BANNER -->
+<section class="video-banner">
+    <video controls playsinline preload="metadata">
+        <source src="https://files.catbox.moe/6zu98v.mp4" type="video/mp4">
+        Browser anda tidak menyokong video HTML5.
+    </video>
+</section>
+
+<style>
+.video-banner {
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+.video-banner video {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: contain;
+    background: #05070d;
+    border: 1px solid rgba(0, 240, 255, 0.45);
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.12);
+}
+
+@media (max-width: 600px) {
+    .video-banner {
+        margin: 12px auto;
+        padding: 0 10px;
+    }
+
+    .video-banner video {
+        border-radius: 8px;
+    }
+}
+ </style>
+
+<!-- VIDEO DI BAWAH HEADER -->
+<section class="video-banner">
+    <video controls playsinline preload="metadata">
+        <source src="https://files.catbox.moe/6zu98v.mp4" type="video/mp4">
+    </video>
+</section>
+
+<main>
+    <!-- Kandungan asal website kau -->
   <!-- PARTNER CREDIT BAR -->
   <div class="partner-credit-bar">
    <div class="credit-text">
