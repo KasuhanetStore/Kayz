@@ -61,8 +61,7 @@
 <script src="js/home-main.js"></script>
 
   <meta name="theme-color" content="#08090d">
-  <title>KasuhaNET.STORE | Malaysia Digital Shop Platform & Multi-Service Digital Tools</title>
-  <style>
+  <title>KasuhaNET.STORE | Malaysia Digital Shop Platform & Multi-Service Digital Tools</title>  <style>
     :root {
       --bg: #08090d;
       --panel: #12141c;
@@ -173,28 +172,45 @@
     }
     .whatsapp-float:hover { transform: translateY(-4px) scale(1.04); }
     .whatsapp-float svg { width: 30px; height: 30px; fill: currentColor; }
-    @media (max-width: 850px) {
-      .hero-grid { grid-template-columns: 1fr; }
-      .hero { padding-top: 50px; }
-      .service-grid { grid-template-columns: 1fr 1fr; }
-      .process-grid { grid-template-columns: 1fr 1fr; }
-      .nav-links { gap: 13px; }
-      .nav-links a:not(.btn) { display: none; }
+
+    /* Custom Accordion Styling */
+    details.accordion-box {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px 24px;
+      background: linear-gradient(145deg, rgba(255,48,79,.08), rgba(255,255,255,.025));
+      margin-top: 20px;
+      transition: all 0.3s ease;
     }
-    @media (max-width: 580px) {
-      .container { width: min(100% - 28px,1120px); }
-      .nav { min-height: 66px; }
-      .brand { font-size: 14px; }
-      .brand-mark { width: 37px; height: 37px; }
-      .nav-links .btn { padding: 10px 12px; font-size: 12px; }
-      .hero { padding: 42px 0 30px; }
-      h1 { letter-spacing: -1.3px; }
-      .hero p { font-size: 15px; }
-      .section { padding: 48px 0; }
-      .service-grid, .pricing, .process-grid { grid-template-columns: 1fr; }
-      .price-card { padding: 24px; }
-      .cta-box { padding: 25px; align-items: flex-start; flex-direction: column; }
-      .whatsapp-float { width: 56px; height: 56px; right: 15px; bottom: 15px; }
+    details.accordion-box summary {
+      font-weight: 800;
+      font-size: 18px;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text);
+    }
+    details.accordion-box summary::-webkit-details-marker {
+      display: none;
+    }
+    details.accordion-box summary::after {
+      content: "＋";
+      font-size: 20px;
+      color: #ff7187;
+      transition: transform 0.2s ease;
+    }
+    details.accordion-box[open] summary::after {
+      content: "✕";
+    }
+    details.accordion-box[open] {
+      padding-bottom: 24px;
+    }
+    .accordion-content {
+      margin-top: 16px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 16px;
     }
 
     .notice-box,.profile-box,.warning-box,.partner-box,.reading-box { border:1px solid var(--line); border-radius:18px; padding:24px; background:linear-gradient(145deg,rgba(255,48,79,.08),rgba(255,255,255,.025)); margin-top:20px; }
@@ -208,8 +224,8 @@
     .warning-box { border-color:rgba(255,48,79,.5); }
     .partner-banner { width:100%; max-width:320px; height:auto; border-radius:12px; margin:12px 0; }
     .small-muted { color:var(--muted); font-size:13px; }
-    @media(max-width:850px){.link-grid{grid-template-columns:1fr 1fr}}
-    @media(max-width:580px){.link-grid{grid-template-columns:1fr}}
+    @media(max-width:850px){.link-grid{grid-template-columns:1fr 1fr}.hero-grid { grid-template-columns: 1fr; }.hero { padding-top: 50px; }.service-grid { grid-template-columns: 1fr 1fr; }.process-grid { grid-template-columns: 1fr 1fr; }.nav-links { gap: 13px; }.nav-links a:not(.btn) { display: none; }}
+    @media(max-width:580px){.link-grid{grid-template-columns:1fr}.container { width: min(100% - 28px,1120px); }.nav { min-height: 66px; }.brand { font-size: 14px; }.brand-mark { width: 37px; height: 37px; }.nav-links .btn { padding: 10px 12px; font-size: 12px; }.hero { padding: 42px 0 30px; }h1 { letter-spacing: -1.3px; }.hero p { font-size: 15px; }.section { padding: 48px 0; }.service-grid, .pricing, .process-grid { grid-template-columns: 1fr; }.price-card { padding: 24px; }.cta-box { padding: 25px; align-items: flex-start; flex-direction: column; }.whatsapp-float { width: 56px; height: 56px; right: 15px; bottom: 15px; }}
   </style>
 </head>
 <body>
@@ -217,8 +233,8 @@
   <div class="container nav">
     <a class="brand" href="#home" aria-label="KasuhaNET home page"><span class="brand-mark">K<span style="color:#171820">N</span></span><span>KasuhaNET.STORE<small>DIGITAL STORE PLATFORM</small></span></a>
     <nav class="nav-links" aria-label="Navigasi utama">
-      <a href="index.html">HOME</a><a href="about-us-EN.html">ABOUT US</a><a href="terms-EN.html">TERMS & POLICY</a><a href="https://kasuhanet.store/support-centre-EN.html">SUPPORT</a>
-      <a class="btn btn-outline" href="index.html" lang="en">EN</a><a class="btn btn-outline" href="MS/index.html" lang="ms">MS</a>
+      <a href="#home">HOME</a><a href="#about">ABOUT US</a><a href="https://kasuhanet.store/terms.html">TERMS & POLICY</a><a href="https://kasuhanet.store/support-centreEN.html">SUPPORT</a>
+      <a class="btn btn-outline" href="index.html" lang="en">EN</a><a class="btn btn-outline" href="indexMalayVersi.html" lang="ms">MS</a>
       <a class="btn btn-primary" href="#pakej">View Packages ↗</a>
     </nav>
   </div>
@@ -226,17 +242,7 @@
 <main>
 <section class="hero" id="home"><div class="container hero-grid"><div>
   <span class="eyebrow">Hybrid Sales • Multi-Service • Digital Tools</span>
-  <h1 class="neon-title">Kasuha<span>NET.STORE</span>
-  </h1>
-<h2 class="orbitron-font" style="color:#4F31E8;">
-<span style="color:#4F31E8;">KasuhaNET •</span>
-<span style="color:#E600A4;"> Shop Platform Site</span>
-</h2>
-
-<div class="typing">
-WEB Developer
-</div>
-
+  <h1><span class="gradient-text">KasuhaNET.STORE</span><br>Digital Shop Platform</h1>
   <p>A hybrid sales and multi-service digital platform connecting website development, digital services, affiliate support and digital tools in one place.</p>
   <div class="hero-actions"><a class="btn btn-primary" href="#pakej">Website Development →</a><a class="btn btn-outline" href="https://kasuhanet.store/Custom-Web-Workshop-EN">Terminal Choice / Custom Web</a></div>
   <div class="hero-points"><span>Website & digital systems</span><span>Flexible services</span><span>Standard & Premium options</span></div>
@@ -244,8 +250,31 @@ WEB Developer
 </div><div class="visual-card"><div class="video-frame"><video autoplay muted loop playsinline controls preload="metadata"><source src="https://files.catbox.moe/6zu98v.mp4" type="video/mp4">Your browser does not support HTML5 video.</video></div><div class="video-caption"><div><strong>KasuhaNET Website Showcase</strong><span>Visual preview of websites and digital services</span></div><span class="live-dot" aria-label="Video demo"></span></div></div></div></section>
 
 <section class="section" id="organisation" style="padding-top:10px"><div class="container"><div class="section-head"><span class="eyebrow">Organisation & Collaboration</span><h2>Powered by Collaboration of <span class="gradient-text">Organisations & Companies</span></h2><p><strong>Kasuha Oculus Organisation</strong> • <strong>Kasuhanet Resources</strong></p><p class="small-muted">KasuhaNET.STORE is presented as a digital platform under Kasuhanet Resources and the Kasuha Oculus Organisation framework.</p></div><div class="link-grid"><div class="link-card"><h3>🌍 Rwanda (Africa)</h3><a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">Rwanda Support & Development ↗</a></div><div class="link-card"><h3>🌏 Timor Leste (Asia)</h3><a href="https://kasuhanet.store/Timor-Leste-SupportDevelopement.html">Timor Leste Support & Development ↗</a></div><div class="link-card"><h3>Terminal Codex</h3><p>Technical references and terminal support.</p><a href="https://kasuhanet.store/CommandCanDoLIST.html">Open Codex ↗</a></div></div></div></section>
-<section class="section" id="announcement"><div class="container"><div class="section-head"><span class="eyebrow">Platform Announcement</span><h2>Announcement — Planned Addition of <span class="gradient-text">Service+</span></h2><p>An announcement for KasuhaNET.STORE customers and visitors.</p></div>
-<div class="notice-box"><div class="notice-date">9 SEPTEMBER 2026</div><p><strong>For the Information of Kasuhanet Customers & Visitors:</strong> KasuhaNET plans to introduce Service+, expanding the range of services and business opportunities offered through KasuhaNET.STORE. Service availability will depend on the relevant field and customer requirements.</p><ul class="feature-list"><li><strong>TAKAFUL & INSURANCE</strong></li><li><strong>PROPERTY CONSULTANCY / REAL ESTATE</strong></li><li><strong>EMPLOYMENT AGENCY SERVICES</strong></li><li><strong>DIY CUSTOM ELECTRONIC DESIGN</strong></li><li><strong>PRIVATE DELIVERY RIDER</strong></li></ul><p><strong>Service+ Direction:</strong> Service+ is part of KasuhaNET’s plan to develop a broader service ecosystem. New services and updates will be announced from time to time through KasuhaNET.STORE. Thank you for your support and trust.</p></div></div></section>
+
+<section class="section" id="announcement">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Platform Announcement</span>
+      <h2>Announcement — Planned Addition of <span class="gradient-text">Service+</span></h2>
+      <p>An announcement for KasuhaNET.STORE customers and visitors.</p>
+    </div>
+    <details class="accordion-box">
+      <summary>Read Full Service+ Announcement Details</summary>
+      <div class="accordion-content">
+        <div class="notice-date">9 SEPTEMBER 2026</div>
+        <p><strong>For the Information of Kasuhanet Customers & Visitors:</strong> KasuhaNET plans to introduce Service+, expanding the range of services and business opportunities offered through KasuhaNET.STORE. Service availability will depend on the relevant field and customer requirements.</p>
+        <ul class="feature-list">
+          <li><strong>TAKAFUL & INSURANCE</strong></li>
+          <li><strong>PROPERTY CONSULTANCY / REAL ESTATE</strong></li>
+          <li><strong>EMPLOYMENT AGENCY SERVICES</strong></li>
+          <li><strong>DIY CUSTOM ELECTRONIC DESIGN</strong></li>
+          <li><strong>PRIVATE DELIVERY RIDER</strong></li>
+        </ul>
+        <p><strong>Service+ Direction:</strong> Service+ is part of KasuhaNET’s plan to develop a broader service ecosystem. New services and updates will be announced from time to time through KasuhaNET.STORE. Thank you for your support and trust.</p>
+      </div>
+    </details>
+  </div>
+</section>
 
 <section class="section" id="servis"><div class="container"><div class="section-head"><span class="eyebrow">Web Development & Digital Infrastructure</span><h2>Professional Web Development <span class="gradient-text">by KasuhaNET</span></h2><p>Do you want a digital presence that looks professional, performs to a high standard, and is built to current industry specifications? <strong>KasuhaNET Resources</strong> provides web development solutions from essential landing pages to multi-page systems, supported by server management and terminal configuration.</p></div>
 <div class="service-grid"><article class="service-card"><div class="service-icon">⌘</div><h3>Maximum Performance & Speed</h3><p>Code efficiency, image compression and resource management help pages load quickly.</p></article><article class="service-card"><div class="service-icon">▣</div><h3>Mobile-Friendly Design</h3><p>Responsive layouts for smartphones, tablets, laptops and desktops.</p></article><article class="service-card"><div class="service-icon">🔒</div><h3>Data Security & Licensing</h3><p>Clean web structure, HTTPS/SSL and appropriate file-permission settings.</p></article><article class="service-card"><div class="service-icon">⌘</div><h3>Terminal & Linux Server</h3><p>Help managing Linux environments, including Linux on Penguin/ChromeOS, library dependencies and system scripts.</p></article><article class="service-card"><div class="service-icon">⚙</div><h3>Custom Web Workshop</h3><p>Choose modular components and tools based on your project needs and budget.</p><a href="https://kasuhanet.store/Custom-Web-Workshop-EN" class="btn btn-outline" style="margin-top:16px">⬅️ Learn More</a></article><article class="service-card"><div class="service-icon">↗</div><h3>Terminal Options & Affiliate</h3><p>Explore terminal options, affiliate support and other digital services available on the platform.</p><div class="subnav"><a href="https://kasuhanet.store/CommandCanDoLIST.html">Terminal Options</a><a href="https://kasuhanet.store/ShopAffliateSupport.html">Affiliate Support</a></div></article></div></div></section>
@@ -254,20 +283,97 @@ WEB Developer
 
 <section class="section" id="referral"><div class="container"><div class="section-head"><span class="eyebrow">New Program Referral</span><h2>Register for a <span class="gradient-text">Hong Leong Bank Account</span></h2><p>Use your referral code and check the bank's current sign-up terms and available rewards.</p><a class="btn btn-primary" href="https://www.hlb.com.my/en/personal-banking/deposits/apply-at-hlb-connect.html" target="_blank" rel="noopener">Sign Up Now ↗</a></div></div></section>
 
-<section class="section" id="pakej"><div class="container"><div class="section-head"><span class="eyebrow">Service Package Details</span><h2>Website Development <span class="gradient-text">Packages</span></h2><p>Choose a package based on your content structure, functionality and business needs.</p></div>
-<div class="notice-box"><h3>🟢 Package 1: Landing Page (Single Page)</h3><p>Ideal for a single-product campaign, simple order form, Facebook/TikTok/Google Ads promotion or business profile introduction.</p><p><strong>Page Structure:</strong> One complete page with smooth scrolling navigation.</p><ul class="feature-list"><li>Hero section with a headline, subtitle and call-to-action button.</li><li>Product/service showcase with features, benefits and specifications.</li><li>Optimised visual gallery.</li><li>Direct WhatsApp button without requiring customers to save the number.</li><li>Google Maps dan maklumat hubungan.</li><li>Basic meta tags for Google search and essential system files.</li></ul></div>
-<div class="pricing" style="margin-top:22px"><article class="price-card"><span class="plan-tag">LANDING PAGE</span><h3>Landing Page Package</h3><div class="price">RM 299 <small>++</small></div><p class="price-sub">For marketing campaigns, simple product launches and mini-shop portfolios.</p><ul class="feature-list"><li>1 halaman utama (single-page design)</li><li>Responsive code structure for mobile devices</li><li>Google AdSense optimisation</li><li>Call-to-action WhatsApp / borang</li><li>Custom domain not included</li></ul><a class="btn btn-primary" href="https://toyyibpay.com/L-P-P-LPP299" target="_blank" rel="noopener">Subscribe Now ↗</a></article>
-<article class="price-card premium"><span class="plan-tag">POPULAR</span><h3>Premium Standard</h3><div class="price">RM 900 <small>++</small></div><p class="price-sub">A complete management system for clubs, associations and dynamic business profiles.</p><ul class="feature-list"><li>Deploy a multi-page website</li><li>Custom Content Management System</li><li>Google AdSense dan advanced SEO</li><li>Showcase produk / galeri aktiviti kelab</li><li>Custom domain support (.com/.my)</li><li>Premium Cyberpunk UI/UX style</li></ul><a class="btn btn-primary" href="https://toyyibpay.com/P-MS-Pay-PREMIUM-STANDARD" target="_blank" rel="noopener">Upgrade to Premium ↗</a></article></div>
-<div class="notice-box"><h3>🟣 Package 2: Premium Website (Multi-Page System)</h3><p>Untuk syarikat korporat, agensi, penyedia servis teknikal, kedai dalam talian dan organisasi yang memerlukan struktur maklumat terperinci.</p><p><strong>Page Structure:</strong> Pembangunan sehingga 5–10 halaman utama seperti Home, About Us, Services, Blog/Documentation Center dan Contact Us.</p><ul class="feature-list"><li>Exclusive design aligned with your brand and business visual identity.</li><li>Blog/Codex section for articles, technical guides and terminal commands.</li><li>Enquiry and booking forms that send notifications to email or a database.</li><li>Social media links and payment gateway integration when required.</li><li>SEO, pengurusan kata kunci, struktur heading H1/H2/H3, XML sitemap dan Google Search Console.</li></ul></div>
-<div class="upgrade-note"><strong>Nota:</strong> Harga dan skop akhir tertakluk kepada persetujuan, keperluan teknikal, domain/hosting serta integrasi pihak ketiga.</div></div></section>
+<section class="section" id="pakej">
+  <div class="container">
+    <div class="section-head"><span class="eyebrow">Service Package Details</span><h2>Website Development <span class="gradient-text">Packages</span></h2><p>Choose a package based on your content structure, functionality and business needs.</p></div>
+    
+    <details class="accordion-box">
+      <summary>🟢 Package 1: Landing Page Details (Single Page)</summary>
+      <div class="accordion-content">
+        <p>Ideal for a single-product campaign, simple order form, Facebook/TikTok/Google Ads promotion or business profile introduction.</p>
+        <p><strong>Page Structure:</strong> One complete page with smooth scrolling navigation.</p>
+        <ul class="feature-list">
+          <li>Hero section with a headline, subtitle and call-to-action button.</li>
+          <li>Product/service showcase with features, benefits and specifications.</li>
+          <li>Optimised visual gallery.</li>
+          <li>Direct WhatsApp button without requiring customers to save the number.</li>
+          <li>Google Maps dan maklumat hubungan.</li>
+          <li>Basic meta tags for Google search and essential system files.</li>
+        </ul>
+      </div>
+    </details>
+
+    <div class="pricing" style="margin-top:22px">
+      <article class="price-card"><span class="plan-tag">LANDING PAGE</span><h3>Landing Page Package</h3><div class="price">RM 299 <small>++</small></div><p class="price-sub">For marketing campaigns, simple product launches and mini-shop portfolios.</p><ul class="feature-list"><li>1 halaman utama (single-page design)</li><li>Responsive code structure for mobile devices</li><li>Google AdSense optimisation</li><li>Call-to-action WhatsApp / borang</li><li>Custom domain not included</li></ul><a class="btn btn-primary" href="https://toyyibpay.com/L-P-P-LPP299" target="_blank" rel="noopener">Subscribe Now ↗</a></article>
+      <article class="price-card premium"><span class="plan-tag">POPULAR</span><h3>Premium Standard</h3><div class="price">RM 900 <small>++</small></div><p class="price-sub">A complete management system for clubs, associations and dynamic business profiles.</p><ul class="feature-list"><li>Deploy a multi-page website</li><li>Custom Content Management System</li><li>Google AdSense dan advanced SEO</li><li>Showcase produk / galeri aktiviti kelab</li><li>Custom domain support (.com/.my)</li><li>Premium Cyberpunk UI/UX style</li></ul><a class="btn btn-primary" href="https://toyyibpay.com/P-MS-Pay-PREMIUM-STANDARD" target="_blank" rel="noopener">Upgrade to Premium ↗</a></article>
+    </div>
+
+    <details class="accordion-box">
+      <summary>🟣 Package 2: Premium Website Details (Multi-Page System)</summary>
+      <div class="accordion-content">
+        <p>Untuk syarikat korporat, agensi, penyedia servis teknikal, kedai dalam talian dan organisasi yang memerlukan struktur maklumat terperinci.</p>
+        <p><strong>Page Structure:</strong> Pembangunan sehingga 5–10 halaman utama seperti Home, About Us, Services, Blog/Documentation Center dan Contact Us.</p>
+        <ul class="feature-list">
+          <li>Exclusive design aligned with your brand and business visual identity.</li>
+          <li>Blog/Codex section for articles, technical guides and terminal commands.</li>
+          <li>Enquiry and booking forms that send notifications to email or a database.</li>
+          <li>Social media links and payment gateway integration when required.</li>
+          <li>SEO, pengurusan kata kunci, struktur heading H1/H2/H3, XML sitemap dan Google Search Console.</li>
+        </ul>
+      </div>
+    </details>
+
+    <div class="upgrade-note"><strong>Nota:</strong> Harga dan skop akhir tertakluk kepada persetujuan, keperluan teknikal, domain/hosting serta integrasi pihak ketiga.</div>
+  </div>
+</section>
 
 <section class="section" id="solutions"><div class="container"><div class="section-head"><span class="eyebrow">Solutions For You</span><h2>Teroka <span class="gradient-text">Servis & Program</span></h2></div><div class="link-grid"><div class="link-card"><h3>Terminal Choice</h3><p>Rujukan arahan dan pilihan terminal.</p><a href="https://kasuhanet.store/CommandCanDoLIST.html">Open Terminal Options ↗</a></div><div class="link-card"><h3>Affiliate Support</h3><p>Sokongan affiliate dan peluang promosi.</p><a href="https://kasuhanet.store/ShopAffliateSupport.html">Open Affiliate Support ↗</a></div><div class="link-card"><h3>E-Learning Plans</h3><p>Web learning plans after purchasing a website package starting from RM299–RM345; review programme details before registering.</p><a href="https://kasuhanet.store/Website-Service.html">Explore Web Services ↗</a></div><div class="link-card"><h3>Emergency Financial Services+</h3><p>Maklumat perkhidmatan PayLater Cashout.</p><a href="https://kasuhanet.store/CashOutServicePayLater.html">PayLater Cashout ↗</a></div><div class="link-card"><h3>Ryt Bank Referral</h3><p>Program referral pihak ketiga.</p><a href="https://referrals.rytbank.my/MCoA/gq8xkdot" target="_blank" rel="noopener">Ryt Register Invite ↗</a></div><div class="link-card"><h3>VPS Malaysia</h3><p>Affiliate partner link for VPS services.</p><a href="https://vpsmalaysia.com.my/system/aff.php?aff=2530" target="_blank" rel="noopener">Banner Ads VPSMalaysia ↗</a></div></div></div></section>
 
 <section class="section" id="bjak"><div class="container"><div class="partner-box"><span class="eyebrow">Official Partner / Referral</span><h2>Renew Insurance & Roadtax with <span class="gradient-text">BJAK</span></h2><p>Get quotes from 15+ car and motorcycle insurance companies online. Check terms, prices and eligibility directly with the provider.</p><ul class="tag-list"><li>✓ 100% Online</li><li>✓ Instant Discount (subject to offers)</li><li>✓ Roadtax Delivery (subject to conditions)</li></ul><p><strong>Referral reward: RM25 reward / cashback</strong> — subject to current programme terms.</p><a class="btn btn-primary" href="https://bjak.my/ref/mohamadslbr" target="_blank" rel="noopener">Get Free Quote ❯</a></div></div></section>
 
-<section class="section" id="scam"><div class="container"><div class="warning-box"><h2>⚠️ Beware of Scammer Fraud!</h2><p><strong>Please take note:</strong> We take fraud seriously. Unauthorised parties may misuse the business name or owner identity of KasuhaNET.STORE for financial scams.</p><p><strong>Important Notice:</strong> Official transactions must be verified through registered bank accounts under <strong>Kasuhanet Resources</strong> dan <strong>Kasuha Oculus Organisation</strong> sahaja. Verify payment details through official channels before making any transaction.</p><p class="small-muted">KasuhaNET is not responsible for financial losses arising from dealings with unauthorised third parties, subject to applicable law.</p></div></div></section>
+<section class="section" id="scam">
+  <div class="container">
+    <details class="accordion-box warning-box" style="margin-top:0">
+      <summary>⚠️ Beware of Scammer Fraud! (Read Safety Warning)</summary>
+      <div class="accordion-content">
+        <p><strong>Please take note:</strong> We take fraud seriously. Unauthorised parties may misuse the business name or owner identity of KasuhaNET.STORE for financial scams.</p>
+        <p><strong>Important Notice:</strong> Official transactions must be verified through registered bank accounts under <strong>Kasuhanet Resources</strong> dan <strong>Kasuha Oculus Organisation</strong> sahaja. Verify payment details through official channels before making any transaction.</p>
+        <p class="small-muted">KasuhaNET is not responsible for financial losses arising from dealings with unauthorised third parties, subject to applicable law.</p>
+      </div>
+    </details>
+  </div>
+</section>
 
-<section class="section" id="reading"><div class="container"><div class="section-head"><span class="eyebrow">Reading Center</span><h2>Terminal Codex & <span class="gradient-text">Technical Support</span></h2><p>A collection of dependency installation commands and web data management guidance for Linux, Penguin and terminal environments.</p></div><div class="service-grid"><article class="service-card"><div class="service-icon">⌘</div><h3>Dependency Setup</h3><p>Terminal commands for installing software packages in Linux and Penguin environments with simple steps.</p></article><article class="service-card"><div class="service-icon">▤</div><h3>Web Data Management</h3><p>Help with log management, database optimisation and automated backups.</p></article><article class="service-card"><div class="service-icon">⚙</div><h3>VPS / Linux Support</h3><p>Support for custom web environments or software management on VPS/Linux, based on the agreed scope and access.</p></article></div><div class="notice-box"><h3>End-to-End Workflow</h3><ol><li><strong>Pembelian pakej:</strong> Choose the Landing Page or Premium option and complete payment using the provided link.</li><li><strong>Sesi briefing:</strong> Contact us through the agreed communication channel. Details such as your logo, text, product images and social links will be required.</li><li><strong>Pembangunan & reka bentuk:</strong> Code structure, visual design and integrations are built according to the package.</li><li><strong>Semakan & ujian:</strong> A preview link is provided for review; mobile display and page performance are tested.</li><li><strong>Pelancaran & serahan:</strong> The website is published on the agreed domain. Administrator access and documentation are handed over if included in the scope.</li></ol><h3>Terms & Conditions of Service</h3><ul class="feature-list"><li><strong>Domain & Hosting:</strong> Costs depend on whether existing domain/hosting is used or new services are purchased.</li><li><strong>Content:</strong> Text and images are provided by the customer; help with rewriting content can be discussed.</li><li><strong>After-Sales Support:</strong> Basic technical support is free for 30 days after project handover, subject to the agreed scope.</li></ul></div></div></section>
+<section class="section" id="reading">
+  <div class="container">
+    <div class="section-head"><span class="eyebrow">Reading Center</span><h2>Terminal Codex & <span class="gradient-text">Technical Support</span></h2><p>A collection of dependency installation commands and web data management guidance for Linux, Penguin and terminal environments.</p></div>
+    <div class="service-grid">
+      <article class="service-card"><div class="service-icon">⌘</div><h3>Dependency Setup</h3><p>Terminal commands for installing software packages in Linux and Penguin environments with simple steps.</p></article>
+      <article class="service-card"><div class="service-icon">▤</div><h3>Web Data Management</h3><p>Help with log management, database optimisation and automated backups.</p></article>
+      <article class="service-card"><div class="service-icon">⚙</div><h3>VPS / Linux Support</h3><p>Support for custom web environments or software management on VPS/Linux, based on the agreed scope and access.</p></article>
+    </div>
+
+    <details class="accordion-box">
+      <summary>End-to-End Workflow & Service Terms</summary>
+      <div class="accordion-content">
+        <h3>End-to-End Workflow</h3>
+        <ol>
+          <li><strong>Pembelian pakej:</strong> Choose the Landing Page or Premium option and complete payment using the provided link.</li>
+          <li><strong>Sesi briefing:</strong> Contact us through the agreed communication channel. Details such as your logo, text, product images and social links will be required.</li>
+          <li><strong>Pembangunan & reka bentuk:</strong> Code structure, visual design and integrations are built according to the package.</li>
+          <li><strong>Semakan & ujian:</strong> A preview link is provided for review; mobile display and page performance are tested.</li>
+          <li><strong>Pelancaran & serahan:</strong> The website is published on the agreed domain. Administrator access and documentation are handed over if included in the scope.</li>
+        </ol>
+        <h3>Terms & Conditions of Service</h3>
+        <ul class="feature-list">
+          <li><strong>Domain & Hosting:</strong> Costs depend on whether existing domain/hosting is used or new services are purchased.</li>
+          <li><strong>Content:</strong> Text and images are provided by the customer; help with rewriting content can be discussed.</li>
+          <li><strong>After-Sales Support:</strong> Basic technical support is free for 30 days after project handover, subject to the agreed scope.</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+</section>
 
 <section class="section" id="hubungi"><div class="container"><div class="cta-box"><div><h2>Build Your Digital Presence.</h2><p>Contact KasuhaNET to discuss websites, digital services, technical setup or system upgrades.</p><p class="small-muted">E-mel: support@kasuhanet.store</p></div><a class="btn btn-primary" id="main-whatsapp" href="https://wa.me/60123456789" target="_blank" rel="noopener">Contact / Request a Quote ↗</a></div></div></section>
 </main>
