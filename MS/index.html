@@ -1,11 +1,66 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="KasuhaNET.STORE — Malaysia digital shop platform for website development, multi-service digital tools, Linux terminal support and business solutions.">
-  <meta name="theme-color" content="#08090d">
-  <title>KasuhaNET.STORE | Platform Kedai Digital Malaysia & Pelbagai Perkhidmatan</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- MAIN SEO -->
+<title>KasuhaNET.STORE | Platform Pelbagai Servis Perkhidmatan</title>
+<meta name="google-adsense-account" content="ca-pub-4280897190566760">
+<meta property="og:image" content="https://kasuhanet.store/img/logo3.png">
+<meta name="description" content="KasuhaNET.STORE ialah Pelbagai servis perkhidmatan berkaitan Laman Web pembina,pereka dan penerbitan pembelian Servis bina website,Solusi bantu perkembangan niaga dalam pasaran,Servis teknikal tunggal,Barang secara Digital persendirian dan Lain servis terlibat.">
+
+<meta name="keywords" content="Kasuha Zukarnain,Kasuha Okulus,KasuhaNET, Kasuhanet Resources, Servis Bina website tempatan murah, Pemasangan jenis Linux, Pasaran hasil bina persendirian, Servis E-Digital, HMS, hybrid monetization system, Iklan bisnes,Bina Empayar Iklan sendiri, servis teknikal.">
+
+<meta name="author" content="Kasuhanet Resources">
+<meta name="robots" content="index, follow">
+
+<!-- CANONICAL -->
+<link rel="canonical" href="https://kasuhanet.store/">
+
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- FAVICON -->
+<link rel="icon" type="img/favicon.png" href="favicon.png">
+
+<!-- OPEN GRAPH -->
+<meta property="og:title" content="KasuhaNET.STORE | Multi-Service Digital Platform">
+
+<meta property="og:description" content="KasuhaNET.STORE is a multi-service digital platform covering website development, Linux systems, marketplace solutions and technical services.">
+
+<meta property="og:image" content="https://kasuhanet.store/img/logo3.webp">
+
+<meta property="og:url" content="https://kasuhanet.store/">
+
+<meta property="og:type" content="website">
+
+<meta property="og:site_name" content="KasuhaNET.STORE">
+
+<meta property="og:locale" content="ms_MS">
+
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="twitter:title" content="KasuhaNET.STORE | Multi-Service Digital Platform">
+
+<meta name="twitter:description" content="Modern digital platform covering technical services, website development and HMS ecosystem.">
+
+<meta name="twitter:image" content="https://kasuhanet.store/img/logo3.webp">
+
+<!-- MOBILE -->
+<meta name="theme-color" content="#05070d">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="googlebot" content="index, follow">
+
+<!-- CSS -->
+<link rel="stylesheet" href="css/main.css">
+<script src="js/home-main.js"></script>
+
+  <meta name="theme-color" content="#08090d">  <title>KasuhaNET.STORE | Platform Kedai Digital Malaysia & Alat Digital Pelbagai Perkhidmatan</title>
   <style>
     :root {
       --bg: #08090d;
@@ -117,28 +172,45 @@
     }
     .whatsapp-float:hover { transform: translateY(-4px) scale(1.04); }
     .whatsapp-float svg { width: 30px; height: 30px; fill: currentColor; }
-    @media (max-width: 850px) {
-      .hero-grid { grid-template-columns: 1fr; }
-      .hero { padding-top: 50px; }
-      .service-grid { grid-template-columns: 1fr 1fr; }
-      .process-grid { grid-template-columns: 1fr 1fr; }
-      .nav-links { gap: 13px; }
-      .nav-links a:not(.btn) { display: none; }
+
+    /* Custom Accordion Styling */
+    details.accordion-box {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px 24px;
+      background: linear-gradient(145deg, rgba(255,48,79,.08), rgba(255,255,255,.025));
+      margin-top: 20px;
+      transition: all 0.3s ease;
     }
-    @media (max-width: 580px) {
-      .container { width: min(100% - 28px,1120px); }
-      .nav { min-height: 66px; }
-      .brand { font-size: 14px; }
-      .brand-mark { width: 37px; height: 37px; }
-      .nav-links .btn { padding: 10px 12px; font-size: 12px; }
-      .hero { padding: 42px 0 30px; }
-      h1 { letter-spacing: -1.3px; }
-      .hero p { font-size: 15px; }
-      .section { padding: 48px 0; }
-      .service-grid, .pricing, .process-grid { grid-template-columns: 1fr; }
-      .price-card { padding: 24px; }
-      .cta-box { padding: 25px; align-items: flex-start; flex-direction: column; }
-      .whatsapp-float { width: 56px; height: 56px; right: 15px; bottom: 15px; }
+    details.accordion-box summary {
+      font-weight: 800;
+      font-size: 18px;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text);
+    }
+    details.accordion-box summary::-webkit-details-marker {
+      display: none;
+    }
+    details.accordion-box summary::after {
+      content: "＋";
+      font-size: 20px;
+      color: #ff7187;
+      transition: transform 0.2s ease;
+    }
+    details.accordion-box[open] summary::after {
+      content: "✕";
+    }
+    details.accordion-box[open] {
+      padding-bottom: 24px;
+    }
+    .accordion-content {
+      margin-top: 16px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 16px;
     }
 
     .notice-box,.profile-box,.warning-box,.partner-box,.reading-box { border:1px solid var(--line); border-radius:18px; padding:24px; background:linear-gradient(145deg,rgba(255,48,79,.08),rgba(255,255,255,.025)); margin-top:20px; }
@@ -152,18 +224,18 @@
     .warning-box { border-color:rgba(255,48,79,.5); }
     .partner-banner { width:100%; max-width:320px; height:auto; border-radius:12px; margin:12px 0; }
     .small-muted { color:var(--muted); font-size:13px; }
-    @media(max-width:850px){.link-grid{grid-template-columns:1fr 1fr}}
-    @media(max-width:580px){.link-grid{grid-template-columns:1fr}}
+    @media(max-width:850px){.link-grid{grid-template-columns:1fr 1fr}.hero-grid { grid-template-columns: 1fr; }.hero { padding-top: 50px; }.service-grid { grid-template-columns: 1fr 1fr; }.process-grid { grid-template-columns: 1fr 1fr; }.nav-links { gap: 13px; }.nav-links a:not(.btn) { display: none; }}
+    @media(max-width:580px){.link-grid{grid-template-columns:1fr}.container { width: min(100% - 28px,1120px); }.nav { min-height: 66px; }.brand { font-size: 14px; }.brand-mark { width: 37px; height: 37px; }.nav-links .btn { padding: 10px 12px; font-size: 12px; }.hero { padding: 42px 0 30px; }h1 { letter-spacing: -1.3px; }.hero p { font-size: 15px; }.section { padding: 48px 0; }.service-grid, .pricing, .process-grid { grid-template-columns: 1fr; }.price-card { padding: 24px; }.cta-box { padding: 25px; align-items: flex-start; flex-direction: column; }.whatsapp-float { width: 56px; height: 56px; right: 15px; bottom: 15px; }}
   </style>
 </head>
 <body>
 <header class="topbar">
   <div class="container nav">
-    <a class="brand" href="#home" aria-label="KasuhaNET halaman utama"><span class="brand-mark">K<span style="color:#171820">N</span></span><span>KasuhaNET.STORE<small>DIGITAL STORE PLATFORM</small></span></a>
+    <a class="brand" href="#home" aria-label="KasuhaNET home page"><span class="brand-mark">K<span style="color:#171820">N</span></span><span>KasuhaNET.STORE<small>Platform Servis Pelbagai Perkhidmatan</small></span></a>
     <nav class="nav-links" aria-label="Navigasi utama">
-      <a href="#home">UTAMA</a><a href="about-us-MS">TENTANG KAMI</a><a href="terms-MS.html">TERMA & DASAR</a><a href="https://kasuhanet.store/support-centre-MS.html">SOKONGAN</a>
+      <a href="index.html">UTAMA</a><a href="about-us-MS.html">TENTANG KAMI</a><a href="terms-MS.html">TERMA & POLISI</a><a href="support-centre-MS.html">SOKONGAN</a>
       <a class="btn btn-outline" href="../index.html" lang="en">EN</a><a class="btn btn-outline" href="index.html" lang="ms">MS</a>
-      <a class="btn btn-primary" href="Set">Bina Mula-Siap ↗</a>
+      <a class="btn btn-primary" href="#pakej">Lihat Pakej ↗</a>
     </nav>
   </div>
 </header>
@@ -171,45 +243,145 @@
 <section class="hero" id="home"><div class="container hero-grid"><div>
   <span class="eyebrow">Jualan Hibrid • Pelbagai Servis • Alat Digital</span>
   <h1><span class="gradient-text">KasuhaNET.STORE</span><br>Platform Kedai Digital</h1>
-  <p>Platform jualan hibrid dan pelbagai perkhidmatan digital yang menghubungkan pembangunan website, servis digital, sokongan affiliate dan alat digital dalam satu platform.</p>
-  <div class="hero-actions"><a class="btn btn-primary" href="#pakej">Pembangunan Website →</a><a class="btn btn-outline" href="https://kasuhanet.store/Custom-Web-Workshop-MS">Pilihan Terminal / Web Khas</a></div>
-  <div class="hero-points"><span>Website & sistem digital</span><span>Servis fleksibel</span><span>Pilihan Standard & Premium</span></div>
+  <p>Platform digital jualan hibrid dan pelbagai servis yang menghubungkan pembangunan laman web, perkhidmatan digital, sokongan affiliate dan alat digital di satu tempat.</p>
+  <div class="hero-actions"><a class="btn btn-primary" href="#pakej">Pembangunan Laman Web →</a><a class="btn btn-outline" href="https://kasuhanet.store/Custom-Web-Workshop-EN">Pilihan Terminal / Web Tersuai</a></div>
+  <div class="hero-points"><span>Laman web & sistem digital</span><span>Perkhidmatan fleksibel</span><span>Pilihan Standard & Premium</span></div>
   <div class="subnav"><a class="btn btn-outline" href="https://kasuhanet.store/CommandCanDoLIST.html">Pilihan Terminal</a><a class="btn btn-outline" href="https://kasuhanet.store/ShopAffliateSupport.html">Sokongan Affiliate</a></div>
-</div><div class="visual-card"><div class="video-frame"><video autoplay muted loop playsinline controls preload="metadata"><source src="https://files.catbox.moe/6zu98v.mp4" type="video/mp4">Browser anda tidak menyokong video HTML5.</video></div><div class="video-caption"><div><strong>Paparan Website KasuhaNET</strong><span>Pratonton visual website dan servis digital</span></div><span class="live-dot" aria-label="Video demo"></span></div></div></div></section>
+</div><div class="visual-card"><div class="video-frame"><video autoplay muted loop playsinline controls preload="metadata"><source src="https://files.catbox.moe/6zu98v.mp4" type="video/mp4">Browser anda tidak menyokong video HTML5.</video></div><div class="video-caption"><div><strong>Visual Laman Web KasuhaNET</strong><span>Pratonton visual laman web dan perkhidmatan digital</span></div><span class="live-dot" aria-label="Video demo"></span></div></div></div></section>
 
-<section class="section" id="organisation" style="padding-top:10px"><div class="container"><div class="section-head"><span class="eyebrow">Organisasi & Kerjasama</span><h2>Digerakkan melalui Kerjasama <span class="gradient-text">Organisasi & Syarikat</span></h2><p><strong>Kasuha Oculus Organisation</strong> • <strong>Kasuhanet Resources</strong></p><p class="small-muted">KasuhaNET.STORE ialah platform digital di bawah Kasuhanet Resources dan rangka kerja Kasuha Oculus Organisation.</p></div><div class="link-grid"><div class="link-card"><h3>🌍 Rwanda (Africa)</h3><a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">Sokongan & Pembangunan Rwanda ↗</a></div><div class="link-card"><h3>🌏 Timor Leste (Asia)</h3><a href="https://kasuhanet.store/Timor-Leste-SupportDevelopement.html">Sokongan & Pembangunan Timor Leste ↗</a></div><div class="link-card"><h3>Terminal Codex</h3><p>Rujukan teknikal dan sokongan terminal.</p><a href="https://kasuhanet.store/CommandCanDoLIST.html">Buka Codex ↗</a></div></div></div></section>
-<section class="section" id="announcement"><div class="container"><div class="section-head"><span class="eyebrow">Pengumuman Platform</span><h2>Pengumuman — Perancangan Penambahan <span class="gradient-text">Service+</span></h2><p>Makluman kepada pelanggan dan pengunjung KasuhaNET.STORE.</p></div>
-<div class="notice-box"><div class="notice-date">9 SEPTEMBER 2026</div><p><strong>Untuk Makluman Pelanggan & Pengunjung Kasuhanet:</strong> Kasuhanet merancang pengenalan Service+, iaitu peluasan skop perkhidmatan dan peluang perniagaan yang ditawarkan melalui platform Kasuhanet.store. Penyedia perkhidmatan bergantung pada bidang berkaitan dan keperluan pelanggan.</p><ul class="feature-list"><li><strong>TAKAFUL & INSURANS</strong></li><li><strong>PERUNDINGAN HARTANAH / REAL ESTET</strong></li><li><strong>PERKHIDMATAN AGENSI PEKERJAAN</strong></li><li><strong>REKA BENTUK ELEKTRONIK DIY KHAS</strong></li><li><strong>PENGHANTARAN RIDER PERSENDIRIAN</strong></li></ul><p><strong>Hala Tuju Service+:</strong> Pengenalan Service+ ialah sebahagian daripada perancangan Kasuhanet untuk membangunkan ekosistem perkhidmatan yang lebih luas. Perkhidmatan dan perkembangan baharu akan diumumkan dari semasa ke semasa melalui Kasuhanet.store. Terima kasih atas sokongan dan kepercayaan anda.</p></div></div></section>
+<section class="section" id="organisation" style="padding-top:10px"><div class="container"><div class="section-head"><span class="eyebrow">Organisasi & Kerjasama</span><h2>Dikuasai oleh Kerjasama <span class="gradient-text">Organisasi & Syarikat</span></h2><p><strong>Kasuha Oculus Organisation</strong> • <strong>Kasuhanet Resources</strong></p><p class="small-muted">KasuhaNET.STORE dipersembahkan sebagai platform digital di bawah Kasuhanet Resources dan kerangka Kasuha Oculus Organisation.</p></div><div class="link-grid"><div class="link-card"><h3>🌍 Rwanda (Afrika)</h3><a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">Sokongan & Pembangunan Rwanda ↗</a></div><div class="link-card"><h3>🌏 Timor Leste (Asia)</h3><a href="https://kasuhanet.store/Timor-Leste-SupportDevelopement.html">Sokongan & Pembangunan Timor Leste ↗</a></div><div class="link-card"><h3>Terminal Codex</h3><p>Rujukan teknikal dan sokongan terminal.</p><a href="https://kasuhanet.store/CommandCanDoLIST.html">Buka Codex ↗</a></div></div></div></section>
 
-<section class="section" id="servis"><div class="container"><div class="section-head"><span class="eyebrow">Pembangunan Web & Infrastruktur Digital</span><h2>Pembangunan Website Profesional <span class="gradient-text">oleh KasuhaNET</span></h2><p>Adakah anda mahukan kehadiran digital yang profesional, berprestasi tinggi dan dibina mengikut spesifikasi industri semasa? <strong>KasuhaNET Resources</strong> menyediakan penyelesaian pembangunan web daripada landing page asas hingga sistem berbilang halaman, disokong pengurusan pelayan dan konfigurasi terminal.</p></div>
-<div class="service-grid"><article class="service-card"><div class="service-icon">⌘</div><h3>Prestasi & Kelajuan Maksimum</h3><p>Kecekapan kod, pemampatan imej dan pengurusan sumber untuk membantu halaman dimuatkan dengan pantas.</p></article><article class="service-card"><div class="service-icon">▣</div><h3>Reka Bentuk Mesra Telefon</h3><p>Paparan responsif untuk telefon pintar, tablet, komputer riba dan desktop.</p></article><article class="service-card"><div class="service-icon">🔒</div><h3>Keselamatan Data & Kebenaran</h3><p>Struktur web yang kemas, HTTPS/SSL dan tetapan kebenaran fail yang bersesuaian.</p></article><article class="service-card"><div class="service-icon">⌘</div><h3>Terminal & Pelayan Linux</h3><p>Bantuan pengurusan persekitaran Linux termasuk Linux pada Penguin/ChromeOS, kebergantungan library dan skrip sistem.</p></article><article class="service-card"><div class="service-icon">⚙</div><h3>Bengkel Web Khas</h3><p>Pilih komponen dan alat secara modular berdasarkan keperluan serta bajet projek.</p><a href="https://kasuhanet.store/Custom-Web-Workshop-MS" class="btn btn-outline" style="margin-top:16px">⬅️ Klik Di Sini</a></article><article class="service-card"><div class="service-icon">↗</div><h3>Pilihan Terminal & Affiliate</h3><p>Teroka pilihan terminal, sokongan affiliate dan servis digital lain yang tersedia di platform.</p><div class="subnav"><a href="https://kasuhanet.store/CommandCanDoLIST.html">Pilihan Terminal</a><a href="https://kasuhanet.store/ShopAffliateSupport.html">Sokongan Affiliate</a></div></article></div></div></section>
+<section class="section" id="announcement">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Pengumuman Platform</span>
+      <h2>Pengumuman — Perancangan Penambahan <span class="gradient-text">Service+</span></h2>
+      <p>Pengumuman untuk pelanggan dan pelawat KasuhaNET.STORE.</p>
+    </div>
+    <details class="accordion-box">
+      <summary>Baca Maklumat Lanjut Pengumuman Service+</summary>
+      <div class="accordion-content">
+        <div class="notice-date">9 SEPTEMBER 2026</div>
+        <p><strong>Untuk Makluman Pelanggan & Pelawat Kasuhanet:</strong> KasuhaNET merancang untuk memperkenalkan Service+, memperluaskan rangkaian perkhidmatan dan peluang perniagaan yang ditawarkan melalui KasuhaNET.STORE. Ketersediaan perkhidmatan bergantung pada bidang berkaitan dan keperluan pelanggan.</p>
+        <ul class="feature-list">
+          <li><strong>TAKAFUL & INSURANS</strong></li>
+          <li><strong>PERUNDINGAN HARTANAH / REAL ESTATE</strong></li>
+          <li><strong>PERKHIDMATAN AGENSI PEKERJAAN</strong></li>
+          <li><strong>REKABENTUK ELEKTRONIK TERSUAI (DIY)</strong></li>
+          <li><strong>PENGHANTARAN RIDER PERSENDIRIAN</strong></li>
+        </ul>
+        <p><strong>Hala Tuju Service+:</strong> Service+ adalah sebahagian daripada perancangan KasuhaNET untuk membangunkan ekosistem perkhidmatan yang lebih luas. Perkhidmatan baharu dan kemas kini akan diumumkan dari semasa ke semasa melalui KasuhaNET.STORE. Terima kasih atas sokongan dan kepercayaan anda.</p>
+      </div>
+    </details>
+  </div>
+</section>
 
-<section class="section" id="about"><div class="container"><div class="section-head"><span class="eyebrow">Pengasas & Pembangun</span><h2>Hai, saya <span class="gradient-text">Kasuha Zukarnain</span></h2><p>CallSign: Kasuha Zukarnain • Pengalaman Pembangunan 8–9 Tahun</p></div><div class="profile-box"><ul class="feature-list"><li><strong>Pembangunan & Pengasas:</strong> Lead developer behind the Kasuhanet.Store platform, founder of Kasuhanet Resources for business operations, and creator of Kasuha Oculus Organisation.</li><li><strong>Ketepatan Kod:</strong> Minat terhadap struktur kod yang kemas dan logik pengaturcaraan untuk membina fungsi digital yang lancar.</li><li><strong>Peminat OS & Android:</strong> Fokus pada sistem dalaman Android dan Operating Systems (OS), termasuk penerokaan konfigurasi yang meningkatkan prestasi dan reka bentuk perisian.</li><li><strong>Strategi & Pengewangan:</strong> Membangunkan sistem dan analisis data dengan matlamat pertumbuhan kewangan yang mampan melalui ekosistem perniagaan.</li></ul><p><strong>System & Architecture | Kasuha Oculus Framework</strong></p></div></div></section>
+<section class="section" id="servis"><div class="container"><div class="section-head"><span class="eyebrow">Pembangunan Web & Infrastruktur Digital</span><h2>Pembangunan Web Profesional <span class="gradient-text">oleh KasuhaNET</span></h2><p>Adakah anda mahukan kehadiran digital yang kelihatan profesional, berprestasi tinggi dan dibina mengikut spesifikasi industri terkini? <strong>KasuhaNET Resources</strong> menyediakan penyelesaian pembangunan web daripada landing page asas hingga sistem pelbagai halaman, disokong oleh pengurusan pelayan dan konfigurasi terminal.</p></div>
+<div class="service-grid"><article class="service-card"><div class="service-icon">⌘</div><h3>Prestasi Maximum & Kelajuan</h3><p>Kecekapan kod, pemampatan imej dan pengurusan sumber membantu halaman dimuatkan dengan pantas.</p></article><article class="service-card"><div class="service-icon">▣</div><h3>Reka Bentuk Mesra Mesra Mobil</h3><p>Tata letak responsif untuk telefon pintar, tablet, komputer pekena dan komputer riba.</p></article><article class="service-card"><div class="service-icon">🔒</div><h3>Keselamatan Data & Pelesenan</h3><p>Struktur web bersih, HTTPS/SSL dan tetapan kebenaran fail yang betul.</p></article><article class="service-card"><div class="service-icon">⌘</div><h3>Terminal & Server Linux</h3><p>Bantuan mengurus persekitaran Linux, termasuk Linux pada Penguin/ChromeOS, kebergantungan perpustakaan dan skrip sistem.</p></article><article class="service-card"><div class="service-icon">⚙</div><h3>Bengkel Web Tersuai</h3><p>Pilih komponen modular dan alat berasaskan keperluan projek dan bajet anda.</p><a href="https://kasuhanet.store/Custom-Web-Workshop-EN" class="btn btn-outline" style="margin-top:16px">⬅️ Ketahui Lanjut</a></article><article class="service-card"><div class="service-icon">↗</div><h3>Pilihan Terminal & Affiliate</h3><p>Teroka pilihan terminal, sokongan affiliate dan perkhidmatan digital lain yang terdapat di platform.</p><div class="subnav"><a href="https://kasuhanet.store/CommandCanDoLIST.html">Pilihan Terminal</a><a href="https://kasuhanet.store/ShopAffliateSupport.html">Sokongan Affiliate</a></div></article></div></div></section>
 
-<section class="section" id="referral"><div class="container"><div class="section-head"><span class="eyebrow">Program Rujukan Baharu</span><h2>Daftar untuk Akaun <span class="gradient-text">Hong Leong Bank</span></h2><p>Gunakan kod rujukan anda dan semak terma pendaftaran serta ganjaran semasa pihak bank.</p><a class="btn btn-primary" href="https://www.hlb.com.my/en/personal-banking/deposits/apply-at-hlb-connect.html" target="_blank" rel="noopener">Daftar Sekarang ↗</a></div></div></section>
+<section class="section" id="about"><div class="container"><div class="section-head"><span class="eyebrow">Pengasas & Pembangun</span><h2>Hai, Saya <span class="gradient-text">Kasuha Zukarnain</span></h2><p>CallSign: Kasuha Zukarnain • Pengalaman Pembangun 8–9 Tahun</p></div><div class="profile-box"><ul class="feature-list"><li><strong>Pembangunan & Pengasasan:</strong> Pembangun utama di sebalik platform Kasuhanet.Store, pengasas Kasuhanet Resources untuk operasi perniagaan, dan pencipta Kasuha Oculus Organisation.</li><li><strong>Ketepatan Kod:</strong> Berminat dalam struktur kod bersih dan logik pengaturcaraan untuk membina fungsi digital yang lancar.</li><li><strong>Peminat OS & Android:</strong> Tumpuan pada dalaman Android dan sistem pengendalian (OS), termasuk konfigurasi yang meningkatkan prestasi dan reka bentuk perisian.</li><li><strong>Strategi & Pengewangan:</strong> Membangunkan sistem dan analisis data yang bertujuan untuk pertumbuhan kewangan mampan melalui ekosistem perniagaan.</li></ul><p><strong>Sistem & Seni Bina | Rangka Kerja Kasuha Oculus</strong></p></div></div></section>
 
-<section class="section" id="pakej"><div class="container"><div class="section-head"><span class="eyebrow">Butiran Pakej Perkhidmatan</span><h2>Pembangunan Website <span class="gradient-text">Pakej</span></h2><p>Pilih pakej berdasarkan struktur kandungan, fungsi dan keperluan perniagaan anda.</p></div>
-<div class="notice-box"><h3>🟢 Pakej 1: Landing Page (Satu Halaman)</h3><p>Ideal untuk kempen satu produk, borang pesanan ringkas, promosi iklan Facebook/TikTok/Google Ads atau pengenalan profil perniagaan.</p><p><strong>Struktur Halaman:</strong> Satu halaman lengkap dengan navigasi scroll yang lancar.</p><ul class="feature-list"><li>Bahagian utama (hero) dengan tajuk, sub-tajuk dan butang Seruan Tindakan.</li><li>Paparan produk/perkhidmatan dengan ciri, kelebihan dan spesifikasi.</li><li>Galeri visual yang dioptimumkan.</li><li>Butang WhatsApp terus tanpa perlu pelanggan menyimpan nombor.</li><li>Google Maps dan maklumat hubungan.</li><li>Meta tag asas untuk carian Google dan penyediaan fail sistem utama.</li></ul></div>
-<div class="pricing" style="margin-top:22px"><article class="price-card"><span class="plan-tag">LANDING PAGE</span><h3>Pakej Landing Page</h3><div class="price">RM 299 <small>++</small></div><p class="price-sub">Untuk kempen pemasaran, pelancaran produk ringkas dan mini shop portfolio.</p><ul class="feature-list"><li>1 halaman utama (single-page design)</li><li>Struktur kod responsif untuk telefon</li><li>Pengoptimuman Google AdSense</li><li>Call-to-action WhatsApp / borang</li><li>Domain tersuai tidak termasuk</li></ul><a class="btn btn-primary" href="https://toyyibpay.com/L-P-P-LPP299" target="_blank" rel="noopener">Langgan Sekarang ↗</a></article>
-<article class="price-card premium"><span class="plan-tag">POPULAR</span><h3>Premium Standard</h3><div class="price">RM 900 <small>++</small></div><p class="price-sub">Sistem pengurusan lengkap untuk kelab, persatuan dan profil perniagaan dinamik.</p><ul class="feature-list"><li>Deploy website berbilang halaman</li><li>Sistem Pengurusan Kandungan Khas</li><li>Google AdSense dan SEO lanjutan</li><li>Paparan produk / galeri aktiviti kelab</li><li>Sokongan domain tersuai (.com/.my)</li><li>Gaya UI/UX Cyberpunk Premium</li></ul><a class="btn btn-primary" href="https://toyyibpay.com/P-MS-Pay-PREMIUM-STANDARD" target="_blank" rel="noopener">Naik Taraf ke Premium ↗</a></article></div>
-<div class="notice-box"><h3>🟣 Pakej 2: Website Premium (Sistem Berbilang Halaman)</h3><p>Untuk syarikat korporat, agensi, penyedia servis teknikal, kedai dalam talian dan organisasi yang memerlukan struktur maklumat terperinci.</p><p><strong>Struktur Halaman:</strong> Pembangunan sehingga 5–10 halaman utama seperti Home, About Us, Services, Blog/Documentation Center dan Contact Us.</p><ul class="feature-list"><li>Reka bentuk eksklusif mengikut penjenamaan dan identiti visual bisnes.</li><li>Blog / Codex section untuk artikel, panduan teknikal dan arahan terminal.</li><li>Borang pertanyaan dan tempahan yang menghantar notifikasi ke e-mel atau pangkalan data.</li><li>Integrasi pautan media sosial dan payment gateway jika diperlukan.</li><li>SEO, pengurusan kata kunci, struktur heading H1/H2/H3, XML sitemap dan Google Search Console.</li></ul></div>
-<div class="upgrade-note"><strong>Nota:</strong> Harga dan skop akhir tertakluk kepada persetujuan, keperluan teknikal, domain/hosting serta integrasi pihak ketiga.</div></div></section>
+<section class="section" id="referral"><div class="container"><div class="section-head"><span class="eyebrow">Rujukan Program Baharu</span><h2>Daftar Akaun <span class="gradient-text">Hong Leong Bank</span></h2><p>Gunakan kod rujukan anda dan semak terma pendaftaran serta ganjaran terkini bank.</p><a class="btn btn-primary" href="https://www.hlb.com.my/en/personal-banking/deposits/apply-at-hlb-connect.html" target="_blank" rel="noopener">Daftar Sekarang ↗</a></div></div></section>
 
-<section class="section" id="solutions"><div class="container"><div class="section-head"><span class="eyebrow">Penyelesaian Untuk Anda</span><h2>Teroka <span class="gradient-text">Servis & Program</span></h2></div><div class="link-grid"><div class="link-card"><h3>Pilihan Terminal</h3><p>Rujukan arahan dan pilihan terminal.</p><a href="https://kasuhanet.store/CommandCanDoLIST.html">Buka Pilihan Terminal ↗</a></div><div class="link-card"><h3>Sokongan Affiliate</h3><p>Sokongan affiliate dan peluang promosi.</p><a href="https://kasuhanet.store/ShopAffliateSupport.html">Open Sokongan Affiliate ↗</a></div><div class="link-card"><h3>Pelan E-Pembelajaran</h3><p>Pelan pembelajaran web selepas pembelian pakej website bermula RM299–RM345; semak butiran program sebelum mendaftar.</p><a href="https://kasuhanet.store/Website-Service.html">Teroka Servis Web ↗</a></div><div class="link-card"><h3>Perkhidmatan Kewangan Kecemasan+</h3><p>Maklumat perkhidmatan Tunai Keluar PayLater.</p><a href="https://kasuhanet.store/CashOutServicePayLater.html">Tunai Keluar PayLater ↗</a></div><div class="link-card"><h3>Rujukan Ryt Bank</h3><p>Program referral pihak ketiga.</p><a href="https://referrals.rytbank.my/MCoA/gq8xkdot" target="_blank" rel="noopener">Daftar Ryt melalui Jemputan ↗</a></div><div class="link-card"><h3>VPS Malaysia</h3><p>Pautan rakan affiliate untuk perkhidmatan VPS.</p><a href="https://vpsmalaysia.com.my/system/aff.php?aff=2530" target="_blank" rel="noopener">Pautan Affiliate VPSMalaysia ↗</a></div></div></div></section>
+<section class="section" id="pakej">
+  <div class="container">
+    <div class="section-head"><span class="eyebrow">Butiran Pakej Perkhidmatan</span><h2>Pakej Pembangunan <span class="gradient-text">Laman Web</span></h2><p>Pilih pakej berdasarkan struktur kandungan, fungsi dan keperluan perniagaan anda.</p></div>
+    
+    <details class="accordion-box">
+      <summary>🟢 Pakej 1: Butiran Landing Page (Satu Halaman)</summary>
+      <div class="accordion-content">
+        <p>Sesuai untuk kempen produk tunggal, borang pesanan mudah, promosi Facebook/TikTok/Google Ads atau pengenalan profil perniagaan.</p>
+        <p><strong>Struktur Halaman:</strong> Satu halaman lengkap dengan navigasi tatalan lancar.</p>
+        <ul class="feature-list">
+          <li>Bahagian Hero dengan tajuk utama, sub-tajuk dan butang tindakan (CTA).</li>
+          <li>Pameran produk/perkhidmatan dengan ciri, faedah dan spesifikasi.</li>
+          <li>Galeri visual yang dioptimumkan.</li>
+          <li>Butang WhatsApp terus tanpa perlu pelanggan menyimpan nombor.</li>
+          <li>Google Maps dan maklumat hubungan.</li>
+          <li>Tag meta asas untuk carian Google dan fail sistem penting.</li>
+        </ul>
+      </div>
+    </details>
 
-<section class="section" id="bjak"><div class="container"><div class="partner-box"><span class="eyebrow">Rakan Rasmi / Rujukan</span><h2>Perbaharui Insurans & Cukai Jalan melalui <span class="gradient-text">BJAK</span></h2><p>Dapatkan sebut harga dalam talian daripada lebih 15 syarikat insurans kereta dan motosikal. Semak syarat, harga dan kelayakan terus dengan penyedia.</p><ul class="tag-list"><li>✓ 100% Dalam Talian</li><li>✓ Diskaun Segera (tertakluk tawaran)</li><li>✓ Penghantaran Cukai Jalan (tertakluk syarat)</li></ul><p><strong>Ganjaran rujukan: RM25 / pulangan tunai</strong> — tertakluk terma program semasa.</p><a class="btn btn-primary" href="https://bjak.my/ref/mohamadslbr" target="_blank" rel="noopener">Dapatkan Sebut Harga Percuma ❯</a></div></div></section>
+    <div class="pricing" style="margin-top:22px">
+      <article class="price-card"><span class="plan-tag">LANDING PAGE</span><h3>Pakej Landing Page</h3><div class="price">RM 299 <small>++</small></div><p class="price-sub">Untuk kempen pemasaran, pelancaran produk mudah dan portfolio kedai mini.</p><ul class="feature-list"><li>1 halaman utama (reka bentuk single-page)</li><li>Struktur kod responsif untuk peranti mudah alih</li><li>Pengoptimuman Google AdSense</li><li>Tindakan WhatsApp / borang</li><li>Domain khusus tidak disertakan</li></ul><a class="btn btn-primary" href="https://toyyibpay.com/L-P-P-LPP299" target="_blank" rel="noopener">Langgan Sekarang ↗</a></article>
+      <article class="price-card premium"><span class="plan-tag">POPULAR</span><h3>Premium Standard</h3><div class="price">RM 900 <small>++</small></div><p class="price-sub">Sistem pengurusan lengkap untuk kelab, persatuan dan profil perniagaan dinamik.</p><ul class="feature-list"><li>Luncurkan laman web pelbagai halaman</li><li>Sistem Pengurusan Kandungan Tersuai</li><li>Google AdSense dan SEO lanjutan</li><li>Showcase produk / galeri aktiviti kelab</li><li>Sokongan domain khusus (.com/.my)</li><li>Gaya Premium Cyberpunk UI/UX</li></ul><a class="btn btn-primary" href="https://toyyibpay.com/P-MS-Pay-PREMIUM-STANDARD" target="_blank" rel="noopener">Naik Naik ke Premium ↗</a></article>
+    </div>
 
-<section class="section" id="scam"><div class="container"><div class="warning-box"><h2>⚠️ ⚠️ Berwaspada terhadap Penipuan!</h2><p><strong>Perhatian:</strong> Kami mengambil serius aktiviti penipuan. Pihak tidak sah mungkin menyalahgunakan nama perniagaan atau identiti pemilik KasuhaNET.STORE untuk tujuan penipuan kewangan.</p><p><strong>Notis Penting:</strong> Urus niaga rasmi hendaklah disahkan melalui akaun bank berdaftar di bawah <strong>Kasuhanet Resources</strong> dan <strong>Kasuha Oculus Organisation</strong> sahaja. Sahkan butiran pembayaran melalui saluran rasmi sebelum membuat sebarang transaksi.</p><p class="small-muted">KasuhaNET tidak bertanggungjawab terhadap kerugian kewangan akibat urusan dengan pihak ketiga yang tidak diberi kuasa, tertakluk kepada undang-undang yang terpakai.</p></div></div></section>
+    <details class="accordion-box">
+      <summary>🟣 Pakej 2: Butiran Laman Web Premium (Sistem Pelbagai Halaman)</summary>
+      <div class="accordion-content">
+        <p>Untuk syarikat korporat, agensi, penyedia servis teknikal, kedai dalam talian dan organisasi yang memerlukan struktur maklumat terperinci.</p>
+        <p><strong>Struktur Halaman:</strong> Pembangunan sehingga 5–10 halaman utama seperti Utama, Tentang Kami, Perkhidmatan, Blog/Pusat Dokumentasi dan Hubungi Kami.</p>
+        <ul class="feature-list">
+          <li>Reka bentuk eksklusif yang selaras dengan identiti visual jenama dan perniagaan anda.</li>
+          <li>Bahagian Blog/Codex untuk artikel, panduan teknikal dan arahan terminal.</li>
+          <li>Borang pertanyaan dan tempahan yang menghantar pemberitahuan ke e-mel atau pangkalan data.</li>
+          <li>Pautan media sosial dan integrasi gerbang pembayaran apabila diperlukan.</li>
+          <li>SEO, pengurusan kata kunci, struktur heading H1/H2/H3, XML sitemap dan Google Search Console.</li>
+        </ul>
+      </div>
+    </details>
 
-<section class="section" id="reading"><div class="container"><div class="section-head"><span class="eyebrow">Pusat Bacaan</span><h2>Terminal Codex & <span class="gradient-text">Sokongan Teknikal</span></h2><p>Koleksi arahan pemasangan kebergantungan dan pengurusan data web untuk Linux, Penguin dan persekitaran terminal.</p></div><div class="service-grid"><article class="service-card"><div class="service-icon">⌘</div><h3>Pemasangan Kebergantungan</h3><p>Koleksi arahan terminal untuk memasang pakej perisian pada persekitaran Linux dan Penguin dengan langkah yang ringkas.</p></article><article class="service-card"><div class="service-icon">▤</div><h3>Pengurusan Data Web</h3><p>Bantuan pengurusan log, pengoptimuman pangkalan data dan sandaran automatik.</p></article><article class="service-card"><div class="service-icon">⚙</div><h3>Sokongan VPS / Linux</h3><p>Sokongan persekitaran web tersuai atau pengurusan perisian pada VPS/Linux berdasarkan skop dan akses yang dipersetujui.</p></article></div><div class="notice-box"><h3>Aliran Kerja Menyeluruh</h3><ol><li><strong>Pembelian pakej:</strong> Pilih varian Landing Page atau Premium dan lengkapkan pembayaran melalui pautan yang disediakan.</li><li><strong>Sesi briefing:</strong> Hubungi melalui saluran perbincangan yang dipersetujui. Maklumat seperti logo, teks, gambar produk dan pautan sosial akan diperlukan.</li><li><strong>Pembangunan & reka bentuk:</strong> Struktur kod, reka bentuk visual dan integrasi dibina mengikut pakej.</li><li><strong>Semakan & ujian:</strong> Pautan pratonton diberikan untuk semakan; paparan mudah alih dan prestasi halaman diuji.</li><li><strong>Pelancaran & serahan:</strong> Website diterbitkan di domain yang dipersetujui. Akses pentadbir dan dokumentasi diserahkan jika termasuk dalam skop.</li></ol><h3>Terma & Syarat Perkhidmatan</h3><ul class="feature-list"><li><strong>Domain & Hosting:</strong> Kos bergantung pada penggunaan domain/hosting sedia ada atau pembelian baharu.</li><li><strong>Kandungan:</strong> Teks dan bahan imej disediakan oleh pelanggan; bantuan penyusunan semula teks boleh dibincangkan.</li><li><strong>Sokongan Selepas Jualan:</strong> Sokongan teknikal asas percuma selama 30 hari selepas serahan projek, tertakluk skop yang dipersetujui.</li></ul></div></div></section>
+    <div class="upgrade-note"><strong>Nota:</strong> Harga dan skop akhir tertakluk kepada persetujuan, keperluan teknikal, domain/hosting serta integrasi pihak ketiga.</div>
+  </div>
+</section>
 
-<section class="section" id="hubungi"><div class="container"><div class="cta-box"><div><h2>Bangunkan Kehadiran Digital Anda.</h2><p>Hubungi KasuhaNET untuk berbincang tentang website, servis digital, setup teknikal atau naik taraf sistem.</p><p class="small-muted">E-mel: support@kasuhanet.store</p></div><a class="btn btn-primary" id="main-whatsapp" href="https://wa.me/60123456789" target="_blank" rel="noopener">Hubungi / Minta Sebut Harga ↗</a></div></div></section>
+<section class="section" id="solutions"><div class="container"><div class="section-head"><span class="eyebrow">Penyelesaian Untuk Anda</span><h2>Teroka <span class="gradient-text">Servis & Program</span></h2></div><div class="link-grid"><div class="link-card"><h3>Pilihan Terminal</h3><p>Rujukan arahan dan pilihan terminal.</p><a href="https://kasuhanet.store/CommandCanDoLIST.html">Buka Pilihan Terminal ↗</a></div><div class="link-card"><h3>Sokongan Affiliate</h3><p>Sokongan affiliate dan peluang promosi.</p><a href="https://kasuhanet.store/ShopAffliateSupport.html">Buka Sokongan Affiliate ↗</a></div><div class="link-card"><h3>Pelan E-Pembelajaran</h3><p>Pelan pembelajaran web selepas membeli pakej laman web bermula dari RM299–RM345; semak butiran program sebelum mendaftar.</p><a href="https://kasuhanet.store/Website-Service.html">Teroka Servis Web ↗</a></div><div class="link-card"><h3>Servis Kewangan Kecemasan+</h3><p>Maklumat perkhidmatan PayLater Cashout.</p><a href="https://kasuhanet.store/CashOutServicePayLater.html">PayLater Cashout ↗</a></div><div class="link-card"><h3>Rujukan Bank Ryt</h3><p>Program referral pihak ketiga.</p><a href="https://referrals.rytbank.my/MCoA/gq8xkdot" target="_blank" rel="noopener">Jemputan Daftar Ryt ↗</a></div><div class="link-card"><h3>VPS Malaysia</h3><p>Pautan rakan affiliate untuk perkhidmatan VPS.</p><a href="https://vpsmalaysia.com.my/system/aff.php?aff=2530" target="_blank" rel="noopener">Iklan Banner VPSMalaysia ↗</a></div></div></div></section>
+
+<section class="section" id="bjak"><div class="container"><div class="partner-box"><span class="eyebrow">Rakan Rasmi / Referral</span><h2>Memperbaharui Insurans & Cukai Jalan dengan <span class="gradient-text">BJAK</span></h2><p>Dapatkan sebut harga daripada 15+ syarikat insurans kereta dan motosikal secara dalam talian. Semak terma, harga dan kelayakan terus dengan penyedia.</p><ul class="tag-list"><li>✓ 100% Dalam Talian</li><li>✓ Diskaun Serta-merta (tertakluk pada tawaran)</li><li>✓ Penghantaran Cukai Jalan (tertakluk pada syarat)</li></ul><p><strong>Ganjaran Rujukan: ganjaran / pulangan tunai RM25</strong> — tertakluk pada terma program semasa.</p><a class="btn btn-primary" href="https://bjak.my/ref/mohamadslbr" target="_blank" rel="noopener">Dapatkan Sebut Harga Percuma ❯</a></div></div></section>
+
+<section class="section" id="scam">
+  <div class="container">
+    <details class="accordion-box warning-box" style="margin-top:0">
+      <summary>⚠️ Berhati-hati dengan Penipuan Scam! (Baca Amar Keselamatan)</summary>
+      <div class="accordion-content">
+        <p><strong>Sila ambil perhatian:</strong> Kami memandang serius isu penipuan. Pihak yang tidak diberi kuasa mungkin menyalahgunakan nama perniagaan atau identiti pemilik KasuhaNET.STORE untuk penipuan kewangan.</p>
+        <p><strong>Notis Penting:</strong> Transaksi rasmi mesti disahkan melalui akaun bank berdaftar di bawah <strong>Kasuhanet Resources</strong> dan <strong>Kasuha Oculus Organisation</strong> sahaja. Sahkan butiran pembayaran melalui saluran rasmi sebelum membuat sebarang transaksi.</p>
+        <p class="small-muted">KasuhaNET tidak bertanggungjawab atas kerugian kewangan yang timbul daripada urusan dengan pihak ketiga yang tidak dibenarkan, tertakluk kepada undang-undang yang terpakai.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section class="section" id="reading">
+  <div class="container">
+    <div class="section-head"><span class="eyebrow">Pusat Bacaan</span><h2>Terminal Codex & <span class="gradient-text">Sokongan Teknikal</span></h2><p>Koleksi arahan pemasangan kebergantungan dan panduan pengurusan data web untuk persekitaran Linux, Penguin dan terminal.</p></div>
+    <div class="service-grid">
+      <article class="service-card"><div class="service-icon">⌘</div><h3>Persediaan Kebergantungan</h3><p>Arahan terminal untuk memasang pakej perisian dalam persekitaran Linux dan Penguin dengan langkah mudah.</p></article>
+      <article class="service-card"><div class="service-icon">▤</div><h3>Pengurusan Data Web</h3><p>Bantuan dengan pengurusan log, pengoptimuman pangkalan data dan sandaran automatik.</p></article>
+      <article class="service-card"><div class="service-icon">⚙</div><h3>Sokongan VPS / Linux</h3><p>Sokongan untuk persekitaran web tersuai atau pengurusan perisian pada VPS/Linux, berdasarkan skop dan akses yang dipersetujui.</p></article>
+    </div>
+
+    <details class="accordion-box">
+      <summary>Proses Kerja Akhir ke Akhir & Terma Perkhidmatan</summary>
+      <div class="accordion-content">
+        <h3>Proses Kerja Akhir ke Akhir (Workflow)</h3>
+        <ol>
+          <li><strong>Pembelian pakej:</strong> Pilih pilihan Landing Page atau Premium dan lengkapkan pembayaran menggunakan pautan yang disediakan.</li>
+          <li><strong>Sesi briefing:</strong> Hubungi kami melalui saluran komunikasi yang dipersetujui. Butiran seperti logo, teks, imej produk dan pautan sosial anda akan diperlukan.</li>
+          <li><strong>Pembangunan & reka bentuk:</strong> Struktur kod, reka bentuk visual dan integrasi dibina mengikut pakej.</li>
+          <li><strong>Semakan & ujian:</strong> Pautan pratonton disediakan untuk semakan; paparan mudah alih dan prestasi halaman diuji.</li>
+          <li><strong>Pelancaran & serahan:</strong> Laman web diterbitkan pada domain yang dipersetujui. Akses pentadbir dan dokumentasi diserahkan jika termasuk dalam skop.</li>
+        </ol>
+        <h3>Terma & Syarat Perkhidmatan</h3>
+        <ul class="feature-list">
+          <li><strong>Domain & Hosting:</strong> Kos bergantung pada sama ada domain/hosting sedia ada digunakan atau perkhidmatan baharu dibeli.</li>
+          <li><strong>Kandungan:</strong> Teks dan imej disediakan oleh pelanggan; bantuan untuk menulis semula kandungan boleh dibincangkan.</li>
+          <li><strong>Sokongan Selepas Jualan:</strong> Sokongan teknikal asas adalah percuma selama 30 hari selepas penyerahan projek, tertakluk kepada skop yang dipersetujui.</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section class="section" id="hubungi"><div class="container"><div class="cta-box"><div><h2>Bina Kehadiran Digital Anda.</h2><p>Hubungi KasuhaNET untuk berbincang tentang laman web, perkhidmatan digital, persediaan teknikal atau peningkatan sistem.</p><p class="small-muted">E-mel: support@kasuhanet.store</p></div><a class="btn btn-primary" id="main-whatsapp" href="https://wa.me/60123456789" target="_blank" rel="noopener">Hubungi / Minta Sebut Harga ↗</a></div></div></section>
 </main>
-<footer><div class="container footer-inner"><div><strong>KasuhaNET.STORE | Digital Store Platform</strong><br><span>Perkhidmatan: CommandCanDo • MyAffiliate • PayLater BNPL</span><br><span>Sumber: Tentang Kami • Sokongan • Terma & Dasar</span></div><div><span>Ikuti Kami: </span><a href="https://www.facebook.com/share/1BfeDZJqjP/" target="_blank" rel="noopener">Facebook</a> · <a href="https://tiktok.com/@kasuhanet.store" target="_blank" rel="noopener">TikTok</a> · <a href="https://t.me/kasuhanetstorebot" target="_blank" rel="noopener">Telegram</a><br><span>© <span id="year"></span> <strong>KasuhaNET Resources (202503248308). Hak Cipta Terpelihara.</strong></span></div></div></footer>
-<a class="whatsapp-float" id="floating-whatsapp" href="https://wa.me/60123456789" target="_blank" rel="noopener" aria-label="Hubungi KasuhaNET melalui WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.02 3C8.86 3 3.04 8.8 3.04 15.94c0 2.28.6 4.5 1.75 6.46L3 29l6.78-1.77a13.05 13.05 0 0 0 6.23 1.58h.01c7.15 0 12.97-5.8 12.97-12.94A12.9 12.9 0 0 0 16.02 3zm0 23.62h-.01a10.8 10.8 0 0 1-5.5-1.5l-.4-.24-4.02 1.05 1.07-3.91-.26-.4a10.7 10.7 0 0 1-1.65-5.68c0-5.93 4.83-10.75 10.78-10.75 2.88 0 5.59 1.12 7.62 3.15a10.67 10.67 0 0 1 3.15 7.6c0 5.93-4.83 10.75-10.78 10.75zm5.91-8.05c-.32-.16-1.9-.94-2.2-1.05-.3-.11-.51-.16-.73.16-.21.32-.83 1.05-1.02 1.27-.19.21-.38.24-.7.08-.32-.16-1.35-.5-2.57-1.6-.95-.84-1.6-1.88-1.79-2.2-.19-.32-.02-.49.14-.65.14-.14.32-.38.48-.57.16-.19.32-.21.54-.03.16-.08-.73-1.75-1-2.4-.26-.63-.53-.54-.73-.55h-.62c-.21 0-.56.4-.86.4-.3.32-1.13 1.1-1.13 2.68s1.16 3.1 1.32 3.31c.21.32 2.28 3.48 5.53 4.88.77.33 1.37.53 1.84.68.77.24 1.47.21 2.02.13.62-.09 1.9-.78 2.17-1.53.27-.75.19-1.4.19-1.53-.08-.14-.29-.22-.61-.38z"/></svg></a>
+<footer><div class="container footer-inner"><div><strong>KasuhaNET.STORE | Platform Kedai Digital</strong><br><span>Perkhidmatan: CommandCanDo • MyAffiliate • PayLater BNPL</span><br><span>Sumber: Tentang Kami • Sokongan • Terma & Polisi</span></div><div><span>Ikuti Kami: </span><a href="https://www.facebook.com/share/1BfeDZJqjP/" target="_blank" rel="noopener">Facebook</a> · <a href="https://tiktok.com/@kasuhanet.store" target="_blank" rel="noopener">TikTok</a> · <a href="https://t.me/kasuhanetstorebot" target="_blank" rel="noopener">Telegram</a><br><span>© <span id="year"></span> <strong>KasuhaNET Resources (202503248308). Hak Cipta Terpelihara.</strong></span></div></div></footer>
+<a class="whatsapp-float" id="floating-whatsapp" href="https://wa.me/60123456789" target="_blank" rel="noopener" aria-label="Hubungi KasuhaNET di WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.02 3C8.86 3 3.04 8.8 3.04 15.94c0 2.28.6 4.5 1.75 6.46L3 29l6.78-1.77a13.05 13.05 0 0 0 6.23 1.58h.01c7.15 0 12.97-5.8 12.97-12.94A12.9 12.9 0 0 0 16.02 3zm0 23.62h-.01a10.8 10.8 0 0 1-5.5-1.5l-.4-.24-4.02 1.05 1.07-3.91-.26-.4a10.7 10.7 0 0 1-1.65-5.68c0-5.93 4.83-10.75 10.78-10.75 2.88 0 5.59 1.12 7.62 3.15a10.67 10.67 0 0 1 3.15 7.6c0 5.93-4.83 10.75-10.78 10.75zm5.91-8.05c-.32-.16-1.9-.94-2.2-1.05-.3-.11-.51-.16-.73.16-.21.32-.83 1.05-1.02 1.27-.19.21-.38.24-.7.08-.32-.16-1.35-.5-2.57-1.6-.95-.84-1.6-1.88-1.79-2.2-.19-.32-.02-.49.14-.65.14-.14.32-.38.48-.57.16-.19.32-.21.54-.03.16-.08-.73-1.75-1-2.4-.26-.63-.53-.54-.73-.55h-.62c-.21 0-.56.4-.86.4-.3.32-1.13 1.1-1.13 2.68s1.16 3.1 1.32 3.31c.21.32 2.28 3.48 5.53 4.88.77.33 1.37.53 1.84.68.77.24 1.47.21 2.02.13.62-.09 1.9-.78 2.17-1.53.27-.75.19-1.4.19-1.53-.08-.14-.29-.22-.61-.38z"/></svg></a>
 <script>
-const WHATSAPP_NUMBER = "60142334212"; // Tukar kepada nombor rasmi, format antarabangsa tanpa + atau ruang.
-const DEFAULT_MESSAGE = "Hai, saya berminat dengan perkhidmatan KasuhaNET.STORE.";
+const WHATSAPP_NUMBER = "60123456789"; // Gantikan dengan nombor rasmi dalam format antarabangsa tanpa + atau jarak.
+const DEFAULT_MESSAGE = "Helo, saya berminat dengan perkhidmatan KasuhaNET.STORE.";
 const waURL = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(DEFAULT_MESSAGE);
 document.getElementById("floating-whatsapp").href = waURL;
 document.getElementById("main-whatsapp").href = waURL;
