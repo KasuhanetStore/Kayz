@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ms">
 <head>
 
 <meta charset="UTF-8">
@@ -196,13 +196,13 @@
       display: none;
     }
     details.accordion-box summary::after {
-      content: "＋";
+      content: "+";
       font-size: 20px;
       color: #ff7187;
       transition: transform 0.2s ease;
     }
     details.accordion-box[open] summary::after {
-      content: "✕";
+      content: "X";
     }
     details.accordion-box[open] {
       padding-bottom: 24px;
@@ -211,6 +211,59 @@
       margin-top: 16px;
       border-top: 1px solid rgba(255,255,255,.08);
       padding-top: 16px;
+    }
+
+    /* Partner Credit Bar CSS */
+    .partner-credit-bar {
+        background-color: var(--bg, #08090d);
+        border-top: 1px solid var(--line, rgba(255, 255, 255, 0.12));
+        border-bottom: 1px solid var(--line, rgba(255, 255, 255, 0.12));
+        padding: 22px 15px;
+        text-align: center;
+        font-family: 'Orbitron', sans-serif;
+        color: var(--text, #f6f7fb);
+        box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.9);
+        width: 100%;
+    }
+    .credit-text {
+        font-size: 0.72rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--muted, #b9bdca);
+        margin-bottom: 14px;
+        font-weight: 400;
+    }
+    .partner-logos {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+    .partner-name {
+        color: #00f3ff;
+        font-size: 0.92rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-shadow: 0 0 10px rgba(0, 243, 255, 0.65), 0 0 20px rgba(0, 243, 255, 0.2);
+    }
+    .partner-logo-box {
+        width: 34px;
+        height: 34px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--red, #ff304f);
+        border-radius: 4px;
+        background-color: #0c0e15;
+        box-shadow: 0 0 12px rgba(255, 48, 79, 0.45);
+        padding: 2px;
+    }
+    .partner-logo-box img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        display: block;
     }
 
     .notice-box,.profile-box,.warning-box,.partner-box,.reading-box { border:1px solid var(--line); border-radius:18px; padding:24px; background:linear-gradient(145deg,rgba(255,48,79,.08),rgba(255,255,255,.025)); margin-top:20px; }
@@ -229,6 +282,28 @@
   </style>
 </head>
 <body>
+
+<!-- PARTNER CREDIT BAR -->
+<div class="partner-credit-bar">
+    <div class="credit-text">
+        Website powered by the collaboration of Organizations & Companies
+    </div>
+
+    <div class="partner-logos">
+        <span class="partner-name">
+            Kasuha Oculus Organisation
+        </span>
+
+        <div class="partner-logo-box">
+            <img src="OculusLogo.png" alt="Collaboration Logo">
+        </div>
+
+        <span class="partner-name">
+            KasuhaNET Resources
+        </span>
+    </div>
+</div>
+
 <header class="topbar">
   <div class="container nav">
     <a class="brand" href="#home" aria-label="KasuhaNET home page"><span class="brand-mark">K<span style="color:#171820">N</span></span><span>KasuhaNET.STORE<small>Platform Servis Pelbagai Perkhidmatan</small></span></a>
@@ -247,7 +322,7 @@
   <div class="hero-actions"><a class="btn btn-primary" href="#pakej">Pembangunan Laman Web →</a><a class="btn btn-outline" href="https://kasuhanet.store/Custom-Web-Workshop-EN">Pilihan Terminal / Web Tersuai</a></div>
   <div class="hero-points"><span>Laman web & sistem digital</span><span>Perkhidmatan fleksibel</span><span>Pilihan Standard & Premium</span></div>
   <div class="subnav"><a class="btn btn-outline" href="https://kasuhanet.store/CommandCanDoLIST.html">Pilihan Terminal</a><a class="btn btn-outline" href="https://kasuhanet.store/ShopAffliateSupport.html">Sokongan Affiliate</a></div>
-</div><div class="visual-card"><div class="video-frame"><video autoplay muted loop playsinline controls preload="metadata"><source src="https://files.catbox.moe/02vlba.mp4" aria-label="Muat naik video"></object>" type="video/mp4">Browser anda tidak menyokong video HTML5.</video></div><div class="video-caption"><div><strong>Visual Laman Web KasuhaNET</strong><span>Pratonton visual laman web dan perkhidmatan digital</span></div><span class="live-dot" aria-label="Video demo"></span></div></div></div></section>
+</div><div class="visual-card"><div class="video-frame"><video autoplay muted loop playsinline controls preload="metadata"><source src="https://files.catbox.moe/02vlba.mp4" aria-label="Muat naik video" type="video/mp4">Browser anda tidak menyokong video HTML5.</video></div><div class="video-caption"><div><strong>Visual Laman Web KasuhaNET</strong><span>Pratonton visual laman web dan perkhidmatan digital</span></div><span class="live-dot" aria-label="Video demo"></span></div></div></div></section>
 
 <section class="section" id="organisation" style="padding-top:10px"><div class="container"><div class="section-head"><span class="eyebrow">Organisasi & Kerjasama</span><h2>Dikuasai oleh Kerjasama <span class="gradient-text">Organisasi & Syarikat</span></h2><p><strong>Kasuha Oculus Organisation</strong> • <strong>Kasuhanet Resources</strong></p><p class="small-muted">KasuhaNET.STORE dipersembahkan sebagai platform digital di bawah Kasuhanet Resources dan kerangka Kasuha Oculus Organisation.</p></div><div class="link-grid"><div class="link-card"><h3>🌍 Rwanda (Afrika)</h3><a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">Sokongan & Pembangunan Rwanda ↗</a></div><div class="link-card"><h3>🌏 Timor Leste (Asia)</h3><a href="https://kasuhanet.store/Timor-Leste-SupportDevelopement.html">Sokongan & Pembangunan Timor Leste ↗</a></div><div class="link-card"><h3>Terminal Codex</h3><p>Rujukan teknikal dan sokongan terminal.</p><a href="https://kasuhanet.store/CommandCanDoLIST.html">Buka Codex ↗</a></div></div></div></section>
 
