@@ -58,7 +58,9 @@
 
 <!-- CSS -->
 <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="../CSS/text-branding-MS.css">
 <script src="js/home-main.js"></script>
+  
 
   <meta name="theme-color" content="#08090d">  <title>KasuhaNET.STORE | Platform Kedai Digital Malaysia & Alat Digital Pelbagai Perkhidmatan</title>
   <style>
@@ -296,7 +298,7 @@
 <main>
 <section class="hero" id="home"><div class="container hero-grid"><div>
   <span class="eyebrow">Jualan Hibrid • Pelbagai Servis • Alat Digital</span>
-  <h1 class="neon-title">Kasuha<span>NET.STORE</span></h1><div class="typing-box"><h2 style="font-size:18px; margin:10px 0;"><span style="color:#4F31E8;">KasuhaNET •</span><span style="color:#E600A4;">Platform Kedai Digital</span>
+  <div id="template-text"></div><script>fetch('../template-text/MS/text-theme-MS.html').then(response => response.text()).then(data => { document.getElementById('branding-title').inneHTML = data;});</script>
   <p class="neon-desc">Platform digital jualan hibrid dan pelbagai servis yang menghubungkan pembangunan laman web, perkhidmatan digital, sokongan affiliate dan alat digital di satu tempat.</p>
   <div class="hero-actions"><a class="btn btn-primary" href="#pakej">Pembangunan Laman Web →</a><a class="btn btn-outline" href="https://kasuhanet.store/Custom-Web-Workshop-EN">Pilihan Terminal / Web Tersuai</a></div>
   <div class="hero-points"><span>Laman web & sistem digital</span><span>Perkhidmatan fleksibel</span><span>Pilihan Standard & Premium</span></div>
