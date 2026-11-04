@@ -12,5 +12,5 @@ fetch('/branding-title.html')
 </script>
 
 CONTOH LINK
-<link rel="stylesheet" href="template-text/MS/.css">
+<link rel="stylesheet" href="template-text/MS/text-tema-MS.css">
 <link rel="stylesheet" href="CSS/branding-MS.css">
