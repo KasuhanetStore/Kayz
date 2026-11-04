@@ -1,0 +1,16 @@
+Panggil dalam HTML halaman
+Di tempat kau mahu tajuk itu muncul:
+
+<div id="branding-title"></div>
+
+<script>
+fetch('/branding-title.html')
+.then(response => response.text())
+.then(data => {
+    document.getElementById('branding-title').innerHTML = data;
+});
+</script>
+
+CONTOH LINK
+<link rel="stylesheet" href="template-text/MS/.css">
+<link rel="stylesheet" href="CSS/branding-MS.css">
