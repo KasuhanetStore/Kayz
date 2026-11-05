@@ -1,0 +1,11 @@
+Link File
+
+<div id="branding-title"></div>
+
+<script>
+fetch("logo.html")
+.then(response => response.text())
+.then(data => {
+    document.getElementById("branding-title").innerHTML = data;
+});
+</script>
