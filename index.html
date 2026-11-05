@@ -296,7 +296,18 @@
 <main>
 <section class="hero" id="home"><div class="container hero-grid"><div>
   <span class="eyebrow">Hybrid Sales • Multi-Service • Digital Tools</span>
-  <h1><span class="gradient-text">KasuhaNET.STORE</span><br>Digital Shop Platform</h1>
+  <div id="template-text"></div>
+<script>
+fetch('template-text/EN/text-theme-EN.html')
+.then(response => {
+    if (!response.ok) throw new Error('Template Failed Load');
+    return response.text();
+})
+.then(data => {
+    document.getElementById('template-text').innerHTML = data;
+})
+.catch(error => console.error(error));
+</script>
   <p>A hybrid sales and multi-service digital platform connecting website development, digital services, affiliate support and digital tools in one place.</p>
   <div class="hero-actions"><a class="btn btn-primary" href="#Package">Website Development →</a><a class="btn btn-outline" href="Custom-Web-Workshop-EN.html">Terminal Choice / Custom Web</a></div>
   <div class="hero-points"><span>Website & digital systems</span><span>Flexible services</span><span>Standard & Premium options</span></div>
