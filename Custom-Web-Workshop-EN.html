@@ -6,23 +6,24 @@
 
 <!-- MAIN SEO -->
 <title>Custom Web Workshop | KasuhaNET.STORE - Transparent Web Setup & Deployment Services</title>
+<meta name="google-adsense-account" content="ca-pub-4280897190566760">
 <meta name="description" content="Various Web Services for Your Website. CLICK here to check official KasuhaNET.STORE service prices. Transparent Setup & Deployment Services tailored to your needs and budget.">
 <meta name="keywords" content="digital shop platform Malaysia, Custom Web Workshop, web setup services, VPS installation, SSL certificate setup, payment gateway integration, KasuhaNET">
 <meta property="og:title" content="Custom Web Workshop | KasuhaNET.STORE">
 <meta property="og:description" content="Not Just Packages, Get Individual Services Based on Your Needs! Transparent Setup & Deployment Services.">
-<meta property="og:url" content="https://kasuhanet.store/Custom-Web-Workshop.html">
+<meta property="og:url" content="https://kasuhanet.store/Custom-Web-Workshop-EN.html">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://kasuhanet.store/Bengkel-Custom-WebSite.png">
 <meta property="og:site_name" content="KasuhaNET.STORE">
 <meta property="og:locale" content="en_US">
 <meta name="robots" content="index, follow">
 <meta name="googlebot" content="index, follow">
-<meta name="theme-color" content="#05070d">
+<meta name="theme-color" content="#08090d">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<link rel="canonical" href="https://kasuhanet.store/Custom-Web-Workshop.html">
+<link rel="canonical" href="https://kasuhanet.store/Custom-Web-Workshop-EN.html">
 <link rel="alternate" hreflang="en" href="https://kasuhanet.store/Custom-Web-Workshop-EN.html">
 <link rel="alternate" hreflang="ms" href="https://kasuhanet.store/Custom-Web-Workshop.html">
-<link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/Custom-Web-Workshop.html">
+<link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/Custom-Web-Workshop-EN.html">
 
 <!-- TWITTER -->
 <meta name="twitter:card" content="summary_large_image">
@@ -31,13 +32,12 @@
 <meta name="twitter:image" content="https://kasuhanet.store/Bengkel-Custom-WebSite.png">
 
 <!-- FONTS & CSS LIBRARIES -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/Branding.css">
 
 <!-- FAVICONS -->
-<link rel="icon" type="image/png" sizes="32x32" href="https://kasuhanet.store/favicon.ico">
-<link rel="apple-touch-icon" sizes="180x180" href="https://kasuhanet.store/favicon.ico">
+<link rel="icon" type="image/png" href="favicon.png">
 <link rel="shortcut icon" href="https://kasuhanet.store/favicon.ico">
 
 <script type="application/ld+json">
@@ -52,683 +52,428 @@
 </script>
 
 <style>
-/* GLOBAL CYBER FONT & RESET */
-* {
-    font-family: 'Orbitron', sans-serif !important;
-    box-sizing: border-box;
-}
-
-body {
-    background-color: #030509;
-    color: #fff;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    animation: pageFadeIn 0.8s ease-out forwards;
-}
-
-.page-fade-out {
-    animation: pageFadeOut 0.5s ease-in forwards !important;
-}
-
-@keyframes pageFadeIn {
-    0% { opacity: 0; transform: translateY(8px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes pageFadeOut {
-    0% { opacity: 1; transform: translateY(0); }
-    100% { opacity: 0; transform: translateY(-8px); }
-}
-
-/* HEADER & NAVIGATION */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    background: rgba(5, 7, 13, 0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(0, 240, 255, 0.3);
-    box-shadow: 0 4px 20px rgba(0, 240, 255, 0.15);
-    position: relative;
-    z-index: 10000;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-nav {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-nav a {
-    color: #b0c0f0;
-    text-decoration: none;
-    font-size: 13px;
-    transition: all 0.3s ease;
-    text-shadow: 0 0 5px rgba(0, 240, 255, 0.2);
-}
-
-nav a:hover {
-    color: #00F0FF;
-    text-shadow: 0 0 12px #00F0FF, 0 0 20px #00F0FF;
-}
-
-/* DROPDOWN MENU MODERN CYBERPUNK */
-.dropdown {
-    position: relative;
-    display: inline-block;
-    z-index: 99999;
-}
-
-.dropdown-content {
-    display: block;
-    opacity: 0;
-    visibility: hidden;
-    position: absolute;
-    top: 130%;
-    left: 0;
-    min-width: 230px;
-    padding: 8px 0;
-    background: rgba(5, 8, 18, 0.95);
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    border: 1px solid #00F0FF;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.95),
-                0 0 18px rgba(0, 240, 255, 0.4),
-                inset 0 0 10px rgba(0, 240, 255, 0.15);
-    z-index: 999999;
-    transform: translateY(-8px) scale(0.98);
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.dropdown-content.show,
-.dropdown:hover .dropdown-content {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
-}
-
-.dropdown-content a {
-    color: #d1d5db !important;
-    padding: 12px 18px !important;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    font-size: 11px !important;
-    font-weight: 600;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    border-left: 3px solid transparent;
-    transition: all 0.2s ease-in-out;
-}
-
-.dropdown-content a:hover {
-    background: linear-gradient(90deg, rgba(0, 240, 255, 0.18), rgba(230, 0, 164, 0.18)) !important;
-    color: #00F0FF !important;
-    border-left: 3px solid #00F0FF;
-    padding-left: 22px !important;
-    text-shadow: 0 0 10px #00F0FF, 0 0 20px rgba(0, 240, 255, 0.6);
-}
-
-.dropdown-content a:not(:last-child) {
-    border-bottom: 1px solid rgba(0, 240, 255, 0.1);
-}
-
-/* BUTTON LANGUAGE TOGGLE */
-.lang-wrapper {
-    display: inline-block;
-}
-
-.lang {
-    display: flex;
-    gap: 4px;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 3px;
-    border-radius: 6px;
-    border: 1px solid rgba(79, 49, 232, 0.6);
-}
-
-.lang button {
-    background: transparent;
-    border: none;
-    color: #8fa0dd;
-    padding: 4px 10px;
-    font-size: 11px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-}
-
-.lang button.active {
-    background: linear-gradient(135deg, #4F31E8, #00F0FF);
-    color: #fff;
-    box-shadow: 0 0 12px rgba(0, 240, 255, 0.8);
-    font-weight: bold;
-}
-
-.lang button:hover:not(.active) {
-    color: #00F0FF;
-    text-shadow: 0 0 8px #00F0FF;
-}
-
-/* PARTNER CREDIT BAR */
-.partner-credit-bar {
-    background: rgba(9, 13, 22, 0.8);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px dashed rgba(0, 240, 255, 0.3);
-    padding: 10px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    text-align: center;
-}
-
-.credit-text {
-    font-size: 10px;
-    color: #8fa0dd;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-.partner-logos {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-}
-
-.partner-name {
-    font-size: 11px;
-    color: #00F0FF;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
-}
-
-.partner-logo-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(5, 7, 13, 0.9);
-    border: 1px solid rgba(230, 0, 164, 0.5);
-    padding: 4px 8px;
-    border-radius: 4px;
-    box-shadow: 0 0 12px rgba(230, 0, 164, 0.3);
-}
-
-.partner-logo-box img {
-    height: 14px;
-    width: auto;
-    filter: drop-shadow(0 0 3px #00F0FF);
-}
-
-/* MAIN CONTAINER */
-main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.workshop-container {
-    max-width: 900px;
-    width: 100%;
-    padding: 40px;
-    background: rgba(13, 18, 30, 0.75);
-    border-radius: 12px;
-    border: 1px solid rgba(0, 240, 255, 0.4);
-    box-shadow: 0 0 30px rgba(0, 240, 255, 0.15), inset 0 0 15px rgba(0, 240, 255, 0.05);
-    text-align: left;
-    backdrop-filter: blur(10px);
-}
-
-/* INTRO BANNER IMAGE CONTAINER */
-.intro-trademark-box {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 30px;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid rgba(0, 240, 255, 0.4);
-    box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
-    background: rgba(5, 7, 13, 0.6);
-}
-
-.intro-trademark-box img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
-}
-
-/* HEADINGS */
-.neon-title-workshop {
-    font-size: clamp(24px, 4.5vw, 36px);
-    color: #fff;
-    text-align: center;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    text-shadow: 0 0 15px rgba(255,255,255,0.4);
-    font-weight: 900;
-}
-
-.neon-title-workshop span {
-    background: linear-gradient(135deg, #E600A4, #ff3366, #00F0FF);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 12px rgba(230, 0, 164, 0.8));
-}
-
-.subtitle-intro {
-    text-align: center;
-    font-size: 14px;
-    color: #b0c0f0;
-    line-height: 1.6;
-    margin-bottom: 35px;
-    border-bottom: 1px dashed rgba(79, 49, 232, 0.4);
-    padding-bottom: 20px;
-    text-shadow: 0 0 8px rgba(0, 240, 255, 0.2);
-}
-
-/* NEON SECTION DIVIDER MODERN */
-.section-divider-fade {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, #00F0FF, #E600A4, transparent);
-    margin: 35px 0 25px 0;
-    box-shadow: 0 0 10px #00F0FF;
-}
-
-.section-head {
-    color: #00F0FF;
-    margin-top: 25px;
-    margin-bottom: 20px;
-    font-size: 20px;
-    border-bottom: 1px solid #4F31E8;
-    padding-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
-}
-
-/* CARDS / SERVICE GRID */
-.service-cards-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-    margin-bottom: 30px;
-}
-
-.service-card {
-    background: rgba(9, 13, 22, 0.85);
-    border: 1px solid rgba(79, 49, 232, 0.4);
-    border-left: 4px solid #00F0FF;
-    border-radius: 8px;
-    padding: 20px;
-    transition: all 0.3s ease;
-}
-
-.service-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0, 240, 255, 0.25);
-    border-color: #00F0FF;
-}
-
-.service-card.card-purple {
-    border-left-color: #E600A4;
-}
-
-.service-card.card-purple:hover {
-    box-shadow: 0 8px 25px rgba(230, 0, 164, 0.25);
-    border-color: #E600A4;
-}
-
-.service-card h3 {
-    color: #fff;
-    font-size: 16px;
-    margin-top: 0;
-    margin-bottom: 12px;
-}
-
-.service-card p {
-    color: #bbb;
-    font-size: 13.5px;
-    line-height: 1.6;
-    margin: 6px 0;
-}
-
-.service-card strong {
-    color: #00F0FF;
-}
-
-.badge-tag {
-    display: inline-block;
-    background: rgba(79, 49, 232, 0.3);
-    color: #00F0FF;
-    border: 1px solid rgba(0, 240, 255, 0.4);
-    padding: 2px 8px;
-    font-size: 11px;
-    border-radius: 4px;
-    margin-bottom: 10px;
-}
-
-/* CUSTOM WORKSHOP ITEM LIST STYLES WITH FADE GLOW */
-.custom-services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.card-fade {
-    background: rgba(5, 7, 13, 0.75);
-    border: 1px solid rgba(0, 240, 255, 0.25);
-    border-radius: 8px;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: all 0.3s ease;
-    box-shadow: inset 0 0 10px rgba(0, 240, 255, 0.02);
-}
-
-.card-fade:hover {
-    border-color: #E600A4;
-    transform: translateY(-2px);
-    box-shadow: 0 0 15px rgba(230, 0, 164, 0.3), inset 0 0 8px rgba(230, 0, 164, 0.1);
-}
-
-.custom-item-title {
-    color: #00F0FF;
-    font-size: 14px;
-    font-weight: 700;
-    margin-bottom: 6px;
-    text-shadow: 0 0 5px rgba(0, 240, 255, 0.3);
-}
-
-.custom-item-desc {
-    color: #aaa;
-    font-size: 12px;
-    line-height: 1.5;
-    margin-bottom: 12px;
-}
-
-.custom-item-price {
-    color: #25D366;
-    font-size: 14px;
-    font-weight: 900;
-    text-align: right;
-    border-top: 1px dashed rgba(255, 255, 255, 0.1);
-    padding-top: 8px;
-    text-shadow: 0 0 6px rgba(37, 211, 102, 0.3);
-}
-
-/* WORKSHOP HIGHLIGHT BOX */
-.workshop-highlight-box {
-    background: rgba(79, 49, 232, 0.12);
-    border: 1px solid rgba(79, 49, 232, 0.5);
-    border-radius: 8px;
-    padding: 25px;
-    margin-top: 25px;
-    box-shadow: 0 0 20px rgba(79, 49, 232, 0.15);
-}
-
-.workshop-highlight-box h3 {
-    color: #E600A4;
-    font-size: 18px;
-    margin-top: 0;
-    margin-bottom: 12px;
-    text-shadow: 0 0 8px rgba(230, 0, 164, 0.4);
-}
-
-/* NOTICE CALLOUT */
-.notice-box {
-    background: rgba(230, 0, 164, 0.08);
-    border: 1px solid rgba(230, 0, 164, 0.4);
-    border-radius: 8px;
-    padding: 18px;
-    margin-top: 20px;
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-}
-
-.notice-icon {
-    color: #E600A4;
-    font-size: 20px;
-    line-height: 1;
-}
-
-.notice-content {
-    font-size: 13px;
-    color: #ddd;
-    line-height: 1.6;
-}
-
-.notice-content strong {
-    color: #E600A4;
-}
-
-/* SUPPORT / CONTACT BOX */
-.support-box {
-    background: rgba(0, 240, 255, 0.05);
-    border: 1px solid rgba(0, 240, 255, 0.3);
-    border-radius: 8px;
-    padding: 25px;
-    margin-top: 35px;
-    text-align: center;
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
-}
-
-.support-box h3 {
-    color: #00F0FF;
-    margin-top: 0;
-    margin-bottom: 10px;
-    font-size: 18px;
-}
-
-.support-box p {
-    color: #ccc;
-    font-size: 13.5px;
-    margin-bottom: 20px;
-}
-
-.email-link {
-    color: #00F0FF;
-    text-decoration: underline;
-    word-break: break-all;
-}
-
-.contact-btn {
-    display: inline-block;
-    background: #25D366;
-    color: #fff;
-    padding: 10px 22px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 13px;
-    box-shadow: 0 0 10px rgba(37, 211, 102, 0.3);
-    transition: 0.3s;
-}
-
-.contact-btn:hover {
-    background: #1ebc57;
-    box-shadow: 0 0 18px rgba(37, 211, 102, 0.6);
-}
-
-/* BACK LINK BOTTOM */
-.back-link-box {
-    text-align: center;
-    margin-top: 30px;
-}
-
-.back-link-box a {
-    color: #00F0FF;
-    text-decoration: none;
-    font-size: 13px;
-    transition: 0.3s;
-}
-
-.back-link-box a:hover {
-    text-shadow: 0 0 10px #00F0FF;
-}
-
-/* FOOTER DESIGN MODEN */
-.footer {
-    background: #060911;
-    border-top: 2px solid #00F0FF;
-    box-shadow: 0 -5px 30px rgba(0, 240, 255, 0.2);
-    margin-top: 50px;
-    padding: 35px 20px 15px 20px;
-}
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 25px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.footer h3 {
-    color: #fff;
-    margin: 0 0 10px 0;
-    font-size: 18px;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
-}
-
-.footer h4 {
-    color: #E600A4;
-    margin: 0 0 10px 0;
-    font-size: 14px;
-    text-shadow: 0 0 8px #E600A4;
-}
-
-.footer p {
-    color: #a0aec0;
-    font-size: 12px;
-    line-height: 1.6;
-    margin: 0;
-}
-
-.footer-links {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.footer-links a {
-    color: #cbd5e0;
-    text-decoration: none;
-    font-size: 12px;
-    transition: all 0.3s ease;
-}
-
-.footer-links a:hover {
-    color: #00F0FF;
-    padding-left: 5px;
-    text-shadow: 0 0 8px #00F0FF;
-}
-
-.social-icons-wrapper {
-    display: flex;
-    gap: 15px;
-    margin-top: 10px;
-}
-
-.social-icons-wrapper a {
-    color: #ff85a1;
-    font-size: 22px;
-    transition: 0.3s ease;
-    filter: drop-shadow(0 0 5px #ff85a1);
-}
-
-.social-icons-wrapper a:hover {
-    color: #00F0FF;
-    transform: scale(1.2);
-    filter: drop-shadow(0 0 10px #00F0FF);
-}
-
-.footer-bottom {
-    text-align: center;
-    font-size: 11px;
-    color: #718096;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    margin-top: 25px;
-}
-
-@media (max-width: 600px) {
-    header {
+    :root {
+      --bg: #08090d;
+      --panel: #12141c;
+      --panel-2: #191b25;
+      --text: #f6f7fb;
+      --muted: #b9bdca;
+      --red: #ff304f;
+      --red-dark: #a90025;
+      --orange: #ff7a35;
+      --cyan: #00F0FF;
+      --pink: #E600A4;
+      --line: rgba(255,255,255,.12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; height: 100%; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: radial-gradient(circle at 80% 0%, rgba(255,48,79,.14), transparent 30%), var(--bg);
+      color: var(--text);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 0;
+      width: 100%;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1120px, calc(100% - 36px)); margin: 0 auto; }
+
+    /* TOPBAR & NAVIGATION */
+    .topbar {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(8,9,13,.88); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { min-height: 70px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 11px; font-weight: 900; letter-spacing: .5px; }
+    .brand-mark {
+      width: 38px; height: 38px; display: grid; place-items: center; border-radius: 12px;
+      background: linear-gradient(135deg, var(--red), #ff814a); color: white; font-weight: 1000;
+      box-shadow: 0 0 28px rgba(255,48,79,.28);
+    }
+    .brand small { display: block; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 24px; color: #d8dbe4; font-size: 14px; }
+    .nav-links a:hover { color: #ff667d; }
+
+    .btn {
+      display: inline-flex; justify-content: center; align-items: center; gap: 8px;
+      padding: 10px 16px; border-radius: 10px; border: 1px solid transparent;
+      font-weight: 800; font-size: 13px; cursor: pointer; transition: .2s ease;
+    }
+    .btn-primary { background: linear-gradient(120deg, var(--red-dark), var(--red), var(--orange)); color: white; box-shadow: 0 8px 28px rgba(255,48,79,.2); }
+    .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.1); }
+    .btn-outline { border-color: rgba(255,255,255,.2); color: white; background: rgba(255,255,255,.03); }
+    .btn-outline:hover { border-color: var(--red); }
+
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: #ff8b9c; font-size: 11px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; font-family: 'Orbitron', sans-serif; }
+    .eyebrow::before { content: ""; width: 20px; height: 2px; background: linear-gradient(90deg,var(--red),var(--orange)); }
+    .gradient-text { background: linear-gradient(100deg,#fff 0%,#ff7187 48%,#ff9b52 100%); color: transparent; background-clip: text; -webkit-background-clip: text; }
+
+    /* PARTNER CREDIT BAR */
+    .partner-credit-bar {
+        background-color: var(--bg);
+        border-bottom: 1px solid var(--line);
+        padding: 12px 15px;
+        text-align: center;
+        font-family: 'Orbitron', sans-serif;
+        color: var(--text);
+        width: 100%;
+    }
+    .credit-text { font-size: 0.65rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; font-weight: 400; }
+    .partner-logos { display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .partner-name { color: var(--cyan); font-size: 0.82rem; font-weight: 700; letter-spacing: 1px; }
+    .partner-logo-box { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--red); border-radius: 4px; background-color: #0c0e15; padding: 2px; }
+    .partner-logo-box img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+
+    /* DROPDOWN MENU */
+    .dropdown { position: relative; display: inline-block; }
+    .dropdown-content { display: none; position: absolute; background-color: var(--panel); min-width: 200px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5); z-index: 1; border: 1px solid var(--line); border-radius: 8px; padding: 8px 0; }
+    .dropdown-content a { color: var(--text); padding: 10px 16px; text-decoration: none; display: block; font-size: 13px; }
+    .dropdown-content a:hover { background-color: rgba(255,48,79,0.15); }
+    .dropdown-content.show { display: block; }
+
+    /* WORKSHOP CONTAINER & CARD STYLES */
+    .workshop-container {
+        max-width: 900px;
+        width: 100%;
+        padding: 30px;
+        background: linear-gradient(145deg, var(--panel-2), var(--panel));
+        border-radius: 17px;
+        border: 1px solid var(--line);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        text-align: left;
+    }
+
+    .intro-trademark-box {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 25px;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid rgba(0, 240, 255, 0.3);
+        background: rgba(5, 7, 13, 0.6);
+    }
+
+    .intro-trademark-box img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+    }
+
+    .subtitle-intro {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.8;
+        margin-bottom: 25px;
+        border-bottom: 1px dashed var(--line);
+        padding-bottom: 18px;
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    .section-head {
+        color: var(--cyan);
+        margin-top: 25px;
+        margin-bottom: 15px;
+        font-size: 15px;
+        border-bottom: 1px solid rgba(79, 49, 232, 0.6);
+        padding-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    .service-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 16px;
+        margin-bottom: 25px;
+    }
+
+    .service-card {
+        background: rgba(8, 9, 13, 0.7);
+        border: 1px solid var(--line);
+        border-left: 4px solid var(--cyan);
+        border-radius: 10px;
+        padding: 18px;
+        transition: all 0.3s ease;
+    }
+
+    .service-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        border-color: var(--cyan);
+    }
+
+    .service-card.card-purple {
+        border-left-color: var(--pink);
+    }
+
+    .service-card.card-purple:hover {
+        box-shadow: 0 0 15px rgba(230, 0, 164, 0.2);
+        border-color: var(--pink);
+    }
+
+    .service-card h3 {
+        color: var(--text);
+        font-size: 14px;
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    .service-card p {
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.6;
+        margin: 6px 0;
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    .service-card strong {
+        color: var(--cyan);
+    }
+
+    .badge-tag {
+        display: inline-block;
+        background: rgba(0, 240, 255, 0.1);
+        color: var(--cyan);
+        border: 1px solid rgba(0, 240, 255, 0.3);
+        padding: 2px 6px;
+        font-size: 10px;
+        border-radius: 4px;
+        margin-bottom: 8px;
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    /* CUSTOM WORKSHOP GRID */
+    .custom-services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 14px;
+        margin-top: 15px;
+    }
+
+    .card-fade {
+        background: rgba(8, 9, 13, 0.7);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 14px;
+        display: flex;
         flex-direction: column;
-        gap: 10px;
+        justify-content: space-between;
+        transition: all 0.3s ease;
+    }
+
+    .card-fade:hover {
+        border-color: var(--pink);
+        transform: translateY(-2px);
+        box-shadow: 0 0 12px rgba(230, 0, 164, 0.2);
+    }
+
+    .custom-item-title {
+        color: var(--cyan);
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 6px;
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    .custom-item-desc {
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.5;
+        margin-bottom: 10px;
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    .custom-item-price {
+        color: #25D366;
+        font-size: 13px;
+        font-weight: 900;
+        text-align: right;
+        border-top: 1px dashed var(--line);
+        padding-top: 6px;
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    .workshop-highlight-box {
+        background: rgba(15, 23, 42, 0.9);
+        border: 1px solid rgba(230, 0, 164, 0.3);
+        border-left: 4px solid var(--pink);
+        border-radius: 8px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .workshop-highlight-box h3 {
+        color: var(--pink);
+        font-size: 15px;
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    .notice-box {
+        background: rgba(230, 0, 164, 0.08);
+        border: 1px solid rgba(230, 0, 164, 0.3);
+        border-radius: 8px;
+        padding: 15px;
+        margin-top: 15px;
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+    }
+
+    .notice-icon {
+        color: var(--pink);
+        font-size: 18px;
+        line-height: 1;
+    }
+
+    .notice-content {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.6;
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    .notice-content strong {
+        color: var(--pink);
+    }
+
+    .support-box {
+        background: rgba(0, 240, 255, 0.05);
+        border: 1px solid rgba(0, 240, 255, 0.3);
+        border-radius: 8px;
+        padding: 20px;
+        margin-top: 25px;
         text-align: center;
     }
-    .header-right {
-        flex-direction: column;
-        gap: 10px;
+
+    .support-box h3 {
+        color: var(--cyan);
+        margin-top: 0;
+        margin-bottom: 8px;
+        font-size: 15px;
+        font-family: 'Orbitron', sans-serif;
     }
-    .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
+
+    .support-box p {
+        color: var(--muted);
+        font-size: 12px;
+        margin-bottom: 15px;
+        font-family: 'Orbitron', sans-serif;
     }
-    .workshop-container {
-        padding: 20px;
+
+    .email-link {
+        color: var(--cyan);
+        text-decoration: underline;
     }
-}
+
+    .contact-btn {
+        display: inline-block;
+        background: #25D366;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 12px;
+        font-family: 'Orbitron', sans-serif;
+        transition: 0.3s;
+    }
+
+    .contact-btn:hover {
+        background: #1ebc57;
+        box-shadow: 0 0 12px rgba(37, 211, 102, 0.5);
+    }
+
+    .back-link-box {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .back-link-box a {
+        color: var(--cyan);
+        text-decoration: none;
+        font-size: 12px;
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    /* FOOTER & WHATSAPP FLOAT */
+    footer { border-top: 1px solid var(--line); padding: 18px 0; color: #aeb2c0; font-size: 12px; width: 100%; margin-top: auto; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+    .whatsapp-float {
+      position: fixed; right: 20px; bottom: 20px; z-index: 30; width: 50px; height: 50px; border-radius: 50%;
+      display: grid; place-items: center; color: #fff; background: linear-gradient(135deg,#25d366,#0b9d58);
+      box-shadow: 0 10px 30px rgba(37,211,102,.35); border: 2px solid rgba(255,255,255,.85); transition: transform .2s;
+    }
+    .whatsapp-float:hover { transform: translateY(-4px) scale(1.04); }
+    .whatsapp-float svg { width: 26px; height: 26px; fill: currentColor; }
+
+    @media(max-width:850px){ .nav-links a:not(.btn) { display: none; } }
+
+    /* FONT ORBITRON OVERRIDE FOR ALL TEXT */
+    body, h1, h2, h3, h4, h5, h6, p, a, span, button, input, div {
+      font-family: 'Orbitron', sans-serif;
+    }
 </style>
 </head>
 
 <body>
 
-<header>
-    <div class="logo">
-        <img src="img/logo3.png" style="height:25px; width:auto;" alt="KasuhaNET Logo">
+<!-- HEADER -->
+<header class="topbar">
+  <div class="container nav">
+    <div class="brand">
+      <div class="brand-mark">K</div>
+      <div>
+        KasuhaNET
+        <small>STORE</small>
+      </div>
     </div>
-
-    <div class="header-right">
-        <nav>
-            <div class="dropdown">
-                <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
-                    Oversea <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #00F0FF;"></i>
+    
+    <nav class="nav-links" aria-label="Main Navigation">
+        <div class="dropdown">
+            <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
+                Oversea <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: var(--cyan);"></i>
+            </a>
+            <div class="dropdown-content" id="servicesDropdown">
+                <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">
+                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: var(--cyan);"></i> RWANDA (Africa)
                 </a>
-                <div class="dropdown-content" id="servicesDropdown">
-                    <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">
-                        <i class="fa-solid fa-globe" style="margin-right: 8px; color: #00F0FF;"></i> RWANDA (Africa)
-                    </a>
-                    <a href="https://kasuhanet.store/Timor-Leste-SupportDevelopement.html">
-                        <i class="fa-solid fa-globe" style="margin-right: 8px; color: #E600A4;"></i> TIMOR LESTE (Asia)
-                    </a>
-                </div>
-            </div>
-            <a href="index.html">HOME</a>
-            <a href="About-Us.html">ABOUT US</a>
-            <a href="terms-EN.html">TERMS & POLICY</a>
-            <a href="support-centre.html">SUPPORT</a>
-        </nav>
-
-        <div class="lang-wrapper">
-            <div class="lang">
-                <a href="Custom-Web-Workshop-EN.html"><button id="btn-en" class="active">EN</button></a>
-                <a href="Custom-Web-Workshop.html"><button id="btn-ms">BM</button></a>
+                <a href="https://kasuhanet.store/Timor-Leste-SupportDevelopement.html">
+                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: var(--pink);"></i> TIMOR LESTE (Asia)
+                </a>
             </div>
         </div>
-    </div>
+        <a href="index.html">HOME</a>
+        <a href="About-Us.html">ABOUT US</a>
+        <a href="terms-EN.html">TERMS & POLICY</a>
+        <a href="support-centre.html">SUPPORT</a>
+        <a class="btn btn-outline" href="Custom-Web-Workshop-EN.html" lang="en">EN</a>
+        <a class="btn btn-outline" href="Custom-Web-Workshop.html" lang="ms">MS</a>
+    </nav>
+  </div>
 </header>
 
 <!-- PARTNER CREDIT BAR -->
@@ -745,60 +490,63 @@ main {
     </div>
 </div>
 
+<!-- MAIN CONTENT BLOCK -->
 <main>
+  <div class="container" style="max-width: 900px;">
+    
     <div class="workshop-container">    
         <!-- INTRO TRADEMARK IMAGE BANNER -->
         <div class="intro-trademark-box">
             <img src="Bengkel-Custom-WebSite.png" alt="Custom Web Workshop Official Trademark Banner">
         </div>
         
-        <h1 class="neon-title-workshop">CUSTOM WEB <span>WORKSHOP</span></h1>
+        <span class="eyebrow">Setup & Deployment Services</span>
+        <h1 style="font-size: clamp(24px, 3.5vw, 36px); line-height: 1.1; margin: 10px 0;">
+            CUSTOM WEB <span class="gradient-text">WORKSHOP</span>
+        </h1>
         
         <p class="subtitle-intro">
-            Selamat datang ke <strong>kasuhanet.store</strong>! Bagi anda yang ingin membina atau menaik taraf laman web, kami kini menawarkan Perkhidmatan Pemasangan & Persediaan Telus mengikut keperluan dan bajet anda.
-            Di sini, anda mempunyai kebebasan sepenuhnya untuk memilih kaedah pembelian dan pemasangan pilihan anda.
+            Welcome to <strong>kasuhanet.store</strong>! For those looking to build or upgrade a website, we now offer Transparent Setup & Deployment Services tailored to your exact needs and budget. Here, you have full freedom to choose your preferred purchase and installation method.
         </p>
 
         <!-- SECTION 1 -->
         <div class="section-head">
-            <span>✓</span> Pilihan Pemasangan & Perkhidmatan
+            <span>✓</span> Setup & Service Options
         </div>
 
         <div class="service-cards-grid">
             <!-- Option 1 -->
             <div class="service-card">
-                <span class="badge-tag">PILIHAN 01</span>
-                <h3>1. Servis Pemasangan Sahaja (Caj Mengikut Servis)</h3>
-                <p><strong>Sesuai untuk:</strong> Mereka yang sudah mempunyai Alatan/Aset sendiri (Domain, Skrip/Kod Sumber, VPS/Hosting, atau Akaun Pembangun).</p>
-                <p><strong>Cara ia berfungsi:</strong> Anda sediakan alatan/aset, dan kami uruskan pemasangan, konfigurasi, dan penempatan sehingga laman web anda sedia untuk dilancarkan!</p>
-                <p style="margin-top:10px; color:#00F0FF; font-weight:bold;">Caj: Dikira berdasarkan pilihan setiap perkhidmatan yang anda pilih sahaja.</p>
+                <span class="badge-tag">OPTION 01</span>
+                <h3>1. Installation Service Only (Per-Service Fee)</h3>
+                <p><strong>Ideal for:</strong> Those who already own their tools/assets (Domain, Source Code/Scripts, VPS/Hosting, or Developer Accounts).</p>
+                <p><strong>How it works:</strong> You provide the tools/assets, and we handle the installation, configuration, and setup until your website is ready for launch!</p>
+                <p style="margin-top:10px; color:var(--cyan); font-weight:bold;">Fee: Calculated based on your selected individual service choices.</p>
             </div>
 
             <!-- Option 2 -->
             <div class="service-card card-purple">
-                <span class="badge-tag" style="color:#E600A4; border-color:rgba(230,0,164,0.4);">PILIHAN 02</span>
-                <h3>2. Pakej Pemasangan Penuh (Termasuk VPS & Alatan)</h3>
-                <p><strong>Sesuai untuk:</strong> Mereka yang mahukan penyelesaian lengkap tanpa perlu berurusan dengan persediaan teknikal.</p>
-                <p><strong>Cara ia berfungsi:</strong> Kami sediakan alatan penting yang diperlukan (termasuk penyediaan VPS dan alatan sokongan) dan terus menguruskan pendaftaran serta konfigurasi akaun untuk anda.</p>
+                <span class="badge-tag" style="color:var(--pink); border-color:rgba(230,0,164,0.3);">OPTION 02</span>
+                <h3>2. Full Setup Package (Including VPS & Tools)</h3>
+                <p><strong>Ideal for:</strong> Those who want a complete, turnkey solution without dealing with technical configurations.</p>
+                <p><strong>How it works:</strong> We supply the essential tools needed (including VPS provisioning and support tools) and directly manage registration and account setup for you.</p>
             </div>
         </div>
             
-        <div class="separator" style="clear: both; text-align: center; margin: 25px 0;">
+        <div class="separator" style="clear: both; text-align: center; margin: 20px 0;">
             <iframe class="BLOG_video_class" allowfullscreen="" youtube-src-id="nHHD66opUqk" 
                 width="350" height="200" src="https://www.youtube.com/embed/nHHD66opUqk" style="border:1px solid rgba(0,240,255,0.3); border-radius:8px;">
             </iframe>
         </div>
-        
-        <div class="section-divider-fade"></div>
 
         <!-- SECTION 2 -->
         <div class="workshop-highlight-box">
-            <h3>✓ "Custom Workshop"</h3>
-            <p style="color:#ddd; font-size:14px; line-height:1.6; margin:0 0 10px 0;">
-                Mencari fleksibiliti bajet? Gunakan bahagian Custom Workshop kami!
+            <h3>✓ "Custom Workshop" Pricing Guide</h3>
+            <p style="color:#ddd; font-size:13px; line-height:1.6; margin:0 0 8px 0;">
+                Looking for budget flexibility? Explore our Custom Workshop section!
             </p>
-            <p style="color:#ccc; font-size:13.5px; line-height:1.6; margin:0 0 20px 0;">
-                Dalam bahagian ini, setiap perkhidmatan dipecahkan dengan jelas. Anda boleh memilih perkhidmatan yang anda perlukan sahaja pada kadar pasaran tempatan yang kompetitif.
+            <p style="color:var(--muted); font-size:12px; line-height:1.6; margin:0 0 15px 0;">
+                In this section, individual services are broken down clearly so you can select only what you need at competitive local market rates.
             </p>
 
             <!-- LIST OF 14 MAIN CUSTOM WORKSHOP SERVICES -->
@@ -806,112 +554,112 @@ main {
                 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">1. Pengurusan Domain & Haloan DNS</div>
-                        <div class="custom-item-desc">Persediaan, hala domain ke pelayan/VPS, atau selesaikan masalah rekod DNS (ralat MX, TXT, SPF, DKIM).</div>
+                        <div class="custom-item-title">1. Domain Management & DNS Routing</div>
+                        <div class="custom-item-desc">Setup, point domains to servers/VPS, or resolve DNS record errors (MX, TXT, SPF, DKIM records).</div>
                     </div>
                     <div class="custom-item-price">RM 50</div>
                 </div>
 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">2. Tetapan & Pemasangan Server / VPS</div>
-                        <div class="custom-item-desc">Pemasangan pelayan web asas (Nginx/Apache), Panel Kawalan (aaPanel/CyberPanel/cPanel), dan konfigurasi keselamatan asas.</div>
+                        <div class="custom-item-title">2. Server / VPS Setup & Installation</div>
+                        <div class="custom-item-desc">Basic web server installation (Nginx/Apache), Control Panel (aaPanel/CyberPanel/cPanel), and base security setup.</div>
                     </div>
                     <div class="custom-item-price">RM 120</div>
                 </div>
 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">3. Konfigurasi Sijil SSL (HTTPS)</div>
-                        <div class="custom-item-desc">Pemasangan & pengaktifan sijil keselamatan SSL untuk memastikan sambungan selamat dan tersulit (ikon mangga).</div>
+                        <div class="custom-item-title">3. SSL Certificate Configuration (HTTPS)</div>
+                        <div class="custom-item-desc">Installation & activation of SSL security certificates for secure, encrypted browser connections (padlock icon).</div>
                     </div>
                     <div class="custom-item-price">RM 50</div>
                 </div>
 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">4. Pemasangan CMS & Skrip Kustom / Source Code</div>
-                        <div class="custom-item-desc">Pemasangan WordPress / CMS, atau memuat naik dan mengkonfigurasi skrip tersuai (PHP, Laravel, CodeCanyon) ke pelayan.</div>
+                        <div class="custom-item-title">4. CMS & Custom Script / Source Code Setup</div>
+                        <div class="custom-item-desc">WordPress / CMS installation, or uploading and configuring custom web scripts (PHP, Laravel, CodeCanyon) to servers.</div>
                     </div>
                     <div class="custom-item-price">RM 150</div>
                 </div>
 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">5. Persediaan & Migrasi Pangkalan Data</div>
-                        <div class="custom-item-desc">Pembuatan pangkalan data (MySQL/MariaDB), import/eksport data, dan penyelesaian ralat sambungan pangkalan data.</div>
+                        <div class="custom-item-title">5. Database Setup & Migration</div>
+                        <div class="custom-item-desc">Database creation (MySQL/MariaDB), data import/export, and troubleshooting database connection errors.</div>
                     </div>
                     <div class="custom-item-price">RM 100</div>
                 </div>
 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">6. Integrasi Gerbang Pembayaran Tempatan</div>
-                        <div class="custom-item-desc">Menghubungkan laman web anda ke gerbang pembayaran automatik (ToyyibPay, Billplz, Chip, atau SenangPay).</div>
+                        <div class="custom-item-title">6. Local Payment Gateway Integration</div>
+                        <div class="custom-item-desc">Connecting your website to automated payment gateways (ToyyibPay, Billplz, Chip, or SenangPay).</div>
                     </div>
                     <div class="custom-item-price">RM 150</div>
                 </div>
 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">7. Setup E-mel Rasmi Domain Tersuai</div>
-                        <div class="custom-item-desc">Persediaan e-mel perniagaan pada domain anda sendiri (Google Workspace/Zoho/Private Email) berserta tetapan anti-spam.</div>
+                        <div class="custom-item-title">7. Custom Domain Official Email Setup</div>
+                        <div class="custom-item-desc">Business email setup on your custom domain (Google Workspace/Zoho/Private Email) along with anti-spam configuration.</div>
                     </div>
                     <div class="custom-item-price">RM 100</div>
                 </div>
 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">8. Troubleshooting & Pembaikan Ralat</div>
-                        <div class="custom-item-desc">Menyelesaikan masalah teknikal seperti 500 Internal Server Error, 502 Bad Gateway, atau White Screen of Death.</div>
+                        <div class="custom-item-title">8. Troubleshooting & Error Fixing</div>
+                        <div class="custom-item-desc">Resolving technical issues such as 500 Internal Server Errors, 502 Bad Gateways, or White Screens of Death.</div>
                     </div>
                     <div class="custom-item-price">RM 100</div>
                 </div>
 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">9. Pembersihan Malware / Virus Web</div>
-                        <div class="custom-item-desc">Imbasan penuh sistem, pembersihan kod berbahaya/malware, dan pemulihan laman web yang digodam atau disenarai hitam.</div>
+                        <div class="custom-item-title">9. Malware Cleanup & Web Security</div>
+                        <div class="custom-item-desc">Full system scan, malicious code/malware removal, and recovery of hacked or blacklisted websites.</div>
                     </div>
                     <div class="custom-item-price">RM 250</div>
                 </div>
 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">10. Optimasi Kelajuan & Prestasi Web</div>
-                        <div class="custom-item-desc">Meningkatkan kelajuan muat turun web, optimasi imej/pangkalan data, dan integrasi CDN Cloudflare.</div>
+                        <div class="custom-item-title">10. Speed & Performance Optimization</div>
+                        <div class="custom-item-desc">Improving web loading speed, database/image optimization, and Cloudflare CDN integration.</div>
                     </div>
                     <div class="custom-item-price">RM 150</div>
                 </div>
 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">11. Migrasi Penuh Web & Pelayan</div>
-                        <div class="custom-item-desc">Pemindahan lengkap fail laman web, pangkalan data, dan e-mel dari hosting/pelayan lama ke pelayan baharu tanpa masa terhenti (downtime).</div>
+                        <div class="custom-item-title">11. Full Website & Server Migration</div>
+                        <div class="custom-item-desc">Complete transfer of website files, databases, and emails from an old host/server to a new server with zero downtime.</div>
                     </div>
                     <div class="custom-item-price">RM 200</div>
                 </div>
 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">12. Integrasi Analytics & Tracking Pixel</div>
-                        <div class="custom-item-desc">Persediaan dan konfigurasi Google Analytics, Google Search Console, Meta Pixel, atau TikTok Pixel untuk penjejakan.</div>
+                        <div class="custom-item-title">12. Analytics & Tracking Pixel Integration</div>
+                        <div class="custom-item-desc">Setup and configuration of Google Analytics, Google Search Console, Meta Pixel, or TikTok Pixel for tracking.</div>
                     </div>
                     <div class="custom-item-price">RM 80</div>
                 </div>
 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">13. Naiktaraf Blogspot / Platform Tersuai</div>
-                        <div class="custom-item-desc">Mengubah susun atur standard Blogger/Blogspot kepada struktur profesional dengan domain tersuai & kemas kini susun atur.</div>
+                        <div class="custom-item-title">13. Blogspot / Custom Platform Upgrade</div>
+                        <div class="custom-item-desc">Transforming standard Blogger/Blogspot layouts into professional structures with custom domains & modern design tweaks.</div>
                     </div>
                     <div class="custom-item-price">RM 120</div>
                 </div>
 
                 <div class="card-fade">
                     <div>
-                        <div class="custom-item-title">14. Skrip Reka Bentuk Halaman (HTML/CSS/JS)</div>
-                        <div class="custom-item-desc">Reka bentuk landing page tersuai / satu halaman menggunakan kod HTML/CSS/JS yang responsif dan mesra peranti mudah alih.</div>
+                        <div class="custom-item-title">14. Page Design Scripts (HTML/CSS/JS)</div>
+                        <div class="custom-item-desc">Custom landing page design / single-page layouts using responsive HTML/CSS/JS code optimized for mobile devices.</div>
                     </div>
                     <div class="custom-item-price">RM 180</div>
                 </div>
@@ -922,103 +670,60 @@ main {
             <div class="notice-box">
                 <div class="notice-icon">!</div>
                 <div class="notice-content">
-                    <strong>Nota Pembelian Alatan & Komponen:</strong><br>
-                    Alatan atau akaun pembangun yang dipilih dalam Custom Workshop dijual secara rasmi melalui rangkaian Rakan Kongsi Pembangun berdaftar. Ini memastikan anda memperoleh lesen/alatan tulen secara terus dan selamat untuk akaun anda.
+                    <strong>Tool & Component Purchase Notice:</strong><br>
+                    Tools or developer accounts chosen within the Custom Workshop are officially distributed through registered Developer Partner networks, ensuring you receive authentic licenses directly and securely.
                 </div>
             </div>
         </div>
 
         <!-- SUPPORT / CONTACT SECTION -->
         <div class="support-box">
-            <h3>• Perlukan Bantuan / Ada Pertanyaan?</h3>
+            <h3>• Need Help / Have Inquiries?</h3>
             <p>
-                Jika anda tidak pasti perkhidmatan atau alatan mana yang diperlukan untuk projek anda, hubungi kami melalui WhatsApp atau E-mel di <a href="mailto:support@kasuhanet.store" class="email-link">support@kasuhanet.store</a>. Kami sedia membantu dengan ulasan teknikal awal sebelum anda membuat pesanan!
+                If you are unsure which services or tools are required for your project, reach out via WhatsApp or email at <a href="mailto:support@kasuhanet.store" class="email-link">support@kasuhanet.store</a>. We are ready to assist with a preliminary technical review before you place an order!
             </p>
-            <a href="https://wa.me/qr/4K2RBZZQAPL4G1" class="contact-btn" target="_blank">
-                Hubungi via WhatsApp Sekarang
+            <a href="https://wa.me/60167390501?text=Hello,%20I%20would%20like%20to%20inquire%20about%20Custom%20Web%20Workshop%20services." class="contact-btn" target="_blank" rel="noopener">
+                Contact via WhatsApp Now
             </a>
         </div>
 
         <div class="back-link-box">
-          <a href="index.html">← KEMBALI KE MENU UTAMA</a>
+          <a href="index.html">← BACK TO HOME MENU</a>
         </div>
 
     </div>
+
+  </div>
 </main>
 
 <!-- FOOTER -->
-<footer class="footer">
-    <div class="footer-grid">
-        <div class="logo">
-        <div><img src="img/logo3.png" style="height:25px; width:auto;" alt="KasuhaNET Logo">
-            </div>
-            <p>KasuhaNET•STORE | Digital Store Platform</p>
-        </div>
-
-        <div class="footer-links">
-            <h4>Services</h4>
-            <a href="CommandCanDoLIST.html">CommandCanDo</a>
-            <a href="Shop-MyAffliate-homeEN.html">MyAffiliate</a>
-            <a href="CashOutServicePayLater.html">PayLater BNPL</a>
-        </div>
-
-        <div class="footer-links">
-            <h4>Resources</h4>
-            <a href="About-Us.html">About Us</a>
-            <a href="support-centre.html">Support</a>
-            <a href="terms-EN.html">Terms & Policy</a>
-        </div>
-
-        <div class="footer-links">
-            <h4>Follow Us</h4>
-            <div class="social-icons-wrapper">
-                <a href="https://www.facebook.com/share/1BfeDZJqjP/" target="_blank" rel="noopener" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-                <a href="https://tiktok.com/@kasuhanet.store" target="_blank" rel="noopener" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                <a href="https://t.me/kasuhanetstorebot" target="_blank" rel="noopener" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
-            </div>
-        </div>
+<footer>
+  <div class="container footer-inner">
+    <div>
+      <strong>KasuhaNET.STORE | Digital Store Platform</strong><br>
+      <span>Services: CommandCanDo • MyAffiliate • PayLater BNPL</span>
     </div>
-
-    <div class="footer-bottom">
-        © 2026 KasuhaNET Resources (202503248308). All Rights Reserved.
+    <div>
+      <span>Follow Us: </span>
+      <a href="https://www.facebook.com/share/1BfeDZJqjP/" target="_blank" rel="noopener">Facebook</a> · 
+      <a href="https://tiktok.com/@kasuhanet.store" target="_blank" rel="noopener">TikTok</a> · 
+      <a href="https://t.me/kasuhanetstorebot" target="_blank" rel="noopener">Telegram</a><br>
+      <span>© <span id="year"></span> <strong>KasuhaNET Resources (202503248308). All Rights Reserved.</strong></span>
     </div>
+  </div>
 </footer>
 
-<!-- WHATSAPP FLOATING BUTTON -->
-<a href="https://wa.me/qr/4K2RBZZQAPL4G1"
-   style="
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    width:60px;
-    height:60px;
-    background:#25D366;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    z-index:999999;
-    box-shadow:0 5px 20px rgba(37,211,102,0.5);
-    transition: transform 0.3s ease;
-   "
-   onmouseover="this.style.transform='scale(1.1)'"
-   onmouseout="this.style.transform='scale(1)'"
-   target="_blank"
-   rel="noopener"
-   aria-label="Contact us on WhatsApp">
-   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="white">
-     <path d="M19.11 17.53c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.28-.73.9-.9 1.09-.17.19-.33.21-.61.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.66-1.55-1.94-.17-.28-.02-.43.12-.57.13-.13.28-.33.42-.50.14-.17.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.64-1.55-.88-2.12-.23-.56-.47-.48-.64-.49h-.55c-.19 0-.49.07-.74.35-.25.28-.95.93-.95 2.26s.97 2.62 1.11 2.8c.14.19 1.9 2.9 4.6 4.07.64.28 1.14.45 1.53.57.64.2 1.22.17 1.68.1.51-.08 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.12-.26-.19-.54-.33z"/>
-     <path d="M16 3C9.37 3 4 8.37 4 15c0 2.31.66 4.47 1.8 6.32L4 29l7.9-1.75C13.64 28.55 14.78 29 16 29c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 22c-1.1 0-2.16-.2-3.14-.57l-.45-.17-4.69 1.04 1-4.57-.3-.47C7.39 18.35 7 16.72 7 15c0-4.96 4.04-9 9-9s9 4.04 9 9-4.04 10-9 10z"/>
-   </svg>
+<!-- WHATSAPP FLOAT -->
+<a class="whatsapp-float" id="floating-whatsapp" href="https://wa.me/60167390501?text=Hello,%20I%20would%20like%20to%20inquire%20about%20Custom%20Web%20Workshop%20services." target="_blank" rel="noopener" aria-label="Contact Support via WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.02 3C8.86 3 3.04 8.8 3.04 15.94c0 2.28.6 4.5 1.75 6.46L3 29l6.78-1.77a13.05 13.05 0 0 0 6.23 1.58h.01c7.15 0 12.97-5.8 12.97-12.94A12.9 12.9 0 0 0 16.02 3zm0 23.62h-.01a10.8 10.8 0 0 1-5.5-1.5l-.4-.24-4.02 1.05 1.07-3.91-.26-.4a10.7 10.7 0 0 1-1.65-5.68c0-5.93 4.83-10.75 10.78-10.75 2.88 0 5.59 1.12 7.62 3.15a10.67 10.67 0 0 1 3.15 7.6c0 5.93-4.83 10.75-10.78 10.75zm5.91-8.05c-.32-.16-1.9-.94-2.2-1.05-.3-.11-.51-.16-.73.16-.21.32-.83 1.05-1.02 1.27-.19.21-.38.24-.7.08-.32-.16-1.35-.5-2.57-1.6-.95-.84-1.6-1.88-1.79-2.2-.19-.32-.02-.49.14-.65.14-.14.32-.38.48-.57.16-.19.32-.21.54-.03.16-.08-.73-1.75-1-2.4-.26-.63-.53-.54-.73-.55h-.62c-.21 0-.56.4-.86.4-.3.32-1.13 1.1-1.13 2.68s1.16 3.1 1.32 3.31c.21.32 2.28 3.48 5.53 4.88.77.33 1.37.53 1.84.68.77.24 1.47.21 2.02.13.62-.09 1.9-.78 2.17-1.53.27-.75.19-1.4.19-1.53-.08-.14-.29-.22-.61-.38z"/></svg>
 </a>
 
-<!-- DROPDOWN & PAGE FADE OUT SCRIPT -->
+<!-- SCRIPT LOGIC -->
 <script>
   function toggleDropdown() {
     document.getElementById("servicesDropdown").classList.toggle("show");
   }
 
-  // Tutup dropdown jika pengguna menekan di luar menu
   window.addEventListener('click', function(e) {
     if (!e.target.matches('.dropdown a') && !e.target.matches('.dropdown i')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -1030,26 +735,8 @@ main {
         }
     }
   });
-  
-  // SCRIPT UNTUK KESAN FADE OUT APABILA MENEKAN PAUTAN (PAGE TRANSITION)
-  document.addEventListener("DOMContentLoaded", function() {
-    var links = document.querySelectorAll("a");
-    links.forEach(function(link) {
-      link.addEventListener("click", function(e) {
-        var href = this.getAttribute("href");
-        var target = this.getAttribute("target");
 
-        // Hanya jalankan fade-out untuk link dalaman biasa
-        if (href && !href.startsWith("#") && !href.startsWith("javascript") && !href.startsWith("mailto:") && !href.startsWith("https://wa.me") && target !== "_blank") {
-          e.preventDefault();
-          document.body.classList.add("page-fade-out");
-          setTimeout(function() {
-            window.location.href = href;
-          }, 450); // Menunggu animasi fade-out selesai
-        }
-      });
-    });
-  });
+  document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
 </body>
