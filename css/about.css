@@ -1,16 +1,10 @@
-/* =========================================
-   KASUHANET.STORE
-   ABOUT US - DESIGN STRUCTURE
-   Theme colours separated
-========================================= */
+/* =====================================
+   KASUHANET ABOUT US
+   LAYOUT & STRUCTURE ONLY
+===================================== */
 
 * {
     box-sizing: border-box;
-}
-
-body, h1, h2, h3, h4, h5, h6,
-p, a, span, button, input, textarea, div {
-    font-family: 'Orbitron', sans-serif;
 }
 
 html {
@@ -21,14 +15,20 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    animation: pageFadeIn 0.8s ease-out forwards;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     font-size: 15px;
     line-height: 1.6;
+    font-family: 'Orbitron', sans-serif;
+    animation: pageFadeIn 0.8s ease-out forwards;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, a, span,
+button, input, textarea, div {
+    font-family: 'Orbitron', sans-serif;
 }
 
 .page-fade-out {
@@ -36,27 +36,14 @@ body {
 }
 
 @keyframes pageFadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(8px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    0% { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes pageFadeOut {
-    0% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-8px);
-    }
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-8px); }
 }
-
 
 /* HEADER */
 
@@ -87,7 +74,6 @@ nav a {
     font-size: 13px;
     transition: all 0.3s ease;
 }
-
 
 /* DROPDOWN */
 
@@ -138,12 +124,7 @@ nav a {
     padding-left: 22px !important;
 }
 
-.dropdown-content a:not(:last-child) {
-    border-bottom: 1px solid;
-}
-
-
-/* LANGUAGE BUTTON */
+/* LANGUAGE */
 
 .lang-wrapper {
     display: inline-block;
@@ -170,8 +151,7 @@ nav a {
     font-weight: bold;
 }
 
-
-/* PARTNER CREDIT BAR */
+/* PARTNER CREDIT */
 
 .partner-credit-bar {
     backdrop-filter: blur(8px);
@@ -216,8 +196,7 @@ nav a {
     width: auto;
 }
 
-
-/* MAIN CONTENT */
+/* MAIN */
 
 main {
     flex: 1 0 auto;
@@ -231,8 +210,7 @@ main {
     align-items: center;
 }
 
-
-/* HERO SECTION */
+/* HERO */
 
 .hero-section {
     text-align: center;
@@ -255,6 +233,7 @@ main {
 }
 
 .neon-title span {
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -285,16 +264,11 @@ main {
 }
 
 @keyframes neonMove {
-    0% {
-        background-position: 0% 50%;
-    }
-    100% {
-        background-position: 300% 50%;
-    }
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
 }
 
-
-/* GRID SYSTEM */
+/* GRID & CARDS */
 
 .grid {
     display: grid;
@@ -307,7 +281,6 @@ main {
 
 .card {
     backdrop-filter: blur(8px);
-    border: 1px solid;
     border-radius: 8px;
     padding: 20px 18px;
     text-decoration: none;
@@ -332,12 +305,10 @@ main {
     line-height: 1.6 !important;
 }
 
-
-/* ABOUT CONTENT */
+/* ABOUT SECTION */
 
 .about-section {
     backdrop-filter: blur(8px);
-    border: 1px solid;
     border-radius: 8px;
     padding: 30px 22px;
     text-align: center;
@@ -357,10 +328,6 @@ main {
     text-align: center;
 }
 
-.about-title span {
-    text-shadow: 0 0 10px currentColor;
-}
-
 .about-text {
     font-size: 17px !important;
     line-height: 1.7;
@@ -372,19 +339,18 @@ main {
 .section-divider {
     font-size: 20px !important;
     text-transform: uppercase;
-    margin: 35px 0 18px 0;
+    margin: 35px 0 18px;
     letter-spacing: 1px;
     text-align: center;
     width: 100%;
 }
-
 
 /* TRUST BANNER */
 
 .trust-banner-container {
     width: 85%;
     max-width: 600px;
-    margin: 40px auto 15px auto;
+    margin: 40px auto 15px;
     padding: 0 16px;
     text-align: center;
 }
@@ -398,12 +364,11 @@ main {
     border-radius: 8px;
 }
 
-
 /* FOOTER */
 
 .footer {
     margin-top: auto;
-    padding: 35px 20px 15px 20px;
+    padding: 35px 20px 15px;
     width: 100%;
     flex-shrink: 0;
 }
@@ -417,12 +382,12 @@ main {
 }
 
 .footer h3 {
-    margin: 0 0 10px 0;
+    margin: 0 0 10px;
     font-size: 18px;
 }
 
 .footer h4 {
-    margin: 0 0 10px 0;
+    margin: 0 0 10px;
     font-size: 14px;
 }
 
@@ -467,10 +432,8 @@ main {
     text-align: center;
     font-size: 11px;
     padding-top: 20px;
-    border-top: 1px solid;
     margin-top: 25px;
 }
-
 
 /* HERO COVER */
 
@@ -499,11 +462,9 @@ main {
     font-size: 1.1rem;
 }
 
-
 /* RESPONSIVE */
 
 @media (max-width: 600px) {
-
     header {
         flex-direction: column;
         gap: 10px;
@@ -549,9 +510,5 @@ main {
 
     .partner-name {
         font-size: 10px;
-    }
-
-    .hero-cover h1 {
-        font-size: 2.2rem;
     }
 }
