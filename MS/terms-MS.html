@@ -6,209 +6,184 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- MAIN SEO -->
-<title>Terma & Polisi | KasuhaNET.Store</title>
-<meta name="description" content="Terma dan syarat, Polisi Privasi (PDPA), Polisi Pemulangan Wang, dan Penafian Undang-undang untuk KasuhaNET.Store.">
+<title>Terma & Polisi | KasuhaNET.STORE</title>
+<meta name="google-adsense-account" content="ca-pub-4280897190566760">
+<meta property="og:image" content="https://kasuhanet.store/img/logo3.png">
+<meta name="description" content="Terma dan syarat, Polisi Privasi (PDPA), Polisi Pemulangan Wang, dan Penafian Undang-undang untuk KasuhaNET.STORE.">
 <meta name="keywords" content="Terma dan syarat, Polisi Privasi, PDPA, Refund Policy, KasuhaNET Store">
 
-<meta property="og:title" content="Terma & Polisi | KasuhaNET.Store">
-<meta property="og:description" content="Terma dan syarat serta Polisi Privasi KasuhaNET.Store.">
-<meta property="og:url" content="https://kasuhanet.store/MS/terms-MS.html">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://kasuhanet.store/broadcast.png">
-<meta property="og:site_name" content="KasuhaNET.STORE">
-<meta property="og:locale" content="ms_MY">
-
+<meta name="author" content="Kasuhanet Resources">
 <meta name="robots" content="index, follow">
-<meta name="googlebot" content="index, follow">
-<meta name="theme-color" content="#08090d">
-  
+
+<!-- CANONICAL -->
 <link rel="canonical" href="https://kasuhanet.store/MS/terms-MS.html">
-<link rel="alternate" hreflang="en" href="https://kasuhanet.store/terms-EN.html">
-<link rel="alternate" hreflang="ms" href="https://kasuhanet.store/MS/terms-MS.html">
-<link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/terms-EN.html">
 
-<!-- TWITTER -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Terma & Polisi | KasuhaNET.STORE">
-<meta name="twitter:description" content="Terma dan syarat serta Polisi Privasi KasuhaNET.Store.">
-<meta name="twitter:image" content="https://kasuhanet.store/broadcast.png">
-
-<!-- FONTS -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet">
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
 <!-- FONT AWESOME -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-<!-- MAIN CSS (Guna laluan relatif '../css/' kerana fail dalam folder MS) -->
-<link rel="stylesheet" href="../css/main.css">
-<link rel="stylesheet" href="../css/terms-MS.css">
-
-<!-- MAIN JS -->
-<script src="../js/home-main.js"></script>
-
 <!-- FAVICON -->
-<link rel="icon" type="image/png" href="../favicon.ico">
-<link rel="shortcut icon" href="../favicon.ico">
+<link rel="icon" type="image/png" href="../favicon.png">
 
-<!-- ORGANIZATION SCHEMA -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Kasuha Oculus",
-  "url": "https://kasuhanet.store/",
-  "logo": "https://kasuhanet.store/OculusLogo.png",
-  "description": "Perkhidmatan pembangunan laman web, rekaan perisian, dan integrasi sistem."
-}
-</script>
+<!-- OPEN GRAPH -->
+<meta property="og:title" content="Terma & Polisi | KasuhaNET.STORE">
+<meta property="og:description" content="Terma dan syarat serta Polisi Privasi KasuhaNET.STORE.">
+<meta property="og:url" content="https://kasuhanet.store/MS/terms-MS.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KasuhaNET.STORE">
+<meta property="og:locale" content="ms_MS">
+
+<!-- MOBILE -->
+<meta name="theme-color" content="#08090d">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="googlebot" content="index, follow">
+
+<!-- CSS (Hanya guna main.css sahaja untuk elakkan konflik gaya) -->
+<link rel="stylesheet" href="../css/main.css">
 
 </head>
-
 <body>
 
-<!-- HEADER -->
+<!-- TOPBAR HEADER -->
 <header class="topbar">
-    <div class="container nav">
-        <div class="brand">
-            <div class="brand-mark">K</div>
-            <div>
-                KasuhaNET
-                <small>STORE</small>
-            </div>
-        </div>
-
-        <div class="header-right" style="display: flex; align-items: center; gap: 20px;">
-            <nav class="nav-links">
-                <a href="index.html">UTAMA</a>
-                <a href="about-us-MS.html">TENTANG KAMI</a>
-                <a href="terms-MS.html">TERMA & POLISI</a>
-                <a href="support-centre-MS.html">SOKONGAN</a>
-            </nav>
-        </div>
+  <div class="container nav">
+    <div id="branding-title">
+      <div class="brand">
+        <div class="brand-mark">K</div>
+        <div>KasuhaNET<small>STORE</small></div>
+      </div>
     </div>
+
+    <script>
+    fetch("../template-text/MS/kasuhanet-icon-official-MS.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("branding-title").innerHTML = data;
+    }).catch(err => console.log(err));
+    </script>
+
+    <nav class="nav-links" aria-label="Navigasi utama">
+      <a href="index.html">UTAMA</a>
+      <a href="about-us-MS.html">TENTANG KAMI</a>
+      <a href="terms-MS.html" style="color: var(--red);">TERMA & POLISI</a>
+      <a href="support-centre-MS.html">SOKONGAN</a>
+      <a class="btn btn-outline" href="../terms-EN.html" lang="en">EN</a>
+      <a class="btn btn-outline" href="terms-MS.html" lang="ms">MS</a>
+      <a class="btn btn-primary" href="index.html#pakej">Utama ↗</a>
+    </nav>
+  </div>
 </header>
 
+<!-- MAIN CONTENT -->
+<main class="section">
+  <div class="container">
+    
+    <!-- BACK NAVIGATION -->
+    <div style="margin-bottom: 24px;">
+      <a href="index.html" class="btn btn-outline">← Kembali ke Menu Utama</a>
+    </div>
 
-<!-- PARTNER CREDIT -->
+    <div class="section-head" style="text-align: left; margin-bottom: 30px;">
+      <span class="eyebrow">Dokumen Rasmi & Undang-undang</span>
+      <h1 style="font-size: clamp(32px, 4vw, 48px); margin: 12px 0;">Terma & <span class="gradient-text">Polisi</span></h1>
+      <p>Kemaskini Terakhir: Jun 2026</p>
+    </div>
+
+    <!-- KANDUNGAN TERMA (Dibungkus dalam .service-card / panel yang sama seperti index.html) -->
+    <div class="service-card" style="padding: 35px; margin-bottom: 25px;">
+      <h2 style="color: var(--text); font-size: 20px; margin-top: 0; margin-bottom: 15px;">1. Terma & Syarat</h2>
+      <p style="color: var(--muted); margin-bottom: 15px;">Selamat datang ke KasuhaNET.STORE. Dengan mengakses dan menggunakan laman web ini, anda bersetuju untuk mematuhi dan terikat dengan terma dan syarat berikut. Jika anda tidak bersetuju dengan mana-mana bahagian terma ini, sila hentikan penggunaan laman web ini serta-merta.</p>
+      
+      <h3 style="color: var(--text); font-size: 16px; margin-top: 20px; margin-bottom: 10px;">Tanggungjawab Pengguna & Penggunaan Yang Dibenarkan</h3>
+      <ul class="feature-list" style="margin-top: 5px;">
+        <li>Anda bersetuju untuk tidak menggunakan laman web ini untuk sebarang tujuan yang menyalahi undang-undang, tidak sah, atau berunsur penipuan.</li>
+        <li>Sebarang percubaan untuk mengganggu, menggodam, merekayasa semula (reverse-engineer), atau menjejaskan keselamatan laman web atau rangkaian adalah dilarang sama sekali.</li>
+        <li>Semua hak cipta intelektual, kod sumber, dan grafik adalah milik Kasuhanet Resources dan tidak boleh ditiru tanpa kebenaran.</li>
+      </ul>
+
+      <h3 style="color: var(--text); font-size: 16px; margin-top: 20px; margin-bottom: 10px;">Had Liabiliti</h3>
+      <p style="color: var(--muted);">KasuhaNET.STORE dan Kasuhanet Resources menyediakan perkhidmatan atas dasar 'seperti adanya' (as-is). Kami tidak bertanggungjawab atas sebarang kerugian kewangan, kerosakan, atau gangguan sistem yang timbul daripada penggunaan platform kami.</p>
+    </div>
+
+    <div class="service-card" style="padding: 35px; margin-bottom: 25px;">
+      <h2 style="color: var(--text); font-size: 20px; margin-top: 0; margin-bottom: 15px;">2. Polisi Privasi (PDPA & Pematuhan Global)</h2>
+      <p style="color: var(--muted); margin-bottom: 15px;">Kami menghormati privasi anda dan mematuhi Akta Perlindungan Data Peribadi 2010 (PDPA) Malaysia serta piawaian privasi antarabangsa yang berkaitan.</p>
+      
+      <h3 style="color: var(--text); font-size: 16px; margin-top: 20px; margin-bottom: 10px;">Pengumpulan & Penggunaan Data</h3>
+      <ul class="feature-list" style="margin-top: 5px;">
+        <li>Kami mungkin mengumpul data peribadi seperti nama, alamat e-mel, dan rekod transaksi anda semasa pembelian atau pendaftaran.</li>
+        <li>Data anda digunakan secara khusus untuk pemprosesan pesanan, penyediaan sokongan teknikal, dan penambahbaikan perkhidmatan kami.</li>
+        <li>Kami tidak akan menjual, menyewa, atau memajakkan data peribadi anda kepada mana-mana pihak ketiga.</li>
+      </ul>
+    </div>
+
+    <div class="service-card" style="padding: 35px; margin-bottom: 25px;">
+      <h2 style="color: var(--text); font-size: 20px; margin-top: 0; margin-bottom: 15px;">3. Polisi Pemulangan Wang & Pembatalan</h2>
+      <p style="color: var(--muted); margin-bottom: 15px;">Memandangkan produk kami melibatkan barangan digital dan perkhidmatan elektronik serta-merta, syarat pemulangan wang berikut berkuat kuasa:</p>
+      <ul class="feature-list" style="margin-top: 5px;">
+        <li><strong>Produk Digital & Langganan:</strong> Semua jualan muat turun digital, kunci lesen, dan perkhidmatan yang diaktifkan adalah muktamad dan tidak boleh dikembalikan setelah diproses atau diakses.</li>
+        <li><strong>Kelayakan Pemulangan:</strong> Permohonan pemulangan wang hanya akan dipertimbangkan sekiranya timbul masalah teknikal dari sebelah pelayan kami yang tidak dapat diselesaikan oleh pasukan sokongan dalam tempoh 7 hari bekerja.</li>
+        <li><strong>Permohonan Pemulangan:</strong> Sila hubungi pasukan sokongan kami melalui saluran rasmi bersertakan butiran transaksi dan bukti pembelian untuk semakan lanjut.</li>
+      </ul>
+    </div>
+
+    <div class="service-card" style="padding: 35px; margin-bottom: 25px;">
+      <h2 style="color: var(--text); font-size: 20px; margin-top: 0; margin-bottom: 15px;">4. Penafian Undang-Undang & Akses Antarabangsa</h2>
+      <p style="color: var(--muted); margin-bottom: 10px;">Semua maklumat, alat, dan perkhidmatan yang disediakan di KasuhaNET.STORE adalah untuk tujuan maklumat umum, pendidikan, dan operasi sahaja.</p>
+      <p style="color: var(--muted);">Terma-terma ini ditadbir dan ditafsirkan mengikut undang-undang Malaysia. Bagi pengguna antarabangsa yang mengakses platform ini dari luar Malaysia, anda bertanggungjawab sepenuhnya untuk mematuhi semua undang-undang digital tempatan, rantau, dan antarabangsa.</p>
+    </div>
+
+  </div>
+</main>
+
+<!-- PARTNER CREDIT BAR -->
 <div class="partner-credit-bar">
     <div class="credit-text">
-        Laman web dijayakan melalui kerjasama Pertubuhan & Syarikat
+        LamanWeb DiKuasakan oleh Gabungan Pertubuhan & Syarikat
     </div>
     <div class="partner-logos">
         <span class="partner-name">Kasuha Oculus Organisation</span>
         <div class="partner-logo-box">
-            <img src="../OculusLogo.png" alt="Logo Kerjasama">
+            <img src="../OculusLogo.png" alt="Collaboration Logo">
         </div>
         <span class="partner-name">KasuhaNET Resources</span>
     </div>
 </div>
 
-
-<!-- MAIN CONTENT -->
-<main class="container section">
-
-    <!-- BACK NAVIGATION -->
-    <div class="top-nav-back" style="margin-bottom: 20px;">
-        <a href="index.html" class="btn btn-outline" style="font-size: 13px; padding: 8px 14px;">← Kembali ke Menu Utama</a>
-    </div>
-
-    <!-- TERMS CONTAINER (Guna kelas .glass-box supaya nampak kemas bergaya moden) -->
-    <div class="glass-box">
-
-        <h1 class="neon-title">
-            TERMA & <span>POLISI</span>
-        </h1>
-
-        <p class="neon-desc">
-            Kemaskini Terakhir: Jun 2026
-        </p>
-
-        <!-- SECTION 1 -->
-        <section id="terms" style="margin-top: 30px;">
-            <h2 class="about-title">1. Terma & <span>Syarat</span></h2>
-            <p>
-                Selamat datang ke KasuhaNET.STORE. Dengan mengakses dan menggunakan laman web ini, anda bersetuju untuk mematuhi dan terikat dengan terma dan syarat berikut. Jika anda tidak bersetuju dengan mana-mana bahagian terma ini, sila hentikan penggunaan laman web ini serta-merta.
-            </p>
-
-            <h3 class="section-divider">Tanggungjawab Pengguna & Penggunaan Yang Dibenarkan</h3>
-            <ul style="padding-left: 20px; color: var(--muted);">
-                <li style="margin-bottom: 8px;">Anda bersetuju untuk tidak menggunakan laman web ini untuk sebarang tujuan yang menyalahi undang-undang, tidak sah, atau berunsur penipuan.</li>
-                <li style="margin-bottom: 8px;">Sebarang percubaan untuk mengganggu, menggodam, merekayasa semula (reverse-engineer), atau menjejaskan keselamatan laman web atau rangkaian adalah dilarang sama sekali.</li>
-                <li>Semua hak cipta intelektual, kod sumber, dan grafik adalah milik Kasuhanet Resources dan tidak boleh ditiru tanpa kebenaran.</li>
-            </ul>
-
-            <h3 class="section-divider">Had Liabiliti</h3>
-            <p>
-                KasuhaNET.STORE dan Kasuhanet Resources menyediakan perkhidmatan atas dasar 'seperti adanya' (as-is). Kami tidak bertanggungjawab atas sebarang kerugian kewangan, kerosakan, atau gangguan sistem yang timbul daripada penggunaan platform kami.
-            </p>
-        </section>
-
-        <!-- SECTION 2 -->
-        <section id="privacy" style="margin-top: 40px;">
-            <h2 class="about-title">2. Polisi Privasi <span>(PDPA & Pematuhan Global)</span></h2>
-            <p>
-                Kami menghormati privasi anda dan mematuhi Akta Perlindungan Data Peribadi 2010 (PDPA) Malaysia serta piawaian privasi antarabangsa yang berkaitan.
-            </p>
-
-            <h3 class="section-divider">Pengumpulan & Penggunaan Data</h3>
-            <ul style="padding-left: 20px; color: var(--muted);">
-                <li style="margin-bottom: 8px;">Kami mungkin mengumpul data peribadi seperti nama, alamat e-mel, dan rekod transaksi anda semasa pembelian atau pendaftaran.</li>
-                <li style="margin-bottom: 8px;">Data anda digunakan secara khusus untuk pemprosesan pesanan, penyediaan sokongan teknikal, dan penambahbaikan perkhidmatan kami.</li>
-                <li>Kami tidak akan menjual, menyewa, atau memajakkan data peribadi anda kepada mana-mana pihak ketiga.</li>
-            </ul>
-        </section>
-
-        <!-- SECTION 3 -->
-        <section id="refund" style="margin-top: 40px;">
-            <h2 class="about-title">3. Polisi Pemulangan Wang <span>& Pembatalan</span></h2>
-            <p>
-                Memandangkan produk kami melibatkan barangan digital dan perkhidmatan elektronik serta-merta, syarat pemulangan wang berikut berkuat kuasa:
-            </p>
-            <ul style="padding-left: 20px; color: var(--muted);">
-                <li style="margin-bottom: 8px;"><strong>Produk Digital & Langganan:</strong> Semua jualan muat turun digital, kunci lesen, dan perkhidmatan yang diaktifkan adalah muktamad dan tidak boleh dikembalikan setelah diproses atau diakses.</li>
-                <li style="margin-bottom: 8px;"><strong>Kelayakan Pemulangan:</strong> Permohonan pemulangan wang hanya akan dipertimbangkan sekiranya timbul masalah teknikal dari sebelah pelayan kami yang tidak dapat diselesaikan oleh pasukan sokongan dalam tempoh 7 hari bekerja.</li>
-                <li><strong>Permohonan Pemulangan:</strong> Sila hubungi pasukan sokongan kami melalui saluran rasmi bersertakan butiran transaksi dan bukti pembelian untuk semakan lanjut.</li>
-            </ul>
-        </section>
-
-        <!-- SECTION 4 -->
-        <section id="disclaimer" style="margin-top: 40px;">
-            <h2 class="about-title">4. Penafian <span>Undang-Undang</span></h2>
-            <p>
-                Semua maklumat, alat, dan perkhidmatan yang disediakan di KasuhaNET.STORE adalah untuk tujuan maklumat umum, pendidikan, dan operasi sahaja.
-            </p>
-        </section>
-
-        <!-- SECTION 5 -->
-        <section id="international" style="margin-top: 40px; margin-bottom: 20px;">
-            <h2 class="about-title">5. Undang-Undang Pengawal <span>& Akses Antarabangsa</span></h2>
-            <p style="color: var(--muted);">
-                Terma-terma ini ditadbir dan ditafsirkan mengikut undang-undang Malaysia. Bagi pengguna antarabangsa yang mengakses platform ini dari luar Malaysia, anda bertanggungjawab sepenuhnya untuk mematuhi semua undang-undang digital tempatan, rantau, dan antarabangsa.
-            </p>
-        </section>
-
-    </div>
-
-</main>
-
 <!-- FOOTER -->
-<footer class="container">
-    <div class="footer-inner">
-        <p>© <strong>2026 KasuhaNET Resources (202503248308). Hak Cipta Terpelihara.</strong></p>
+<footer>
+  <div class="container footer-inner">
+    <div>
+      <strong>KasuhaNET.STORE | Platform Kedai Digital</strong><br>
+      <span>Perkhidmatan: CommandCanDo • MyAffiliate • PayLater BNPL</span><br>
+      <span>Sumber: Tentang Kami • Sokongan • Terma & Polisi</span>
     </div>
+    <div>
+      <span>Ikuti Kami: </span>
+      <a href="https://www.facebook.com/share/1BfeDZJqjP/" target="_blank" rel="noopener">Facebook</a> · 
+      <a href="https://tiktok.com/@kasuhanet.store" target="_blank" rel="noopener">TikTok</a> · 
+      <a href="https://t.me/kasuhanetstorebot" target="_blank" rel="noopener">Telegram</a><br>
+      <span>© <span id="year"></span> <strong>KasuhaNET Resources (202503248308). Hak Cipta Terpelihara.</strong></span>
+    </div>
+  </div>
 </footer>
 
 <!-- WHATSAPP FLOATING BUTTON -->
-<a href="https://wa.me/qr/4K2RBZZQAPL4G1"
-   class="whatsapp-float"
-   target="_blank"
-   rel="noopener"
-   aria-label="Hubungi kami di WhatsApp">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="30" height="30" fill="white">
-        <path d="M19.11 17.53c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.28-.73.9-.9 1.09-.17.19-.33.21-.61.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.66-1.55-1.94-.17-.28-.02-.43.12-.57.13-.13.28-.33.42-.50.14-.17.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.64-1.55-.88-2.12-.23-.56-.47-.48-.64-.49h-.55c-.19 0-.49.07-.74.35-.25.28-.95.93-.95 2.26s.97 2.62 1.11 2.8c.14.19 1.9 2.9 4.6 4.07.64.28 1.14.45 1.53.57.64.2 1.22.17 1.68.1.51-.08 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.12-.26-.19-.54-.33z"/>
-        <path d="M16 3C9.37 3 4 8.37 4 15c0 2.31.66 4.47 1.8 6.32L4 29l7.9-1.75C13.64 28.55 14.78 29 16 29c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 22c-1.1 0-2.16-.2-3.14-.57l-.45-.17-4.69 1.04 1-4.57-.3-.47C7.39 18.35 7 16.72 7 15c0-4.96 4.04-9 9-9s9 4.04 9 9-4.04 10-9 10z"/>
-    </svg>
+<a class="whatsapp-float" id="floating-whatsapp" href="https://wa.me/60123456789" target="_blank" rel="noopener" aria-label="Hubungi KasuhaNET di WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true">
+    <path d="M16.02 3C8.86 3 3.04 8.8 3.04 15.94c0 2.28.6 4.5 1.75 6.46L3 29l6.78-1.77a13.05 13.05 0 0 0 6.23 1.58h.01c7.15 0 12.97-5.8 12.97-12.94A12.9 12.9 0 0 0 16.02 3zm0 23.62h-.01a10.8 10.8 0 0 1-5.5-1.5l-.4-.24-4.02 1.05 1.07-3.91-.26-.4a10.7 10.7 0 0 1-1.65-5.68c0-5.93 4.83-10.75 10.78-10.75 2.88 0 5.59 1.12 7.62 3.15a10.67 10.67 0 0 1 3.15 7.6c0 5.93-4.83 10.75-10.78 10.75zm5.91-8.05c-.32-.16-1.9-.94-2.2-1.05-.3-.11-.51-.16-.73.16-.21.32-.83 1.05-1.02 1.27-.19.21-.38.24-.7.08-.32-.16-1.35-.5-2.57-1.6-.95-.84-1.6-1.88-1.79-2.2-.19-.32-.02-.49.14-.65.14-.14.32-.38.48-.57.16-.19.32-.21.54-.03.16-.08-.73-1.75-1-2.4-.26-.63-.53-.54-.73-.55h-.62c-.21 0-.56.4-.86.4-.3.32-1.13 1.1-1.13 2.68s1.16 3.1 1.32 3.31c.21.32 2.28 3.48 5.53 4.88.77.33 1.37.53 1.84.68.77.24 1.47.21 2.02.13.62-.09 1.9-.78 2.17-1.53.27-.75.19-1.4.19-1.53-.08-.14-.29-.22-.61-.38z"/>
+  </svg>
 </a>
+
+<script>
+const WHATSAPP_NUMBER = "60123456789";
+const DEFAULT_MESSAGE = "Helo, saya berminat dengan perkhidmatan KasuhaNET.STORE.";
+const waURL = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(DEFAULT_MESSAGE);
+document.getElementById("floating-whatsapp").href = waURL;
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>
