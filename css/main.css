@@ -1,3 +1,168 @@
+/* =====================================================
+   KASUHANET.STORE
+   BRANDING • TYPOGRAPHY • TRADEMARK THEME
+   ===================================================== */
+
+/* GOOGLE FONT: ORBITRON */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&display=swap');
+
+/* BRAND COLOUR */
+:root {
+    --brand-cyan: #00F0FF;
+    --brand-purple: #4F31E8;
+    --brand-pink: #E600A4;
+    --brand-white: #FFFFFF;
+    --brand-dark: #030509;
+    --brand-text: #b0c0f0;
+
+    --brand-gradient: linear-gradient(
+        135deg,
+        #E600A4,
+        #ff3366,
+        #00F0FF
+    );
+}
+
+/* BRAND TYPOGRAPHY */
+body,
+h1, h2, h3, h4, h5, h6,
+p, a, span, button {
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* MAIN BRAND TITLE */
+.neon-title {
+    font-size: clamp(32px, 7vw, 65px);
+    line-height: 1.1;
+    position: relative;
+    display: inline-block;
+    color: var(--brand-white);
+    margin: 15px 0;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+
+    text-shadow: 0 0 15px rgba(255,255,255,0.4);
+}
+
+/* GRADIENT TRADEMARK TEXT */
+.neon-title span {
+    background: var(--brand-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    filter: drop-shadow(0 0 12px rgba(230,0,164,0.8));
+}
+
+/* ANIMATED BRAND UNDERLINE */
+.neon-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 100%;
+    height: 3px;
+
+    background: linear-gradient(
+        90deg,
+        #4F31E8,
+        #E600A4,
+        #00F0FF,
+        #4F31E8
+    );
+
+    background-size: 300% 100%;
+    animation: neonMove 3s linear infinite;
+
+    box-shadow:
+        0 0 12px #E600A4,
+        0 0 20px #00F0FF;
+
+    border-radius: 3px;
+}
+
+/* BRAND DESCRIPTION */
+.neon-desc {
+    font-size: clamp(12px, 2vw, 16px);
+    color: var(--brand-text);
+    line-height: 1.5;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 8px;
+    margin-top: 5px;
+
+    text-shadow: 0 0 8px rgba(0,240,255,0.3);
+}
+
+/* DESCRIPTION UNDERLINE */
+.neon-desc::after {
+    content: '';
+    position: absolute;
+    left: 5%;
+    bottom: 0;
+    width: 90%;
+    height: 2px;
+
+    background: linear-gradient(
+        90deg,
+        #4F31E8,
+        #E600A4,
+        #00F0FF,
+        #4F31E8
+    );
+
+    background-size: 300% 100%;
+    animation: neonMove 3s linear infinite;
+}
+
+/* SECTION TITLE */
+.about-title {
+    font-size: clamp(24px, 5vw, 40px);
+    color: var(--brand-white);
+    margin-bottom: 15px;
+
+    text-shadow: 0 0 10px rgba(255,255,255,0.3);
+}
+
+.about-title span {
+    color: var(--brand-cyan);
+    text-shadow: 0 0 15px var(--brand-cyan);
+}
+
+/* SECTION DIVIDER */
+.section-divider {
+    font-size: 18px;
+    color: var(--brand-pink);
+    margin: 35px 0 20px;
+
+    text-shadow: 0 0 10px var(--brand-pink);
+    letter-spacing: 1.5px;
+}
+
+/* ANIMATION */
+@keyframes neonMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 300% 50%;
+    }
+}
+
+/* FONT AWESOME ICON FIX */
+.fa-solid,
+.fas,
+.far {
+    font-family: "Font Awesome 6 Free" !important;
+    font-weight: 900 !important;
+}
+
+.fa-brands,
+.fab {
+    font-family: "Font Awesome 6 Brands" !important;
+    font-weight: 400 !important;
+}
+
 /* BRANDING TITLE */
 
 .neon-title {
