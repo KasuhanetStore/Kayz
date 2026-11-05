@@ -286,7 +286,15 @@
 
 <header class="topbar">
   <div class="container nav">
-    <a class="brand" href="#home" aria-label="KasuhaNET home page"><span class="brand-mark">K<span style="color:#171820">N</span></span><span>KasuhaNET.STORE<small>Platform Servis Pelbagai Perkhidmatan</small></span></a>
+  <div id="branding-title"></div>
+
+<script>
+fetch("../template-text/MS/kasunanet-icon-official-MS.html")
+.then(response => response.text())
+.then(data => {
+    document.getElementById("branding-title").innerHTML = data;
+});
+</script>
     <nav class="nav-links" aria-label="Navigasi utama">
       <a href="index.html">UTAMA</a><a href="about-us-MS.html">TENTANG KAMI</a><a href="terms-MS.html">TERMA & POLISI</a><a href="support-centre-MS.html">SOKONGAN</a>
       <a class="btn btn-outline" href="../index.html" lang="en">EN</a><a class="btn btn-outline" href="index.html" lang="ms">MS</a>
