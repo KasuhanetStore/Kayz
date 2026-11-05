@@ -1,0 +1,287 @@
+/* =========================================
+   KASUHANET.STORE
+   ABOUT US THEME OVERRIDE
+   Dark Cyber Red / Orange
+========================================= */
+
+
+/* GLOBAL */
+
+body {
+    background:
+        radial-gradient(
+            circle at 80% 0%,
+            rgba(255,48,79,.14),
+            transparent 35%
+        ),
+        var(--bg);
+
+    color: var(--text);
+}
+
+
+/* HEADER */
+
+header {
+    background: rgba(8,9,13,.92);
+    border-bottom: 1px solid var(--line);
+
+    box-shadow:
+        0 4px 20px rgba(255,48,79,.12);
+}
+
+nav a {
+    color: var(--muted);
+    text-shadow: none;
+}
+
+nav a:hover {
+    color: var(--orange);
+    text-shadow: 0 0 12px rgba(255,122,53,.6);
+}
+
+
+/* DROPDOWN */
+
+.dropdown-content {
+    background: rgba(18,20,28,.97);
+    border: 1px solid var(--red);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.95),
+        0 0 18px rgba(255,48,79,.25);
+}
+
+.dropdown-content a {
+    color: var(--text) !important;
+}
+
+.dropdown-content a:hover {
+    background: linear-gradient(
+        90deg,
+        rgba(255,48,79,.18),
+        rgba(255,122,53,.18)
+    ) !important;
+
+    color: var(--orange) !important;
+    border-left-color: var(--orange);
+
+    text-shadow: 0 0 10px rgba(255,122,53,.5);
+}
+
+.dropdown-content a:not(:last-child) {
+    border-bottom-color: var(--line);
+}
+
+
+/* LANGUAGE */
+
+.lang {
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,48,79,.5);
+}
+
+.lang button {
+    color: var(--muted);
+}
+
+.lang button.active {
+    background: var(--gradient-main);
+    color: #fff;
+
+    box-shadow:
+        0 0 12px rgba(255,48,79,.5);
+}
+
+.lang button:hover:not(.active) {
+    color: var(--orange);
+}
+
+
+/* PARTNER BAR */
+
+.partner-credit-bar {
+    background: rgba(8,9,13,.9);
+    border-bottom: 1px dashed var(--line);
+}
+
+.credit-text {
+    color: var(--muted);
+}
+
+.partner-name {
+    color: var(--orange);
+
+    text-shadow:
+        0 0 8px rgba(255,122,53,.4);
+}
+
+.partner-logo-box {
+    background: var(--panel);
+    border: 1px solid var(--red);
+
+    box-shadow:
+        0 0 12px rgba(255,48,79,.3);
+}
+
+.partner-logo-box img {
+    filter: drop-shadow(0 0 3px var(--orange));
+}
+
+
+/* HERO */
+
+.neon-title {
+    color: var(--text);
+
+    text-shadow:
+        0 0 15px rgba(255,255,255,.25);
+}
+
+.neon-title span {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    filter:
+        drop-shadow(0 0 10px rgba(255,48,79,.5));
+}
+
+.hero-subtitle {
+    color: var(--orange);
+}
+
+.neon-desc {
+    color: var(--muted);
+    text-shadow: none;
+}
+
+.neon-desc::after {
+    background: linear-gradient(
+        90deg,
+        var(--red-dark),
+        var(--red),
+        var(--orange),
+        var(--red-dark)
+    );
+}
+
+
+/* MAIN CARDS */
+
+.card,
+.about-section {
+    background: rgba(18,20,28,.85);
+    border-color: var(--line);
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.5);
+}
+
+.card:hover {
+    border-color: var(--orange);
+
+    box-shadow:
+        0 0 20px rgba(255,122,53,.25),
+        inset 0 0 10px rgba(255,48,79,.08);
+}
+
+.card h3 {
+    color: var(--orange);
+}
+
+.card p {
+    color: var(--muted);
+}
+
+.about-title {
+    color: var(--text);
+}
+
+.about-title span {
+    color: var(--red);
+    text-shadow:
+        0 0 10px var(--red),
+        0 0 20px rgba(255,48,79,.5);
+}
+
+.about-text {
+    color: var(--muted);
+}
+
+.section-divider {
+    color: var(--orange);
+
+    text-shadow:
+        0 0 8px rgba(255,122,53,.5);
+}
+
+
+/* TRUST BANNER */
+
+.trust-banner-img {
+    filter:
+        drop-shadow(0 0 10px rgba(255,48,79,.2));
+}
+
+
+/* FOOTER */
+
+.footer {
+    background: #08090d;
+    border-top: 2px solid var(--red);
+
+    box-shadow:
+        0 -5px 30px rgba(255,48,79,.15);
+}
+
+.footer h3 {
+    color: var(--text);
+
+    text-shadow:
+        0 0 8px rgba(255,255,255,.2);
+}
+
+.footer h4 {
+    color: var(--orange);
+
+    text-shadow:
+        0 0 8px rgba(255,122,53,.4);
+}
+
+.footer p {
+    color: var(--muted);
+}
+
+.footer-links a {
+    color: #d8dbe4;
+}
+
+.footer-links a:hover {
+    color: var(--orange);
+
+    text-shadow:
+        0 0 8px rgba(255,122,53,.5);
+}
+
+.social-icons-wrapper a {
+    color: var(--red);
+    filter: drop-shadow(0 0 5px rgba(255,48,79,.5));
+}
+
+.social-icons-wrapper a:hover {
+    color: var(--orange);
+    filter: drop-shadow(0 0 10px var(--orange));
+}
+
+.footer-bottom {
+    color: var(--grey);
+    border-top-color: var(--line);
+}
+
+
+/* WHATSAPP */
+
+a[aria-label="Contact us on WhatsApp"] {
+    background: #25d366 !important;
+}
