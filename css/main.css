@@ -3,9 +3,6 @@
    BRANDING • TYPOGRAPHY • TRADEMARK THEME
    ===================================================== */
 
-/* GOOGLE FONT: ORBITRON */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&display=swap');
-
 /* BRAND COLOUR */
 :root {
     --brand-cyan: #00F0FF;
