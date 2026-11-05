@@ -6,6 +6,7 @@
 
 <!-- MAIN SEO -->
 <title>Terms & Policy | KasuhaNET.Store</title>
+<meta name="google-adsense-account" content="ca-pub-4280897190566760">
 <meta name="description" content="Terms & Conditions, Privacy Policy (PDPA), Refund Policy, and Legal Disclaimer for KasuhaNET.STORE.">
 <meta name="keywords" content="Terms and Conditions, Privacy Policy, PDPA Malaysia, KasuhaNET, Kasuhanet Resources">
 <meta property="og:title" content="Terms & Policy | KasuhaNET.Store">
@@ -17,11 +18,12 @@
 <meta property="og:locale" content="en_US">
 <meta name="robots" content="index, follow">
 <meta name="googlebot" content="index, follow">
-<meta name="theme-color" content="#05070d">
+<meta name="theme-color" content="#08090d">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
 <link rel="canonical" href="https://kasuhanet.store/terms-EN.html">
 <link rel="alternate" hreflang="en" href="https://kasuhanet.store/terms-EN.html">
-<link rel="alternate" hreflang="ms" href="https://kasuhanet.store/terms-MS.html">
+<link rel="alternate" hreflang="ms" href="https://kasuhanet.store/MS/terms-MS.html">
 <link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/terms-EN.html">
 
 <!-- TWITTER -->
@@ -30,15 +32,13 @@
 <meta name="twitter:description" content="Terms & Conditions, Privacy Policy (PDPA), Refund Policy, and Legal Disclaimer for KasuhaNET.STORE.">
 <meta name="twitter:image" content="https://kasuhanet.store/broadcast.png">
 
-<!-- FONTS & CSS LIBRARIES -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<!-- FONTS & LIBRARIES -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="css/main.css">
 
 <!-- FAVICONS -->
-<link rel="icon" type="image/png" sizes="32x32" href="https://kasuhanet.store/favicon.ico">
-<link rel="apple-touch-icon" sizes="180x180" href="https://kasuhanet.store/favicon.ico">
+<link rel="icon" type="image/png" href="favicon.png">
 <link rel="shortcut icon" href="https://kasuhanet.store/favicon.ico">
 
 <script type="application/ld+json">
@@ -53,463 +53,131 @@
 </script>
   
 <style>
-/* GLOBAL CYBER FONT & RESET */
-* {
-    font-family: 'Orbitron', sans-serif !important;
-    box-sizing: border-box;
-}
-
-html {
-    height: 100%;
-}
-
-body {
-    background-color: #030509;
-    color: #fff;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    animation: pageFadeIn 0.8s ease-out forwards;
-    
-    /* FIX FOOTER TO BOTTOM */
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-.page-fade-out {
-    animation: pageFadeOut 0.5s ease-in forwards !important;
-}
-
-@keyframes pageFadeIn {
-    0% { opacity: 0; transform: translateY(8px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes pageFadeOut {
-    0% { opacity: 1; transform: translateY(0); }
-    100% { opacity: 0; transform: translateY(-8px); }
-}
-
-main {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px 15px 40px 15px;
-    width: 100%;
-    
-    /* PUSH FOOTER TO BOTTOM WHEN CONTENT IS SHORT */
-    flex: 1 0 auto;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    background: rgba(5, 7, 13, 0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(0, 240, 255, 0.3);
-    box-shadow: 0 4px 20px rgba(0, 240, 255, 0.15);
-    position: relative;
-    z-index: 10000;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-nav {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-nav a {
-    color: #b0c0f0;
-    text-decoration: none;
-    font-size: 13px;
-    transition: all 0.3s ease;
-    text-shadow: 0 0 5px rgba(0, 240, 255, 0.2);
-}
-
-nav a:hover {
-    color: #00F0FF;
-    text-shadow: 0 0 12px #00F0FF, 0 0 20px #00F0FF;
-}
-
-/* DROPDOWN MENU MODERN CYBERPUNK */
-.dropdown {
-    position: relative;
-    display: inline-block;
-    z-index: 99999;
-}
-
-.dropdown-content {
-    display: block;
-    opacity: 0;
-    visibility: hidden;
-    position: absolute;
-    top: 130%;
-    left: 0;
-    min-width: 230px;
-    padding: 8px 0;
-    background: rgba(5, 8, 18, 0.95);
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    border: 1px solid #00F0FF;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.95),
-                0 0 18px rgba(0, 240, 255, 0.4),
-                inset 0 0 10px rgba(0, 240, 255, 0.15);
-    z-index: 999999;
-    transform: translateY(-8px) scale(0.98);
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.dropdown-content.show,
-.dropdown:hover .dropdown-content {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
-}
-
-.dropdown-content a {
-    color: #d1d5db !important;
-    padding: 12px 18px !important;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    font-size: 11px !important;
-    font-weight: 600;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
-    border-left: 3px solid transparent;
-    transition: all 0.2s ease-in-out;
-}
-
-.dropdown-content a:hover {
-    background: linear-gradient(90deg, rgba(0, 240, 255, 0.18), rgba(230, 0, 164, 0.18)) !important;
-    color: #00F0FF !important;
-    border-left: 3px solid #00F0FF;
-    padding-left: 22px !important;
-    text-shadow: 0 0 10px #00F0FF, 0 0 20px rgba(0, 240, 255, 0.6);
-}
-
-.dropdown-content a:not(:last-child) {
-    border-bottom: 1px solid rgba(0, 240, 255, 0.1);
-}
-
-/* SOCIAL ICONS STYLES */
-.social-icons-wrapper {
-    display: flex;
-    gap: 15px;
-    margin-top: 10px;
-}
-
-.social-icons-wrapper a {
-    color: #ff85a1;
-    font-size: 22px;
-    transition: 0.3s ease;
-    filter: drop-shadow(0 0 5px #ff85a1);
-}
-
-.social-icons-wrapper a:hover {
-    color: #00F0FF;
-    transform: scale(1.2);
-    filter: drop-shadow(0 0 10px #00F0FF);
-}
-
-/* BUTTON LANGUAGE TOGGLE */
-.lang-wrapper {
-    display: inline-block;
-}
-
-.lang {
-    display: flex;
-    gap: 4px;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 3px;
-    border-radius: 6px;
-    border: 1px solid rgba(79, 49, 232, 0.6);
-}
-
-.lang button {
-    background: transparent;
-    border: none;
-    color: #8fa0dd;
-    padding: 4px 10px;
-    font-size: 11px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-}
-
-.lang button.active {
-    background: linear-gradient(135deg, #4F31E8, #00F0FF);
-    color: #fff;
-    box-shadow: 0 0 12px rgba(0, 240, 255, 0.8);
-    font-weight: bold;
-}
-
-.lang button:hover:not(.active) {
-    color: #00F0FF;
-    text-shadow: 0 0 8px #00F0FF;
-}
-
-/* PARTNER CREDIT BAR */
-.partner-credit-bar {
-    background: rgba(9, 13, 22, 0.8);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px dashed rgba(0, 240, 255, 0.3);
-    padding: 10px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    text-align: center;
-}
-
-.credit-text {
-    font-size: 10px;
-    color: #8fa0dd;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-.partner-logos {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-}
-
-.partner-name {
-    font-size: 11px;
-    color: #00F0FF;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
-}
-
-.partner-logo-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(5, 7, 13, 0.9);
-    border: 1px solid rgba(230, 0, 164, 0.5);
-    padding: 4px 8px;
-    border-radius: 4px;
-    box-shadow: 0 0 12px rgba(230, 0, 164, 0.3);
-}
-
-.partner-logo-box img {
-    height: 14px;
-    width: auto;
-    filter: drop-shadow(0 0 3px #00F0FF);
-}
-
-/* TERMS & POLICY CONTENT STYLES */
-.terms-container {
-    background: rgba(13, 18, 30, 0.65);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 240, 255, 0.3);
-    border-radius: 12px;
-    padding: 35px 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 240, 255, 0.15);
-    margin-top: 10px;
-}
-
-.neon-title-terms {
-    font-size: clamp(28px, 5vw, 45px);
-    text-align: center;
-    margin: 0 0 5px 0;
-    font-weight: 900;
-    color: #ffffff;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-}
-
-.neon-title-terms span {
-    background: linear-gradient(135deg, #E600A4, #ff3366, #00F0FF);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 12px rgba(230, 0, 164, 0.8));
-}
-
-.terms-container h2 {
-    color: #00F0FF;
-    font-size: 1.3rem;
-    margin-top: 30px;
-    margin-bottom: 12px;
-    border-bottom: 1px solid rgba(0, 240, 255, 0.2);
-    padding-bottom: 8px;
-    text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
-}
-
-.terms-container h3 {
-    color: #ff3366;
-    font-size: 1rem;
-    margin-top: 18px;
-    margin-bottom: 8px;
-    text-shadow: 0 0 6px rgba(255, 51, 102, 0.4);
-}
-
-.terms-container p {
-    color: #c9d1d9;
-    font-size: 0.9rem;
-    line-height: 1.7;
-    margin-bottom: 12px;
-}
-
-.terms-container ul {
-    margin: 0 0 15px 0;
-    padding-left: 20px;
-    color: #c9d1d9;
-}
-
-.terms-container li {
-    font-size: 0.88rem;
-    line-height: 1.6;
-    margin-bottom: 8px;
-}
-
-.terms-container strong {
-    color: #00ffcc;
-}
-
-/* FOOTER DESIGN MODEN */
-.footer {
-    background: #060911;
-    border-top: 2px solid #00F0FF;
-    box-shadow: 0 -5px 30px rgba(0, 240, 255, 0.2);
-    margin-top: auto;
-    padding: 35px 20px 15px 20px;
-    width: 100%;
-    flex-shrink: 0;
-}
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 25px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.footer h4 {
-    color: #E600A4;
-    margin: 0 0 10px 0;
-    font-size: 14px;
-    text-shadow: 0 0 8px #E600A4;
-}
-
-.footer p {
-    color: #a0aec0;
-    font-size: 12px;
-    line-height: 1.6;
-    margin: 0;
-}
-
-.footer-links {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.footer-links a {
-    color: #cbd5e0;
-    text-decoration: none;
-    font-size: 12px;
-    transition: all 0.3s ease;
-}
-
-.footer-links a:hover {
-    color: #00F0FF;
-    padding-left: 5px;
-    text-shadow: 0 0 8px #00F0FF;
-}
-
-.footer-bottom {
-    text-align: center;
-    font-size: 11px;
-    color: #718096;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    margin-top: 25px;
-}
-
-/* FONT AWESOME FIXES */
-.fa-solid, .fas, .far {
-  font-family: "Font Awesome 6 Free" !important;
-  font-weight: 900 !important;
-}
-
-.fa-brands, .fab {
-  font-family: "Font Awesome 6 Brands" !important;
-  font-weight: 400 !important;
-}
-
-/* MOBILE RESPONSIVE FIXES */
-@media (max-width: 600px) {
-    header {
-        flex-direction: column;
-        gap: 10px;
+    :root {
+      --bg: #08090d;
+      --panel: #12141c;
+      --panel-2: #191b25;
+      --text: #f6f7fb;
+      --muted: #b9bdca;
+      --red: #ff304f;
+      --red-dark: #a90025;
+      --orange: #ff7a35;
+      --line: rgba(255,255,255,.12);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 80% 0%, rgba(255,48,79,.14), transparent 30%), var(--bg);
+      color: var(--text);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1120px, calc(100% - 36px)); margin: 0 auto; }
+    .topbar {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(8,9,13,.88); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 11px; font-weight: 900; letter-spacing: .5px; }
+    .brand-mark {
+      width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px;
+      background: linear-gradient(135deg, var(--red), #ff814a); color: white; font-weight: 1000;
+      box-shadow: 0 0 28px rgba(255,48,79,.28);
+    }
+    .brand small { display: block; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 24px; color: #d8dbe4; font-size: 14px; }
+    .nav-links a:hover { color: #ff667d; }
+    .btn {
+      display: inline-flex; justify-content: center; align-items: center; gap: 8px;
+      padding: 12px 18px; border-radius: 10px; border: 1px solid transparent;
+      font-weight: 800; font-size: 14px; cursor: pointer; transition: .2s ease;
+    }
+    .btn-primary { background: linear-gradient(120deg, var(--red-dark), var(--red), var(--orange)); color: white; box-shadow: 0 8px 28px rgba(255,48,79,.2); }
+    .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.1); }
+    .btn-outline { border-color: rgba(255,255,255,.2); color: white; background: rgba(255,255,255,.03); }
+    .btn-outline:hover { border-color: var(--red); }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: #ff8b9c; font-size: 12px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 25px; height: 2px; background: linear-gradient(90deg,var(--red),var(--orange)); }
+    .gradient-text { background: linear-gradient(100deg,#fff 0%,#ff7187 48%,#ff9b52 100%); color: transparent; background-clip: text; -webkit-background-clip: text; }
+    .section { padding: 68px 0; }
+    .service-card { background: linear-gradient(145deg,var(--panel-2),var(--panel)); border: 1px solid var(--line); border-radius: 17px; padding: 24px; }
+    .feature-list { list-style: none; margin: 0 0 15px; padding: 0; }
+    .feature-list li { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.07); color: #e4e6ed; font-size: 14px; }
+    .feature-list li::before { content: "✓"; color: #ff657c; font-weight: 900; margin-right: 10px; }
+    footer { border-top: 1px solid var(--line); margin-top: 30px; padding: 28px 0; color: #aeb2c0; font-size: 12px; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .whatsapp-float {
+      position: fixed; right: 20px; bottom: 20px; z-index: 30; width: 60px; height: 60px; border-radius: 50%;
+      display: grid; place-items: center; color: #fff; background: linear-gradient(135deg,#25d366,#0b9d58);
+      box-shadow: 0 10px 30px rgba(37,211,102,.35); border: 2px solid rgba(255,255,255,.85); transition: transform .2s;
+    }
+    .whatsapp-float:hover { transform: translateY(-4px) scale(1.04); }
+    .whatsapp-float svg { width: 30px; height: 30px; fill: currentColor; }
+    .partner-credit-bar {
+        background-color: var(--bg, #08090d);
+        border-top: 1px solid var(--line, rgba(255, 255, 255, 0.12));
+        border-bottom: 1px solid var(--line, rgba(255, 255, 255, 0.12));
+        padding: 22px 15px;
         text-align: center;
+        font-family: 'Orbitron', sans-serif;
+        color: var(--text, #f6f7fb);
+        box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.9);
+        width: 100%;
     }
-    .header-right {
-        flex-direction: column;
-        gap: 10px;
-    }
-    .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    .terms-container {
-        padding: 20px 15px;
-    }
-}
+    .credit-text { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted, #b9bdca); margin-bottom: 14px; font-weight: 400; }
+    .partner-logos { display: flex; justify-content: center; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .partner-name { color: #00f3ff; font-size: 0.92rem; font-weight: 700; letter-spacing: 1px; }
+    .partner-logo-box { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--red, #ff304f); border-radius: 4px; background-color: #0c0e15; padding: 2px; }
+    .partner-logo-box img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+    
+    .dropdown { position: relative; display: inline-block; }
+    .dropdown-content { display: none; position: absolute; background-color: #12141c; min-width: 200px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5); z-index: 1; border: 1px solid var(--line); border-radius: 8px; padding: 8px 0; }
+    .dropdown-content a { color: var(--text); padding: 10px 16px; text-decoration: none; display: block; font-size: 13px; }
+    .dropdown-content a:hover { background-color: rgba(255,48,79,0.15); }
+    .dropdown-content.show { display: block; }
+
+    @media(max-width:850px){ .nav-links a:not(.btn) { display: none; } }
 </style>
 </head>
 
 <body>
 
-<header>
-    <div class="logo">
-        <img src="img/logo3.png" style="height:25px; width:auto;" alt="KasuhaNET Logo">
+<!-- HEADER -->
+<header class="topbar">
+  <div class="container nav">
+    <div class="brand">
+      <div class="brand-mark">K</div>
+      <div>
+        KasuhaNET
+        <small>STORE</small>
+      </div>
     </div>
-
-    <div class="header-right">
-        <nav>
-            <div class="dropdown">
-                <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
-                    Oversea <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #00F0FF;"></i>
+    
+    <nav class="nav-links" aria-label="Main Navigation">
+        <div class="dropdown">
+            <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
+                Overseas <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #ff7187;"></i>
+            </a>
+            <div class="dropdown-content" id="servicesDropdown">
+                <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">
+                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: #00F0FF;"></i> RWANDA (Africa)
                 </a>
-                <div class="dropdown-content" id="servicesDropdown">
-                    <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">
-                        <i class="fa-solid fa-globe" style="margin-right: 8px; color: #00F0FF;"></i> RWANDA (Africa)
-                    </a>
-                    <a href="https://kasuhanet.store/Timor-Leste-SupportDevelopement.html">
-                        <i class="fa-solid fa-globe" style="margin-right: 8px; color: #E600A4;"></i> TIMOR LESTE (Asia)
-                    </a>
-                </div>
-            </div>
-            <a href="index.html">HOME</a>
-            <a href="about-us-EN.html">ABOUT US</a>
-            <a href="terms-EN.html">TERMS & POLICY</a>
-            <a href="support-centre-EN.html">SUPPORT</a>
-        </nav>
-
-        <div class="lang-wrapper">
-            <div class="lang">
-                <a href="terms-EN.html"><button id="btn-en" class="active">EN</button></a>
-                <a href="MS/terms-MS.html"><button id="btn-ms">BM</button></a>
+                <a href="https://kasuhanet.store/Timor-Leste-SupportDevelopement.html">
+                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: #E600A4;"></i> TIMOR LESTE (Asia)
+                </a>
             </div>
         </div>
-    </div>
+        <a href="index.html">HOME</a>
+        <a href="about-us-EN.html">ABOUT US</a>
+        <a href="terms-EN.html" style="color: var(--red);">TERMS & POLICY</a>
+        <a href="support-centre-EN.html">SUPPORT</a>
+        <a class="btn btn-outline" href="terms-EN.html" lang="en">EN</a>
+        <a class="btn btn-outline" href="MS/terms-MS.html" lang="ms">MS</a>
+    </nav>
+  </div>
 </header>
 
 <!-- PARTNER CREDIT BAR -->
@@ -527,154 +195,98 @@ nav a:hover {
 </div>
 
 <main>
-    <div class="terms-container">
+  <!-- HERO SECTION -->
+  <section class="section" style="padding: 40px 0 20px;">
+    <div class="container">
+      <span class="eyebrow">Official Documents & Legal</span>
+      <h1 style="font-size: clamp(32px, 5vw, 50px); line-height: 1.1; margin: 15px 0; font-family: 'Orbitron', sans-serif;">
+        Terms & <span class="gradient-text">Policy</span>
+      </h1>
+      <p style="color: var(--muted); font-size: 15px; font-family: 'Orbitron', sans-serif;">Last Updated: June 2026</p>
+    </div>
+  </section>
 
-        <h1 class="neon-title-terms">TERMS & <span>POLICY</span></h1>
-        <p style="text-align:center; font-size:12px; color:#8fa0dd; margin-bottom: 25px;">Last Updated: June 2026</p>
-
-        <!-- SECTION 1 -->
-        <h2>1. Terms & Conditions</h2>
-        <p>
-          Welcome to KasuhaNET.STORE. By accessing and using this website, you agree to comply with and be bound by the following terms. If you disagree with any part of these terms, please discontinue use immediately.
-        </p>
-
-        <h3>User Responsibilities & Acceptable Use</h3>
-        <ul>
-          <li>You agree not to use this website for any illegal, unauthorized, or fraudulent purposes.</li>
+  <!-- CONTENT SECTION -->
+  <section class="section" style="padding-top: 10px;">
+    <div class="container" style="display: flex; flex-direction: column; gap: 20px;">
+      
+      <!-- KOTAK 1 -->
+      <article class="service-card" style="padding: 30px;">
+        <h2 style="font-size: 20px; margin-top: 0; margin-bottom: 12px; color: var(--text); font-family: 'Orbitron', sans-serif;">1. Terms & Conditions</h2>
+        <p style="color: var(--muted); font-size: 14px; margin-bottom: 15px;">Welcome to KasuhaNET.STORE. By accessing and using this website, you agree to comply with and be bound by the following terms and conditions. If you do not agree with any part of these terms, please discontinue use immediately.</p>
+        
+        <h3 style="font-size: 15px; margin-top: 18px; margin-bottom: 8px; color: var(--text); font-family: 'Orbitron', sans-serif;">User Responsibilities & Acceptable Use</h3>
+        <ul class="feature-list" style="font-size: 14px;">
+          <li>You agree not to use this website for any unlawful, unauthorized, or fraudulent purposes.</li>
           <li>Any attempt to disrupt, hack, reverse-engineer, or compromise the security of the website or networks is strictly prohibited.</li>
           <li>All intellectual property, source code, and graphics belong to Kasuhanet Resources and may not be copied without permission.</li>
         </ul>
 
-        <h3>Limitation of Liability</h3>
-        <p>
-          KasuhaNET.STORE and Kasuhanet Resources provide services on an 'as-is' basis. We shall not be held liable for any financial losses, damages, or system interruptions resulting from the use of our platform.
-        </p>
+        <h3 style="font-size: 15px; margin-top: 18px; margin-bottom: 8px; color: var(--text); font-family: 'Orbitron', sans-serif;">Limitation of Liability</h3>
+        <p style="color: var(--muted); font-size: 14px; margin: 0;">KasuhaNET.STORE and Kasuhanet Resources provide services on an 'as-is' basis. We are not responsible for any financial losses, damages, or system disruptions arising from the use of our platform.</p>
+      </article>
 
-        <!-- SECTION 2 -->
-        <h2>2. Privacy Policy (PDPA & Global Compliance)</h2>
-        <p>
-          We respect your privacy and comply with the Personal Data Protection Act 2010 (PDPA) of Malaysia as well as applicable international privacy standards.
-        </p>
-
-        <h3>Data Collection & Usage</h3>
-        <ul>
-          <li>We may collect personal data such as your name, email address, and transaction logs during purchase or registration.</li>
-          <li>Your data is strictly used for order processing, technical support setup, and improving our services.</li>
-          <li>We do not sell, rent, or lease your personal data to any third parties.</li>
+      <!-- KOTAK 2 -->
+      <article class="service-card" style="padding: 30px;">
+        <h2 style="font-size: 20px; margin-top: 0; margin-bottom: 12px; color: var(--text); font-family: 'Orbitron', sans-serif;">2. Privacy Policy (PDPA & Global Compliance)</h2>
+        <p style="color: var(--muted); font-size: 14px; margin-bottom: 15px;">We respect your privacy and comply with the Personal Data Protection Act 2010 (PDPA) of Malaysia and relevant international privacy standards.</p>
+        
+        <h3 style="font-size: 15px; margin-top: 18px; margin-bottom: 8px; color: var(--text); font-family: 'Orbitron', sans-serif;">Data Collection & Usage</h3>
+        <ul class="feature-list" style="font-size: 14px;">
+          <li>We may collect personal data such as your name, email address, and transaction records during purchases or registration.</li>
+          <li>Your data is used specifically for order processing, technical support provision, and service improvements.</li>
+          <li>We will not sell, rent, or lease your personal data to any third parties.</li>
         </ul>
+      </article>
 
-        <h3>Third-Party Advertising & Cookies (Google AdSense)</h3>
-        <ul>
-          <li>We use third-party advertising companies, including Google AdSense, to serve ads when you visit our website.</li>
-          <li>These companies may use cookies and web beacons to collect non-personally identifiable information (such as your IP address, browser type, and browsing behavior) to display personalized advertisements based on your visits to this site and other websites on the Internet.</li>
-          <li>Users may opt out of personalized advertising by visiting Google's Ads Settings or by managing cookie preferences in their web browser.</li>
+      <!-- KOTAK 3 -->
+      <article class="service-card" style="padding: 30px;">
+        <h2 style="font-size: 20px; margin-top: 0; margin-bottom: 12px; color: var(--text); font-family: 'Orbitron', sans-serif;">3. Refund & Cancellation Policy</h2>
+        <p style="color: var(--muted); font-size: 14px; margin-bottom: 15px;">Since our products involve digital goods and instant electronic services, the following refund policies apply:</p>
+        <ul class="feature-list" style="font-size: 14px;">
+          <li><strong>Digital Products & Subscriptions:</strong> All digital download sales, license keys, and activated services are final and non-refundable once processed or accessed.</li>
+          <li><strong>Refund Eligibility:</strong> Refund requests will only be considered if a server-side technical issue occurs and cannot be resolved by our support team within 7 working days.</li>
         </ul>
+      </article>
 
-        <!-- SECTION 3 -->
-        <h2>3. Refund & Cancellation Policy</h2>
-        <p>
-          Due to the nature of digital goods and instant electronic services, specific refund conditions apply:
-        </p>
-        <ul>
-          <li><strong>Digital Products & Subscriptions:</strong> All sales of digital downloads, license keys, and activated services are final and non-refundable once delivered or accessed.</li>
-          <li><strong>Service Eligibility:</strong> Refunds may only be considered if a technical issue originates from our servers and cannot be resolved within 7 business days by our support team.</li>
-          <li><strong>Refund Requests:</strong> To request a review for a refund, please contact our support team via our official channels with your transaction details and proof of purchase.</li>
-        </ul>
-
-        <!-- SECTION 4 -->
-        <h2>4. Legal Disclaimer</h2>
-        <p>
-          All information, tools, and services provided on KasuhaNET.STORE are for general informational, educational, and operational purposes only.
-        </p>
-        <ul>
-          <li><strong>No Financial Guarantees:</strong> Any earnings, income representations, or affiliate results mentioned on this site are illustrative only and do not guarantee future earnings.</li>
-          <li><strong>External Links:</strong> Our platform may contain links to third-party websites. Kasuhanet Resources is not responsible for the content, privacy policies, or practices of external sites.</li>
-          <li><strong>As-Is Provision:</strong> All tools, setups, and scripts are provided "as is" without warranties of any kind, either expressed or implied.</li>
-        </ul>
-
-        <!-- SECTION 5 -->
-        <h2>5. Governing Law & International Access</h2>
-        <p>
-          These terms shall be governed by and construed in accordance with the laws of Malaysia. For international users accessing this platform from outside Malaysia, you are solely responsible for compliance with all applicable local, regional, and international digital laws, privacy regulations (including GDPR or equivalent), and cross-border data transfer policies. Any legal disputes shall be subject to the exclusive jurisdiction of the courts of Malaysia.
-        </p>
+      <!-- KOTAK 4 -->
+      <article class="service-card" style="padding: 30px;">
+        <h2 style="font-size: 20px; margin-top: 0; margin-bottom: 12px; color: var(--text); font-family: 'Orbitron', sans-serif;">4. Legal Disclaimer</h2>
+        <p style="color: var(--muted); font-size: 14px; margin-bottom: 10px;">All information, tools, and services provided on KasuhaNET.STORE are for general informational, educational, and operational purposes only.</p>
+        <p style="color: var(--muted); font-size: 14px; margin: 0;">These terms are governed and interpreted in accordance with the laws of Malaysia. For international users accessing this platform outside Malaysia, you are solely responsible for complying with all local, regional, and international digital laws.</p>
+      </article>
 
     </div>
+  </section>
 </main>
 
-<!-- BOXED CYBER FOOTER -->
-<footer class="footer">
-    <div class="footer-grid">
-        <div>
-            <div class="logo">
-                <img src="img/logo3.png" style="height:25px; width:auto;" alt="KasuhaNET Logo">
-            </div>
-            <p style="margin-top:8px;"><strong>K</strong>asuha<strong>NET•STORE | DIGITAL STORE PLATFORM</strong></p>
-        </div>
-
-        <div class="footer-links">
-            <h4>Services</h4>
-            <a href="CommandCanDoLIST.html">CommandCanDo</a>
-            <a href="Shop-MyAffliate-homeEN.html">MyAffiliate</a>
-            <a href="CashOutServicePayLater.html">PayLater BNPL</a>
-        </div>
-
-        <div class="footer-links">
-            <h4>Resources</h4>
-            <a href="about-us-EN.html">About Us</a>
-            <a href="support-centre-EN.html">Support</a>
-            <a href="terms-EN.html">Terms & Policy</a>
-        </div>
-
-        <div class="footer-links">
-            <h4>Follow Us</h4>
-            <div class="social-icons-wrapper">
-                <a href="https://www.facebook.com/share/1BfeDZJqjP/" target="_blank" rel="noopener" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-                <a href="https://tiktok.com/@kasuhanet.store" target="_blank" rel="noopener" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                <a href="https://t.me/kasuhanetstorebot" target="_blank" rel="noopener" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
-            </div>
-        </div>
+<!-- FOOTER -->
+<footer>
+  <div class="container footer-inner">
+    <div>
+      <strong>KasuhaNET.STORE | Digital Store Platform</strong><br>
+      <span>Services: CommandCanDo • MyAffiliate • PayLater BNPL</span>
     </div>
-
-    <div class="footer-bottom">
-        © <strong>2026 KasuhaNET Resources (202503248308). All Rights Reserved.</strong>
+    <div>
+      <span>Follow Us: </span>
+      <a href="https://www.facebook.com/share/1BfeDZJqjP/" target="_blank" rel="noopener">Facebook</a> · 
+      <a href="https://tiktok.com/@kasuhanet.store" target="_blank" rel="noopener">TikTok</a> · 
+      <a href="https://t.me/kasuhanetstorebot" target="_blank" rel="noopener">Telegram</a><br>
+      <span>© <span id="year"></span> <strong>KasuhaNET Resources (202503248308). All Rights Reserved.</strong></span>
     </div>
+  </div>
 </footer>
 
-<!-- WHATSAPP FLOATING BUTTON -->
-<a href="https://wa.me/qr/4K2RBZZQAPL4G1"
-   style="
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    width:60px;
-    height:60px;
-    background:#25D366;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    z-index:999999;
-    box-shadow:0 5px 20px rgba(37,211,102,0.5);
-    transition: transform 0.3s ease;
-   "
-   onmouseover="this.style.transform='scale(1.1)'"
-   onmouseout="this.style.transform='scale(1)'"
-   target="_blank"
-   rel="noopener"
-   aria-label="Contact us on WhatsApp">
-   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="white">
-     <path d="M19.11 17.53c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.64.14-.19.28-.73.9-.9 1.09-.17.19-.33.21-.61.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.66-1.55-1.94-.17-.28-.02-.43.12-.57.13-.13.28-.33.42-.50.14-.17.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.64-1.55-.88-2.12-.23-.56-.47-.48-.64-.49h-.55c-.19 0-.49.07-.74.35-.25.28-.95.93-.95 2.26s.97 2.62 1.11 2.8c.14.19 1.9 2.9 4.6 4.07.64.28 1.14.45 1.53.57.64.2 1.22.17 1.68.1.51-.08 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.12-.26-.19-.54-.33z"/>
-     <path d="M16 3C9.37 3 4 8.37 4 15c0 2.31.66 4.47 1.8 6.32L4 29l7.9-1.75C13.64 28.55 14.78 29 16 29c6.63 0 12-5.37 12-12S22.63 3 16 3zm0 22c-1.1 0-2.16-.2-3.14-.57l-.45-.17-4.69 1.04 1-4.57-.3-.47C7.39 18.35 7 16.72 7 15c0-4.96 4.04-9 9-9s9 4.04 9 9-4.04 10-9 10z"/>
-   </svg>
+<!-- WHATSAPP FLOAT -->
+<a class="whatsapp-float" id="floating-whatsapp" href="https://wa.me/60123456789" target="_blank" rel="noopener" aria-label="Contact WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.02 3C8.86 3 3.04 8.8 3.04 15.94c0 2.28.6 4.5 1.75 6.46L3 29l6.78-1.77a13.05 13.05 0 0 0 6.23 1.58h.01c7.15 0 12.97-5.8 12.97-12.94A12.9 12.9 0 0 0 16.02 3zm0 23.62h-.01a10.8 10.8 0 0 1-5.5-1.5l-.4-.24-4.02 1.05 1.07-3.91-.26-.4a10.7 10.7 0 0 1-1.65-5.68c0-5.93 4.83-10.75 10.78-10.75 2.88 0 5.59 1.12 7.62 3.15a10.67 10.67 0 0 1 3.15 7.6c0 5.93-4.83 10.75-10.78 10.75zm5.91-8.05c-.32-.16-1.9-.94-2.2-1.05-.3-.11-.51-.16-.73.16-.21.32-.83 1.05-1.02 1.27-.19.21-.38.24-.7.08-.32-.16-1.35-.5-2.57-1.6-.95-.84-1.6-1.88-1.79-2.2-.19-.32-.02-.49.14-.65.14-.14.32-.38.48-.57.16-.19.32-.21.54-.03.16-.08-.73-1.75-1-2.4-.26-.63-.53-.54-.73-.55h-.62c-.21 0-.56.4-.86.4-.3.32-1.13 1.1-1.13 2.68s1.16 3.1 1.32 3.31c.21.32 2.28 3.48 5.53 4.88.77.33 1.37.53 1.84.68.77.24 1.47.21 2.02.13.62-.09 1.9-.78 2.17-1.53.27-.75.19-1.4.19-1.53-.08-.14-.29-.22-.61-.38z"/></svg>
 </a>
 
-<!-- SCRIPT UNTUK DROPDOWN & PAGE FADE OUT -->
 <script>
   function toggleDropdown() {
     document.getElementById("servicesDropdown").classList.toggle("show");
   }
 
-  // Tutup dropdown jika pengguna menekan di luar menu
   window.addEventListener('click', function(e) {
     if (!e.target.matches('.dropdown a') && !e.target.matches('.dropdown i')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -686,26 +298,8 @@ nav a:hover {
         }
     }
   });
-  
-  // SCRIPT UNTUK KESAN FADE OUT APABILA MENEKAN PAUTAN (PAGE TRANSITION)
-  document.addEventListener("DOMContentLoaded", function() {
-    var links = document.querySelectorAll("a");
-    links.forEach(function(link) {
-      link.addEventListener("click", function(e) {
-        var href = this.getAttribute("href");
-        var target = this.getAttribute("target");
 
-        // Hanya jalankan fade-out untuk link dalaman biasa
-        if (href && !href.startsWith("#") && !href.startsWith("javascript") && target !== "_blank") {
-          e.preventDefault();
-          document.body.classList.add("page-fade-out");
-          setTimeout(function() {
-            window.location.href = href;
-          }, 450);
-        }
-      });
-    });
-  });
+  document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
