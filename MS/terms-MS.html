@@ -1,609 +1,153 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>KasuhaNET.STORE | TERMA & POLISI</title>
-
 <meta name="google-adsense-account" content="ca-pub-4280897190566760">
 <meta name="description" content="Terma dan syarat, Polisi Privasi (PDPA), Polisi Pemulangan Wang, dan Penafian Undang-undang untuk KasuhaNET.STORE.">
 <meta name="robots" content="index, follow">
 
-<link rel="canonical" href="https://kasuhanet.store/MS/terms-MS.html">
-
+<!-- FONT -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="icon" type="image/png" href="../favicon.png">
 <meta name="theme-color" content="#08090d">
 
-<!-- FONT AWESOME -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-<!-- GLOBAL BRANDING -->
-<link rel="stylesheet" href="../css/Branding.css">
-
-<!-- MAIN JS -->
-<script src="../js/home-main.js" defer></script>
-
-<style>
-
-/* =====================================================
-   GLOBAL THEME
-===================================================== */
-
-:root {
-    --bg: #08090d;
-    --panel: #12141c;
-    --panel-2: #191b25;
-    --text: #f6f7fb;
-    --muted: #b9bdca;
-    --red: #ff304f;
-    --red-dark: #a90025;
-    --orange: #ff7a35;
-    --line: rgba(255,255,255,.12);
-}
-
-* {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    margin: 0;
-    background:
-        radial-gradient(
-            circle at 80% 0%,
-            rgba(255,48,79,.14),
-            transparent 30%
-        ),
-        var(--bg);
-    color: var(--text);
-    font-family: Inter, Arial, Helvetica, sans-serif;
-    line-height: 1.6;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.container {
-    width: min(1120px, calc(100% - 36px));
-    margin: 0 auto;
-}
-
-/* =====================================================
-   NAVBAR HEADER
-===================================================== */
-
-.topbar {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(8,9,13,.96);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(255,255,255,.10);
-}
-
-.nav {
-    min-height: 76px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 28px;
-}
-
-/* BRAND LOGO */
-
-#branding-title {
-    flex-shrink: 0;
-}
-
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 11px;
-    font-weight: 900;
-    letter-spacing: .5px;
-}
-
-.brand-mark {
-    width: 42px;
-    height: 42px;
-    display: grid;
-    place-items: center;
-    border-radius: 12px;
-    background: linear-gradient(135deg,var(--red),var(--orange));
-    color: white;
-    font-weight: 1000;
-    box-shadow: 0 0 28px rgba(255,48,79,.28);
-}
-
-.brand small {
-    display: block;
-    color: var(--muted);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 2px;
-}
-
-/* NAVIGATION MENU */
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 30px;
-    color: #d8dbe4;
-    font-size: 15px;
-    white-space: nowrap;
-}
-
-.nav-links a {
-    transition: .2s ease;
-}
-
-.nav-links a:hover {
-    color: #ff667d;
-}
-
-/* ACTIVE MENU */
-
-.nav-links .active {
-    color: var(--red);
-}
-
-/* LANGUAGE BUTTON */
-
-.nav-links .language-btn {
-    min-width: 80px;
-    height: 58px;
-    padding: 0 22px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 18px;
-    background: rgba(255,255,255,.025);
-    color: #fff;
-    font-weight: 800;
-    font-size: 15px;
-}
-
-.nav-links .language-btn:hover {
-    border-color: var(--red);
-    color: #ff7187;
-}
-
-/* =====================================================
-   LUAR NEGARA DROPDOWN
-===================================================== */
-
-.dropdown {
-    position: relative;
-    flex-shrink: 0;
-}
-
-.dropdown > a {
-    color: #d8dbe4;
-    font-size: 15px;
-    cursor: pointer;
-    white-space: nowrap;
-}
-
-.dropdown > a:hover {
-    color: #ff7187;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    top: calc(100% + 12px);
-    left: 0;
-    min-width: 220px;
-    background: #12141c;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 8px;
-    z-index: 200;
-    box-shadow: 0 10px 30px rgba(0,0,0,.5);
-}
-
-.dropdown-content.show {
-    display: block;
-}
-
-.dropdown-content a {
-    display: block;
-    padding: 12px;
-    border-radius: 6px;
-    color: #d8dbe4;
-    font-size: 13px;
-}
-
-.dropdown-content a:hover {
-    background: rgba(255,48,79,.12);
-    color: #ff7187;
-}
-
-/* =====================================================
-   PARTNER CREDIT BAR
-===================================================== */
-
-.partner-credit-bar {
-    background-color: var(--bg);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    padding: 22px 15px;
-    text-align: center;
-    font-family: 'Orbitron', Arial, sans-serif;
-    color: var(--text);
-    box-shadow: inset 0 0 20px rgba(0,0,0,.9);
-    width: 100%;
-}
-
-.credit-text {
-    font-size: .72rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 14px;
-    font-weight: 400;
-}
-
-.partner-logos {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-}
-
-.partner-name {
-    color: #00f3ff;
-    font-size: .92rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
-
-.partner-logo-box {
-    width: 34px;
-    height: 34px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--red);
-    border-radius: 4px;
-    background-color: #0c0e15;
-    padding: 2px;
-}
-
-.partner-logo-box img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    display: block;
-}
-
-/* =====================================================
-   BUTTONS
-===================================================== */
-
-.btn {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 18px;
-    border-radius: 10px;
-    border: 1px solid transparent;
-    font-weight: 800;
-    font-size: 14px;
-    cursor: pointer;
-    transition: .2s ease;
-}
-
-.btn-primary {
-    background: linear-gradient(
-        120deg,
-        var(--red-dark),
-        var(--red),
-        var(--orange)
-    );
-    color: white;
-    box-shadow: 0 8px 28px rgba(255,48,79,.2);
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.1);
-}
-
-.btn-outline {
-    border-color: rgba(255,255,255,.2);
-    color: white;
-    background: rgba(255,255,255,.03);
-}
-
-.btn-outline:hover {
-    border-color: var(--red);
-}
-
-/* =====================================================
-   SECTION & TEXT
-===================================================== */
-
-.section {
-    padding: 68px 0;
-}
-
-.eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: #ff8b9c;
-    font-size: 12px;
-    font-weight: 900;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-.eyebrow::before {
-    content: "";
-    width: 25px;
-    height: 2px;
-    background: linear-gradient(90deg,var(--red),var(--orange));
-}
-
-.gradient-text {
-    background: linear-gradient(
-        100deg,
-        #fff 0%,
-        #ff7187 48%,
-        #ff9b52 100%
-    );
-    color: transparent;
-    background-clip: text;
-    -webkit-background-clip: text;
-}
-
-/* =====================================================
-   SERVICE CARD / POLICY PANEL
-===================================================== */
-
-.service-card {
-    background: linear-gradient(145deg,var(--panel-2),var(--panel));
-    border: 1px solid var(--line);
-    border-radius: 17px;
-    padding: 24px;
-}
-
-.service-card h2 {
-    font-size: 20px;
-    margin-top: 0;
-    margin-bottom: 12px;
-    color: var(--text);
-    font-family: 'Orbitron', Arial, sans-serif;
-}
-
-.service-card h3 {
-    font-size: 15px;
-    margin-top: 18px;
-    margin-bottom: 8px;
-    color: var(--text);
-    font-family: 'Orbitron', Arial, sans-serif;
-}
-
-.service-card p {
-    color: var(--muted);
-    font-size: 14px;
-}
-
-.feature-list {
-    list-style: none;
-    margin: 0 0 15px;
-    padding: 0;
-}
-
-.feature-list li {
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(255,255,255,.07);
-    color: #e4e6ed;
-    font-size: 14px;
-}
-
-.feature-list li::before {
-    content: "✓";
-    color: #ff657c;
-    font-weight: 900;
-    margin-right: 10px;
-}
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
-footer {
-    border-top: 1px solid var(--line);
-    margin-top: 30px;
-    padding: 28px 0;
-    color: #aeb2c0;
-    font-size: 12px;
-}
-
-.footer-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
-}
-
-footer a:hover {
-    color: var(--red);
-}
-
-/* =====================================================
-   WHATSAPP FLOAT
-===================================================== */
-
-.whatsapp-float {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    z-index: 30;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    color: #fff;
-    background: linear-gradient(135deg,#25d366,#0b9d58);
-    box-shadow: 0 10px 30px rgba(37,211,102,.35);
-    border: 2px solid rgba(255,255,255,.85);
-    transition: transform .2s;
-}
-
-.whatsapp-float:hover {
-    transform: translateY(-4px) scale(1.04);
-}
-
-.whatsapp-float svg {
-    width: 30px;
-    height: 30px;
-    fill: currentColor;
-}
-
-/* =====================================================
-   RESPONSIVE MOBILE
-===================================================== */
-
-@media (max-width: 1100px) {
-
-    .nav {
-        gap: 16px;
+<!-- STYLES EMBEDDED FROM INDEX.HTML FOR FULL THEME CONSISTENCY -->
+    <style>
+    :root {
+      --bg: #08090d;
+      --panel: #12141c;
+      --panel-2: #191b25;
+      --text: #f6f7fb;
+      --muted: #b9bdca;
+      --red: #ff304f;
+      --red-dark: #a90025;
+      --orange: #ff7a35;
+      --line: rgba(255,255,255,.12);
     }
-
-    .nav-links {
-        gap: 18px;
-        font-size: 13px;
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 80% 0%, rgba(255,48,79,.14), transparent 30%), var(--bg);
+      color: var(--text);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      line-height: 1.6;
     }
-
-    .nav-links .language-btn {
-        min-width: 60px;
-        height: 48px;
-        border-radius: 14px;
-        padding: 0 15px;
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1120px, calc(100% - 36px)); margin: 0 auto; }
+    .topbar {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(8,9,13,.88); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
     }
-}
-
-@media (max-width: 900px) {
-
-    .nav {
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 15px 0;
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 11px; font-weight: 900; letter-spacing: .5px; }
+    .brand-mark {
+      width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px;
+      background: linear-gradient(135deg, var(--red), #ff814a); color: white; font-weight: 1000;
+      box-shadow: 0 0 28px rgba(255,48,79,.28);
     }
-
-    #branding-title {
-        width: 100%;
-        display: flex;
-        justify-content: center;
+    .brand small { display: block; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 24px; color: #d8dbe4; font-size: 14px; }
+    .nav-links a:hover { color: #ff667d; }
+    .btn {
+      display: inline-flex; justify-content: center; align-items: center; gap: 8px;
+      padding: 12px 18px; border-radius: 10px; border: 1px solid transparent;
+      font-weight: 800; font-size: 14px; cursor: pointer; transition: .2s ease;
     }
-
-    .dropdown {
-        margin: 5px 0;
+    .btn-primary { background: linear-gradient(120deg, var(--red-dark), var(--red), var(--orange)); color: white; box-shadow: 0 8px 28px rgba(255,48,79,.2); }
+    .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.1); }
+    .btn-outline { border-color: rgba(255,255,255,.2); color: white; background: rgba(255,255,255,.03); }
+    .btn-outline:hover { border-color: var(--red); }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: #ff8b9c; font-size: 12px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 25px; height: 2px; background: linear-gradient(90deg,var(--red),var(--orange)); }
+    .gradient-text { background: linear-gradient(100deg,#fff 0%,#ff7187 48%,#ff9b52 100%); color: transparent; background-clip: text; -webkit-background-clip: text; }
+    .section { padding: 68px 0; }
+    .section-head { text-align: center; max-width: 720px; margin: 0 auto 36px; }
+    .section-head h2 { font-size: clamp(28px,4vw,42px); line-height: 1.15; margin: 12px 0; }
+    .section-head p { color: var(--muted); margin: 0; }
+    
+    .service-card { background: linear-gradient(145deg,var(--panel-2),var(--panel)); border: 1px solid var(--line); border-radius: 17px; padding: 24px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+    
+    footer { border-top: 1px solid var(--line); margin-top: 30px; padding: 28px 0; color: #aeb2c0; font-size: 12px; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .whatsapp-float {
+      position: fixed; right: 20px; bottom: 20px; z-index: 30; width: 60px; height: 60px; border-radius: 50%;
+      display: grid; place-items: center; color: #fff; background: linear-gradient(135deg,#25d366,#0b9d58);
+      box-shadow: 0 10px 30px rgba(37,211,102,.35); border: 2px solid rgba(255,255,255,.85); transition: transform .2s;
     }
-
-    .nav-links {
-        width: 100%;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 15px;
-    }
+    .whatsapp-float:hover { transform: translateY(-4px) scale(1.04); }
+    .whatsapp-float svg { width: 30px; height: 30px; fill: currentColor; }
 
     .partner-credit-bar {
-        padding: 18px 12px;
+        background-color: var(--bg, #08090d);
+        border-top: 1px solid var(--line, rgba(255, 255, 255, 0.12));
+        border-bottom: 1px solid var(--line, rgba(255, 255, 255, 0.12));
+        padding: 22px 15px;
+        text-align: center;
+        font-family: 'Orbitron', sans-serif;
+        color: var(--text, #f6f7fb);
+        box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.9);
+        width: 100%;
     }
+    .credit-text { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted, #b9bdca); margin-bottom: 14px; font-weight: 400; }
+    .partner-logos { display: flex; justify-content: center; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .partner-name { color: #00f3ff; font-size: 0.92rem; font-weight: 700; letter-spacing: 1px; }
+    .partner-logo-box { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--red, #ff304f); border-radius: 4px; background-color: #0c0e15; padding: 2px; }
+    .partner-logo-box img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+    
+    .dropdown { position: relative; display: inline-block; }
+    .dropdown-content { display: none; position: absolute; background-color: #12141c; min-width: 200px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5); z-index: 1; border: 1px solid var(--line); border-radius: 8px; padding: 8px 0; }
+    .dropdown-content a { color: var(--text); padding: 10px 16px; text-decoration: none; display: block; font-size: 13px; }
+    .dropdown-content a:hover { background-color: rgba(255,48,79,0.15); }
+    .dropdown-content.show { display: block; }
 
-    .credit-text {
-        font-size: 10px;
-        letter-spacing: 1px;
+    @media(max-width:850px){ .grid-3, .grid-2 { grid-template-columns: 1fr; } .nav-links a:not(.btn) { display: none; } }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Kasuha Oculus",
+      "url": "https://kasuhanet.store/",
+      "logo": "https://kasuhanet.store/OculusLogo.png",
+      "description": "Perkhidmatan pembangunan laman web, reka bentuk perisian, dan integrasi sistem."
     }
-
-    .partner-name {
-        font-size: 12px;
-    }
-}
-
-@media (max-width: 480px) {
-
-    .nav-links {
-        gap: 12px;
-        font-size: 12px;
-    }
-
-    .nav-links .language-btn {
-        min-width: 50px;
-        height: 40px;
-        border-radius: 12px;
-        padding: 0 12px;
-        font-size: 12px;
-    }
-
-    .service-card {
-        padding: 20px !important;
-    }
-
-    .section {
-        padding: 45px 0;
-    }
-
-    .whatsapp-float {
-        width: 52px;
-        height: 52px;
-        right: 15px;
-        bottom: 15px;
-    }
-}
-
-</style>
+    </script>
 </head>
-
 <body>
 
-<!-- =====================================================
-     TOPBAR HEADER
-===================================================== -->
-
+<!-- TOPBAR HEADER -->
 <header class="topbar">
-
-    <div class="container nav">
-
-        <!-- LOGO -->
-        <div id="branding-title">
-            <div class="brand">
-                <div class="brand-mark">K</div>
-                <div>
-                    KasuhaNET
-                    <small>STORE</small>
-                </div>
-            </div>
+  <div class="container nav">
+    <div id="branding-title">
+      <div class="brand">
+        <div class="brand-mark">K</div>
+        <div>
+          KasuhaNET
+          <small>STORE</small>
         </div>
+      </div>
+    </div>
 
-        <!-- LOAD OFFICIAL BRANDING -->
-        <script>
-        fetch("../template-text/MS/kasuhanet-icon-official-MS.html")
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById("branding-title").innerHTML = data;
-        })
-        .catch(err => console.log("Branding error:", err));
-        </script>
-                   <div class="dropdown-content" id="servicesDropdown">
+    <script>
+    fetch("../template-text/MS/kasuhanet-icon-official-MS.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("branding-title").innerHTML = data;
+    }).catch(err => console.log(err));
+    </script>    
+    <nav class="nav-links" aria-label="Navigasi Utama">
+        <div class="dropdown">
+            <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
+                Luar Negara <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #ff7187;"></i>
+            </a>
+            <div class="dropdown-content" id="servicesDropdown">
                 <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">
                     <i class="fa-solid fa-globe" style="margin-right: 8px; color: #00F0FF;"></i> RWANDA (Afrika)
                 </a>
@@ -611,346 +155,122 @@ footer a:hover {
                     <i class="fa-solid fa-globe" style="margin-right: 8px; color: #E600A4;"></i> TIMOR LESTE (Asia)
                 </a>
             </div>
-        </div>
-        <!-- NAVIGATION -->
-        <nav class="nav-links" aria-label="Navigasi utama">
-
-            <a href="../index.html">
-                UTAMA
-            </a>
-
-            <a href="about-us-MS.html">
-                TENTANG KAMI
-            </a>
-
-            <a href="terms-MS.html" class="active">
-                TERMA & POLISI
-            </a>
-
-            <a href="support-centre-MS.html" class="active">
-                SOKONGAN
-            </a>
-
-            <!-- LANGUAGE -->
-            <a class="language-btn" href="../terms-EN.html" lang="en">
-                EN
-            </a>
-
-            <a class="language-btn" href="terms-MS.html" lang="ms">
-                BM
-            </a>
-
-        </nav>
-
-    </div>
-
-</header>
-
-<!-- =====================================================
-     PARTNER CREDIT BAR
-===================================================== -->
-
+        </div><nav class="nav-links" aria-label="Navigasi utama">    
+<a href="index.html">UTAMA</a>
+      <a href="about-us-MS.html">TENTANG KAMI</a>
+      <a href="terms-MS.html" style="color: var(--red);">TERMA & POLISI</a>
+      <a href="support-centre-MS.html">SOKONGAN</a>
+      <a class="btn btn-outline" href="../terms-EN.html" lang="en">EN</a>
+      <a class="btn btn-outline" href="terms-MS.html" lang="ms">MS</a>
+      <a class="btn btn-primary" href="index.html">Utama ↗</a>
+    </nav>
+  </div>
+    
+<!-- PARTNER CREDIT BAR -->
 <div class="partner-credit-bar">
-
     <div class="credit-text">
         LamanWeb DiKuasakan oleh Gabungan Pertubuhan & Syarikat
     </div>
-
     <div class="partner-logos">
-
-        <span class="partner-name">
-            Kasuha Oculus Organisation
-        </span>
-
+        <span class="partner-name">Kasuha Oculus Organisation</span>
         <div class="partner-logo-box">
             <img src="../OculusLogo.png" alt="Collaboration Logo">
         </div>
-
-        <span class="partner-name">
-            KasuhaNET Resources
-        </span>
-
+        <span class="partner-name">KasuhaNET Resources</span>
     </div>
-
 </div>
-
-<!-- =====================================================
-     MAIN CONTENT
-===================================================== -->
+</header>
 
 <main>
-
-    <!-- HERO TITLE -->
-
-    <section class="section" style="padding:40px 0 20px;">
-
-        <div class="container" style="text-align:center;">
-
-            <span class="eyebrow">
-                Dokumen Rasmi & Undang-Undang
-            </span>
-
-            <h1 style="
-                font-size:clamp(32px,5vw,50px);
-                line-height:1.1;
-                margin:15px 0;
-                font-family:'Orbitron',Arial,sans-serif;
-            ">
-                TERMA & <span class="gradient-text">POLISI</span>
-            </h1>
-
-            <p style="color:var(--muted);font-size:15px;">
-                Kemaskini Terakhir: Jun 2026
-            </p>
-
-        </div>
-
-    </section>
-
-    <!-- POLICY CONTENT -->
-
-    <section class="section" style="padding-top:10px;">
-
-        <div class="container" style="
-            display:flex;
-            flex-direction:column;
-            gap:20px;
-        ">
-
-            <!-- POLICY 1 -->
-
-            <article class="service-card" style="padding:30px;">
-
-                <h2>1. Terma & Syarat</h2>
-
-                <p>
-                    Selamat datang ke KasuhaNET.STORE. Dengan mengakses dan menggunakan laman web ini,
-                    anda bersetuju untuk mematuhi dan terikat dengan terma dan syarat berikut.
-                    Jika anda tidak bersetuju dengan mana-mana bahagian terma ini,
-                    sila hentikan penggunaan laman web ini serta-merta.
-                </p>
-
-                <h3>Tanggungjawab Pengguna & Penggunaan Yang Dibenarkan</h3>
-
-                <ul class="feature-list">
-
-                    <li>
-                        Anda bersetuju untuk tidak menggunakan laman web ini untuk sebarang tujuan
-                        yang menyalahi undang-undang, tidak sah, atau berunsur penipuan.
-                    </li>
-
-                    <li>
-                        Sebarang percubaan untuk mengganggu, menggodam, merekayasa semula
-                        (reverse-engineer), atau menjejaskan keselamatan laman web atau rangkaian
-                        adalah dilarang sama sekali.
-                    </li>
-
-                    <li>
-                        Semua hak cipta intelektual, kod sumber, dan grafik adalah milik
-                        KasuhaNET Resources dan tidak boleh ditiru tanpa kebenaran.
-                    </li>
-
-                </ul>
-
-                <h3>Had Liabiliti</h3>
-
-                <p style="margin:0;">
-                    KasuhaNET.STORE dan KasuhaNET Resources menyediakan perkhidmatan atas dasar
-                    'seperti adanya' (as-is). Kami tidak bertanggungjawab atas sebarang kerugian
-                    kewangan, kerosakan, atau gangguan sistem yang timbul daripada penggunaan
-                    platform kami, tertakluk kepada undang-undang yang berkuat kuasa.
-                </p>
-
-            </article>
-
-            <!-- POLICY 2 -->
-
-            <article class="service-card" style="padding:30px;">
-
-                <h2>2. Polisi Privasi (PDPA & Pematuhan Global)</h2>
-
-                <p>
-                    Kami menghormati privasi anda dan mematuhi Akta Perlindungan Data Peribadi
-                    2010 (PDPA) Malaysia serta piawaian privasi antarabangsa yang berkaitan,
-                    setakat yang terpakai kepada operasi kami.
-                </p>
-
-                <h3>Pengumpulan & Penggunaan Data</h3>
-
-                <ul class="feature-list">
-
-                    <li>
-                        Kami mungkin mengumpul data peribadi seperti nama, alamat e-mel,
-                        dan rekod transaksi anda semasa pembelian atau pendaftaran.
-                    </li>
-
-                    <li>
-                        Data anda digunakan untuk pemprosesan pesanan, penyediaan sokongan
-                        teknikal, dan penambahbaikan perkhidmatan kami.
-                    </li>
-
-                    <li>
-                        Kami tidak akan menjual atau menyewakan data peribadi anda kepada
-                        pihak ketiga untuk tujuan komersial tanpa kebenaran yang sewajarnya.
-                    </li>
-
-                </ul>
-
-            </article>
-
-            <!-- POLICY 3 -->
-
-            <article class="service-card" style="padding:30px;">
-
-                <h2>3. Polisi Pemulangan Wang & Pembatalan</h2>
-
-                <p>
-                    Memandangkan produk kami melibatkan barangan digital dan perkhidmatan
-                    elektronik, syarat pemulangan wang berikut berkuat kuasa:
-                </p>
-
-                <ul class="feature-list">
-
-                    <li>
-                        <strong>Produk Digital & Langganan:</strong>
-                        Semua jualan muat turun digital, kunci lesen, dan perkhidmatan
-                        yang telah diaktifkan adalah muktamad dan tidak boleh dikembalikan,
-                        kecuali jika diwajibkan oleh undang-undang atau dinyatakan sebaliknya.
-                    </li>
-
-                    <li>
-                        <strong>Kelayakan Pemulangan:</strong>
-                        Permohonan pemulangan wang boleh dipertimbangkan sekiranya timbul
-                        masalah teknikal pada pelayan kami yang tidak dapat diselesaikan
-                        oleh pasukan sokongan dalam tempoh 7 hari bekerja.
-                    </li>
-
-                </ul>
-
-            </article>
-
-            <!-- POLICY 4 -->
-
-            <article class="service-card" style="padding:30px;">
-
-                <h2>4. Penafian Undang-Undang</h2>
-
-                <p>
-                    Semua maklumat, alat, dan perkhidmatan yang disediakan di
-                    KasuhaNET.STORE adalah untuk tujuan maklumat umum, pendidikan,
-                    dan operasi sahaja.
-                </p>
-
-                <p style="margin:0;">
-                    Terma-terma ini ditadbir dan ditafsirkan mengikut undang-undang Malaysia.
-                    Bagi pengguna antarabangsa yang mengakses platform ini dari luar Malaysia,
-                    anda bertanggungjawab untuk mematuhi undang-undang tempatan yang berkaitan.
-                </p>
-
-            </article>
-
-        </div>
-
-    </section>
-
-</main>
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<footer>
-
-    <div class="container footer-inner">
-
-        <div>
-            <strong>KasuhaNET.STORE | Platform Kedai Digital</strong>
-            <br>
-            <span>
-                Perkhidmatan: CommandCanDo • MyAffiliate • PayLater BNPL
-            </span>
-        </div>
-
-        <div>
-
-            <span>Ikuti Kami: </span>
-
-            <a href="https://www.facebook.com/share/1BfeDZJqjP/"
-               target="_blank" rel="noopener">
-                Facebook
-            </a>
-
-            ·
-
-            <a href="https://tiktok.com/@kasuhanet.store"
-               target="_blank" rel="noopener">
-                TikTok
-            </a>
-
-            ·
-
-            <a href="https://t.me/kasuhanetstorebot"
-               target="_blank" rel="noopener">
-                Telegram
-            </a>
-
-            <br>
-
-            <span>
-                © <span id="year"></span>
-                <strong>KasuhaNET Resources (202503248308). Hak Cipta Terpelihara.</strong>
-            </span>
-
-        </div>
+  <!-- HERO SECTION UNTUK TAJUK -->
+  <section class="section" style="padding: 40px 0 20px;">
+    <div class="container" style="text-align: center;">
+      <span class="eyebrow">Dokumen Rasmi & Undang-Undang</span>
+      <h1 style="font-size: clamp(32px, 5vw, 50px); line-height: 1.1; margin: 15px 0; font-family: 'Orbitron', sans-serif;">
+        TERMA & <span class="gradient-text">POLISI</span>
+      </h1>
+      <p style="color: var(--muted); font-size: 15px; font-family: 'sans-serif', sans-serif;">Kemaskini Terakhir: Jun 2026</p>
+    </div>
+  </section>
+
+  <!-- KANDUNGAN UTAMA DALAM KOTAK PANEL (.service-card) -->
+  <section class="section" style="padding-top: 10px;">
+    <div class="container" style="display: flex; flex-direction: column; gap: 20px;">
+      
+      <!-- KOTAK 1 -->
+      <article class="service-card" style="padding: 30px;">
+        <h2 style="font-size: 20px; margin-top: 0; margin-bottom: 12px; color: var(--text); font-family: 'Orbitron', sans-serif;">1. Terma & Syarat</h2>
+        <p style="color: var(--muted); font-size: 14px; margin-bottom: 15px;">Selamat datang ke KasuhaNET.STORE. Dengan mengakses dan menggunakan laman web ini, anda bersetuju untuk mematuhi dan terikat dengan terma dan syarat berikut. Jika anda tidak bersetuju dengan mana-mana bahagian terma ini, sila hentikan penggunaan laman web ini serta-merta.</p>
+        
+        <h3 style="font-size: 15px; margin-top: 18px; margin-bottom: 8px; color: var(--text); font-family: 'Orbitron', sans-serif;">Tanggungjawab Pengguna & Penggunaan Yang Dibenarkan</h3>
+        <ul class="feature-list" style="font-size: 14px;">
+          <li>Anda bersetuju untuk tidak menggunakan laman web ini untuk sebarang tujuan yang menyalahi undang-undang, tidak sah, atau berunsur penipuan.</li>
+          <li>Sebarang percubaan untuk mengganggu, menggodam, merekayasa semula (reverse-engineer), atau menjejaskan keselamatan laman web atau rangkaian adalah dilarang sama sekali.</li>
+          <li>Semua hak cipta intelektual, kod sumber, dan grafik adalah milik Kasuhanet Resources dan tidak boleh ditiru tanpa kebenaran.</li>
+        </ul>
+
+        <h3 style="font-size: 15px; margin-top: 18px; margin-bottom: 8px; color: var(--text); font-family: 'Orbitron', sans-serif;">Had Liabiliti</h3>
+        <p style="color: var(--muted); font-size: 14px; margin: 0;">KasuhaNET.STORE dan Kasuhanet Resources menyediakan perkhidmatan atas dasar 'seperti adanya' (as-is). Kami tidak bertanggungjawab atas sebarang kerugian kewangan, kerosakan, atau gangguan sistem yang timbul daripada penggunaan platform kami.</p>
+      </article>
+
+      <!-- KOTAK 2 -->
+      <article class="service-card" style="padding: 30px;">
+        <h2 style="font-size: 20px; margin-top: 0; margin-bottom: 12px; color: var(--text); font-family: 'Orbitron', sans-serif;">2. Polisi Privasi (PDPA & Pematuhan Global)</h2>
+        <p style="color: var(--muted); font-size: 14px; margin-bottom: 15px;">Kami menghormati privasi anda dan mematuhi Akta Perlindungan Data Peribadi 2010 (PDPA) Malaysia serta piawaian privasi antarabangsa yang berkaitan.</p>
+        
+        <h3 style="font-size: 15px; margin-top: 18px; margin-bottom: 8px; color: var(--text); font-family: 'Orbitron', sans-serif;">Pengumpulan & Penggunaan Data</h3>
+        <ul class="feature-list" style="font-size: 14px;">
+          <li>Kami mungkin mengumpul data peribadi seperti nama, alamat e-mel, dan rekod transaksi anda semasa pembelian atau pendaftaran.</li>
+          <li>Data anda digunakan secara khusus untuk pemprosesan pesanan, penyediaan sokongan teknikal, dan penambahbaikan perkhidmatan kami.</li>
+          <li>Kami tidak akan menjual, menyewa, atau memajakkan data peribadi anda kepada mana-mana pihak ketiga.</li>
+        </ul>
+      </article>
+
+      <!-- KOTAK 3 -->
+      <article class="service-card" style="padding: 30px;">
+        <h2 style="font-size: 20px; margin-top: 0; margin-bottom: 12px; color: var(--text); font-family: 'Orbitron', sans-serif;">3. Polisi Pemulangan Wang & Pembatalan</h2>
+        <p style="color: var(--muted); font-size: 14px; margin-bottom: 15px;">Memandangkan produk kami melibatkan barangan digital dan perkhidmatan elektronik serta-merta, syarat pemulangan wang berikut berkuat kuasa:</p>
+        <ul class="feature-list" style="font-size: 14px;">
+          <li><strong>Produk Digital & Langganan:</strong> Semua jualan muat turun digital, kunci lesen, dan perkhidmatan yang diaktifkan adalah muktamad dan tidak boleh dikembalikan setelah diproses atau diakses.</li>
+          <li><strong>Kelayakan Pemulangan:</strong> Permohonan pemulangan wang hanya akan dipertimbangkan sekiranya timbul masalah teknikal dari sebelah pelayan kami yang tidak dapat diselesaikan oleh pasukan sokongan dalam tempoh 7 hari bekerja.</li>
+        </ul>
+      </article>
+
+      <!-- KOTAK 4 -->
+      <article class="service-card" style="padding: 30px;">
+        <h2 style="font-size: 20px; margin-top: 0; margin-bottom: 12px; color: var(--text); font-family: 'Orbitron', sans-serif;">4. Penafian Undang-Undang</h2>
+        <p style="color: var(--muted); font-size: 14px; margin-bottom: 10px;">Semua maklumat, alat, dan perkhidmatan yang disediakan di KasuhaNET.STORE adalah untuk tujuan maklumat umum, pendidikan, dan operasi sahaja.</p>
+        <p style="color: var(--muted); font-size: 14px; margin: 0;">Terma-terma ini ditadbir dan ditafsirkan mengikut undang-undang Malaysia. Bagi pengguna antarabangsa yang mengakses platform ini dari luar Malaysia, anda bertanggungjawab sepenuhnya untuk mematuhi semua undang-undang digital tempatan dan antarabangsa.</p>
+      </article>
 
     </div>
+  </section>
+</main>
 
+<!-- FOOTER -->
+<footer>
+  <div class="container footer-inner">
+    <div>
+      <strong>KasuhaNET.STORE | Platform Kedai Digital</strong><br>
+      <span>Perkhidmatan: CommandCanDo • MyAffiliate • PayLater BNPL</span>
+    </div>
+    <div>
+      <span>Ikuti Kami: </span>
+      <a href="https://www.facebook.com/share/1BfeDZJqjP/" target="_blank" rel="noopener">Facebook</a> · 
+      <a href="https://tiktok.com/@kasuhanet.store" target="_blank" rel="noopener">TikTok</a> · 
+      <a href="https://t.me/kasuhanetstorebot" target="_blank" rel="noopener">Telegram</a><br>
+      <span>© <span id="year"></span> <strong>KasuhaNET Resources (202503248308). Hak Cipta Terpelihara.</strong></span>
+    </div>
+  </div>
 </footer>
 
-<!-- =====================================================
-     WHATSAPP FLOAT
-===================================================== -->
-
-<a class="whatsapp-float"
-   id="floating-whatsapp"
-   href="https://wa.me/60123456789"
-   target="_blank"
-   rel="noopener"
-   aria-label="Hubungi WhatsApp">
-
-    <svg viewBox="0 0 32 32" aria-hidden="true">
-
-        <path d="M16.02 3C8.86 3 3.04 8.8 3.04 15.94c0 2.28.6 4.5 1.75 6.46L3 29l6.78-1.77a13.05 13.05 0 0 0 6.23 1.58h.01c7.15 0 12.97-5.8 12.97-12.94A12.9 12.9 0 0 0 16.02 3zm0 23.62h-.01a10.8 10.8 0 0 1-5.5-1.5l-.4-.24-4.02 1.05 1.07-3.91-.26-.4a10.7 10.7 0 0 1-1.65-5.68c0-5.93 4.83-10.75 10.78-10.75 2.88 0 5.59 1.12 7.62 3.15a10.67 10.67 0 0 1 3.15 7.6c0 5.93-4.83 10.75-10.78 10.75zm5.91-8.05c-.32-.16-1.9-.94-2.2-1.05-.3-.11-.51-.16-.73.16-.21.32-.83 1.05-1.02 1.27-.19.21-.38.24-.7.08-.32-.16-1.35-.5-2.57-1.6-.95-.84-1.6-1.88-1.79-2.2-.19-.32-.02-.49.14-.65.14-.14.32-.38.48-.57.16-.19.32-.21.54-.03.16-.08-.73-1.75-1-2.4-.26-.63-.53-.54-.73-.55h-.62c-.21 0-.56.4-.86.4-.3.32-1.13 1.1-1.13 2.68s1.16 3.1 1.32 3.31c.21.32 2.28 3.48 5.53 4.88.77.33 1.37.53 1.84.68.77.24 1.47.21 2.02.13.62-.09 1.9-.78 2.17-1.53.27-.75.19-1.4.19-1.53-.08-.14-.29-.22-.61-.38z"/>
-
-    </svg>
-
+<!-- WHATSAPP FLOAT -->
+<a class="whatsapp-float" id="floating-whatsapp" href="https://wa.me/60123456789" target="_blank" rel="noopener" aria-label="Hubungi WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.02 3C8.86 3 3.04 8.8 3.04 15.94c0 2.28.6 4.5 1.75 6.46L3 29l6.78-1.77a13.05 13.05 0 0 0 6.23 1.58h.01c7.15 0 12.97-5.8 12.97-12.94A12.9 12.9 0 0 0 16.02 3zm0 23.62h-.01a10.8 10.8 0 0 1-5.5-1.5l-.4-.24-4.02 1.05 1.07-3.91-.26-.4a10.7 10.7 0 0 1-1.65-5.68c0-5.93 4.83-10.75 10.78-10.75 2.88 0 5.59 1.12 7.62 3.15a10.67 10.67 0 0 1 3.15 7.6c0 5.93-4.83 10.75-10.78 10.75zm5.91-8.05c-.32-.16-1.9-.94-2.2-1.05-.3-.11-.51-.16-.73.16-.21.32-.83 1.05-1.02 1.27-.19.21-.38.24-.7.08-.32-.16-1.35-.5-2.57-1.6-.95-.84-1.6-1.88-1.79-2.2-.19-.32-.02-.49.14-.65.14-.14.32-.38.48-.57.16-.19.32-.21.54-.03.16-.08-.73-1.75-1-2.4-.26-.63-.53-.54-.73-.55h-.62c-.21 0-.56.4-.86.4-.3.32-1.13 1.1-1.13 2.68s1.16 3.1 1.32 3.31c.21.32 2.28 3.48 5.53 4.88.77.33 1.37.53 1.84.68.77.24 1.47.21 2.02.13.62-.09 1.9-.78 2.17-1.53.27-.75.19-1.4.19-1.53-.08-.14-.29-.22-.61-.38z"/></svg>
 </a>
 
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
-
 <script>
-
-/* DROPDOWN LUAR NEGARA */
-
-function toggleDropdown() {
-    document.getElementById("servicesDropdown").classList.toggle("show");
-}
-
-window.addEventListener("click", function(event) {
-
-    if (!event.target.closest(".dropdown")) {
-        document.getElementById("servicesDropdown").classList.remove("show");
-    }
-
-});
-
-/* FOOTER YEAR */
-
 document.getElementById("year").textContent = new Date().getFullYear();
-
 </script>
-
 </body>
 </html>
