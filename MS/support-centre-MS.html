@@ -68,7 +68,7 @@
 html { scroll-behavior: smooth; height: 100%; }
 body {
   margin: 0;
-  min-height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   background: radial-gradient(circle at 80% 0%, rgba(255,48,79,.14), transparent 30%), var(--bg);
@@ -105,7 +105,16 @@ a { color: inherit; text-decoration: none; }
 .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: #ff8b9c; font-size: 12px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
 .eyebrow::before { content: ""; width: 25px; height: 2px; background: linear-gradient(90deg,var(--red),var(--orange)); }
 .gradient-text { background: linear-gradient(100deg,#fff 0%,#ff7187 48%,#ff9b52 100%); color: transparent; background-clip: text; -webkit-background-clip: text; }
-.section { padding: 48px 0; flex: 1; } /* Memastikan ruang tengah mengembang supaya footer jatuh ke bawah */
+
+/* MENETANGKAN KANDUNGAN UTAMA SECARA MENEGAK & MELINTANG */
+.section {
+  padding: 30px 0;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .section-head { text-align: center; max-width: 720px; margin: 0 auto 36px; }
 .section-head h2 { font-size: clamp(28px,4vw,42px); line-height: 1.15; margin: 12px 0; }
 .section-head p { color: var(--muted); margin: 0; }
@@ -114,7 +123,7 @@ a { color: inherit; text-decoration: none; }
 .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
 .grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
 
-footer { border-top: 1px solid var(--line); margin-top: auto; padding: 24px 0; color: #aeb2c0; font-size: 12px; background: rgba(8,9,13,.88); }
+footer { border-top: 1px solid var(--line); margin-top: auto; padding: 20px 0; color: #aeb2c0; font-size: 12px; background: rgba(8,9,13,.88); }
 .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .whatsapp-float {
   position: fixed; right: 20px; bottom: 20px; z-index: 30; width: 60px; height: 60px; border-radius: 50%;
@@ -128,14 +137,14 @@ footer { border-top: 1px solid var(--line); margin-top: auto; padding: 24px 0; c
     background-color: var(--bg, #08090d);
     border-top: 1px solid var(--line, rgba(255, 255, 255, 0.12));
     border-bottom: 1px solid var(--line, rgba(255, 255, 255, 0.12));
-    padding: 18px 15px;
+    padding: 16px 15px;
     text-align: center;
     font-family: 'Orbitron', sans-serif;
     color: var(--text, #f6f7fb);
     box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.9);
     width: 100%;
 }
-.credit-text { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted, #b9bdca); margin-bottom: 10px; font-weight: 400; }
+.credit-text { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted, #b9bdca); margin-bottom: 8px; font-weight: 400; }
 .partner-logos { display: flex; justify-content: center; align-items: center; gap: 16px; flex-wrap: wrap; }
 .partner-name { color: #00f3ff; font-size: 0.92rem; font-weight: 700; letter-spacing: 1px; }
 .partner-logo-box { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--red, #ff304f); border-radius: 4px; background-color: #0c0e15; padding: 2px; }
@@ -216,7 +225,7 @@ footer { border-top: 1px solid var(--line); margin-top: auto; padding: 24px 0; c
     </div>
 </div>
 
-<!-- MAIN CONTENT -->
+<!-- MAIN CONTENT (DI TENGAH-TENGAH SKRIN) -->
 <main class="section">
   <div class="container" style="max-width: 680px;">
     
