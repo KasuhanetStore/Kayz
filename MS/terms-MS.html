@@ -121,7 +121,21 @@
         document.getElementById("branding-title").innerHTML = data;
     }).catch(err => console.log(err));
     </script>     
-<nav class="nav-links" aria-label="Navigasi utama">    
+      
+             <div class="dropdown">
+            <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
+                Luar Negara <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #ff7187;"></i>
+            </a>
+            <div class="dropdown-content" id="servicesDropdown">
+                <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">
+                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: #00F0FF;"></i> RWANDA (Afrika)
+                </a>
+                <a href="https://kasuhanet.store/Timor-Leste-SupportDevelopement.html">
+                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: #E600A4;"></i> TIMOR LESTE (Asia)
+                </a>
+            </div>
+             </div> 
+      <nav class="nav-links" aria-label="Navigasi utama">    
 <a href="index.html">UTAMA</a>
       <a href="about-us-MS.html">TENTANG KAMI</a>
       <a href="terms-MS.html" style="color: var(--red);">TERMA & POLISI</a>
