@@ -18,6 +18,7 @@
 
 <!-- FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
 <!-- FAVICON -->
 <link rel="icon" type="img/favicon.png" href="favicon.png">
@@ -198,6 +199,13 @@
       padding-top: 16px;
     }
 
+    /* Dropdown Styling */
+    .dropdown { position: relative; display: inline-block; }
+    .dropdown-content { display: none; position: absolute; background-color: #12141c; min-width: 200px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5); z-index: 1; border: 1px solid var(--line); border-radius: 8px; padding: 8px 0; }
+    .dropdown-content a { color: var(--text); padding: 10px 16px; text-decoration: none; display: block; font-size: 13px; }
+    .dropdown-content a:hover { background-color: rgba(255,48,79,0.15); }
+    .dropdown-content.show { display: block; }
+
     /* Partner Credit Bar CSS */
     .partner-credit-bar {
         background-color: var(--bg, #08090d);
@@ -270,16 +278,25 @@
   
 <header class="topbar">
   <div class="container nav">
-    <div id="branding-title"></div>
+    <div id="branding-title">
+      <div class="brand">
+        <div class="brand-mark">K</div>
+        <div>
+          KasuhaNET
+          <small>STORE</small>
+        </div>
+      </div>
+    </div>
 
-<script>
-fetch("template-text/EN/kasuhanet-icon-official-EN.html")
-.then(response => response.text())
-.then(data => {
-    document.getElementById("branding-title").innerHTML = data;
-});
-</script>
-<nav class="nav-links" aria-label="Main Navigation">
+    <script>
+    fetch("template-text/EN/kasuhanet-icon-official-EN.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("branding-title").innerHTML = data;
+    });
+    </script>
+
+    <nav class="nav-links" aria-label="Main Navigation">
         <div class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
                 Overseas <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #ff7187;"></i>
@@ -300,12 +317,52 @@ fetch("template-text/EN/kasuhanet-icon-official-EN.html")
         <a class="btn btn-outline" href="index.html" lang="en">EN</a>
         <a class="btn btn-outline" href="MS/index.html" lang="ms">MS</a>
         <a class="btn btn-primary" href="BannerAdsSale.html">View Packages ↗</a>
-</nav>
+    </nav>
+  </div>
+</header>
 
-  <div class="hero-actions"><a class="btn btn-primary" href="#Package">Website Development →</a><a class="btn btn-outline" href="Custom-Web-Workshop-EN.html">Terminal Choice / Custom Web</a></div>
-  <div class="hero-points"><span>Website & digital systems</span><span>Flexible services</span><span>Standard & Premium options</span></div>
-  <div class="subnav"><a class="btn btn-outline" href="CommandCanDoLIST.html">Terminal Options</a><a class="btn btn-outline" href="ShopAffliateSupport.html">Affiliate Support</a></div>
-</div><div class="visual-card"><div class="video-frame"><video autoplay muted loop playsinline controls preload="metadata"><source src="https://files.catbox.moe/02vlba.mp4" type="video/mp4">Your browser does not support HTML5 video.</video></div><div class="video-caption"><div><strong>KasuhaNET Website Showcase</strong><span>Visual preview of websites and digital services</span></div><span class="live-dot" aria-label="Video demo"></span></div></div></div></section>
+<main>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">Hybrid Sales • Multi-Service • Digital Tools</span>
+      <div id="template-text"></div>
+      <script>
+      fetch('template-text/EN/text-theme-EN.html')
+      .then(response => {
+          if (!response.ok) throw new Error('Template Failed Load');
+          return response.text();
+      })
+      .then(data => {
+          document.getElementById('template-text').innerHTML = data;
+      })
+      .catch(error => console.error(error));
+      </script>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#pakej">Website Development →</a>
+        <a class="btn btn-outline" href="Custom-Web-Workshop-EN.html">Terminal Choice / Custom Web</a>
+      </div>
+      <div class="hero-points">
+        <span>Website & digital systems</span>
+        <span>Flexible services</span>
+        <span>Standard & Premium options</span>
+      </div>
+      <div class="subnav">
+        <a class="btn btn-outline" href="CommandCanDoLIST.html">Terminal Options</a>
+        <a class="btn btn-outline" href="ShopAffliateSupport.html">Affiliate Support</a>
+      </div>
+    </div>
+    <div class="visual-card">
+      <div class="video-frame">
+        <video autoplay muted loop playsinline controls preload="metadata"><source src="https://files.catbox.moe/02vlba.mp4" type="video/mp4">Your browser does not support HTML5 video.</video>
+      </div>
+      <div class="video-caption">
+        <div><strong>KasuhaNET Website Showcase</strong><span>Visual preview of websites and digital services</span></div>
+        <span class="live-dot" aria-label="Video demo"></span>
+      </div>
+    </div>
+  </div>
+</section>
 
   <!-- PARTNER CREDIT BAR -->
 <div class="partner-credit-bar">
@@ -457,12 +514,28 @@ fetch("template-text/EN/kasuhanet-icon-official-EN.html")
 <footer><div class="container footer-inner"><div><strong>KasuhaNET.STORE | Digital Store Platform</strong><br><span>Services: CommandCanDo • MyAffiliate • PayLater BNPL</span><br><span>Resources: About Us • Support • Terms & Policy</span></div><div><span>Follow Us: </span><a href="https://www.facebook.com/share/1BfeDZJqjP/" target="_blank" rel="noopener">Facebook</a> · <a href="https://tiktok.com/@kasuhanet.store" target="_blank" rel="noopener">TikTok</a> · <a href="https://t.me/kasuhanetstorebot" target="_blank" rel="noopener">Telegram</a><br><span>© <span id="year"></span> <strong>KasuhaNET Resources (202503248308). All Rights Reserved.</strong></span></div></div></footer>
 <a class="whatsapp-float" id="floating-whatsapp" href="https://wa.me/60123456789" target="_blank" rel="noopener" aria-label="Contact KasuhaNET on WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.02 3C8.86 3 3.04 8.8 3.04 15.94c0 2.28.6 4.5 1.75 6.46L3 29l6.78-1.77a13.05 13.05 0 0 0 6.23 1.58h.01c7.15 0 12.97-5.8 12.97-12.94A12.9 12.9 0 0 0 16.02 3zm0 23.62h-.01a10.8 10.8 0 0 1-5.5-1.5l-.4-.24-4.02 1.05 1.07-3.91-.26-.4a10.7 10.7 0 0 1-1.65-5.68c0-5.93 4.83-10.75 10.78-10.75 2.88 0 5.59 1.12 7.62 3.15a10.67 10.67 0 0 1 3.15 7.6c0 5.93-4.83 10.75-10.78 10.75zm5.91-8.05c-.32-.16-1.9-.94-2.2-1.05-.3-.11-.51-.16-.73.16-.21.32-.83 1.05-1.02 1.27-.19.21-.38.24-.7.08-.32-.16-1.35-.5-2.57-1.6-.95-.84-1.6-1.88-1.79-2.2-.19-.32-.02-.49.14-.65.14-.14.32-.38.48-.57.16-.19.32-.21.54-.03.16-.08-.73-1.75-1-2.4-.26-.63-.53-.54-.73-.55h-.62c-.21 0-.56.4-.86.4-.3.32-1.13 1.1-1.13 2.68s1.16 3.1 1.32 3.31c.21.32 2.28 3.48 5.53 4.88.77.33 1.37.53 1.84.68.77.24 1.47.21 2.02.13.62-.09 1.9-.78 2.17-1.53.27-.75.19-1.4.19-1.53-.08-.14-.29-.22-.61-.38z"/></svg></a>
 <script>
-const WHATSAPP_NUMBER = "60123456789"; // Replace with the official number in international format, without + or spaces.
-const DEFAULT_MESSAGE = "Hello, I am interested in KasuhaNET.STORE services.";
-const waURL = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(DEFAULT_MESSAGE);
-document.getElementById("floating-whatsapp").href = waURL;
-document.getElementById("main-whatsapp").href = waURL;
-document.getElementById("year").textContent = new Date().getFullYear();
+  function toggleDropdown() {
+    document.getElementById("servicesDropdown").classList.toggle("show");
+  }
+
+  window.addEventListener('click', function(e) {
+    if (!e.target.matches('.dropdown a') && !e.target.matches('.dropdown i')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+  });
+
+  const WHATSAPP_NUMBER = "60123456789"; 
+  const DEFAULT_MESSAGE = "Hello, I am interested in KasuhaNET.STORE services.";
+  const waURL = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(DEFAULT_MESSAGE);
+  document.getElementById("floating-whatsapp").href = waURL;
+  document.getElementById("main-whatsapp").href = waURL;
+  document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
