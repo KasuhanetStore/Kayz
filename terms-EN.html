@@ -144,16 +144,26 @@
 
 <body>
 
-<!-- HEADER -->
+<!-- TOPBAR HEADER -->
 <header class="topbar">
   <div class="container nav">
-    <div class="brand">
-      <div class="brand-mark">K</div>
-      <div>
-        KasuhaNET
-        <small>STORE</small>
+    <div id="branding-title">
+      <div class="brand">
+        <div class="brand-mark">K</div>
+        <div>
+          KasuhaNET
+          <small>STORE</small>
+        </div>
       </div>
     </div>
+
+    <script>
+    fetch("template-text/EN/kasuhanet-icon-official-EN.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("branding-title").innerHTML = data;
+    }).catch(err => console.log(err));
+    </script>
     
     <nav class="nav-links" aria-label="Main Navigation">
         <div class="dropdown">
