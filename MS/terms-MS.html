@@ -101,18 +101,28 @@
 </head>
 <body>
 
-<!-- HEADER SEBIJI MACAM INDEX -->
+<!-- TOPBAR HEADER -->
 <header class="topbar">
   <div class="container nav">
-    <div class="brand">
-      <div class="brand-mark">K</div>
-      <div>
-        KasuhaNET
-        <small>STORE</small>
+    <div id="branding-title">
+      <div class="brand">
+        <div class="brand-mark">K</div>
+        <div>
+          KasuhaNET
+          <small>STORE</small>
+        </div>
       </div>
     </div>
-    <nav class="nav-links" aria-label="Navigasi utama">
-      <a href="index.html">UTAMA</a>
+
+    <script>
+    fetch("../template-text/MS/kasuhanet-icon-official-MS.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("branding-title").innerHTML = data;
+    }).catch(err => console.log(err));
+    </script>     
+<nav class="nav-links" aria-label="Navigasi utama">    
+<a href="index.html">UTAMA</a>
       <a href="about-us-MS.html">TENTANG KAMI</a>
       <a href="terms-MS.html" style="color: var(--red);">TERMA & POLISI</a>
       <a href="support-centre-MS.html">SOKONGAN</a>

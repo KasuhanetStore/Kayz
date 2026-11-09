@@ -184,17 +184,26 @@
 
 <body>
 
-<!-- HEADER -->
+<!-- TOPBAR HEADER -->
 <header class="topbar">
   <div class="container nav">
-    <div class="brand">
-      <div class="brand-mark">K</div>
-      <div>
-        KasuhaNET
-        <small>STORE</small>
+    <div id="branding-title">
+      <div class="brand">
+        <div class="brand-mark">K</div>
+        <div>
+          KasuhaNET
+          <small>STORE</small>
+        </div>
       </div>
     </div>
-    
+
+    <script>
+    fetch("../template-text/MS/kasuhanet-icon-official-MS.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("branding-title").innerHTML = data;
+    }).catch(err => console.log(err));
+    </script>        
     <nav class="nav-links" aria-label="Navigasi Utama">
         <div class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
@@ -210,7 +219,7 @@
             </div>
         </div>
         <a href="index.html">LAMAN UTAMA</a>
-        <a href="about-us-MS.html">TENTANG KAMI</a>
+        <a href="about-usMS.html">TENTANG KAMI</a>
         <a href="terms-MS.html">TERMA & POLISI</a>
         <a href="support-centre-MS.html" style="color: var(--red);">SOKONGAN</a>
         <a class="btn btn-outline" href="../support-centre-EN.html" lang="en">EN</a>
