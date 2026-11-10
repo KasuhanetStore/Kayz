@@ -13,15 +13,23 @@
 
 <header class="topbar">
   <div class="container nav">
-    <a href="index.html" class="brand">
-        <img src="img/logo3.webp" alt="KasuhaNET.STORE" class="brand-logo">
-        <small>STORE</small>
-    </a>
+    
+    <!-- Bahagian Logo / Branding -->
+    <div id="branding-title">
+      <a href="index.html" class="brand">
+          <img src="img/logo3.webp" alt="KasuhaNET.STORE" class="brand-logo">
+          <small>STORE</small>
+      </a>
+    </div>
+    <script>
+    fetch("template-text/EN/kasuhanet-icon-official-EN.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("branding-title").innerHTML = data;
+    }).catch(err => console.log(err));
+    </script>
 
-    <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Navigation">
-        <i class="fa-solid fa-bars"></i>
-    </button>
-
+    <!-- Menu Navigasi Utama -->
     <nav class="nav-links" id="navLinks" aria-label="Main Navigation">
         <div class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
@@ -43,6 +51,11 @@
         <a class="btn btn-outline" href="index.html" lang="en">EN</a>
         <a class="btn btn-outline" href="MS/index.html" lang="ms">MS</a>
     </nav>
+
+    <!-- Hanya satu butang hamburger di sebelah kanan -->
+    <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Navigation">
+        <i class="fa-solid fa-bars"></i>
+    </button>
   </div>
 </header>
 
