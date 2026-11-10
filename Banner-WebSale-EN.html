@@ -147,28 +147,279 @@
   </div>
 </header>
 
-<!-- PARTNER CREDIT BAR -->
-<div class="partner-credit-bar">
-    <div class="credit-text">
-        This website is powered through a partnership between Organization & Company
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <div class="partner-logos">
-        <span class="partner-name">
-            Kasuha Oculus Organisation
-        </span>
+    <!-- MAIN SEO -->
+    <title>About Us | KasuhaNET.STORE</title>
+    <meta name="google-adsense-account" content="ca-pub-4280897190566760">
+    <meta name="description" content="KasuhaNET.STORE is a digital platform offering various sales and configuration services including websites, terminal codes, e-digital products, and tools.">
+    <meta name="keywords" content="About KasuhaNET, Kasuha Zukarnain, Kasuha Oculus Organisation, KasuhaNET Resources, Web Development & Configuration.">
+    <meta name="author" content="Kasuhanet Resources">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="theme-color" content="#08090d">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <div class="partner-logo-box">
-            <img src="OculusLogo.png" alt="Partnership Logo">
+    <!-- CANONICAL & HREFLANG -->
+    <link rel="canonical" href="https://kasuhanet.store/about-us-EN.html">
+    <link rel="alternate" hreflang="en" href="https://kasuhanet.store/about-us-EN.html">
+    <link rel="alternate" hreflang="ms" href="https://kasuhanet.store/MS/about-us-MS.html">
+    <link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/about-us-EN.html">
+
+    <!-- OPEN GRAPH & TWITTER -->
+    <meta property="og:title" content="About Us | KasuhaNET.STORE">
+    <meta property="og:description" content="Learn more about KasuhaNET.STORE, a hybrid digital platform offering Linux terminal tools, affiliate marketing support, and web launch services.">
+    <meta property="og:image" content="https://kasuhanet.store/img/logo3.webp">
+    <meta property="og:url" content="https://kasuhanet.store/about-us-EN.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="KasuhaNET.STORE">
+    <meta property="og:locale" content="en_US">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="About Us | KasuhaNET.STORE">
+    <meta name="twitter:description" content="A hybrid digital platform offering Linux terminal tools, affiliate marketing support, and web development services.">
+    <meta name="twitter:image" content="https://kasuhanet.store/img/logo3.webp">
+
+    <!-- FONTS & LIBRARIES -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- LINKED STYLESHEET -->
+    <link rel="stylesheet" href="css/Branding.css">
+    <script src="js/home-main.js"></script>
+
+    <!-- FAVICONS -->
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-512x512.png">
+    <link rel="shortcut icon" href="https://kasuhanet.store/favicon.ico">
+
+    <!-- STYLES EMBEDDED -->
+    <style>
+    :root {
+      --bg: #08090d;
+      --panel: #12141c;
+      --panel-2: #191b25;
+      --text: #f6f7fb;
+      --muted: #b9bdca;
+      --red: #ff304f;
+      --red-dark: #a90025;
+      --orange: #ff7a35;
+      --accent-pink: #ff7187;
+      --accent-cyan: #00F0FF;
+      --line: rgba(255,255,255,.12);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: radial-gradient(circle at 80% 0%, rgba(255,48,79,.14), transparent 30%), var(--bg);
+      color: var(--text);
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+    main {
+      flex: 1;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1120px, calc(100% - 36px)); margin: 0 auto; }
+    .topbar {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(8,9,13,.95); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 11px; font-weight: 900; letter-spacing: .5px; }
+    .brand-mark {
+      width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px;
+      background: linear-gradient(135deg, var(--red), var(--orange)); color: white; font-weight: 1000;
+    }
+    .brand small { display: block; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 24px; color: #d8dbe4; font-size: 14px; }
+    .nav-links a:hover { color: var(--accent-pink); }
+    .btn {
+      display: inline-flex; justify-content: center; align-items: center; gap: 8px;
+      padding: 12px 18px; border-radius: 10px; border: 1px solid transparent;
+      font-weight: 800; font-size: 14px; cursor: pointer; transition: .2s ease;
+    }
+    .btn-primary { background: linear-gradient(120deg, var(--red-dark), var(--red), var(--orange)); color: white; }
+    .btn-primary:hover { filter: brightness(1.1); }
+    .btn-outline { border-color: rgba(255,255,255,.2); color: white; background: rgba(255,255,255,.03); }
+    .btn-outline:hover { border-color: var(--accent-pink); }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: var(--accent-pink); font-size: 12px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 25px; height: 2px; background: linear-gradient(90deg, var(--red), var(--orange)); }
+    .gradient-text { background: linear-gradient(100deg, #fff 0%, var(--accent-pink) 48%, var(--orange) 100%); color: transparent; background-clip: text; -webkit-background-clip: text; }
+    .section { padding: 68px 0; }
+    .section-head { text-align: center; max-width: 720px; margin: 0 auto 36px; }
+    .section-head h2 { font-size: clamp(28px,4vw,42px); line-height: 1.15; margin: 12px 0; font-family: 'Orbitron', sans-serif; }
+    .section-head p { color: var(--muted); margin: 0; }
+    
+    .service-card { background: linear-gradient(145deg, var(--panel-2), var(--panel)); border: 1px solid var(--line); border-radius: 17px; padding: 24px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+    
+    footer { border-top: 1px solid var(--line); margin-top: auto; padding: 28px 0; color: #aeb2c0; font-size: 12px; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .whatsapp-float {
+      position: fixed; right: 20px; bottom: 20px; z-index: 30; width: 60px; height: 60px; border-radius: 50%;
+      display: grid; place-items: center; color: #fff; background: linear-gradient(135deg, #25d366, #0b9d58);
+      border: 2px solid rgba(255,255,255,.85); transition: transform .2s;
+    }
+    .whatsapp-float:hover { transform: translateY(-4px) scale(1.04); }
+    .whatsapp-float svg { width: 30px; height: 30px; fill: currentColor; }
+
+    /* STYLES PARTNER CREDIT */
+    .partner-credit-bar {
+        background-color: var(--bg);
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        padding: 22px 15px;
+        text-align: center;
+        font-family: 'Orbitron', sans-serif;
+        color: var(--text);
+        width: 100%;
+    }
+    .credit-text {
+        font-size: 0.72rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 14px;
+        font-weight: 400;
+        font-family: 'Orbitron', sans-serif;
+    }
+    .partner-logos {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+    .partner-name {
+        color: var(--accent-cyan);
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        font-family: 'Orbitron', sans-serif;
+        text-shadow: none !important;
+    }
+    .partner-logo-box {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--red);
+        border-radius: 4px;
+        background-color: var(--panel);
+        padding: 3px;
+        box-shadow: none !important;
+    }
+    .partner-logo-box img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        display: block;
+    }
+    
+    .dropdown { position: relative; display: inline-block; }
+    .dropdown-content { display: none; position: absolute; background-color: var(--panel); min-width: 200px; border: 1px solid var(--line); border-radius: 8px; padding: 8px 0; z-index: 10; }
+    .dropdown-content a { color: var(--text); padding: 10px 16px; text-decoration: none; display: block; font-size: 13px; }
+    .dropdown-content a:hover { background-color: rgba(255,255,255,0.05); }
+    .dropdown-content.show { display: block; }
+
+    /* PEMBERSIHAN KESAN GLOW & UNDERLINE SAHAJA */
+    footer a, footer p, footer span, .footer-inner a {
+        text-shadow: none !important;
+        box-shadow: none !important;
+        border-bottom: none !important;
+        background-image: none !important;
+    }
+    footer a::after, footer span::after {
+        display: none !important;
+    }
+
+    @media(max-width:850px){ .grid-3, .grid-2 { grid-template-columns: 1fr; } .nav-links a:not(.btn) { display: none; } }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Kasuha Oculus",
+      "url": "https://kasuhanet.store/",
+      "logo": "https://kasuhanet.store/OculusLogo.png",
+      "description": "Website development services, software design, and system integration."
+    }
+    </script>
+</head>
+<body>
+
+<!-- TOPBAR HEADER -->
+<header class="topbar">
+  <div class="container nav">
+    <div id="branding-title">
+      <div class="brand">
+        <div class="brand-mark">K</div>
+        <div>
+          KasuhaNET
+          <small>STORE</small>
         </div>
-
-        <span class="partner-name">
-            KasuhaNET Resources
-        </span>
+      </div>
     </div>
-</div>
 
-<!-- MAIN CONTENT -->
+    <script>
+    fetch("template-text/EN/kasuhanet-icon-official-EN.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("branding-title").innerHTML = data;
+    }).catch(err => console.log(err));
+    </script>    
+    <nav class="nav-links" aria-label="Main Navigation">
+        <div class="dropdown">
+            <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
+                International <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: var(--accent-pink);"></i>
+            </a>
+            <div class="dropdown-content" id="servicesDropdown">
+                <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">
+                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: var(--accent-cyan);"></i> RWANDA (Africa)
+                </a>
+                <a href="https://kasuhanet.store/Timor-Leste-SupportDevelopement.html">
+                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: #E600A4;"></i> TIMOR LESTE (Asia)
+                </a>
+            </div>
+        </div>
+        <a href="index.html">HOME</a>
+        <a href="about-us-EN.html" style="color: var(--accent-pink); font-weight:800;">ABOUT US</a>
+        <a href="terms-EN.html">TERMS & POLICY</a>
+        <a href="support-centre-EN.html">SUPPORT</a>
+        <a class="btn btn-outline" href="about-us-EN.html" lang="en">EN</a>
+        <a class="btn btn-outline" href="MS/about-us-MS.html" lang="ms">BM</a>
+    </nav>
+  </div>
+</header>
+
+<!-- PARTNER CREDIT BAR -->
+<div id="partner-credit-placeholder"></div>
+
+<script>
+  fetch("template-text/EN/partner-credit-EN.html")
+    .then(response => {
+        if (!response.ok) throw new Error('Partner Credit Template Failed to Load');
+        return response.text();
+    })
+    .then(data => {
+        document.getElementById("partner-credit-placeholder").innerHTML = data;
+    })
+    .catch(error => console.error(error));
+</script>
+    
 <main>
   <div class="container" style="max-width: 880px;">
     
