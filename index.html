@@ -351,6 +351,9 @@
   </style>
 </head>
 
+  <header class="topbar">
+  <div class="container nav">
+    
   <script>
   // Panggil fail komponen logo
   fetch("template-text/EN/kasuhanet-icon-official-EN.html")
@@ -363,36 +366,6 @@
     })
     .catch(err => console.error(err));
     </script>
-
-    <!-- Menu Navigasi Utama -->
-    <nav class="nav-links" id="navLinks" aria-label="Main Navigation">
-        <div class="dropdown">
-            <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
-                International <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #ff7187;"></i>
-            </a>
-            <div class="dropdown-content" id="servicesDropdown">
-                <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">
-                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: #00F0FF;"></i> RWANDA (Africa)
-                </a>
-                <a href="https://kasuhanet.store/Timor-Leste-SupportDevelopement.html">
-                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: #E600A4;"></i> TIMOR LESTE (Asia)
-                </a>
-            </div>
-        </div>
-        <a href="index.html">HOME</a>
-        <a href="about-us-EN.html">ABOUT US</a>
-        <a href="terms-EN.html">TERMS & POLICY</a>
-        <a href="support-centre-EN.html">SUPPORT</a>
-        <a class="btn btn-outline" href="index.html" lang="en">EN</a>
-        <a class="btn btn-outline" href="MS/index.html" lang="ms">MS</a>
-    </nav>
-
-    <!-- Butang Hamburger Menu untuk Mobile di sebelah kanan -->
-    <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Navigation">
-        <i class="fa-solid fa-bars"></i>
-    </button>
-  </div>
-</header>
 
 <body>
 
