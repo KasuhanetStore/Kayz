@@ -278,28 +278,29 @@
   </style>
 </head>
 <body>
-
+<!-- TOPBAR HEADER SERAGAM -->
 <header class="topbar">
   <div class="container nav">
     <div id="branding-title">
-      <div class="brand">
-        <div class="brand-mark">K</div>
-        <div>
-          KasuhaNET
-          <small>STORE</small>
-        </div>
-      </div>
+      <!-- Fallback Logo Sementara Load -->
+      <a class="brand" href="index.html">
+        <span style="font-family:'Orbitron',sans-serif; font-weight:900; color:#ff304f; font-size:18px;">KasuhaNET<small style="color:#fff; font-size:9px; display:block;">.STORE</small></span>
+      </a>
     </div>
 
     <script>
     fetch("../template-text/MS/kasuhanet-icon-official-MS.html")
-    .then(response => response.text())
+    .then(response => {
+        if (!response.ok) throw new Error('Logo Failed Load');
+        return response.text();
+    })
     .then(data => {
         document.getElementById("branding-title").innerHTML = data;
-    });
-    </script>
+    })
+    .catch(error => console.error(error));
+    </script>    
 
-    <nav class="nav-links" aria-label="Navigasi utama">
+    <nav class="nav-links" id="navLinks" aria-label="Navigasi Utama">
         <div class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
                 Luar Negara <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #ff7187;"></i>
@@ -323,6 +324,11 @@
     <span>BINA WEBSITE!</span>
     <i class="fa-solid fa-computer-mouse"></i>
 </a>
+<button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Tukar Navigasi">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+</header>     
     </nav>
   </div>
 </header>
