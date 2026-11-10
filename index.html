@@ -291,7 +291,7 @@
   </style>
 </head>
 <body>
-  
+    
 <header class="topbar">
   <div class="container nav">
     <div id="branding-title">
@@ -309,13 +309,18 @@
     .then(response => response.text())
     .then(data => {
         document.getElementById("branding-title").innerHTML = data;
-    });
+    }).catch(err => console.log(err));
     </script>
 
-    <nav class="nav-links" aria-label="Main Navigation">
+    <!-- BUTANG HAMBURGER MENU UNTUK MOBILE -->
+    <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Navigation">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <nav class="nav-links" id="navLinks" aria-label="Main Navigation">
         <div class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
-                Overseas <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #ff7187;"></i>
+                International <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #ff7187;"></i>
             </a>
             <div class="dropdown-content" id="servicesDropdown">
                 <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">
@@ -326,6 +331,8 @@
                 </a>
             </div>
         </div>
+    <span>GET WEBSITE!</span>
+    <i class="fa-solid fa-computer-mouse"></i>
         <a href="index.html">HOME</a>
         <a href="about-us-EN.html">ABOUT US</a>
         <a href="terms-EN.html">TERMS & POLICY</a>
