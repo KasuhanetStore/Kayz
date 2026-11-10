@@ -1,38 +1,74 @@
 <style>
-.brand {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-decoration: none;
-    gap: 0px;
-    line-height: 1;
-}
-
-.brand-logo {
-    width: 85px;
-    height: 65px;
-    object-fit: contain;
-    object-position: left center;
-    display: block;
-    margin-bottom: -3px;
-}
-
-.brand small {
-    display: block;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    white-space: nowrap;
-    line-height: 1;
-    margin: 0;
-    padding: 0;
-}
+  .brand{display:inline-flex;flex-direction:column;align-items:flex-start;text-decoration:none;gap:0;line-height:1}
+  .brand-logo{width:85px;height:65px;object-fit:contain;object-position:left center;display:block;margin-bottom:-3px}
+  .brand small{display:block;font-size:9px;font-weight:700;letter-spacing:.5px;white-space:nowrap;line-height:1;margin:0;padding:0}
+  .menu-toggle{display:none;background:transparent;border:1px solid var(--line);color:var(--text);font-size:18px;padding:8px 12px;border-radius:8px;cursor:pointer}
+  @media(max-width:850px){
+    .menu-toggle{display:inline-flex;align-items:center;justify-content:center}
+    .nav-links{display:none;flex-direction:column;position:absolute;top:76px;left:0;width:100%;background:rgba(8,9,13,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:20px;gap:16px;box-shadow:0 10px 30px rgba(0,0,0,.5);z-index:99}
+    .nav-links.active{display:flex}
+    .nav-links a:not(.btn){display:block!important;width:100%;text-align:left;padding:6px 0}
+  }
 </style>
 
-<a class="brand" href="index.html" aria-label="KasuhaNET Official page">
+<header class="topbar">
+  <div class="container nav">
+    <a href="index.html" class="brand">
+        <img src="img/logo3.webp" alt="KasuhaNET.STORE" class="brand-logo">
+        <small>STORE</small>
+    </a>
 
-    <img src="img/logo3.png" class="brand-logo" alt="KasuhaNET.STORE">
+    <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Navigation">
+        <i class="fa-solid fa-bars"></i>
+    </button>
 
-    <small></small>
+    <nav class="nav-links" id="navLinks" aria-label="Main Navigation">
+        <div class="dropdown">
+            <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
+                International <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #ff7187;"></i>
+            </a>
+            <div class="dropdown-content" id="servicesDropdown">
+                <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">
+                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: #00F0FF;"></i> RWANDA (Africa)
+                </a>
+                <a href="https://kasuhanet.store/Timor-Leste-SupportDevelopement.html">
+                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: #E600A4;"></i> TIMOR LESTE (Asia)
+                </a>
+            </div>
+        </div>
+        <a href="index.html">HOME</a>
+        <a href="about-us-EN.html">ABOUT US</a>
+        <a href="terms-EN.html">TERMS & POLICY</a>
+        <a href="support-centre-EN.html">SUPPORT</a>
+        <a class="btn btn-outline" href="index.html" lang="en">EN</a>
+        <a class="btn btn-outline" href="MS/index.html" lang="ms">MS</a>
+    </nav>
+  </div>
+</header>
 
-</a>
+<script>
+  function toggleMobileMenu() {
+    const navLinks = document.getElementById("navLinks");
+    navLinks.classList.toggle("active");
+  }
+
+  function toggleDropdown() {
+    document.getElementById("servicesDropdown").classList.toggle("show");
+  }
+
+  window.addEventListener('click', function(e) {
+    if (!e.target.matches('.dropdown a') && !e.target.matches('.dropdown i')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+  });
+
+  const WHATSAPP_NUMBER = "60167390501"; 
+  const DEFAULT_MESSAGE = "Hello, I am interested in KasuhaNET.STORE services.";  
+  const waURL = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(DEFAULT_MESSAGE);  
+</script>
