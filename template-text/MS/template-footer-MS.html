@@ -83,7 +83,7 @@
         margin-bottom: 28px;
     }
     
-    /* Tajuk Utama KasuhaNET.STORE (Diselaraskan supaya tiada garisan bawah) */
+    /* Gaya untuk Kolum Pertama (Mengikut kod tajuk anda tetapi disesuaikan saiz footer) */
     .brand-col .neon-title {
         font-size: 20px;
         font-weight: 900;
@@ -91,58 +91,34 @@
         letter-spacing: -0.5px;
         color: #f6f7fb;
         font-family: 'Orbitron', sans-serif;
-        display: inline-block;
     }
-    .brand-col .neon-title span {
-        background: linear-gradient(90deg, #4F31E8, #E600A4);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        display: inline-block;
-    }
-
-    .brand-col .typing-box h2 {
+.brand-col .neon-title span {
+    background: linear-gradient(90deg, #4F31E8, #E600A4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+        .brand-col .typing-box h2 {
         font-size: 11px;
         font-weight: 800;
         margin: 0 0 8px 0;
         letter-spacing: 1px;
         text-transform: uppercase;
         font-family: 'Orbitron', sans-serif;
-    }
+        }
     .brand-col .brand-purple {
         color: #4F31E8;
     }
     .brand-col .brand-pink {
         color: #E600A4;
     }
-    
-    .footer-bottom {
-        text-align: center;
-        border-top: 1px solid rgba(255,255,255,0.06);
-        padding-top: 20px;
-        font-size: 11px;
-        color: #8c909e;
-        letter-spacing: .5px;
-        font-family: 'Orbitron', sans-serif;
-    }
-
-    /* Bahagian teks bawah kiri (Dipastikan bersih tanpa garisan) */
-    .brand-col .neon-desc {
+        .brand-col .neon-desc {
         font-size: 11px;
         color: var(--muted, #b9bdca);
         line-height: 1.5;
-        margin: 0 0 4px 0;
-        text-decoration: none !important;
-        border: none !important;
-        box-shadow: none !important;
-        background: none !important;
-    }
-    .brand-col .neon-desc strong {
-        font-weight: normal;
-        text-decoration: none !important;
-        border: none !important;
-        background: none !important;
-    }
+        margin: 0;
+        font-family: 'Orbitron', sans-serif;
+        }
 
     .footer-col h4 {
         color: #ff7187;
@@ -193,6 +169,16 @@
         box-shadow: 0 0 20px rgba(255,255,255,0.6), inset 0 1px 2px rgba(255,255,255,0.9);
         border-color: #ffffff;
     }
+    .footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 20px;
+    font-size: 11px; /* Boleh laras saiz jika mahu */
+    color: #8c909e;
+    letter-spacing: .5px;
+    font-family: 'Orbitron', sans-serif; /* Masukkan font Orbitron di sini */
+    }
+  
 
     /* Responsive untuk skrin telefon kecil */
     @media(max-width: 768px) {
@@ -212,3 +198,7 @@
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
+
+yg ni template-footer-MS.html
+
+yg skrg
