@@ -1,20 +1,47 @@
 <!-- FOOTER -->
 <footer>
-  <div class="container footer-inner">
-    <div>
-      <strong>KasuhaNET.STORE | Digital Store Platform</strong><br>
-      <span>Services: CommandCanDo • MyAffiliate • PayLater BNPL</span>
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Kolum 1: Brand -->
+      <div class="footer-col">
+        <div class="footer-logo">KasuhaNET.STORE</div>
+        <p>KasuhaNET.STORE | Digital Store Platform</p>
+      </div>
+
+      <!-- Kolum 2: Services -->
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><span>CommandCanDo</span></li>
+          <li><span>MyAffiliate</span></li>
+          <li><span>PayLater BNPL</span></li>
+        </ul>
+      </div>
+
+      <!-- Kolum 3: Resources -->
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="about-us-EN.html">About Us</a></li>
+          <li><a href="support-centre-EN.html">Support</a></li>
+          <li><a href="terms-EN.html">Terms & Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Kolum 4: Follow Us -->
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/share/1BfeDZJqjP/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://tiktok.com/@kasuhanet.store" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://t.me/kasuhanetstorebot" target="_blank" rel="noopener" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+        </div>
+      </div>
     </div>
-    <div>
-      <span>Resources: </span>
-      <a href="about-us-EN.html">About Us</a> · 
-      <a href="support-centre-EN.html">Support</a> · 
-      <a href="terms-EN.html">Terms & Policy</a><br>
-      <span>Follow Us: </span>
-      <a href="https://www.facebook.com/share/1BfeDZJqjP/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook" style="font-size: 16px;"></i></a> · 
-      <a href="https://tiktok.com/@kasuhanet.store" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok" style="font-size: 16px;"></i></a> · 
-      <a href="https://t.me/kasuhanetstorebot" target="_blank" rel="noopener" aria-label="Telegram"><i class="fa-brands fa-telegram" style="font-size: 16px;"></i></a><br>
-      <span>© <span id="year"></span> <strong>KasuhaNET Resources (202503248308). All Rights Reserved.</strong></span>
+
+    <!-- Copyright di Bawah Sekali -->
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> KasuhaNET Resources (202503248308). All Rights Reserved.</span>
     </div>
   </div>
 </footer>
@@ -23,28 +50,102 @@
     footer { 
         border-top: 1px solid var(--line, rgba(255,255,255,.12)); 
         margin-top: 30px; 
-        padding: 28px 0; 
+        padding: 36px 0 20px; 
         color: #aeb2c0; 
-        font-size: 12px; 
+        font-size: 13px; 
         width: 100%; 
+        background: rgba(8,9,13,0.5);
     }
-    .footer-inner { 
-        display: flex; 
-        align-items: center; 
-        justify-content: space-between; 
-        gap: 16px; 
-        flex-wrap: wrap; 
+    .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        align-items: start;
+        margin-bottom: 28px;
     }
-    .footer-inner a {
-        color: inherit;
+    .footer-col h4 {
+        color: #ff7187;
+        font-size: 15px;
+        margin-bottom: 14px;
+        font-weight: 800;
+        letter-spacing: .5px;
+    }
+    .footer-logo {
+        font-family: 'Orbitron', sans-serif;
+        font-weight: 900;
+        color: #ff304f;
+        font-size: 16px;
+        margin-bottom: 8px;
+        text-shadow: 0 0 10px rgba(255,48,79,0.4);
+    }
+    .footer-col p {
+        margin: 0;
+        color: var(--muted, #b9bdca);
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    .footer-col ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .footer-col ul li {
+        margin-bottom: 8px;
+    }
+    .footer-col ul li a, .footer-col ul li span {
+        color: #aeb2c0;
         text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        vertical-align: middle;
+        font-size: 13px;
+        transition: color 0.2s;
     }
-    .footer-inner a:hover {
+    .footer-col ul li a:hover {
         color: #ff667d;
+    }
+    .social-icons {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+    }
+    .social-icons a {
+        width: 36px;
+        height: 36px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: rgba(255,48,79,0.1);
+        border: 1px solid rgba(255,48,79,0.3);
+        color: #ff7187;
+        font-size: 16px;
+        transition: all 0.2s ease;
+        box-shadow: 0 0 10px rgba(255,48,79,0.15);
+    }
+    .social-icons a:hover {
+        background: linear-gradient(135deg, var(--red, #ff304f), var(--orange, #ff7a35));
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 0 18px rgba(255,48,79,0.4);
+    }
+    .footer-bottom {
+        text-align: center;
+        border-top: 1px solid rgba(255,255,255,0.06);
+        padding-top: 20px;
+        font-size: 12px;
+        color: #8c909e;
+        letter-spacing: .5px;
+    }
+
+    /* Responsive untuk skrin telefon kecil */
+    @media(max-width: 768px) {
+        .footer-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+    }
+    @media(max-width: 480px) {
+        .footer-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
     }
 </style>
 
