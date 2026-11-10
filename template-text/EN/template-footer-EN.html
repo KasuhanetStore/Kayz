@@ -2,10 +2,20 @@
 <footer>
   <div class="container">
     <div class="footer-grid">
-      <!-- Kolum 1: Brand -->
+      <!-- Kolum 1: Brand (Dimuatkan secara dinamik dari fail templat teks) -->
       <div class="footer-col">
-        <div class="footer-logo">KasuhaNET.STORE</div>
-        <p>KasuhaNET.STORE | Digital Store Platform</p>
+        <div id="footer-brand-text"></div>
+        <script>
+          fetch('template-text/EN/text-theme-EN.html')
+          .then(response => {
+              if (!response.ok) throw new Error('Template Failed Load');
+              return response.text();
+          })
+          .then(data => {
+              document.getElementById('footer-brand-text').innerHTML = data;
+          })
+          .catch(error => console.error(error));
+        </script>
       </div>
 
       <!-- Kolum 2: Services -->
@@ -70,18 +80,10 @@
         font-weight: 800;
         letter-spacing: .5px;
     }
-    .footer-logo {
-        font-family: 'Orbitron', sans-serif;
-        font-weight: 900;
-        color: #ff304f;
-        font-size: 16px;
-        margin-bottom: 8px;
-        text-shadow: 0 0 10px rgba(255,48,79,0.4);
-    }
-    .footer-col p {
-        margin: 0;
-        color: var(--muted, #b9bdca);
+    /* Menetapkan saiz teks dalam kolum pertama mengikut asal footer */
+    .footer-col #footer-brand-text {
         font-size: 12px;
+        color: #aeb2c0;
         line-height: 1.5;
     }
     .footer-col ul {
@@ -112,17 +114,16 @@
         display: grid;
         place-items: center;
         border-radius: 50%;
-        /* Gaya Metallic Silver / Putih HD dengan gradasi halus */
         background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03));
         border: 1px solid rgba(255,255,255,0.22);
-        color: #f6f7fb; /* Warna putih silver terang */
+        color: #f6f7fb;
         font-size: 16px;
         transition: all 0.3s ease;
         box-shadow: 0 4px 15px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
     }
     .social-icons a:hover {
         background: linear-gradient(145deg, #ffffff, #d0d4e2);
-        color: #08090d; /* Ikon bertukar gelap apabila disentuh untuk kontras HD */
+        color: #08090d;
         transform: translateY(-3px) scale(1.05);
         box-shadow: 0 0 20px rgba(255,255,255,0.6), inset 0 1px 2px rgba(255,255,255,0.9);
         border-color: #ffffff;
