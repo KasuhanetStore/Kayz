@@ -2,20 +2,20 @@
 <footer>
   <div class="container">
     <div class="footer-grid">
-      <!-- Kolum 1: Brand (Dimuatkan secara dinamik dari fail templat teks) -->
-      <div class="footer-col">
-        <div id="footer-brand-text"></div>
-        <script>
-          fetch('template-text/EN/text-theme-EN.html')
-          .then(response => {
-              if (!response.ok) throw new Error('Template Failed Load');
-              return response.text();
-          })
-          .then(data => {
-              document.getElementById('footer-brand-text').innerHTML = data;
-          })
-          .catch(error => console.error(error));
-        </script>
+      <!-- Kolum 1: Brand & Theme Text -->
+      <div class="footer-col brand-col">
+        <h1 class="neon-title">
+            Kasuha<span>NET.STORE</span>
+        </h1>
+        <div class="typing-box">
+            <h2>
+                <span class="brand-purple">KasuhaNET •</span>
+                <span class="brand-pink">DIGITAL STORE PLATFORM</span>
+            </h2>
+            <p class="neon-desc">
+                A hybrid sales and multi-service digital platform connecting website development, digital services, affiliate support and digital tools in one place.
+            </p>
+        </div>
       </div>
 
       <!-- Kolum 2: Services -->
@@ -68,23 +68,50 @@
     }
     .footer-grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: 1.4fr 0.8fr 0.8fr 1fr;
         gap: 30px;
         align-items: start;
         margin-bottom: 28px;
     }
+    
+    /* Gaya untuk Kolum Pertama (Mengikut kod tajuk anda tetapi disesuaikan saiz footer) */
+    .brand-col .neon-title {
+        font-size: 20px;
+        font-weight: 900;
+        margin: 0 0 6px 0;
+        letter-spacing: -0.5px;
+        color: #f6f7fb;
+        font-family: 'Orbitron', sans-serif;
+    }
+    .brand-col .neon-title span {
+        color: #ff304f;
+    }
+    .brand-col .typing-box h2 {
+        font-size: 11px;
+        font-weight: 800;
+        margin: 0 0 8px 0;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+    .brand-col .brand-purple {
+        color: #b066ff;
+    }
+    .brand-col .brand-pink {
+        color: #ff7187;
+    }
+    .brand-col .neon-desc {
+        font-size: 11px;
+        color: var(--muted, #b9bdca);
+        line-height: 1.5;
+        margin: 0;
+    }
+
     .footer-col h4 {
         color: #ff7187;
         font-size: 15px;
         margin-bottom: 14px;
         font-weight: 800;
         letter-spacing: .5px;
-    }
-    /* Menetapkan saiz teks dalam kolum pertama mengikut asal footer */
-    .footer-col #footer-brand-text {
-        font-size: 12px;
-        color: #aeb2c0;
-        line-height: 1.5;
     }
     .footer-col ul {
         list-style: none;
