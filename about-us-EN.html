@@ -16,16 +16,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- CANONICAL & HREFLANG -->
-    <link rel="canonical" href="https://kasuhanet.store/about-us-EN.html">
-    <link rel="alternate" hreflang="en" href="https://kasuhanet.store/about-us-EN.html">
+    <link rel="canonical" href="https://kasuhanet.store/MS/about-us-EN.html">
+    <link rel="alternate" hreflang="en" href="https://kasuhanet.store/MS/about-us-EN.html">
     <link rel="alternate" hreflang="ms" href="https://kasuhanet.store/MS/about-us-MS.html">
-    <link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/about-us-EN.html">
+    <link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/MS/about-us-EN.html">
 
     <!-- OPEN GRAPH & TWITTER -->
     <meta property="og:title" content="About Us | KasuhaNET.STORE">
     <meta property="og:description" content="Learn more about KasuhaNET.STORE, a hybrid digital platform offering Linux terminal tools, affiliate marketing support, and website deployment services.">
     <meta property="og:image" content="https://kasuhanet.store/img/logo3.webp">
-    <meta property="og:url" content="https://kasuhanet.store/about-us-EN.html">
+    <meta property="og:url" content="https://kasuhanet.store/MS/about-us-EN.html">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="KasuhaNET.STORE">
     <meta property="og:locale" content="en_US">
@@ -40,9 +40,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     
     <!-- LINKED STYLESHEET -->
-    <link rel="stylesheet" href="css/Branding.css">
-    <link rel="stylesheet" href="css/main.css">
-    <script src="js/home-main.js"></script>
+    <link rel="stylesheet" href="../css/Branding.css">
+    <script src="../js/home-main.js"></script>
 
     <!-- FAVICONS -->
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
@@ -63,7 +62,7 @@
       --line: rgba(255,255,255,.12);
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; overflow-x: hidden; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       min-height: 100vh;
@@ -73,7 +72,6 @@
       color: var(--text);
       font-family: Inter, Arial, Helvetica, sans-serif;
       line-height: 1.6;
-      overflow-x: hidden;
     }
     main {
       flex: 1;
@@ -86,116 +84,13 @@
       border-bottom: 1px solid var(--line);
     }
     .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    
-    /* Brand Logo Styles */
-        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-
-<style>
-  .partner-credit-bar {
-      background-color: #08090d;
-      border-top: 1px solid rgba(255, 255, 255, 0.12);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-      padding: 22px 15px;
-      text-align: center;
-      font-family: 'Orbitron', sans-serif;
-      color: #f6f7fb;
-      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.9);
-      width: 100%;
-  }
-  .credit-text {
-      font-size: 0.72rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #b9bdca;
-      margin-bottom: 14px;
-      font-weight: 400;
-  }
-  .partner-logos {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-  }
-  .partner-name {
-      color: #00f3ff;
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-shadow: 0 0 10px rgba(0, 243, 255, 0.65);
-  }
-  .partner-logo-box {
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid #ff304f;
-      border-radius: 4px;
-      background-color: #0c0e15;
-      box-shadow: 0 0 12px rgba(255, 48, 79, 0.45);
-      padding: 3px;
-  }
-  .partner-logo-box img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      display: block;
-  }
-  /* Buang garis bawah dan kesan neon pada pautan/teks footer */
-footer a, footer p, footer span, .footer-inner a {
-    text-shadow: none !important;
-    border-bottom: none !important;
-    background-image: none !important;
-}
-
-/* Jika garisan tersebut terhasil daripada elemen border bawah pautan */
-footer a::after, footer span::after {
-    display: none !important;
-}
-
-<div class="partner-credit-bar">
-    <div class="credit-text">
-        Website powered by the collaboration of Organizations & Companies
-    </div>
-    
-    <div class="partner-logos">
-        <span class="partner-name">Kasuha Oculus Organisation</span>
-        
-        <div class="partner-logo-box">
-            <img src="OculusLogo.png" alt="Collaboration Logo">
-        </div>
-        
-        <span class="partner-name">KasuhaNET Resources</span>
-    </div>
-</div>
-    .brand {
-        display: inline-flex;
-        flex-direction: column;
-        align-items: flex-start;
-        text-decoration: none;
-        gap: 0px;
-        line-height: 1;
+    .brand { display: flex; align-items: center; gap: 11px; font-weight: 900; letter-spacing: .5px; }
+    .brand-mark {
+      width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px;
+      background: linear-gradient(135deg, var(--red), #ff814a); color: white; font-weight: 1000;
+      box-shadow: 0 0 28px rgba(255,48,79,.28);
     }
-    .brand-logo {
-        width: 85px;
-        height: 65px;
-        object-fit: contain;
-        object-position: left center;
-        display: block;
-        margin-bottom: -3px;
-    }
-    .brand small {
-        display: block;
-        font-size: 9px;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-        white-space: nowrap;
-        line-height: 1;
-        margin: 0;
-        padding: 0;
-    }
-
+    .brand small { display: block; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: 2px; }
     .nav-links { display: flex; align-items: center; gap: 24px; color: #d8dbe4; font-size: 14px; }
     .nav-links a:hover { color: #ff667d; }
     .btn {
@@ -212,7 +107,7 @@ footer a::after, footer span::after {
     .gradient-text { background: linear-gradient(100deg,#fff 0%,#ff7187 48%,#ff9b52 100%); color: transparent; background-clip: text; -webkit-background-clip: text; }
     .section { padding: 68px 0; }
     .section-head { text-align: center; max-width: 720px; margin: 0 auto 36px; }
-    .section-head h2 { font-size: clamp(28px,4vw,42px); line-height: 1.15; margin: 12px 0; }
+    .section-head h2 { font-size: clamp(28px,4vw,42px); line-height: 1.15; margin: 12px 0; font-family: 'Orbitron', sans-serif; }
     .section-head p { color: var(--muted); margin: 0; }
     
     .service-card { background: linear-gradient(145deg,var(--panel-2),var(--panel)); border: 1px solid var(--line); border-radius: 17px; padding: 24px; }
@@ -252,40 +147,17 @@ footer a::after, footer span::after {
     .dropdown-content a:hover { background-color: rgba(255,48,79,0.15); }
     .dropdown-content.show { display: block; }
 
-    /* MOBILE MENU TOGGLE BUTTON */
-    .menu-toggle {
-      display: none;
-      background: transparent;
-      border: 1px solid var(--line);
-      color: var(--text);
-      font-size: 20px;
-      padding: 8px 12px;
-      border-radius: 8px;
-      cursor: pointer;
+    /* Buang garis neon/bawah pada footer */
+    footer a, footer p, footer span, .footer-inner a {
+        text-shadow: none !important;
+        border-bottom: none !important;
+        background-image: none !important;
+    }
+    footer a::after, footer span::after {
+        display: none !important;
     }
 
-    @media(max-width:850px){ 
-      .grid-3, .grid-2 { grid-template-columns: 1fr; } 
-      .menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 76px;
-        left: 0;
-        width: 100%;
-        background: rgba(8, 9, 13, 0.97);
-        backdrop-filter: blur(16px);
-        border-bottom: 1px solid var(--line);
-        padding: 24px;
-        gap: 16px;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.6);
-        z-index: 99;
-        align-items: flex-start;
-      }
-      .nav-links.active { display: flex; }
-      .nav-links a:not(.btn) { display: block !important; width: 100%; }
-    }
+    @media(max-width:850px){ .grid-3, .grid-2 { grid-template-columns: 1fr; } .nav-links a:not(.btn) { display: none; } }
     </style>
 
     <script type="application/ld+json">
@@ -301,16 +173,27 @@ footer a::after, footer span::after {
 </head>
 <body>
 
+<!-- TOPBAR HEADER -->
 <header class="topbar">
   <div class="container nav">
-    <!-- Logo Terus Dipaparkan Tanpa Fetch Mengelakkan Bertindih -->
-    <a href="index.html" class="brand" aria-label="KasuhaNET Official page">
-      <img src="img/logo3.png" class="brand-logo" alt="KasuhaNET.STORE">
-      <small></small>
-    </a>
+    <div id="branding-title">
+      <div class="brand">
+        <div class="brand-mark">K</div>
+        <div>
+          KasuhaNET
+          <small>STORE</small>
+        </div>
+      </div>
+    </div>
 
-    <!-- Menu Navigasi Utama -->
-    <nav class="nav-links" id="navLinks" aria-label="Main Navigation">
+    <script>
+    fetch("../template-text/EN/kasuhanet-icon-official-EN.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("branding-title").innerHTML = data;
+    }).catch(err => console.log(err));
+    </script>    
+    <nav class="nav-links" aria-label="Main Navigation">
         <div class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
                 Overseas <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #ff7187;"></i>
@@ -325,31 +208,33 @@ footer a::after, footer span::after {
             </div>
         </div>
         <a href="index.html">HOME</a>
-        <a href="about-us-EN.html" style="color: var(--red);">ABOUT US</a>
+        <a href="about-us-EN.html" style="color:#ff7187; font-weight:800;">ABOUT US</a>
         <a href="terms-EN.html">TERMS & POLICY</a>
         <a href="support-centre-EN.html">SUPPORT</a>
         <a class="btn btn-outline" href="about-us-EN.html" lang="en">EN</a>
-        <a class="btn btn-outline" href="MS/about-us-MS.html" lang="ms">MS</a>
+        <a class="btn btn-outline" href="about-us-MS.html" lang="ms">MS</a>
     </nav>
-
-    <!-- Butang Hamburger Menu untuk Mobile -->
-    <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Navigation">
-        <i class="fa-solid fa-bars"></i>
-    </button>
   </div>
 </header>
 
-<!-- PARTNER CREDIT BAR (Terus Dipaparkan Secara Statik Tanpa Fetch) -->
-<div class="partner-credit-bar" style="font-family: 'Orbitron', sans-serif;">
-    <div class="credit-text" style="font-family: 'Orbitron', sans-serif; letter-spacing: 2px;">
+<!-- PARTNER CREDIT BAR -->
+<div class="partner-credit-bar">
+    <div class="credit-text">
         Website powered by the collaboration of Organizations & Companies
     </div>
+
     <div class="partner-logos">
-        <span class="partner-name" style="font-family: 'Orbitron', sans-serif;">Kasuha Oculus Organisation</span>
+        <span class="partner-name">
+            Kasuha Oculus Organisation
+        </span>
+
         <div class="partner-logo-box">
-            <img src="OculusLogo.png" alt="Collaboration Logo">
+            <img src="../OculusLogo.png" alt="Collaboration Logo">
         </div>
-        <span class="partner-name" style="font-family: 'Orbitron', sans-serif;">KasuhaNET Resources</span>
+
+        <span class="partner-name">
+            KasuhaNET Resources
+        </span>
     </div>
 </div>
 
@@ -428,7 +313,7 @@ footer a::after, footer span::after {
 <!-- FOOTER DINAMIK -->
 <div id="footer-placeholder"></div>
 <script>
-  fetch("template-text/EN/template-footer-EN.html")
+  fetch("../template-text/EN/template-footer-EN.html")
     .then(response => {
         if (!response.ok) throw new Error('Footer Template Failed Load');
         return response.text();
@@ -439,15 +324,9 @@ footer a::after, footer span::after {
     .catch(error => console.error(error));
 </script>
 
-<a class="whatsapp-float" id="floating-whatsapp" href="https://wa.me/60167390501" target="_blank" rel="noopener" aria-label="Hubungi KasuhaNET di WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.02 3C8.86 3 3.04 8.8 3.04 15.94c0 2.28.6 4.5 1.75 6.46L3 29l6.78-1.77a13.05 13.05 0 0 0 6.23 1.58h.01c7.15 0 12.97-5.8 12.97-12.94A12.9 12.9 0 0 0 16.02 3zm0 23.62h-.01a10.8 10.8 0 0 1-5.5-1.5l-.4-.24-4.02 1.05 1.07-3.91-.26-.4a10.7 10.7 0 0 1-1.65-5.68c0-5.93 4.83-10.75 10.78-10.75 2.88 0 5.59 1.12 7.62 3.15a10.67 10.67 0 0 1 3.15 7.6c0 5.93-4.83 10.75-10.78 10.75zm5.91-8.05c-.32-.16-1.9-.94-2.2-1.05-.3-.11-.51-.16-.73.16-.21.32-.83 1.05-1.02 1.27-.19.21-.38.24-.7.08-.32-.16-1.35-.5-2.57-1.6-.95-.84-1.6-1.88-1.79-2.2-.19-.32-.02-.49.14-.65.14-.14.32-.38.48-.57.16-.19.32-.21.54-.03.16-.08-.73-1.75-1-2.4-.26-.63-.53-.54-.73-.55h-.62c-.21 0-.56.4-.86.4-.3.32-1.13 1.1-1.13 2.68s1.16 3.1 1.32 3.31c.21.32 2.28 3.48 5.53 4.88.77.33 1.37.53 1.84.68.77.24 1.47.21 2.02.13.62-.09 1.9-.78 2.17-1.53.27-.75.19-1.4.19-1.53-.08-.14-.29-.22-.61-.38z"/></svg></a>  
+<a class="whatsapp-float" id="floating-whatsapp" href="https://wa.me/60167390501" target="_blank" rel="noopener" aria-label="Contact KasuhaNET via WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.02 3C8.86 3 3.04 8.8 3.04 15.94c0 2.28.6 4.5 1.75 6.46L3 29l6.78-1.77a13.05 13.05 0 0 0 6.23 1.58h.01c7.15 0 12.97-5.8 12.97-12.94A12.9 12.9 0 0 0 16.02 3zm0 23.62h-.01a10.8 10.8 0 0 1-5.5-1.5l-.4-.24-4.02 1.05 1.07-3.91-.26-.4a10.7 10.7 0 0 1-1.65-5.68c0-5.93 4.83-10.75 10.78-10.75 2.88 0 5.59 1.12 7.62 3.15a10.67 10.67 0 0 1 3.15 7.6c0 5.93-4.83 10.75-10.78 10.75zm5.91-8.05c-.32-.16-1.9-.94-2.2-1.05-.3-.11-.51-.16-.73.16-.21.32-.83 1.05-1.02 1.27-.19.21-.38.24-.7.08-.32-.16-1.35-.5-2.57-1.6-.95-.84-1.6-1.88-1.79-2.2-.19-.32-.02-.49.14-.65.14-.14.32-.38.48-.57.16-.19.32-.21.54-.03.16-.08-.73-1.75-1-2.4-.26-.63-.53-.54-.73-.55h-.62c-.21 0-.56.4-.86.4-.3.32-1.13 1.1-1.13 2.68s1.16 3.1 1.32 3.31c.21.32 2.28 3.48 5.53 4.88.77.33 1.37.53 1.84.68.77.24 1.47.21 2.02.13.62-.09 1.9-.78 2.17-1.53.27-.75.19-1.4.19-1.53-.08-.14-.29-.22-.61-.38z"/></svg></a>  
 
-<!-- SCRIPT LOGIC -->
-<script>
-  function toggleMobileMenu() {
-    const navLinks = document.getElementById("navLinks");
-    navLinks.classList.toggle("active");
-  }
-
+<script>  
   function toggleDropdown() {
     document.getElementById("servicesDropdown").classList.toggle("show");
   }
@@ -468,7 +347,6 @@ footer a::after, footer span::after {
   const DEFAULT_MESSAGE = "Hello, I am interested in KasuhaNET.STORE services.";  
   const waURL = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(DEFAULT_MESSAGE);  
   document.getElementById("floating-whatsapp").href = waURL;  
-
-</script>
+</script>  
 </body>
 </html>
