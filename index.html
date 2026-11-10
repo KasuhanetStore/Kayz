@@ -370,20 +370,20 @@
     </script>
     </div>
 
-<!-- TEMPAT PENAMPUNG NAVIGATOR -->
     <nav class="nav-links" id="navLinks" aria-label="Main Navigation">
         <div class="dropdown">
-<script>
-  fetch("navigator-EN.html")
-    .then(response => {
-        if (!response.ok) throw new Error('Navigator Template Failed Load');
-        return response.text();
-    })
-    .then(data => {
-        document.getElementById("navigator-placeholder").innerHTML = data;
-    })
-    .catch(error => console.error(error));
-</script>
+          <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
+                Overseas <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #ff7187;"></i>
+            </a>
+            <div class="dropdown-content" id="servicesDropdown">
+                <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">
+                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: #00F0FF;"></i> RWANDA (Africa)
+                </a>
+                <a href="https://kasuhanet.store/Timor-Leste-SupportDevelopement.html">
+                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: #E600A4;"></i> TIMOR LESTE (Asia)
+                </a>
+            </div>
+        </div>
                   <a href="index.html">HOME</a>
         <a href="about-us-EN.html">ABOUT US</a>
         <a href="terms-EN.html">TERMS & POLICY</a>
