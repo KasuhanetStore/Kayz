@@ -52,15 +52,6 @@
       object-fit: contain;
       display: block;
   }
-  /* Buang garis bawah dan kesan neon pada pautan/teks footer */
-footer a, footer p, footer span, .footer-inner a {
-    border-bottom: none !important;
-}
-
-/* Jika garisan tersebut terhasil daripada elemen border bawah pautan */
-footer a::after, footer span::after {
-    display: none !important;
-}
   
 </style>
 
