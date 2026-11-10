@@ -163,23 +163,20 @@
 </head>
 <body>
 
-<!-- TOPBAR HEADER -->
 <header class="topbar">
   <div class="container nav">
+    
+    <!-- Logo Statik -->
+    <a href="index.html" class="brand">
+        <img src="img/logo3.png" alt="KasuhaNET.STORE" class="brand-logo">
+        <small>PLATFORM DIGITAL STORE</small>
+    </a>
 
-    <script>
-    fetch("template-text/EN/kasuhanet-icon-official-EN.html")
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById("branding-title").innerHTML = data;
-    }).catch(err => console.log(err));
-    </script>
-
-      <!-- Menu Navigasi Utama -->
+    <!-- Menu Navigasi Utama -->
     <nav class="nav-links" id="navLinks" aria-label="Main Navigation">
         <div class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
-                International <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #ff7187;"></i>
+                Overseas <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #ff7187;"></i>
             </a>
             <div class="dropdown-content" id="servicesDropdown">
                 <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">
@@ -197,6 +194,11 @@
         <a class="btn btn-outline" href="index.html" lang="en">EN</a>
         <a class="btn btn-outline" href="MS/index.html" lang="ms">MS</a>
     </nav>
+
+    <!-- Butang Hamburger Menu untuk Mobile di sebelah kanan -->
+    <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Navigation">
+        <i class="fa-solid fa-bars"></i>
+    </button>
   </div>
 </header>
 
