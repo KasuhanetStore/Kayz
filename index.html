@@ -354,49 +354,59 @@
 </head>
 <body>
   
+<!-- TOPBAR HEADER SERAGAM -->
 <header class="topbar">
   <div class="container nav">
     <div id="branding-title">
-      <script>
-      fetch("template-text/EN/kasuhanet-icon-official-EN.html")
-      .then(response => {
-          if (!response.ok) throw new Error('Logo Template Failed Load');
-          return response.text();
-      })
-      .then(data => {
-          document.getElementById("branding-title").innerHTML = data;
-      })
-      .catch(error => console.error(error));
-      </script>
+      <!-- Fallback Logo Sementara Load -->
+      <a class="brand" href="index.html">
+        <span style="font-family:'Orbitron',sans-serif; font-weight:900; color:#ff304f; font-size:18px;">KasuhaNET<small style="color:#fff; font-size:9px; display:block;">.STORE</small></span>
+      </a>
     </div>
 
-    <nav class="nav-links" id="navLinks" aria-label="Main Navigation">
+    <script>
+    fetch("../template-text/MS/kasuhanet-icon-official-MS.html")
+    .then(response => {
+        if (!response.ok) throw new Error('Logo Failed Load');
+        return response.text();
+    })
+    .then(data => {
+        document.getElementById("branding-title").innerHTML = data;
+    })
+    .catch(error => console.error(error));
+    </script>    
+
+    <nav class="nav-links" id="navLinks" aria-label="Navigasi Utama">
         <div class="dropdown">
-          <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
-                Overseas <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #ff7187;"></i>
+            <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
+                Luar Negara <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #ff7187;"></i>
             </a>
             <div class="dropdown-content" id="servicesDropdown">
                 <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">
-                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: #00F0FF;"></i> RWANDA (Africa)
+                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: #00F0FF;"></i> RWANDA (Afrika)
                 </a>
                 <a href="https://kasuhanet.store/Timor-Leste-SupportDevelopement.html">
                     <i class="fa-solid fa-globe" style="margin-right: 8px; color: #E600A4;"></i> TIMOR LESTE (Asia)
                 </a>
             </div>
         </div>
+        
         <a href="index.html">HOME</a>
         <a href="about-us-EN.html">ABOUT US</a>
         <a href="terms-EN.html">TERMS & POLICY</a>
         <a href="support-centre-EN.html">SUPPORT</a>
         <a class="btn btn-outline" href="index.html" lang="en">EN</a>
-        <a class="btn btn-outline" href="MS/index.html" lang="ms">MS</a>
-        <a class="btn-cyber-animated" href="Banner-WebSale-EN.html">
+        <a class="btn btn-outline" href="MS/index.html" lang="ms">MS</a
+        <div style="display: flex; gap: 8px; margin: 4px 0;">
+          <a class="btn btn-outline" href="../index.html" lang="en">EN</a>
+          <a class="btn btn-outline" href="index.html" lang="ms" style="border-color:#ff304f;">BM</a>
+        </div>
+<a class="btn-cyber-animated" href="Banner-WebSale-EN.html">
             <span>GET WEBSITE!</span>
             <i class="fa-solid fa-computer-mouse"></i>
         </a>
     </nav>
-
-    <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Navigation">
+<button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Navigation">
         <i class="fa-solid fa-bars"></i>
     </button>
   </div>
