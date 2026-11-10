@@ -54,9 +54,7 @@
   }
   /* Buang garis bawah dan kesan neon pada pautan/teks footer */
 footer a, footer p, footer span, .footer-inner a {
-    text-shadow: none !important;
     border-bottom: none !important;
-    background-image: none !important;
 }
 
 /* Jika garisan tersebut terhasil daripada elemen border bawah pautan */
@@ -114,11 +112,6 @@ footer a::after, footer span::after {
     color: #E600A4;
 }
 
-.neon-desc {
-    color: #b9bdca;
-    font-size: 15px;
-    line-height: 1.7;
-}
 /* MOBILE MENU TOGGLE BUTTON */
 .menu-toggle {
   display: none;
