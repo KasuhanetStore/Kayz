@@ -52,6 +52,18 @@
       object-fit: contain;
       display: block;
   }
+  /* Buang garis bawah dan kesan neon pada pautan/teks footer */
+footer a, footer p, footer span, .footer-inner a {
+    text-shadow: none !important;
+    border-bottom: none !important;
+    background-image: none !important;
+}
+
+/* Jika garisan tersebut terhasil daripada elemen border bawah pautan */
+footer a::after, footer span::after {
+    display: none !important;
+}
+  
 </style>
 
 <div class="partner-credit-bar">
