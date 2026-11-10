@@ -1,0 +1,52 @@
+/* HAD SAIZ LOGO SUPAYA TIDAK GERGASI */
+#branding-title img, #branding-title svg, .brand-logo {
+    max-width: 170px !important;
+    max-height: 48px !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain;
+    display: block;
+}
+
+/* KAWALAN PAPARAN MOBILE (SCREEN < 850PX) */
+@media(max-width:850px){
+  .menu-toggle { 
+    display: inline-flex !important; 
+    align-items: center; 
+    justify-content: center; 
+  }
+  .nav-links {
+    display: none; /* Sembunyi secara lalai */
+    flex-direction: column;
+    position: absolute;
+    top: 76px;
+    left: 0;
+    width: 100%;
+    background: rgba(8, 9, 13, 0.98);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--line);
+    padding: 20px 24px;
+    gap: 14px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.8);
+    z-index: 999;
+    align-items: flex-start;
+  }
+  /* MENU AKTIF BILA DITEKAN */
+  .nav-links.active { 
+    display: flex !important; 
+  }
+  .nav-links a:not(.btn) { 
+    display: block !important; 
+    width: 100%; 
+    padding: 6px 0;
+  }
+  .dropdown {
+    width: 100%;
+  }
+  .dropdown-content {
+    position: relative !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    margin-top: 8px;
+  }
+}
