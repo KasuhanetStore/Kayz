@@ -282,6 +282,86 @@
             margin-bottom: 15px;
             text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
         }
+        /* Topbar & Header Styling */
+.topbar {
+  width: 100%;
+  background-color: #121212; /* Sesuaikan warna latar belakang header sesuai tema web */
+  border-bottom: 1px solid #2a2a2a;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.topbar .container.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px 20px;
+}
+
+/* Nav Links & Dropdown */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #e0e0e0;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #00F0FF;
+}
+
+/* Dropdown Container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content Box */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #1a1a1a;
+  min-width: 220px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  border: 1px solid #333333;
+  border-radius: 6px;
+  z-index: 1001;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+/* Dropdown Links */
+.dropdown-content a {
+  color: #cccccc;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-content a:hover {
+  background-color: #252525;
+  color: #ffffff;
+}
+
+/* Class active untuk toggle dropdown via JavaScript */
+.dropdown-content.show {
+  display: block;
+}
+        
     </style>
 </head>
 <body>
