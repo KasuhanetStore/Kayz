@@ -1,47 +1,17 @@
-<style>
-.brand {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-decoration: none;
-    gap: 0px;
-    line-height: 1;
-}
-
-.brand-logo {
-    width: 85px;
-    height: 65px;
-    object-fit: contain;
-    object-position: left center;
-    display: block;
-    margin-bottom: -3px;
-}
-
-.brand small {
-    display: block;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    white-space: nowrap;
-    line-height: 1;
-    margin: 0;
-    padding: 0;
-}
-</style>
-
-<a class="brand" href="index.html" aria-label="KasuhaNET Official page">
-
-    <img src="img/logo3.png" class="brand-logo" alt="KasuhaNET.STORE">
-
-    <small></small>
-
-</a>
+<header class="topbar">
+  <div class="container nav">
+    
+    <!-- Logo diletakkan secara terus (Statik) tanpa perlu fetch -->
+    <a href="index.html" class="brand">
+        <img src="img/logo3.webp" alt="KasuhaNET.STORE" class="brand-logo">
+        <small>STORE</small>
+    </a>
 
     <!-- Menu Navigasi Utama -->
     <nav class="nav-links" id="navLinks" aria-label="Main Navigation">
         <div class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
-                Overseas <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #ff7187;"></i>
+                International <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #ff7187;"></i>
             </a>
             <div class="dropdown-content" id="servicesDropdown">
                 <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">
@@ -60,36 +30,9 @@
         <a class="btn btn-outline" href="MS/index.html" lang="ms">MS</a>
     </nav>
 
-    <!-- Hanya satu butang hamburger di sebelah kanan -->
+    <!-- Butang Hamburger Menu untuk Mobile di sebelah kanan -->
     <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Navigation">
         <i class="fa-solid fa-bars"></i>
     </button>
   </div>
 </header>
-
-<script>
-  function toggleMobileMenu() {
-    const navLinks = document.getElementById("navLinks");
-    navLinks.classList.toggle("active");
-  }
-
-  function toggleDropdown() {
-    document.getElementById("servicesDropdown").classList.toggle("show");
-  }
-
-  window.addEventListener('click', function(e) {
-    if (!e.target.matches('.dropdown a') && !e.target.matches('.dropdown i')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        for (var i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-            }
-        }
-    }
-  });
-
-  const WHATSAPP_NUMBER = "60167390501"; 
-  const DEFAULT_MESSAGE = "Hello, I am interested in KasuhaNET.STORE services.";  
-  const waURL = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(DEFAULT_MESSAGE);  
-</script>
