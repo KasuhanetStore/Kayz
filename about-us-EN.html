@@ -165,12 +165,18 @@
 
 <header class="topbar">
   <div class="container nav">
-    
-    <!-- Logo Statik -->
-    <a href="index.html" class="brand">
-        <img src="img/logo3.png" alt="KasuhaNET.STORE" class="brand-logo">
-        <small>PLATFORM DIGITAL STORE</small>
-    </a>
+
+      <script>
+      fetch('kasuhanet-icon-official-EN.html')
+      .then(response => {
+          if (!response.ok) throw new Error('Template Failed Load');
+          return response.text();
+      })
+      .then(data => {
+          document.getElementById('template-text').innerHTML = data;
+      })
+      .catch(error => console.error(error));
+      </script>
 
     <!-- Menu Navigasi Utama -->
     <nav class="nav-links" id="navLinks" aria-label="Main Navigation">
