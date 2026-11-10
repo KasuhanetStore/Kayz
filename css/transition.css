@@ -1,0 +1,55 @@
+.btn-cyber-animated {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border-radius: 14px;
+    font-weight: 900;
+    font-size: 15px;
+    color: #ffffff;
+    text-decoration: none;
+    background: linear-gradient(135deg, rgba(20, 22, 32, 0.9), rgba(10, 11, 16, 0.95));
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    box-shadow: 0 0 20px rgba(255, 48, 79, 0.25), inset 0 0 15px rgba(255, 48, 79, 0.1);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+/* Garisan sempadan bercahaya bergerak (Animated Border) */
+.btn-cyber-animated::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 16px;
+    background: linear-gradient(90deg, #ff304f, #ff7a35, #E600A4, #4F31E8, #ff304f);
+    background-size: 400% 400%;
+    z-index: -1;
+    animation: neonBorderMove 4s linear infinite;
+}
+
+@keyframes neonBorderMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.btn-cyber-animated:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 0 30px rgba(255, 48, 79, 0.5), inset 0 0 20px rgba(255, 72, 110, 0.3);
+    color: #ffffff;
+}
+
+.btn-cyber-animated i {
+    font-size: 13px;
+    color: #ff7187;
+    transition: transform 0.3s ease;
+}
+
+.btn-cyber-animated:hover i {
+    transform: translate(3px, -3px);
+}
