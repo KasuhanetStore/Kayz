@@ -83,7 +83,7 @@
         margin-bottom: 28px;
     }
     
-    /* Bahagian yang menggunakan Orbitron */
+    /* Tajuk Utama KasuhaNET.STORE (Diselaraskan supaya tiada garisan bawah) */
     .brand-col .neon-title {
         font-size: 20px;
         font-weight: 900;
@@ -91,13 +91,16 @@
         letter-spacing: -0.5px;
         color: #f6f7fb;
         font-family: 'Orbitron', sans-serif;
+        display: inline-block;
     }
     .brand-col .neon-title span {
         background: linear-gradient(90deg, #4F31E8, #E600A4);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
+        display: inline-block;
     }
+
     .brand-col .typing-box h2 {
         font-size: 11px;
         font-weight: 800;
@@ -112,6 +115,7 @@
     .brand-col .brand-pink {
         color: #E600A4;
     }
+    
     .footer-bottom {
         text-align: center;
         border-top: 1px solid rgba(255,255,255,0.06);
@@ -122,15 +126,24 @@
         font-family: 'Orbitron', sans-serif;
     }
 
-    /* Bahagian lain mengikut asal (tanpa paksaan fon Orbitron) */
+    /* Bahagian teks bawah kiri (Dipastikan bersih tanpa garisan) */
     .brand-col .neon-desc {
         font-size: 11px;
         color: var(--muted, #b9bdca);
         line-height: 1.5;
-        margin: 0;
+        margin: 0 0 4px 0;
         text-decoration: none !important;
         border: none !important;
+        box-shadow: none !important;
+        background: none !important;
     }
+    .brand-col .neon-desc strong {
+        font-weight: normal;
+        text-decoration: none !important;
+        border: none !important;
+        background: none !important;
+    }
+
     .footer-col h4 {
         color: #ff7187;
         font-size: 15px;
