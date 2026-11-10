@@ -351,14 +351,18 @@
   </style>
 </head>
 
-  <header class="topbar">
-  <div class="container nav">
-    
-    <!-- Logo diletakkan secara terus (Statik) tanpa perlu fetch -->
-    <a href="index.html" class="brand">
-        <img src="img/logo3.webp" alt="KasuhaNET.STORE" class="brand-logo">
-        <small>STORE</small>
-    </a>
+  <script>
+  // Panggil fail komponen logo
+  fetch("template-text/EN/kasuhanet-icon-official-EN.html")
+    .then(response => {
+        if (!response.ok) throw new Error('Gagal memuatkan templat logo');
+        return response.text();
+    })
+    .then(data => {
+        document.getElementById("branding-title").innerHTML = data;
+    })
+    .catch(err => console.error(err));
+    </script>
 
     <!-- Menu Navigasi Utama -->
     <nav class="nav-links" id="navLinks" aria-label="Main Navigation">
@@ -391,18 +395,6 @@
 </header>
 
 <body>
-<script>
-  // Panggil fail komponen logo
-  fetch("template-text/EN/kasuhanet-icon-official-EN.html")
-    .then(response => {
-        if (!response.ok) throw new Error('Gagal memuatkan templat logo');
-        return response.text();
-    })
-    .then(data => {
-        document.getElementById("branding-title").innerHTML = data;
-    })
-    .catch(err => console.error(err));
-</script>
 
 <main>
 <section class="hero" id="home">
