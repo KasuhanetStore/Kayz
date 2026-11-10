@@ -59,6 +59,8 @@
       --red: #ff304f;
       --red-dark: #a90025;
       --orange: #ff7a35;
+      --accent-pink: #ff7187;
+      --accent-cyan: #00F0FF;
       --line: rgba(255,255,255,.12);
     }
     * { box-sizing: border-box; }
@@ -68,7 +70,7 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      background: var(--bg);
+      background: radial-gradient(circle at 80% 0%, rgba(255,48,79,.14), transparent 30%), var(--bg);
       color: var(--text);
       font-family: Inter, Arial, Helvetica, sans-serif;
       line-height: 1.6;
@@ -87,29 +89,29 @@
     .brand { display: flex; align-items: center; gap: 11px; font-weight: 900; letter-spacing: .5px; }
     .brand-mark {
       width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px;
-      background: var(--red); color: white; font-weight: 1000;
+      background: linear-gradient(135deg, var(--red), var(--orange)); color: white; font-weight: 1000;
     }
     .brand small { display: block; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: 2px; }
     .nav-links { display: flex; align-items: center; gap: 24px; color: #d8dbe4; font-size: 14px; }
-    .nav-links a:hover { color: var(--red); }
+    .nav-links a:hover { color: var(--accent-pink); }
     .btn {
       display: inline-flex; justify-content: center; align-items: center; gap: 8px;
       padding: 12px 18px; border-radius: 10px; border: 1px solid transparent;
       font-weight: 800; font-size: 14px; cursor: pointer; transition: .2s ease;
     }
-    .btn-primary { background: var(--red); color: white; }
+    .btn-primary { background: linear-gradient(120deg, var(--red-dark), var(--red), var(--orange)); color: white; }
     .btn-primary:hover { filter: brightness(1.1); }
     .btn-outline { border-color: rgba(255,255,255,.2); color: white; background: rgba(255,255,255,.03); }
-    .btn-outline:hover { border-color: var(--red); }
-    .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: var(--red); font-size: 12px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
-    .eyebrow::before { content: ""; width: 25px; height: 2px; background: var(--red); }
-    .gradient-text { color: var(--text); }
+    .btn-outline:hover { border-color: var(--accent-pink); }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: var(--accent-pink); font-size: 12px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 25px; height: 2px; background: linear-gradient(90deg, var(--red), var(--orange)); }
+    .gradient-text { background: linear-gradient(100deg, #fff 0%, var(--accent-pink) 48%, var(--orange) 100%); color: transparent; background-clip: text; -webkit-background-clip: text; }
     .section { padding: 68px 0; }
     .section-head { text-align: center; max-width: 720px; margin: 0 auto 36px; }
     .section-head h2 { font-size: clamp(28px,4vw,42px); line-height: 1.15; margin: 12px 0; font-family: 'Orbitron', sans-serif; }
     .section-head p { color: var(--muted); margin: 0; }
     
-    .service-card { background: var(--panel); border: 1px solid var(--line); border-radius: 17px; padding: 24px; }
+    .service-card { background: linear-gradient(145deg, var(--panel-2), var(--panel)); border: 1px solid var(--line); border-radius: 17px; padding: 24px; }
     .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
     .grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
     
@@ -117,13 +119,13 @@
     .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
     .whatsapp-float {
       position: fixed; right: 20px; bottom: 20px; z-index: 30; width: 60px; height: 60px; border-radius: 50%;
-      display: grid; place-items: center; color: #fff; background: #25d366;
+      display: grid; place-items: center; color: #fff; background: linear-gradient(135deg, #25d366, #0b9d58);
       border: 2px solid rgba(255,255,255,.85); transition: transform .2s;
     }
     .whatsapp-float:hover { transform: translateY(-4px) scale(1.04); }
     .whatsapp-float svg { width: 30px; height: 30px; fill: currentColor; }
 
-    /* STYLES PARTNER CREDIT (TEGAK, CENTER & NO NEON) */
+    /* STYLES PARTNER CREDIT */
     .partner-credit-bar {
         background-color: var(--bg);
         border-top: 1px solid var(--line);
@@ -151,7 +153,7 @@
         flex-wrap: wrap;
     }
     .partner-name {
-        color: #00f3ff;
+        color: var(--accent-cyan);
         font-size: 0.85rem;
         font-weight: 700;
         letter-spacing: 1px;
@@ -183,7 +185,7 @@
     .dropdown-content a:hover { background-color: rgba(255,255,255,0.05); }
     .dropdown-content.show { display: block; }
 
-    /* PEMBERSIHAN EXTRA KESAN GLOW/NEON/BORDER UNDERLINE */
+    /* PEMBERSIHAN KESAN GLOW & UNDERLINE SAHAJA */
     footer a, footer p, footer span, .footer-inner a {
         text-shadow: none !important;
         box-shadow: none !important;
@@ -233,11 +235,11 @@
     <nav class="nav-links" aria-label="Main Navigation">
         <div class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
-                International <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #ff7187;"></i>
+                International <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: var(--accent-pink);"></i>
             </a>
             <div class="dropdown-content" id="servicesDropdown">
                 <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">
-                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: #00F0FF;"></i> RWANDA (Africa)
+                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: var(--accent-cyan);"></i> RWANDA (Africa)
                 </a>
                 <a href="https://kasuhanet.store/Timor-Leste-SupportDevelopement.html">
                     <i class="fa-solid fa-globe" style="margin-right: 8px; color: #E600A4;"></i> TIMOR LESTE (Asia)
@@ -245,7 +247,7 @@
             </div>
         </div>
         <a href="index.html">HOME</a>
-        <a href="about-us-EN.html" style="color:#ff7187; font-weight:800;">ABOUT US</a>
+        <a href="about-us-EN.html" style="color: var(--accent-pink); font-weight:800;">ABOUT US</a>
         <a href="terms-EN.html">TERMS & POLICY</a>
         <a href="support-centre-EN.html">SUPPORT</a>
         <a class="btn btn-outline" href="about-us-EN.html" lang="en">EN</a>
@@ -254,7 +256,7 @@
   </div>
 </header>
 
-<!-- PARTNER CREDIT BAR (DEDICATED PLACEHOLDER & CORRECT FETCH ID) -->
+<!-- PARTNER CREDIT BAR -->
 <div id="partner-credit-placeholder"></div>
 <script>
     fetch("template-text/EN/partner-credit-EN.html")
@@ -290,17 +292,17 @@
 
             <div class="grid-3">
                 <article class="service-card">
-                    <h3 style="color: #00F0FF; margin-top: 0; font-size: 18px; font-family: 'Orbitron', sans-serif;">Linux & Terminal Automation</h3>
+                    <h3 style="color: var(--accent-cyan); margin-top: 0; font-size: 18px; font-family: 'Orbitron', sans-serif;">Linux & Terminal Automation</h3>
                     <p style="color: var(--muted); font-size: 14px; margin-bottom: 0;">We streamline deployment processes by organizing complex dependency configurations into single-command frameworks (CODEX) for Linux shells and native environments.</p>
                 </article>
 
                 <article class="service-card">
-                    <h3 style="color: #00F0FF; margin-top: 0; font-size: 18px; font-family: 'Orbitron', sans-serif;">Web & Hybrid Monetization</h3>
+                    <h3 style="color: var(--accent-cyan); margin-top: 0; font-size: 18px; font-family: 'Orbitron', sans-serif;">Web & Hybrid Monetization</h3>
                     <p style="color: var(--muted); font-size: 14px; margin-bottom: 0;">Empowering dynamic affiliate platforms, modern web hosting, and structured e-guides tailored for growing online business models.</p>
                 </article>
 
                 <article class="service-card">
-                    <h3 style="color: #00F0FF; margin-top: 0; font-size: 18px; font-family: 'Orbitron', sans-serif;">Strategic Collaboration</h3>
+                    <h3 style="color: var(--accent-cyan); margin-top: 0; font-size: 18px; font-family: 'Orbitron', sans-serif;">Strategic Collaboration</h3>
                     <p style="color: var(--muted); font-size: 14px; margin-bottom: 0;">Backed by the collaborative framework of Kasuha Oculus Organisation, we actively build practical software pathways and seamless tactical commerce features.</p>
                 </article>
             </div>
@@ -312,12 +314,12 @@
 
             <div class="grid-2">
                 <article class="service-card">
-                    <h3 style="color: #ff7187; margin-top: 0; font-size: 18px; font-family: 'Orbitron', sans-serif;">Our Mission</h3>
+                    <h3 style="color: var(--accent-pink); margin-top: 0; font-size: 18px; font-family: 'Orbitron', sans-serif;">Our Mission</h3>
                     <p style="color: var(--muted); font-size: 14px; margin-bottom: 0;">To innovate, simplify, and provide high-performance digital tools, terminal automation scripts, and affiliate solutions that elevate digital operational efficiency.</p>
                 </article>
 
                 <article class="service-card">
-                    <h3 style="color: #ff7187; margin-top: 0; font-size: 18px; font-family: 'Orbitron', sans-serif;">Our Vision</h3>
+                    <h3 style="color: var(--accent-pink); margin-top: 0; font-size: 18px; font-family: 'Orbitron', sans-serif;">Our Vision</h3>
                     <p style="color: var(--muted); font-size: 14px; margin-bottom: 0;">To become a leading hybrid digital platform in Malaysia—fostering close synergy between technical system engineering and modern online commerce.</p>
                 </article>
             </div>
