@@ -1,19 +1,47 @@
-<header class="topbar">
-  <div class="container nav">
-    
-    <!-- Bahagian Logo / Branding -->
-    <div id="branding-title">
-      <a href="index.html" class="brand">
-          <img src="img/logo3.webp" alt="KasuhaNET.STORE" class="brand-logo">
-          <small>STORE</small>
-      </a>
-    </div>
+<style>
+.brand {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-decoration: none;
+    gap: 0px;
+    line-height: 1;
+}
+
+.brand-logo {
+    width: 85px;
+    height: 65px;
+    object-fit: contain;
+    object-position: left center;
+    display: block;
+    margin-bottom: -3px;
+}
+
+.brand small {
+    display: block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+}
+</style>
+
+<a class="brand" href="index.html" aria-label="KasuhaNET Official page">
+
+    <img src="img/logo3.png" class="brand-logo" alt="KasuhaNET.STORE">
+
+    <small></small>
+
+</a>
 
     <!-- Menu Navigasi Utama -->
     <nav class="nav-links" id="navLinks" aria-label="Main Navigation">
         <div class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
-                International <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #ff7187;"></i>
+                Overseas <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #ff7187;"></i>
             </a>
             <div class="dropdown-content" id="servicesDropdown">
                 <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">
