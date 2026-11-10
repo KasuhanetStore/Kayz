@@ -23,7 +23,7 @@
 
     <!-- OPEN GRAPH & TWITTER -->
     <meta property="og:title" content="Website Development Packages | KasuhaNET.STORE">
-    <meta property="og:description" content="Learn more about KasuhaNET.STORE, a hybrid digital platform offering Linux terminal tools, affiliate marketing support, and web launch services.">
+    <meta property="og:description" content="Learn more about KasuhaNET.STORE, a hybrid digital platform offering Linux terminal tools, affiliate marketing support, and website deployment services.">
     <meta property="og:image" content="https://kasuhanet.store/img/logo3.webp">
     <meta property="og:url" content="https://kasuhanet.store/about-us-EN.html">
     <meta property="og:type" content="website">
@@ -40,184 +40,14 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     
     <!-- LINKED STYLESHEETS -->
-    <link rel="stylesheet" href="css/Branding.css">
-    <link rel="stylesheet" href="css/Banner-WebSale.css">
-    <script src="js/home-main.js"></script>
+    <link rel="stylesheet" href="../css/Branding.css">
+    <link rel="stylesheet" href="../css/Banner-WebSale.css">
+    <script src="../js/home-main.js"></script>
 
     <!-- FAVICONS -->
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon-512x512.png">
     <link rel="shortcut icon" href="https://kasuhanet.store/favicon.ico">
-
-    <style>
-    :root {
-      --bg: #08090d;
-      --panel: #12141c;
-      --panel-2: #191b25;
-      --text: #f6f7fb;
-      --muted: #b9bdca;
-      --red: #ff304f;
-      --red-dark: #a90025;
-      --orange: #ff7a35;
-      --accent-pink: #ff7187;
-      --accent-cyan: #00F0FF;
-      --line: rgba(255,255,255,.12);
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      background: radial-gradient(circle at 80% 0%, rgba(255,48,79,.14), transparent 30%), var(--bg);
-      color: var(--text);
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      line-height: 1.6;
-    }
-    main {
-      flex: 1;
-    }
-    a { color: inherit; text-decoration: none; }
-    .container { width: min(1120px, calc(100% - 36px)); margin: 0 auto; }
-    .topbar {
-      position: sticky; top: 0; z-index: 10;
-      background: rgba(8,9,13,.95); backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--line);
-    }
-    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .brand { display: flex; align-items: center; gap: 11px; font-weight: 900; letter-spacing: .5px; }
-    .brand-mark {
-      width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px;
-      background: linear-gradient(135deg, var(--red), var(--orange)); color: white; font-weight: 1000;
-    }
-    .brand small { display: block; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: 2px; }
-    .nav-links { display: flex; align-items: center; gap: 24px; color: #d8dbe4; font-size: 14px; }
-    .nav-links a:hover { color: var(--accent-pink); }
-    .btn {
-      display: inline-flex; justify-content: center; align-items: center; gap: 8px;
-      padding: 12px 18px; border-radius: 10px; border: 1px solid transparent;
-      font-weight: 800; font-size: 14px; cursor: pointer; transition: .2s ease;
-    }
-    .btn-primary { background: linear-gradient(120deg, var(--red-dark), var(--red), var(--orange)); color: white; }
-    .btn-primary:hover { filter: brightness(1.1); }
-    .btn-outline { border-color: rgba(255,255,255,.2); color: white; background: rgba(255,255,255,.03); }
-    .btn-outline:hover { border-color: var(--accent-pink); }
-    .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: var(--accent-pink); font-size: 12px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
-    .eyebrow::before { content: ""; width: 25px; height: 2px; background: linear-gradient(90deg, var(--red), var(--orange)); }
-    .gradient-text { background: linear-gradient(100deg, #fff 0%, var(--accent-pink) 48%, var(--orange) 100%); color: transparent; background-clip: text; -webkit-background-clip: text; }
-    .section { padding: 68px 0; }
-    
-    /* Mobile Menu Toggle Styles */
-    .menu-toggle {
-      display: none;
-      background: transparent;
-      border: 1px solid var(--line);
-      color: var(--text);
-      font-size: 20px;
-      padding: 8px 12px;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    footer { border-top: 1px solid var(--line); margin-top: auto; padding: 28px 0; color: #aeb2c0; font-size: 12px; }
-    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-    .whatsapp-float {
-      position: fixed; right: 20px; bottom: 20px; z-index: 30; width: 60px; height: 60px; border-radius: 50%;
-      display: grid; place-items: center; color: #fff; background: linear-gradient(135deg, #25d366, #0b9d58);
-      border: 2px solid rgba(255,255,255,.85); transition: transform .2s;
-    }
-    .whatsapp-float:hover { transform: translateY(-4px) scale(1.04); }
-    .whatsapp-float svg { width: 30px; height: 30px; fill: currentColor; }
-
-    /* Partner Credit Bar Styles */
-    .partner-credit-bar {
-        background-color: var(--bg);
-        border-top: 1px solid var(--line);
-        border-bottom: 1px solid var(--line);
-        padding: 22px 15px;
-        text-align: center;
-        font-family: 'Orbitron', sans-serif;
-        color: var(--text);
-        width: 100%;
-    }
-    .credit-text {
-        font-size: 0.72rem;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 14px;
-        font-weight: 400;
-        font-family: 'Orbitron', sans-serif;
-    }
-    .partner-logos {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 16px;
-        flex-wrap: wrap;
-    }
-    .partner-name {
-        color: var(--accent-cyan);
-        font-size: 0.85rem;
-        font-weight: 700;
-        letter-spacing: 1px;
-        font-family: 'Orbitron', sans-serif;
-    }
-    .partner-logo-box {
-        width: 36px;
-        height: 36px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid var(--red);
-        border-radius: 4px;
-        background-color: var(--panel);
-        padding: 3px;
-    }
-    .partner-logo-box img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-        display: block;
-    }
-    
-    .dropdown { position: relative; display: inline-block; }
-    .dropdown-content { display: none; position: absolute; background-color: var(--panel); min-width: 200px; border: 1px solid var(--line); border-radius: 8px; padding: 8px 0; z-index: 10; }
-    .dropdown-content a { color: var(--text); padding: 10px 16px; text-decoration: none; display: block; font-size: 13px; }
-    .dropdown-content a:hover { background-color: rgba(255,255,255,0.05); }
-    .dropdown-content.show { display: block; }
-
-    /* Pembersihan Kesan Glow/Underline pada Footer */
-    footer a, footer p, footer span, .footer-inner a {
-        text-shadow: none !important;
-        box-shadow: none !important;
-        border-bottom: none !important;
-        background-image: none !important;
-    }
-
-    @media(max-width: 850px) {
-      .menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 76px;
-        left: 0;
-        width: 100%;
-        background: rgba(8, 9, 13, 0.97);
-        backdrop-filter: blur(16px);
-        border-bottom: 1px solid var(--line);
-        padding: 24px;
-        gap: 16px;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.6);
-        z-index: 99;
-        align-items: flex-start;
-      }
-      .nav-links.active { display: flex; }
-      .nav-links a:not(.btn) { display: block !important; width: 100%; }
-    }
-    </style>
 
     <script type="application/ld+json">
     {
@@ -246,21 +76,20 @@
     </div>
 
     <script>
-    fetch("template-text/EN/kasuhanet-icon-official-EN.html")
+    fetch("../template-text/EN/kasuhanet-icon-official-EN.html")
     .then(response => response.text())
     .then(data => {
         document.getElementById("branding-title").innerHTML = data;
     }).catch(err => console.log(err));
     </script>    
-
-    <nav class="nav-links" id="navLinks" aria-label="Main Navigation">
+    <nav class="nav-links" aria-label="Main Navigation">
         <div class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
-                Overseas <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: var(--accent-pink);"></i>
+                Overseas <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #ff7187;"></i>
             </a>
             <div class="dropdown-content" id="servicesDropdown">
                 <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">
-                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: var(--accent-cyan);"></i> RWANDA (Africa)
+                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: #00F0FF;"></i> RWANDA (Africa)
                 </a>
                 <a href="https://kasuhanet.store/Timor-Leste-SupportDevelopement.html">
                     <i class="fa-solid fa-globe" style="margin-right: 8px; color: #E600A4;"></i> TIMOR LESTE (Asia)
@@ -268,45 +97,48 @@
             </div>
         </div>
         <a href="index.html">HOME</a>
-        <a href="about-us-EN.html" style="color: var(--accent-pink); font-weight:800;">ABOUT US</a>
+        <a href="about-us-EN.html">ABOUT US</a>
         <a href="terms-EN.html">TERMS & POLICY</a>
         <a href="support-centre-EN.html">SUPPORT</a>
-        <a class="btn btn-outline" href="Banner-WebSale-EN.html" lang="en">EN</a>
-        <a class="btn btn-outline" href="MS/Banner-WebSale-MS.html" lang="ms">BM</a>
+        <a class="btn btn-outline" href="../Banner-WebSale-EN.html" lang="en">EN</a>
+        <a class="btn btn-outline" href="Banner-WebSale-MS.html" lang="ms">BM</a>
     </nav>
-
-    <!-- BUTANG HAMBURGER MENU MUDAH ALIH -->
-    <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Navigation">
-        <i class="fa-solid fa-bars"></i>
-    </button>
   </div>
 </header>
 
 <!-- PARTNER CREDIT BAR -->
-<div id="partner-credit-placeholder"></div>
-<script>
-  fetch("template-text/EN/partner-credit-EN.html")
-    .then(response => {
-        if (!response.ok) throw new Error('Partner Credit Template Failed to Load');
-        return response.text();
-    })
-    .then(data => {
-        document.getElementById("partner-credit-placeholder").innerHTML = data;
-    })
-    .catch(error => console.log(error));
-</script>
-    
+<div class="partner-credit-bar">
+    <div class="credit-text">
+        Website powered by the collaboration of Organizations & Companies
+    </div>
+
+    <div class="partner-logos">
+        <span class="partner-name">
+            Kasuha Oculus Organisation
+        </span>
+
+        <div class="partner-logo-box">
+            <img src="../OculusLogo.png" alt="Collaboration Logo">
+        </div>
+
+        <span class="partner-name">
+            KasuhaNET Resources
+        </span>
+    </div>
+</div>
+
+<!-- KANDUNGAN UTAMA -->
 <main>
-  <div class="container" style="max-width: 880px; padding: 40px 0;">
+  <div class="container" style="max-width: 880px;">
     
     <section class="about-section">
         <span class="eyebrow">Website Development Packages</span>
         <h1 style="font-size: clamp(22px, 3vw, 32px); line-height: 1.2; margin: 10px 0; font-family: 'Orbitron', sans-serif;">
-            Choose a package based on your content structure, functionality, and business needs.
+            Choose packages based on your content structure, functionality, and business requirements.
         </h1>
 
-        <!-- PACKAGE 1: LANDING PAGE DETAILS -->
-        <div class="package-banner-box" style="margin-top: 24px;">
+        <!-- PAKEJ 1: BUTIRAN LANDING PAGE -->
+        <div class="package-banner-box">
             <div class="package-banner-header">
                 <span class="package-banner-title">🟢 Package 1: Landing Page Details (Single Page)</span>
                 <span class="package-banner-close">✕</span>
@@ -318,54 +150,54 @@
                 Page Structure: A complete single page layout with smooth scrolling navigation.
             </p>
             <ul class="package-banner-list">
-                <li>Hero section with headline, sub-headline, and Call to Action (CTA) buttons.</li>
-                <li>Product/service showcase with features, benefits, and specifications.</li>
+                <li>Hero section with main headline, sub-headline, and Call to Action (CTA) buttons.</li>
+                <li>Product/service showcase featuring characteristics, benefits, and specifications.</li>
                 <li>Optimized visual gallery.</li>
-                <li>Direct WhatsApp button without requiring customers to save the number.</li>
+                <li>Direct WhatsApp button without requiring customers to save the contact number.</li>
                 <li>Google Maps and contact information.</li>
                 <li>Basic meta tags for Google search and essential system files.</li>
             </ul>
         </div>
 
-        <!-- GRID 2 MAIN PACKAGE CARDS -->
-        <div class="grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 30px 0;">
-            <!-- LANDING PAGE PACKAGE -->
-            <div class="card service-card">
-                <h3 class="package-title" style="color: var(--accent-cyan); margin-top: 0; font-family: 'Orbitron', sans-serif;">Landing Page Package</h3>
-                <div class="package-price" style="color: #fff; font-size: 24px; font-weight: bold; margin: 10px 0;">RM 299 <span style="font-size: 14px; color: var(--muted);">/ nett</span></div>
-                <p style="font-size: 12px; color: var(--muted); margin: 0 0 12px 0;">For marketing campaigns, fast product launches, and mini shop portfolios.</p>
-                <ul class="package-features" style="padding-left: 18px; font-size: 13px; color: var(--muted); margin-bottom: 20px;">
+        <!-- GRID 2 KAD PAKEJ UTAMA -->
+        <div class="grid">
+            <!-- PAKEJ LANDING PAGE -->
+            <div class="card">
+                <h3 class="package-title" style="color: var(--cyan);">Landing Page Package</h3>
+                <div class="package-price" style="color: #fff;">RM 299 <span style="font-size: 14px; color: var(--muted);">..</span></div>
+                <p style="font-size: 11px; color: var(--muted); margin: 0 0 12px 0;">For marketing campaigns, straightforward product launches, and mini shop portfolios.</p>
+                <ul class="package-features">
                     <li>1 main page (single-page design)</li>
                     <li>Responsive code structure for mobile devices</li>
                     <li>Google Adsense optimization</li>
                     <li>WhatsApp / form action</li>
-                    <li style="color: var(--red);">Custom domain not included</li>
+                    <li style="color: #ff4a4a;">Custom domain not included</li>
                 </ul>
-                <a href="https://toyyibpay.com/L-P-P-LPP299" class="btn btn-primary" target="_blank" rel="noopener" style="width: 100%;">Subscribe Now ↗</a>
+                <a href="https://toyyibpay.com/L-P-P-LPP299" class="cta-btn" target="_blank" rel="noopener">Subscribe Now ↗</a>
             </div>
 
-            <!-- PREMIUM STANDARD PACKAGE -->
-            <div class="card service-card" style="position: relative;">
-                <div style="position: absolute; top: 15px; right: 15px; background: var(--accent-pink); color: #fff; font-size: 9px; padding: 3px 8px; border-radius: 4px; font-weight: bold; font-family: 'Orbitron', sans-serif;">POPULAR</div>
-                <h3 class="package-title" style="color: var(--accent-pink); margin-top: 0; font-family: 'Orbitron', sans-serif;">Premium Standard</h3>
-                <div class="package-price" style="color: #fff; font-size: 24px; font-weight: bold; margin: 10px 0;">RM 900 <span style="font-size: 14px; color: var(--muted);">/ nett</span></div>
-                <p style="font-size: 12px; color: var(--muted); margin: 0 0 12px 0;">Complete management system for clubs, associations, and dynamic business profiles.</p>
-                <ul class="package-features" style="padding-left: 18px; font-size: 13px; color: var(--muted); margin-bottom: 20px;">
+            <!-- PAKEJ PREMIUM STANDARD -->
+            <div class="card premium-card">
+                <div style="position: absolute; top: 10px; right: 15px; background: var(--pink); color: #fff; font-size: 9px; padding: 2px 6px; border-radius: 3px; font-weight: bold; font-family: 'Orbitron', sans-serif;">POPULAR</div>
+                <h3 class="package-title" style="color: var(--pink);">Premium Standard</h3>
+                <div class="package-price" style="color: #fff;">RM 900 <span style="font-size: 14px; color: var(--muted);">..</span></div>
+                <p style="font-size: 11px; color: var(--muted); margin: 0 0 12px 0;">Complete management system for clubs, associations, and dynamic business profiles.</p>
+                <ul class="package-features">
                     <li>Multi-page website launch</li>
                     <li>Custom Content Management System</li>
                     <li>Google Adsense and advanced SEO</li>
                     <li>Product showcase / club activity gallery</li>
                     <li>Custom domain support (.com/.my)</li>
-                    <li>Premium Cyberpunk UI/UX Style</li>
+                    <li>Cyberpunk UI/UX Premium Style</li>
                 </ul>
-                <a href="https://toyyibpay.com/P-MS-Pay-PREMIUM-STANDARD" class="btn btn-outline" target="_blank" rel="noopener" style="width: 100%; border-color: var(--accent-pink);">Upgrade to Premium ↗</a>
+                <a href="https://toyyibpay.com/P-MS-Pay-PREMIUM-STANDARD" class="cta-btn premium-btn" target="_blank" rel="noopener">Upgrade to Premium ↗</a>
             </div>
         </div>
 
-        <!-- PACKAGE 2: PREMIUM WEBSITE DETAILS -->
+        <!-- PAKEJ 2: BUTIRAN LAMAN WEB PREMIUM -->
         <div class="package-banner-box" style="margin-top: 20px;">
             <div class="package-banner-header">
-                <span class="package-banner-title" style="color: var(--red);">🟣 Package 2: Premium Website Details (Multi-Page System)</span>
+                <span class="package-banner-title" style="color: #ff304f;">🟣 Package 2: Premium Website Details (Multi-Page System)</span>
                 <span class="package-banner-close">✕</span>
             </div>
             <p class="package-banner-desc">
@@ -375,28 +207,28 @@
                 Page Structure: Development of up to 5-10 main pages such as Home, About Us, Services, Blog/Documentation Center, and Contact Us.
             </p>
             <ul class="package-banner-list">
-                <li style="color: var(--accent-pink);">Exclusive design aligned with your brand's visual identity and business.</li>
-                <li style="color: var(--accent-pink);">Blog/Codex section for articles, technical guides, and terminal instructions.</li>
-                <li style="color: var(--accent-pink);">Inquiry and booking forms sending notifications to email or database.</li>
-                <li style="color: var(--accent-pink);">Social media links and payment gateway integration when needed.</li>
-                <li style="color: var(--accent-pink);">SEO, keyword management, H1/H2/H3 heading structures, XML sitemap, and Google Search Console.</li>
+                <li style="color: var(--pink);">Exclusive design aligned with your brand's visual identity and business ecosystem.</li>
+                <li style="color: var(--pink);">Blog/Codex section for articles, technical guides, and terminal instructions.</li>
+                <li style="color: var(--pink);">Inquiry and booking forms sending notifications directly to email or database.</li>
+                <li style="color: var(--pink);">Social media links and payment gateway integration when required.</li>
+                <li style="color: var(--pink);">SEO, keyword management, H1/H2/H3 heading structures, XML sitemap, and Google Search Console.</li>
             </ul>
         </div>
 
-        <div class="pricing-transparency-box" style="background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-top: 24px;">
-            <div class="pricing-transparency-title" style="font-family: 'Orbitron', sans-serif; font-size: 14px; font-weight: bold; margin-bottom: 10px; color: var(--text);">
+        <div class="pricing-transparency-box">
+            <div class="pricing-transparency-title">
                 <span>⚖️</span> TRANSPARENCY & MARKET PRICE STANDARD GUARANTEE
             </div>
             <div class="pricing-transparency-content">
-                <p style="color: var(--muted); font-size: 14px; margin: 0;">
+                <p>
                     At <strong>kasuhanet.store</strong>, we place high emphasis on transparency and fairness in every service transaction we provide. The displayed pricing is based on current market standards for the web development and technical support industry to ensure professional work quality at a balanced rate.
                 </p>
             </div>
         </div>
 
-        <!-- TERMS NOTE -->
-        <p class="tc-note" style="color: var(--muted); font-size: 13px; margin-top: 24px; text-align: center;">
-            Note: Final pricing and scope are subject to agreement, technical requirements, domain/hosting, and third-party integrations. Purchases are subject to KasuhaNET's <a href="terms-EN.html" style="color: var(--accent-pink); text-decoration: underline;">Terms &amp; Conditions</a>.
+        <!-- NOTA TERMA & SYARAT -->
+        <p class="tc-note">
+            Note: Final pricing and scope are subject to agreement, technical requirements, domain/hosting, and third-party integrations. Purchases are subject to KasuhaNET's <a href="terms-EN.html">Terms &amp; Conditions</a>.
         </p>
 
     </section>
@@ -404,10 +236,10 @@
   </div>
 </main>
 
-<!-- DYNAMIC FOOTER -->
+<!-- FOOTER DINAMIK -->
 <div id="footer-placeholder"></div>
 <script>
-  fetch("template-text/EN/template-footer-EN.html")
+  fetch("../template-text/EN/template-footer-EN.html")
     .then(response => {
         if (!response.ok) throw new Error('Footer Template Failed Load');
         return response.text();
@@ -415,17 +247,12 @@
     .then(data => {
         document.getElementById("footer-placeholder").innerHTML = data;
     })
-    .catch(error => console.log(error));
+    .catch(error => console.error(error));
 </script>
 
 <a class="whatsapp-float" id="floating-whatsapp" href="https://wa.me/60167390501" target="_blank" rel="noopener" aria-label="Contact KasuhaNET via WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.02 3C8.86 3 3.04 8.8 3.04 15.94c0 2.28.6 4.5 1.75 6.46L3 29l6.78-1.77a13.05 13.05 0 0 0 6.23 1.58h.01c7.15 0 12.97-5.8 12.97-12.94A12.9 12.9 0 0 0 16.02 3zm0 23.62h-.01a10.8 10.8 0 0 1-5.5-1.5l-.4-.24-4.02 1.05 1.07-3.91-.26-.4a10.7 10.7 0 0 1-1.65-5.68c0-5.93 4.83-10.75 10.78-10.75 2.88 0 5.59 1.12 7.62 3.15a10.67 10.67 0 0 1 3.15 7.6c0 5.93-4.83 10.75-10.78 10.75zm5.91-8.05c-.32-.16-1.9-.94-2.2-1.05-.3-.11-.51-.16-.73.16-.21.32-.83 1.05-1.02 1.27-.19.21-.38.24-.7.08-.32-.16-1.35-.5-2.57-1.6-.95-.84-1.6-1.88-1.79-2.2-.19-.32-.02-.49.14-.65.14-.14.32-.38.48-.57.16-.19.32-.21.54-.03.16-.08-.73-1.75-1-2.4-.26-.63-.53-.54-.73-.55h-.62c-.21 0-.56.4-.86.4-.3.32-1.13 1.1-1.13 2.68s1.16 3.1 1.32 3.31c.21.32 2.28 3.48 5.53 4.88.77.33 1.37.53 1.84.68.77.24 1.47.21 2.02.13.62-.09 1.9-.78 2.17-1.53.27-.75.19-1.4.19-1.53-.08-.14-.29-.22-.61-.38z"/></svg></a>  
 
 <script>  
-  function toggleMobileMenu() {
-    const navLinks = document.getElementById("navLinks");
-    navLinks.classList.toggle("active");
-  }
-
   function toggleDropdown() {
     document.getElementById("servicesDropdown").classList.toggle("show");
   }
@@ -446,6 +273,7 @@
   const DEFAULT_MESSAGE = "Hello, I am interested in KasuhaNET.STORE services.";  
   const waURL = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(DEFAULT_MESSAGE);  
   document.getElementById("floating-whatsapp").href = waURL;  
+  document.getElementById("main-whatsapp").href = waURL;  
 </script>  
 </body>
 </html>
