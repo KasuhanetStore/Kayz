@@ -77,13 +77,35 @@
       border-bottom: 1px solid var(--line);
     }
     .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .brand { display: flex; align-items: center; gap: 11px; font-weight: 900; letter-spacing: .5px; }
-    .brand-mark {
-      width: 42px; height: 42px; display: grid; place-items: center; border-radius: 12px;
-      background: linear-gradient(135deg, var(--red), #ff814a); color: white; font-weight: 1000;
-      box-shadow: 0 0 28px rgba(255,48,79,.28);
+    
+    /* Brand Logo Styles */
+    .brand {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-decoration: none;
+        gap: 0px;
+        line-height: 1;
     }
-    .brand small { display: block; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: 2px; }
+    .brand-logo {
+        width: 85px;
+        height: 65px;
+        object-fit: contain;
+        object-position: left center;
+        display: block;
+        margin-bottom: -3px;
+    }
+    .brand small {
+        display: block;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+        line-height: 1;
+        margin: 0;
+        padding: 0;
+    }
+
     .nav-links { display: flex; align-items: center; gap: 24px; color: #d8dbe4; font-size: 14px; }
     .nav-links a:hover { color: #ff667d; }
     .btn {
@@ -330,6 +352,16 @@
 </head>
 <body>
     
+<header class="topbar">
+  <div class="container nav">
+    
+    <!-- Logo dipanggil melalui fail templat luaran -->
+    <div id="branding-title">
+      <a href="index.html" class="brand">
+          <img src="img/logo3.webp" alt="KasuhaNET.STORE" class="brand-logo">
+          <small>STORE</small>
+      </a>
+    </div>
     <script>
     fetch("template-text/EN/kasuhanet-icon-official-EN.html")
     .then(response => response.text())
@@ -338,6 +370,31 @@
     }).catch(err => console.log(err));
     </script>
 
+    <!-- BUTANG HAMBURGER MENU UNTUK MOBILE -->
+    <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Navigation">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <nav class="nav-links" id="navLinks" aria-label="Main Navigation">
+        <div class="dropdown">
+            <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
+                International <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #ff7187;"></i>
+            </a>
+            <div class="dropdown-content" id="servicesDropdown">
+                <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">
+                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: #00F0FF;"></i> RWANDA (Africa)
+                </a>
+                <a href="https://kasuhanet.store/Timor-Leste-SupportDevelopement.html">
+                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: #E600A4;"></i> TIMOR LESTE (Asia)
+                </a>
+            </div>
+        </div>
+        <a href="index.html">HOME</a>
+        <a href="about-us-EN.html">ABOUT US</a>
+        <a href="terms-EN.html">TERMS & POLICY</a>
+        <a href="support-centre-EN.html">SUPPORT</a>
+        <a class="btn btn-outline" href="index.html" lang="en">EN</a>
+        <a class="btn btn-outline" href="MS/index.html" lang="ms">MS</a>
     </nav>
   </div>
 </header>
