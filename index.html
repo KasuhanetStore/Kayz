@@ -352,9 +352,13 @@
   </style>
 </head>
 <body>
+  
+<header class="topbar">
+  <div class="container nav">
+    <div id="branding-title">
 
     <script>
-    fetch("../template-text/EN/kasuhanet-icon-official-EN.html")
+    fetch("template-text/EN/kasuhanet-icon-official-EN.html")
     .then(response => {
         if (!response.ok) throw new Error('Logo Template Failed Load');
         return response.text();
