@@ -16,16 +16,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- CANONICAL & HREFLANG -->
-    <link rel="canonical" href="https://kasuhanet.store/About-Us.html">
-    <link rel="alternate" hreflang="en" href="https://kasuhanet.store/About-Us.html">
-    <link rel="alternate" hreflang="ms" href="https://kasuhanet.store/Tentang-Kami.html">
-    <link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/About-Us.html">
+    <link rel="canonical" href="https://kasuhanet.store/about-us-EN.html">
+    <link rel="alternate" hreflang="en" href="https://kasuhanet.store/about-us-EN.html">
+    <link rel="alternate" hreflang="ms" href="https://kasuhanet.store/MS/about-us-MS.html">
+    <link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/about-us-EN.html">
 
     <!-- OPEN GRAPH & TWITTER -->
     <meta property="og:title" content="About Us | KasuhaNET.STORE">
     <meta property="og:description" content="Learn more about KasuhaNET.STORE, a hybrid digital platform offering Linux terminal tools, affiliate marketing support, and website deployment services.">
     <meta property="og:image" content="https://kasuhanet.store/img/logo3.webp">
-    <meta property="og:url" content="https://kasuhanet.store/About-Us.html">
+    <meta property="og:url" content="https://kasuhanet.store/about-us-EN.html">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="KasuhaNET.STORE">
     <meta property="og:locale" content="en_US">
@@ -36,6 +36,7 @@
     <meta name="twitter:image" content="https://kasuhanet.store/img/logo3.webp">
 
     <!-- FONTS & LIBRARIES -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     
     <!-- LINKED STYLESHEET -->
@@ -48,7 +49,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon-512x512.png">
     <link rel="shortcut icon" href="https://kasuhanet.store/favicon.ico">
 
-    <!-- STYLES EMBEDDED FROM INDEX.HTML FOR FULL THEME CONSISTENCY -->
+    <!-- STYLES EMBEDDED -->
     <style>
     :root {
       --bg: #08090d;
@@ -85,7 +86,16 @@
       border-bottom: 1px solid var(--line);
     }
     .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .brand { display: flex; align-items: center; gap: 11px; font-weight: 900; letter-spacing: .5px; }
+    
+    /* Brand Logo Styles */
+    .brand {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-decoration: none;
+        gap: 0px;
+        line-height: 1;
+    }
     .brand-logo {
         width: 85px;
         height: 65px;
@@ -94,7 +104,17 @@
         display: block;
         margin-bottom: -3px;
     }
-    .brand small { display: block; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: 2px; }
+    .brand small {
+        display: block;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+        line-height: 1;
+        margin: 0;
+        padding: 0;
+    }
+
     .nav-links { display: flex; align-items: center; gap: 24px; color: #d8dbe4; font-size: 14px; }
     .nav-links a:hover { color: #ff667d; }
     .btn {
@@ -141,8 +161,8 @@
     }
     .credit-text { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted, #b9bdca); margin-bottom: 14px; font-weight: 400; }
     .partner-logos { display: flex; justify-content: center; align-items: center; gap: 16px; flex-wrap: wrap; }
-    .partner-name { color: #00f3ff; font-size: 0.92rem; font-weight: 700; letter-spacing: 1px; }
-    .partner-logo-box { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--red, #ff304f); border-radius: 4px; background-color: #0c0e15; padding: 2px; }
+    .partner-name { color: #00f3ff; font-size: 0.92rem; font-weight: 700; letter-spacing: 1px; text-shadow: 0 0 10px rgba(0, 243, 255, 0.65); }
+    .partner-logo-box { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--red, #ff304f); border-radius: 4px; background-color: #0c0e15; box-shadow: 0 0 12px rgba(255, 48, 79, 0.45); padding: 2px; }
     .partner-logo-box img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
     
     .dropdown { position: relative; display: inline-block; }
@@ -202,25 +222,11 @@
 
 <header class="topbar">
   <div class="container nav">
-    <!-- Kontena Logo Header -->
-    <div id="branding-title">
-      <a href="index.html" class="brand" aria-label="KasuhaNET Official page">
-        <img src="img/logo3.png" class="brand-logo" alt="KasuhaNET.STORE">
-        <small></small>
-      </a>
-    </div>
-
-    <script>
-    fetch("template-text/EN/kasuhanet-icon-official-EN.html")
-    .then(response => {
-        if (!response.ok) throw new Error('Logo Template Failed Load');
-        return response.text();
-    })
-    .then(data => {
-        document.getElementById("branding-title").innerHTML = data;
-    })
-    .catch(error => console.error(error));
-    </script>
+    <!-- Logo Terus Dipaparkan Tanpa Fetch Mengelakkan Bertindih -->
+    <a href="index.html" class="brand" aria-label="KasuhaNET Official page">
+      <img src="img/logo3.png" class="brand-logo" alt="KasuhaNET.STORE">
+      <small></small>
+    </a>
 
     <!-- Menu Navigasi Utama -->
     <nav class="nav-links" id="navLinks" aria-label="Main Navigation">
@@ -238,34 +244,33 @@
             </div>
         </div>
         <a href="index.html">HOME</a>
-        <a href="about-us-EN.html">ABOUT US</a>
+        <a href="about-us-EN.html" style="color: var(--red);">ABOUT US</a>
         <a href="terms-EN.html">TERMS & POLICY</a>
         <a href="support-centre-EN.html">SUPPORT</a>
-        <a class="btn btn-outline" href="index.html" lang="en">EN</a>
-        <a class="btn btn-outline" href="MS/index.html" lang="ms">MS</a>
+        <a class="btn btn-outline" href="about-us-EN.html" lang="en">EN</a>
+        <a class="btn btn-outline" href="MS/about-us-MS.html" lang="ms">MS</a>
     </nav>
 
-    <!-- Butang Hamburger Menu untuk Mobile di sebelah kanan -->
+    <!-- Butang Hamburger Menu untuk Mobile -->
     <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Navigation">
         <i class="fa-solid fa-bars"></i>
     </button>
   </div>
 </header>
 
-<!-- PARTNER CREDIT BAR -->
-<div id="partner-credit-placeholder"></div>
-
-<script>
-  fetch("template-text/EN/partner-credit-EN.html")
-    .then(response => {
-        if (!response.ok) throw new Error('Partner Credit Template Failed to Load');
-        return response.text();
-    })
-    .then(data => {
-        document.getElementById("partner-credit-placeholder").innerHTML = data;
-    })
-    .catch(error => console.error(error));
-</script>
+<!-- PARTNER CREDIT BAR (Terus Dipaparkan Secara Statik Tanpa Fetch) -->
+<div class="partner-credit-bar" style="font-family: 'Orbitron', sans-serif;">
+    <div class="credit-text" style="font-family: 'Orbitron', sans-serif; letter-spacing: 2px;">
+        Website powered by the collaboration of Organizations & Companies
+    </div>
+    <div class="partner-logos">
+        <span class="partner-name" style="font-family: 'Orbitron', sans-serif;">Kasuha Oculus Organisation</span>
+        <div class="partner-logo-box">
+            <img src="OculusLogo.png" alt="Collaboration Logo">
+        </div>
+        <span class="partner-name" style="font-family: 'Orbitron', sans-serif;">KasuhaNET Resources</span>
+    </div>
+</div>
 
 <main>
     <!-- HERO SECTION -->
@@ -293,7 +298,7 @@
 
             <div class="grid-3">
                 <article class="service-card">
-                    <h3 style="color: #00F0FF; margin-top: 0; font-size: 18px; font-family: 'sans-serif', sans-serif;">Linux Automation & Terminal</h3>
+                    <h3 style="color: #00F0FF; margin-top: 0; font-size: 18px; font-family: 'Orbitron', sans-serif;">Linux Automation & Terminal</h3>
                     <p style="color: var(--muted); font-size: 14px; margin-bottom: 0;">We simplify deployment processes by orchestrating complex dependency configurations into one-command frameworks (CODEX) for Linux shells and native environments.</p>
                 </article>
 
@@ -315,12 +320,12 @@
 
             <div class="grid-2">
                 <article class="service-card">
-                    <h3 style="color: #ff7187; margin-top: 0; font-size: 18px; font-family: 'sans-serif', sans-serif;">Our Mission</h3>
+                    <h3 style="color: #ff7187; margin-top: 0; font-size: 18px; font-family: 'Orbitron', sans-serif;">Our Mission</h3>
                     <p style="color: var(--muted); font-size: 14px; margin-bottom: 0;">Innovate, simplify, and provide high-performance digital tools, terminal automation scripts, and affiliate solutions that elevate digital operational efficiency.</p>
                 </article>
 
                 <article class="service-card">
-                    <h3 style="color: #ff7187; margin-top: 0; font-size: 18px; font-family: 'sans-serif', sans-serif;">Our Vision</h3>
+                    <h3 style="color: #ff7187; margin-top: 0; font-size: 18px; font-family: 'Orbitron', sans-serif;">Our Vision</h3>
                     <p style="color: var(--muted); font-size: 14px; margin-bottom: 0;">To become the leading hybrid digital platform in Malaysia—fostering close synergy between technical systems engineering and modern online commerce.</p>
                 </article>
             </div>
@@ -378,7 +383,7 @@
   });
 
   const WHATSAPP_NUMBER = "60167390501"; 
-  const DEFAULT_MESSAGE = "Helo, saya berminat dengan perkhidmatan KasuhaNET.STORE.";  
+  const DEFAULT_MESSAGE = "Hello, I am interested in KasuhaNET.STORE services.";  
   const waURL = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(DEFAULT_MESSAGE);  
   document.getElementById("floating-whatsapp").href = waURL;  
 </script>  
