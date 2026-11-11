@@ -336,6 +336,13 @@
                 </a>
             </div>
         </div>
+      <script>
+    fetch("../template-text/MS/kasuhanet-icon-official-MS.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("branding-title").innerHTML = data;
+    }).catch(err => console.log(err));
+      </script>
         <a href="index.html" style="color: var(--red);">UTAMA</a>
         <a href="about-us-MS.html">TENTANG KAMI</a>
         <a href="terms-MS.html">TERMA & POLISI</a>
