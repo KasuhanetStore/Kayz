@@ -1,8 +1,9 @@
-// ==========================================
-// KAWALAN UTAMA UTILITY & NAVIGASI (KASUHANET)
-// ==========================================
+/**
+ * KASUHANET.STORE - MASTER ENGINE & AUTO-RECOVERY SCRIPT
+ * Mengendalikan Navigasi, Dropdown, Menu Mobile, dan Auto-Fix Layout.
+ */
 
-// 1. Kawalan Mobile Menu Toggle (Buka/Tutup Menu Telefon)
+// 1. KAWALAN MENU MOBILE (TOGGLE)
 function toggleMobileMenu() {
   const navLinks = document.getElementById("navLinks");
   if (navLinks) {
@@ -10,7 +11,7 @@ function toggleMobileMenu() {
   }
 }
 
-// 2. Kawalan Dropdown Servis
+// 2. KAWALAN DROPDOWN SERVIS
 function toggleDropdown() {
   const dropdown = document.getElementById("servicesDropdown");
   if (dropdown) {
@@ -18,9 +19,9 @@ function toggleDropdown() {
   }
 }
 
-// 3. Tutup Semua Menu & Dropdown Apabila Klik Di Luar Area Menu
+// 3. EVENT LISTENER: PENCEGAHAN SEKATAN & AUTO-CLOSE BILA KLIK LUAR
 window.addEventListener('click', function(e) {
-  // Tutup Dropdown jika klik di luar
+  // A. Tutup Dropdown jika pengguna klik di luar kawasan dropdown
   if (!e.target.closest('.dropdown')) {
     const dropdowns = document.getElementsByClassName("dropdown-content");
     for (let i = 0; i < dropdowns.length; i++) {
@@ -30,7 +31,7 @@ window.addEventListener('click', function(e) {
     }
   }
 
-  // Tutup Mobile Menu jika klik di luar header
+  // B. Tutup Mobile Menu jika pengguna klik di luar menu/button
   const navLinks = document.getElementById("navLinks");
   const menuToggle = document.querySelector(".menu-toggle");
   if (navLinks && navLinks.classList.contains("active")) {
@@ -40,15 +41,23 @@ window.addEventListener('click', function(e) {
   }
 });
 
-// 4. Auto-Set Pautan WhatsApp
+// 4. AUTO-SET PAUTAN WHATSAPP & PEMBERSIHAN AUTOMATIK DOM
 document.addEventListener("DOMContentLoaded", function() {
+  // Setup WhatsApp Automatik
   const WHATSAPP_NUMBER = "60167390501"; 
-  const DEFAULT_MESSAGE = "Hello, I am interested in KasuhaNET.STORE services.";
-  const waURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(DEFAULT_MESSAGE)}`;
+  const DEFAULT_MESSAGE = "Hello, I am interested in KasuhaNET.STORE services.";  
+  const waURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(DEFAULT_MESSAGE)}`;  
 
   const floatingWa = document.getElementById("floating-whatsapp");
   const mainWa = document.getElementById("main-whatsapp");
 
   if (floatingWa) floatingWa.href = waURL;
   if (mainWa) mainWa.href = waURL;
+
+  // Auto-Fix: Menghapuskan sebarang garisan neon hiasan yang tersangkut pada tag tajuk secara automatik
+  const neonTitles = document.querySelectorAll('.neon-title, .typing-box h2');
+  neonTitles.forEach(title => {
+    title.style.borderBottom = 'none';
+    title.style.textDecoration = 'none';
+  });
 });
