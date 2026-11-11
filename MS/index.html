@@ -308,9 +308,9 @@
 </head>
 <body>
 
-<!-- TOPBAR HEADER -->
 <header class="topbar">
   <div class="container nav">
+    <!-- LOGO KASUHANET -->
     <div id="branding-title">
       <div class="brand">
         <div class="brand-mark">K</div>
@@ -321,14 +321,7 @@
       </div>
     </div>
 
-    <script>
-    fetch("../template-text/MS/kasuhanet-icon-official-MS.html")
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById("branding-title").innerHTML = data;
-    }).catch(err => console.log(err));
-    </script>
-    
+    <!-- PAUTAN NAVIGASI UTAMA -->
     <nav class="nav-links" id="navLinks" aria-label="Navigasi Utama">
         <div class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
@@ -349,14 +342,15 @@
         <a href="support-centre-MS.html">SOKONGAN</a>
         <a class="btn btn-outline" href="../index.html" lang="en">EN</a>
         <a class="btn btn-outline" href="index.html" lang="ms">BM</a>
-  <a class="btn-cyber-animated" href="../MS/Banner-WebSale-MS.html">
+        
+        <!-- BUTANG ANIMASI CYBER WEB SALE -->
+        <a class="btn-cyber-animated" href="../MS/Banner-WebSale-MS.html">
             <span>GET WEBSITE!</span>
             <i class="fa-solid fa-computer-mouse"></i>  
-  </a>
-  </div>
+        </a>
     </nav>
 
-    <!-- Butang Hamburger Menu untuk Mobile -->
+    <!-- BUTANG HAMBURGER MENU (TERKUNCI DI KANAN MOBILE) -->
     <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Tukar Navigasi">
         <i class="fa-solid fa-bars"></i>
     </button>
