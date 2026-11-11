@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en"> <!-- Tukar ke "ms" untuk versi Melayu -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KasuhaNET.STORE</title>
+  
+  <!-- 1. GUNA SATU FAIL CSS SAHAJA UNTUK SEMUA PAGE -->
+  <link rel="stylesheet" href="../css/style.css">
+  
+  <!-- FontAwesome Icon (Jika Ada) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- ================= HEADER / NAVIGASI (KOMPONEN SAMA) ================= -->
+  <header class="main-header">
+    <div class="container header-flex">
+      
+      <!-- LOGO TRADEMARK (Guna Fail Component / Link Asal) -->
+      <a class="brand" href="index.html" aria-label="KasuhaNET Official Page">
+        <img src="../img/logo3.png" class="brand-logo" alt="KasuhaNET.STORE">
+      </a>
+
+      <!-- BUTTON MOBILE TOGGLE -->
+      <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <!-- PAUTAN NAVIGASI -->
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        
+        <!-- DROPDOWN SERVIS -->
+        <div class="dropdown">
+          <a href="javascript:void(0)" onclick="toggleDropdown()">Services <i class="fa-solid fa-chevron-down"></i></a>
+          <div class="dropdown-content" id="servicesDropdown">
+            <a href="service1.html">CommandCanDo</a>
+            <a href="service2.html">MyAffiliate</a>
+          </div>
+        </div>
+
+        <a href="support-centre-EN.html">Support</a>
+        <a href="about-us-EN.html">About Us</a>
+      </nav>
+      
+    </div>
+  </header>
+
+  <!-- ================= KANDUNGAN UTAMA (HANYA BAHAGIAN INI BERBEZA) ================= -->
+  <main class="main-content">
+    <div class="container">
+      
+      <!-- TAJUK TRADEMARK KASUHANET -->
+      <h1 class="neon-title">
+        Kasuha<span>NET.STORE</span>
+      </h1>
+
+      <div class="typing-box">
+        <h2>
+          <span class="brand-purple">KasuhaNET •</span>
+          <span class="brand-pink">SUPPORT CENTRE</span>
+        </h2>
+        
+        <!-- TEKS BACAAN KORPORAT (GUNA INTER FONT) -->
+        <p class="neon-desc">
+          Sila masukkan kandungan khusus halaman di sini. Rangka, gaya visual, font, dan kawalan menu akan kekal 100% sama dengan halaman lain.
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ================= PARTNER CREDIT BAR (KOMPONEN SAMA) ================= -->
+  <div class="partner-credit-bar">
+    <div class="credit-text">
+      Website powered by the collaboration of Organizations & Companies
+    </div>
+    <div class="partner-logos">
+      <span class="partner-name">Kasuha Oculus Organisation</span>
+      <div class="partner-logo-box">
+        <img src="../img/OculusLogo.png" alt="Collaboration Logo">
+      </div>
+      <span class="partner-name">KasuhaNET Resources</span>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER (DILINKKAN DR FAIL FOOTER EN/MS) ================= -->
+  <!-- Tempat letak template-footer-EN.html -->
+
+  <!-- ================= 2. GUNA SATU FAIL JS SAHAJA ================= -->
+  <script src="../js/home-main.js"></script>
+</body>
+</html>
