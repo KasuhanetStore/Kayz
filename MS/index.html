@@ -270,28 +270,27 @@
   </style>
 </head>
 <body>
-<!-- TOPBAR HEADER SERAGAM -->
+<!-- TOPBAR HEADER -->
 <header class="topbar">
   <div class="container nav">
     <div id="branding-title">
-      <!-- Fallback Logo Sementara Load -->
-      <a class="brand" href="index.html">
-        <span style="font-family:'Orbitron',sans-serif; font-weight:900; color:#ff304f; font-size:18px;">KasuhaNET<small style="color:#fff; font-size:9px; display:block;">.STORE</small></span>
-      </a>
+      <div class="brand">
+        <div class="brand-mark">K</div>
+        <div>
+          KasuhaNET
+          <small>STORE</small>
+        </div>
+      </div>
     </div>
 
     <script>
     fetch("../template-text/MS/kasuhanet-icon-official-MS.html")
-    .then(response => {
-        if (!response.ok) throw new Error('Logo Failed Load');
-        return response.text();
-    })
+    .then(response => response.text())
     .then(data => {
         document.getElementById("branding-title").innerHTML = data;
-    })
-    .catch(error => console.error(error));
-    </script>    
-
+    }).catch(err => console.log(err));
+    </script>
+    
     <nav class="nav-links" id="navLinks" aria-label="Navigasi Utama">
         <div class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
@@ -309,14 +308,12 @@
         <a href="index.html">UTAMA</a>
         <a href="about-us-MS.html">TENTANG KAMI</a>
         <a href="terms-MS.html">TERMA & POLISI</a>
-        <a href="support-centre-MS.html">SOKONGAN</a>
-        <a class="btn btn-outline" href="index.html" lang="en">EN</a>
-        <a class="btn btn-outline" href="../index.html" lang="ms">MS</a>
-        <a class="btn-cyber-animated" href="Banner-WebSale-MS.html">
-    <span>BINA WEBSITE!</span>
-    <i class="fa-solid fa-computer-mouse"></i>
-</a>
-<button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Tukar Navigasi">
+        <a href="support-centre-MS.html" style="color: var(--red);">SOKONGAN</a>
+        <a class="btn btn-outline" href="../support-centre-EN.html" lang="en">EN</a>
+        <a class="btn btn-outline" href="support-centre-MS.html" lang="ms">BM</a>
+    </nav>
+    <!-- Butang Hamburger Menu untuk Mobile di sebelah kanan -->
+    <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Tukar Navigasi">
         <i class="fa-solid fa-bars"></i>
     </button>
   </div>
