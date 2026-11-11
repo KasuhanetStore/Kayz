@@ -225,7 +225,6 @@
         </div>
       </div>
     </div>
-
     <script>
     fetch("template-text/EN/kasuhanet-icon-official-EN.html")
     .then(response => response.text())
@@ -233,27 +232,31 @@
         document.getElementById("branding-title").innerHTML = data;
     }).catch(err => console.log(err));
     </script>    
-    <nav class="nav-links" aria-label="Main Navigation">
+               <nav class="nav-links" id="navLinks" aria-label="Navigasi Utama">
         <div class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
-                Overseas <i class="fa-solid fa-chevron-down" style="font-size: 5px; margin-left: 2px; color: var(--accent-pink);"></i>
+                Luar Negara <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #ff7187;"></i>
             </a>
             <div class="dropdown-content" id="servicesDropdown">
                 <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">
-                    <i class="fa-solid fa-globe" style="margin-right: 4px; color: var(--accent-cyan);"></i> RWANDA (Africa)
+                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: #00F0FF;"></i> RWANDA (Afrika)
                 </a>
                 <a href="https://kasuhanet.store/Timor-Leste-SupportDevelopement.html">
-                    <i class="fa-solid fa-globe" style="margin-right: 4px; color: #E600A4;"></i> TIMOR LESTE (Asia)
+                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: #E600A4;"></i> TIMOR LESTE (Asia)
                 </a>
             </div>
         </div>
-        <a href="index.html">HOME</a>
-        <a href="about-us-EN.html" style="color: var(--accent-pink); font-weight:800;">ABOUT US</a>
-        <a href="terms-EN.html">TERMS & POLICY</a>
-        <a href="support-centre-EN.html">SUPPORT</a>
-        <a class="btn btn-outline" href="about-us-EN.html" lang="en">EN</a>
-        <a class="btn btn-outline" href="MS/about-us-MS.html" lang="ms">BM</a>
+        <a href="index.html">UTAMA</a>
+        <a href="about-us-MS.html" style="color:#ff7187; font-weight:800;">TENTANG KAMI</a>
+        <a href="terms-MS.html">TERMA & POLISI</a>
+        <a href="support-centre-MS.html">SOKONGAN</a>
+        <a class="btn btn-outline" href="../about-us-EN.html" lang="en">EN</a>
+        <a class="btn btn-outline" href="about-us-MS.html" lang="ms">BM</a>
     </nav>
+
+    <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Tukar Navigasi">
+        <i class="fa-solid fa-bars"></i>
+    </button>
   </div>
 </header>
 
