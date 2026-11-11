@@ -1,21 +1,8 @@
-function toggleDropdown() {
-  const dropdown = document.getElementById("servicesDropdown");
-  dropdown.classList.toggle("show");
-}
+// ==========================================
+// KAWALAN UTAMA UTILITY & NAVIGASI (KASUHANET)
+// ==========================================
 
-// Menutup dropdown jika pengguna mengklik di luar area dropdown
-window.onclick = function(event) {
-  if (!event.target.matches('.dropdown a') && !event.target.matches('.fa-chevron-down')) {
-    const dropdowns = document.getElementsByClassName("dropdown-content");
-    for (let i = 0; i < dropdowns.length; i++) {
-      let openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
-// 1. Kawalan Mobile Menu Toggle
+// 1. Kawalan Mobile Menu Toggle (Buka/Tutup Menu Telefon)
 function toggleMobileMenu() {
   const navLinks = document.getElementById("navLinks");
   if (navLinks) {
@@ -23,7 +10,7 @@ function toggleMobileMenu() {
   }
 }
 
-// 2. Kawalan Dropdown (Luar Negara)
+// 2. Kawalan Dropdown Servis
 function toggleDropdown() {
   const dropdown = document.getElementById("servicesDropdown");
   if (dropdown) {
@@ -31,9 +18,10 @@ function toggleDropdown() {
   }
 }
 
-// 3. Tutup Dropdown Apabila Klik Di Luar Menu
+// 3. Tutup Semua Menu & Dropdown Apabila Klik Di Luar Area Menu
 window.addEventListener('click', function(e) {
-  if (!e.target.matches('.dropdown a') && !e.target.matches('.dropdown i')) {
+  // Tutup Dropdown jika klik di luar
+  if (!e.target.closest('.dropdown')) {
     const dropdowns = document.getElementsByClassName("dropdown-content");
     for (let i = 0; i < dropdowns.length; i++) {
       if (dropdowns[i].classList.contains('show')) {
@@ -41,13 +29,22 @@ window.addEventListener('click', function(e) {
       }
     }
   }
+
+  // Tutup Mobile Menu jika klik di luar header
+  const navLinks = document.getElementById("navLinks");
+  const menuToggle = document.querySelector(".menu-toggle");
+  if (navLinks && navLinks.classList.contains("active")) {
+    if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+      navLinks.classList.remove("active");
+    }
+  }
 });
 
-// 4. Auto-Set Pautan WhatsApp (Selamat dari Error jika elemen tiada)
+// 4. Auto-Set Pautan WhatsApp
 document.addEventListener("DOMContentLoaded", function() {
   const WHATSAPP_NUMBER = "60167390501"; 
   const DEFAULT_MESSAGE = "Hello, I am interested in KasuhaNET.STORE services.";
-  const waURL = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(DEFAULT_MESSAGE);
+  const waURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(DEFAULT_MESSAGE)}`;
 
   const floatingWa = document.getElementById("floating-whatsapp");
   const mainWa = document.getElementById("main-whatsapp");
