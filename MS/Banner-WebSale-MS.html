@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- MAIN SEO -->
-    <title>Mengenai Kami | KasuhaNET.STORE</title>
+    <title>Pakej Pembangunan Laman Web | KasuhaNET.STORE</title>
     <meta name="google-adsense-account" content="ca-pub-4280897190566760">
     <meta name="description" content="KasuhaNET.STORE Pakej Bina Website untuk Pilihan pembelian.">
     <meta name="keywords" content="Mengenai KasuhaNET, Kasuha Zukarnain, Kasuha Okulus Organisation, KasuhaNET Resources, Pembangunan Web & Pakej.">
@@ -16,22 +16,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- CANONICAL & HREFLANG -->
-    <link rel="canonical" href="https://kasuhanet.store/MS/about-us-MS.html">
-    <link rel="alternate" hreflang="en" href="https://kasuhanet.store/about-us-EN.html">
-    <link rel="alternate" hreflang="ms" href="https://kasuhanet.store/MS/about-us-MS.html">
-    <link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/about-us-EN.html">
+    <link rel="canonical" href="https://kasuhanet.store/MS/Banner-WebSale-MSF.html">
+    <link rel="alternate" hreflang="en" href="https://kasuhanet.store/Banner-WebSale-ENF.html">
+    <link rel="alternate" hreflang="ms" href="https://kasuhanet.store/MS/Banner-WebSale-MSF.html">
+    <link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/Banner-WebSale-ENF.html">
 
     <!-- OPEN GRAPH & TWITTER -->
-    <meta property="og:title" content="Mengenai Kami | KasuhaNET.STORE">
+    <meta property="og:title" content="Pakej Pembangunan Laman Web | KasuhaNET.STORE">
     <meta property="og:description" content="Ketahui lebih lanjut mengenai KasuhaNET.STORE, platform digital hibrid yang menawarkan alatan terminal Linux, sokongan pemasaran affiliate, dan perkhidmatan pelancaran laman web.">
     <meta property="og:image" content="https://kasuhanet.store/img/logo3.webp">
-    <meta property="og:url" content="https://kasuhanet.store/MS/about-us-MS.html">
+    <meta property="og:url" content="https://kasuhanet.store/MS/Banner-WebSale-MSF.html">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="KasuhaNET.STORE">
     <meta property="og:locale" content="ms_MY">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Mengenai Kami | KasuhaNET.STORE">
+    <meta name="twitter:title" content="Pakej Pembangunan Laman Web | KasuhaNET.STORE">
     <meta name="twitter:description" content="Platform digital hibrid yang menawarkan alatan terminal Linux, sokongan pemasaran affiliate, dan perkhidmatan pembangunan web.">
     <meta name="twitter:image" content="https://kasuhanet.store/img/logo3.webp">
 
@@ -42,11 +42,11 @@
     <!-- LINKED STYLESHEETS -->
     <link rel="stylesheet" href="../css/Branding.css">
     <link rel="stylesheet" href="../css/Banner-WebSale.css">
-    <script src="../js/home-main.js"></script>
+    <script src="../js/home-main.js" defer></script>
 
     <!-- FAVICONS -->
-    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-512x512.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../favicon-512x512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon-512x512.png">
     <link rel="shortcut icon" href="https://kasuhanet.store/favicon.ico">
 
     <script type="application/ld+json">
@@ -59,6 +59,47 @@
       "description": "Perkhidmatan pembangunan laman web, reka bentuk perisian, dan integrasi sistem."
     }
     </script>
+
+    <style>
+      /* GAYA MENU MOBILE & UTAMA */
+      .menu-toggle {
+        display: none;
+        background: transparent;
+        border: 1px solid var(--line, rgba(255,255,255,.12));
+        color: var(--text, #f6f7fb);
+        font-size: 20px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      @media(max-width:850px){ 
+        .menu-toggle { 
+          display: inline-flex; 
+          align-items: center; 
+          justify-content: center; 
+          margin-left: auto; /* MENOLAK BUTANG KE BELAH KANAN SKRIN */
+        }
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          position: absolute;
+          top: 76px;
+          left: 0;
+          width: 100%;
+          background: rgba(8, 9, 13, 0.97);
+          backdrop-filter: blur(16px);
+          border-bottom: 1px solid var(--line, rgba(255,255,255,.12));
+          padding: 24px;
+          gap: 16px;
+          box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+          z-index: 99;
+          align-items: flex-start;
+        }
+        .nav-links.active { display: flex; }
+        .nav-links a:not(.btn) { display: block !important; width: 100%; }
+      }
+    </style>
 </head>
 <body>
 
@@ -82,7 +123,8 @@
         document.getElementById("branding-title").innerHTML = data;
     }).catch(err => console.log(err));
     </script>    
-    <nav class="nav-links" aria-label="Navigasi Utama">
+    
+    <nav class="nav-links" id="navLinks" aria-label="Navigasi Utama">
         <div class="dropdown">
             <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
                 Luar Negara <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #ff7187;"></i>
@@ -100,9 +142,14 @@
         <a href="about-us-MS.html">TENTANG KAMI</a>
         <a href="terms-MS.html">TERMA & POLISI</a>
         <a href="support-centre-MS.html">SOKONGAN</a>
-        <a class="btn btn-outline" href="../Banner-WebSale-EN.html" lang="en">EN</a>
-        <a class="btn btn-outline" href="Banner-WebSale-MS.html" lang="ms">BM</a>
+        <a class="btn btn-outline" href="../Banner-WebSale-ENF.html" lang="en">EN</a>
+        <a class="btn btn-outline" href="Banner-WebSale-MSF.html" lang="ms">BM</a>
     </nav>
+
+    <!-- BUTANG HAMBURGER MENU (TERKUNCI DI KANAN MOBILE) -->
+    <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Tukar Navigasi">
+        <i class="fa-solid fa-bars"></i>
+    </button>
   </div>
 </header>
 
@@ -253,6 +300,11 @@
 <a class="whatsapp-float" id="floating-whatsapp" href="https://wa.me/60167390501" target="_blank" rel="noopener" aria-label="Hubungi KasuhaNET di WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.02 3C8.86 3 3.04 8.8 3.04 15.94c0 2.28.6 4.5 1.75 6.46L3 29l6.78-1.77a13.05 13.05 0 0 0 6.23 1.58h.01c7.15 0 12.97-5.8 12.97-12.94A12.9 12.9 0 0 0 16.02 3zm0 23.62h-.01a10.8 10.8 0 0 1-5.5-1.5l-.4-.24-4.02 1.05 1.07-3.91-.26-.4a10.7 10.7 0 0 1-1.65-5.68c0-5.93 4.83-10.75 10.78-10.75 2.88 0 5.59 1.12 7.62 3.15a10.67 10.67 0 0 1 3.15 7.6c0 5.93-4.83 10.75-10.78 10.75zm5.91-8.05c-.32-.16-1.9-.94-2.2-1.05-.3-.11-.51-.16-.73.16-.21.32-.83 1.05-1.02 1.27-.19.21-.38.24-.7.08-.32-.16-1.35-.5-2.57-1.6-.95-.84-1.6-1.88-1.79-2.2-.19-.32-.02-.49.14-.65.14-.14.32-.38.48-.57.16-.19.32-.21.54-.03.16-.08-.73-1.75-1-2.4-.26-.63-.53-.54-.73-.55h-.62c-.21 0-.56.4-.86.4-.3.32-1.13 1.1-1.13 2.68s1.16 3.1 1.32 3.31c.21.32 2.28 3.48 5.53 4.88.77.33 1.37.53 1.84.68.77.24 1.47.21 2.02.13.62-.09 1.9-.78 2.17-1.53.27-.75.19-1.4.19-1.53-.08-.14-.29-.22-.61-.38z"/></svg></a>  
 
 <script>  
+  function toggleMobileMenu() {
+    const navLinks = document.getElementById("navLinks");
+    navLinks.classList.toggle("active");
+  }
+
   function toggleDropdown() {
     document.getElementById("servicesDropdown").classList.toggle("show");
   }
@@ -273,7 +325,6 @@
   const DEFAULT_MESSAGE = "Helo, saya berminat dengan perkhidmatan KasuhaNET.STORE.";  
   const waURL = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(DEFAULT_MESSAGE);  
   document.getElementById("floating-whatsapp").href = waURL;  
-  document.getElementById("main-whatsapp").href = waURL;  
 </script>  
 </body>
 </html>
