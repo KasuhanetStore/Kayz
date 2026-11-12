@@ -273,28 +273,20 @@
     /* BJAK referral panel */
     .bjak-partner-box {
       position: relative;
+      isolation: isolate;
       overflow: hidden;
       border: 2px solid #fff;
       border-radius: 20px;
-      padding: clamp(16px, 3vw, 30px);
-      background: linear-gradient(145deg, #071d48 0%, #0b3474 52%, #071a3c 100%);
+      padding: clamp(20px, 4vw, 38px);
+      background-color: #073477;
+      background-image: linear-gradient(105deg, rgba(3,20,54,.88), rgba(3,35,83,.68) 55%, rgba(3,20,54,.82)), url("../Bjak.png");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
       box-shadow: 0 0 0 2px rgba(35,125,255,.72), 0 16px 42px rgba(0,72,180,.24), inset 0 0 28px rgba(65,145,255,.12);
       color: #fff;
     }
-    .bjak-banner-frame {
-      width: 100%;
-      height: clamp(68px, 10vw, 108px);
-      margin: 0 0 20px;
-      overflow: hidden;
-      border: 2px solid rgba(255,255,255,.96);
-      border-radius: 12px;
-      background-color: #fff;
-      background-image: url("../Bjak.png");
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: 100% 100%;
-      box-shadow: 0 0 0 2px rgba(40,130,255,.75), 0 8px 22px rgba(0,0,0,.22);
-    }
+    .bjak-partner-box > * { position: relative; z-index: 1; }
     .bjak-eyebrow {
       display: inline-flex;
       padding: 5px 11px;
@@ -317,8 +309,7 @@
     .bjak-quote-button { background: linear-gradient(110deg,#fff,#dcecff); color: #073477; border: 2px solid #fff; box-shadow: 0 7px 22px rgba(0,0,0,.2); }
     .bjak-quote-button:hover { background: #fff; color: #05265c; transform: translateY(-2px); }
     @media(max-width:580px) {
-      .bjak-banner-frame { height: 72px; margin-bottom: 16px; }
-      .bjak-partner-box { padding: 15px; border-radius: 16px; }
+      .bjak-partner-box { padding: 18px; border-radius: 16px; }
       .bjak-quote-button { width: 100%; }
     }
 
@@ -694,7 +685,7 @@
 <section class="section" id="solutions"><div class="container"><div class="section-head"><span class="eyebrow">Penyelesaian Untuk Anda</span><h2>Teroka <span class="gradient-text">Servis & Program</span></h2></div><div class="link-grid"><div class="link-card"><h3>Pilihan Terminal</h3><p>Rujukan arahan dan pilihan terminal.</p><a href="https://kasuhanet.store/CommandCanDoLIST.html">Buka Pilihan Terminal ↗</a></div><div class="link-card"><h3>Sokongan Affiliate</h3><p>Sokongan affiliate dan peluang promosi.</p><a href="https://kasuhanet.store/ShopAffliateSupport.html">Buka Sokongan Affiliate ↗</a></div><div class="link-card"><h3>Pelan E-Pembelajaran</h3><p>Pelan pembelajaran web selepas membeli pakej laman web bermula dari RM299–RM345; semak butiran program sebelum mendaftar.</p><a href="https://kasuhanet.store/Website-Service.html">Teroka Servis Web ↗</a></div><div class="link-card"><h3>Servis Kewangan Kecemasan+</h3><p>Maklumat perkhidmatan PayLater Cashout.</p><a href="https://kasuhanet.store/CashOutServicePayLater.html">PayLater Cashout ↗</a></div><div class="link-card"><h3>Rujukan Bank Ryt</h3><p>Program referral pihak ketiga.</p><a href="https://referrals.rytbank.my/MCoA/gq8xkdot" target="_blank" rel="sponsored noopener">Jemputan Daftar Ryt ↗</a></div><div class="link-card"><h3>VPS Malaysia</h3><p>Pautan rakan affiliate untuk perkhidmatan VPS.</p><a href="https://vpsmalaysia.com.my/system/aff.php?aff=2530" target="_blank" rel="sponsored noopener">Iklan Banner VPSMalaysia ↗</a></div></div><p class="small-muted" style="max-width:900px;margin:18px auto 0;text-align:center;">Pendedahan affiliate: Sesetengah pautan luar di laman ini ialah pautan referral atau affiliate. KasuhaNET mungkin menerima komisen atau ganjaran jika anda menggunakannya. Terma dan polisi privasi penyedia pihak ketiga tetap terpakai.</p>
 </div></section>
 
-<section class="section" id="bjak"><div class="container"><div class="partner-box bjak-partner-box"><div class="bjak-banner-frame" role="img" aria-label="BJAK - Insurans dan cukai jalan dalam talian"></div><span class="bjak-eyebrow">Rakan Referral</span><h2>Memperbaharui Insurans & Cukai dengan <span>BJAK</span></h2><p>Dapatkan sebut harga daripada 15+ syarikat insurans kereta dan motosikal secara dalam talian.</p><ul class="bjak-benefits"><li>100% Dalam Talian</li><li>Diskaun Serta-merta (tertakluk pada tawaran)</li><li>Penghantaran Cukai Jalan (tertakluk pada syarat)</li></ul><p class="bjak-reward"><strong>Ganjaran Rujukan: RM25</strong> — tertakluk pada program semasa.</p><a class="btn bjak-quote-button" href="https://bjak.my/ref/mohamadslbr" target="_blank" rel="sponsored noopener">Dapatkan Sebut Harga Percuma ❯</a></div></div></section>
+<section class="section" id="bjak"><div class="container"><div class="partner-box bjak-partner-box"><span class="bjak-eyebrow">Rakan Referral</span><h2>Memperbaharui Insurans & Cukai dengan <span>BJAK</span></h2><p>Dapatkan sebut harga daripada 15+ syarikat insurans kereta dan motosikal secara dalam talian.</p><ul class="bjak-benefits"><li>100% Dalam Talian</li><li>Diskaun Serta-merta (tertakluk pada tawaran)</li><li>Penghantaran Cukai Jalan (tertakluk pada syarat)</li></ul><p class="bjak-reward"><strong>Ganjaran Rujukan: RM25</strong> — tertakluk pada program semasa.</p><a class="btn bjak-quote-button" href="https://bjak.my/ref/mohamadslbr" target="_blank" rel="sponsored noopener">Dapatkan Sebut Harga Percuma ❯</a></div></div></section>
 
 <section class="section" id="scam">
   <div class="container">
