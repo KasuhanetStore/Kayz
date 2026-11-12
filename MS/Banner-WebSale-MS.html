@@ -322,6 +322,7 @@
       <p>ID tempahan: <strong id="knOrderReference"></strong></p>
       <p>Token semakan: <code id="knTrackingToken"></code></p>
       <button type="button" id="knCopyTracking">SALIN TOKEN</button>
+      <p><a href="/track-order.html" style="color:#7de8f3">Buka halaman semakan tempahan</a></p>
       <p class="kn-checkout-note">Status awal: Pending. Admin akan menyemak permohonan anda. Jangan kongsi token semakan ini.</p>
     </section>
   </section>
@@ -376,6 +377,11 @@
   function openCheckout(packageId) {
     if (!KN_PACKAGES[packageId]) return;
     knSelectedPackage = packageId;
+    knIdempotencyKey = crypto.randomUUID();
+    document.getElementById("knCheckoutForm").reset();
+    document.getElementById("knCheckoutForm").hidden = false;
+    document.getElementById("knOrderConfirmation").hidden = true;
+    document.getElementById("knCheckoutTitle").textContent = "TEMPAHAN PERKHIDMATAN";
     document.getElementById("knPackageName").textContent = KN_PACKAGES[packageId].name;
     document.getElementById("knPackagePrice").textContent = KN_PACKAGES[packageId].price;
     document.getElementById("knCheckoutError").style.display = "none";
