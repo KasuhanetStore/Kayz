@@ -11,7 +11,7 @@ function loadHeader() {
         </div>
         <div class="header-right">
             <nav>
-            <button class="dropbtn">OVERSEA SERVICES ▼</button>
+            <button class="dropbtn">Overseas ▼</button>
             <div class="dropdown-content">
             <div class="dropdown">
             
