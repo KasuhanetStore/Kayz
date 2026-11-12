@@ -168,6 +168,9 @@
     .feature-list li { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.07); color: #e4e6ed; font-size: 14px; }
     .feature-list li::before { content: "✓"; color: #ff657c; font-weight: 900; margin-right: 10px; }
     .price-card .btn { width: 100%; }
+    .package-payment-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: auto; }
+    .package-payment-actions .btn { width: 100%; min-width: 0; padding: 11px 10px; font-size: 12px; }
+    @media(max-width:580px) { .package-payment-actions { grid-template-columns: 1fr; } }
     .upgrade-note { margin-top: 22px; padding: 16px 18px; border: 1px dashed rgba(255,112,132,.35); border-radius: 14px; color: var(--muted); font-size: 13px; background: rgba(255,48,79,.045); }
     .upgrade-note strong { color: #fff; }
     .process-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; counter-reset: step; }
@@ -653,8 +656,8 @@
     </details>
 
     <div class="pricing" style="margin-top:22px">
-      <article class="price-card"><span class="plan-tag">LANDING PAGE</span><h3>Landing Page Package</h3><div class="price">RM 299 <small>++</small></div><p class="price-sub">For marketing campaigns, simple product launches and mini-shop portfolios.</p><ul class="feature-list"><li>1 single-page design</li><li>Responsive code structure for mobile devices</li><li>Google AdSense optimisation</li><li>Call-to-action WhatsApp / form</li><li>Custom domain not included</li></ul><a class="btn btn-primary" href="https://toyyibpay.com/L-P-P-LPP299" target="_blank" rel="noopener">Subscribe Now ↗</a></article>
-      <article class="price-card premium"><span class="plan-tag">POPULAR</span><h3>Premium Standard</h3><div class="price">RM 900 <small>++</small></div><p class="price-sub">A complete management system for clubs, associations and dynamic business profiles.</p><ul class="feature-list"><li>Deploy a multi-page website</li><li>Custom Content Management System</li><li>Google AdSense and advanced SEO</li><li>Product showcase / club activity gallery</li><li>Custom domain support (.com/.my)</li><li>Premium Cyberpunk UI/UX style</li></ul><a class="btn btn-primary" href="https://toyyibpay.com/P-MS-Pay-PREMIUM-STANDARD" target="_blank" rel="noopener">Upgrade to Premium ↗</a></article>
+      <article class="price-card"><span class="plan-tag">LANDING PAGE</span><h3>Landing Page Package</h3><div class="price">RM 299 <small>++</small></div><p class="price-sub">For marketing campaigns, simple product launches and mini-shop portfolios.</p><ul class="feature-list"><li>1 single-page design</li><li>Responsive code structure for mobile devices</li><li>Google AdSense optimisation</li><li>Call-to-action WhatsApp / form</li><li>Custom domain not included</li></ul><div class="package-payment-actions"><a class="btn btn-primary" href="https://toyyibpay.com/L-P-P-LPP299" target="_blank" rel="noopener noreferrer">Pay with ToyyibPay ↗</a><a class="btn btn-outline" href="Banner-WebSale-EN.html#pakej">Pay with Stripe ↗</a></div></article>
+      <article class="price-card premium"><span class="plan-tag">POPULAR</span><h3>Premium Standard</h3><div class="price">RM 900 <small>++</small></div><p class="price-sub">A complete management system for clubs, associations and dynamic business profiles.</p><ul class="feature-list"><li>Deploy a multi-page website</li><li>Custom Content Management System</li><li>Google AdSense and advanced SEO</li><li>Product showcase / club activity gallery</li><li>Custom domain support (.com/.my)</li><li>Premium Cyberpunk UI/UX style</li></ul><div class="package-payment-actions"><a class="btn btn-primary" href="https://toyyibpay.com/P-MS-Pay-PREMIUM-STANDARD" target="_blank" rel="noopener noreferrer">Pay with ToyyibPay ↗</a><a class="btn btn-outline" href="Banner-WebSale-EN.html#pakej">Pay with Stripe ↗</a></div></article>
     </div>
 
     <details class="accordion-box">
