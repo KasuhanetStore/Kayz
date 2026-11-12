@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <nav>
                 <div class="dropdown">
                     <a href="javascript:void(0)" onclick="toggleDropdown(event)" style="cursor: pointer;">
-                        Oversea <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #00F0FF;"></i>
+                        Overseas <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #00F0FF;"></i>
                     </a>
                     <div class="dropdown-content" id="servicesDropdown">
                         <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">
