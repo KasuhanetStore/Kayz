@@ -160,7 +160,8 @@
     }
     .hlb-banner-signup {
       position: absolute;
-      right: clamp(16px, 6vw, 76px);
+      left: clamp(16px, 6vw, 76px);
+      right: auto;
       bottom: clamp(16px, 6%, 30px);
       z-index: 2;
       min-width: 150px;
@@ -170,7 +171,7 @@
     @media(max-width:580px) {
       #referral { padding: 22px 0; }
       .hlb-banner-image { height: 230px; object-position: center center; }
-      .hlb-banner-signup { right: 14px; bottom: 14px; min-width: 0; padding: 9px 13px; font-size: 12px; }
+      .hlb-banner-signup { left: 14px; right: auto; bottom: 14px; min-width: 0; padding: 9px 13px; font-size: 12px; }
     }
     .hero-actions .garage-custom-btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 12px;
