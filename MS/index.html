@@ -270,46 +270,48 @@
     }
 
 
-    /* BJAK referral panel */
+    /* BJAK referral content - plain text, no panel or decorative frames */
     .bjak-partner-box {
-      position: relative;
-      isolation: isolate;
-      overflow: hidden;
-      border: 2px solid #fff;
-      border-radius: 20px;
-      padding: clamp(20px, 4vw, 38px);
-      background-image: url("../Bjak.png");
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      box-shadow: 0 0 0 2px rgba(35,125,255,.72);
-      color: #fff;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: none !important;
+      box-shadow: none !important;
+      color: inherit;
     }
-    .bjak-partner-box > * { position: relative; z-index: 1; }
     .bjak-eyebrow {
-      display: inline-flex;
-      padding: 5px 11px;
-      border: 1px solid rgba(255,255,255,.8);
-      border-radius: 999px;
-      color: #fff;
-      background: rgba(255,255,255,.1);
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 1.5px;
+      display: block;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: none;
+      color: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
       text-transform: uppercase;
     }
-    .bjak-partner-box h2 { margin: 12px 0 8px; color: #fff; font-size: clamp(23px,3vw,34px); line-height: 1.2; font-weight: 900; }
-    .bjak-partner-box h2 span { color: #fff; text-shadow: 0 2px 14px rgba(115,185,255,.7); }
-    .bjak-partner-box > p { color: #eaf3ff; }
-    .bjak-benefits { display: flex; flex-direction: column; align-items: flex-start; gap: 9px; margin: 18px 0; padding: 0; list-style: none; }
-    .bjak-benefits li { display: inline-flex; align-items: center; width: fit-content; max-width: 100%; padding: 9px 13px; border: 1px solid rgba(255,255,255,.78); border-radius: 9px; background: rgba(255,255,255,.075); color: #fff; font-weight: 800; }
-    .bjak-benefits li::before { content: "✓"; margin-right: 10px; color: #fff; font-weight: 1000; }
-    .bjak-reward { color: #fff !important; }
-    .bjak-quote-button { background: linear-gradient(110deg,#fff,#dcecff); color: #073477; border: 2px solid #fff; box-shadow: 0 7px 22px rgba(0,0,0,.2); }
-    .bjak-quote-button:hover { background: #fff; color: #05265c; transform: translateY(-2px); }
-    @media(max-width:580px) {
-      .bjak-partner-box { padding: 18px; border-radius: 16px; }
-      .bjak-quote-button { width: 100%; }
+    .bjak-partner-box h2 { margin: 12px 0 8px; color: inherit; font-size: clamp(23px,3vw,34px); line-height: 1.2; font-weight: 900; }
+    .bjak-partner-box h2 span { color: inherit; text-shadow: none; }
+    .bjak-partner-box > p { color: inherit; }
+    .bjak-benefits { display: block; margin: 18px 0; padding-left: 20px; list-style: disc; }
+    .bjak-benefits li { display: list-item; width: auto; max-width: none; margin: 7px 0; padding: 0; border: 0; border-radius: 0; background: none; color: inherit; font-weight: 400; }
+    .bjak-benefits li::before { content: none; }
+    .bjak-reward { color: inherit !important; }
+    .bjak-quote-button,
+    .bjak-quote-button:hover {
+      display: inline;
+      width: auto;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: none;
+      box-shadow: none;
+      color: var(--link, #1769aa);
+      font: inherit;
+      font-weight: 700;
+      text-decoration: underline;
+      transform: none;
     }
 
     /* MOBILE MENU TOGGLE BUTTON */
