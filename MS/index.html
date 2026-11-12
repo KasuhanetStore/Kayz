@@ -333,6 +333,40 @@
       box-shadow: 0 7px 20px rgba(0, 35, 100, .55), inset 0 1px 0 rgba(255,255,255,.3);
     }
 
+    /* Full-width Hong Leong Bank referral banner */
+    #referral { padding: 34px 0; }
+    #referral .container { width: 100%; max-width: none; padding: 0; }
+    .hlb-banner-wrap {
+      position: relative;
+      width: 100%;
+      min-height: 220px;
+      overflow: hidden;
+      isolation: isolate;
+      background: #a90020;
+    }
+    .hlb-banner-image {
+      display: block;
+      width: 100%;
+      height: clamp(220px, 34vw, 440px);
+      object-fit: cover;
+      object-position: center center;
+    }
+    .hlb-banner-signup {
+      position: absolute;
+      left: clamp(16px, 6vw, 76px);
+      right: auto;
+      bottom: clamp(16px, 6%, 30px);
+      z-index: 2;
+      min-width: 150px;
+      border: 1px solid rgba(255,255,255,.8);
+      box-shadow: 0 5px 20px rgba(0,0,0,.38);
+    }
+    @media(max-width:580px) {
+      #referral { padding: 22px 0; }
+      .hlb-banner-image { height: 230px; object-position: center center; }
+      .hlb-banner-signup { left: 14px; right: auto; bottom: 14px; min-width: 0; padding: 9px 13px; font-size: 12px; }
+    }
+
     /* MOBILE MENU TOGGLE BUTTON */
     .menu-toggle {
       display: none;
@@ -656,7 +690,14 @@
 
 <section class="section" id="about"><div class="container"><div class="section-head"><span class="eyebrow">Pengasas & Pembangun</span><h2>Hai, Saya <span class="gradient-text">Kasuha Zukarnain</span></h2><p>CallSign: Kasuha Zukarnain • Pengalaman Pembangun 8–9 Tahun</p></div><div class="profile-box"><ul class="feature-list"><li><strong>Pembangunan & Pengasasan:</strong> Pembangun utama di sebalik platform Kasuhanet.Store, pengasas Kasuhanet Resources untuk operasi perniagaan, dan pencipta Kasuha Oculus Organisation.</li><li><strong>Ketepatan Kod:</strong> Berminat dalam struktur kod bersih dan logik pengaturcaraan untuk membina fungsi digital yang lancar.</li><li><strong>Peminat OS & Android:</strong> Tumpuan pada dalaman Android dan sistem pengendalian (OS), termasuk konfigurasi yang meningkatkan prestasi dan reka bentuk perisian.</li><li><strong>Strategi & Pengewangan:</strong> Membangunkan sistem dan analisis data yang bertujuan untuk pertumbuhan kewangan mampan melalui ekosistem perniagaan.</li></ul><p><strong>Sistem & Seni Bina | Rangka Kerja Kasuha Oculus</strong></p></div></div></section>
 
-<section class="section" id="referral"><div class="container"><div class="section-head"><span class="eyebrow">Rujukan Program Baharu</span><h2>Daftar Akaun <span class="gradient-text">Hong Leong Bank</span></h2><p>Gunakan kod rujukan anda dan semak terma pendaftaran serta ganjaran terkini bank.</p><a class="btn btn-primary" href="https://www.hlb.com.my/en/personal-banking/deposits/apply-at-hlb-connect.html" target="_blank" rel="noopener">Daftar Sekarang ↗</a></div></div></section>
+<section class="section" id="referral">
+  <div class="container">
+    <div class="hlb-banner-wrap">
+      <img class="hlb-banner-image" src="../LogoHLBrefer.png" alt="Banner rujukan Hong Leong Bank" loading="lazy">
+      <a class="btn btn-primary hlb-banner-signup" href="https://www.hlb.com.my/en/personal-banking/deposits/apply-at-hlb-connect.html" target="_blank" rel="noopener noreferrer">Daftar Sekarang ↗</a>
+    </div>
+  </div>
+</section>
 
 <section class="section" id="pakej">
   <div class="container">
