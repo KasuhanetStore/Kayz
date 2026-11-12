@@ -5,7 +5,7 @@
 /* BRANDING TITLE */
 
 .neon-title {
-    font-family: 'Orbitron', sans-serif;
+    font-family: Inter, Arial, Helvetica, sans-serif;
     font-size: clamp(32px, 5vw, 55px);
     font-weight: 900;
     color: #ffffff;
@@ -49,7 +49,7 @@
   line-height: 1.1;
   letter-spacing: -1.5px;
   margin: 12px 0 18px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: Inter, Arial, Helvetica, sans-serif;
 }
 
 .about-intro-box {
