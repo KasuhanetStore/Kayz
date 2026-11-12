@@ -16,7 +16,7 @@ If the Resend credentials are absent, checkout still creates the order and Strip
 
 ## D1 migration
 
-Apply `migrations/0001_create_orders.sql` once to the D1 database bound as `DB`. Do not run against the wrong database. Verify the table and indexes exist before enabling production checkout.
+Apply `migrations/0002_stripe_checkout.sql` once to the D1 database bound as `DB`. Do not run against the wrong database. This migration creates an isolated `stripe_orders` table. It deliberately does not alter the existing booking `orders` table or its historical records. Verify `stripe_orders` and its indexes exist before enabling checkout.
 
 ## Stripe webhook
 
