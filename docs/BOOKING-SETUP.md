@@ -36,3 +36,7 @@ The server validates package IDs and derives prices itself. Reuse the same `Idem
 - D1 binding, Cloudflare Access and `ADMIN_EMAILS` are account-level setup steps and cannot be created by committing repository files.
 - Confirm persistence by creating an order, changing its status, refreshing the admin page, then retrieving it with its tracking token.
 - Keep demo records out of real sales reports by filtering `is_demo = 0`.
+
+
+## Legacy Telegram endpoint
+The legacy PHP message endpoint no longer stores a bot token in source code. If that endpoint is still deployed on a PHP host, configure `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` as server environment variables. The previously committed bot token must be revoked and replaced through BotFather; deleting it from the current file does not invalidate the old credential. Do not reuse the exposed token.
