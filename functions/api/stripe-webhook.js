@@ -89,7 +89,7 @@ export async function onRequestPost({ request, env }) {
              stripe_payment_intent_id = ?,
              paid_at = COALESCE(paid_at, CURRENT_TIMESTAMP),
              updated_at = CURRENT_TIMESTAMP
-         WHERE id = ? AND stripe_checkout_session_id = ?`
+         WHERE id = ? AND (stripe_checkout_session_id = ? OR stripe_checkout_session_id IS NULL)`
       ).bind(
         typeof session.payment_intent === "string" ? session.payment_intent : null,
         orderId,
