@@ -320,6 +320,7 @@
       <p>Order ID: <strong id="knOrderReference"></strong></p>
       <p>Tracking token: <code id="knTrackingToken"></code></p>
       <button type="button" id="knCopyTracking">COPY TOKEN</button>
+      <p><a href="/track-order.html" style="color:#7de8f3">Open the order tracking page</a></p>
       <p class="kn-checkout-note">Initial status: Pending. An admin will review your request. Do not share this tracking token.</p>
     </section>
   </section>
@@ -374,6 +375,11 @@
   function openCheckout(packageId) {
     if (!KN_PACKAGES[packageId]) return;
     knSelectedPackage = packageId;
+    knIdempotencyKey = crypto.randomUUID();
+    document.getElementById("knCheckoutForm").reset();
+    document.getElementById("knCheckoutForm").hidden = false;
+    document.getElementById("knOrderConfirmation").hidden = true;
+    document.getElementById("knCheckoutTitle").textContent = "SERVICE ORDER";
     document.getElementById("knPackageName").textContent = KN_PACKAGES[packageId].name;
     document.getElementById("knPackagePrice").textContent = KN_PACKAGES[packageId].price;
     document.getElementById("knCheckoutError").style.display = "none";
@@ -443,17 +449,7 @@
     catch { this.textContent = "COPY UNAVAILABLE"; }
   });
 
-  const paymentState = new URLSearchParams(window.location.search).get("payment");
-  if (paymentState === "success" || paymentState === "cancel") {
-    const notice = document.createElement("div");
-    notice.className = "container";
-    notice.style.cssText = "margin:18px auto;padding:14px;border:1px solid rgba(0,240,255,.25);border-radius:10px;color:#f6f7fb;background:#11141d";
-    notice.textContent = paymentState === "success"
-      ? "You have returned from Stripe Checkout. Please check your Stripe payment confirmation before considering the order complete."
-      : "Checkout was cancelled. No new payment was completed through this checkout session.";
-    document.querySelector("main").prepend(notice);
-    window.history.replaceState({}, document.title, window.location.pathname);
-  }
+
 
   const WHATSAPP_NUMBER = "60167390501"; 
   const DEFAULT_MESSAGE = "Hello, I am interested in KasuhaNET.STORE services.";  
