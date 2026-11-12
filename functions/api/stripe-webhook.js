@@ -98,7 +98,7 @@ export async function onRequestPost({ request, env }) {
       `SELECT id, package_id, package_name, amount, currency,
               customer_name, customer_email, customer_phone, status,
               stripe_checkout_session_id
-       FROM orders
+       FROM stripe_orders
        WHERE id = ? AND stripe_checkout_session_id = ?
        LIMIT 1`
     ).bind(orderId, session.id).first();
@@ -128,7 +128,7 @@ export async function onRequestPost({ request, env }) {
       }
 
       await env.DB.prepare(
-        `UPDATE orders
+        `UPDATE stripe_orders
          SET status = 'paid',
              stripe_payment_intent_id = ?,
              paid_at = COALESCE(paid_at, CURRENT_TIMESTAMP),
@@ -165,7 +165,7 @@ export async function onRequestPost({ request, env }) {
     } else {
       const status = failedEvent ? "failed" : "expired";
       await env.DB.prepare(
-        `UPDATE orders
+        `UPDATE stripe_orders
          SET status = ?, updated_at = CURRENT_TIMESTAMP
          WHERE id = ? AND stripe_checkout_session_id = ? AND status = 'pending'`
       ).bind(status, orderId, session.id).run();
