@@ -1,53 +1,53 @@
 <?php
+declare(strict_types=1);
 
-$botToken = "8812331448:AAFf34rzhrwljZbB_j2UKERiLYr-lE-sLrQ";
-$chatID = "6482299038";
+header('Content-Type: application/json; charset=utf-8');
 
-$message = $_POST['message'];
-
-$url = "https://api.telegram.org/bot$botToken/sendMessage";
-
-$data = [
-'chat_id' => $chatID,
-'text' => $message
-];
-
-$options = [
-'http' => [
-'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-'method'  => 'POST',
-'content' => http_build_query($data)
-]
-];
-
-$context = stream_context_create($options);
-
-file_get_contents($url, false, $context);
-
-echo "success";
-
-?>
-
-<?php
-
-$file = "messages.json";
-
-$message = $_POST['message'];
-
-$data = [];
-
-if(file_exists($file)){
-$data = json_decode(file_get_contents($file), true);
+function respond(int $status, array $payload) {
+    http_response_code($status);
+    echo json_encode($payload, JSON_UNESCAPED_UNICODE);
+    exit;
 }
 
-$data[] = [
-"type" => "user",
-"text" => $message
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    respond(405, ['success' => false, 'error' => 'Method not allowed.']);
+}
+
+$message = trim((string)($_POST['message'] ?? ''));
+if ($message === '' || strlen($message) > 16000) {
+    respond(400, ['success' => false, 'error' => 'Message is required and must be under 4000 characters.']);
+}
+
+$botToken = getenv('TELEGRAM_BOT_TOKEN') ?: '';
+$chatId = getenv('TELEGRAM_CHAT_ID') ?: '';
+if ($botToken === '' || $chatId === '') {
+    error_log('Telegram integration is not configured: missing server environment variables.');
+    respond(503, ['success' => false, 'error' => 'Messaging service is not configured.']);
+}
+
+$url = 'https://api.telegram.org/bot' . $botToken . '/sendMessage';
+$payload = http_build_query(['chat_id' => $chatId, 'text' => $message]);
+$options = [
+    'http' => [
+        'header' => "Content-Type: application/x-www-form-urlencoded\r\n",
+        'method' => 'POST',
+        'content' => $payload,
+        'timeout' => 10,
+        'ignore_errors' => true
+    ]
 ];
 
-file_put_contents($file, json_encode($data));
+$response = @file_get_contents($url, false, stream_context_create($options));
+if ($response === false) {
+    error_log('Telegram message delivery failed.');
+    respond(502, ['success' => false, 'error' => 'Message delivery failed.']);
+}
 
-echo "ok";
+$result = json_decode($response, true);
+if (!is_array($result) || ($result['ok'] ?? false) !== true) {
+    error_log('Telegram API returned an unsuccessful response.');
+    respond(502, ['success' => false, 'error' => 'Message delivery failed.']);
+}
 
+respond(200, ['success' => true]);
 ?>
-
