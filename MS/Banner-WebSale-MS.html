@@ -296,13 +296,13 @@
 <div class="kn-checkout-overlay" id="knCheckout" aria-hidden="true" hidden>
   <section class="kn-checkout-panel" role="dialog" aria-modal="true" aria-labelledby="knCheckoutTitle">
     <div class="kn-checkout-head">
-      <h2 id="knCheckoutTitle">PEMBAYARAN SELAMAT</h2>
+      <h2 id="knCheckoutTitle">TEMPAHAN PERKHIDMATAN</h2>
       <button type="button" class="kn-checkout-close" onclick="closeCheckout()" aria-label="Tutup pembayaran">✕</button>
     </div>
     <div class="kn-order-summary">
       <strong id="knPackageName">Pakej dipilih</strong>
       <span id="knPackagePrice">RM 0</span>
-      <p style="font-size:11px;color:#aeb5c4;margin:5px 0 0">Bayaran sekali sahaja · MYR</p>
+      <p style="font-size:11px;color:#aeb5c4;margin:5px 0 0">Harga anggaran pakej · MYR</p>
     </div>
     <form class="kn-checkout-form" id="knCheckoutForm">
       <label for="knCustomerName">Nama penuh</label>
@@ -310,11 +310,14 @@
       <label for="knCustomerEmail">Alamat e-mel</label>
       <input id="knCustomerEmail" name="email" type="email" autocomplete="email" maxlength="254" required>
       <label for="knCustomerPhone">Nombor telefon</label>
-      <input id="knCustomerPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60">
-      <button class="kn-checkout-submit" id="knCheckoutSubmit" type="submit">TERUSKAN KE PEMBAYARAN SELAMAT</button>
-      <p class="kn-checkout-note">Pembayaran diproses dengan selamat melalui Stripe. Kaedah pembayaran yang tersedia akan dipaparkan pada halaman Stripe mengikut kelayakan dan tetapan akaun peniaga. Jangan kongsi maklumat kad atau perbankan anda dengan KasuhaNET.</p>
+      <input id="knCustomerPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60" required>
+      <label for="knCustomerNote">Nota tambahan (pilihan)</label>
+      <textarea id="knCustomerNote" name="note" maxlength="1000" rows="3"></textarea>
+      <button class="kn-checkout-submit" id="knCheckoutSubmit" type="submit">HANTAR TEMPAHAN</button>
+      <p class="kn-checkout-note">Tempahan akan direkodkan dan disemak oleh admin. Penghantaran borang ini bukan pengesahan pembayaran.</p>
       <div class="kn-checkout-error" id="knCheckoutError" role="alert"></div>
     </form>
+    <section id="knOrderConfirmation" hidden style="padding:18px;border:1px solid rgba(0,240,255,.25);border-radius:12px;margin-top:14px"><h3>Tempahan diterima</h3><p>Simpan nombor tempahan dan token rahsia ini untuk menyemak status kemudian.</p><p>ID tempahan: <strong id="knOrderReference"></strong></p><p>Token semakan: <code id="knTrackingToken"></code></p><button type="button" id="knCopyTracking">SALIN TOKEN</button><p><a href="/track-order.html" style="color:#7de8f3">Buka halaman semakan tempahan</a></p><p class="kn-checkout-note">Status awal: Pending. Admin akan menyemak permohonan anda. Jangan kongsi token semakan ini.</p></section>
   </section>
 </div>
 
@@ -362,10 +365,16 @@
     "premium-standard": { name: "Premium Standard", price: "RM 900" }
   };
   let knSelectedPackage = null;
+  let knIdempotencyKey = null;
 
   function openCheckout(packageId) {
     if (!KN_PACKAGES[packageId]) return;
     knSelectedPackage = packageId;
+    knIdempotencyKey = crypto.randomUUID();
+    document.getElementById("knCheckoutForm").reset();
+    document.getElementById("knCheckoutForm").hidden = false;
+    document.getElementById("knOrderConfirmation").hidden = true;
+    document.getElementById("knCheckoutTitle").textContent = "TEMPAHAN PERKHIDMATAN";
     document.getElementById("knPackageName").textContent = KN_PACKAGES[packageId].name;
     document.getElementById("knPackagePrice").textContent = KN_PACKAGES[packageId].price;
     document.getElementById("knCheckoutError").style.display = "none";
@@ -394,41 +403,19 @@
   });
 
   document.getElementById("knCheckoutForm").addEventListener("submit", async function(event) {
-    event.preventDefault();
-    if (!knSelectedPackage) return;
-
-    const submit = document.getElementById("knCheckoutSubmit");
-    const errorBox = document.getElementById("knCheckoutError");
-    const formData = new FormData(this);
-    submit.disabled = true;
-    submit.textContent = "SEDANG MENYEDIAKAN PEMBAYARAN...";
-    errorBox.style.display = "none";
-    errorBox.textContent = "";
-
+    event.preventDefault(); if (!knSelectedPackage) return;
+    const button=document.getElementById("knCheckoutSubmit"), errorBox=document.getElementById("knCheckoutError"), formData=new FormData(this);
+    button.disabled=true; button.textContent="SEDANG MENYIMPAN TEMPAHAN..."; errorBox.style.display="none"; errorBox.textContent="";
     try {
-      const response = await fetch("/api/create-checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          packageId: knSelectedPackage,
-          name: formData.get("name"),
-          email: formData.get("email"),
-          phone: formData.get("phone")
-        })
-      });
-      const result = await response.json();
-      if (!response.ok || !result.url) {
-        throw new Error(result.error || "Pembayaran tidak dapat disediakan buat masa ini.");
-      }
-      window.location.assign(result.url);
-    } catch (error) {
-      errorBox.textContent = error.message || "Ralat berlaku. Sila cuba semula.";
-      errorBox.style.display = "block";
-    } finally {
-      submit.disabled = false;
-      submit.textContent = "TERUSKAN KE PEMBAYARAN SELAMAT";
-    }
+      if(!knIdempotencyKey) knIdempotencyKey=crypto.randomUUID();
+      const response=await fetch("/api/orders",{method:"POST",headers:{"Content-Type":"application/json","Idempotency-Key":knIdempotencyKey},body:JSON.stringify({packageId:knSelectedPackage,name:formData.get("name"),email:formData.get("email"),phone:formData.get("phone"),note:formData.get("note")||""})});
+      const result=await response.json();if(!response.ok||!result.success||!result.order)throw new Error(result.error||"Tempahan tidak dapat disimpan.");
+      document.getElementById("knOrderReference").textContent=result.order.id;document.getElementById("knTrackingToken").textContent=result.order.tracking_token;
+      document.getElementById("knOrderConfirmation").hidden=false;document.getElementById("knCheckoutForm").hidden=true;document.getElementById("knCheckoutTitle").textContent="TEMPAHAN BERJAYA DIREKODKAN";knIdempotencyKey=null;
+    }catch(error){errorBox.textContent=error.message||"Ralat berlaku. Sila cuba semula.";errorBox.style.display="block";}
+    finally{button.disabled=false;button.textContent="HANTAR TEMPAHAN";}
   });
+  document.getElementById("knCopyTracking").addEventListener("click",async function(){const value=document.getElementById("knTrackingToken").textContent;try{await navigator.clipboard.writeText(value);this.textContent="DISALIN";}catch{this.textContent="SALINAN TIDAK TERSEDIA";}});
 
   const WHATSAPP_NUMBER = "60167390501"; 
   const DEFAULT_MESSAGE = "Helo, saya berminat dengan perkhidmatan KasuhaNET.STORE.";  
