@@ -279,7 +279,7 @@
       border: 2px solid #fff;
       border-radius: 20px;
       background-color: #073477;
-      background-image: url("../Bjak.png");
+      background-image: linear-gradient(rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.32)), url("../Bjak.png");
       background-repeat: no-repeat;
       background-position: center center;
       background-size: 100% 100%;
@@ -293,32 +293,44 @@
       border-radius: 0;
       background: none;
       color: #fff;
-      font-size: 12px;
-      font-weight: 700;
+      font-size: 13px;
+      font-weight: 800;
       letter-spacing: .08em;
       text-transform: uppercase;
     }
-    .bjak-partner-box h2 { margin: 12px 0 8px; color: #fff; font-size: clamp(23px,3vw,34px); line-height: 1.2; font-weight: 900; }
+    .bjak-partner-box h2 { margin: 12px 0 8px; color: #fff; font-size: clamp(26px,3.3vw,36px); line-height: 1.2; font-weight: 900; }
     .bjak-partner-box h2 span { color: #fff; text-shadow: none; }
     .bjak-partner-box > p { color: #fff; }
     .bjak-benefits { display: block; margin: 18px 0; padding-left: 20px; list-style: disc; }
-    .bjak-benefits li { display: list-item; width: auto; max-width: none; margin: 7px 0; padding: 0; border: 0; border-radius: 0; background: none; color: #fff; font-weight: 400; }
+    .bjak-benefits li { display: list-item; width: auto; max-width: none; margin: 8px 0; padding: 0; border: 0; border-radius: 0; background: none; color: #fff; font-size: 17px; font-weight: 800; }
     .bjak-benefits li::before { content: none; }
-    .bjak-reward { color: #fff !important; }
+    .bjak-reward { color: #fff !important; font-size: 17px; font-weight: 800; }
     .bjak-quote-button,
     .bjak-quote-button:hover {
-      display: inline;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
       width: auto;
-      padding: 0;
-      border: 0;
-      border-radius: 0;
-      background: none;
-      box-shadow: none;
-      color: var(--link, #1769aa);
-      font: inherit;
-      font-weight: 700;
-      text-decoration: underline;
+      margin-top: 10px;
+      padding: 14px 26px;
+      border: 2px solid #fff;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #1685f8 0%, #0752bd 100%);
+      box-shadow: 0 5px 16px rgba(0, 35, 100, .45), inset 0 1px 0 rgba(255,255,255,.25);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: .03em;
+      line-height: 1.2;
+      text-decoration: none;
+      text-shadow: 0 1px 2px rgba(0,0,0,.25);
       transform: none;
+      transition: filter .2s ease, box-shadow .2s ease;
+    }
+    .bjak-quote-button:hover {
+      filter: brightness(1.12);
+      box-shadow: 0 7px 20px rgba(0, 35, 100, .55), inset 0 1px 0 rgba(255,255,255,.3);
     }
 
     /* MOBILE MENU TOGGLE BUTTON */
@@ -693,7 +705,7 @@
 <section class="section" id="solutions"><div class="container"><div class="section-head"><span class="eyebrow">Penyelesaian Untuk Anda</span><h2>Teroka <span class="gradient-text">Servis & Program</span></h2></div><div class="link-grid"><div class="link-card"><h3>Pilihan Terminal</h3><p>Rujukan arahan dan pilihan terminal.</p><a href="https://kasuhanet.store/CommandCanDoLIST.html">Buka Pilihan Terminal ↗</a></div><div class="link-card"><h3>Sokongan Affiliate</h3><p>Sokongan affiliate dan peluang promosi.</p><a href="https://kasuhanet.store/ShopAffliateSupport.html">Buka Sokongan Affiliate ↗</a></div><div class="link-card"><h3>Pelan E-Pembelajaran</h3><p>Pelan pembelajaran web selepas membeli pakej laman web bermula dari RM299–RM345; semak butiran program sebelum mendaftar.</p><a href="https://kasuhanet.store/Website-Service.html">Teroka Servis Web ↗</a></div><div class="link-card"><h3>Servis Kewangan Kecemasan+</h3><p>Maklumat perkhidmatan PayLater Cashout.</p><a href="https://kasuhanet.store/CashOutServicePayLater.html">PayLater Cashout ↗</a></div><div class="link-card"><h3>Rujukan Bank Ryt</h3><p>Program referral pihak ketiga.</p><a href="https://referrals.rytbank.my/MCoA/gq8xkdot" target="_blank" rel="sponsored noopener">Jemputan Daftar Ryt ↗</a></div><div class="link-card"><h3>VPS Malaysia</h3><p>Pautan rakan affiliate untuk perkhidmatan VPS.</p><a href="https://vpsmalaysia.com.my/system/aff.php?aff=2530" target="_blank" rel="sponsored noopener">Iklan Banner VPSMalaysia ↗</a></div></div><p class="small-muted" style="max-width:900px;margin:18px auto 0;text-align:center;">Pendedahan affiliate: Sesetengah pautan luar di laman ini ialah pautan referral atau affiliate. KasuhaNET mungkin menerima komisen atau ganjaran jika anda menggunakannya. Terma dan polisi privasi penyedia pihak ketiga tetap terpakai.</p>
 </div></section>
 
-<section class="section" id="bjak"><div class="container"><div class="partner-box bjak-partner-box"><span class="bjak-eyebrow">Rakan Referral</span><h2>Memperbaharui Insurans & Cukai dengan <span>BJAK</span></h2><p>Dapatkan sebut harga daripada 15+ syarikat insurans kereta dan motosikal secara dalam talian.</p><ul class="bjak-benefits"><li>100% Dalam Talian</li><li>Diskaun Serta-merta (tertakluk pada tawaran)</li><li>Penghantaran Cukai Jalan (tertakluk pada syarat)</li></ul><p class="bjak-reward"><strong>Ganjaran Rujukan: RM25</strong> — tertakluk pada program semasa.</p><a class="btn bjak-quote-button" href="https://bjak.my/ref/mohamadslbr" target="_blank" rel="sponsored noopener">Dapatkan Sebut Harga Percuma ❯</a></div></div></section>
+<section class="section" id="bjak"><div class="container"><div class="bjak-partner-box"><span class="bjak-eyebrow">Rakan Referral</span><h2>Memperbaharui Insurans & Cukai dengan <span>BJAK</span></h2><ul class="bjak-benefits"><li>100% Dalam Talian</li><li>Diskaun Serta-merta (tertakluk pada tawaran)</li><li>Penghantaran Cukai Jalan (tertakluk pada syarat)</li></ul><p class="bjak-reward"><strong>Ganjaran Rujukan: RM25</strong> — tertakluk pada program semasa.</p><a class="bjak-quote-button" href="https://bjak.my/ref/mohamadslbr" target="_blank" rel="sponsored noopener">Dapatkan Sebut Harga ❯</a></div></div></section>
 
 <section class="section" id="scam">
   <div class="container">
