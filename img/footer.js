@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 margin-top: 50px;
                 padding: 40px 20px 20px 20px;
                 color: #fff;
-                font-family: 'Orbitron', sans-serif !important;
+                font-family: Inter, Arial, Helvetica, sans-serif;
                 clear: both;
                 position: relative;
                 z-index: 999;
