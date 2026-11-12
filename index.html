@@ -434,18 +434,30 @@
     .bjak-reward { color: #fff !important; font-size: 17px; font-weight: 800; }
     .bjak-quote-button,
     .bjak-quote-button:hover {
-      display: inline;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
       width: auto;
-      padding: 0;
-      border: 0;
-      border-radius: 0;
-      background: none;
-      box-shadow: none;
-      color: var(--link, #1769aa);
-      font: inherit;
-      font-weight: 700;
-      text-decoration: underline;
+      margin-top: 10px;
+      padding: 14px 26px;
+      border: 2px solid #fff;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #1685f8 0%, #0752bd 100%);
+      box-shadow: 0 5px 16px rgba(0, 35, 100, .45), inset 0 1px 0 rgba(255,255,255,.25);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: .03em;
+      line-height: 1.2;
+      text-decoration: none;
+      text-shadow: 0 1px 2px rgba(0,0,0,.25);
       transform: none;
+      transition: filter .2s ease, box-shadow .2s ease;
+    }
+    .bjak-quote-button:hover {
+      filter: brightness(1.12);
+      box-shadow: 0 7px 20px rgba(0, 35, 100, .55), inset 0 1px 0 rgba(255,255,255,.3);
     }
 
     .notice-box,.profile-box,.warning-box,.partner-box,.reading-box { border:1px solid var(--line); border-radius:18px; padding:24px; background:linear-gradient(145deg,rgba(255,48,79,.08),rgba(255,255,255,.025)); margin-top:20px; }
@@ -861,7 +873,7 @@
       <h2>Renew Insurance & Roadtax with <span>BJAK</span></h2>
       <ul class="bjak-benefits"><li>100% Online</li><li>Instant Discount (subject to offers)</li><li>Roadtax Delivery (subject to conditions)</li></ul>
       <p class="bjak-reward"><strong>Referral reward: RM25 reward / cashback</strong> — subject to current programme terms.</p>
-      <a class="bjak-quote-button" href="https://bjak.my/ref/mohamadslbr" target="_blank" rel="sponsored noopener">Get Free Quote ❯</a>
+      <a class="bjak-quote-button" href="https://bjak.my/ref/mohamadslbr" target="_blank" rel="sponsored noopener">Get Quote Now! ❯</a>
     </div>
   </div>
 </section>
