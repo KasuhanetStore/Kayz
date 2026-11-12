@@ -57,6 +57,130 @@
   </div>
 </footer>
 
+
+<style>
+  /* English footer — match the approved Malay footer layout and sizing */
+  footer {
+    border-top: 1px solid var(--line, rgba(255,255,255,.12));
+    margin-top: 30px;
+    padding: 36px 0 20px;
+    color: #aeb2c0;
+    font-size: 13px;
+    width: 100%;
+    background: rgba(8,9,13,0.5);
+  }
+  footer .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 0.8fr 0.8fr 1fr;
+    gap: 30px;
+    align-items: start;
+    margin-bottom: 28px;
+  }
+  footer .brand-col .neon-title {
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 1.25;
+    margin: 0 0 6px;
+    letter-spacing: -0.5px;
+    color: #f6f7fb;
+    font-family: 'Orbitron', sans-serif;
+  }
+  footer .brand-col .neon-title span {
+    background: linear-gradient(90deg, #4F31E8, #E600A4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  footer .brand-col .typing-box h2 {
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1.5;
+    margin: 0 0 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: 'Orbitron', sans-serif;
+  }
+  footer .brand-col .brand-purple { color: #4F31E8; }
+  footer .brand-col .brand-pink { color: #E600A4; }
+  footer .brand-col .neon-desc {
+    font-size: 11px;
+    color: var(--muted, #b9bdca);
+    line-height: 1.5;
+    margin: 0;
+    overflow-wrap: anywhere;
+    font-family: 'Orbitron', sans-serif;
+  }
+  footer .footer-col h4 {
+    color: #ff7187;
+    font-size: 15px;
+    line-height: 1.4;
+    margin: 0 0 14px;
+    font-weight: 800;
+    letter-spacing: .5px;
+  }
+  footer .footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  footer .footer-col ul li { margin-bottom: 8px; }
+  footer .footer-col ul li a,
+  footer .footer-col ul li span {
+    color: #aeb2c0;
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 1.5;
+    transition: color 0.2s;
+  }
+  footer .footer-col ul li a:hover { color: #ff667d; }
+  footer .social-icons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  footer .social-icons a {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03));
+    border: 1px solid rgba(255,255,255,0.22);
+    color: #f6f7fb;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+  footer .social-icons a:hover {
+    background: linear-gradient(145deg, #ffffff, #d0d4e2);
+    color: #08090d;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 0 20px rgba(255,255,255,0.6), inset 0 1px 2px rgba(255,255,255,0.9);
+    border-color: #ffffff;
+  }
+  footer .footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 20px;
+    font-size: 11px;
+    color: #8c909e;
+    letter-spacing: .5px;
+    font-family: 'Orbitron', sans-serif;
+  }
+  @media (max-width: 768px) {
+    footer .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+  }
+  @media (max-width: 480px) {
+    footer .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+</style>
+
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 </script>
