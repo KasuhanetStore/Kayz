@@ -266,26 +266,19 @@
   </div>
 </header>
 
-<!-- PARTNER CREDIT BAR -->
-<div class="partner-credit-bar">
-    <div class="credit-text">
-        Laman web ini dikuasakan melalui kerjasama Pertubuhan & Syarikat
-    </div>
-
-    <div class="partner-logos">
-        <span class="partner-name">
-            Kasuha Oculus Organisation
-        </span>
-
-        <div class="partner-logo-box">
-            <img src="../OculusLogo.png" alt="Logo Kerjasama">
-        </div>
-
-        <span class="partner-name">
-            KasuhaNET Resources
-        </span>
-    </div>
-</div>
+<!-- PARTNER CREDIT: LOAD CENTRAL TEMPLATE -->
+<div id="partner-credit-placeholder"></div>
+<script>
+  fetch("../template-text/MS/partner-credit-MS.html")
+    .then(response => {
+      if (!response.ok) throw new Error("Partner Credit Template Failed to Load");
+      return response.text();
+    })
+    .then(data => {
+      document.getElementById("partner-credit-placeholder").innerHTML = data;
+    })
+    .catch(error => console.error(error));
+</script>
 
 <main>
     <!-- HERO SECTION -->
