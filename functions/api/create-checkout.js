@@ -105,7 +105,7 @@ export async function onRequestPost(context) {
 
   try {
     await env.DB.prepare(
-      `INSERT INTO orders
+      `INSERT INTO stripe_orders
         (id, package_id, package_name, amount, currency, customer_name, customer_email, customer_phone, status, created_at, updated_at)
        VALUES (?, ?, ?, ?, 'myr', ?, ?, ?, 'pending', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`
     ).bind(orderId, input.packageId, selected.name, selected.amount, name, email, phone).run();
@@ -145,7 +145,7 @@ export async function onRequestPost(context) {
     });
   } catch {
     await env.DB.prepare(
-      "UPDATE orders SET status = 'failed', updated_at = CURRENT_TIMESTAMP WHERE id = ? AND status = 'pending'"
+      "UPDATE stripe_orders SET status = 'failed', updated_at = CURRENT_TIMESTAMP WHERE id = ? AND status = 'pending'"
     ).bind(orderId).run();
     return json({ error: "Unable to reach the payment provider. Please try again." }, 502);
   }
@@ -159,7 +159,7 @@ export async function onRequestPost(context) {
 
   if (!stripeResponse.ok || !stripeData.url || !stripeData.id) {
     await env.DB.prepare(
-      "UPDATE orders SET status = 'failed', updated_at = CURRENT_TIMESTAMP WHERE id = ? AND status = 'pending'"
+      "UPDATE stripe_orders SET status = 'failed', updated_at = CURRENT_TIMESTAMP WHERE id = ? AND status = 'pending'"
     ).bind(orderId).run();
     const stripeMessage = stripeData?.error?.message;
     return json({
@@ -171,7 +171,7 @@ export async function onRequestPost(context) {
 
   try {
     await env.DB.prepare(
-      "UPDATE orders SET stripe_checkout_session_id = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ? AND status = 'pending'"
+      "UPDATE stripe_orders SET stripe_checkout_session_id = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ? AND status = 'pending'"
     ).bind(stripeData.id, orderId).run();
   } catch {
     return json({ error: "The payment session was created but could not be linked to the order. Please contact support before retrying." }, 500);
