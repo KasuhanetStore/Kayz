@@ -41,7 +41,11 @@ export async function onRequestPost(context) {
     return json({ error: "Invalid checkout request." }, 400);
   }
 
-  if (!input || typeof input !== "object" || Array.isArray(input)) {\n    return json({ error: "Invalid checkout details." }, 400);\n  }\n\n  const selected = PACKAGES[input.packageId];
+  if (!input || typeof input !== "object" || Array.isArray(input)) {
+    return json({ error: "Invalid checkout details." }, 400);
+  }
+
+  const selected = PACKAGES[input.packageId];
   const name = typeof input.name === "string" ? input.name.trim() : "";
   const email = typeof input.email === "string" ? input.email.trim() : "";
   const phone = typeof input.phone === "string" ? input.phone.trim() : "";
