@@ -27,6 +27,7 @@
   /* Font System */
   --font-brand: 'Orbitron', sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-size-base: 18px; /* Global reading size: +2px for clearer text */
 }
 
 html {
@@ -43,8 +44,8 @@ body {
   background: radial-gradient(circle at 80% 0%, rgba(255, 48, 79, 0.14), transparent 30%), var(--bg-dark);
   color: var(--text-main);
   font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: var(--font-size-base);
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
@@ -141,7 +142,8 @@ img, svg { display: block; height: auto; }
 
 .neon-desc {
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: 17px;
+  line-height: 1.65;
   color: var(--text-muted);
 }
 
@@ -170,7 +172,7 @@ img, svg { display: block; height: auto; }
   align-items: center;
   gap: 24px;
   color: #d8dbe4;
-  font-size: 14px;
+  font-size: 15px;
   font-family: var(--font-body);
 }
 
@@ -185,7 +187,7 @@ img, svg { display: block; height: auto; }
   border-radius: 10px;
   border: 1px solid transparent;
   font-weight: 800;
-  font-size: 13px;
+  font-size: 14px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -220,7 +222,7 @@ img, svg { display: block; height: auto; }
   padding: 10px 16px;
   display: flex;
   align-items: center;
-  font-size: 13px;
+  font-size: 14px;
   transition: background 0.2s;
 }
 
@@ -311,7 +313,7 @@ img, svg { display: block; height: auto; }
 }
 
 .credit-text {
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--text-muted);
@@ -329,7 +331,7 @@ img, svg { display: block; height: auto; }
 
 .partner-name {
   color: var(--cyan);
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 1px;
 }
@@ -438,4 +440,32 @@ footer .footer-bottom {
   max-width: 30px;
   max-height: 30px;
   object-fit: contain;
+}
+
+
+/* ==========================================================================
+   7. GLOBAL READABILITY UPGRADE — CLEARER TYPOGRAPHY
+   Base text increased from 16px to 18px; common UI text raised by ~1–2px.
+   Keeps brand headings and compact utility labels intentionally distinct.
+   ========================================================================== */
+body,
+button,
+input,
+select,
+textarea {
+  font-family: var(--font-body);
+}
+body { font-size: var(--font-size-base); }
+p,
+li,
+label,
+.footer-col ul li a,
+.footer-col ul li span {
+  line-height: 1.7;
+}
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .nav-links { font-size: 15px; }
+  .credit-text { font-size: 0.78rem; letter-spacing: 1.4px; }
+  .partner-name { font-size: 0.9rem; }
 }
