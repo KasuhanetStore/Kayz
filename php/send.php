@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 header('Content-Type: application/json; charset=utf-8');
 
-function respond(int $status, array $payload): never {
+function respond(int $status, array $payload) {
     http_response_code($status);
     echo json_encode($payload, JSON_UNESCAPED_UNICODE);
     exit;
@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $message = trim((string)($_POST['message'] ?? ''));
-if ($message === '' || mb_strlen($message) > 4000) {
+if ($message === '' || strlen($message) > 16000) {
     respond(400, ['success' => false, 'error' => 'Message is required and must be under 4000 characters.']);
 }
 
@@ -25,7 +25,7 @@ if ($botToken === '' || $chatId === '') {
     respond(503, ['success' => false, 'error' => 'Messaging service is not configured.']);
 }
 
-$url = 'https://api.telegram.org/bot' . rawurlencode($botToken) . '/sendMessage';
+$url = 'https://api.telegram.org/bot' . $botToken . '/sendMessage';
 $payload = http_build_query(['chat_id' => $chatId, 'text' => $message]);
 $options = [
     'http' => [
