@@ -419,18 +419,7 @@
     </nav>
 </header>
 <!-- BAHAGIAN KREDIT KERJASAMA -->
-<div class="partner-credit-bar">
-    <div class="credit-text">
-        Laman web dikuasakan oleh kerjasama Gabungan Organisasi & Syarikat
-    </div>
-    <div class="partner-logos">
-        <span class="partner-name">Kasuha Okulus Organisation</span>
-        <div class="partner-logo-box">
-            <img src="OculusLogo.png" alt="Logo Kerjasama">
-        </div>
-        <span class="partner-name">KasuhaNET Resources</span>
-    </div>
-</div>
+<div id="partner-credit-placeholder"></div>
 <!-- HERO BANNER PROMOSI -->
 <section class="hero-section">
     <h1>KEDAI AFFILIATE KESELURUHAN</h1>
@@ -603,6 +592,18 @@
     function forceClosePreview() {
         document.getElementById('previewModal').classList.remove('active');
     }
+</script>
+
+<script>
+  fetch("../template-text/MS/partner-credit-MS.html")
+    .then(response => {
+      if (!response.ok) throw new Error("Partner Credit Template Failed to Load");
+      return response.text();
+    })
+    .then(data => {
+      document.getElementById("partner-credit-placeholder").innerHTML = data;
+    })
+    .catch(error => console.error(error));
 </script>
 </body>
 </html>
