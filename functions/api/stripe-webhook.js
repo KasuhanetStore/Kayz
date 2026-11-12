@@ -98,12 +98,12 @@ export async function onRequestPost({ request, env }) {
     } else if (event.type === "checkout.session.async_payment_failed") {
       await env.DB.prepare(
         `UPDATE orders SET status = 'failed', updated_at = CURRENT_TIMESTAMP
-         WHERE id = ? AND stripe_checkout_session_id = ? AND status = 'pending'`
+         WHERE id = ? AND (stripe_checkout_session_id = ? OR stripe_checkout_session_id IS NULL) AND status = 'pending'`
       ).bind(orderId, session.id).run();
     } else if (event.type === "checkout.session.expired") {
       await env.DB.prepare(
         `UPDATE orders SET status = 'expired', updated_at = CURRENT_TIMESTAMP
-         WHERE id = ? AND stripe_checkout_session_id = ? AND status = 'pending'`
+         WHERE id = ? AND (stripe_checkout_session_id = ? OR stripe_checkout_session_id IS NULL) AND status = 'pending'`
       ).bind(orderId, session.id).run();
     }
   } catch {
