@@ -16,7 +16,7 @@
     box-shadow: 0 0 20px rgba(255, 48, 79, 0.25), inset 0 0 15px rgba(255, 48, 79, 0.1);
     transition: all 0.3s ease;
     overflow: hidden;
-    font-family: 'Orbitron', sans-serif;
+    font-family: Inter, Arial, Helvetica, sans-serif;
     letter-spacing: 0.5px;
 }
 
