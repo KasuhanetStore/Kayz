@@ -305,7 +305,8 @@
     </form>
   </section>
 </div>
-\n<!-- FOOTER DINAMIK -->
+
+<!-- FOOTER DINAMIK -->
 <div id="footer-placeholder"></div>
 <script>
   fetch("/template-text/EN/template-footer-EN.html")
@@ -411,7 +412,8 @@
     document.querySelector("main").prepend(notice);
     window.history.replaceState({}, document.title, window.location.pathname);
   }
-\n  const WHATSAPP_NUMBER = "60167390501"; 
+
+  const WHATSAPP_NUMBER = "60167390501"; 
   const DEFAULT_MESSAGE = "Hello, I am interested in KasuhaNET.STORE services.";  
   const waURL = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(DEFAULT_MESSAGE);  
   document.getElementById("floating-whatsapp").href = waURL;  
