@@ -270,14 +270,21 @@
     }
 
 
-    /* BJAK referral content - plain text, no panel or decorative frames */
+    /* BJAK referral panel: image fills the entire frame behind the text */
     .bjak-partner-box {
-      padding: 0;
-      border: 0;
-      border-radius: 0;
-      background: none !important;
-      box-shadow: none !important;
-      color: inherit;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      padding: clamp(20px, 4vw, 38px);
+      border: 2px solid #fff;
+      border-radius: 20px;
+      background-color: #073477;
+      background-image: url("../Bjak.png");
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 100% 100%;
+      box-shadow: none;
+      color: #fff;
     }
     .bjak-eyebrow {
       display: block;
@@ -285,19 +292,19 @@
       border: 0;
       border-radius: 0;
       background: none;
-      color: inherit;
+      color: #fff;
       font-size: 12px;
       font-weight: 700;
       letter-spacing: .08em;
       text-transform: uppercase;
     }
-    .bjak-partner-box h2 { margin: 12px 0 8px; color: inherit; font-size: clamp(23px,3vw,34px); line-height: 1.2; font-weight: 900; }
-    .bjak-partner-box h2 span { color: inherit; text-shadow: none; }
-    .bjak-partner-box > p { color: inherit; }
+    .bjak-partner-box h2 { margin: 12px 0 8px; color: #fff; font-size: clamp(23px,3vw,34px); line-height: 1.2; font-weight: 900; }
+    .bjak-partner-box h2 span { color: #fff; text-shadow: none; }
+    .bjak-partner-box > p { color: #fff; }
     .bjak-benefits { display: block; margin: 18px 0; padding-left: 20px; list-style: disc; }
-    .bjak-benefits li { display: list-item; width: auto; max-width: none; margin: 7px 0; padding: 0; border: 0; border-radius: 0; background: none; color: inherit; font-weight: 400; }
+    .bjak-benefits li { display: list-item; width: auto; max-width: none; margin: 7px 0; padding: 0; border: 0; border-radius: 0; background: none; color: #fff; font-weight: 400; }
     .bjak-benefits li::before { content: none; }
-    .bjak-reward { color: inherit !important; }
+    .bjak-reward { color: #fff !important; }
     .bjak-quote-button,
     .bjak-quote-button:hover {
       display: inline;
