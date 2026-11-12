@@ -16,16 +16,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- CANONICAL & HREFLANG -->
-    <link rel="canonical" href="https://kasuhanet.store/MS/Banner-WebSale-MSF.html">
-    <link rel="alternate" hreflang="en" href="https://kasuhanet.store/Banner-WebSale-ENF.html">
-    <link rel="alternate" hreflang="ms" href="https://kasuhanet.store/MS/Banner-WebSale-MSF.html">
-    <link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/Banner-WebSale-ENF.html">
+    <link rel="canonical" href="https://kasuhanet.store/MS/Banner-WebSale-MS.html">
+    <link rel="alternate" hreflang="en" href="https://kasuhanet.store/Banner-WebSale-EN.html">
+    <link rel="alternate" hreflang="ms" href="https://kasuhanet.store/MS/Banner-WebSale-MS.html">
+    <link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/Banner-WebSale-EN.html">
 
     <!-- OPEN GRAPH & TWITTER -->
     <meta property="og:title" content="Pakej Pembangunan Laman Web | KasuhaNET.STORE">
     <meta property="og:description" content="Ketahui lebih lanjut mengenai KasuhaNET.STORE, platform digital hibrid yang menawarkan alatan terminal Linux, sokongan pemasaran affiliate, dan perkhidmatan pelancaran laman web.">
     <meta property="og:image" content="https://kasuhanet.store/img/logo3.webp">
-    <meta property="og:url" content="https://kasuhanet.store/MS/Banner-WebSale-MSF.html">
+    <meta property="og:url" content="https://kasuhanet.store/MS/Banner-WebSale-MS.html">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="KasuhaNET.STORE">
     <meta property="og:locale" content="ms_MY">
@@ -41,12 +41,37 @@
     
     <!-- LINKED STYLESHEETS -->
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/websale-en.css">
     <script src="../js/home-main.js" defer></script>
 
     <!-- FAVICONS -->
     <link rel="icon" type="image/png" sizes="512x512" href="../favicon-512x512.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../favicon-512x512.png">
     <link rel="shortcut icon" href="https://kasuhanet.store/favicon.ico">
+
+
+<style>
+  /* Pastikan tetingkap pembayaran tidak muncul dalam aliran halaman biasa. */
+  #knCheckout[hidden] { display: none !important; }
+  #knCheckout:not([hidden]) {
+    display: flex !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 99999 !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  #knCheckout .kn-checkout-panel {
+    width: min(100%, 480px);
+    max-width: 480px;
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+  }
+  @media (max-width: 600px) {
+    #knCheckout { padding: 12px; }
+    #knCheckout .kn-checkout-panel { padding: 18px; }
+  }
+</style>
 
     <script type="application/ld+json">
     {
@@ -216,7 +241,7 @@
                     <li>Tindakan WhatsApp / borang</li>
                     <li style="color: #ff4a4a;">Domain khusus tidak disertakan</li>
                 </ul>
-                <a href="https://toyyibpay.com/L-P-P-LPP299" class="cta-btn" target="_blank" rel="noopener">Langgan Sekarang ↗</a>
+                <a href="#checkout" class="cta-btn" onclick="openCheckout('landing-page'); return false;">Langgan Sekarang ↗</a>
             </div>
 
             <!-- PAKEJ PREMIUM STANDARD -->
@@ -233,7 +258,7 @@
                     <li>Sokongan domain khusus (.com/.my)</li>
                     <li>Gaya Premium Cyberpunk UI/UX</li>
                 </ul>
-                <a href="https://toyyibpay.com/P-MS-Pay-PREMIUM-STANDARD" class="cta-btn premium-btn" target="_blank" rel="noopener">Naik Taraf ke Premium ↗</a>
+                <a href="#checkout" class="cta-btn premium-btn" onclick="openCheckout('premium-standard'); return false;">Naik Taraf ke Premium ↗</a>
             </div>
         </div>
 
@@ -279,6 +304,33 @@
   </div>
 </main>
 
+
+<!-- KASUHANET SECURE CHECKOUT -->
+<div class="kn-checkout-overlay" id="knCheckout" aria-hidden="true" hidden>
+  <section class="kn-checkout-panel" role="dialog" aria-modal="true" aria-labelledby="knCheckoutTitle">
+    <div class="kn-checkout-head">
+      <h2 id="knCheckoutTitle">PEMBAYARAN SELAMAT</h2>
+      <button type="button" class="kn-checkout-close" onclick="closeCheckout()" aria-label="Tutup pembayaran">✕</button>
+    </div>
+    <div class="kn-order-summary">
+      <strong id="knPackageName">Pakej dipilih</strong>
+      <span id="knPackagePrice">RM 0</span>
+      <p style="font-size:11px;color:#aeb5c4;margin:5px 0 0">Bayaran sekali sahaja · MYR</p>
+    </div>
+    <form class="kn-checkout-form" id="knCheckoutForm">
+      <label for="knCustomerName">Nama penuh</label>
+      <input id="knCustomerName" name="name" autocomplete="name" maxlength="100" required>
+      <label for="knCustomerEmail">Alamat e-mel</label>
+      <input id="knCustomerEmail" name="email" type="email" autocomplete="email" maxlength="254" required>
+      <label for="knCustomerPhone">Nombor telefon</label>
+      <input id="knCustomerPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60">
+      <button class="kn-checkout-submit" id="knCheckoutSubmit" type="submit">TERUSKAN KE PEMBAYARAN SELAMAT</button>
+      <p class="kn-checkout-note">Pembayaran diproses dengan selamat melalui Stripe. Kaedah pembayaran yang tersedia akan dipaparkan pada halaman Stripe mengikut kelayakan dan tetapan akaun peniaga. Jangan kongsi maklumat kad atau perbankan anda dengan KasuhaNET.</p>
+      <div class="kn-checkout-error" id="knCheckoutError" role="alert"></div>
+    </form>
+  </section>
+</div>
+
 <!-- FOOTER DINAMIK -->
 <div id="footer-placeholder"></div>
 <script>
@@ -314,6 +366,80 @@
                 openDropdown.classList.remove('show');
             }
         }
+    }
+  });
+
+
+  const KN_PACKAGES = {
+    "landing-page": { name: "Pakej Landing Page", price: "RM 299" },
+    "premium-standard": { name: "Premium Standard", price: "RM 900" }
+  };
+  let knSelectedPackage = null;
+
+  function openCheckout(packageId) {
+    if (!KN_PACKAGES[packageId]) return;
+    knSelectedPackage = packageId;
+    document.getElementById("knPackageName").textContent = KN_PACKAGES[packageId].name;
+    document.getElementById("knPackagePrice").textContent = KN_PACKAGES[packageId].price;
+    document.getElementById("knCheckoutError").style.display = "none";
+    document.getElementById("knCheckoutError").textContent = "";
+    const modal = document.getElementById("knCheckout");
+    modal.hidden = false;
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("kn-checkout-active");
+    document.getElementById("knCustomerName").focus();
+  }
+
+  function closeCheckout() {
+    const modal = document.getElementById("knCheckout");
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    modal.hidden = true;
+    document.body.classList.remove("kn-checkout-active");
+  }
+
+  document.getElementById("knCheckout").addEventListener("click", function(event) {
+    if (event.target === this) closeCheckout();
+  });
+
+  document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") closeCheckout();
+  });
+
+  document.getElementById("knCheckoutForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+    if (!knSelectedPackage) return;
+
+    const submit = document.getElementById("knCheckoutSubmit");
+    const errorBox = document.getElementById("knCheckoutError");
+    const formData = new FormData(this);
+    submit.disabled = true;
+    submit.textContent = "SEDANG MENYEDIAKAN PEMBAYARAN...";
+    errorBox.style.display = "none";
+    errorBox.textContent = "";
+
+    try {
+      const response = await fetch("/api/create-checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          packageId: knSelectedPackage,
+          name: formData.get("name"),
+          email: formData.get("email"),
+          phone: formData.get("phone")
+        })
+      });
+      const result = await response.json();
+      if (!response.ok || !result.url) {
+        throw new Error(result.error || "Pembayaran tidak dapat disediakan buat masa ini.");
+      }
+      window.location.assign(result.url);
+    } catch (error) {
+      errorBox.textContent = error.message || "Ralat berlaku. Sila cuba semula.";
+      errorBox.style.display = "block";
+    } finally {
+      submit.disabled = false;
+      submit.textContent = "TERUSKAN KE PEMBAYARAN SELAMAT";
     }
   });
 
