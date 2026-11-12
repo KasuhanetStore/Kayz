@@ -130,6 +130,23 @@
     h1 { font-size: clamp(36px, 5vw, 61px); line-height: 1.08; letter-spacing: -2px; margin: 18px 0; }
     .gradient-text { background: linear-gradient(100deg,#fff 0%,#ff7187 48%,#ff9b52 100%); color: transparent; background-clip: text; -webkit-background-clip: text; }
     .hero p { color: var(--muted); font-size: 17px; max-width: 610px; }
+    .hero-actions .garage-custom-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+      min-height: 64px; padding: 12px 22px; border: 1px solid rgba(255,113,135,.65);
+      border-radius: 12px; background: linear-gradient(135deg,rgba(255,48,79,.16),rgba(255,122,53,.12));
+      box-shadow: 0 8px 26px rgba(255,48,79,.16); font-size: 16px; font-weight: 900;
+      letter-spacing: .35px; line-height: 1.2; transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .hero-actions .garage-custom-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(255,48,79,.28); }
+    .hero-actions .garage-custom-btn img {
+      display: block; width: 42px; height: 42px; flex: 0 0 42px;
+      object-fit: contain; border-radius: 8px;
+    }
+    @media(max-width:580px) {
+      .hero-actions .garage-custom-btn { width: 100%; min-height: 62px; padding: 10px 16px; font-size: 15px; }
+      .hero-actions .garage-custom-btn img { width: 40px; height: 40px; flex-basis: 40px; }
+    }
+
     .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
     .hero-points { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 28px; color: #e4e5eb; font-size: 13px; }
     .hero-points span::before { content: "✓"; color: #ff657c; font-weight: 900; margin-right: 7px; }
@@ -538,8 +555,8 @@
       </script>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#pakej">Website Development →</a>
-        <a class="btn btn-outline" href="Custom-Web-Workshop-EN.html" style="display: inline-flex; align-items: center; gap: 8px;">
-          <img src="Bengkel-Custom-WebSite-EN.png" alt="Custom Web" style="height: 20px; width: auto; object-fit: contain;">
+        <a class="btn btn-outline garage-custom-btn" href="custom-web-workshop-EN.html" aria-label="Open Garage Website Custom Workshop">
+          <img src="img/Bengkel-Custom-WebSite-EN.png" alt="" width="42" height="42" loading="lazy" decoding="async">
           <span>Garage Website CUSTOM</span>
         </a>
       </div>
