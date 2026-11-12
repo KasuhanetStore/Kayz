@@ -294,13 +294,13 @@
 <div class="kn-checkout-overlay" id="knCheckout" aria-hidden="true" hidden>
   <section class="kn-checkout-panel" role="dialog" aria-modal="true" aria-labelledby="knCheckoutTitle">
     <div class="kn-checkout-head">
-      <h2 id="knCheckoutTitle">SECURE CHECKOUT</h2>
+      <h2 id="knCheckoutTitle">SERVICE ORDER</h2>
       <button type="button" class="kn-checkout-close" onclick="closeCheckout()" aria-label="Close checkout">✕</button>
     </div>
     <div class="kn-order-summary">
       <strong id="knPackageName">Selected package</strong>
       <span id="knPackagePrice">RM 0</span>
-      <p style="font-size:11px;color:#aeb5c4;margin:5px 0 0">One-time payment · MYR</p>
+      <p style="font-size:11px;color:#aeb5c4;margin:5px 0 0">Package estimate · MYR</p>
     </div>
     <form class="kn-checkout-form" id="knCheckoutForm">
       <label for="knCustomerName">Full name</label>
@@ -308,11 +308,14 @@
       <label for="knCustomerEmail">Email address</label>
       <input id="knCustomerEmail" name="email" type="email" autocomplete="email" maxlength="254" required>
       <label for="knCustomerPhone">Phone number</label>
-      <input id="knCustomerPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60">
-      <button class="kn-checkout-submit" id="knCheckoutSubmit" type="submit">CONTINUE TO SECURE PAYMENT</button>
-      <p class="kn-checkout-note">Your payment is processed securely by Stripe. Available payment methods are shown on the Stripe payment page according to merchant account eligibility and settings. Do not share your card or banking credentials with KasuhaNET.</p>
+      <input id="knCustomerPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60" required>
+      <label for="knCustomerNote">Additional note (optional)</label>
+      <textarea id="knCustomerNote" name="note" maxlength="1000" rows="3"></textarea>
+      <button class="kn-checkout-submit" id="knCheckoutSubmit" type="submit">SUBMIT ORDER</button>
+      <p class="kn-checkout-note">Your order will be recorded for admin review. Submitting this form does not confirm payment.</p>
       <div class="kn-checkout-error" id="knCheckoutError" role="alert"></div>
     </form>
+    <section id="knOrderConfirmation" hidden style="padding:18px;border:1px solid rgba(0,240,255,.25);border-radius:12px;margin-top:14px"><h3>Order received</h3><p>Keep this order reference and private tracking token to check your status later.</p><p>Order ID: <strong id="knOrderReference"></strong></p><p>Tracking token: <code id="knTrackingToken"></code></p><button type="button" id="knCopyTracking">COPY TOKEN</button><p><a href="/track-order.html" style="color:#7de8f3">Open the order tracking page</a></p><p class="kn-checkout-note">Initial status: Pending. An admin will review your request. Do not share this tracking token.</p></section>
   </section>
 </div>
 
@@ -360,10 +363,16 @@
     "premium-standard": { name: "Premium Standard", price: "RM 900" }
   };
   let knSelectedPackage = null;
+  let knIdempotencyKey = null;
 
   function openCheckout(packageId) {
     if (!KN_PACKAGES[packageId]) return;
     knSelectedPackage = packageId;
+    knIdempotencyKey = crypto.randomUUID();
+    document.getElementById("knCheckoutForm").reset();
+    document.getElementById("knCheckoutForm").hidden = false;
+    document.getElementById("knOrderConfirmation").hidden = true;
+    document.getElementById("knCheckoutTitle").textContent = "SERVICE ORDER";
     document.getElementById("knPackageName").textContent = KN_PACKAGES[packageId].name;
     document.getElementById("knPackagePrice").textContent = KN_PACKAGES[packageId].price;
     document.getElementById("knCheckoutError").style.display = "none";
@@ -388,44 +397,21 @@
   });
 
   document.getElementById("knCheckoutForm").addEventListener("submit", async function(event) {
-    event.preventDefault();
-    if (!knSelectedPackage) return;
-    const button = document.getElementById("knCheckoutSubmit");
-    const errorBox = document.getElementById("knCheckoutError");
-    const name = document.getElementById("knCustomerName").value.trim();
-    const email = document.getElementById("knCustomerEmail").value.trim();
-    const phone = document.getElementById("knCustomerPhone").value.trim();
-    button.disabled = true;
-    button.textContent = "CONNECTING TO STRIPE...";
-    errorBox.style.display = "none";
+    event.preventDefault(); if (!knSelectedPackage) return;
+    const button=document.getElementById("knCheckoutSubmit"), errorBox=document.getElementById("knCheckoutError"), formData=new FormData(this);
+    button.disabled=true; button.textContent="SAVING YOUR ORDER..."; errorBox.style.display="none"; errorBox.textContent="";
     try {
-      const response = await fetch("/api/create-checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ packageId: knSelectedPackage, name: name, email: email, phone: phone })
-      });
-      const data = await response.json();
-      if (!response.ok || !data.url) throw new Error(data.error || "Checkout could not be started. Please try again.");
-      window.location.assign(data.url);
-    } catch (error) {
-      errorBox.textContent = error.message || "Unable to connect to the payment service.";
-      errorBox.style.display = "block";
-      button.disabled = false;
-      button.textContent = "CONTINUE TO SECURE PAYMENT";
-    }
+      if(!knIdempotencyKey) knIdempotencyKey=crypto.randomUUID();
+      const response=await fetch("/api/orders",{method:"POST",headers:{"Content-Type":"application/json","Idempotency-Key":knIdempotencyKey},body:JSON.stringify({packageId:knSelectedPackage,name:formData.get("name"),email:formData.get("email"),phone:formData.get("phone"),note:formData.get("note")||""})});
+      const result=await response.json();if(!response.ok||!result.success||!result.order)throw new Error(result.error||"Your order could not be saved.");
+      document.getElementById("knOrderReference").textContent=result.order.id;document.getElementById("knTrackingToken").textContent=result.order.tracking_token;
+      document.getElementById("knOrderConfirmation").hidden=false;document.getElementById("knCheckoutForm").hidden=true;document.getElementById("knCheckoutTitle").textContent="ORDER RECEIVED";knIdempotencyKey=null;
+    }catch(error){errorBox.textContent=error.message||"An error occurred. Please try again.";errorBox.style.display="block";}
+    finally{button.disabled=false;button.textContent="SUBMIT ORDER";}
   });
+  document.getElementById("knCopyTracking").addEventListener("click",async function(){const value=document.getElementById("knTrackingToken").textContent;try{await navigator.clipboard.writeText(value);this.textContent="COPIED";}catch{this.textContent="COPY UNAVAILABLE";}});
 
-  const paymentState = new URLSearchParams(window.location.search).get("payment");
-  if (paymentState === "success" || paymentState === "cancel") {
-    const notice = document.createElement("div");
-    notice.className = "container";
-    notice.style.cssText = "margin:18px auto;padding:14px;border:1px solid rgba(0,240,255,.25);border-radius:10px;color:#f6f7fb;background:#11141d";
-    notice.textContent = paymentState === "success"
-      ? "You have returned from Stripe Checkout. Please check your Stripe payment confirmation before considering the order complete."
-      : "Checkout was cancelled. No new payment was completed through this checkout session.";
-    document.querySelector("main").prepend(notice);
-    window.history.replaceState({}, document.title, window.location.pathname);
-  }
+
 
   const WHATSAPP_NUMBER = "60167390501"; 
   const DEFAULT_MESSAGE = "Hello, I am interested in KasuhaNET.STORE services.";  
