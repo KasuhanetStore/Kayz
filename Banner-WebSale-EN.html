@@ -49,6 +49,29 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon-512x512.png">
     <link rel="shortcut icon" href="https://kasuhanet.store/favicon.ico">
 
+    <style>
+      /* Checkout safety: never show the form in normal page flow. */
+      #knCheckout[hidden] { display: none !important; }
+      #knCheckout:not([hidden]) {
+        display: flex !important;
+        position: fixed !important;
+        inset: 0 !important;
+        z-index: 99999 !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+      #knCheckout .kn-checkout-panel {
+        width: min(100%, 480px);
+        max-width: 480px;
+        max-height: calc(100vh - 32px);
+        overflow-y: auto;
+      }
+      @media (max-width: 600px) {
+        #knCheckout { padding: 12px; }
+        #knCheckout .kn-checkout-panel { padding: 18px; }
+      }
+    </style>
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -281,7 +304,7 @@
 
 
 <!-- KASUHANET SECURE CHECKOUT -->
-<div class="kn-checkout-overlay" id="knCheckout" aria-hidden="true" style="display:none;">
+<div class="kn-checkout-overlay" id="knCheckout" aria-hidden="true" hidden>
   <section class="kn-checkout-panel" role="dialog" aria-modal="true" aria-labelledby="knCheckoutTitle">
     <div class="kn-checkout-head">
       <h2 id="knCheckoutTitle">SECURE CHECKOUT</h2>
@@ -357,15 +380,19 @@
     document.getElementById("knPackageName").textContent = KN_PACKAGES[packageId].name;
     document.getElementById("knPackagePrice").textContent = KN_PACKAGES[packageId].price;
     document.getElementById("knCheckoutError").style.display = "none";
-    document.getElementById("knCheckout").classList.add("open");
-    document.getElementById("knCheckout").setAttribute("aria-hidden", "false");
+    const checkout = document.getElementById("knCheckout");
+    checkout.hidden = false;
+    checkout.classList.add("open");
+    checkout.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
     document.getElementById("knCustomerName").focus();
   }
 
   function closeCheckout() {
-    document.getElementById("knCheckout").classList.remove("open");
-    document.getElementById("knCheckout").setAttribute("aria-hidden", "true");
+    const checkout = document.getElementById("knCheckout");
+    checkout.classList.remove("open");
+    checkout.setAttribute("aria-hidden", "true");
+    checkout.hidden = true;
     document.body.style.overflow = "";
   }
 
