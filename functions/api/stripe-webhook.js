@@ -1,3 +1,5 @@
+import { sendAdminNotification } from "./_lib/admin-email.js";
+
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
@@ -72,42 +74,121 @@ export async function onRequestPost({ request, env }) {
     return json({ received: true });
   }
 
-  const orderId = session.metadata?.order_id;
-  if (typeof orderId !== "string" || !orderId) {
+  const paidEvent =
+    event.type === "checkout.session.completed" ||
+    event.type === "checkout.session.async_payment_succeeded";
+  const failedEvent = event.type === "checkout.session.async_payment_failed";
+  const expiredEvent = event.type === "checkout.session.expired";
+
+  if (!paidEvent && !failedEvent && !expiredEvent) {
     return json({ received: true });
   }
 
+  const orderId = session.metadata?.order_id;
+  if (
+    typeof orderId !== "string" ||
+    !orderId ||
+    (session.client_reference_id && session.client_reference_id !== orderId)
+  ) {
+    return json({ error: "Checkout session does not contain a valid order reference." }, 400);
+  }
+
   try {
-    if (
-      (event.type === "checkout.session.completed" ||
-        event.type === "checkout.session.async_payment_succeeded") &&
-      session.payment_status === "paid"
-    ) {
+    const orderResult = await env.DB.prepare(
+      `SELECT id, package_id, package_name, amount, currency,
+              customer_name, customer_email, customer_phone, status,
+              stripe_checkout_session_id
+       FROM orders
+       WHERE id = ? AND stripe_checkout_session_id = ?
+       LIMIT 1`
+    ).bind(orderId, session.id).first();
+
+    // Never match an order whose Stripe session ID is missing or different.
+    if (!orderResult || !orderResult.stripe_checkout_session_id) {
+      return json({ error: "No order matches this Stripe Checkout Session." }, 400);
+    }
+
+    if (paidEvent) {
+      if (session.payment_status !== "paid") {
+        return json({ received: true, payment_pending: true });
+      }
+
+      const amountMatches =
+        Number.isInteger(session.amount_total) &&
+        session.amount_total === Number(orderResult.amount);
+      const currencyMatches =
+        typeof session.currency === "string" &&
+        session.currency.toLowerCase() === String(orderResult.currency).toLowerCase();
+      const packageMatches =
+        typeof session.metadata?.package_id === "string" &&
+        session.metadata.package_id === orderResult.package_id;
+
+      if (!amountMatches || !currencyMatches || !packageMatches) {
+        return json({ error: "Payment amount, currency, or package does not match the order." }, 400);
+      }
+
       await env.DB.prepare(
         `UPDATE orders
          SET status = 'paid',
              stripe_payment_intent_id = ?,
              paid_at = COALESCE(paid_at, CURRENT_TIMESTAMP),
              updated_at = CURRENT_TIMESTAMP
-         WHERE id = ? AND (stripe_checkout_session_id = ? OR stripe_checkout_session_id IS NULL)`
+         WHERE id = ?
+           AND stripe_checkout_session_id = ?
+           AND amount = ?
+           AND LOWER(currency) = LOWER(?)
+           AND status != 'paid'`
       ).bind(
         typeof session.payment_intent === "string" ? session.payment_intent : null,
         orderId,
-        session.id
+        session.id,
+        Number(orderResult.amount),
+        String(orderResult.currency)
       ).run();
-    } else if (event.type === "checkout.session.async_payment_failed") {
+
+      try {
+        await sendAdminNotification(env, {
+          orderId,
+          status: "paid",
+          customerName: orderResult.customer_name,
+          customerEmail: orderResult.customer_email,
+          customerPhone: orderResult.customer_phone,
+          packageName: orderResult.package_name,
+          amount: orderResult.amount,
+          currency: orderResult.currency,
+          sessionId: session.id
+        });
+      } catch (error) {
+        console.error("KasuhaNET paid notification failed:", error);
+        return json({ error: "Payment recorded, but admin notification delivery failed. Stripe may retry this event." }, 500);
+      }
+    } else {
+      const status = failedEvent ? "failed" : "expired";
       await env.DB.prepare(
-        `UPDATE orders SET status = 'failed', updated_at = CURRENT_TIMESTAMP
-         WHERE id = ? AND (stripe_checkout_session_id = ? OR stripe_checkout_session_id IS NULL) AND status = 'pending'`
-      ).bind(orderId, session.id).run();
-    } else if (event.type === "checkout.session.expired") {
-      await env.DB.prepare(
-        `UPDATE orders SET status = 'expired', updated_at = CURRENT_TIMESTAMP
-         WHERE id = ? AND (stripe_checkout_session_id = ? OR stripe_checkout_session_id IS NULL) AND status = 'pending'`
-      ).bind(orderId, session.id).run();
+        `UPDATE orders
+         SET status = ?, updated_at = CURRENT_TIMESTAMP
+         WHERE id = ? AND stripe_checkout_session_id = ? AND status = 'pending'`
+      ).bind(status, orderId, session.id).run();
+
+      try {
+        await sendAdminNotification(env, {
+          orderId,
+          status,
+          customerName: orderResult.customer_name,
+          customerEmail: orderResult.customer_email,
+          customerPhone: orderResult.customer_phone,
+          packageName: orderResult.package_name,
+          amount: orderResult.amount,
+          currency: orderResult.currency,
+          sessionId: session.id
+        });
+      } catch (error) {
+        console.error("KasuhaNET payment status notification failed:", error);
+        return json({ error: "Order status recorded, but admin notification delivery failed. Stripe may retry this event." }, 500);
+      }
     }
-  } catch {
-    // Return a failure so Stripe retries delivery instead of losing the update.
+  } catch (error) {
+    console.error("KasuhaNET Stripe webhook processing failed:", error);
     return json({ error: "Unable to update the order record." }, 500);
   }
 
