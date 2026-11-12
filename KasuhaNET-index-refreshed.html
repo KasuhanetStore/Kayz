@@ -1461,22 +1461,7 @@ footer.footer{width:min(1160px,calc(100% - 32px))!important;margin:0 auto 28px!i
 <main>
     <!-- Kandungan asal website kau -->
   <!-- PARTNER CREDIT BAR -->
-  <div class="partner-credit-bar">
-   <div class="credit-text">
-    Website powered by the collaboration of Organizations &amp; Companies
-   </div>
-   <div class="partner-logos">
-    <span class="partner-name">
-     Kasuha Oculus Organisation
-    </span>
-    <div class="partner-logo-box">
-     <img alt="Collaboration Logo" src="OculusLogo.png"/>
-    </div>
-    <span class="partner-name">
-     KasuhaNET Resources
-    </span>
-   </div>
-  </div>
+  <div id="partner-credit-placeholder"></div>
   <main>
    
    <!-- MAIN TITLE -->
@@ -2386,5 +2371,17 @@ background-position:300% 50%;
     },
   });
   </script>
- </body>
+ 
+<script>
+  fetch("template-text/EN/partner-credit-EN.html")
+    .then(response => {
+      if (!response.ok) throw new Error("Partner Credit Template Failed to Load");
+      return response.text();
+    })
+    .then(data => {
+      document.getElementById("partner-credit-placeholder").innerHTML = data;
+    })
+    .catch(error => console.error(error));
+</script>
+</body>
 </html>
