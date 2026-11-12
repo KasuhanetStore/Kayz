@@ -1,3 +1,5 @@
+import { sendAdminNotification } from "./_lib/admin-email.js";
+
 const PACKAGES = {
   "landing-page": {
     name: "KasuhaNET Landing Page Package",
@@ -9,10 +11,7 @@ const PACKAGES = {
   }
 };
 
-const ALLOWED_HOSTS = new Set([
-  "kasuhanet.store",
-  "www.kasuhanet.store"
-]);
+const ALLOWED_HOSTS = new Set(["kasuhanet.store", "www.kasuhanet.store"]);
 
 function json(data, status) {
   return new Response(JSON.stringify(data), {
@@ -22,6 +21,26 @@ function json(data, status) {
       "Cache-Control": "no-store"
     }
   });
+}
+
+function getReturnPage(request) {
+  const fallback = "https://kasuhanet.store/Banner-WebSale-EN.html";
+  const referer = request.headers.get("Referer");
+  if (!referer) return fallback;
+
+  try {
+    const url = new URL(referer);
+    if (url.protocol !== "https:" || !ALLOWED_HOSTS.has(url.hostname)) return fallback;
+    if (url.pathname === "/MS/Banner-WebSale-MS.html") {
+      return "https://kasuhanet.store/MS/Banner-WebSale-MS.html";
+    }
+    if (url.pathname === "/Banner-WebSale-EN.html") {
+      return fallback;
+    }
+  } catch {
+    // Use the safe English fallback for malformed or untrusted Referer values.
+  }
+  return fallback;
 }
 
 export async function onRequestPost(context) {
@@ -82,6 +101,7 @@ export async function onRequestPost(context) {
   }
 
   const orderId = crypto.randomUUID();
+  const returnPage = getReturnPage(request);
 
   try {
     await env.DB.prepare(
@@ -89,14 +109,14 @@ export async function onRequestPost(context) {
         (id, package_id, package_name, amount, currency, customer_name, customer_email, customer_phone, status, created_at, updated_at)
        VALUES (?, ?, ?, ?, 'myr', ?, ?, ?, 'pending', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`
     ).bind(orderId, input.packageId, selected.name, selected.amount, name, email, phone).run();
-  } catch (error) {
+  } catch {
     return json({ error: "Unable to save the order. Please try again later." }, 500);
   }
 
   const form = new URLSearchParams();
   form.set("mode", "payment");
-  form.set("success_url", "https://kasuhanet.store/Banner-WebSale-EN.html?payment=success&session_id={CHECKOUT_SESSION_ID}");
-  form.set("cancel_url", "https://kasuhanet.store/Banner-WebSale-EN.html?payment=cancel");
+  form.set("success_url", `${returnPage}?payment=success&session_id={CHECKOUT_SESSION_ID}`);
+  form.set("cancel_url", `${returnPage}?payment=cancel`);
   form.set("customer_email", email);
   form.set("customer_creation", "always");
   form.set("billing_address_collection", "auto");
@@ -106,6 +126,7 @@ export async function onRequestPost(context) {
   form.set("line_items[0][price_data][unit_amount]", String(selected.amount));
   form.set("line_items[0][price_data][product_data][name]", selected.name);
   form.set("line_items[0][price_data][product_data][description]", "One-time website development service");
+  form.set("client_reference_id", orderId);
   form.set("metadata[order_id]", orderId);
   form.set("metadata[package_id]", input.packageId);
   form.set("metadata[customer_name]", name);
@@ -150,11 +171,26 @@ export async function onRequestPost(context) {
 
   try {
     await env.DB.prepare(
-      "UPDATE orders SET stripe_checkout_session_id = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?"
+      "UPDATE orders SET stripe_checkout_session_id = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ? AND status = 'pending'"
     ).bind(stripeData.id, orderId).run();
   } catch {
-    // Do not send the customer to a payment session if its reference was not saved.
     return json({ error: "The payment session was created but could not be linked to the order. Please contact support before retrying." }, 500);
+  }
+
+  try {
+    await sendAdminNotification(env, {
+      orderId,
+      status: "pending",
+      customerName: name,
+      customerEmail: email,
+      customerPhone: phone,
+      packageName: selected.name,
+      amount: selected.amount,
+      currency: "myr",
+      sessionId: stripeData.id
+    });
+  } catch (error) {
+    console.error("KasuhaNET admin order notification failed:", error);
   }
 
   return json({ url: stripeData.url }, 200);
