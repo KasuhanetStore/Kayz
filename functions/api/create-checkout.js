@@ -9,6 +9,11 @@ const PACKAGES = {
   }
 };
 
+const ALLOWED_HOSTS = new Set([
+  "kasuhanet.store",
+  "www.kasuhanet.store"
+]);
+
 function json(data, status) {
   return new Response(JSON.stringify(data), {
     status: status,
@@ -24,13 +29,31 @@ export async function onRequestPost(context) {
   const env = context.env;
   const origin = request.headers.get("Origin");
 
-  if (origin !== "https://kasuhanet.store" && origin !== "https://www.kasuhanet.store") {
+  // Accept only HTTPS requests from the official KasuhaNET domains.
+  // Compare normalized origins to avoid false rejections caused by
+  // URL casing or an explicitly supplied default HTTPS port.
+  let originUrl;
+  let requestUrl;
+  try {
+    if (origin) originUrl = new URL(origin);
+    requestUrl = new URL(request.url);
+  } catch {
+    return json({ error: "Request origin is not allowed." }, 403);
+  }
+
+  const allowedOrigin =
+    originUrl &&
+    originUrl.protocol === "https:" &&
+    ALLOWED_HOSTS.has(originUrl.hostname) &&
+    originUrl.origin === requestUrl.origin;
+
+  if (!allowedOrigin) {
     return json({ error: "Request origin is not allowed." }, 403);
   }
 
   if (!env.STRIPE_SECRET_KEY) {
     return json({
-      error: "Secure payment is not configured yet. Please contact KasuhaNET support."
+      error: "Stripe test key is not available to this deployment. Check the Cloudflare Pages environment binding."
     }, 503);
   }
 
@@ -54,7 +77,7 @@ export async function onRequestPost(context) {
   if (name.length < 2 || name.length > 100) {
     return json({ error: "Please enter a valid full name." }, 400);
   }
-  if (email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  if (email.length > 254 || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) {
     return json({ error: "Please enter a valid email address." }, 400);
   }
   if (phone.length > 25) {
@@ -95,8 +118,11 @@ export async function onRequestPost(context) {
 
   const stripeData = await stripeResponse.json();
   if (!stripeResponse.ok || !stripeData.url) {
+    const stripeMessage = stripeData?.error?.message;
     return json({
-      error: "Stripe could not create the checkout session. Check the Stripe account configuration."
+      error: stripeMessage
+        ? "Stripe checkout error: " + String(stripeMessage).slice(0, 240)
+        : "Stripe could not create the checkout session. Check the Stripe test key and account configuration."
     }, 502);
   }
 
