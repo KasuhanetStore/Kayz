@@ -1129,22 +1129,22 @@
 
 <script>
 /* KasuhaNET WebMCP: safe, read-only tools for browser agents. */
-(async function registerKasuhaNetWebMCP() {
+window.__kasuhaNetWebMCPReady = (async function registerKasuhaNetWebMCP() {
   const modelContext = document.modelContext;
-  if (!modelContext || typeof modelContext.registerTool !== "function") return;
+  if (!modelContext || typeof modelContext.registerTool !== "function") {
+    return { supported: false, registered: [], errors: ["WebMCP API is unavailable in this browser context."] };
+  }
 
   const controller = new AbortController();
   window.addEventListener("pagehide", () => controller.abort(), { once: true });
+  const registered = [];
+  const errors = [];
 
   const tools = [
     {
       name: "kasuhanet_get_site_overview",
       description: "Returns the current KasuhaNET page title, public description, language and URL.",
-      inputSchema: {
-        type: "object",
-        properties: {},
-        additionalProperties: false
-      },
+      inputSchema: { type: "object", properties: {}, additionalProperties: false },
       execute() {
         const metaDescription = document.querySelector('meta[name="description"]');
         return {
@@ -1159,33 +1159,22 @@
     },
     {
       name: "kasuhanet_list_website_packages",
-      description: "Returns the website development packages and displayed prices available on the current KasuhaNET page.",
-      inputSchema: {
-        type: "object",
-        properties: {},
-        additionalProperties: false
-      },
+      description: "Returns the website development packages and displayed prices on KasuhaNET.",
+      inputSchema: { type: "object", properties: {}, additionalProperties: false },
       execute() {
-        const packages = [
-          { id: "landing-page", name: "Landing Page Package", price: "RM 299++" },
-          { id: "premium-standard", name: "Premium Standard", price: "RM 900++" }
-        ];
-        return {
-          currency: "MYR",
-          source: "KasuhaNET website package selection",
-          packages
-        };
+        const packages = Array.from(document.querySelectorAll("#pakej .price-card")).map((card) => ({
+          name: card.querySelector("h3")?.textContent?.trim() || "",
+          price: card.querySelector(".price")?.textContent?.replace(/\\s+/g, " ").trim() || "",
+          description: card.querySelector(".price-sub")?.textContent?.trim() || ""
+        })).filter((item) => item.name && item.price);
+        return { currency: "MYR", packages };
       },
       annotations: { readOnlyHint: true }
     },
     {
       name: "kasuhanet_get_contact_options",
-      description: "Returns public contact and support links visibly published on the current KasuhaNET page.",
-      inputSchema: {
-        type: "object",
-        properties: {},
-        additionalProperties: false
-      },
+      description: "Returns public contact and support links published on KasuhaNET.",
+      inputSchema: { type: "object", properties: {}, additionalProperties: false },
       execute() {
         const links = Array.from(document.querySelectorAll('a[href^="mailto:"], a[href*="wa.me"], a[href*="whatsapp"], a[href*="support-centre"]'))
           .map((link) => ({
@@ -1202,10 +1191,13 @@
   for (const tool of tools) {
     try {
       await modelContext.registerTool(tool, { signal: controller.signal });
+      registered.push(tool.name);
     } catch (error) {
+      errors.push({ tool: tool.name, message: error instanceof Error ? error.message : String(error) });
       console.error("KasuhaNET WebMCP registration failed:", tool.name, error);
     }
   }
+  return { supported: true, registered, errors };
 })();
 </script>
 
