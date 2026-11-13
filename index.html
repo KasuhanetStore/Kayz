@@ -1128,99 +1128,80 @@
 
 
 <script>
-/* KasuhaNET WebMCP tools: read-only discovery plus a user-confirmed checkout form. */
+/* KasuhaNET WebMCP: safe, read-only tools for browser agents. */
 (async function registerKasuhaNetWebMCP() {
   const modelContext = document.modelContext;
   if (!modelContext || typeof modelContext.registerTool !== "function") return;
 
+  const controller = new AbortController();
+  window.addEventListener("pagehide", () => controller.abort(), { once: true });
+
   const tools = [
     {
       name: "kasuhanet_get_site_overview",
-      title: "KasuhaNET Site Overview",
-      description: "Return a concise overview of KasuhaNET.STORE, its main service areas and supported languages.",
-      inputSchema: { type: "object", properties: {}, additionalProperties: false },
-      outputSchema: {
+      description: "Returns the current KasuhaNET page title, public description, language and URL.",
+      inputSchema: {
         type: "object",
-        properties: {
-          name: { type: "string" },
-          url: { type: "string" },
-          languages: { type: "array", items: { type: "string" } },
-          serviceAreas: { type: "array", items: { type: "string" } }
-        },
-        required: ["name", "url", "languages", "serviceAreas"],
+        properties: {},
         additionalProperties: false
       },
-      execute: async () => ({
-        name: "KasuhaNET.STORE",
-        url: "https://kasuhanet.store/",
-        languages: ["English", "Bahasa Melayu"],
-        serviceAreas: ["Website development", "Linux and technical guidance", "Digital services", "Affiliate information", "Customer support"]
-      }),
+      execute() {
+        const metaDescription = document.querySelector('meta[name="description"]');
+        return {
+          name: document.title || "KasuhaNET.STORE",
+          url: window.location.href,
+          language: document.documentElement.lang || "en",
+          description: metaDescription ? metaDescription.content : "",
+          mainHeading: document.querySelector("main h1, h1")?.textContent?.trim() || ""
+        };
+      },
       annotations: { readOnlyHint: true }
     },
     {
       name: "kasuhanet_list_website_packages",
-      title: "Website Development Packages",
-      description: "List the website development packages currently displayed on KasuhaNET.STORE with their published starting prices and summaries.",
-      inputSchema: { type: "object", properties: {}, additionalProperties: false },
-      outputSchema: {
+      description: "Returns the website development packages and displayed prices available on the current KasuhaNET page.",
+      inputSchema: {
         type: "object",
-        properties: {
-          currency: { type: "string" },
-          packages: {
-            type: "array",
-            items: {
-              type: "object",
-              properties: {
-                id: { type: "string" },
-                name: { type: "string" },
-                price: { type: "number", description: "Starting price in MYR; the displayed ++ indicates additional charges may apply depending on the agreed scope." },
-                description: { type: "string" }
-              },
-              required: ["id", "name", "price", "description"],
-              additionalProperties: false
-            }
-          }
-        },
-        required: ["currency", "packages"],
+        properties: {},
         additionalProperties: false
       },
-      execute: async () => ({
-        currency: "MYR",
-        packages: [
-          { id: "landing-page", name: "Landing Page Package", price: 299, description: "Starting price RM 299++; single-page responsive website for campaigns, product launches and business profiles. Custom domain is not included." },
-          { id: "premium-standard", name: "Premium Standard", price: 900, description: "Multi-page website with content management, advanced SEO and product or activity showcases." }
-        ]
-      }),
+      execute() {
+        const packages = [
+          { id: "landing-page", name: "Landing Page Package", price: "RM 299++" },
+          { id: "premium-standard", name: "Premium Standard", price: "RM 900++" }
+        ];
+        return {
+          currency: "MYR",
+          source: "KasuhaNET website package selection",
+          packages
+        };
+      },
       annotations: { readOnlyHint: true }
     },
     {
       name: "kasuhanet_get_contact_options",
-      title: "KasuhaNET Contact Options",
-      description: "Return the public customer support contact options for KasuhaNET.STORE. Do not submit forms or initiate payments.",
-      inputSchema: { type: "object", properties: {}, additionalProperties: false },
-      outputSchema: {
+      description: "Returns public contact and support links visibly published on the current KasuhaNET page.",
+      inputSchema: {
         type: "object",
-        properties: {
-          email: { type: "string" },
-          whatsapp: { type: "string" },
-          supportPage: { type: "string" }
-        },
-        required: ["email", "whatsapp", "supportPage"],
+        properties: {},
         additionalProperties: false
       },
-      execute: async () => ({
-        email: "support@kasuhanet.store",
-        whatsapp: "https://wa.me/60167390501",
-        supportPage: "https://kasuhanet.store/support-centre-EN.html"
-      }),
+      execute() {
+        const links = Array.from(document.querySelectorAll('a[href^="mailto:"], a[href*="wa.me"], a[href*="whatsapp"], a[href*="support-centre"]'))
+          .map((link) => ({
+            label: (link.textContent || link.getAttribute("aria-label") || "").trim(),
+            url: link.href
+          }))
+          .filter((item) => item.url);
+        return { supportPage: "https://kasuhanet.store/support-centre-EN.html", publicContactLinks: links };
+      },
       annotations: { readOnlyHint: true }
     }
   ];
 
   for (const tool of tools) {
     try {
-      await modelContext.registerTool(tool);
+      await modelContext.registerTool(tool, { signal: controller.signal });
     } catch (error) {
       console.error("KasuhaNET WebMCP registration failed:", tool.name, error);
     }
