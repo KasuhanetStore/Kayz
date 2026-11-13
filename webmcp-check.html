@@ -122,18 +122,28 @@
       catch (error) { toolError = error instanceof Error ? error.message : String(error); }
     }
 
-    const toolNames = tools.map((tool) => tool.name);
+    // WebMCP may expose tools registered by other same-origin frames in the
+    // shared browsing context. Deduplicate by name and validate one schema per
+    // expected tool instead of treating repeated names as a schema failure.
+    const toolNames = [...new Set(tools.map((tool) => tool.name))];
     const expectedToolNames = [...page.expectedTools, page.expectedForm];
     const missingTools = expectedToolNames.filter((name) => !toolNames.includes(name));
-    const schemasValid = tools.filter((tool) => expectedToolNames.includes(tool.name)).every((tool) =>
-      tool.inputSchema &&
-      tool.inputSchema.type === "object" &&
-      tool.inputSchema.properties &&
-      typeof tool.inputSchema.properties === "object" &&
-      Object.values(tool.inputSchema.properties).every((property) =>
-        property && typeof property === "object" &&
-        (!("description" in property) || typeof property.description === "string")
-      )
+    function isReadableObjectSchema(schema) {
+      return !!(
+        schema &&
+        typeof schema === "object" &&
+        schema.type === "object" &&
+        schema.properties &&
+        typeof schema.properties === "object" &&
+        !Array.isArray(schema.properties) &&
+        Object.values(schema.properties).every((property) =>
+          property && typeof property === "object" &&
+          (!("description" in property) || typeof property.description === "string")
+        )
+      );
+    }
+    const schemasValid = expectedToolNames.every((name) =>
+      tools.some((tool) => tool.name === name && isReadableObjectSchema(tool.inputSchema))
     );
 
     const executionResults = [];
