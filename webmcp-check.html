@@ -166,7 +166,7 @@
       toolOk: missingTools.length === 0 && !toolError,
       toolDetail: "Dikesan: " + toolNames.join(", ") + (missingTools.length ? "; tiada: " + missingTools.join(", ") : ""),
       schemaOk: schemasValid && tools.filter((tool) => expectedToolNames.includes(tool.name)).length === expectedToolNames.length,
-      schemaDetail: "Skema objek diperiksa bagi " + tools.filter((tool) => expectedToolNames.includes(tool.name)).length + "/" + expectedToolNames.length + " alat yang dijangka",
+      schemaDetail: "Skema objek sah bagi " + expectedToolNames.filter((name) => tools.some((tool) => tool.name === name && isReadableObjectSchema(tool.inputSchema))).length + "/" + expectedToolNames.length + " alat yang dijangka",
       executionResults
     };
   }
