@@ -999,7 +999,7 @@ window.__kasuhaNetWebMCPReady = (async function daftarWebMCPKasuhaNet() {
       execute() {
         const pakej = Array.from(document.querySelectorAll("#pakej .price-card")).map((card) => ({
           nama: card.querySelector("h3")?.textContent?.trim() || "",
-          harga: card.querySelector(".price")?.textContent?.replace(/\\s+/g, " ").trim() || "",
+          harga: card.querySelector(".price")?.textContent?.replace(/\s+/g, " ").trim() || "",
           penerangan: card.querySelector(".price-sub")?.textContent?.trim() || ""
         })).filter((item) => item.nama && item.harga);
         return { mataWang: "MYR", pakej };
