@@ -969,13 +969,13 @@
       <span id="knPackagePrice">RM 0</span>
       <p style="font-size:11px;color:#aeb5c4;margin:5px 0 0">One-time payment · MYR</p>
     </div>
-    <form class="kn-checkout-form" id="knCheckoutForm">
+    <form class="kn-checkout-form" id="knCheckoutForm" toolname="start_website_checkout" tooldescription="Prepare customer details for a KasuhaNET website package checkout. The visitor must select a package first. This form never submits payment automatically; the visitor must review the details and press the payment button.">
       <label for="knCustomerName">Full name</label>
-      <input id="knCustomerName" name="name" autocomplete="name" maxlength="100" required>
+      <input id="knCustomerName" name="name" autocomplete="name" maxlength="100" toolparamdescription="Customer full name for the website package order." required>
       <label for="knCustomerEmail">Email address</label>
-      <input id="knCustomerEmail" name="email" type="email" autocomplete="email" maxlength="254" required>
+      <input id="knCustomerEmail" name="email" type="email" autocomplete="email" maxlength="254" toolparamdescription="Valid email address for the order confirmation and payment record." required>
       <label for="knCustomerPhone">Phone number</label>
-      <input id="knCustomerPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60">
+      <input id="knCustomerPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60" toolparamdescription="Customer contact phone number, including country code when available.">
       <button class="kn-checkout-submit" id="knCheckoutSubmit" type="submit">CONTINUE TO SECURE PAYMENT</button>
       <p class="kn-checkout-note">Your payment is processed securely by Stripe. Available payment methods are shown on the Stripe payment page according to merchant account eligibility and settings.</p>
       <div class="kn-checkout-error" id="knCheckoutError" role="alert"></div>
@@ -1124,6 +1124,108 @@
       button.textContent = "CONTINUE TO SECURE PAYMENT";
     }
   });
+</script>
+
+
+<script>
+/* KasuhaNET WebMCP tools: read-only discovery plus a user-confirmed checkout form. */
+(async function registerKasuhaNetWebMCP() {
+  const modelContext = document.modelContext;
+  if (!modelContext || typeof modelContext.registerTool !== "function") return;
+
+  const tools = [
+    {
+      name: "kasuhanet_get_site_overview",
+      title: "KasuhaNET Site Overview",
+      description: "Return a concise overview of KasuhaNET.STORE, its main service areas and supported languages.",
+      inputSchema: { type: "object", properties: {}, additionalProperties: false },
+      outputSchema: {
+        type: "object",
+        properties: {
+          name: { type: "string" },
+          url: { type: "string" },
+          languages: { type: "array", items: { type: "string" } },
+          serviceAreas: { type: "array", items: { type: "string" } }
+        },
+        required: ["name", "url", "languages", "serviceAreas"],
+        additionalProperties: false
+      },
+      execute: async () => ({
+        name: "KasuhaNET.STORE",
+        url: "https://kasuhanet.store/",
+        languages: ["English", "Bahasa Melayu"],
+        serviceAreas: ["Website development", "Linux and technical guidance", "Digital services", "Affiliate information", "Customer support"]
+      }),
+      annotations: { readOnlyHint: true }
+    },
+    {
+      name: "kasuhanet_list_website_packages",
+      title: "Website Development Packages",
+      description: "List the website development packages currently displayed on KasuhaNET.STORE with their published prices and summaries.",
+      inputSchema: { type: "object", properties: {}, additionalProperties: false },
+      outputSchema: {
+        type: "object",
+        properties: {
+          currency: { type: "string" },
+          packages: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                id: { type: "string" },
+                name: { type: "string" },
+                price: { type: "number" },
+                description: { type: "string" }
+              },
+              required: ["id", "name", "price", "description"],
+              additionalProperties: false
+            }
+          }
+        },
+        required: ["currency", "packages"],
+        additionalProperties: false
+      },
+      execute: async () => ({
+        currency: "MYR",
+        packages: [
+          { id: "landing-page", name: "Landing Page Package", price: 299, description: "Single-page responsive website for campaigns, product launches and business profiles. Custom domain is not included." },
+          { id: "premium-standard", name: "Premium Standard", price: 900, description: "Multi-page website with content management, advanced SEO and product or activity showcases." }
+        ]
+      }),
+      annotations: { readOnlyHint: true }
+    },
+    {
+      name: "kasuhanet_get_contact_options",
+      title: "KasuhaNET Contact Options",
+      description: "Return the public customer support contact options for KasuhaNET.STORE. Do not submit forms or initiate payments.",
+      inputSchema: { type: "object", properties: {}, additionalProperties: false },
+      outputSchema: {
+        type: "object",
+        properties: {
+          email: { type: "string" },
+          whatsapp: { type: "string" },
+          supportPage: { type: "string" }
+        },
+        required: ["email", "whatsapp", "supportPage"],
+        additionalProperties: false
+      },
+      execute: async () => ({
+        email: "support@kasuhanet.store",
+        whatsapp: "https://wa.me/60167390501",
+        supportPage: "https://kasuhanet.store/support-centre-EN.html"
+      }),
+      annotations: { readOnlyHint: true }
+    }
+  ];
+
+  for (const tool of tools) {
+    try {
+      await modelContext.registerTool(tool);
+    } catch (error) {
+      console.error("KasuhaNET WebMCP registration failed:", tool.name, error);
+    }
+  }
+})();
 </script>
 
 </body>
