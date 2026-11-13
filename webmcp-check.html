@@ -186,9 +186,6 @@
         ).length + "/" + page.expectedTools.length,
       executionResults
     };
-    // Remove each inspected frame immediately so its declarative tools cannot
-    // pollute the next page's tool list in the shared same-origin context.
-    frame.remove();
   }
 
   async function run() {
@@ -201,9 +198,15 @@
     try {
       const results = [];
       for (const page of pages) {
-        try { results.push(await inspectPage(page)); }
-        catch (error) {
+        try {
+          results.push(await inspectPage(page));
+        } catch (error) {
           results.push({ path: page.path, apiAvailable: false, formOk: false, toolOk: false, schemaOk: false, formDetail: error.message, toolDetail: "Tidak dapat mengakses alat", schemaDetail: "Tidak dapat memeriksa skema", executionResults: [] });
+        } finally {
+          // One page at a time: keeping six same-origin frames alive causes
+          // their declarative tools to collide in the shared WebMCP registry.
+          frames.innerHTML = "";
+          await new Promise((resolve) => setTimeout(resolve, 150));
         }
       }
 
