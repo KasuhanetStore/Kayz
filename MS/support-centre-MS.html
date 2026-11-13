@@ -297,20 +297,20 @@
       </p>
 
       <!-- BACKEND WORKER FORM -->
-      <form id="aduanForm">
+      <form id="aduanForm" toolname="hantar_permohonan_sokongan" tooldescription="Sediakan permohonan sokongan pelanggan untuk KasuhaNET. Pelawat mesti menyemak mesej dan menekan butang Hantar Mesej sendiri; jangan hantar secara automatik.">
           <div class="form-group">
               <label for="name"><i class="fa-solid fa-user"></i> NAMA ANDA</label>
-              <input type="text" id="name" placeholder="Masukkan nama penuh anda..." required>
+              <input type="text" id="name" name="name" placeholder="Masukkan nama penuh anda..." toolparamdescription="Nama penuh individu yang memohon sokongan." required>
           </div>
 
           <div class="form-group">
               <label for="email"><i class="fa-solid fa-envelope"></i> E-MEL ANDA</label>
-              <input type="email" id="email" placeholder="contoh@gmail.com" required>
+              <input type="email" id="email" name="email" placeholder="contoh@gmail.com" toolparamdescription="Alamat e-mel untuk pasukan sokongan membalas permohonan." required>
           </div>
 
           <div class="form-group">
               <label for="message"><i class="fa-solid fa-message"></i> MESEJ / MASALAH ANDA</label>
-              <textarea id="message" rows="3" placeholder="Terangkan masalah atau pertanyaan anda dengan terperinci..." required></textarea>
+              <textarea id="message" name="message" rows="3" placeholder="Terangkan masalah atau pertanyaan anda dengan terperinci..." toolparamdescription="Penerangan masalah atau pertanyaan yang perlu disemak oleh pasukan sokongan." required></textarea>
           </div>
 
           <button type="submit" id="btnSubmit" class="btn btn-primary" style="width: 100%; margin-top: 5px; font-family: Inter, Arial, Helvetica, sans-serif;">
