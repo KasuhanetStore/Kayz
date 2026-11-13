@@ -807,13 +807,13 @@
       <span id="knPackagePrice">RM 0</span>
       <p style="font-size:11px;color:#aeb5c4;margin:5px 0 0">Bayaran sekali sahaja · MYR</p>
     </div>
-    <form class="kn-checkout-form" id="knCheckoutForm">
+    <form class="kn-checkout-form" id="knCheckoutForm" toolname="mula_pembayaran_laman_web" tooldescription="Sediakan butiran pelanggan untuk checkout pakej laman web KasuhaNET. Pelawat mesti memilih pakej terlebih dahulu. Borang ini tidak menghantar pembayaran secara automatik; pelawat mesti menyemak butiran dan menekan butang pembayaran sendiri.">
       <label for="knCustomerName">Nama penuh</label>
-      <input id="knCustomerName" name="name" autocomplete="name" maxlength="100" required>
+      <input id="knCustomerName" name="name" autocomplete="name" maxlength="100" toolparamdescription="Nama penuh pelanggan untuk pesanan pakej laman web." required>
       <label for="knCustomerEmail">Alamat e-mel</label>
-      <input id="knCustomerEmail" name="email" type="email" autocomplete="email" maxlength="254" required>
+      <input id="knCustomerEmail" name="email" type="email" autocomplete="email" maxlength="254" toolparamdescription="Alamat e-mel yang sah untuk pengesahan pesanan dan rekod pembayaran." required>
       <label for="knCustomerPhone">Nombor telefon</label>
-      <input id="knCustomerPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60">
+      <input id="knCustomerPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60" toolparamdescription="Nombor telefon untuk dihubungi, termasuk kod negara jika tersedia.">
       <button class="kn-checkout-submit" id="knCheckoutSubmit" type="submit">TERUSKAN KE PEMBAYARAN SELAMAT</button>
       <p class="kn-checkout-note">Pembayaran diproses dengan selamat melalui Stripe. Kaedah pembayaran yang tersedia akan dipaparkan pada halaman Stripe mengikut kelayakan dan tetapan akaun peniaga.</p>
       <div class="kn-checkout-error" id="knCheckoutError" role="alert"></div>
@@ -961,5 +961,107 @@
     }
   });
 </script>
+
+<script>
+/* Alat WebMCP KasuhaNET: maklumat bacaan sahaja dan borang checkout yang memerlukan pengesahan pengguna. */
+(async function daftarAlatWebMCPKasuhaNet() {
+  const modelContext = document.modelContext;
+  if (!modelContext || typeof modelContext.registerTool !== "function") return;
+
+  const tools = [
+    {
+      name: "kasuhanet_ringkasan_laman",
+      title: "Ringkasan Laman KasuhaNET",
+      description: "Berikan ringkasan KasuhaNET.STORE, bidang perkhidmatan utama dan bahasa yang disokong.",
+      inputSchema: { type: "object", properties: {}, additionalProperties: false },
+      outputSchema: {
+        type: "object",
+        properties: {
+          nama: { type: "string" },
+          url: { type: "string" },
+          bahasa: { type: "array", items: { type: "string" } },
+          bidangPerkhidmatan: { type: "array", items: { type: "string" } }
+        },
+        required: ["nama", "url", "bahasa", "bidangPerkhidmatan"],
+        additionalProperties: false
+      },
+      execute: async () => ({
+        nama: "KasuhaNET.STORE",
+        url: "https://kasuhanet.store/MS/",
+        bahasa: ["Bahasa Melayu", "English"],
+        bidangPerkhidmatan: ["Pembangunan laman web", "Panduan Linux dan teknikal", "Perkhidmatan digital", "Maklumat affiliate", "Sokongan pelanggan"]
+      }),
+      annotations: { readOnlyHint: true }
+    },
+    {
+      name: "kasuhanet_senarai_pakej_laman_web",
+      title: "Senarai Pakej Laman Web",
+      description: "Senaraikan pakej pembangunan laman web yang dipaparkan di KasuhaNET.STORE bersama harga dan ringkasan yang diterbitkan.",
+      inputSchema: { type: "object", properties: {}, additionalProperties: false },
+      outputSchema: {
+        type: "object",
+        properties: {
+          mataWang: { type: "string" },
+          pakej: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                id: { type: "string" },
+                nama: { type: "string" },
+                harga: { type: "number" },
+                penerangan: { type: "string" }
+              },
+              required: ["id", "nama", "harga", "penerangan"],
+              additionalProperties: false
+            }
+          }
+        },
+        required: ["mataWang", "pakej"],
+        additionalProperties: false
+      },
+      execute: async () => ({
+        mataWang: "MYR",
+        pakej: [
+          { id: "landing-page", nama: "Pakej Landing Page", harga: 299, penerangan: "Laman web responsif satu halaman untuk kempen, pelancaran produk dan profil perniagaan. Domain khusus tidak termasuk." },
+          { id: "premium-standard", nama: "Premium Standard", harga: 900, penerangan: "Laman web berbilang halaman dengan pengurusan kandungan, SEO lanjutan dan paparan produk atau aktiviti." }
+        ]
+      }),
+      annotations: { readOnlyHint: true }
+    },
+    {
+      name: "kasuhanet_pilihan_hubungan",
+      title: "Pilihan Hubungan KasuhaNET",
+      description: "Berikan saluran hubungan sokongan pelanggan awam KasuhaNET.STORE. Jangan hantar borang atau mulakan pembayaran.",
+      inputSchema: { type: "object", properties: {}, additionalProperties: false },
+      outputSchema: {
+        type: "object",
+        properties: {
+          emel: { type: "string" },
+          whatsapp: { type: "string" },
+          halamanSokongan: { type: "string" }
+        },
+        required: ["emel", "whatsapp", "halamanSokongan"],
+        additionalProperties: false
+      },
+      execute: async () => ({
+        emel: "support@kasuhanet.store",
+        whatsapp: "https://wa.me/60167390501",
+        halamanSokongan: "https://kasuhanet.store/MS/support-centre-MS.html"
+      }),
+      annotations: { readOnlyHint: true }
+    }
+  ];
+
+  for (const tool of tools) {
+    try {
+      await modelContext.registerTool(tool);
+    } catch (error) {
+      console.error("Pendaftaran alat WebMCP KasuhaNET gagal:", tool.name, error);
+    }
+  }
+})();
+</script>
+
 </body>
 </html>
