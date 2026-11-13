@@ -310,20 +310,20 @@
       </p>
 
       <!-- BACKEND WORKER FORM -->
-      <form id="aduanForm">
+      <form id="aduanForm" toolname="submit_support_request" tooldescription="Prepare a customer support request for KasuhaNET. The visitor must review the message and manually press Send Message; do not submit it automatically.">
           <div class="form-group">
               <label for="name"><i class="fa-solid fa-user"></i> YOUR NAME</label>
-              <input type="text" id="name" placeholder="Enter your full name..." required>
+              <input type="text" id="name" name="name" placeholder="Enter your full name..." toolparamdescription="Full name of the person requesting support." required>
           </div>
 
           <div class="form-group">
               <label for="email"><i class="fa-solid fa-envelope"></i> YOUR EMAIL</label>
-              <input type="email" id="email" placeholder="example@gmail.com" required>
+              <input type="email" id="email" name="email" placeholder="example@gmail.com" toolparamdescription="Email address where the support team can reply." required>
           </div>
 
           <div class="form-group">
               <label for="message"><i class="fa-solid fa-message"></i> YOUR MESSAGE / ISSUE</label>
-              <textarea id="message" rows="3" placeholder="Describe your issue or inquiry in detail..." required></textarea>
+              <textarea id="message" name="message" rows="3" placeholder="Describe your issue or inquiry in detail..." toolparamdescription="Description of the issue or question that the customer wants the support team to review." required></textarea>
           </div>
 
           <button type="submit" id="btnSubmit" class="btn btn-primary" style="width: 100%; margin-top: 5px; font-family: Inter, Arial, Helvetica, sans-serif;">
