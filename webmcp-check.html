@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>WebMCP Diagnostics | KasuhaNET</title>
+  <style>
+    :root { color-scheme: dark; font-family: Inter, Arial, sans-serif; background: #0b1220; color: #e5edf8; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px 16px 48px; }
+    main { max-width: 900px; margin: 0 auto; }
+    h1 { margin: 0 0 8px; font-size: 28px; }
+    p { color: #aab8ca; line-height: 1.55; }
+    .panel { background: #121d30; border: 1px solid #293950; border-radius: 14px; padding: 18px; margin: 16px 0; }
+    .status { display: inline-block; border-radius: 999px; padding: 4px 10px; font-size: 12px; font-weight: 700; background: #334155; }
+    .pass { color: #86efac; background: #123b2a; }
+    .fail { color: #fca5a5; background: #4a1e25; }
+    .warn { color: #fde68a; background: #493816; }
+    button { border: 0; border-radius: 9px; padding: 11px 16px; color: white; background: #2563eb; font-weight: 700; cursor: pointer; }
+    button:disabled { opacity: .55; cursor: wait; }
+    .result { padding: 12px 0; border-top: 1px solid #293950; }
+    .result:first-child { border-top: 0; }
+    .result strong { display: block; margin-bottom: 4px; }
+    code { color: #bfdbfe; overflow-wrap: anywhere; }
+    ul { margin: 8px 0 0; padding-left: 20px; color: #b9c7d8; }
+    .muted { color: #8293aa; font-size: 13px; }
+    #frames { position: absolute; width: 1px; height: 1px; overflow: hidden; left: -10000px; top: 0; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>KasuhaNET WebMCP Diagnostics</h1>
+  <p>Ujian ini hanya membaca metadata borang dan menjalankan tiga alat bacaan sahaja. Ia tidak menghantar borang, membuat pesanan, memulakan pembayaran atau mengubah data pelanggan.</p>
+  <section class="panel">
+    <div id="browserStatus" class="status warn">Belum diuji</div>
+    <p id="browserMessage">Tekan butang untuk memeriksa sokongan WebMCP, borang, pendaftaran alat dan skema.</p>
+    <button id="runTests" type="button">Jalankan ujian WebMCP</button>
+  </section>
+  <section class="panel">
+    <h2>Keputusan tiga kriteria</h2>
+    <div id="criteria">
+      <div class="result"><strong>1. Cakupan formulir WebMCP</strong><span class="status warn">Menunggu ujian</span></div>
+      <div class="result"><strong>2. Alat WebMCP terdaftar</strong><span class="status warn">Menunggu ujian</span></div>
+      <div class="result"><strong>3. Skema WebMCP valid</strong><span class="status warn">Menunggu ujian</span></div>
+    </div>
+  </section>
+  <section class="panel">
+    <h2>Butiran pemeriksaan</h2>
+    <div id="details" class="muted">Belum ada keputusan.</div>
+  </section>
+  <p class="muted">WebMCP ialah ciri percubaan Chromium. Halaman ini tidak boleh mengaktifkan flag Chrome bagi pihak pengguna. Ia hanya menguji API selepas flag diaktifkan dan pelayar dimulakan semula.</p>
+  <div id="frames" aria-hidden="true"></div>
+</main>
+<script>
+(function () {
+  const pages = [
+    { path: "/index.html", expectedForm: "start_website_checkout", expectedTools: ["kasuhanet_get_site_overview", "kasuhanet_list_website_packages", "kasuhanet_get_contact_options"] },
+    { path: "/MS/index.html", expectedForm: "mula_pembayaran_laman_web", expectedTools: ["kasuhanet_ringkasan_laman", "kasuhanet_senarai_pakej_laman_web", "kasuhanet_pilihan_hubungan"] },
+    { path: "/Banner-WebSale-EN.html", expectedForm: "start_website_checkout", expectedTools: [] },
+    { path: "/MS/Banner-WebSale-MS.html", expectedForm: "mula_pembayaran_laman_web", expectedTools: [] },
+    { path: "/support-centre-EN.html", expectedForm: "submit_support_request", expectedTools: [] },
+    { path: "/MS/support-centre-MS.html", expectedForm: "hantar_permohonan_sokongan", expectedTools: [] }
+  ];
+
+  const runButton = document.getElementById("runTests");
+  const browserStatus = document.getElementById("browserStatus");
+  const browserMessage = document.getElementById("browserMessage");
+  const criteria = document.getElementById("criteria");
+  const details = document.getElementById("details");
+  const frames = document.getElementById("frames");
+
+  function statusClass(ok) { return ok ? "pass" : "fail"; }
+  function renderCriteria(rows) {
+    criteria.innerHTML = rows.map((row) =>
+      '<div class="result"><strong>' + row.title + '</strong><span class="status ' + statusClass(row.ok) + '">' +
+      (row.ok ? "LULUS" : "BELUM LULUS") + '</span><p>' + row.detail + '</p></div>'
+    ).join("");
+  }
+
+  function loadFrame(path) {
+    return new Promise((resolve, reject) => {
+      const frame = document.createElement("iframe");
+      frame.src = path + (path.includes("?") ? "&" : "?") + "webmcp_diagnostic=1";
+      frame.onload = () => resolve(frame);
+      frame.onerror = () => reject(new Error("Gagal memuat " + path));
+      frames.appendChild(frame);
+      setTimeout(() => reject(new Error("Masa menunggu tamat untuk " + path)), 12000);
+    });
+  }
+
+  async function inspectPage(page) {
+    const frame = await loadFrame(page.path);
+    const win = frame.contentWindow;
+    const doc = frame.contentDocument;
+    if (!doc) throw new Error("Dokumen tidak boleh dibaca: " + page.path);
+
+    if (win.__kasuhaNetWebMCPReady) {
+      await Promise.race([
+        win.__kasuhaNetWebMCPReady,
+        new Promise((resolve) => setTimeout(resolve, 8000))
+      ]);
+    }
+
+    const forms = Array.from(doc.querySelectorAll("form"));
+    const annotated = forms.filter((form) =>
+      form.hasAttribute("toolname") &&
+      form.hasAttribute("tooldescription") &&
+      form.getAttribute("toolname").trim() &&
+      form.getAttribute("tooldescription").trim()
+    );
+    const matchingForm = annotated.find((form) => form.getAttribute("toolname") === page.expectedForm);
+    const fields = matchingForm
+      ? Array.from(matchingForm.querySelectorAll("input, textarea, select")).filter((field) => field.name && field.hasAttribute("toolparamdescription"))
+      : [];
+
+    const modelContext = doc.modelContext;
+    let tools = [];
+    let toolError = "";
+    if (modelContext && typeof modelContext.getTools === "function") {
+      try { tools = await modelContext.getTools(); }
+      catch (error) { toolError = error instanceof Error ? error.message : String(error); }
+    }
+
+    const toolNames = tools.map((tool) => tool.name);
+    const expectedToolNames = [...page.expectedTools, page.expectedForm];
+    const missingTools = expectedToolNames.filter((name) => !toolNames.includes(name));
+    const schemasValid = tools.filter((tool) => expectedToolNames.includes(tool.name)).every((tool) =>
+      tool.inputSchema &&
+      tool.inputSchema.type === "object" &&
+      tool.inputSchema.properties &&
+      typeof tool.inputSchema.properties === "object" &&
+      Object.values(tool.inputSchema.properties).every((property) =>
+        property && typeof property === "object" &&
+        (!("description" in property) || typeof property.description === "string")
+      )
+    );
+
+    const executionResults = [];
+    if (modelContext && typeof modelContext.executeTool === "function") {
+      for (const tool of tools.filter((item) => page.expectedTools.includes(item.name))) {
+        try {
+          const result = await modelContext.executeTool(tool, {});
+          executionResults.push({ name: tool.name, ok: result !== undefined });
+        } catch (error) {
+          executionResults.push({ name: tool.name, ok: false, error: error instanceof Error ? error.message : String(error) });
+        }
+      }
+    }
+
+    return {
+      path: page.path,
+      apiAvailable: !!(modelContext && typeof modelContext.getTools === "function"),
+      formOk: !!matchingForm && fields.length >= 2,
+      formDetail: matchingForm ? page.expectedForm + "; " + fields.length + " medan berparameter" : "Anotasi borang atau penerangan parameter tidak lengkap",
+      toolOk: missingTools.length === 0 && !toolError,
+      toolDetail: "Dikesan: " + toolNames.join(", ") + (missingTools.length ? "; tiada: " + missingTools.join(", ") : ""),
+      schemaOk: schemasValid && tools.filter((tool) => expectedToolNames.includes(tool.name)).length === expectedToolNames.length,
+      schemaDetail: "Skema objek diperiksa bagi " + tools.filter((tool) => expectedToolNames.includes(tool.name)).length + "/" + expectedToolNames.length + " alat yang dijangka",
+      executionResults
+    };
+  }
+
+  async function run() {
+    runButton.disabled = true;
+    runButton.textContent = "Sedang menguji...";
+    frames.innerHTML = "";
+    browserStatus.className = "status warn";
+    browserStatus.textContent = "Ujian sedang berjalan";
+    browserMessage.textContent = "Memeriksa enam halaman KasuhaNET. Jangan tutup halaman ini.";
+    try {
+      const results = [];
+      for (const page of pages) {
+        try { results.push(await inspectPage(page)); }
+        catch (error) {
+          results.push({ path: page.path, apiAvailable: false, formOk: false, toolOk: false, schemaOk: false, formDetail: error.message, toolDetail: "Tidak dapat mengakses alat", schemaDetail: "Tidak dapat memeriksa skema", executionResults: [] });
+        }
+      }
+
+      const apiOk = results.every((result) => result.apiAvailable);
+      const formOk = results.every((result) => result.formOk);
+      const toolOk = results.every((result) => result.toolOk);
+      const schemaOk = results.every((result) => result.schemaOk);
+      const executionOk = results.every((result) => result.executionResults.every((item) => item.ok));
+      const overall = apiOk && formOk && toolOk && schemaOk && executionOk;
+
+      browserStatus.className = "status " + (overall ? "pass" : "fail");
+      browserStatus.textContent = overall ? "SEMUA UJIAN LULUS" : "MASIH ADA UJIAN GAGAL";
+      browserMessage.textContent = overall
+        ? "WebMCP tersedia, enam borang dikenal pasti, semua alat ditemui, skema disahkan dan alat bacaan berjaya dijalankan."
+        : "Semak butiran di bawah. Jika API tiada, pastikan Chrome versi yang disokong, flag WebMCP Testing diaktifkan dan Chrome telah dimulakan semula.";
+
+      renderCriteria([
+        { title: "1. Cakupan formulir WebMCP", ok: formOk, detail: results.filter((r) => r.formOk).length + "/6 halaman mempunyai anotasi borang dan sekurang-kurangnya dua medan berparameter." },
+        { title: "2. Alat WebMCP terdaftar", ok: toolOk && apiOk, detail: results.filter((r) => r.toolOk).length + "/6 halaman mendaftarkan alat yang dijangka; API tersedia: " + (apiOk ? "ya" : "tidak") + "." },
+        { title: "3. Skema WebMCP valid", ok: schemaOk, detail: results.filter((r) => r.schemaOk).length + "/6 halaman mempunyai skema objek yang boleh dibaca." }
+      ]);
+
+      details.innerHTML = results.map((r) =>
+        '<div class="result"><strong>' + r.path + '</strong>' +
+        '<p>Borang: ' + (r.formOk ? "LULUS" : "GAGAL") + " — " + r.formDetail + '</p>' +
+        '<p>Alat: ' + (r.toolOk ? "LULUS" : "GAGAL") + " — " + r.toolDetail + '</p>' +
+        '<p>Skema: ' + (r.schemaOk ? "LULUS" : "GAGAL") + " — " + r.schemaDetail + '</p>' +
+        (r.executionResults.length ? '<p>Pelaksanaan alat bacaan: ' + r.executionResults.map((x) => x.name + ": " + (x.ok ? "LULUS" : "GAGAL")).join("; ") + '</p>' : '') +
+        '</div>'
+      ).join("");
+    } catch (error) {
+      browserStatus.className = "status fail";
+      browserStatus.textContent = "UJIAN TIDAK DAPAT DIJALANKAN";
+      browserMessage.textContent = error instanceof Error ? error.message : String(error);
+    } finally {
+      runButton.disabled = false;
+      runButton.textContent = "Jalankan ujian WebMCP semula";
+    }
+  }
+
+  runButton.addEventListener("click", run);
+})();
+</script>
+</body>
+</html>
