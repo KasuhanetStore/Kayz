@@ -1161,7 +1161,7 @@
     {
       name: "kasuhanet_list_website_packages",
       title: "Website Development Packages",
-      description: "List the website development packages currently displayed on KasuhaNET.STORE with their published prices and summaries.",
+      description: "List the website development packages currently displayed on KasuhaNET.STORE with their published starting prices and summaries.",
       inputSchema: { type: "object", properties: {}, additionalProperties: false },
       outputSchema: {
         type: "object",
@@ -1174,7 +1174,7 @@
               properties: {
                 id: { type: "string" },
                 name: { type: "string" },
-                price: { type: "number" },
+                price: { type: "number", description: "Starting price in MYR; the displayed ++ indicates additional charges may apply depending on the agreed scope." },
                 description: { type: "string" }
               },
               required: ["id", "name", "price", "description"],
@@ -1188,7 +1188,7 @@
       execute: async () => ({
         currency: "MYR",
         packages: [
-          { id: "landing-page", name: "Landing Page Package", price: 299, description: "Single-page responsive website for campaigns, product launches and business profiles. Custom domain is not included." },
+          { id: "landing-page", name: "Landing Page Package", price: 299, description: "Starting price RM 299++; single-page responsive website for campaigns, product launches and business profiles. Custom domain is not included." },
           { id: "premium-standard", name: "Premium Standard", price: 900, description: "Multi-page website with content management, advanced SEO and product or activity showcases." }
         ]
       }),
