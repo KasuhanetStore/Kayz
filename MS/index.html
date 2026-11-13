@@ -963,99 +963,79 @@
 </script>
 
 <script>
-/* Alat WebMCP KasuhaNET: maklumat bacaan sahaja dan borang checkout yang memerlukan pengesahan pengguna. */
-(async function daftarAlatWebMCPKasuhaNet() {
+/* WebMCP KasuhaNET: alat bacaan sahaja yang selamat untuk agen pelayar. */
+(async function daftarWebMCPKasuhaNet() {
   const modelContext = document.modelContext;
   if (!modelContext || typeof modelContext.registerTool !== "function") return;
+
+  const controller = new AbortController();
+  window.addEventListener("pagehide", () => controller.abort(), { once: true });
 
   const tools = [
     {
       name: "kasuhanet_ringkasan_laman",
-      title: "Ringkasan Laman KasuhaNET",
-      description: "Berikan ringkasan KasuhaNET.STORE, bidang perkhidmatan utama dan bahasa yang disokong.",
-      inputSchema: { type: "object", properties: {}, additionalProperties: false },
-      outputSchema: {
+      description: "Memberikan tajuk halaman KasuhaNET semasa, penerangan awam, bahasa dan URL.",
+      inputSchema: {
         type: "object",
-        properties: {
-          nama: { type: "string" },
-          url: { type: "string" },
-          bahasa: { type: "array", items: { type: "string" } },
-          bidangPerkhidmatan: { type: "array", items: { type: "string" } }
-        },
-        required: ["nama", "url", "bahasa", "bidangPerkhidmatan"],
+        properties: {},
         additionalProperties: false
       },
-      execute: async () => ({
-        nama: "KasuhaNET.STORE",
-        url: "https://kasuhanet.store/MS/",
-        bahasa: ["Bahasa Melayu", "English"],
-        bidangPerkhidmatan: ["Pembangunan laman web", "Panduan Linux dan teknikal", "Perkhidmatan digital", "Maklumat affiliate", "Sokongan pelanggan"]
-      }),
+      execute() {
+        const metaDescription = document.querySelector('meta[name="description"]');
+        return {
+          nama: document.title || "KasuhaNET.STORE",
+          url: window.location.href,
+          bahasa: document.documentElement.lang || "ms",
+          penerangan: metaDescription ? metaDescription.content : "",
+          tajukUtama: document.querySelector("main h1, h1")?.textContent?.trim() || ""
+        };
+      },
       annotations: { readOnlyHint: true }
     },
     {
       name: "kasuhanet_senarai_pakej_laman_web",
-      title: "Senarai Pakej Laman Web",
-      description: "Senaraikan pakej pembangunan laman web yang dipaparkan di KasuhaNET.STORE bersama harga permulaan dan ringkasan yang diterbitkan.",
-      inputSchema: { type: "object", properties: {}, additionalProperties: false },
-      outputSchema: {
+      description: "Memberikan senarai pakej pembangunan laman web dan harga yang dipaparkan di halaman KasuhaNET semasa.",
+      inputSchema: {
         type: "object",
-        properties: {
-          mataWang: { type: "string" },
-          pakej: {
-            type: "array",
-            items: {
-              type: "object",
-              properties: {
-                id: { type: "string" },
-                nama: { type: "string" },
-                harga: { type: "number", description: "Harga permulaan dalam MYR; tanda ++ yang dipaparkan bermaksud caj tambahan mungkin dikenakan mengikut skop yang dipersetujui." },
-                penerangan: { type: "string" }
-              },
-              required: ["id", "nama", "harga", "penerangan"],
-              additionalProperties: false
-            }
-          }
-        },
-        required: ["mataWang", "pakej"],
+        properties: {},
         additionalProperties: false
       },
-      execute: async () => ({
-        mataWang: "MYR",
-        pakej: [
-          { id: "landing-page", nama: "Pakej Landing Page", harga: 299, penerangan: "Harga permulaan RM 299++; laman web responsif satu halaman untuk kempen, pelancaran produk dan profil perniagaan. Domain khusus tidak termasuk." },
-          { id: "premium-standard", nama: "Premium Standard", harga: 900, penerangan: "Laman web berbilang halaman dengan pengurusan kandungan, SEO lanjutan dan paparan produk atau aktiviti." }
-        ]
-      }),
+      execute() {
+        return {
+          mataWang: "MYR",
+          sumber: "Pilihan pakej laman web KasuhaNET",
+          pakej: [
+            { id: "landing-page", nama: "Pakej Landing Page", hargaPaparan: "RM 299++" },
+            { id: "premium-standard", nama: "Premium Standard", hargaPaparan: "RM 900++" }
+          ]
+        };
+      },
       annotations: { readOnlyHint: true }
     },
     {
       name: "kasuhanet_pilihan_hubungan",
-      title: "Pilihan Hubungan KasuhaNET",
-      description: "Berikan saluran hubungan sokongan pelanggan awam KasuhaNET.STORE. Jangan hantar borang atau mulakan pembayaran.",
-      inputSchema: { type: "object", properties: {}, additionalProperties: false },
-      outputSchema: {
+      description: "Memberikan pautan hubungan dan sokongan awam yang dipaparkan pada halaman KasuhaNET semasa.",
+      inputSchema: {
         type: "object",
-        properties: {
-          emel: { type: "string" },
-          whatsapp: { type: "string" },
-          halamanSokongan: { type: "string" }
-        },
-        required: ["emel", "whatsapp", "halamanSokongan"],
+        properties: {},
         additionalProperties: false
       },
-      execute: async () => ({
-        emel: "support@kasuhanet.store",
-        whatsapp: "https://wa.me/60167390501",
-        halamanSokongan: "https://kasuhanet.store/MS/support-centre-MS.html"
-      }),
+      execute() {
+        const pautan = Array.from(document.querySelectorAll('a[href^="mailto:"], a[href*="wa.me"], a[href*="whatsapp"], a[href*="support-centre"]'))
+          .map((link) => ({
+            label: (link.textContent || link.getAttribute("aria-label") || "").trim(),
+            url: link.href
+          }))
+          .filter((item) => item.url);
+        return { halamanSokongan: "https://kasuhanet.store/MS/support-centre-MS.html", pautanHubunganAwam: pautan };
+      },
       annotations: { readOnlyHint: true }
     }
   ];
 
   for (const tool of tools) {
     try {
-      await modelContext.registerTool(tool);
+      await modelContext.registerTool(tool, { signal: controller.signal });
     } catch (error) {
       console.error("Pendaftaran alat WebMCP KasuhaNET gagal:", tool.name, error);
     }
