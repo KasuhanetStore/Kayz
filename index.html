@@ -1164,7 +1164,7 @@ window.__kasuhaNetWebMCPReady = (async function registerKasuhaNetWebMCP() {
       execute() {
         const packages = Array.from(document.querySelectorAll("#pakej .price-card")).map((card) => ({
           name: card.querySelector("h3")?.textContent?.trim() || "",
-          price: card.querySelector(".price")?.textContent?.replace(/\\s+/g, " ").trim() || "",
+          price: card.querySelector(".price")?.textContent?.replace(/\s+/g, " ").trim() || "",
           description: card.querySelector(".price-sub")?.textContent?.trim() || ""
         })).filter((item) => item.name && item.price);
         return { currency: "MYR", packages };
