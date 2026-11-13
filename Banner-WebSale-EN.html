@@ -302,13 +302,13 @@
       <span id="knPackagePrice">RM 0</span>
       <p style="font-size:11px;color:#aeb5c4;margin:5px 0 0">One-time payment · MYR</p>
     </div>
-    <form class="kn-checkout-form" id="knCheckoutForm">
+    <form class="kn-checkout-form" id="knCheckoutForm" toolname="start_website_checkout" tooldescription="Prepare customer details for a KasuhaNET website package checkout. The visitor must select a package first. This form never submits payment automatically; the visitor must review the details and press the payment button.">
       <label for="knCustomerName">Full name</label>
-      <input id="knCustomerName" name="name" autocomplete="name" maxlength="100" required>
+      <input id="knCustomerName" name="name" autocomplete="name" maxlength="100" toolparamdescription="Customer full name for the website package order." required>
       <label for="knCustomerEmail">Email address</label>
-      <input id="knCustomerEmail" name="email" type="email" autocomplete="email" maxlength="254" required>
+      <input id="knCustomerEmail" name="email" type="email" autocomplete="email" maxlength="254" toolparamdescription="Valid email address for the order confirmation and payment record." required>
       <label for="knCustomerPhone">Phone number</label>
-      <input id="knCustomerPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60">
+      <input id="knCustomerPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60" toolparamdescription="Customer contact phone number, including country code when available.">
       <button class="kn-checkout-submit" id="knCheckoutSubmit" type="submit">CONTINUE TO SECURE PAYMENT</button>
       <p class="kn-checkout-note">Your payment is processed securely by Stripe. Available payment methods are shown on the Stripe payment page according to merchant account eligibility and settings. Do not share your card or banking credentials with KasuhaNET.</p>
       <div class="kn-checkout-error" id="knCheckoutError" role="alert"></div>
