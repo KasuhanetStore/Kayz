@@ -304,13 +304,13 @@
       <span id="knPackagePrice">RM 0</span>
       <p style="font-size:11px;color:#aeb5c4;margin:5px 0 0">Bayaran sekali sahaja · MYR</p>
     </div>
-    <form class="kn-checkout-form" id="knCheckoutForm">
+    <form class="kn-checkout-form" id="knCheckoutForm" toolname="mula_pembayaran_laman_web" tooldescription="Sediakan butiran pelanggan untuk checkout pakej laman web KasuhaNET. Pelawat mesti memilih pakej terlebih dahulu. Borang ini tidak menghantar pembayaran secara automatik; pelawat mesti menyemak butiran dan menekan butang pembayaran sendiri.">
       <label for="knCustomerName">Nama penuh</label>
-      <input id="knCustomerName" name="name" autocomplete="name" maxlength="100" required>
+      <input id="knCustomerName" name="name" autocomplete="name" maxlength="100" toolparamdescription="Nama penuh pelanggan untuk pesanan pakej laman web." required>
       <label for="knCustomerEmail">Alamat e-mel</label>
-      <input id="knCustomerEmail" name="email" type="email" autocomplete="email" maxlength="254" required>
+      <input id="knCustomerEmail" name="email" type="email" autocomplete="email" maxlength="254" toolparamdescription="Alamat e-mel yang sah untuk pengesahan pesanan dan rekod pembayaran." required>
       <label for="knCustomerPhone">Nombor telefon</label>
-      <input id="knCustomerPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60">
+      <input id="knCustomerPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60" toolparamdescription="Nombor telefon untuk dihubungi, termasuk kod negara jika tersedia.">
       <button class="kn-checkout-submit" id="knCheckoutSubmit" type="submit">TERUSKAN KE PEMBAYARAN SELAMAT</button>
       <p class="kn-checkout-note">Pembayaran diproses dengan selamat melalui Stripe. Kaedah pembayaran yang tersedia akan dipaparkan pada halaman Stripe mengikut kelayakan dan tetapan akaun peniaga. Jangan kongsi maklumat kad atau perbankan anda dengan KasuhaNET.</p>
       <div class="kn-checkout-error" id="knCheckoutError" role="alert"></div>
