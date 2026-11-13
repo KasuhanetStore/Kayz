@@ -964,22 +964,22 @@
 
 <script>
 /* WebMCP KasuhaNET: alat bacaan sahaja yang selamat untuk agen pelayar. */
-(async function daftarWebMCPKasuhaNet() {
+window.__kasuhaNetWebMCPReady = (async function daftarWebMCPKasuhaNet() {
   const modelContext = document.modelContext;
-  if (!modelContext || typeof modelContext.registerTool !== "function") return;
+  if (!modelContext || typeof modelContext.registerTool !== "function") {
+    return { supported: false, registered: [], errors: ["API WebMCP tidak tersedia dalam konteks pelayar ini."] };
+  }
 
   const controller = new AbortController();
   window.addEventListener("pagehide", () => controller.abort(), { once: true });
+  const registered = [];
+  const errors = [];
 
   const tools = [
     {
       name: "kasuhanet_ringkasan_laman",
       description: "Memberikan tajuk halaman KasuhaNET semasa, penerangan awam, bahasa dan URL.",
-      inputSchema: {
-        type: "object",
-        properties: {},
-        additionalProperties: false
-      },
+      inputSchema: { type: "object", properties: {}, additionalProperties: false },
       execute() {
         const metaDescription = document.querySelector('meta[name="description"]');
         return {
@@ -994,32 +994,22 @@
     },
     {
       name: "kasuhanet_senarai_pakej_laman_web",
-      description: "Memberikan senarai pakej pembangunan laman web dan harga yang dipaparkan di halaman KasuhaNET semasa.",
-      inputSchema: {
-        type: "object",
-        properties: {},
-        additionalProperties: false
-      },
+      description: "Memberikan senarai pakej pembangunan laman web dan harga yang dipaparkan di KasuhaNET.",
+      inputSchema: { type: "object", properties: {}, additionalProperties: false },
       execute() {
-        return {
-          mataWang: "MYR",
-          sumber: "Pilihan pakej laman web KasuhaNET",
-          pakej: [
-            { id: "landing-page", nama: "Pakej Landing Page", hargaPaparan: "RM 299++" },
-            { id: "premium-standard", nama: "Premium Standard", hargaPaparan: "RM 900++" }
-          ]
-        };
+        const pakej = Array.from(document.querySelectorAll("#pakej .price-card")).map((card) => ({
+          nama: card.querySelector("h3")?.textContent?.trim() || "",
+          harga: card.querySelector(".price")?.textContent?.replace(/\\s+/g, " ").trim() || "",
+          penerangan: card.querySelector(".price-sub")?.textContent?.trim() || ""
+        })).filter((item) => item.nama && item.harga);
+        return { mataWang: "MYR", pakej };
       },
       annotations: { readOnlyHint: true }
     },
     {
       name: "kasuhanet_pilihan_hubungan",
-      description: "Memberikan pautan hubungan dan sokongan awam yang dipaparkan pada halaman KasuhaNET semasa.",
-      inputSchema: {
-        type: "object",
-        properties: {},
-        additionalProperties: false
-      },
+      description: "Memberikan pautan hubungan dan sokongan awam yang diterbitkan oleh KasuhaNET.",
+      inputSchema: { type: "object", properties: {}, additionalProperties: false },
       execute() {
         const pautan = Array.from(document.querySelectorAll('a[href^="mailto:"], a[href*="wa.me"], a[href*="whatsapp"], a[href*="support-centre"]'))
           .map((link) => ({
@@ -1036,10 +1026,13 @@
   for (const tool of tools) {
     try {
       await modelContext.registerTool(tool, { signal: controller.signal });
+      registered.push(tool.name);
     } catch (error) {
+      errors.push({ tool: tool.name, message: error instanceof Error ? error.message : String(error) });
       console.error("Pendaftaran alat WebMCP KasuhaNET gagal:", tool.name, error);
     }
   }
+  return { supported: true, registered, errors };
 })();
 </script>
 
