@@ -81,7 +81,7 @@
   function loadFrame(path) {
     return new Promise((resolve, reject) => {
       const frame = document.createElement("iframe");
-      frame.src = path + (path.includes("?") ? "&" : "?") + "webmcp_diagnostic=1";
+      frame.src = path + (path.includes("?") ? "&" : "?") + "webmcp_diagnostic=20261113c";
       frame.onload = () => resolve(frame);
       frame.onerror = () => reject(new Error("Gagal memuat " + path));
       frames.appendChild(frame);
@@ -110,9 +110,13 @@
       form.getAttribute("tooldescription").trim()
     );
     const matchingForm = annotated.find((form) => form.getAttribute("toolname") === page.expectedForm);
-    const fields = matchingForm
-      ? Array.from(matchingForm.querySelectorAll("input, textarea, select")).filter((field) => field.name && field.hasAttribute("toolparamdescription"))
+    const formControls = matchingForm
+      ? Array.from(matchingForm.querySelectorAll("input, textarea, select")).filter((field) =>
+          field.name && !["submit", "button", "reset", "image", "hidden"].includes((field.type || "").toLowerCase())
+        )
       : [];
+    const fields = formControls.filter((field) => field.hasAttribute("toolparamdescription"));
+    const expectedFormProperties = formControls.map((field) => field.name);
 
     const modelContext = doc.modelContext;
     let tools = [];
@@ -129,21 +133,28 @@
     const expectedToolNames = [...page.expectedTools, page.expectedForm];
     const missingTools = expectedToolNames.filter((name) => !toolNames.includes(name));
     function isReadableObjectSchema(schema) {
-      return !!(
-        schema &&
-        typeof schema === "object" &&
-        schema.type === "object" &&
-        schema.properties &&
-        typeof schema.properties === "object" &&
-        !Array.isArray(schema.properties) &&
-        Object.values(schema.properties).every((property) =>
-          property && typeof property === "object" &&
-          (!("description" in property) || typeof property.description === "string")
-        )
+      if (!schema || typeof schema !== "object" || schema.type !== "object") return false;
+      if (!schema.properties || typeof schema.properties !== "object" || Array.isArray(schema.properties)) return false;
+      return Object.entries(schema.properties).every(([key, property]) =>
+        !!key && property && typeof property === "object" &&
+        (!("type" in property) || typeof property.type === "string" || Array.isArray(property.type)) &&
+        (!("description" in property) || typeof property.description === "string")
       );
     }
-    const schemasValid = expectedToolNames.every((name) =>
+    const formCandidates = tools.filter((tool) => tool.name === page.expectedForm && isReadableObjectSchema(tool.inputSchema));
+    const matchingFormTool = formCandidates.find((tool) =>
+      expectedFormProperties.every((propertyName) =>
+        Object.prototype.hasOwnProperty.call(tool.inputSchema.properties, propertyName)
+      )
+    );
+    const imperativeSchemasValid = page.expectedTools.every((name) =>
       tools.some((tool) => tool.name === name && isReadableObjectSchema(tool.inputSchema))
+    );
+    const formSchemaValid = !!matchingFormTool;
+    const schemasValid = imperativeSchemasValid && formSchemaValid;
+    const formSchemaKeys = matchingFormTool ? Object.keys(matchingFormTool.inputSchema.properties) : [];
+    const formSchemaDiagnostics = formCandidates.map((tool) =>
+      Object.keys(tool.inputSchema.properties || {}).join(",") || "(tiada properties)"
     );
 
     const executionResults = [];
@@ -166,9 +177,18 @@
       toolOk: missingTools.length === 0 && !toolError,
       toolDetail: "Dikesan: " + toolNames.join(", ") + (missingTools.length ? "; tiada: " + missingTools.join(", ") : ""),
       schemaOk: schemasValid,
-      schemaDetail: "Skema objek sah bagi " + expectedToolNames.filter((name) => tools.some((tool) => tool.name === name && isReadableObjectSchema(tool.inputSchema))).length + "/" + expectedToolNames.length + " alat yang dijangka",
+      schemaDetail: "Borang: " + (formSchemaValid ? "LULUS" : "GAGAL") +
+        " (medan diperlukan: " + expectedFormProperties.join(", ") +
+        "; properties skema: " + (formSchemaKeys.join(", ") || "tiada") +
+        "; calon skema: " + (formSchemaDiagnostics.join(" | ") || "tiada") + ")" +
+        "; alat bacaan: " + page.expectedTools.filter((name) =>
+          tools.some((tool) => tool.name === name && isReadableObjectSchema(tool.inputSchema))
+        ).length + "/" + page.expectedTools.length,
       executionResults
     };
+    // Remove each inspected frame immediately so its declarative tools cannot
+    // pollute the next page's tool list in the shared same-origin context.
+    frame.remove();
   }
 
   async function run() {
