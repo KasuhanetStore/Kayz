@@ -996,7 +996,7 @@
     {
       name: "kasuhanet_senarai_pakej_laman_web",
       title: "Senarai Pakej Laman Web",
-      description: "Senaraikan pakej pembangunan laman web yang dipaparkan di KasuhaNET.STORE bersama harga dan ringkasan yang diterbitkan.",
+      description: "Senaraikan pakej pembangunan laman web yang dipaparkan di KasuhaNET.STORE bersama harga permulaan dan ringkasan yang diterbitkan.",
       inputSchema: { type: "object", properties: {}, additionalProperties: false },
       outputSchema: {
         type: "object",
@@ -1009,7 +1009,7 @@
               properties: {
                 id: { type: "string" },
                 nama: { type: "string" },
-                harga: { type: "number" },
+                harga: { type: "number", description: "Harga permulaan dalam MYR; tanda ++ yang dipaparkan bermaksud caj tambahan mungkin dikenakan mengikut skop yang dipersetujui." },
                 penerangan: { type: "string" }
               },
               required: ["id", "nama", "harga", "penerangan"],
@@ -1023,7 +1023,7 @@
       execute: async () => ({
         mataWang: "MYR",
         pakej: [
-          { id: "landing-page", nama: "Pakej Landing Page", harga: 299, penerangan: "Laman web responsif satu halaman untuk kempen, pelancaran produk dan profil perniagaan. Domain khusus tidak termasuk." },
+          { id: "landing-page", nama: "Pakej Landing Page", harga: 299, penerangan: "Harga permulaan RM 299++; laman web responsif satu halaman untuk kempen, pelancaran produk dan profil perniagaan. Domain khusus tidak termasuk." },
           { id: "premium-standard", nama: "Premium Standard", harga: 900, penerangan: "Laman web berbilang halaman dengan pengurusan kandungan, SEO lanjutan dan paparan produk atau aktiviti." }
         ]
       }),
