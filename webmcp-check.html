@@ -102,6 +102,14 @@
       ]);
     }
 
+    // The Banner checkout form lives inside a closed modal by default.
+    // Open the modal only inside this hidden diagnostic iframe so the browser
+    // can inspect the same fields a visitor sees during checkout.
+    if (page.path.includes("Banner-WebSale") && typeof win.openCheckout === "function") {
+      win.openCheckout("landing-page");
+      await new Promise((resolve) => setTimeout(resolve, 250));
+    }
+
     const forms = Array.from(doc.querySelectorAll("form"));
     const annotated = forms.filter((form) =>
       form.hasAttribute("toolname") &&
