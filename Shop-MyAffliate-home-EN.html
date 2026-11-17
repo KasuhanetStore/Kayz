@@ -578,6 +578,8 @@
     })
     .then(data => {
         document.getElementById("footer-placeholder").innerHTML = data;
+      const footerYear = document.querySelector("#footer-placeholder #year");
+      if (footerYear) footerYear.textContent = new Date().getFullYear();
     })
     .catch(error => console.error(error));
 </script>
