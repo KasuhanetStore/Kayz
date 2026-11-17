@@ -63,7 +63,7 @@
         <a href="../../MS/index.html">LAMAN UTAMA</a>
         <a href="../../MS/about-us-MS.html">TENTANG KAMI</a>
         <a href="index.html" aria-current="page">PANDUAN</a>
-        <a href="../../MS/terms-MS.html">TERMA &amp; POLISI</a>
+        <a href="../../MS/privacy-policy-MS.html">POLISI PRIVASI</a>
         <a href="../../MS/support-centre-MS.html">SOKONGAN</a>
         <a class="btn" href="../../guides/">EN</a>
         <a class="btn active" href="index.html" lang="ms" aria-current="page">BM</a>
@@ -120,7 +120,7 @@
       .then(data => {
         data = data.replaceAll('href="about-us-MS.html"', 'href="../../MS/about-us-MS.html"')
           .replaceAll('href="support-centre-MS.html"', 'href="../../MS/support-centre-MS.html"')
-          .replaceAll('href="terms-MS.html"', 'href="../../MS/terms-MS.html"')
+          .replaceAll('href="privacy-policy-MS.html"', 'href="../../MS/privacy-policy-MS.html"')
           .replaceAll('href="privacy-policy-MS.html"', 'href="../../MS/privacy-policy-MS.html"')
           .replaceAll('href="panduan/index.html"', 'href="../../MS/panduan/"');
         document.getElementById("footer-placeholder").innerHTML = data;
