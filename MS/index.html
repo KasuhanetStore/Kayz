@@ -160,7 +160,17 @@
     .feature-list li::before { content: "✓"; color: #ff657c; font-weight: 900; margin-right: 10px; }
     .price-card .btn { width: 100%; position: relative; justify-content: center; gap: 12px; }
     .price-card .btn .stripe-button-logo { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: block; width: 116px; max-width: 38%; height: auto; object-fit: contain; opacity: 1; pointer-events: none; } 
-.price-card .btn span { position: relative; z-index: 1; }
+.price-card .btn span {
+  position: relative;
+  z-index: 1;
+  font-weight: 900;
+  color: #dce3ec;
+  background: linear-gradient(180deg, #ffffff 0%, #e8edf4 24%, #aeb9c8 48%, #f8fbff 62%, #9ba8b9 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 0 #071b3d) drop-shadow(0 0 2px #071b3d) drop-shadow(0 0 5px rgba(5, 25, 62, .9));
+}
     .upgrade-note { margin-top: 22px; padding: 16px 18px; border: 1px dashed rgba(255,112,132,.35); border-radius: 14px; color: var(--muted); font-size: 13px; background: rgba(255,48,79,.045); }
     .upgrade-note strong { color: #fff; }
     .process-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; counter-reset: step; }
