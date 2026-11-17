@@ -340,8 +340,8 @@ body.kn-checkout-active { overflow: hidden; }
   top: 50%;
   transform: translate(-50%, -50%);
   display: block;
-  width: 116px;
-  max-width: 38%;
+  width: 60px;
+  max-width: 22%;
   height: auto;
   object-fit: contain;
   opacity: 1;
