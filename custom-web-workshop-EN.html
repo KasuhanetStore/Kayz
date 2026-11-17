@@ -893,7 +893,7 @@ footer > * { position: relative; z-index: 1; }
   const money = value => new Intl.NumberFormat("en-MY",{style:"currency",currency:"MYR",maximumFractionDigits:2}).format(value/100);
   const cart = document.createElement("section");
   cart.className = "kn-workshop-cart";
-  cart.innerHTML = '<h3>Shopping Cart</h3><p>Tick the services you want. Selected services will appear here.</p><div id="knWorkshopCartItems" class="kn-workshop-cart-items" aria-live="polite"><p class="kn-workshop-empty">Your cart is empty.</p></div><div class="kn-workshop-cart-total"><span>Total</span><strong id="knWorkshopTotal">RM 0.00</strong></div><p id="knWorkshopCount" aria-live="polite">0 items</p><button class="kn-workshop-pay" id="knWorkshopCheckout" type="button" disabled>PROCEED TO PAYMENT</button>';
+  cart.innerHTML = '<h3>Shopping Cart</h3><p>Select the services you want and add them to your cart.</p><div id="knWorkshopCartItems" class="kn-workshop-cart-items" aria-live="polite"><p class="kn-workshop-empty">Your cart is empty.</p></div><div class="kn-workshop-cart-total"><span>Total</span><strong id="knWorkshopTotal">RM 0.00</strong></div><p id="knWorkshopCount" aria-live="polite">0 items</p><button class="kn-workshop-pay" id="knWorkshopCheckout" type="button" disabled>PROCEED TO CHECKOUT</button>';
   const grid = document.querySelector(".custom-services-grid");
   document.body.append(cart);
   const floatButton=document.createElement("button");
@@ -920,7 +920,7 @@ footer > * { position: relative; z-index: 1; }
     checkbox.value = serviceIds[index];
     checkbox.setAttribute("aria-label","Add "+title+" to order");
     const caption = document.createElement("span");
-    caption.textContent = "Add this service to my order";
+    caption.textContent = "Add to Cart";
     label.append(checkbox,caption);
     card.append(label);
     checkbox.addEventListener("change",updateCart);
@@ -939,7 +939,7 @@ footer > * { position: relative; z-index: 1; }
     if(!items.length){
       const empty=document.createElement("p");
       empty.className="kn-workshop-empty";
-      empty.textContent="Your cart is empty. Tick a service above to add it.";
+      empty.textContent="Your cart is empty. Select a service above to add it.";
       list.append(empty);
     } else {
       items.forEach(item=>{
