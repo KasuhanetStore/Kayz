@@ -1,11 +1,133 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ms">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Pusat Panduan KasuhaNET | Panduan Teknikal Praktikal</title><meta name="description" content="Panduan asli dan praktikal untuk Linux, Cloudflare D1, pembangunan web dan integrasi pembayaran yang lebih selamat."><meta name="google-adsense-account" content="ca-pub-4280897190566760"><meta name="robots" content="index,follow">
-<link rel="canonical" href="https://kasuhanet.store/MS/panduan/index.html"><link rel="alternate" hreflang="en" href="https://kasuhanet.store/guides/index.html"><link rel="alternate" hreflang="ms" href="https://kasuhanet.store/MS/panduan/index.html">
-<style>
-:root{color-scheme:dark;--bg:#08090d;--panel:#141720;--text:#f6f7fb;--muted:#b9bdca;--accent:#ff7187;--line:rgba(255,255,255,.13)}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.75 Inter,Arial,sans-serif}header{border-bottom:1px solid var(--line);background:#0d0f16;padding:16px 20px}nav{max-width:980px;margin:auto;display:flex;gap:18px;flex-wrap:wrap;align-items:center}nav a{color:#fff;text-decoration:none;font-size:14px}main{max-width:900px;margin:38px auto;padding:0 20px 48px}h1{font-size:clamp(30px,5vw,46px);line-height:1.15;margin:10px 0 12px}h2{font-size:23px;margin:30px 0 8px}h3{font-size:18px;margin:22px 0 6px}p,li{color:#d5d8e2}.meta{color:var(--muted);font-size:13px}.intro{font-size:18px;color:#e3e5ec}.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;margin:16px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}.grid a{display:block;color:#fff;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}.grid a:hover{border-color:var(--accent)}code,pre{background:#090b11;border:1px solid var(--line);border-radius:8px}code{padding:2px 6px}pre{padding:16px;overflow:auto;color:#f4f4f4;line-height:1.55}footer{border-top:1px solid var(--line);padding:24px;text-align:center;color:var(--muted);font-size:13px}
-</style></head>
-<body><header><nav><a href="../../MS/index.html"><strong>KasuhaNET.STORE</strong></a><a href="index.html">Pusat Panduan</a><a href="../../MS/about-us-MS.html">Tentang Kami</a><a href="../../MS/privacy-policy-MS.html">Polisi Privasi</a></nav></header>
-<main><h1>Pusat Panduan KasuhaNET</h1><p class="intro">Nota teknikal dan panduan langkah demi langkah untuk operasi web yang lazim. Setiap panduan menerangkan tujuan arahan, perkara yang perlu disemak dan langkah berjaga-jaga.</p><p class="meta">Diselenggara oleh KasuhaNET Resources · Bahasa Melayu</p><div class="grid"><a href="linux-package-management.html"><h2>Pengurusan Pakej APT</h2><p>Kemas kini senarai pakej, pasang perisian, sahkan pemasangan dan selesaikan ralat lazim pada Debian dan Ubuntu.</p></a><a href="cloudflare-d1-sql-basics.html"><h2>Cloudflare D1 dan SQL</h2><p>Semak jadual, fahami skema, jalankan pertanyaan baca sahaja dan gunakan arahan berparameter dalam Workers.</p></a><a href="secure-web-checkout-basics.html"><h2>Checkout Web Lebih Selamat</h2><p>Validasi pada server, simpanan secret, webhook yang disahkan dan pengurusan status pesanan.</p></a></div></main><footer>© 2026 KasuhaNET Resources · <a href="../../MS/terms-MS.html" style="color:#ff9aaa">Terma & Polisi</a></footer></body></html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pusat Panduan KasuhaNET | Panduan Teknikal Praktikal</title>
+  <meta name="description" content="Panduan asli dan praktikal untuk Linux, Cloudflare D1, pembangunan web dan integrasi pembayaran yang lebih selamat.">
+  <meta name="google-adsense-account" content="ca-pub-4280897190566760">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://kasuhanet.store/MS/panduan/">
+  <link rel="alternate" hreflang="en" href="https://kasuhanet.store/guides/">
+  <link rel="alternate" hreflang="ms" href="https://kasuhanet.store/MS/panduan/">
+  <link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/guides/">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root{--bg:#08090d;--panel:#12141c;--panel2:#191b25;--text:#f6f7fb;--muted:#b9bdca;--red:#ff304f;--red-dark:#a90025;--orange:#ff7a35;--line:rgba(255,255,255,.12)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;overflow-x:hidden}
+    body{margin:0;min-height:100vh;display:flex;flex-direction:column;background:radial-gradient(circle at 80% 0%,rgba(255,48,79,.14),transparent 30%),var(--bg);color:var(--text);font-family:Inter,Arial,Helvetica,sans-serif;line-height:1.6;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    .container{width:min(1120px,calc(100% - 36px));margin:0 auto}
+    .topbar{position:sticky;top:0;z-index:20;background:rgba(8,9,13,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:inline-flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.5px}
+    .brand img{display:block;width:auto;height:auto;max-width:180px;max-height:58px;object-fit:contain}
+    .nav-links{display:flex;align-items:center;justify-content:flex-end;gap:20px;flex-wrap:wrap;color:#d8dbe4;font-size:13px}
+    .nav-links>a:not(.btn){transition:color .18s ease}
+    .nav-links>a:not(.btn):hover{color:#ff7187}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:9px 13px;border:1px solid rgba(255,255,255,.2);border-radius:9px;font-size:12px;font-weight:800;transition:.2s ease}
+    .btn:hover{border-color:var(--red);color:#fff}
+    .btn.active{background:linear-gradient(120deg,var(--red-dark),var(--red),var(--orange));border-color:transparent;color:#fff}
+    .hero{position:relative;isolation:isolate;overflow:hidden;padding:70px 0 58px;background:#05070d url("../../broadcast.png") center/cover no-repeat}
+    .hero:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,rgba(5,7,13,.92),rgba(5,7,13,.72) 55%,rgba(5,7,13,.86))}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;color:#ff8b9c;font-size:12px;font-weight:900;letter-spacing:2px;text-transform:uppercase}
+    .eyebrow:before{content:"";width:25px;height:2px;background:linear-gradient(90deg,var(--red),var(--orange))}
+    h1{font-size:clamp(34px,5vw,56px);line-height:1.1;letter-spacing:-1.5px;margin:16px 0}
+    .gradient-text{background:linear-gradient(100deg,#fff 0%,#ff7187 48%,#ff9b52 100%);color:transparent;background-clip:text;-webkit-background-clip:text}
+    .hero p{max-width:760px;color:#d5d8e2;font-size:17px;margin:0}
+    .section{padding:54px 0 72px}
+     main.section{flex:1 0 auto}
+    .section-head{text-align:center;max-width:760px;margin:0 auto 34px}
+    .section-head h2{font-size:clamp(25px,4vw,38px);line-height:1.2;margin:12px 0}
+    .section-head p{color:var(--muted);margin:0}
+    .guide-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+    .guide-card{display:flex;flex-direction:column;min-height:250px;padding:25px;background:linear-gradient(145deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:17px;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+    .guide-card:hover{transform:translateY(-4px);border-color:rgba(255,80,110,.65);box-shadow:0 16px 38px rgba(0,0,0,.25)}
+    .guide-icon{width:48px;height:48px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(135deg,rgba(255,48,79,.22),rgba(255,122,53,.13));border:1px solid rgba(255,90,110,.25);font-size:21px;color:#ff899a}
+    .guide-card h3{font-size:19px;line-height:1.3;margin:18px 0 9px}
+    .guide-card p{font-size:14px;color:var(--muted);margin:0 0 20px;flex:1}
+    .read-link{display:inline-flex;align-items:center;gap:8px;color:#ff899a;font-size:13px;font-weight:900}
+    .read-link:hover{color:#fff}
+    @media(max-width:850px){.nav{padding:14px 0;align-items:flex-start;flex-direction:column;gap:12px}.nav-links{justify-content:flex-start;gap:12px}.guide-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:560px){.container{width:min(100% - 28px,1120px)}.hero{padding:52px 0 44px}.hero p{font-size:15px}.guide-grid{grid-template-columns:1fr}.guide-card{min-height:0}.nav-links{font-size:12px}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="../../MS/index.html" aria-label="KasuhaNET home"><img src="../../img/logo3.png" alt="KasuhaNET.STORE"></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="../../MS/index.html">HOME</a>
+        <a href="../../MS/about-us-MS.html">ABOUT US</a>
+        <a href="index.html" aria-current="page">KNOWLEDGE</a>
+        <a href="../../MS/terms-MS.html">TERMS &amp; POLICY</a>
+        <a href="../../MS/support-centre-MS.html">SUPPORT</a>
+        <a class="btn active" href="../../guides/">EN</a>
+        <a class="btn" href="index.html" lang="ms">BM</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">KasuhaNET Resources · Perpustakaan Teknikal</span>
+      <h1>Pusat <span class="gradient-text">Panduan</span></h1>
+      <p>Nota teknikal dan panduan langkah demi langkah untuk operasi web yang lazim. Ketahui fungsi setiap arahan, perkara yang perlu disahkan dan cara mengelakkan kesilapan biasa.</p>
+    </div>
+  </section>
+
+  <main class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Belajar · Bina · Selenggara</span>
+        <h2>Panduan Praktikal untuk <span class="gradient-text">Operasi Harian</span></h2>
+        <p>Panduan asli yang diselenggara oleh KasuhaNET Resources, merangkumi pentadbiran server, operasi pangkalan data dan pembayaran dalam talian yang lebih selamat.</p>
+      </div>
+      <div class="guide-grid">
+        <a class="guide-card" href="linux-package-management.html">
+          <span class="guide-icon"><i class="fa-solid fa-terminal" aria-hidden="true"></i></span>
+          <h3>Pengurusan Pakej APT</h3>
+          <p>Kemas kini senarai pakej, pasang perisian, sahkan pemasangan dan selesaikan ralat lazim pada Debian dan Ubuntu.</p>
+          <span class="read-link">BACA PANDUAN <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </a>
+        <a class="guide-card" href="cloudflare-d1-sql-basics.html">
+          <span class="guide-icon"><i class="fa-solid fa-database" aria-hidden="true"></i></span>
+          <h3>Cloudflare D1 dan SQL</h3>
+          <p>Semak jadual, fahami skema, jalankan pertanyaan baca sahaja dan gunakan arahan berparameter dalam Workers.</p>
+          <span class="read-link">BACA PANDUAN <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </a>
+        <a class="guide-card" href="secure-web-checkout-basics.html">
+          <span class="guide-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
+          <h3>Checkout Web Lebih Selamat</h3>
+          <p>Validasi pada server, penyimpanan secret, webhook yang disahkan dan pengurusan status pesanan yang selamat.</p>
+          <span class="read-link">BACA PANDUAN <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer bersama mengikut halaman utama versi Bahasa Melayu -->
+  <div id="footer-placeholder"></div>
+  <script>
+    fetch("../../template-text/MS/template-footer-MS.html")
+      .then(response => {
+        if (!response.ok) throw new Error("Footer template failed to load");
+        return response.text();
+      })
+      .then(data => {
+        data = data.replaceAll('href="about-us-MS.html"', 'href="../../MS/about-us-MS.html"')
+          .replaceAll('href="support-centre-MS.html"', 'href="../../MS/support-centre-MS.html"')
+          .replaceAll('href="terms-MS.html"', 'href="../../MS/terms-MS.html"')
+          .replaceAll('href="privacy-policy-MS.html"', 'href="../../MS/privacy-policy-MS.html"')
+          .replaceAll('href="panduan/index.html"', 'href="../../MS/panduan/"');
+        document.getElementById("footer-placeholder").innerHTML = data;
+        const year = document.getElementById("year");
+        if (year) year.textContent = new Date().getFullYear();
+      })
+      .catch(error => console.error(error));
+  </script>
+</body>
+</html>
