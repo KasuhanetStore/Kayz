@@ -369,3 +369,8 @@ details.accordion-box[open] { padding-bottom: 24px; }
     .cta-box { padding: 25px; align-items: flex-start; flex-direction: column; }
     .whatsapp-float { width: 56px; height: 56px; right: 15px; bottom: 15px; }
 }
+
+/* Shared footer brand background: 5% opacity */
+footer { position: relative; isolation: isolate; overflow: hidden; }
+footer::before { content: ""; position: absolute; inset: 0; background: url("/img/LogoOfficialTeks.png") center center / contain no-repeat; opacity: .05; pointer-events: none; z-index: 0; }
+footer > * { position: relative; z-index: 1; }
