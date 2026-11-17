@@ -50,16 +50,8 @@
     .guide-card p{font-size:14px;color:var(--muted);margin:0 0 20px;flex:1}
     .read-link{display:inline-flex;align-items:center;gap:8px;color:#ff899a;font-size:13px;font-weight:900}
     .read-link:hover{color:#fff}
-    .footer{background:#090b11;border-top:1px solid var(--line);padding:34px 0 18px}
-    .footer-grid{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:28px}
-    .footer h3{font-size:17px;margin:0 0 10px;color:#fff}
-    .footer h4{font-size:13px;color:#ff899a;margin:0 0 12px}
-    .footer p,.footer a{font-size:12px;color:#aeb3c1;line-height:1.8}
-    .footer-links{display:flex;flex-direction:column;gap:5px}
-    .footer a:hover{color:#fff}
-    .footer-bottom{text-align:center;border-top:1px solid rgba(255,255,255,.07);margin-top:26px;padding-top:16px;color:#777d8d;font-size:11px}
-    @media(max-width:850px){.nav{padding:14px 0;align-items:flex-start;flex-direction:column;gap:12px}.nav-links{justify-content:flex-start;gap:12px}.guide-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:560px){.container{width:min(100% - 28px,1120px)}.hero{padding:52px 0 44px}.hero p{font-size:15px}.guide-grid{grid-template-columns:1fr}.guide-card{min-height:0}.footer-grid{grid-template-columns:1fr}.nav-links{font-size:12px}}
+    @media(max-width:850px){.nav{padding:14px 0;align-items:flex-start;flex-direction:column;gap:12px}.nav-links{justify-content:flex-start;gap:12px}.guide-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:560px){.container{width:min(100% - 28px,1120px)}.hero{padding:52px 0 44px}.hero p{font-size:15px}.guide-grid{grid-template-columns:1fr}.guide-card{min-height:0}.nav-links{font-size:12px}}
   </style>
 </head>
 <body>
@@ -116,16 +108,18 @@
     </div>
   </main>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div><h3>KasuhaNET.STORE</h3><p>Digital services, website development and practical technical resources from KasuhaNET Resources.</p></div>
-        <div class="footer-links"><h4>EXPLORE</h4><a href="../index.html">Home</a><a href="index.html">Knowledge Centre</a><a href="../about-us-EN.html">About Us</a></div>
-        <div class="footer-links"><h4>INFORMATION</h4><a href="../terms-EN.html">Terms &amp; Policies</a><a href="../privacy-policy-EN.html">Privacy Policy</a></div>
-        <div class="footer-links"><h4>SUPPORT</h4><a href="../support-centre-EN.html">Support Centre</a><a href="https://t.me/kasuhanetstorebot" target="_blank" rel="noopener">Telegram</a></div>
-      </div>
-      <div class="footer-bottom">© 2026 KasuhaNET Resources. All Rights Reserved.</div>
-    </div>
-  </footer>
+  <!-- Shared site footer, matching the main EN pages -->
+  <div id="footer-placeholder"></div>
+  <script>
+    fetch("../template-text/EN/template-footer-EN.html")
+      .then(response => {
+        if (!response.ok) throw new Error("Footer template failed to load");
+        return response.text();
+      })
+      .then(data => {
+        document.getElementById("footer-placeholder").innerHTML = data;
+      })
+      .catch(error => console.error(error));
+  </script>
 </body>
 </html>
