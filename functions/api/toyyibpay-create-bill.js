@@ -69,7 +69,19 @@ export async function onRequestPost({request,env}){
   const returnPage=isWorkshop?(locale==="MS"?"https://kasuhanet.store/MS/Bengkel-Custom-WebSite-MS.html":"https://kasuhanet.store/custom-web-workshop-EN"):"https://kasuhanet.store/Banner-WebSale-EN.html";
   const billName=("KasuhaNET_"+externalRef).slice(0,30);
   const billDescription=("Payment_"+externalRef).slice(0,100);
-  const form=new URLSearchParams({
+  // Check whether DuitNow QR has been activated for this ToyyibPay merchant.
+  // If it is not active or the status endpoint is unavailable, keep the existing FPX/card checkout working.
+  let duitNowQrEnabled=false;
+  try{
+    const statusForm=new URLSearchParams({userSecretKey:env.TOYYIBPAY_SECRET_KEY.trim()});
+    const statusResponse=await fetch(API+"/checkDuitNowQRStatus",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:statusForm.toString()});
+    const statusRaw=await statusResponse.text();
+    const statusData=JSON.parse(statusRaw);
+    duitNowQrEnabled=statusResponse.ok && statusData?.status==="success" && statusData?.duitnowqr_activated===true;
+  }catch{
+    duitNowQrEnabled=false;
+  }
+  const billFields={
     userSecretKey:env.TOYYIBPAY_SECRET_KEY.trim(),
     categoryCode:env.TOYYIBPAY_CATEGORY_CODE.trim(),
     billName,billDescription,billPriceSetting:"1",billPayorInfo:"1",
@@ -77,7 +89,12 @@ export async function onRequestPost({request,env}){
     billCallbackUrl:"https://kasuhanet.store/api/toyyibpay-callback",
     billExternalReferenceNo:externalRef,billTo:name,billEmail:email,billPhone:phone,
     billPaymentChannel:"2",billExpiryDays:"1"
-  });
+  };
+  if(duitNowQrEnabled){
+    billFields.enableDuitNowQR="1";
+    billFields.chargeDuitNowQR="0";
+  }
+  const form=new URLSearchParams(billFields);
   let response, raw;
   try{
     response=await fetch(API+"/createBill",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:form.toString()});
