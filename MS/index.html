@@ -957,7 +957,7 @@
       <label for="knCustomerEmail">Alamat e-mel</label>
       <input id="knCustomerEmail" name="email" type="email" autocomplete="email" maxlength="254" toolparamdescription="Alamat e-mel yang sah untuk pengesahan pesanan dan rekod pembayaran." required title="Enter a valid email address, e.g. name@example.com.">
       <label for="knCustomerPhone">Nombor telefon</label>
-      <input id="knCustomerPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60" toolparamdescription="Nombor telefon untuk dihubungi, termasuk kod negara jika tersedia." required inputmode="tel"
+      <input id="knCustomerPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60" toolparamdescription="Nombor telefon untuk dihubungi, termasuk kod negara jika tersedia." required inputmode="tel" title="Masukkan 9 hingga 15 digit nombor telefon. Contoh: +60123456789.">
       <div class="kn-payment-choice"><span class="kn-payment-step">LANGKAH 1 · PILIH CARA BAYAR</span><label for="knPaymentMethod">KAEDAH PEMBAYARAN</label><select id="knPaymentMethod" name="paymentMethod" aria-describedby="knPaymentHint"><option value="stripe">Stripe · Kad / Kaedah tersedia</option><option value="toyyibpay">ToyyibPay · FPX / Kad / DuitNow QR (jika aktif)</option></select><p id="knPaymentHint">Tekan kotak pilihan ini untuk memilih penyedia pembayaran sebelum teruskan.</p></div>
       <button class="kn-checkout-submit" id="knCheckoutSubmit" type="submit">TERUSKAN KE PEMBAYARAN SELAMAT</button>
       <p class="kn-checkout-note">Pilih Stripe atau ToyyibPay. Anda akan dibawa ke halaman pembayaran selamat penyedia yang dipilih. Jangan kongsi maklumat kad atau perbankan dengan KasuhaNET.</p>
