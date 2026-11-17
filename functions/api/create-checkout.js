@@ -145,8 +145,11 @@ export async function onRequestPost(context) {
 
   const form = new URLSearchParams();
   form.set("mode", "payment");
+  const workshopLocale = input.locale === "MS" ? "MS" : "EN";
   const returnPage = isWorkshopOrder
-    ? "https://kasuhanet.store/custom-web-workshop-EN"
+    ? (workshopLocale === "MS"
+        ? "https://kasuhanet.store/MS/Bengkel-Custom-WebSite-MS.html"
+        : "https://kasuhanet.store/custom-web-workshop-EN")
     : "https://kasuhanet.store/Banner-WebSale-EN.html";
   form.set("success_url", returnPage + "?payment=success&session_id={CHECKOUT_SESSION_ID}");
   form.set("cancel_url", returnPage + "?payment=cancel");
