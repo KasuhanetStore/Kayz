@@ -155,7 +155,7 @@
     }
     .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.02fr .98fr; gap: 44px; align-items: center; }
     .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: #ff8b9c; font-size: 12px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
-    .eyebrow::before { content: ""; width: 25px; height: 2px; background: linear-gradient(90deg,var(--red),var(--orange)); }
+    .eyebrow::before { display: none !important; content: none !important; }
     .section-head .eyebrow::before { display: none !important; }
     .eyebrow-no-line::before { display: none; }
     h1 { font-size: clamp(36px, 5vw, 61px); line-height: 1.08; letter-spacing: -2px; margin: 18px 0; }
