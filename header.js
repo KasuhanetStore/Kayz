@@ -11,19 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         <div class="header-right">
             <nav>
-                <div class="dropdown">
-                    <a href="javascript:void(0)" onclick="toggleDropdown(event)" style="cursor: pointer;">
-                        Overseas <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #00F0FF;"></i>
-                    </a>
-                    <div class="dropdown-content" id="servicesDropdown">
-                        <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">
-                            <i class="fa-solid fa-globe" style="margin-right: 8px; color: #00F0FF;"></i> RWANDA (Africa)
-                        </a>
-                        <a href="https://kasuhanet.store/Timor-Leste-SupportDevelopement.html">
-                            <i class="fa-solid fa-globe" style="margin-right: 8px; color: #E600A4;"></i> TIMOR LESTE (Asia)
-                        </a>
-                    </div>
-                </div>
+                
                 <a href="index.html">HOME</a>
                 <a href="About-Us.html">ABOUT US</a>
                 <a href="privacy-policy-EN.html">PRIVACY POLICY</a>
