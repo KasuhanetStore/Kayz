@@ -99,7 +99,27 @@ footer > * { position: relative; z-index: 1; }
   footer .footer-col ul li span {
     text-align: left;
   }
-  footer .footer-col ul { width: 100%; }
+  footer .footer-col ul {
+    width: 100%;
+    padding: 0 !important;
+    margin: 0 !important;
+    list-style: none;
+  }
+  footer .footer-col ul li {
+    display: block;
+    padding: 0 !important;
+    margin-left: 0 !important;
+    text-indent: 0 !important;
+    text-align: left !important;
+  }
+  footer .footer-col ul li a,
+  footer .footer-col ul li span {
+    display: inline-block;
+    padding: 0 !important;
+    margin: 0 !important;
+    text-indent: 0 !important;
+    text-align: left !important;
+  }
   footer .brand-col {
     text-align: left;
     justify-self: start;
