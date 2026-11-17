@@ -404,6 +404,10 @@
 .topbar .nav-links .btn-cyber-animated{width:100%!important;box-sizing:border-box!important;justify-content:center!important}
 }
 @media(max-width:580px){.topbar .brand-logo{max-width:155px!important;max-height:52px!important}}
+
+/* Keep language buttons and website action together like EN */
+.topbar .nav-language-action-group{display:flex!important;flex:0 0 auto!important;flex-direction:row!important;align-items:center!important;gap:8px!important;white-space:nowrap!important}
+@media(max-width:850px){.topbar .nav-language-action-group{width:100%!important;flex-direction:column!important;align-items:stretch!important;gap:14px!important}.topbar .nav-language-action-group .workshop-language-links{width:100%!important}.topbar .nav-language-action-group .btn-cyber-animated{width:100%!important;box-sizing:border-box!important;justify-content:center!important}}
 </style>
 
   
@@ -453,11 +457,13 @@
       <a href="/MS/panduan/index.html">PANDUAN</a>
       <a href="/MS/privacy-policy-MS.html">POLISI PRIVASI</a>
       <a href="/MS/support-centre-MS.html">SOKONGAN</a>
-      <div class="workshop-language-links">
-        <a class="btn btn-outline" href="/Shop-MyAffliate-home-EN.html" lang="en">EN</a>
-        <a class="btn btn-outline" href="/MS/Shop-MyAffliate-home-MS.html" lang="ms" aria-current="page">MS</a>
+      <div class="nav-language-action-group">
+        <div class="workshop-language-links">
+          <a class="btn btn-outline" href="/Shop-MyAffliate-home-EN.html" lang="en">EN</a>
+          <a class="btn btn-outline" href="/MS/Shop-MyAffliate-home-MS.html" lang="ms" aria-current="page">MS</a>
+        </div>
+        <a class="btn-cyber-animated" href="/Banner-WebSale-MS.html"><span>GET WEBSITE!</span><i class="fa-solid fa-computer-mouse"></i></a>
       </div>
-      <a class="btn-cyber-animated" href="/Banner-WebSale-MS.html"><span>TEMPAH WEBSITE</span><i class="fa-solid fa-computer-mouse"></i></a>
     </nav>
     <button class="menu-toggle" type="button" onclick="toggleMobileMenu()" aria-label="Buka navigasi" aria-controls="navLinks" aria-expanded="false">
       <i class="fa-solid fa-bars" aria-hidden="true"></i>
