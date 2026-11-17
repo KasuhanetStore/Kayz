@@ -80,6 +80,20 @@ h1{font-size:clamp(32px,4.8vw,50px);line-height:1.12;letter-spacing:-1px;margin:
       <a class="btn" href="MS/privacy-policy-MS.html" lang="ms">BM</a>
     </nav>
   </div></header>
+
+<!-- PARTNER CREDIT: LOAD CENTRAL TEMPLATE -->
+<div id="partner-credit-placeholder"></div>
+<script>
+  fetch("template-text/EN/partner-credit-EN.html")
+    .then(response => {
+      if (!response.ok) throw new Error("Partner Credit Template Failed to Load");
+      return response.text();
+    })
+    .then(data => {
+      document.getElementById("partner-credit-placeholder").innerHTML = data;
+    })
+    .catch(error => console.error(error));
+</script>
   <section class="hero"><div class="container">
     <span class="eyebrow">KasuhaNET Resources · Website Information</span>
     <h1>Privacy <span class="gradient-text">Policy</span></h1>
