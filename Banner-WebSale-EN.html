@@ -380,9 +380,9 @@ main .grid .card a.websale-buy-btn:active {
       <label for="knCustomerName">Full name</label>
       <input id="knCustomerName" name="name" autocomplete="name" maxlength="100" toolparamdescription="Customer full name for the website package order." required>
       <label for="knCustomerEmail">Email address</label>
-      <input id="knCustomerEmail" name="email" type="email" autocomplete="email" maxlength="254" toolparamdescription="Valid email address for the order confirmation and payment record." required>
+      <input id="knCustomerEmail" name="email" type="email" autocomplete="email" maxlength="254" toolparamdescription="Valid email address for the order confirmation and payment record." required title="Enter a valid email address, e.g. name@example.com.">
       <label for="knCustomerPhone">Phone number</label>
-      <input id="knCustomerPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60" toolparamdescription="Customer contact phone number, including country code when available.">
+      <input id="knCustomerPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60" toolparamdescription="Customer contact phone number, including country code when available." required inputmode="tel"
       <div class="kn-payment-choice"><span class="kn-payment-step">STEP 1 · CHOOSE HOW TO PAY</span><label for="knPaymentMethod">PAYMENT METHOD</label><select id="knPaymentMethod" name="paymentMethod" aria-describedby="knPaymentHint"><option value="stripe">Stripe · Cards / available methods</option><option value="toyyibpay">ToyyibPay · FPX / Card / DuitNow QR (if active)</option></select><p id="knPaymentHint">Tap this large selection box to choose your payment provider before pressing CONTINUE TO SECURE PAYMENT.</p></div>
       <button class="kn-checkout-submit" id="knCheckoutSubmit" type="submit">CONTINUE TO SECURE PAYMENT</button>
       <p class="kn-checkout-note">Choose Stripe or ToyyibPay. You will be redirected to the selected provider’s secure payment page. Do not share your card or banking credentials with KasuhaNET.</p>
@@ -519,5 +519,38 @@ main .grid .card a.websale-buy-btn:active {
   const waURL = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(DEFAULT_MESSAGE);  
   document.getElementById("floating-whatsapp").href = waURL;  
 </script>  
+
+<script id="kn-contact-validation">
+(function(){
+  const form=document.getElementById("knCheckoutForm");
+  const email=document.getElementById("knCustomerEmail");
+  const phone=document.getElementById("knCustomerPhone");
+  if(!form||!email||!phone)return;
+  function validEmail(value){
+    const v=value.trim();
+    if(v.length>254||/\s/.test(v))return false;
+    const parts=v.split("@");
+    if(parts.length!==2||!parts[0]||parts[0].length>64)return false;
+    if(!/^[A-Z0-9.!#$%&'*+/=?^_`{|}~-]+$/i.test(parts[0]))return false;
+    const labels=parts[1].split(".");
+    if(labels.length<2||labels.some(x=>!x||x.length>63||! /^[A-Z0-9](?:[A-Z0-9-]*[A-Z0-9])?$/i.test(x)))return false;
+    return /^[A-Z]{2,}$/i.test(labels[labels.length-1]);
+  }
+  function validateEmail(){
+    email.setCustomValidity(validEmail(email.value)?"":"Enter a valid email address, for example name@example.com.");
+  }
+  function validatePhone(){
+    const digits=phone.value.replace(/\D/g,"");
+    const ok=digits.length>=9&&digits.length<=15&&/^[+0-9().\s-]+$/.test(phone.value.trim());
+    phone.setCustomValidity(ok?"":"Phone number must contain 9 to 15 digits. Example: +60123456789.");
+  }
+  email.addEventListener("input",validateEmail);
+  email.addEventListener("change",validateEmail);
+  phone.addEventListener("input",validatePhone);
+  phone.addEventListener("change",validatePhone);
+  validateEmail();
+  validatePhone();
+})();
+</script>
 </body>
 </html>
