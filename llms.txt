@@ -8,5 +8,5 @@ Dokumentasi ini menyediakan peta laman dan panduan ringkas mengenai struktur per
 
 - [Home](https://kasuhanet.store/index.html): Halaman utama Pusat Rasmi Sumber KasuhaNET.
 - [Services](https://kasuhanet.store/MS/Bengkel-Custom-WebSite.html): Senarai penuh perkhidmatan perniagaan dan solusi yang ditawarkan.
-- [Term Policy](https://kasuhanet.store/MS/terms-MS.html): Halaman terma perkhidmatan, polisi, dan syarat penggunaan perniagaan.
+- [Polisi Privasi](https://kasuhanet.store/MS/privacy-policy-MS.html): Halaman polisi privasi, terma penggunaan, pemulangan wang dan penafian undang-undang.
 - [Support](https://kasuhanet.store/MS/support-centreMS.html): Halaman bantuan, sokongan teknikal, dan saluran komunikasi untuk pelanggan.
