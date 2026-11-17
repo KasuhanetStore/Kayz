@@ -36,6 +36,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <link rel="stylesheet" href="../css/style.css">
+
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="../js/home-main.js" defer></script>
+<style id="kasuhanet-ms-unified-theme">
+  body { background: radial-gradient(circle at 80% 0%, rgba(255,48,79,.14), transparent 30%), #08090d !important; color:#f6f7fb !important; font-family:Inter,Arial,Helvetica,sans-serif !important; }
+  .topbar { position:sticky !important; top:0 !important; z-index:1000 !important; width:100% !important; padding:0 !important; background:rgba(8,9,13,.95) !important; border-bottom:1px solid rgba(255,255,255,.12) !important; backdrop-filter:blur(14px) !important; }
+  .topbar .nav { width:min(1120px,calc(100% - 36px)) !important; min-height:76px !important; margin:0 auto !important; padding:0 !important; display:flex !important; flex-direction:row !important; align-items:center !important; justify-content:space-between !important; gap:20px !important; text-align:left !important; }
+  .topbar .brand { display:flex !important; flex-direction:row !important; align-items:center !important; gap:11px !important; color:#fff !important; font-weight:900 !important; line-height:1.15 !important; }
+  .topbar .brand-mark { width:42px !important; height:42px !important; max-width:42px !important; border-radius:12px !important; display:grid !important; place-items:center !important; background:linear-gradient(135deg,#ff304f,#ff814a) !important; color:#fff !important; }
+  .topbar .brand small { display:block !important; color:#b9bdca !important; font-size:9px !important; letter-spacing:2px !important; }
+  .topbar .nav-links { display:flex !important; flex-direction:row !important; align-items:center !important; flex-wrap:wrap !important; gap:16px !important; color:#d8dbe4 !important; font-size:13px !important; }
+  .topbar .nav-links a { color:inherit !important; margin:0 !important; text-decoration:none !important; }
+  .topbar .nav-links a:hover { color:#ff7187 !important; }
+  .topbar .btn-primary { background:linear-gradient(120deg,#a90025,#ff304f,#ff7a35) !important; color:#fff !important; border:0 !important; padding:10px 15px !important; border-radius:10px !important; }
+  .topbar .btn-outline { border:1px solid rgba(255,255,255,.2) !important; border-radius:10px !important; padding:9px 12px !important; }
+  .topbar .menu-toggle { display:none !important; margin-left:auto !important; color:#fff !important; border:1px solid rgba(255,255,255,.2) !important; background:transparent !important; }
+  .site-footer { margin-top:55px !important; padding:34px 0 16px !important; background:#090b12 !important; border-top:1px solid rgba(255,255,255,.12) !important; color:#f6f7fb !important; }
+  .site-footer-grid { display:grid !important; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)) !important; gap:24px !important; }
+  .site-footer-grid strong { display:block !important; margin-bottom:10px !important; color:#fff !important; }
+  .site-footer-grid p,.site-footer-grid a { display:block !important; margin:6px 0 !important; color:#b9bdca !important; font-size:13px !important; }
+  .site-footer-grid a:hover { color:#ff7187 !important; }
+  .site-footer-bottom { margin-top:25px !important; padding-top:16px !important; border-top:1px solid rgba(255,255,255,.08) !important; text-align:center !important; color:#9298a8 !important; font-size:12px !important; }
+  @media(max-width:850px) {
+    .topbar .menu-toggle { display:inline-flex !important; align-items:center !important; justify-content:center !important; }
+    .topbar .nav-links { display:none !important; position:absolute !important; top:76px !important; left:0 !important; right:0 !important; width:100% !important; padding:20px 22px !important; flex-direction:column !important; align-items:stretch !important; gap:14px !important; background:rgba(8,9,13,.98) !important; border-bottom:1px solid rgba(255,255,255,.12) !important; box-shadow:0 15px 30px rgba(0,0,0,.6) !important; }
+    .topbar .nav-links.active { display:flex !important; }
+    .topbar .nav-links a { width:100% !important; }
+    .topbar .nav-links .btn { width:auto !important; align-self:flex-start !important; }
+  }
+</style>
 </head>
       
   <style>
@@ -56,6 +87,7 @@
     }
 
     body {
+      padding: 0 !important;
       background-color: var(--bg-color);
       color: var(--text-main);
       font-family: 'Rajdhani', sans-serif;
@@ -64,6 +96,7 @@
       padding: 40px 20px;
     }
 
+    .cashout-content { padding: 38px 20px; }
     .container {
       max-width: 800px;
       margin: 0 auto;
@@ -216,6 +249,28 @@
   </style>
 </head>
 <body>
+<header class="topbar">
+  <div class="container nav">
+    <a class="brand" href="index.html" aria-label="KasuhaNET utama">
+      <span class="brand-mark">K</span>
+      <span>KasuhaNET<small>STORE</small></span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Navigasi Utama">
+      <a href="index.html">UTAMA</a>
+      <a href="about-us-MS.html">TENTANG KAMI</a>
+      <a href="panduan/index.html">PANDUAN</a>
+      <a href="privacy-policy-MS.html">POLISI PRIVASI</a>
+      <a href="support-centre-MS.html">SOKONGAN</a>
+      <a class="btn btn-outline" href="../index.html" lang="en">EN</a>
+      <a class="btn btn-outline" href="index.html" lang="ms">BM</a>
+      <a class="btn btn-primary" href="Banner-WebSale-MS.html">TEMPAH WEBSITE</a>
+    </nav>
+    <button class="menu-toggle" type="button" onclick="toggleMobileMenu()" aria-label="Buka navigasi">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+</header>
+<div class="cashout-content">
 
 <div class="container">
 
@@ -300,6 +355,16 @@
   </div>
 
 </div>
+</div>
+<footer class="site-footer">
+  <div class="container site-footer-grid">
+    <div><strong>KasuhaNET.STORE</strong><p>Platform digital pelbagai perkhidmatan, pembangunan web dan sokongan digital.</p></div>
+    <div><strong>Perkhidmatan</strong><a href="Bengkel-Custom-WebSite-MS.html">Bengkel Custom Website</a><a href="Shop-MyAffliate-home-MS.html">MyAffiliate</a><a href="CashOutServicePayLater-MS.html">PayLater</a></div>
+    <div><strong>Sumber</strong><a href="about-us-MS.html">Tentang Kami</a><a href="panduan/index.html">Panduan</a><a href="privacy-policy-MS.html">Polisi Privasi</a><a href="support-centre-MS.html">Sokongan</a></div>
+    <div><strong>Ikuti Kami</strong><a href="https://www.facebook.com/share/1BfeDZJqjP/" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://tiktok.com/@kasuhanet.store" target="_blank" rel="noopener noreferrer">TikTok</a><a href="https://t.me/kasuhanetstorebot" target="_blank" rel="noopener noreferrer">Telegram</a></div>
+  </div>
+  <div class="site-footer-bottom">© 2026 KasuhaNET Resources. Hak Cipta Terpelihara.</div>
+</footer>
 
 <script>
 function processWhatsAppApplication(){
