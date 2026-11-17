@@ -309,7 +309,7 @@
       </p>
 
       <!-- BACKEND WORKER FORM -->
-      <form id="aduanForm" toolname="submit_support_request" tooldescription="Prepare a customer support request for KasuhaNET. The visitor must review the message and manually press Send Message; do not submit it automatically.">
+      <form id="aduanForm" toolname="submit_support_request" tooldescription="Prepare a customer support request for KasuhaNET. The visitor must review the message and manually press Send Ticket Support; do not submit it automatically.">
           <div class="form-group">
               <label for="name"><i class="fa-solid fa-user"></i> YOUR NAME</label>
               <input type="text" id="name" name="name" placeholder="Enter your full name..." toolparamdescription="Full name of the person requesting support." required>
@@ -326,7 +326,7 @@
           </div>
 
           <button type="submit" id="btnSubmit" class="btn btn-primary" style="width: 100%; margin-top: 5px; font-family: Inter, Arial, Helvetica, sans-serif;">
-              <i class="fa-solid fa-paper-plane"></i> SEND MESSAGE
+              <i class="fa-solid fa-paper-plane"></i> SEND TICKET SUPPORT
           </button>
       </form>
 
@@ -424,7 +424,7 @@
       responseMsg.innerText = "Network error. Please try again later.";
     } finally {
       btnSubmit.disabled = false;
-      btnSubmit.innerHTML = '<i class="fa-solid fa-paper-plane"></i> SEND MESSAGE';
+      btnSubmit.innerHTML = '<i class="fa-solid fa-paper-plane"></i> SEND TICKET SUPPORT';
     }
   });
 </script>
