@@ -116,11 +116,12 @@ export async function onRequestPost(context) {
   if (name.length < 2 || name.length > 100) {
     return json({ error: "Please enter a valid full name." }, 400);
   }
-  if (email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return json({ error: "Please enter a valid email address." }, 400);
+  if (email.length > 254 || !/^[^\s@]+@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z]{2,}$/.test(email)) {
+    return json({ error: "Please enter a valid email address with a complete domain." }, 400);
   }
-  if (phone.length > 25) {
-    return json({ error: "Please enter a valid phone number." }, 400);
+  const phoneDigits = phone.replace(/\D/g, "");
+  if (!/^[+0-9().\s-]+$/.test(phone) || phoneDigits.length < 9 || phoneDigits.length > 15) {
+    return json({ error: "Please enter a phone number containing 9 to 15 digits." }, 400);
   }
 
   const orderId = crypto.randomUUID();
