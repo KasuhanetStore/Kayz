@@ -139,8 +139,6 @@
     .service-icon { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 13px; background: linear-gradient(135deg,rgba(255,48,79,.22),rgba(255,122,53,.13)); border: 1px solid rgba(255,90,110,.25); font-size: 22px; }
     .service-card h3 { margin: 16px 0 8px; font-size: 18px; }
     .service-card p { color: var(--muted); font-size: 14px; margin: 0; }
-    .stripe-logo-wrap { margin-top: 12px; text-align: center; }
-    .stripe-logo-wrap img { display: inline-block; width: 180px; max-width: 100%; height: auto; object-fit: contain; vertical-align: middle; }
 
     .service-card .reading-link { display: inline-block; margin-top: 10px; color: #ff8a00; font-weight: 800; text-decoration: none; text-shadow: 0 0 6px rgba(255,138,0,.55), 0 0 14px rgba(255,102,0,.35); transition: color .2s ease, text-shadow .2s ease, transform .2s ease; }
     .service-card .reading-link:hover, .service-card .reading-link:focus-visible { color: #ffb347; text-shadow: 0 0 8px rgba(255,165,0,.9), 0 0 20px rgba(255,102,0,.7); transform: translateY(-1px); }
@@ -160,7 +158,8 @@
     .feature-list li { padding: 10px 0; border-bottom: none !important; color: #e4e6ed; font-size: 14px; }
     .profile-box .feature-list li { border-bottom: none; }
     .feature-list li::before { content: "✓"; color: #ff657c; font-weight: 900; margin-right: 10px; }
-    .price-card .btn { width: 100%; }
+    .price-card .btn { width: 100%; justify-content: space-between; gap: 12px; }
+    .price-card .btn .stripe-button-logo { display: block; width: 76px; max-width: 30%; height: auto; object-fit: contain; flex: 0 0 auto; }
     .upgrade-note { margin-top: 22px; padding: 16px 18px; border: 1px dashed rgba(255,112,132,.35); border-radius: 14px; color: var(--muted); font-size: 13px; background: rgba(255,48,79,.045); }
     .upgrade-note strong { color: #fff; }
     .process-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; counter-reset: step; }
@@ -745,8 +744,8 @@
     </details>
 
     <div class="pricing" style="margin-top:22px">
-      <article class="price-card"><span class="plan-tag">LANDING PAGE</span><h3>Pakej Landing Page</h3><div class="price">RM 299 <small>++</small></div><p class="price-sub">Untuk kempen pemasaran, pelancaran produk mudah dan portfolio kedai mini.</p><ul class="feature-list"><li>1 halaman utama (reka bentuk single-page)</li><li>Struktur kod responsif untuk peranti mudah alih</li><li>Pengoptimuman Google AdSense</li><li>Tindakan WhatsApp / borang</li><li><strong style="color:#ff4d4f;">Domain khusus tidak disertakan</strong></li></ul><a class="btn btn-primary" href="#checkout" onclick="openCheckout('landing-page'); return false;">Langgan Sekarang ↗</a><div class="stripe-logo-wrap"><img src="../img/StripeLogo.png" alt="Stripe" loading="lazy"></div></article>
-      <article class="price-card premium"><span class="plan-tag">POPULAR</span><h3>Premium Standard</h3><div class="price">RM 900 <small>++</small></div><p class="price-sub">Sistem pengurusan lengkap untuk kelab, persatuan dan profil perniagaan dinamik.</p><ul class="feature-list"><li>Luncurkan laman web pelbagai halaman</li><li>Sistem Pengurusan Kandungan Tersuai</li><li>Google AdSense dan SEO lanjutan</li><li>Showcase produk / galeri aktiviti kelab</li><li>Sokongan domain khusus (.com/.my)</li><li>Gaya Premium Cyberpunk UI/UX</li></ul><a class="btn btn-primary" href="#checkout" onclick="openCheckout('premium-standard'); return false;">Naik Taraf ke Premium ↗</a><div class="stripe-logo-wrap"><img src="../img/StripeLogo.png" alt="Stripe" loading="lazy"></div></article>
+      <article class="price-card"><span class="plan-tag">LANDING PAGE</span><h3>Pakej Landing Page</h3><div class="price">RM 299 <small>++</small></div><p class="price-sub">Untuk kempen pemasaran, pelancaran produk mudah dan portfolio kedai mini.</p><ul class="feature-list"><li>1 halaman utama (reka bentuk single-page)</li><li>Struktur kod responsif untuk peranti mudah alih</li><li>Pengoptimuman Google AdSense</li><li>Tindakan WhatsApp / borang</li><li><strong style="color:#ff4d4f;">Domain khusus tidak disertakan</strong></li></ul><a class="btn btn-primary" href="#checkout" onclick="openCheckout('landing-page'); return false;"><span>Langgan Sekarang ↗</span><img class="stripe-button-logo" src="../img/StripeLogo.png" alt="Stripe" loading="lazy"></a></article>
+      <article class="price-card premium"><span class="plan-tag">POPULAR</span><h3>Premium Standard</h3><div class="price">RM 900 <small>++</small></div><p class="price-sub">Sistem pengurusan lengkap untuk kelab, persatuan dan profil perniagaan dinamik.</p><ul class="feature-list"><li>Luncurkan laman web pelbagai halaman</li><li>Sistem Pengurusan Kandungan Tersuai</li><li>Google AdSense dan SEO lanjutan</li><li>Showcase produk / galeri aktiviti kelab</li><li>Sokongan domain khusus (.com/.my)</li><li>Gaya Premium Cyberpunk UI/UX</li></ul><a class="btn btn-primary" href="#checkout" onclick="openCheckout('premium-standard'); return false;"><span>Naik Taraf ke Premium ↗</span><img class="stripe-button-logo" src="../img/StripeLogo.png" alt="Stripe" loading="lazy"></a></article>
     </div>
 
     <details class="accordion-box">
