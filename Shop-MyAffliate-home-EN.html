@@ -392,6 +392,33 @@
   
   
   
+<style id="kasuhanet-unified-header">
+.topbar{position:sticky!important;top:0!important;z-index:10000!important;width:100%!important;padding:0!important;background:rgba(8,9,13,.95)!important;border-bottom:1px solid rgba(255,255,255,.12)!important;backdrop-filter:blur(14px)!important}
+.topbar .container.nav{position:relative!important;width:min(1120px,calc(100% - 36px))!important;min-height:76px!important;margin:0 auto!important;padding:0!important;display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:space-between!important;gap:20px!important}
+#branding-title{display:flex!important;align-items:center!important;flex:0 0 auto!important;min-width:0!important}
+.topbar .brand{display:flex!important;align-items:center!important;gap:11px!important}
+.topbar .brand-logo{display:block!important;width:auto!important;height:auto!important;max-width:180px!important;max-height:60px!important;object-fit:contain!important;object-position:left center!important}
+.topbar .nav-links{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-end!important;flex-wrap:wrap!important;gap:16px!important;min-width:0!important;color:#d8dbe4!important;font-size:13px!important}
+.topbar .nav-links>a:not(.btn-cyber-animated),.topbar .nav-links>.dropdown>a{color:#d8dbe4!important;text-decoration:none!important;font-size:13px!important}
+.topbar .nav-links a:hover{color:#00F0FF!important}
+.topbar .dropdown{position:relative!important;display:inline-block!important}
+.topbar .dropdown-content{top:100%!important;right:0!important;left:auto!important;margin-top:8px!important;background:#12141c!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:8px!important;min-width:200px!important;z-index:10002!important}
+.topbar .workshop-language-links{display:flex!important;align-items:center!important;gap:8px!important;margin:0!important}
+.topbar .menu-toggle{display:none!important;background:transparent!important;border:1px solid rgba(255,255,255,.2)!important;color:#fff!important;font-size:20px!important;padding:8px 12px!important;border-radius:8px!important;cursor:pointer!important}
+@media(max-width:850px){
+.topbar .container.nav{min-height:76px!important}
+.topbar .menu-toggle{display:inline-flex!important;align-items:center!important;justify-content:center!important}
+.topbar .nav-links{display:none!important;position:absolute!important;top:76px!important;left:0!important;right:0!important;width:100%!important;box-sizing:border-box!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;flex-wrap:nowrap!important;gap:14px!important;padding:20px 24px!important;background:rgba(8,9,13,.98)!important;backdrop-filter:blur(16px)!important;border-bottom:1px solid rgba(255,255,255,.14)!important;box-shadow:0 15px 30px rgba(0,0,0,.6)!important;z-index:10001!important;max-height:calc(100vh - 76px)!important;overflow-y:auto!important}
+.topbar .nav-links.active{display:flex!important}
+.topbar .nav-links>a:not(.btn-cyber-animated),.topbar .nav-links>.dropdown{display:block!important;width:100%!important}
+.topbar .nav-links>.dropdown>a{display:block!important;width:100%!important;box-sizing:border-box!important;padding:8px 10px!important}
+.topbar .nav-links .dropdown-content{position:static!important;width:100%!important;min-width:0!important;margin-top:6px!important;box-sizing:border-box!important;box-shadow:none!important}
+.topbar .nav-links .workshop-language-links{display:flex!important;width:100%!important;gap:8px!important}
+.topbar .nav-links .workshop-language-links .btn{flex:1!important;justify-content:center!important}
+.topbar .nav-links .btn-cyber-animated{width:100%!important;box-sizing:border-box!important;justify-content:center!important}
+}
+@media(max-width:580px){.topbar .brand-logo{max-width:155px!important;max-height:52px!important}}
+</style>
   <meta name="description" content="Join KasuhaNET MyAffiliate to explore affiliate marketing support, promotional tools and resources designed to help partners promote products online.">
   <meta name="title" content="Affiliate Marketing Support | KasuhaNET MyAffiliate">
   <meta property="og:title" content="Affiliate Marketing Support | KasuhaNET MyAffiliate">
@@ -411,53 +438,38 @@
 </head>
 <body>
 
-    <div id="main-header"></div>
 <header class="topbar">
   <div class="container nav">
     <div id="branding-title">
-
-    <script>
-    fetch("template-text/EN/kasuhanet-icon-official-EN.html")
-    .then(response => {
-        if (!response.ok) throw new Error('Logo Template Failed Load');
-        return response.text();
-    })
-    .then(data => {
-        document.getElementById("branding-title").innerHTML = data;
-    })
-    .catch(error => console.error(error));
-    </script>
+      <a class="brand" href="/" aria-label="KasuhaNET.STORE Home">
+        <img src="/img/logo3.png" alt="KasuhaNET.STORE" class="brand-logo">
+      </a>
     </div>
-
     <nav class="nav-links" id="navLinks" aria-label="Main Navigation">
-        <div class="dropdown">
-          <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
-                Overseas <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #ff7187;"></i>
-            </a>
-            <div class="dropdown-content" id="servicesDropdown">
-                <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">
-                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: #00F0FF;"></i> RWANDA (Africa)
-                </a>
-                <a href="https://kasuhanet.store/Timor-Leste-SupportDevelopement.html">
-                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: #E600A4;"></i> TIMOR LESTE (Asia)
-                </a>
-            </div>
-        </div>
-                  <a href="index.html">HOME</a>
-        <a href="about-us-EN.html">ABOUT US</a>
-        <a href="privacy-policy-EN.html">PRIVACY POLICY</a>
-        <a href="support-centre-EN.html">SUPPORT</a>
-        <a class="btn btn-outline" href="index.html" lang="en">EN</a>
-        <a class="btn btn-outline" href="MS/index.html" lang="ms">MS</a>
-        <a class="btn-cyber-animated" href="Banner-WebSale-EN.html">
-            <span>GET WEBSITE!</span>
-            <i class="fa-solid fa-computer-mouse"></i>
+      <div class="dropdown">
+        <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor:pointer">
+          Overseas <i class="fa-solid fa-chevron-down" style="font-size:10px;margin-left:3px;color:#ff7187"></i>
         </a>
-    </nav>
-        <button class="menu-toggle" type="button" onclick="toggleMobileMenu()" aria-label="Toggle Navigation" aria-controls="navLinks" aria-expanded="false">
-        <i class="fa-solid fa-bars"></i>
-           </button>
+        <div class="dropdown-content" id="servicesDropdown">
+          <a href="/Rwanda-SupportDevelopement.html"><i class="fa-solid fa-globe" style="margin-right:8px;color:#00F0FF"></i> RWANDA (Africa)</a>
+          <a href="/Timor-Leste-SupportDevelopement.html"><i class="fa-solid fa-globe" style="margin-right:8px;color:#E600A4"></i> TIMOR LESTE (Asia)</a>
         </div>
+      </div>
+      <a href="/">HOME</a>
+      <a href="/about-us-EN.html">ABOUT US</a>
+      <a href="/guides/index.html">KNOWLEDGE</a>
+      <a href="/privacy-policy-EN.html">PRIVACY POLICY</a>
+      <a href="/support-centre-EN.html">SUPPORT</a>
+      <div class="workshop-language-links">
+        <a class="btn btn-outline" href="/Shop-MyAffliate-home-EN.html" lang="en" aria-current="page">EN</a>
+        <a class="btn btn-outline" href="/MS/Shop-MyAffliate-home-MS.html" lang="ms">MS</a>
+      </div>
+      <a class="btn-cyber-animated" href="/Banner-WebSale-EN.html"><span>GET WEBSITE!</span><i class="fa-solid fa-computer-mouse"></i></a>
+    </nav>
+    <button class="menu-toggle" type="button" onclick="toggleMobileMenu()" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false">
+      <i class="fa-solid fa-bars" aria-hidden="true"></i>
+    </button>
+  </div>
 </header> 
             
             
