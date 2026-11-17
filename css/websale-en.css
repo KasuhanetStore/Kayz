@@ -326,3 +326,14 @@
   margin: auto;
 }
 body.kn-checkout-active { overflow: hidden; }
+
+
+/* Compact responsive checkout overrides */
+.kn-checkout-overlay { box-sizing:border-box; padding:12px !important; }
+.kn-checkout-panel { box-sizing:border-box; flex:0 1 420px !important; width:min(100%,420px) !important; max-width:420px !important; max-height:calc(100vh - 24px); max-height:calc(100dvh - 24px); padding:16px; overflow-y:auto; overscroll-behavior:contain; }
+.kn-checkout-head { gap:9px; margin-bottom:11px; }
+.kn-checkout-form { gap:6px; }
+.kn-checkout-form label { margin-top:3px; font-size:11px; }
+.kn-checkout-form input { box-sizing:border-box; min-height:40px; padding:8px 10px; font-size:14px; }
+.kn-checkout-submit { min-height:44px; margin-top:8px; }
+@media(max-width:600px){.kn-checkout-overlay{padding:8px!important}.kn-checkout-panel{flex-basis:390px!important;width:min(100%,390px)!important;max-width:390px!important;max-height:calc(100vh - 16px);max-height:calc(100dvh - 16px);padding:13px;border-radius:13px}}
