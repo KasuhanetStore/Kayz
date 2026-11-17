@@ -118,32 +118,30 @@
   flex: 1;
   margin: 8px 0 22px;
 }
-/* WebSale purchase buttons: rebuilt with the original red-orange theme */
+/* WebSale purchase buttons: match the homepage button design */
 .card .websale-buy-btn {
   display: inline-flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  gap: 8px;
   width: 100%;
-  padding: 12px 18px;
+  padding: 10px 16px;
   border: 1px solid transparent;
   border-radius: 10px;
   color: #ffffff;
   background: linear-gradient(120deg, #a90025, #ff304f, #ff7a35);
   box-shadow: 0 8px 28px rgba(255,48,79,.2);
-  font-family: Inter, Arial, Helvetica, sans-serif;
   font-size: 14px;
   font-weight: 800;
-  text-align: center;
-  text-decoration: none;
   cursor: pointer;
-  transition: .2s ease;
+  transition: all .2s ease;
+  text-decoration: none;
 }
 .card .websale-buy-btn:hover,
 .card .websale-buy-btn:focus-visible {
   color: #ffffff;
   transform: translateY(-2px);
   filter: brightness(1.1);
-  box-shadow: 0 10px 30px rgba(255,48,79,.28);
 }
 .card .websale-buy-btn:active {
   transform: translateY(0);
@@ -340,9 +338,9 @@ body.kn-checkout-active { overflow: hidden; }
   top: 50%;
   transform: translate(-50%, -50%);
   display: block;
-  width: auto !important;
-  height: 16px !important;
-  max-width: 18% !important;
+  width: 116px !important;
+  max-width: 38% !important;
+  height: auto !important;
   object-fit: contain;
   opacity: 1;
   pointer-events: none;
@@ -356,4 +354,5 @@ body.kn-checkout-active { overflow: hidden; }
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 0 #071b3d) drop-shadow(0 0 2px #071b3d) drop-shadow(0 0 5px rgba(5, 25, 62, .9));
 }
