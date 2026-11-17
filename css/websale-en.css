@@ -123,16 +123,16 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: 44px;
+  min-height: 0;
   margin-top: auto;
-  padding: 10px 14px;
+  padding: 10px 16px;
   border: 1px solid rgba(0,240,255,.45);
   border-radius: 10px;
   color: #071014;
   background: linear-gradient(100deg, var(--cyan), #70f6ff);
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: .5px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: normal;
   text-align: center;
   transition: filter .2s ease, transform .2s ease;
 }
@@ -153,8 +153,8 @@
   top: 50%;
   transform: translate(-50%, -50%);
   display: block;
-  width: 68px;
-  max-width: 24%;
+  width: 116px;
+  max-width: 38%;
   height: auto;
   object-fit: contain;
   opacity: 1;
