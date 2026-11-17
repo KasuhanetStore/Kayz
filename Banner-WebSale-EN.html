@@ -361,8 +361,9 @@ main .grid .card a.websale-buy-btn:active {
       <input id="knCustomerEmail" name="email" type="email" autocomplete="email" maxlength="254" toolparamdescription="Valid email address for the order confirmation and payment record." required>
       <label for="knCustomerPhone">Phone number</label>
       <input id="knCustomerPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60" toolparamdescription="Customer contact phone number, including country code when available.">
+      <label for="knPaymentMethod">Payment method</label><select id="knPaymentMethod" name="paymentMethod" style="width:100%;min-height:42px;margin:8px 0 12px;padding:10px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:#10131d;color:#fff"><option value="stripe">Stripe</option><option value="toyyibpay">ToyyibPay (FPX / Card)</option></select>
       <button class="kn-checkout-submit" id="knCheckoutSubmit" type="submit">CONTINUE TO SECURE PAYMENT</button>
-      <p class="kn-checkout-note">Your payment is processed securely by Stripe. Available payment methods are shown on the Stripe payment page according to merchant account eligibility and settings. Do not share your card or banking credentials with KasuhaNET.</p>
+      <p class="kn-checkout-note">Choose Stripe or ToyyibPay. You will be redirected to the selected provider’s secure payment page. Do not share your card or banking credentials with KasuhaNET.</p>
       <div class="kn-checkout-error" id="knCheckoutError" role="alert"></div>
     </form>
   </section>
@@ -448,13 +449,14 @@ main .grid .card a.websale-buy-btn:active {
     const email = document.getElementById("knCustomerEmail").value.trim();
     const phone = document.getElementById("knCustomerPhone").value.trim();
     button.disabled = true;
-    button.textContent = "CONNECTING TO STRIPE...";
+    const paymentMethod = document.getElementById("knPaymentMethod").value;
+    button.textContent = paymentMethod === "toyyibpay" ? "CONNECTING TO TOYYIBPAY..." : "CONNECTING TO STRIPE...";
     errorBox.style.display = "none";
     try {
-      const response = await fetch("/api/create-checkout", {
+      const response = await fetch(paymentMethod === "toyyibpay" ? "/api/toyyibpay-create-bill" : "/api/create-checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ packageId: knSelectedPackage, name: name, email: email, phone: phone })
+        body: JSON.stringify({ packageId: knSelectedPackage, name: name, email: email, phone: phone, locale: "EN" })
       });
       const data = await response.json();
       if (!response.ok || !data.url) throw new Error(data.error || "Checkout could not be started. Please try again.");
@@ -467,6 +469,17 @@ main .grid .card a.websale-buy-btn:active {
     }
   });
 
+  const returnParams = new URLSearchParams(window.location.search);
+  if (returnParams.get("payment") === "toyyibpay_return") {
+    const notice = document.createElement("div"); notice.className = "container";
+    notice.style.cssText = "margin:18px auto;padding:14px;border:1px solid rgba(0,240,255,.25);border-radius:10px;color:#f6f7fb;background:#11141d";
+    notice.textContent = "Checking ToyyibPay payment status..."; document.querySelector("main").prepend(notice);
+    const orderId = returnParams.get("order_id");
+    if (orderId) fetch("/api/toyyibpay-verify?order_id=" + encodeURIComponent(orderId)).then(r => r.json()).then(data => {
+      notice.textContent = data.status === "paid" ? "ToyyibPay payment successfully verified." : data.status === "failed" ? "ToyyibPay payment was not successful." : "Payment was submitted to ToyyibPay. Current status: " + (data.status || "pending") + ". Please check again shortly.";
+    }).catch(() => { notice.textContent = "Payment was submitted to ToyyibPay. Its status could not be verified yet."; });
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
   const paymentState = new URLSearchParams(window.location.search).get("payment");
   if (paymentState === "success" || paymentState === "cancel") {
     const notice = document.createElement("div");
