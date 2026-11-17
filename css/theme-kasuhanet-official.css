@@ -149,14 +149,6 @@ body {
     color: #ff8b9c;
 }
 
-.eyebrow::before {
-    background: linear-gradient(
-        90deg,
-        var(--red),
-        var(--orange)
-    );
-}
-
 .gradient-text {
     background: var(--gradient-text);
     color: transparent;
