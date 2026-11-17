@@ -118,24 +118,27 @@
   flex: 1;
   margin: 8px 0 22px;
 }
-/* WebSale purchase buttons: match the homepage button design */
+/* WebSale CTA buttons: same shape and finish as homepage buttons, without logo */
 .card .websale-buy-btn {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
   width: 100%;
   padding: 10px 16px;
   border: 1px solid transparent;
   border-radius: 10px;
-  color: #ffffff;
-  background: linear-gradient(120deg, #a90025, #ff304f, #ff7a35);
+  color: #fff;
+  background: linear-gradient(120deg, var(--red-dark), var(--red), var(--orange));
   box-shadow: 0 8px 28px rgba(255,48,79,.2);
   font-size: 14px;
   font-weight: 800;
   cursor: pointer;
   transition: all .2s ease;
   text-decoration: none;
+}
+.card .websale-buy-btn span {
+  color: inherit;
+  font-weight: inherit;
 }
 .card .websale-buy-btn:hover,
 .card .websale-buy-btn:focus-visible {
@@ -323,36 +326,3 @@
   margin: auto;
 }
 body.kn-checkout-active { overflow: hidden; }
-
-
-/* Match homepage Stripe-logo purchase button treatment */
-.card .websale-buy-btn {
-  position: relative;
-  overflow: hidden;
-  align-self: center;
-  width: 100%;
-}
-.card .websale-buy-btn .stripe-button-logo {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  display: block;
-  width: 116px !important;
-  max-width: 38% !important;
-  height: auto !important;
-  object-fit: contain;
-  opacity: 1;
-  pointer-events: none;
-}
-.card .websale-buy-btn span {
-  position: relative;
-  z-index: 1;
-  font-weight: 900;
-  color: #dce3ec;
-  background: linear-gradient(180deg, #ffffff 0%, #e8edf4 24%, #aeb9c8 48%, #f8fbff 62%, #9ba8b9 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 1px 0 #071b3d) drop-shadow(0 0 2px #071b3d) drop-shadow(0 0 5px rgba(5, 25, 62, .9));
-}
