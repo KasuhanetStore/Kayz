@@ -156,6 +156,7 @@
     .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.02fr .98fr; gap: 44px; align-items: center; }
     .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: #ff8b9c; font-size: 12px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
     .eyebrow::before { content: ""; width: 25px; height: 2px; background: linear-gradient(90deg,var(--red),var(--orange)); }
+    .eyebrow-no-line::before { display: none; }
     h1 { font-size: clamp(36px, 5vw, 61px); line-height: 1.08; letter-spacing: -2px; margin: 18px 0; }
     .gradient-text { background: linear-gradient(100deg,#fff 0%,#ff7187 48%,#ff9b52 100%); color: transparent; background-clip: text; -webkit-background-clip: text; }
     .hero p { color: var(--muted); font-size: 17px; max-width: 610px; }
@@ -713,7 +714,7 @@
 <section class="section" id="announcement">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Platform Announcement</span>
+      <span class="eyebrow eyebrow-no-line">Platform Announcement</span>
       <h2 style="text-align:center;">Announcement<br><span class="gradient-text">Planned Addition of Service+</span></h2>
       <p>An announcement for KasuhaNET.STORE customers and visitors.</p>
     </div>
