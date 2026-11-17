@@ -567,6 +567,24 @@ footer { position: relative; isolation: isolate; overflow: hidden; }
 footer::before { content: ""; position: absolute; inset: 0; background: url("/img/LogoOfficialTeks.png") center center / contain no-repeat; opacity: .05; pointer-events: none; z-index: 0; }
 footer > * { position: relative; z-index: 1; }
 </style>
+<style id="kn-compact-checkout">
+.kn-payment-modal { box-sizing:border-box; padding:12px; }
+.kn-payment-panel { box-sizing:border-box; width:min(100%,420px); max-height:calc(100vh - 24px); max-height:calc(100dvh - 24px); padding:16px; overflow-y:auto; overscroll-behavior:contain; }
+.kn-payment-head { gap:9px; margin-bottom:10px; }
+.kn-payment-head h2 { font-size:15px; }
+.kn-payment-summary { margin-bottom:11px; padding:10px 11px; }
+.kn-payment-summary p { font-size:11px; }
+.kn-payment-summary strong { font-size:17px; }
+.kn-payment-form { gap:6px; }
+.kn-payment-form label { margin-top:3px; font-size:11px; }
+.kn-payment-form input { box-sizing:border-box; min-height:40px; padding:8px 10px; font-size:14px; }
+.kn-payment-form button { min-height:44px; margin-top:8px; }
+.kn-payment-choice { gap:7px; margin:9px 0 6px; padding:10px; }
+.kn-payment-choice label { font-size:13px!important; }
+.kn-payment-choice select { box-sizing:border-box; min-height:48px; padding:10px 34px 10px 11px; font-size:14px; }
+.kn-payment-choice p { font-size:10px; }
+@media(max-width:600px){.kn-payment-modal{padding:8px}.kn-payment-panel{width:min(100%,390px);max-height:calc(100vh - 16px);max-height:calc(100dvh - 16px);padding:13px;border-radius:13px}}
+</style>
 </head>
 
 <body>
