@@ -546,6 +546,7 @@ No Akaun PL    : ${plAccount}
       return response.text();
     })
     .then(data => {
+      data = data.replace('src="/broadcast.png" alt="KasuhaNET Broadcast"', 'src="/img/StripeLogo.png" alt="Stripe"');
       document.getElementById("footer-placeholder").innerHTML = data;
       const year = document.getElementById("year");
       if (year) year.textContent = new Date().getFullYear();
