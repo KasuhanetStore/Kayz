@@ -963,7 +963,7 @@ main > .container { max-width:900px !important; width:100%; }
   modal.className="kn-payment-modal";
   modal.id="knWorkshopPaymentModal";
   modal.hidden=true;
-  modal.innerHTML='<section class="kn-payment-panel" role="dialog" aria-modal="true" aria-labelledby="knWorkshopPaymentTitle"><div class="kn-payment-head"><h2 id="knWorkshopPaymentTitle">SECURE CHECKOUT</h2><button type="button" class="kn-payment-close" aria-label="Close checkout">×</button></div><div class="kn-payment-summary"><p id="knWorkshopSummaryCount"></p><strong id="knWorkshopSummaryTotal"></strong><p>One-time payment · MYR</p></div><form class="kn-payment-form" id="knWorkshopPaymentForm"><label for="knWorkshopName">Full name</label><input id="knWorkshopName" name="name" autocomplete="name" maxlength="100" required><label for="knWorkshopEmail">Email address</label><input id="knWorkshopEmail" name="email" type="email" autocomplete="email" maxlength="254" required><label for="knWorkshopPhone">Phone number</label><input id="knWorkshopPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60"><button type="submit" id="knWorkshopPaySubmit">CONTINUE TO STRIPE PAYMENT</button><p class="kn-payment-note">Payment is processed securely by Stripe. Available payment methods depend on your Stripe account settings and eligibility.</p><div class="kn-payment-error" id="knWorkshopPaymentError" role="alert"></div></form></section>';
+  modal.innerHTML='<section class="kn-payment-panel" role="dialog" aria-modal="true" aria-labelledby="knWorkshopPaymentTitle"><div class="kn-payment-head"><h2 id="knWorkshopPaymentTitle">SECURE CHECKOUT</h2><button type="button" class="kn-payment-close" aria-label="Close checkout">×</button></div><div class="kn-payment-summary"><p id="knWorkshopSummaryCount"></p><strong id="knWorkshopSummaryTotal"></strong><p>One-time payment · MYR</p></div><form class="kn-payment-form" id="knWorkshopPaymentForm"><label for="knWorkshopName">Full name</label><input id="knWorkshopName" name="name" autocomplete="name" maxlength="100" required><label for="knWorkshopEmail">Email address</label><input id="knWorkshopEmail" name="email" type="email" autocomplete="email" maxlength="254" required><label for="knWorkshopPhone">Phone number</label><input id="knWorkshopPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60"><button type="submit" id="knWorkshopPaySubmit">PAY</button><p class="kn-payment-note">Payment is processed securely by Stripe. Available payment methods depend on your Stripe account settings and eligibility.</p><div class="kn-payment-error" id="knWorkshopPaymentError" role="alert"></div></form></section>';
   document.body.append(modal);
   const close=()=>{modal.hidden=true;document.body.style.overflow="";};
   modal.querySelector(".kn-payment-close").addEventListener("click",close);
@@ -1006,7 +1006,7 @@ main > .container { max-width:900px !important; width:100%; }
       error.textContent=err.message||"Unable to connect to the payment service.";
       error.style.display="block";
       button.disabled=false;
-      button.textContent="CONTINUE TO STRIPE PAYMENT";
+      button.textContent="PAY";
     }
   });
 
