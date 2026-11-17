@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
                 <a href="index.html">HOME</a>
                 <a href="About-Us.html">ABOUT US</a>
-                <a href="terms-EN.html">TERMS & POLICY</a>
+                <a href="privacy-policy-EN.html">PRIVACY POLICY</a>
                 <a href="support-centre.html">SUPPORT</a>
             </nav>
 
