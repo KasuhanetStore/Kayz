@@ -854,7 +854,7 @@ main > .container { max-width:900px !important; width:100%; }
   cards.forEach((card,index)=>{
     const title = card.querySelector(".custom-item-title")?.textContent.trim() || "";
     const priceText = card.querySelector(".custom-item-price")?.textContent || "";
-    const price = Number((priceText.match(/[0-9]+(?:\\.[0-9]{1,2})?/)||[])[0]);
+    const price = Number((priceText.match(/[0-9]+(?:\.[0-9]{1,2})?/)||[])[0]);
     if (!Number.isFinite(price) || price <= 0) return;
     card.dataset.serviceId = serviceIds[index];
     const label = document.createElement("label");
@@ -873,7 +873,7 @@ main > .container { max-width:900px !important; width:100%; }
   const selected = () => cards.filter(card=>card.querySelector(".kn-service-select input:checked")).map(card=>({
     id:card.dataset.serviceId,
     name:card.querySelector(".custom-item-title").textContent.trim(),
-    amount:Math.round(Number((card.querySelector(".custom-item-price").textContent.match(/[0-9]+(?:\\.[0-9]{1,2})?/)||[])[0])*100)
+    amount:Math.round(Number((card.querySelector(".custom-item-price").textContent.match(/[0-9]+(?:\.[0-9]{1,2})?/)||[])[0])*100)
   }));
   function updateCart(){
     const items=selected();
