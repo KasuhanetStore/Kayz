@@ -205,7 +205,7 @@ export async function onRequestPost(context) {
     return json({
       error: stripeMessage
         ? "Stripe checkout error: " + String(stripeMessage).slice(0, 240)
-        : "Stripe could not create the checkout session. Check the Stripe test key and account configuration."
+        : "Stripe could not create the checkout session. Check the Stripe account configuration."
     }, 502);
   }
 
