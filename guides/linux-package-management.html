@@ -94,7 +94,7 @@ h1{font-size:clamp(30px,4.6vw,48px);line-height:1.12;letter-spacing:-1px;margin:
       <nav class="nav-links" aria-label="Main navigation">
         <a href="../index.html">HOME</a>
         <a href="../about-us-EN.html">ABOUT US</a>
-        <a href="index.html">KNOWLEDGE CENTRE</a>
+        <a href="index.html">GUIDES</a>
         <a href="../privacy-policy-EN.html">PRIVACY POLICY</a>
         <a href="../support-centre-EN.html">SUPPORT</a>
         <a class="btn active" href="linux-package-management.html" lang="en" aria-current="page">EN</a>
@@ -112,7 +112,7 @@ h1{font-size:clamp(30px,4.6vw,48px);line-height:1.12;letter-spacing:-1px;margin:
   <main class="article-section">
     <div class="container">
       <article class="article-content">
-        <a class="back-link" href="index.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> BACK TO KNOWLEDGE CENTRE</a>
+        <a class="back-link" href="index.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> BACK TO GUIDES</a>
         <p class="meta">KasuhaNET Resources · Technical guide · Updated 12 November 2026</p>
         <section class="card"><strong>Before you begin</strong><p>These commands are intended for Debian and Ubuntu systems. You need an account with sudo privileges. Package names and availability can differ between releases.</p></section><h2>1. Confirm the operating system</h2><p>Check the distribution and release before following instructions written for a particular system:</p><pre><code>cat /etc/os-release</code></pre><p>Look at the <code>ID</code> and <code>VERSION_ID</code> values. If you are using a different Linux family, its package manager may not be APT.</p><h2>2. Refresh the package index</h2><pre><code>sudo apt update</code></pre><p>This downloads the latest package metadata from the repositories configured on the machine. It does not upgrade installed applications by itself. Read the output and investigate repository or signature errors rather than ignoring them.</p><h2>3. Install a package</h2><p>For example, to install the <code>curl</code> command-line tool:</p><pre><code>sudo apt install curl</code></pre><p>APT displays the packages and disk space involved and asks for confirmation. Review the proposed changes before accepting them, especially on production servers.</p><h2>4. Verify the installation</h2><pre><code>curl --version
 apt policy curl</code></pre><p>The first command prints the installed program version. The second shows package status and repository information.</p><h2>5. Find a package or inspect details</h2><pre><code>apt search package-name
