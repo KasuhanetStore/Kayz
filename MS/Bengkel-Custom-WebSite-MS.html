@@ -792,42 +792,19 @@ footer > * { position: relative; z-index: 1; }
   </div>
 </main>
 
-<!-- FOOTER -->
-<div id="broadcast-footer-preview" style="display:flex;justify-content:center;align-items:center;margin:24px auto 18px;padding:0 16px;">
-  <a href="/broadcast.png" target="_blank" rel="noopener" aria-label="Lihat gambar broadcast saiz penuh" style="display:inline-block;line-height:0;">
-    <img src="/broadcast.png" alt="KasuhaNET Broadcast" loading="lazy" style="display:block;width:700px;max-width:96vw;height:auto;object-fit:contain;border-radius:8px;">
-  </a>
-</div>
-
-<footer class="footer">
-  <div class="footer-grid">
-    <div>
-      <h3>KasuhaNET.STORE</h3>
-      <p>Ekosistem digital yang menyediakan solusi Linux, sistem affiliate, peluang pendapatan dan pembelajaran digital.</p>
-    </div>
-    <div class="footer-links">
-      <h4>Perkhidmatan</h4>
-      <a href="../CommandCanDoLIST.html">CommandCanDo</a>
-      <a href="Shop-MyAffliate-home-MS.html">MyAffiliate</a>
-      <a href="CashOutServicePayLater-MS.html">PayLater BNPL</a>
-    </div>
-    <div class="footer-links">
-      <h4>Sumber</h4>
-      <a href="about-us-MS.html">Tentang Kami</a>
-      <a href="support-centre-MS.html">Sokongan</a>
-      <a href="privacy-policy-MS.html">Polisi Privasi</a>
-    </div>
-    <div class="footer-links">
-      <h4>Ikuti Kami</h4>
-      <a href="https://www.facebook.com/share/1GeJNW5bok/" target="_blank" rel="noopener">Facebook</a>
-      <a href="https://tiktok.com/@kasuhanet.store" target="_blank" rel="noopener">TikTok</a>
-      <a href="https://t.me/kasuhanetstorebot" target="_blank" rel="noopener">Telegram</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    © 2026 KasuhaNET Resources (202503248308). Hak Cipta Terpelihara.
-  </div>
-</footer>
+<!-- FOOTER STANDARD MS -->
+<div id="footer-placeholder"></div>
+<script>
+  fetch("../template-text/MS/template-footer-MS.html")
+    .then(response => {
+      if (!response.ok) throw new Error("Footer Template Failed to Load");
+      return response.text();
+    })
+    .then(data => {
+      document.getElementById("footer-placeholder").innerHTML = data;
+    })
+    .catch(error => console.error(error));
+</script>
 
 <!-- WHATSAPP FLOAT -->
 <a class="whatsapp-float" id="floating-whatsapp" href="https://wa.me/qr/4K2RBZZQAPL4G1" target="_blank" rel="noopener" aria-label="Hubungi sokongan melalui WhatsApp">
