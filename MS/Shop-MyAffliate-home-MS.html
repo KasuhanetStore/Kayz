@@ -450,6 +450,35 @@
   .footer h4 { color:#ff7187 !important; }
   .footer-links a:hover { color:#ff9b52 !important; }
 </style>
+<style id="kasuhanet-ms-unified-header">
+.topbar{position:sticky!important;top:0!important;z-index:10000!important;width:100%!important;padding:0!important;background:rgba(8,9,13,.95)!important;border-bottom:1px solid rgba(255,255,255,.12)!important;backdrop-filter:blur(14px)!important}
+.topbar .container.nav{position:relative!important;width:min(1120px,calc(100% - 36px))!important;min-height:76px!important;margin:0 auto!important;padding:0!important;display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:space-between!important;gap:20px!important}
+#branding-title{display:flex!important;align-items:center!important;flex:0 0 auto!important;min-width:0!important}
+.topbar .brand{display:flex!important;align-items:center!important;gap:11px!important}
+.topbar .brand-logo{display:block!important;width:auto!important;height:auto!important;max-width:180px!important;max-height:60px!important;object-fit:contain!important;object-position:left center!important}
+.topbar .nav-links{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-end!important;flex-wrap:wrap!important;gap:16px!important;min-width:0!important;color:#d8dbe4!important;font-size:13px!important}
+.topbar .nav-links>a:not(.btn-cyber-animated),.topbar .nav-links>.dropdown>a{color:#d8dbe4!important;text-decoration:none!important;font-size:13px!important}
+.topbar .nav-links a:hover{color:#00F0FF!important}
+.topbar .dropdown{position:relative!important;display:inline-block!important}
+.topbar .dropdown-content{top:100%!important;right:0!important;left:auto!important;margin-top:8px!important;background:#12141c!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:8px!important;min-width:200px!important;z-index:10002!important}
+.topbar .workshop-language-links{display:flex!important;align-items:center!important;gap:8px!important;margin:0!important}
+.topbar .menu-toggle{display:none!important;background:transparent!important;border:1px solid rgba(255,255,255,.2)!important;color:#fff!important;font-size:20px!important;padding:8px 12px!important;border-radius:8px!important;cursor:pointer!important}
+.topbar .btn-cyber-animated{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;padding:10px 15px!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:10px!important;background:linear-gradient(120deg,#a90025,#ff304f,#ff7a35)!important;color:#fff!important;text-decoration:none!important;font-size:12px!important;font-weight:800!important}
+@media(max-width:850px){
+.topbar .container.nav{min-height:76px!important}
+.topbar .menu-toggle{display:inline-flex!important;align-items:center!important;justify-content:center!important}
+.topbar .nav-links{display:none!important;position:absolute!important;top:76px!important;left:0!important;right:0!important;width:100%!important;box-sizing:border-box!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;flex-wrap:nowrap!important;gap:14px!important;padding:20px 24px!important;background:rgba(8,9,13,.98)!important;backdrop-filter:blur(16px)!important;border-bottom:1px solid rgba(255,255,255,.14)!important;box-shadow:0 15px 30px rgba(0,0,0,.6)!important;z-index:10001!important;max-height:calc(100vh - 76px)!important;overflow-y:auto!important}
+.topbar .nav-links.active{display:flex!important}
+.topbar .nav-links>a:not(.btn-cyber-animated),.topbar .nav-links>.dropdown{display:block!important;width:100%!important}
+.topbar .nav-links>.dropdown>a{display:block!important;width:100%!important;box-sizing:border-box!important;padding:8px 10px!important}
+.topbar .nav-links .dropdown-content{position:static!important;width:100%!important;min-width:0!important;margin-top:6px!important;box-sizing:border-box!important;box-shadow:none!important}
+.topbar .nav-links .workshop-language-links{display:flex!important;width:100%!important;gap:8px!important}
+.topbar .nav-links .workshop-language-links .btn{flex:1!important;justify-content:center!important}
+.topbar .nav-links .btn-cyber-animated{width:100%!important;box-sizing:border-box!important;justify-content:center!important}
+}
+@media(max-width:580px){.topbar .brand-logo{max-width:155px!important;max-height:52px!important}}
+</style>
+
   
   
   
@@ -474,25 +503,37 @@
   <meta name="twitter:image:alt" content="Sokongan Pemasaran Affiliate Malaysia | KasuhaNET MyAffiliate">
 </head>
 <body>
-<!-- HEADER UTAMA -->
+<!-- HEADER UTAMA: SERAGAM DENGAN VERSI EN -->
 <header class="topbar">
   <div class="container nav">
-    <a class="brand" href="index.html" aria-label="KasuhaNET utama">
-      <span class="brand-mark">K</span>
-      <span>KasuhaNET<small>STORE</small></span>
-    </a>
+    <div id="branding-title">
+      <a class="brand" href="/MS/index.html" aria-label="KasuhaNET.STORE Laman Utama">
+        <img src="/img/logo3.png" alt="KasuhaNET.STORE" class="brand-logo">
+      </a>
+    </div>
     <nav class="nav-links" id="navLinks" aria-label="Navigasi Utama">
-      <a href="index.html">LAMAN UTAMA</a>
-      <a href="about-us-MS.html">TENTANG KAMI</a>
-      <a href="panduan/index.html">PANDUAN</a>
-      <a href="privacy-policy-MS.html">POLISI PRIVASI</a>
-      <a href="support-centre-MS.html">SOKONGAN</a>
-      <a class="btn btn-outline" href="../index.html" lang="en">EN</a>
-      <a class="btn btn-outline" href="index.html" lang="ms">BM</a>
-      <a class="btn btn-primary" href="Banner-WebSale-MS.html">TEMPAH WEBSITE</a>
+      <div class="dropdown">
+        <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor:pointer">
+          Overseas <i class="fa-solid fa-chevron-down" style="font-size:10px;margin-left:3px;color:#ff7187"></i>
+        </a>
+        <div class="dropdown-content" id="servicesDropdown">
+          <a href="/Rwanda-SupportDevelopement.html"><i class="fa-solid fa-globe" style="margin-right:8px;color:#00F0FF"></i> RWANDA (Africa)</a>
+          <a href="/Timor-Leste-SupportDevelopement.html"><i class="fa-solid fa-globe" style="margin-right:8px;color:#E600A4"></i> TIMOR LESTE (Asia)</a>
+        </div>
+      </div>
+      <a href="/MS/index.html">LAMAN UTAMA</a>
+      <a href="/MS/about-us-MS.html">TENTANG KAMI</a>
+      <a href="/MS/panduan/index.html">PANDUAN</a>
+      <a href="/MS/privacy-policy-MS.html">POLISI PRIVASI</a>
+      <a href="/MS/support-centre-MS.html">SOKONGAN</a>
+      <div class="workshop-language-links">
+        <a class="btn btn-outline" href="/Shop-MyAffliate-home-EN.html" lang="en">EN</a>
+        <a class="btn btn-outline" href="/MS/Shop-MyAffliate-home-MS.html" lang="ms" aria-current="page">BM</a>
+      </div>
+      <a class="btn-cyber-animated" href="/Banner-WebSale-MS.html"><span>TEMPAH WEBSITE</span><i class="fa-solid fa-computer-mouse"></i></a>
     </nav>
-    <button class="menu-toggle" type="button" onclick="toggleMobileMenu()" aria-label="Buka navigasi">
-      <i class="fa-solid fa-bars"></i>
+    <button class="menu-toggle" type="button" onclick="toggleMobileMenu()" aria-label="Buka navigasi" aria-controls="navLinks" aria-expanded="false">
+      <i class="fa-solid fa-bars" aria-hidden="true"></i>
     </button>
   </div>
 </header>
@@ -605,35 +646,19 @@
   </a>
 </div>
 
-<footer class="footer">
-    <div class="footer-grid">
-        <div>
-            <h3>KasuhaNET.STORE</h3>
-            <p>Ekosistem digital pelbagai perkhidmatan fokus kepada penyelesaian Linux, sistem affiliate, penjanaan pendapatan dan pembelajaran digital.</p>
-        </div>
-        <div class="footer-links">
-            <h4>Perkhidmatan</h4>
-            <a href="CommandCanDoLIST.html">CommandCanDo</a>
-            <a href="Shop-MyAffliate-home-MS.html">MyAffiliate</a>
-            <a href="CashOutServicePayLater-MS.html">PayLater BNPL</a>
-        </div>
-        <div class="footer-links">
-            <h4>Sumber</h4>
-            <a href="about-us-MS.html">Tentang Kami</a>
-            <a href="support-centre-MS.html">Bantuan</a>
-            <a href="privacy-policy-MS.html">Polisi Privasi</a>
-        </div>
-        <div class="footer-links">
-            <h4>Ikuti Kami</h4>
-            <a href="https://www.facebook.com/share/1BfeDZJqjP/" target="_blank">Facebook</a>
-            <a href="https://tiktok.com/@kasuhanet.store" target="_blank">TikTok</a>
-            <a href="https://t.me/kasuhanetstorebot" target="_blank">Telegram</a>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        © 2026 KasuhaNET Resources (202503248308). Hak Cipta Terpelihara.
-    </div>
-</footer>
+<!-- FOOTER DINAMIK: TEMPLATE MS SERAGAM -->
+<div id="footer-placeholder"></div>
+<script>
+  fetch("../template-text/MS/template-footer-MS.html")
+    .then(response => {
+      if (!response.ok) throw new Error("Footer Template Failed Load");
+      return response.text();
+    })
+    .then(data => {
+      document.getElementById("footer-placeholder").innerHTML = data;
+    })
+    .catch(error => console.error(error));
+</script>
 <!-- WHATSAPP FLOATING BUTTON -->
 <a href="https://wa.me/60167390501?text=Assalamualaikum,%20saya%20ingin%20bertanya%20tentang%20perkhidmatan%20KasuhaNET.STORE"
    style="
