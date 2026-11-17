@@ -417,6 +417,15 @@
   </div>
 </header>
 
+<!-- PARTNER CREDIT: LOAD CENTRAL TEMPLATE -->
+<div id="partner-credit-placeholder"></div>
+<script>
+  fetch("template-text/EN/partner-credit-EN.html")
+    .then(response => { if (!response.ok) throw new Error("Partner Credit Template Failed to Load"); return response.text(); })
+    .then(data => { document.getElementById("partner-credit-placeholder").innerHTML = data; })
+    .catch(error => console.error(error));
+</script>
+
 <main class="cashout-main">
 <div class="container">
 
