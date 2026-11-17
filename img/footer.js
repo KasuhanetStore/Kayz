@@ -25,6 +25,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 position: relative;
                 z-index: 999;
             }
+            #main-footer::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: url("/img/LogoOfficialTeks.png") center center / contain no-repeat;
+                opacity: .05;
+                pointer-events: none;
+                z-index: 0;
+            }
+            #main-footer > * { position: relative; z-index: 1; }
+            #main-footer {
+            }
             .footer-grid {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
