@@ -227,6 +227,40 @@ main .grid .card a.websale-buy-btn:active {
 .kn-payment-choice p{margin:0;color:#d7e8ef;font-size:11px;line-height:1.5}
 @media(max-width:600px){.kn-payment-choice{gap:10px;padding:13px}.kn-payment-option{min-height:72px;padding:12px!important}}
 </style>
+
+<style id="kn-unified-payment-design">
+/* Shared KasuhaNET checkout and payment appearance */
+#knCheckout:not([hidden]),.kn-payment-modal:not([hidden]){box-sizing:border-box;display:flex!important;position:fixed!important;inset:0!important;z-index:99999!important;align-items:center!important;justify-content:center!important;padding:12px!important;overflow-y:auto!important;overscroll-behavior:contain;background:rgba(0,0,0,.78)!important;backdrop-filter:blur(8px)}
+#knCheckout .kn-checkout-panel,.kn-payment-modal .kn-payment-panel{box-sizing:border-box!important;width:min(100%,420px)!important;max-width:420px!important;max-height:calc(100vh - 24px)!important;max-height:calc(100dvh - 24px)!important;overflow-y:auto!important;overscroll-behavior:contain;padding:16px!important;border:1px solid rgba(0,240,255,.28)!important;border-radius:15px!important;color:#f6f7fb!important;background:#11141d!important;box-shadow:0 18px 55px rgba(0,0,0,.5)!important}
+#knCheckout .kn-checkout-head,.kn-payment-modal .kn-payment-head{display:flex;align-items:center;justify-content:space-between;gap:9px;margin:0 0 11px!important}
+#knCheckout .kn-checkout-head h2,.kn-payment-modal .kn-payment-head h2{margin:0;color:#00f0ff!important;font-size:15px!important;letter-spacing:.7px}
+#knCheckout .kn-checkout-close,.kn-payment-modal .kn-payment-close{flex:0 0 34px;width:34px;height:34px;border:1px solid rgba(255,255,255,.2);border-radius:8px;color:#fff;background:transparent;cursor:pointer}
+#knCheckout .kn-order-summary,.kn-payment-modal .kn-payment-summary{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px;margin:0 0 12px!important;padding:10px 11px!important;border:1px solid rgba(0,240,255,.18)!important;border-radius:9px!important;background:rgba(0,240,255,.055)!important}
+#knCheckout .kn-order-summary p,.kn-payment-modal .kn-payment-summary p{flex-basis:100%;margin:3px 0 0!important;color:#c4cad7!important;font-size:11px!important}
+#knCheckout .kn-order-summary strong,.kn-payment-modal .kn-payment-summary strong{color:#00f0ff!important;font-size:20px!important;font-weight:800}
+#knCheckout .kn-checkout-form,.kn-payment-modal .kn-payment-form{display:grid;gap:6px!important}
+#knCheckout .kn-checkout-form>label,.kn-payment-modal .kn-payment-form>label{margin:3px 0 0!important;color:#dfe3ed!important;font-size:11px!important;font-weight:700!important}
+#knCheckout .kn-checkout-form>input,.kn-payment-modal .kn-payment-form>input{box-sizing:border-box;width:100%;min-height:40px!important;padding:8px 10px!important;border:1px solid rgba(255,255,255,.15)!important;border-radius:8px!important;outline:none;color:#fff!important;background:#090b11!important;font:inherit;font-size:14px!important}
+#knCheckout .kn-checkout-form>input:focus,.kn-payment-modal .kn-payment-form>input:focus{border-color:#00f0ff!important;box-shadow:0 0 0 3px rgba(0,240,255,.1)!important}
+#knCheckout .kn-checkout-submit,.kn-payment-modal .kn-payment-form button{box-sizing:border-box;width:100%;min-height:44px!important;margin-top:8px!important;padding:10px!important;border:0!important;border-radius:9px!important;color:#061014!important;background:#00f0ff!important;font-size:11px!important;font-weight:900!important;cursor:pointer}
+#knCheckout .kn-checkout-note,.kn-payment-modal .kn-payment-note{margin:8px 0 0!important;color:#aeb5c4!important;font-size:9px!important;line-height:1.45!important}
+#knCheckout .kn-checkout-error,.kn-payment-modal .kn-payment-error{padding:8px;border:1px solid rgba(255,70,90,.35);border-radius:8px;color:#ff9aa8;background:rgba(255,48,79,.08);font-size:11px}
+#knCheckout .kn-payment-choice,.kn-payment-modal .kn-payment-choice{gap:11px!important;margin:12px 0 10px!important;padding:15px!important;border:2px solid #00f0ff!important;border-radius:12px!important;background:linear-gradient(135deg,rgba(0,240,255,.13),rgba(79,49,232,.2))!important;box-shadow:0 0 20px rgba(0,240,255,.13)!important}
+#knCheckout .kn-payment-heading,.kn-payment-modal .kn-payment-heading{color:#fff!important;font-size:16px!important;font-weight:950!important;letter-spacing:.6px!important}
+#knCheckout .kn-payment-options,.kn-payment-modal .kn-payment-options{display:grid;grid-template-columns:1fr;gap:10px}
+#knCheckout .kn-payment-option,.kn-payment-modal .kn-payment-option{position:relative;display:flex;align-items:center;gap:13px;min-height:76px;box-sizing:border-box;margin:0!important;padding:14px!important;border:2px solid rgba(255,255,255,.22)!important;border-radius:12px!important;background:#0b1422!important;color:#fff!important;cursor:pointer;transition:border-color .18s,background .18s,box-shadow .18s}
+#knCheckout .kn-payment-option.is-selected,.kn-payment-modal .kn-payment-option.is-selected{border-color:#00f0ff!important;background:linear-gradient(110deg,rgba(0,240,255,.17),rgba(79,49,232,.22))!important;box-shadow:0 0 18px rgba(0,240,255,.2)!important}
+#knCheckout .kn-payment-option input,.kn-payment-modal .kn-payment-option input{position:absolute;width:1px!important;height:1px!important;opacity:0}
+#knCheckout .kn-payment-radio,.kn-payment-modal .kn-payment-radio{flex:0 0 22px;width:22px;height:22px;box-sizing:border-box;border:2px solid #aeb8c8;border-radius:50%;background:transparent}
+#knCheckout .kn-payment-option.is-selected .kn-payment-radio,.kn-payment-modal .kn-payment-option.is-selected .kn-payment-radio{border:6px solid #00f0ff;background:#fff}
+#knCheckout .kn-payment-option-copy,.kn-payment-modal .kn-payment-option-copy{display:grid;gap:5px}
+#knCheckout .kn-payment-option-copy strong,.kn-payment-modal .kn-payment-option-copy strong{color:#fff!important;font-size:16px!important;font-weight:950!important;letter-spacing:.7px}
+#knCheckout .kn-payment-option-copy small,.kn-payment-modal .kn-payment-option-copy small{color:#d4e1ed!important;font-size:12px!important;line-height:1.4;font-weight:600}
+#knCheckout #knPaymentMethod,.kn-payment-modal #knPaymentMethod{display:none!important}
+#knCheckout #knPaymentHint,.kn-payment-modal #knPaymentHint{margin:0;color:#d7e8ef;font-size:11px;line-height:1.5}
+@media(max-width:600px){#knCheckout:not([hidden]),.kn-payment-modal:not([hidden]){padding:8px!important}#knCheckout .kn-checkout-panel,.kn-payment-modal .kn-payment-panel{width:min(100%,390px)!important;max-height:calc(100vh - 16px)!important;max-height:calc(100dvh - 16px)!important;padding:13px!important;border-radius:13px!important}#knCheckout .kn-payment-option,.kn-payment-modal .kn-payment-option{min-height:72px;padding:12px!important}}
+</style>
+
 </head>
 <body>
 
