@@ -945,7 +945,7 @@ footer > * { position: relative; z-index: 1; }
   modal.className="kn-payment-modal";
   modal.id="knWorkshopPaymentModal";
   modal.hidden=true;
-  modal.innerHTML='<section class="kn-payment-panel" role="dialog" aria-modal="true" aria-labelledby="knWorkshopPaymentTitle"><div class="kn-payment-head"><h2 id="knWorkshopPaymentTitle">PEMBAYARAN SELAMAT</h2><button type="button" class="kn-payment-close" aria-label="Tutup pembayaran">×</button></div><div class="kn-payment-summary"><p id="knWorkshopSummaryCount"></p><strong id="knWorkshopSummaryJumlah"></strong><p>Bayaran sekali sahaja · MYR</p></div><form class="kn-payment-form" id="knWorkshopPaymentForm"><label for="knWorkshopName">Nama penuh</label><input id="knWorkshopName" name="name" autocomplete="name" maxlength="100" required><label for="knWorkshopEmail">Alamat emel</label><input id="knWorkshopEmail" name="email" type="email" autocomplete="email" maxlength="254" required><label for="knWorkshopPhone">Nombor telefon</label><input id="knWorkshopPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60"><button type="submit" id="knWorkshopPaySubmit">BAYAR</button><p class="kn-payment-note">Bayaran diproses dengan selamat oleh Stripe. Kaedah pembayaran bergantung pada tetapan dan kelayakan akaun Stripe anda.</p><div class="kn-payment-error" id="knWorkshopPaymentError" role="alert"></div></form></section>';
+  modal.innerHTML='<section class="kn-payment-panel" role="dialog" aria-modal="true" aria-labelledby="knWorkshopPaymentTitle"><div class="kn-payment-head"><h2 id="knWorkshopPaymentTitle">PEMBAYARAN SELAMAT</h2><button type="button" class="kn-payment-close" aria-label="Tutup pembayaran">×</button></div><div class="kn-payment-summary"><p id="knWorkshopSummaryCount"></p><strong id="knWorkshopSummaryJumlah"></strong><p>Bayaran sekali sahaja · MYR</p></div><form class="kn-payment-form" id="knWorkshopPaymentForm"><label for="knWorkshopName">Nama penuh</label><input id="knWorkshopName" name="name" autocomplete="name" maxlength="100" required><label for="knWorkshopEmail">Alamat emel</label><input id="knWorkshopEmail" name="email" type="email" autocomplete="email" maxlength="254" required><label for="knWorkshopPhone">Nombor telefon</label><input id="knWorkshopPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60"><label for="knPaymentMethod">Kaedah pembayaran</label><select id="knPaymentMethod" name="paymentMethod"><option value="stripe">Stripe</option><option value="toyyibpay">ToyyibPay (FPX / Kad)</option></select><button type="submit" id="knWorkshopPaySubmit">BAYAR</button><p class="kn-payment-note">Pilih Stripe atau ToyyibPay. Anda akan dibawa ke halaman pembayaran rasmi penyedia yang dipilih.</p><div class="kn-payment-error" id="knWorkshopPaymentError" role="alert"></div></form></section>';
   document.body.append(modal);
   const close=()=>{modal.hidden=true;document.body.style.overflow="";};
   modal.querySelector(".kn-payment-close").addEventListener("click",close);
@@ -968,10 +968,11 @@ footer > * { position: relative; z-index: 1; }
     const button=document.getElementById("knWorkshopPaySubmit");
     const error=document.getElementById("knWorkshopPaymentError");
     button.disabled=true;
-    button.textContent="SEDANG MENYAMBUNG KE STRIPE...";
+    const paymentMethod=document.getElementById("knPaymentMethod").value;
+    button.textContent=paymentMethod==="toyyibpay"?"MENYAMBUNG KE TOYYIBPAY...":"SEDANG MENYAMBUNG KE STRIPE...";
     error.style.display="none";
     try{
-      const response=await fetch("/api/create-checkout",{
+      const response=await fetch(paymentMethod==="toyyibpay"?"/api/toyyibpay-create-bill":"/api/create-checkout",{
         method:"POST",
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify({
@@ -994,6 +995,13 @@ footer > * { position: relative; z-index: 1; }
   });
 
   const params=new URLSearchParams(window.location.search);
+  if(params.get("payment")==="toyyibpay_return"){
+    const orderId=params.get("order_id");const banner=document.createElement("div");banner.className="kn-payment-status";banner.textContent="Sedang menyemak status pembayaran ToyyibPay...";
+    const heading=document.querySelector(".workshop-container > h1");if(heading)heading.insertAdjacentElement("afterend",banner);
+    if(orderId){fetch("/api/toyyibpay-verify?order_id="+encodeURIComponent(orderId)).then(r=>r.json()).then(data=>{banner.textContent=data.status==="paid"?"Pembayaran ToyyibPay berjaya disahkan.":data.status==="failed"?"Pembayaran ToyyibPay tidak berjaya.":"Pembayaran diterima untuk semakan. Status semasa: "+(data.status||"pending")+". Sila semak semula sebentar lagi.";}).catch(()=>{banner.textContent="Pembayaran dihantar ke ToyyibPay. Status masih belum dapat disahkan.";});}
+    history.replaceState({},document.title,window.location.pathname);
+  }
+
   const paymentStatus=params.get("payment");
   if(paymentStatus==="success"||paymentStatus==="cancel"){
     const banner=document.createElement("div");
