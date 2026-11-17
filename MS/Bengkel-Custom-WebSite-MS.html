@@ -626,6 +626,37 @@ main > .container { max-width:900px !important; width:100%; }
   .footer h4 { color:#ff7187 !important; }
   .footer-links a:hover { color:#ff9b52 !important; }
 </style>
+<style>
+/* CUSTOM WORKSHOP STRIPE CHECKOUT */\n.kn-workshop-cart-items{display:grid;gap:8px;margin:14px 0}.kn-workshop-cart-item{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:12px}.kn-workshop-cart-name{color:#edf5ff}.kn-workshop-cart-item strong{color:#25d366;white-space:nowrap}.kn-workshop-remove{border:1px solid rgba(255,100,120,.35);border-radius:6px;padding:5px 8px;background:transparent;color:#ff9aa8;font-size:11px;cursor:pointer}.kn-workshop-empty{margin:8px 0;color:#aeb5c4;font-size:12px}
+.kn-service-select{display:flex;align-items:center;gap:9px;margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,.09);color:#e8faff;font-size:12px;font-weight:800;cursor:pointer}
+.kn-service-select input{width:17px;height:17px;accent-color:#00f0ff;cursor:pointer}
+.kn-workshop-cart{display:none;position:fixed;right:18px;bottom:86px;z-index:99990;width:min(390px,calc(100vw - 28px));max-height:min(70vh,560px);overflow:auto;margin:0;padding:18px;border:1px solid rgba(0,240,255,.45);border-radius:14px;background:#111722;box-shadow:0 18px 55px rgba(0,0,0,.55)}.kn-workshop-cart.is-open{display:block}.kn-workshop-float{display:none;position:fixed;right:18px;bottom:18px;z-index:99991;min-width:58px;min-height:58px;padding:10px 15px;border:1px solid rgba(0,240,255,.55);border-radius:999px;background:linear-gradient(120deg,#4f31e8,#00aebf);color:#fff;font-size:13px;font-weight:900;box-shadow:0 8px 30px rgba(0,0,0,.4);cursor:pointer}.kn-workshop-float.is-visible{display:flex;align-items:center;gap:9px}.kn-workshop-float-count{display:inline-grid;place-items:center;min-width:23px;height:23px;padding:0 5px;border-radius:50%;background:#fff;color:#101722;font-size:11px}
+.kn-workshop-cart h3{margin:0 0 8px;color:#00f0ff;font-size:16px}
+.kn-workshop-cart p{margin:4px 0;color:#c4cad7;font-size:12px}
+.kn-workshop-cart-total{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0;color:#fff;font-weight:900}
+.kn-workshop-cart-total strong{color:#25d366;font-size:20px}
+.kn-workshop-pay{width:100%;min-height:46px;border:0;border-radius:8px;background:linear-gradient(110deg,#4f31e8,#00bcd4);color:#fff;font-weight:900;cursor:pointer}
+.kn-workshop-pay:disabled{opacity:.5;cursor:not-allowed}
+.kn-payment-modal[hidden]{display:none!important}
+.kn-payment-modal{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:14px;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);overflow-y:auto}
+.kn-payment-panel{width:min(100%,480px);max-height:calc(100vh - 28px);overflow-y:auto;padding:22px;border:1px solid rgba(0,240,255,.35);border-radius:15px;background:#111722;color:#fff;box-shadow:0 20px 70px rgba(0,0,0,.6)}
+.kn-payment-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+.kn-payment-head h2{margin:0;color:#00f0ff;font-size:17px}
+.kn-payment-close{width:34px;height:34px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:transparent;color:#fff;font-size:18px;cursor:pointer}
+.kn-payment-summary{padding:13px;margin-bottom:15px;border:1px solid rgba(0,240,255,.18);border-radius:9px;background:rgba(0,240,255,.05)}
+.kn-payment-summary p{margin:4px 0;color:#c4cad7;font-size:12px}
+.kn-payment-summary strong{color:#25d366;font-size:20px}
+.kn-payment-form{display:grid;gap:8px}
+.kn-payment-form label{margin-top:5px;color:#dfe3ed;font-size:12px;font-weight:700}
+.kn-payment-form input{width:100%;min-height:44px;padding:10px 12px;border:1px solid rgba(255,255,255,.18);border-radius:8px;background:#080b12;color:#fff;font:inherit}
+.kn-payment-form button{min-height:47px;margin-top:10px;border:0;border-radius:9px;background:#00f0ff;color:#061014;font-weight:900;cursor:pointer}
+.kn-payment-form button:disabled{opacity:.6;cursor:wait}
+.kn-payment-error{display:none;padding:10px;border:1px solid rgba(255,70,90,.4);border-radius:8px;color:#ff9aa8;background:rgba(255,48,79,.08);font-size:12px}
+.kn-payment-note{color:#aeb5c4;font-size:10px;line-height:1.6}
+.kn-payment-status{margin:0 0 18px;padding:12px 14px;border:1px solid rgba(0,240,255,.3);border-radius:8px;background:rgba(0,240,255,.06);color:#eafaff;font-size:13px}
+@media(max-width:600px){.kn-payment-panel{padding:17px}.kn-workshop-cart{padding:14px}}
+
+</style>
 </head>
 
 <body>
@@ -936,6 +967,167 @@ main > .container { max-width:900px !important; width:100%; }
       document.getElementById("partner-credit-placeholder").innerHTML = data;
     })
     .catch(error => console.error(error));
+</script>
+<script>
+(function(){
+  "use strict";
+  const serviceIds = [
+    "domain-dns","vps-setup","ssl","cms-script","database","payment-gateway","email",
+    "troubleshooting","malware-security","optimization","migration","analytics","blogger-upgrade","page-design"
+  ];
+  const cards = Array.from(document.querySelectorAll(".custom-services-grid .card-fade"));
+  if (cards.length !== serviceIds.length) {
+    console.error("Custom Workshop checkout: service list does not match the checkout catalogue.");
+    return;
+  }
+  const money = value => new Intl.NumberFormat("en-MY",{style:"currency",currency:"MYR",maximumFractionDigits:2}).format(value/100);
+  const cart = document.createElement("section");
+  cart.className = "kn-workshop-cart";
+  cart.innerHTML = '<h3>Troli Belian</h3><p>Tandakan servis yang anda mahu. Servis pilihan akan dipaparkan di sini.</p><div id="knWorkshopCartItems" class="kn-workshop-cart-items" aria-live="polite"><p class="kn-workshop-empty">Troli anda kosong.</p></div><div class="kn-workshop-cart-total"><span>Jumlah</span><strong id="knWorkshopJumlah">RM 0.00</strong></div><p id="knWorkshopCount" aria-live="polite">0 item</p><button class="kn-workshop-pay" id="knWorkshopCheckout" type="button" disabled>TERUSKAN KE PEMBAYARAN</button>';
+  const grid = document.querySelector(".custom-services-grid");
+  document.body.append(cart);
+  const floatButton=document.createElement("button");
+  floatButton.type="button";
+  floatButton.className="kn-workshop-float";
+  floatButton.setAttribute("aria-label","Buka troli belian");
+  floatButton.innerHTML='<span>Cart</span><span class="kn-workshop-float-count" id="knWorkshopFloatCount">0</span>';
+  document.body.append(floatButton);
+  floatButton.addEventListener("click",()=>cart.classList.toggle("is-open"));
+  document.addEventListener("click",event=>{
+    if(cart.classList.contains("is-open")&&!cart.contains(event.target)&&!floatButton.contains(event.target))cart.classList.remove("is-open");
+  });
+
+  cards.forEach((card,index)=>{
+    const title = card.querySelector(".custom-item-title")?.textContent.trim() || "";
+    const priceText = card.querySelector(".custom-item-price")?.textContent || "";
+    const price = Number((priceText.match(/[0-9]+(?:\.[0-9]{1,2})?/)||[])[0]);
+    if (!Number.isFinite(price) || price <= 0) return;
+    card.dataset.serviceId = serviceIds[index];
+    const label = document.createElement("label");
+    label.className = "kn-service-select";
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.value = serviceIds[index];
+    checkbox.setAttribute("aria-label","Add "+title+" to order");
+    const caption = document.createElement("span");
+    caption.textContent = "Tambah servis ini ke troli";
+    label.append(checkbox,caption);
+    card.append(label);
+    checkbox.addEventListener("change",updateCart);
+  });
+
+  const selected = () => cards.filter(card=>card.querySelector(".kn-service-select input:checked")).map(card=>({
+    id:card.dataset.serviceId,
+    name:card.querySelector(".custom-item-title").textContent.trim(),
+    amount:Math.round(Number((card.querySelector(".custom-item-price").textContent.match(/[0-9]+(?:\.[0-9]{1,2})?/)||[])[0])*100)
+  }));
+  function updateCart(){
+    const items=selected();
+    const total=items.reduce((sum,item)=>sum+item.amount,0);
+    const list=document.getElementById("knWorkshopCartItems");
+    list.replaceChildren();
+    if(!items.length){
+      const empty=document.createElement("p");
+      empty.className="kn-workshop-empty";
+      empty.textContent="Troli anda kosong. Tick a service above to add it.";
+      list.append(empty);
+    } else {
+      items.forEach(item=>{
+        const row=document.createElement("div");
+        row.className="kn-workshop-cart-item";
+        const name=document.createElement("span");
+        name.className="kn-workshop-cart-name";
+        name.textContent=item.name;
+        const price=document.createElement("strong");
+        price.textContent=money(item.amount);
+        const remove=document.createElement("button");
+        remove.type="button";
+        remove.className="kn-workshop-remove";
+        remove.textContent="Buang";
+        remove.setAttribute("aria-label","Buang "+item.name+" from cart");
+        remove.addEventListener("click",()=>{
+          const card=cards.find(entry=>entry.dataset.serviceId===item.id);
+          const checkbox=card?.querySelector(".kn-service-select input");
+          if(checkbox){checkbox.checked=false;updateCart();}
+        });
+        row.append(name,price,remove);
+        list.append(row);
+      });
+    }
+    document.getElementById("knWorkshopJumlah").textContent=money(total);
+    document.getElementById("knWorkshopCount").textContent=items.length+" item dalam troli";
+    document.getElementById("knWorkshopCheckout").disabled=!items.length;
+    document.getElementById("knWorkshopFloatCount").textContent=String(items.length);
+    floatButton.classList.toggle("is-visible",items.length>0);
+    if(!items.length)cart.classList.remove("is-open");
+  }
+
+  const modal=document.createElement("div");
+  modal.className="kn-payment-modal";
+  modal.id="knWorkshopPaymentModal";
+  modal.hidden=true;
+  modal.innerHTML='<section class="kn-payment-panel" role="dialog" aria-modal="true" aria-labelledby="knWorkshopPaymentTitle"><div class="kn-payment-head"><h2 id="knWorkshopPaymentTitle">PEMBAYARAN SELAMAT</h2><button type="button" class="kn-payment-close" aria-label="Close checkout">×</button></div><div class="kn-payment-summary"><p id="knWorkshopSummaryCount"></p><strong id="knWorkshopSummaryJumlah"></strong><p>Bayaran sekali sahaja · MYR</p></div><form class="kn-payment-form" id="knWorkshopPaymentForm"><label for="knWorkshopName">Nama penuh</label><input id="knWorkshopName" name="name" autocomplete="name" maxlength="100" required><label for="knWorkshopEmail">Alamat emel</label><input id="knWorkshopEmail" name="email" type="email" autocomplete="email" maxlength="254" required><label for="knWorkshopPhone">Nombor telefon</label><input id="knWorkshopPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60"><button type="submit" id="knWorkshopPaySubmit">TERUSKAN KE PEMBAYARAN STRIPE</button><p class="kn-payment-note">Bayaran diproses dengan selamat oleh Stripe. Kaedah pembayaran bergantung pada tetapan dan kelayakan akaun Stripe anda.</p><div class="kn-payment-error" id="knWorkshopPaymentError" role="alert"></div></form></section>';
+  document.body.append(modal);
+  const close=()=>{modal.hidden=true;document.body.style.overflow="";};
+  modal.querySelector(".kn-payment-close").addEventListener("click",close);
+  modal.addEventListener("click",event=>{if(event.target===modal)close();});
+  document.addEventListener("keydown",event=>{if(event.key==="Escape"&&!modal.hidden)close();});
+  document.getElementById("knWorkshopCheckout").addEventListener("click",()=>{
+    const items=selected();
+    if(!items.length)return;
+    document.getElementById("knWorkshopSummaryCount").textContent=items.length+" servis dipilih";
+    document.getElementById("knWorkshopSummaryJumlah").textContent=money(items.reduce((sum,item)=>sum+item.amount,0));
+    document.getElementById("knWorkshopPaymentError").style.display="none";
+    modal.hidden=false;
+    document.body.style.overflow="hidden";
+    document.getElementById("knWorkshopName").focus();
+  });
+  document.getElementById("knWorkshopPaymentForm").addEventListener("submit",async event=>{
+    event.preventDefault();
+    const items=selected();
+    if(!items.length)return;
+    const button=document.getElementById("knWorkshopPaySubmit");
+    const error=document.getElementById("knWorkshopPaymentError");
+    button.disabled=true;
+    button.textContent="SEDANG MENYAMBUNG KE STRIPE...";
+    error.style.display="none";
+    try{
+      const response=await fetch("/api/create-checkout",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({
+          serviceIds:items.map(item=>item.id),
+          locale:"MS",
+          name:document.getElementById("knWorkshopName").value.trim(),
+          email:document.getElementById("knWorkshopEmail").value.trim(),
+          phone:document.getElementById("knWorkshopPhone").value.trim()
+        })
+      });
+      const data=await response.json();
+      if(!response.ok||!data.url)throw new Error(data.error||"Pembayaran tidak dapat dimulakan. Sila cuba lagi.");
+      window.location.assign(data.url);
+    }catch(err){
+      error.textContent=err.message||"Tidak dapat menyambung ke perkhidmatan pembayaran.";
+      error.style.display="block";
+      button.disabled=false;
+      button.textContent="TERUSKAN KE PEMBAYARAN STRIPE";
+    }
+  });
+
+  const params=new URLSearchParams(window.location.search);
+  const paymentStatus=params.get("payment");
+  if(paymentStatus==="success"||paymentStatus==="cancel"){
+    const banner=document.createElement("div");
+    banner.className="kn-payment-status";
+    banner.textContent=paymentStatus==="success"
+      ?"Stripe telah membawa anda kembali ke halaman ini. Status pembayaran sedang disahkan. Simpan rujukan pembayaran dan hubungi sokongan jika perlukan bantuan."
+      :"Pembayaran dibatalkan. Tiada bayaran baharu diselesaikan dalam sesi ini.";
+    const heading=document.querySelector(".workshop-container > h1");
+    if(heading)heading.insertAdjacentElement("afterend",banner);
+    history.replaceState({},document.title,window.location.pathname);
+  }
+})();
+
 </script>
 </body>
 </html>
