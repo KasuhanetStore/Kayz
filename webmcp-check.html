@@ -239,9 +239,9 @@
 
       details.innerHTML = results.map((r) =>
         '<div class="result"><strong>' + r.path + '</strong>' +
-        '<p>Borang: ' + (r.formOk ? "LULUS" : "GAGAL") + " — " + r.formDetail + '</p>' +
-        '<p>Alat: ' + (r.toolOk ? "LULUS" : "GAGAL") + " — " + r.toolDetail + '</p>' +
-        '<p>Skema: ' + (r.schemaOk ? "LULUS" : "GAGAL") + " — " + r.schemaDetail + '</p>' +
+        '<p>Borang: ' + (r.formOk ? "LULUS" : "GAGAL") + ": " + r.formDetail + '</p>' +
+        '<p>Alat: ' + (r.toolOk ? "LULUS" : "GAGAL") + ": " + r.toolDetail + '</p>' +
+        '<p>Skema: ' + (r.schemaOk ? "LULUS" : "GAGAL") + ": " + r.schemaDetail + '</p>' +
         (r.executionResults.length ? '<p>Pelaksanaan alat bacaan: ' + r.executionResults.map((x) => x.name + ": " + (x.ok ? "LULUS" : "GAGAL")).join("; ") + '</p>' : '') +
         '</div>'
       ).join("");
