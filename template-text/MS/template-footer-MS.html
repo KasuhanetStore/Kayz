@@ -61,6 +61,12 @@
     </div>
   </div>
 </footer>
+<style id="footer-logo-background-style">
+footer { position: relative; isolation: isolate; overflow: hidden; }
+footer::before { content: ""; position: absolute; inset: 0; background: url("/img/LogoOfficialTeks.png") center center / contain no-repeat; opacity: .05; pointer-events: none; z-index: 0; }
+footer > * { position: relative; z-index: 1; }
+</style>
+
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
