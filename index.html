@@ -624,6 +624,13 @@
  .highlight-orange-glow:hover,.highlight-orange-glow:focus-visible{color:#ffd27a!important;text-shadow:0 0 7px rgba(255,190,70,1),0 0 17px rgba(255,120,0,.95),0 0 28px rgba(255,75,0,.7)}
  .highlight-card-icon{color:#ff9b32;text-shadow:0 0 6px rgba(255,145,0,.95),0 0 16px rgba(255,95,0,.7);animation:highlight-orange-flash 1.15s ease-in-out infinite alternate}
  @keyframes highlight-orange-flash{from{filter:brightness(1);text-shadow:0 0 4px rgba(255,145,0,.7),0 0 10px rgba(255,100,0,.5)}to{filter:brightness(1.55);text-shadow:0 0 8px rgba(255,190,70,1),0 0 18px rgba(255,115,0,.95),0 0 27px rgba(255,75,0,.65)}}
+
+  .kn-payment-choice { display:grid; gap:9px; margin:12px 0 8px; padding:15px; border:2px solid #00f0ff; border-radius:12px; background:linear-gradient(135deg,rgba(0,240,255,.13),rgba(79,49,232,.2)); box-shadow:0 0 20px rgba(0,240,255,.13); }
+  .kn-payment-step { display:inline-flex; justify-self:start; padding:5px 9px; border-radius:5px; background:#00f0ff; color:#061014; font-size:10px; font-weight:1000; letter-spacing:1px; }
+  .kn-payment-choice label { margin:2px 0 0; color:#fff; font-size:15px; font-weight:900; letter-spacing:.5px; }
+  .kn-payment-choice select { width:100%; min-height:60px; padding:13px 42px 13px 14px; border:2px solid #00f0ff; border-radius:9px; background:#080f1b; color:#fff; font-size:16px; font-weight:900; line-height:1.35; cursor:pointer; color-scheme:dark; }
+  .kn-payment-choice select:focus { outline:3px solid rgba(0,240,255,.35); outline-offset:2px; }
+  .kn-payment-choice p { margin:0; color:#d7e8ef; font-size:11px; line-height:1.5; }
 </style>
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4280897190566760" crossorigin="anonymous"></script>
@@ -1050,8 +1057,9 @@
       <input id="knCustomerEmail" name="email" type="email" autocomplete="email" maxlength="254" toolparamdescription="Valid email address for the order confirmation and payment record." required>
       <label for="knCustomerPhone">Phone number</label>
       <input id="knCustomerPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60" toolparamdescription="Customer contact phone number, including country code when available.">
+      <div class="kn-payment-choice"><span class="kn-payment-step">STEP 1 · CHOOSE HOW TO PAY</span><label for="knPaymentMethod">PAYMENT METHOD</label><select id="knPaymentMethod" name="paymentMethod" aria-describedby="knPaymentHint"><option value="stripe">Stripe · Cards / available methods</option><option value="toyyibpay">ToyyibPay · FPX / Card / DuitNow QR (if active)</option></select><p id="knPaymentHint">Tap this large selection box to choose your payment provider before pressing continue.</p></div>
       <button class="kn-checkout-submit" id="knCheckoutSubmit" type="submit">CONTINUE TO SECURE PAYMENT</button>
-      <p class="kn-checkout-note">Your payment is processed securely by Stripe. Available payment methods are shown on the Stripe payment page according to merchant account eligibility and settings.</p>
+      <p class="kn-checkout-note">Choose Stripe or ToyyibPay. You will be redirected to the selected provider’s secure payment page. Do not share your card or banking credentials with KasuhaNET.</p>
       <div class="kn-checkout-error" id="knCheckoutError" role="alert"></div>
     </form>
   </section>
@@ -1179,14 +1187,16 @@
     const name = document.getElementById("knCustomerName").value.trim();
     const email = document.getElementById("knCustomerEmail").value.trim();
     const phone = document.getElementById("knCustomerPhone").value.trim();
+    const paymentMethod = document.getElementById("knPaymentMethod").value;
     button.disabled = true;
-    button.textContent = "CONNECTING TO STRIPE...";
+    button.textContent = paymentMethod === "toyyibpay" ? "CONNECTING TO TOYYIBPAY..." : "CONNECTING TO STRIPE...";
     errorBox.style.display = "none";
+    errorBox.textContent = "";
     try {
-      const response = await fetch("/api/create-checkout", {
+      const response = await fetch(paymentMethod === "toyyibpay" ? "/api/toyyibpay-create-bill" : "/api/create-checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ packageId: knSelectedPackage, name: name, email: email, phone: phone })
+        body: JSON.stringify({ packageId: knSelectedPackage, name, email, phone, locale: "EN" })
       });
       const data = await response.json();
       if (!response.ok || !data.url) throw new Error(data.error || "Checkout could not be started. Please try again.");
@@ -1198,6 +1208,20 @@
       button.textContent = "CONTINUE TO SECURE PAYMENT";
     }
   });
+
+  const returnParams = new URLSearchParams(window.location.search);
+  if (returnParams.get("payment") === "toyyibpay_return") {
+    const notice = document.createElement("div");
+    notice.className = "container";
+    notice.style.cssText = "margin:18px auto;padding:14px;border:1px solid rgba(0,240,255,.25);border-radius:10px;color:#f6f7fb;background:#11141d";
+    notice.textContent = "Checking ToyyibPay payment status...";
+    document.querySelector("main").prepend(notice);
+    const orderId = returnParams.get("order_id");
+    if (orderId) fetch("/api/toyyibpay-verify?order_id=" + encodeURIComponent(orderId)).then(r => r.json()).then(data => {
+      notice.textContent = data.status === "paid" ? "ToyyibPay payment successfully verified." : data.status === "failed" ? "ToyyibPay payment was not successful." : "Payment was submitted to ToyyibPay. Current status: " + (data.status || "pending") + ".";
+    }).catch(() => { notice.textContent = "Payment was submitted to ToyyibPay but its status could not be verified yet."; });
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
 </script>
 
 
