@@ -66,6 +66,12 @@
     max-height: calc(100vh - 32px);
     overflow-y: auto;
   }
+  .kn-payment-choice { display:grid; gap:9px; margin:12px 0 8px; padding:15px; border:2px solid #00f0ff; border-radius:12px; background:linear-gradient(135deg,rgba(0,240,255,.13),rgba(79,49,232,.2)); box-shadow:0 0 20px rgba(0,240,255,.13); }
+  .kn-payment-step { display:inline-flex; justify-self:start; padding:5px 9px; border-radius:5px; background:#00f0ff; color:#061014; font-size:10px; font-weight:1000; letter-spacing:1px; }
+  .kn-payment-choice label { margin:2px 0 0; color:#fff; font-size:15px; font-weight:900; letter-spacing:.5px; }
+  .kn-payment-choice select { width:100%; min-height:60px; padding:13px 42px 13px 14px; border:2px solid #00f0ff; border-radius:9px; background:#080f1b; color:#fff; font-size:16px; font-weight:900; line-height:1.35; cursor:pointer; color-scheme:dark; }
+  .kn-payment-choice select:focus { outline:3px solid rgba(0,240,255,.35); outline-offset:2px; }
+  .kn-payment-choice p { margin:0; color:#d7e8ef; font-size:11px; line-height:1.5; }
   @media (max-width: 600px) {
     #knCheckout { padding: 12px; }
     #knCheckout .kn-checkout-panel { padding: 18px; }
@@ -364,6 +370,7 @@ main .grid .card a.websale-buy-btn:active {
       <input id="knCustomerEmail" name="email" type="email" autocomplete="email" maxlength="254" toolparamdescription="Alamat e-mel yang sah untuk pengesahan pesanan dan rekod pembayaran." required>
       <label for="knCustomerPhone">Nombor telefon</label>
       <input id="knCustomerPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60" toolparamdescription="Nombor telefon untuk dihubungi, termasuk kod negara jika tersedia.">
+      <div class="kn-payment-choice"><span class="kn-payment-step">LANGKAH 1 · PILIH CARA BAYAR</span><label for="knPaymentMethod">KAEDAH PEMBAYARAN</label><select id="knPaymentMethod" name="paymentMethod" aria-describedby="knPaymentHint"><option value="stripe">Stripe · Kad / Kaedah tersedia</option><option value="toyyibpay">ToyyibPay · FPX / Kad / DuitNow QR (jika aktif)</option></select><p id="knPaymentHint">Tekan kotak pilihan ini untuk memilih penyedia pembayaran sebelum teruskan.</p></div>
       <button class="kn-checkout-submit" id="knCheckoutSubmit" type="submit">TERUSKAN KE PEMBAYARAN SELAMAT</button>
       <p class="kn-checkout-note">Pembayaran diproses dengan selamat melalui Stripe. Kaedah pembayaran yang tersedia akan dipaparkan pada halaman Stripe mengikut kelayakan dan tetapan akaun peniaga. Jangan kongsi maklumat kad atau perbankan anda dengan KasuhaNET.</p>
       <div class="kn-checkout-error" id="knCheckoutError" role="alert"></div>
@@ -458,15 +465,18 @@ main .grid .card a.websale-buy-btn:active {
     errorBox.style.display = "none";
     errorBox.textContent = "";
 
+    const paymentMethod = document.getElementById("knPaymentMethod").value;
+    submit.textContent = paymentMethod === "toyyibpay" ? "MENYAMBUNG KE TOYYIBPAY..." : "MENYAMBUNG KE STRIPE...";
     try {
-      const response = await fetch("/api/create-checkout", {
+      const response = await fetch(paymentMethod === "toyyibpay" ? "/api/toyyibpay-create-bill" : "/api/create-checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           packageId: knSelectedPackage,
           name: formData.get("name"),
           email: formData.get("email"),
-          phone: formData.get("phone")
+          phone: formData.get("phone"),
+          locale: "MS"
         })
       });
       const result = await response.json();
@@ -477,11 +487,33 @@ main .grid .card a.websale-buy-btn:active {
     } catch (error) {
       errorBox.textContent = error.message || "Ralat berlaku. Sila cuba semula.";
       errorBox.style.display = "block";
-    } finally {
       submit.disabled = false;
       submit.textContent = "TERUSKAN KE PEMBAYARAN SELAMAT";
     }
   });
+
+  const returnParams = new URLSearchParams(window.location.search);
+  if (returnParams.get("payment") === "toyyibpay_return") {
+    const notice = document.createElement("div"); notice.className = "container";
+    notice.style.cssText = "margin:18px auto;padding:14px;border:1px solid rgba(0,240,255,.25);border-radius:10px;color:#f6f7fb;background:#11141d";
+    notice.textContent = "Sedang menyemak status pembayaran ToyyibPay..."; document.querySelector("main").prepend(notice);
+    const orderId = returnParams.get("order_id");
+    if (orderId) fetch("/api/toyyibpay-verify?order_id=" + encodeURIComponent(orderId)).then(r => r.json()).then(data => {
+      notice.textContent = data.status === "paid" ? "Pembayaran ToyyibPay berjaya disahkan." : data.status === "failed" ? "Pembayaran ToyyibPay tidak berjaya." : "Pembayaran dihantar kepada ToyyibPay. Status semasa: " + (data.status || "pending") + ". Sila semak semula sebentar lagi.";
+    }).catch(() => { notice.textContent = "Pembayaran dihantar kepada ToyyibPay tetapi status belum dapat disahkan."; });
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+  const paymentState = new URLSearchParams(window.location.search).get("payment");
+  if (paymentState === "success" || paymentState === "cancel") {
+    const notice = document.createElement("div");
+    notice.className = "container";
+    notice.style.cssText = "margin:18px auto;padding:14px;border:1px solid rgba(0,240,255,.25);border-radius:10px;color:#f6f7fb;background:#11141d";
+    notice.textContent = paymentState === "success"
+      ? "Anda telah kembali daripada Stripe Checkout. Sila semak pengesahan pembayaran Stripe sebelum menganggap pesanan selesai."
+      : "Checkout dibatalkan. Tiada pembayaran baharu diselesaikan melalui sesi ini.";
+    document.querySelector("main").prepend(notice);
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
 
   const WHATSAPP_NUMBER = "60167390501"; 
   const DEFAULT_MESSAGE = "Helo, saya berminat dengan perkhidmatan KasuhaNET.STORE.";  
