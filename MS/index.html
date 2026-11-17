@@ -955,7 +955,7 @@
       <label for="knCustomerName">Nama penuh</label>
       <input id="knCustomerName" name="name" autocomplete="name" maxlength="100" toolparamdescription="Nama penuh pelanggan untuk pesanan pakej laman web." required>
       <label for="knCustomerEmail">Alamat e-mel</label>
-      <input id="knCustomerEmail" name="email" type="email" autocomplete="email" maxlength="254" toolparamdescription="Alamat e-mel yang sah untuk pengesahan pesanan dan rekod pembayaran." required title="Enter a valid email address, e.g. name@example.com.">
+      <input id="knCustomerEmail" name="email" type="email" autocomplete="email" maxlength="254" toolparamdescription="Alamat e-mel yang sah untuk pengesahan pesanan dan rekod pembayaran." required title="Masukkan e-mel yang sah, contohnya nama@example.com.">
       <label for="knCustomerPhone">Nombor telefon</label>
       <input id="knCustomerPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60" toolparamdescription="Nombor telefon untuk dihubungi, termasuk kod negara jika tersedia." required inputmode="tel" title="Masukkan 9 hingga 15 digit nombor telefon. Contoh: +60123456789.">
       <div class="kn-payment-choice"><span class="kn-payment-step">LANGKAH 1 · PILIH CARA BAYAR</span><label for="knPaymentMethod">KAEDAH PEMBAYARAN</label><select id="knPaymentMethod" name="paymentMethod" aria-describedby="knPaymentHint"><option value="stripe">Stripe · Kad / Kaedah tersedia</option><option value="toyyibpay">ToyyibPay · FPX / Kad / DuitNow QR (jika aktif)</option></select><p id="knPaymentHint">Tekan kotak pilihan ini untuk memilih penyedia pembayaran sebelum teruskan.</p></div>
@@ -1209,7 +1209,7 @@ window.__kasuhaNetWebMCPReady = (async function daftarWebMCPKasuhaNet() {
     if(v.length>254||/\s/.test(v))return false;
     const parts=v.split("@");
     if(parts.length!==2||!parts[0]||parts[0].length>64)return false;
-    if(!/^[A-Z0-9.!#$%&'*+/=?^_`{|}~-]+$/i.test(parts[0]))return false;
+    if(!/^[A-Z0-9.!#$%&'*+/=?^_`{|}~-]+$/i.test(parts[0])||parts[0].startsWith(".")||parts[0].endsWith(".")||parts[0].includes(".."))return false;
     const labels=parts[1].split(".");
     if(labels.length<2||labels.some(x=>!x||x.length>63||! /^[A-Z0-9](?:[A-Z0-9-]*[A-Z0-9])?$/i.test(x)))return false;
     return /^[A-Z]{2,}$/i.test(labels[labels.length-1]);
