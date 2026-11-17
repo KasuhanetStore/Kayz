@@ -464,6 +464,20 @@
     </button>
   </div>
 </header>
+
+<!-- KREDIT RAKAN KONGSI: MUATKAN TEMPLATE PUSAT -->
+<div id="partner-credit-placeholder"></div>
+<script>
+  fetch("../template-text/MS/partner-credit-MS.html")
+    .then(response => {
+      if (!response.ok) throw new Error("Template Kredit Rakan Kongsi Gagal Dimuatkan");
+      return response.text();
+    })
+    .then(data => {
+      document.getElementById("partner-credit-placeholder").innerHTML = data;
+    })
+    .catch(error => console.error(error));
+</script>
 <!-- HERO BANNER PROMOSI -->
 <section class="hero-section">
     <h1>KEDAI AFFILIATE KESELURUHAN</h1>
