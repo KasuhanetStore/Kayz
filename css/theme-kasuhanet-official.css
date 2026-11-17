@@ -282,7 +282,7 @@ body {
 
 .feature-list li {
     color: #e4e6ed;
-    border-bottom-color: rgba(255,255,255,.07);
+    border-bottom: none !important;
 }
 
 .feature-list li::before {
