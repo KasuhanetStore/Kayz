@@ -445,20 +445,20 @@ body{background:#f4f7fb;color:#182b40;font-family:Inter,system-ui,-apple-system,
 
         <section class="standard-pricing-section" aria-label="Startup package">
   <article class="standard-pricing-card">
-    <span class="pricing-kicker">Starter solution</span>
-    <h3>Startup Package</h3>
-    <p class="pricing-description">A practical starting point for small businesses and single-product promotion.</p>
-    <div class="pricing-price">$12.88 <span class="pricing-currency">USD</span><span class="pricing-period">/one-time</span></div>
+    <span class="pricing-kicker" id="pkg-kicker">Solusaun Inicial</span>
+    <h3 id="pkg-title">Pakote Startup</h3>
+    <p id="pkg-desc" class="pricing-description">Solusaun dijital ba negósiu kiik no promosaun produtu ida.</p>
+    <div class="pricing-price">$12.88 <span class="pricing-currency">USD</span><span id="pkg-rate" class="pricing-period">/pagamentu dala ida</span></div>
     <ul>
-      <li><span>Single-page landing website</span></li>
-      <li><span>Business-focused layout design</span></li>
-      <li><span>Existing platform subdomain</span></li>
-      <li><span>Website hosting platform</span></li>
-      <li><span>Contact button integration</span></li>
-      <li><span>Basic SEO configuration</span></li>
+      <li><span id="f1">Website Landing Page ida</span></li>
+      <li><span id="f2">Dezenhu layout ba negósiu</span></li>
+      <li><span id="f3">Subdominiu plataforma neebe iha</span></li>
+      <li><span id="f4">Plataforma alojamentu website</span></li>
+      <li><span id="f5">Integrasaun butaun kontaktu</span></li>
+      <li><span id="f6">Konfigurasaun SEO baziku</span></li>
     </ul>
-    <p class="pricing-note">A straightforward digital starting point for a growing local business.</p>
-    <a href="https://wa.me/60167390501?text=Hello%20KasuhaNET%2C%20I%20am%20interested%20in%20the%20Timor-Leste%20Startup%20Package%20at%20%2412.88%20USD." class="pricing-cta" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp</a>
+    <p id="pkg-footer" class="pricing-note">Puntu hahú dijital ba negósiu lokal neebe hakarak dezenvolve.</p>
+    <a href="https://wa.me/60167390501?text=Hello%20KasuhaNET%2C%20I%20am%20interested%20in%20the%20Timor-Leste%20Startup%20Package%20at%20%2412.88%20USD." id="pkg-btn" class="pricing-cta" target="_blank" rel="noopener noreferrer">Kontaktu liu husi WhatsApp</a>
   </article>
 </section>
         
@@ -487,6 +487,7 @@ body{background:#f4f7fb;color:#182b40;font-family:Inter,system-ui,-apple-system,
     <script>
         const content = {
             tet: {
+                pkgKicker: "Solusaun Inicial", pkgTitle: "Pakote Startup", pkgDesc: "Solusaun dijital ba negósiu kiik no promosaun produtu ida.", pkgRate: "/pagamentu dala ida", f1: "Website Landing Page ida", f2: "Dezenhu layout ba negósiu", f3: "Subdominiu plataforma neebe iha", f4: "Plataforma alojamentu website", f5: "Integrasaun butaun kontaktu", f6: "Konfigurasaun SEO baziku", pkgFooter: "Puntu hahú dijital ba negósiu lokal neebe hakarak dezenvolve.", pkgBtn: "Kontaktu liu husi WhatsApp",
                 heroTitle: "Transformasaun Dijital ba Negósiu Iha Timor-Leste",
                 heroDesc: "Website ne'ebé lalais, kmaan, no fasil atu uza ba negósiu lokal. Siap integrasi ho sistema selu lokal.",
                 heroBtn: "Ko'alia Kona-ba Demo Ne'e iha WhatsApp",
@@ -504,6 +505,7 @@ body{background:#f4f7fb;color:#182b40;font-family:Inter,system-ui,-apple-system,
                 creditText: "Direitu Kriadór©️2026 husi Kasuhanet Resources Malaysia | Plataforma Dezenvolvimentu no Loja Dijitál• Direitu Hotu Rai Hela."
             },
             ind: {
+                pkgKicker: "Solusi Awal", pkgTitle: "Paket Startup", pkgDesc: "Solusi digital praktis untuk usaha kecil dan promosi satu produk.", pkgRate: "/sekali bayar", f1: "Website landing page satu halaman", f2: "Desain tata letak untuk bisnis", f3: "Subdomain platform yang tersedia", f4: "Platform hosting website", f5: "Integrasi tombol kontak", f6: "Konfigurasi SEO dasar", pkgFooter: "Titik awal digital yang praktis untuk mengembangkan bisnis lokal.", pkgBtn: "Hubungi melalui WhatsApp",
                 heroTitle: "Transformasi Digital Bisnis di Timor-Leste",
                 heroDesc: "Website cepat, ringan, dan mudah digunakan untuk bisnis lokal. Siap diintegrasikan dengan sistem pembayaran lokal.",
                 heroBtn: "Diskusikan Demo Ini di WhatsApp",
@@ -521,6 +523,7 @@ body{background:#f4f7fb;color:#182b40;font-family:Inter,system-ui,-apple-system,
                 creditText: "Hak Cipta©️2026 oleh Kasuhanet Resources Malaysia | Platform Pengembangan & Toko Digital• Hak Cipta Dilindungi Undang-Undang."
             },
             eng: {
+                pkgKicker: "Starter solution", pkgTitle: "Startup Package", pkgDesc: "A practical digital solution for small businesses and single-product promotion.", pkgRate: "/one-time payment", f1: "Single-page landing website", f2: "Business-focused layout design", f3: "Existing platform subdomain", f4: "Website hosting platform", f5: "Contact button integration", f6: "Basic SEO configuration", pkgFooter: "A straightforward digital starting point for a growing local business.", pkgBtn: "Enquire on WhatsApp",
                 heroTitle: "Digital Business Transformation in Timor-Leste",
                 heroDesc: "Fast, lightweight, and easy-to-use websites for local businesses. Ready for local payment integrations.",
                 heroBtn: "Discuss This Demo on WhatsApp",
@@ -557,6 +560,14 @@ body{background:#f4f7fb;color:#182b40;font-family:Inter,system-ui,-apple-system,
             document.getElementById('card2-desc').innerText = content[lang].card2Desc;
             document.getElementById('card3-title').innerText = content[lang].card3Title;
             document.getElementById('card3-desc').innerText = content[lang].card3Desc;
+
+            document.getElementById('pkg-kicker').innerText = content[lang].pkgKicker;
+            document.getElementById('pkg-title').innerText = content[lang].pkgTitle;
+            document.getElementById('pkg-desc').innerText = content[lang].pkgDesc;
+            document.getElementById('pkg-rate').innerText = content[lang].pkgRate;
+            ['f1','f2','f3','f4','f5','f6'].forEach(id => document.getElementById(id).innerText = content[lang][id]);
+            document.getElementById('pkg-footer').innerText = content[lang].pkgFooter;
+            document.getElementById('pkg-btn').innerText = content[lang].pkgBtn;
 
             document.getElementById('footer-desc').innerText = content[lang].footerDesc;
             document.getElementById('footer-btn').innerText = content[lang].footerBtn;
