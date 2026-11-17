@@ -579,10 +579,18 @@ footer > * { position: relative; z-index: 1; }
 .kn-payment-form label { margin-top:3px; font-size:11px; }
 .kn-payment-form input { box-sizing:border-box; min-height:40px; padding:8px 10px; font-size:14px; }
 .kn-payment-form button { min-height:44px; margin-top:8px; }
-.kn-payment-choice { gap:9px; margin:12px 0 9px; padding:15px; border-width:2px; }
-.kn-payment-choice label { font-size:15px!important; }
-.kn-payment-choice select { box-sizing:border-box; width:100%; min-height:66px; padding:15px 44px 15px 15px; border-width:2px; font-size:17px; font-weight:900; }
-.kn-payment-choice select option { font-size:16px; font-weight:800; }
+.kn-payment-choice { gap:11px; margin:12px 0 10px; padding:15px; }
+.kn-payment-heading { color:#fff; font-size:16px; font-weight:950; letter-spacing:.6px; }
+.kn-payment-options { display:grid; grid-template-columns:1fr; gap:10px; }
+.kn-payment-option { position:relative; display:flex; align-items:center; gap:13px; min-height:76px; box-sizing:border-box; margin:0!important; padding:14px!important; border:2px solid rgba(255,255,255,.22); border-radius:12px; background:#0b1422; color:#fff!important; cursor:pointer; transition:border-color .18s,background .18s,box-shadow .18s; }
+.kn-payment-option.is-selected { border-color:#00f0ff; background:linear-gradient(110deg,rgba(0,240,255,.17),rgba(79,49,232,.22)); box-shadow:0 0 18px rgba(0,240,255,.2); }
+.kn-payment-option input { position:absolute; width:1px!important; height:1px!important; opacity:0; }
+.kn-payment-radio { flex:0 0 22px; width:22px; height:22px; box-sizing:border-box; border:2px solid #aeb8c8; border-radius:50%; background:transparent; }
+.kn-payment-option.is-selected .kn-payment-radio { border:6px solid #00f0ff; background:#fff; }
+.kn-payment-option-copy { display:grid; gap:5px; }
+.kn-payment-option-copy strong { color:#fff; font-size:16px; font-weight:950; letter-spacing:.7px; }
+.kn-payment-option-copy small { color:#d4e1ed; font-size:12px; line-height:1.4; font-weight:600; }
+.kn-payment-choice select { display:none; }
 .kn-payment-choice p { font-size:11px; line-height:1.5; }
 @media(max-width:600px){.kn-payment-modal{padding:8px}.kn-payment-panel{width:min(100%,390px);max-height:calc(100vh - 16px);max-height:calc(100dvh - 16px);padding:13px;border-radius:13px}}
 </style>
@@ -978,8 +986,15 @@ footer > * { position: relative; z-index: 1; }
   modal.id="knWorkshopPaymentModal";
   modal.hidden=true;
   modal.innerHTML='<section class="kn-payment-panel" role="dialog" aria-modal="true" aria-labelledby="knWorkshopPaymentTitle"><div class="kn-payment-head"><h2 id="knWorkshopPaymentTitle">SECURE CHECKOUT</h2><button type="button" class="kn-payment-close" aria-label="Close checkout">×</button></div><div class="kn-payment-summary"><p id="knWorkshopSummaryCount"></p><strong id="knWorkshopSummaryTotal"></strong><p>One-time payment · MYR</p></div><form class="kn-payment-form" id="knWorkshopPaymentForm"><label for="knWorkshopName">Full name</label><input id="knWorkshopName" name="name" autocomplete="name" maxlength="100" required><label for="knWorkshopEmail">Email address</label><input id="knWorkshopEmail" name="email" type="email" autocomplete="email" maxlength="254" required title="Enter a valid email address, e.g. name@example.com."><label for="knWorkshopPhone">Phone number</label><input id="knWorkshopPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60" required inputmode="tel" title="Enter 9 to 15 digits. Example: +60123456789.">
-<div class="kn-payment-choice"><span class="kn-payment-step">STEP 1 · CHOOSE HOW TO PAY</span><label for="knPaymentMethod">PAYMENT METHOD</label><select id="knPaymentMethod" name="paymentMethod" aria-describedby="knPaymentHint"><option value="stripe">Stripe · Cards / available methods</option><option value="toyyibpay">ToyyibPay · FPX / Card / DuitNow QR (if active)</option></select><p id="knPaymentHint">Tap this large selection box to choose your payment provider before pressing PAY.</p></div><button type="submit" id="knWorkshopPaySubmit">PAY</button><p class="kn-payment-note">Choose Stripe or ToyyibPay. You will be redirected to the selected provider’s secure payment page.</p><div class="kn-payment-error" id="knWorkshopPaymentError" role="alert"></div></form></section>';
+<div class="kn-payment-choice"><span class="kn-payment-step">STEP 1 · CHOOSE HOW TO PAY</span><strong class="kn-payment-heading">PAYMENT METHOD</strong><div class="kn-payment-options" role="radiogroup" aria-label="Choose payment method"><label class="kn-payment-option is-selected"><input type="radio" name="knPaymentChoice" value="stripe" checked><span class="kn-payment-radio"></span><span class="kn-payment-option-copy"><strong>STRIPE</strong><small>Debit / credit cards and available methods</small></span></label><label class="kn-payment-option"><input type="radio" name="knPaymentChoice" value="toyyibpay"><span class="kn-payment-radio"></span><span class="kn-payment-option-copy"><strong>TOYYIBPAY</strong><small>FPX · Card · DuitNow QR (if active)</small></span></label></div><select id="knPaymentMethod" name="paymentMethod" aria-hidden="true" tabindex="-1"><option value="stripe">Stripe</option><option value="toyyibpay">ToyyibPay</option></select><p id="knPaymentHint">Select one of the payment options above, then press PAY.</p></div><button type="submit" id="knWorkshopPaySubmit">PAY</button><p class="kn-payment-note">Choose Stripe or ToyyibPay. You will be redirected to the selected provider’s secure payment page.</p><div class="kn-payment-error" id="knWorkshopPaymentError" role="alert"></div></form></section>';
   document.body.append(modal);
+  const paymentSelect=document.getElementById("knPaymentMethod");
+  modal.querySelectorAll('input[name="knPaymentChoice"]').forEach(option=>{
+    option.addEventListener("change",()=>{
+      paymentSelect.value=option.value;
+      modal.querySelectorAll(".kn-payment-option").forEach(tile=>tile.classList.toggle("is-selected",tile.contains(option)));
+    });
+  });
   const close=()=>{modal.hidden=true;document.body.style.overflow="";};
   modal.querySelector(".kn-payment-close").addEventListener("click",close);
   modal.addEventListener("click",event=>{if(event.target===modal)close();});
