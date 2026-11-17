@@ -496,7 +496,7 @@ main > .container { max-width:900px !important; width:100%; }
 /* CUSTOM WORKSHOP STRIPE CHECKOUT */\n.kn-workshop-cart-items{display:grid;gap:8px;margin:14px 0}.kn-workshop-cart-item{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:12px}.kn-workshop-cart-name{color:#edf5ff}.kn-workshop-cart-item strong{color:#25d366;white-space:nowrap}.kn-workshop-remove{border:1px solid rgba(255,100,120,.35);border-radius:6px;padding:5px 8px;background:transparent;color:#ff9aa8;font-size:11px;cursor:pointer}.kn-workshop-empty{margin:8px 0;color:#aeb5c4;font-size:12px}
 .kn-service-select{display:flex;align-items:center;gap:9px;margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,.09);color:#e8faff;font-size:12px;font-weight:800;cursor:pointer}
 .kn-service-select input{width:17px;height:17px;accent-color:#00f0ff;cursor:pointer}
-.kn-workshop-cart{margin-top:20px;padding:18px;border:1px solid rgba(0,240,255,.35);border-radius:10px;background:rgba(0,240,255,.055)}
+.kn-workshop-cart{display:none;position:fixed;right:18px;bottom:86px;z-index:99990;width:min(390px,calc(100vw - 28px));max-height:min(70vh,560px);overflow:auto;margin:0;padding:18px;border:1px solid rgba(0,240,255,.45);border-radius:14px;background:#111722;box-shadow:0 18px 55px rgba(0,0,0,.55)}.kn-workshop-cart.is-open{display:block}.kn-workshop-float{display:none;position:fixed;right:18px;bottom:18px;z-index:99991;min-width:58px;min-height:58px;padding:10px 15px;border:1px solid rgba(0,240,255,.55);border-radius:999px;background:linear-gradient(120deg,#4f31e8,#00aebf);color:#fff;font-size:13px;font-weight:900;box-shadow:0 8px 30px rgba(0,0,0,.4);cursor:pointer}.kn-workshop-float.is-visible{display:flex;align-items:center;gap:9px}.kn-workshop-float-count{display:inline-grid;place-items:center;min-width:23px;height:23px;padding:0 5px;border-radius:50%;background:#fff;color:#101722;font-size:11px}
 .kn-workshop-cart h3{margin:0 0 8px;color:#00f0ff;font-size:16px}
 .kn-workshop-cart p{margin:4px 0;color:#c4cad7;font-size:12px}
 .kn-workshop-cart-total{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0;color:#fff;font-weight:900}
@@ -849,7 +849,17 @@ main > .container { max-width:900px !important; width:100%; }
   cart.className = "kn-workshop-cart";
   cart.innerHTML = '<h3>Shopping Cart</h3><p>Tick the services you want. Selected services will appear here.</p><div id="knWorkshopCartItems" class="kn-workshop-cart-items" aria-live="polite"><p class="kn-workshop-empty">Your cart is empty.</p></div><div class="kn-workshop-cart-total"><span>Total</span><strong id="knWorkshopTotal">RM 0.00</strong></div><p id="knWorkshopCount" aria-live="polite">0 items</p><button class="kn-workshop-pay" id="knWorkshopCheckout" type="button" disabled>PROCEED TO PAYMENT</button>';
   const grid = document.querySelector(".custom-services-grid");
-  grid.insertAdjacentElement("afterend",cart);
+  document.body.append(cart);
+  const floatButton=document.createElement("button");
+  floatButton.type="button";
+  floatButton.className="kn-workshop-float";
+  floatButton.setAttribute("aria-label","Open shopping cart");
+  floatButton.innerHTML='<span>Cart</span><span class="kn-workshop-float-count" id="knWorkshopFloatCount">0</span>';
+  document.body.append(floatButton);
+  floatButton.addEventListener("click",()=>cart.classList.toggle("is-open"));
+  document.addEventListener("click",event=>{
+    if(cart.classList.contains("is-open")&&!cart.contains(event.target)&&!floatButton.contains(event.target))cart.classList.remove("is-open");
+  });
 
   cards.forEach((card,index)=>{
     const title = card.querySelector(".custom-item-title")?.textContent.trim() || "";
@@ -911,6 +921,9 @@ main > .container { max-width:900px !important; width:100%; }
     document.getElementById("knWorkshopTotal").textContent=money(total);
     document.getElementById("knWorkshopCount").textContent=items.length+" item(s) in cart";
     document.getElementById("knWorkshopCheckout").disabled=!items.length;
+    document.getElementById("knWorkshopFloatCount").textContent=String(items.length);
+    floatButton.classList.toggle("is-visible",items.length>0);
+    if(!items.length)cart.classList.remove("is-open");
   }
 
   const modal=document.createElement("div");
