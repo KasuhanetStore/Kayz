@@ -325,3 +325,35 @@
   margin: auto;
 }
 body.kn-checkout-active { overflow: hidden; }
+
+
+/* Match homepage Stripe-logo purchase button treatment */
+.card .websale-buy-btn {
+  position: relative;
+  overflow: hidden;
+  align-self: center;
+  width: 100%;
+}
+.card .websale-buy-btn .stripe-button-logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  width: 116px;
+  max-width: 38%;
+  height: auto;
+  object-fit: contain;
+  opacity: 1;
+  pointer-events: none;
+}
+.card .websale-buy-btn span {
+  position: relative;
+  z-index: 1;
+  font-weight: 900;
+  color: #dce3ec;
+  background: linear-gradient(180deg, #ffffff 0%, #e8edf4 24%, #aeb9c8 48%, #f8fbff 62%, #9ba8b9 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
