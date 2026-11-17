@@ -976,7 +976,7 @@ footer > * { position: relative; z-index: 1; }
   modal.className="kn-payment-modal";
   modal.id="knWorkshopPaymentModal";
   modal.hidden=true;
-  modal.innerHTML='<section class="kn-payment-panel" role="dialog" aria-modal="true" aria-labelledby="knWorkshopPaymentTitle"><div class="kn-payment-head"><h2 id="knWorkshopPaymentTitle">SECURE CHECKOUT</h2><button type="button" class="kn-payment-close" aria-label="Close checkout">×</button></div><div class="kn-payment-summary"><p id="knWorkshopSummaryCount"></p><strong id="knWorkshopSummaryTotal"></strong><p>One-time payment · MYR</p></div><form class="kn-payment-form" id="knWorkshopPaymentForm"><label for="knWorkshopName">Full name</label><input id="knWorkshopName" name="name" autocomplete="name" maxlength="100" required><label for="knWorkshopEmail">Email address</label><input id="knWorkshopEmail" name="email" type="email" autocomplete="email" maxlength="254" required><label for="knWorkshopPhone">Phone number</label><input id="knWorkshopPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60"><div class="kn-payment-choice"><span class="kn-payment-step">STEP 1 · CHOOSE HOW TO PAY</span><label for="knPaymentMethod">PAYMENT METHOD</label><select id="knPaymentMethod" name="paymentMethod" aria-describedby="knPaymentHint"><option value="stripe">Stripe · Cards / available methods</option><option value="toyyibpay">ToyyibPay · FPX / Card / DuitNow QR (if active)</option></select><p id="knPaymentHint">Tap this large selection box to choose your payment provider before pressing PAY.</p></div><button type="submit" id="knWorkshopPaySubmit">PAY</button><p class="kn-payment-note">Choose Stripe or ToyyibPay. You will be redirected to the selected provider’s secure payment page.</p><div class="kn-payment-error" id="knWorkshopPaymentError" role="alert"></div></form></section>';
+  modal.innerHTML='<section class="kn-payment-panel" role="dialog" aria-modal="true" aria-labelledby="knWorkshopPaymentTitle"><div class="kn-payment-head"><h2 id="knWorkshopPaymentTitle">SECURE CHECKOUT</h2><button type="button" class="kn-payment-close" aria-label="Close checkout">×</button></div><div class="kn-payment-summary"><p id="knWorkshopSummaryCount"></p><strong id="knWorkshopSummaryTotal"></strong><p>One-time payment · MYR</p></div><form class="kn-payment-form" id="knWorkshopPaymentForm"><label for="knWorkshopName">Full name</label><input id="knWorkshopName" name="name" autocomplete="name" maxlength="100" required><label for="knWorkshopEmail">Email address</label><input id="knWorkshopEmail" name="email" type="email" autocomplete="email" maxlength="254" required title="Enter a valid email address, e.g. name@example.com."><label for="knWorkshopPhone">Phone number</label><input id="knWorkshopPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60" required inputmode="tel"<div class="kn-payment-choice"><span class="kn-payment-step">STEP 1 · CHOOSE HOW TO PAY</span><label for="knPaymentMethod">PAYMENT METHOD</label><select id="knPaymentMethod" name="paymentMethod" aria-describedby="knPaymentHint"><option value="stripe">Stripe · Cards / available methods</option><option value="toyyibpay">ToyyibPay · FPX / Card / DuitNow QR (if active)</option></select><p id="knPaymentHint">Tap this large selection box to choose your payment provider before pressing PAY.</p></div><button type="submit" id="knWorkshopPaySubmit">PAY</button><p class="kn-payment-note">Choose Stripe or ToyyibPay. You will be redirected to the selected provider’s secure payment page.</p><div class="kn-payment-error" id="knWorkshopPaymentError" role="alert"></div></form></section>';
   document.body.append(modal);
   const close=()=>{modal.hidden=true;document.body.style.overflow="";};
   modal.querySelector(".kn-payment-close").addEventListener("click",close);
@@ -1047,5 +1047,38 @@ footer > * { position: relative; z-index: 1; }
 })();
 </script>
 
+
+<script id="kn-contact-validation">
+(function(){
+  const form=document.getElementById("knWorkshopPaymentForm");
+  const email=document.getElementById("knWorkshopEmail");
+  const phone=document.getElementById("knWorkshopPhone");
+  if(!form||!email||!phone)return;
+  function validEmail(value){
+    const v=value.trim();
+    if(v.length>254||/\s/.test(v))return false;
+    const parts=v.split("@");
+    if(parts.length!==2||!parts[0]||parts[0].length>64)return false;
+    if(!/^[A-Z0-9.!#$%&'*+/=?^_`{|}~-]+$/i.test(parts[0]))return false;
+    const labels=parts[1].split(".");
+    if(labels.length<2||labels.some(x=>!x||x.length>63||! /^[A-Z0-9](?:[A-Z0-9-]*[A-Z0-9])?$/i.test(x)))return false;
+    return /^[A-Z]{2,}$/i.test(labels[labels.length-1]);
+  }
+  function validateEmail(){
+    email.setCustomValidity(validEmail(email.value)?"":"Enter a valid email address, for example name@example.com.");
+  }
+  function validatePhone(){
+    const digits=phone.value.replace(/\D/g,"");
+    const ok=digits.length>=9&&digits.length<=15&&/^[+0-9().\s-]+$/.test(phone.value.trim());
+    phone.setCustomValidity(ok?"":"Phone number must contain 9 to 15 digits. Example: +60123456789.");
+  }
+  email.addEventListener("input",validateEmail);
+  email.addEventListener("change",validateEmail);
+  phone.addEventListener("input",validatePhone);
+  phone.addEventListener("change",validatePhone);
+  validateEmail();
+  validatePhone();
+})();
+</script>
 </body>
 </html>
