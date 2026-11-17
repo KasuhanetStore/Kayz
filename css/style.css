@@ -404,7 +404,7 @@ footer {
 .whatsapp-float svg { width: 30px; height: 30px; fill: currentColor; }
 
 
-/* SHARED FOOTER TEMPLATE — consistent sizing across all pages */
+/* SHARED FOOTER TEMPLATE: consistent sizing across all pages */
 footer .neon-title {
   font-size: clamp(20px, 2.8vw, 26px);
   line-height: 1.25;
@@ -447,7 +447,7 @@ footer .footer-bottom {
 
 
 /* ==========================================================================
-   7. GLOBAL READABILITY UPGRADE — CLEARER TYPOGRAPHY
+   7. GLOBAL READABILITY UPGRADE: CLEARER TYPOGRAPHY
    Base text increased from 16px to 18px; common UI text raised by ~1–2px.
    Keeps brand headings and compact utility labels intentionally distinct.
    ========================================================================== */
