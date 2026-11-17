@@ -309,7 +309,7 @@ a { color: inherit; text-decoration: none; }
 
 .tc-note a {
     color: var(--pink);
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 footer { border-top: 1px solid var(--line); margin-top: auto; padding: 28px 0; color: #aeb2c0; font-size: 12px; }
