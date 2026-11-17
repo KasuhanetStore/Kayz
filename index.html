@@ -1063,7 +1063,7 @@
       <label for="knCustomerEmail">Email address</label>
       <input id="knCustomerEmail" name="email" type="email" autocomplete="email" maxlength="254" toolparamdescription="Valid email address for the order confirmation and payment record." required title="Enter a valid email address, e.g. name@example.com.">
       <label for="knCustomerPhone">Phone number</label>
-      <input id="knCustomerPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60" toolparamdescription="Customer contact phone number, including country code when available." required inputmode="tel"
+      <input id="knCustomerPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60" toolparamdescription="Customer contact phone number, including country code when available." required inputmode="tel" title="Enter 9 to 15 digits. Example: +60123456789.">
       <div class="kn-payment-choice"><span class="kn-payment-step">STEP 1 · CHOOSE HOW TO PAY</span><label for="knPaymentMethod">PAYMENT METHOD</label><select id="knPaymentMethod" name="paymentMethod" aria-describedby="knPaymentHint"><option value="stripe">Stripe · Cards / available methods</option><option value="toyyibpay">ToyyibPay · FPX / Card / DuitNow QR (if active)</option></select><p id="knPaymentHint">Tap this large selection box to choose your payment provider before pressing continue.</p></div>
       <button class="kn-checkout-submit" id="knCheckoutSubmit" type="submit">CONTINUE TO SECURE PAYMENT</button>
       <p class="kn-checkout-note">Choose Stripe or ToyyibPay. You will be redirected to the selected provider’s secure payment page. Do not share your card or banking credentials with KasuhaNET.</p>
