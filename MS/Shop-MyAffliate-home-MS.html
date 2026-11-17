@@ -405,6 +405,16 @@
 }
 @media(max-width:580px){.topbar .brand-logo{max-width:155px!important;max-height:52px!important}}
 
+/* Desktop: keep every navigation item on one aligned row */
+@media(min-width:851px){
+.topbar .container.nav{gap:10px!important}
+.topbar .brand-logo{max-width:150px!important}
+.topbar .nav-links{flex:1 1 auto!important;flex-wrap:nowrap!important;gap:clamp(6px,.65vw,10px)!important;white-space:nowrap!important}
+.topbar .nav-links>a:not(.btn-cyber-animated),.topbar .nav-links>.dropdown>a{font-size:11.5px!important;white-space:nowrap!important}
+.topbar .nav-language-action-group{gap:6px!important}
+.topbar .nav-language-action-group .workshop-language-links{gap:5px!important}
+.topbar .nav-language-action-group .btn-cyber-animated{font-size:11.5px!important;padding-left:10px!important;padding-right:10px!important;white-space:nowrap!important}
+}
 /* Keep language buttons and website action together like EN */
 .topbar .nav-language-action-group{display:flex!important;flex:0 0 auto!important;flex-direction:row!important;align-items:center!important;gap:8px!important;white-space:nowrap!important}
 @media(max-width:850px){.topbar .nav-language-action-group{width:100%!important;flex-direction:column!important;align-items:stretch!important;gap:14px!important}.topbar .nav-language-action-group .workshop-language-links{width:100%!important}.topbar .nav-language-action-group .btn-cyber-animated{width:100%!important;box-sizing:border-box!important;justify-content:center!important}}
