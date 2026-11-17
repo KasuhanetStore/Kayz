@@ -167,7 +167,7 @@
   line-height: 1.8;
 }
 .tc-note { margin: 16px 0 0; }
-.tc-note a { color: var(--cyan); text-decoration: underline; text-underline-offset: 3px; }
+.tc-note a { color: var(--cyan); text-decoration: none; text-underline-offset: 3px; }
 
 /* Checkout overlay */
 .kn-checkout-overlay {
