@@ -647,6 +647,17 @@ footer > * { position: relative; z-index: 1; }
 @media(max-width:600px){#knCheckout:not([hidden]),.kn-payment-modal:not([hidden]){padding:8px!important}#knCheckout .kn-checkout-panel,.kn-payment-modal .kn-payment-panel{width:min(100%,390px)!important;max-height:calc(100vh - 16px)!important;max-height:calc(100dvh - 16px)!important;padding:13px!important;border-radius:13px!important}#knCheckout .kn-payment-option,.kn-payment-modal .kn-payment-option{min-height:72px;padding:12px!important}}
 </style>
 
+
+<style id="kn-payment-visibility-fix">
+/* Keep both gateway cards visible in the workshop checkout modal. */
+.kn-payment-modal .kn-payment-choice{display:grid!important;visibility:visible!important;opacity:1!important}
+.kn-payment-modal .kn-payment-options{display:grid!important;grid-template-columns:1fr!important;gap:10px!important;visibility:visible!important}
+.kn-payment-modal .kn-payment-option{display:flex!important;visibility:visible!important;opacity:1!important;min-height:76px!important}
+.kn-payment-modal .kn-payment-option-copy{display:grid!important;visibility:visible!important}
+.kn-payment-modal .kn-payment-option-copy strong,
+.kn-payment-modal .kn-payment-option-copy small{display:block!important;visibility:visible!important;opacity:1!important}
+@media(max-width:600px){.kn-payment-modal .kn-payment-option{min-height:72px!important}}
+</style>
 </head>
 
 <body>
