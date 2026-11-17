@@ -1,13 +1,114 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cloudflare D1: Inspect Tables and Run Safe SQL Queries | KasuhaNET</title><meta name="description" content="A beginner-friendly guide to inspecting a Cloudflare D1 database, understanding table schemas and using parameterised queries."><meta name="google-adsense-account" content="ca-pub-4280897190566760"><meta name="robots" content="index,follow">
-<link rel="canonical" href="https://kasuhanet.store/guides/cloudflare-d1-sql-basics.html"><link rel="alternate" hreflang="en" href="https://kasuhanet.store/guides/cloudflare-d1-sql-basics.html"><link rel="alternate" hreflang="ms" href="https://kasuhanet.store/MS/panduan/cloudflare-d1-sql-basics.html"><link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/guides/cloudflare-d1-sql-basics.html">
-<style>
-:root{color-scheme:dark;--bg:#08090d;--panel:#141720;--text:#f6f7fb;--muted:#b9bdca;--accent:#ff7187;--line:rgba(255,255,255,.13)}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.75 Inter,Arial,sans-serif}header{border-bottom:1px solid var(--line);background:#0d0f16;padding:16px 20px}nav{max-width:980px;margin:auto;display:flex;gap:18px;flex-wrap:wrap;align-items:center}nav a{color:#fff;text-decoration:none;font-size:14px}main{max-width:900px;margin:38px auto;padding:0 20px 48px}h1{font-size:clamp(30px,5vw,46px);line-height:1.15;margin:10px 0 12px}h2{font-size:23px;margin:30px 0 8px}h3{font-size:18px;margin:22px 0 6px}p,li{color:#d5d8e2}.meta{color:var(--muted);font-size:13px}.intro{font-size:18px;color:#e3e5ec}.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;margin:16px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}.grid a{display:block;color:#fff;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}.grid a:hover{border-color:var(--accent)}code,pre{background:#090b11;border:1px solid var(--line);border-radius:8px}code{padding:2px 6px}pre{padding:16px;overflow:auto;color:#f4f4f4;line-height:1.55}footer{border-top:1px solid var(--line);padding:24px;text-align:center;color:var(--muted);font-size:13px}
-</style></head>
-<body><header><nav><a href="../index.html"><strong>KasuhaNET.STORE</strong></a><a href="index.html">Knowledge Centre</a><a href="../about-us-EN.html">About Us</a><a href="../privacy-policy-EN.html">Privacy Policy</a></nav></header>
-<main><h1>Cloudflare D1: Inspect Tables and Run Safe SQL Queries</h1><p class="meta">KasuhaNET Resources · Technical guide · Updated 12 November 2026</p><p class="intro">Cloudflare D1 is a serverless SQL database built on SQLite. The first step when maintaining an existing project is to inspect its schema and understand the data before changing anything.</p><section class="card"><strong>Important</strong><p>Use the database name shown in your Cloudflare configuration or dashboard. A Worker binding name such as <code>DB</code> is a code-level variable and is not necessarily the actual D1 database name.</p></section><h2>1. List available D1 databases</h2><p>With Wrangler installed and authenticated to the correct Cloudflare account, run:</p><pre><code>npx wrangler d1 list</code></pre><p>Identify the database used by the project. Check the project's Wrangler configuration and deployment environment before running remote commands.</p><h2>2. Inspect the table list</h2><p>Replace <code>YOUR_DATABASE_NAME</code> with the exact database name returned by the previous command:</p><pre><code>npx wrangler d1 execute YOUR_DATABASE_NAME --remote --command "SELECT name FROM sqlite_master WHERE type = 'table' ORDER BY name;"</code></pre><p>This query reads SQLite's schema metadata and lists tables. It does not modify records.</p><h2>3. Inspect a table's columns</h2><pre><code>npx wrangler d1 execute YOUR_DATABASE_NAME --remote --command "PRAGMA table_info('stripe_orders');"</code></pre><p>Replace <code>stripe_orders</code> with the table you want to inspect. The result describes column names, types, nullability, default values and primary-key information.</p><h2>4. Read a small sample</h2><pre><code>npx wrangler d1 execute YOUR_DATABASE_NAME --remote --command "SELECT id, status, created_at FROM stripe_orders ORDER BY created_at DESC LIMIT 10;"</code></pre><p>Select only the columns you need and use a small limit. Avoid printing customer names, email addresses, phone numbers or other personal data into public logs or screenshots.</p><h2>5. Use parameterised queries in Workers</h2><p>When application input is involved, bind values instead of concatenating them into SQL strings:</p><pre><code>const result = await env.DB.prepare(
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloudflare D1: Inspect Tables and Run Safe SQL Queries | KasuhaNET</title>
+  <meta name="description" content="A beginner-friendly guide to inspecting a Cloudflare D1 database, understanding table schemas and using parameterised queries.">
+  <meta name="google-adsense-account" content="ca-pub-4280897190566760">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://kasuhanet.store/guides/cloudflare-d1-sql-basics.html">
+  <link rel="alternate" hreflang="en" href="https://kasuhanet.store/guides/cloudflare-d1-sql-basics.html">
+  <link rel="alternate" hreflang="ms" href="https://kasuhanet.store/MS/panduan/cloudflare-d1-sql-basics.html">
+  <link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/guides/cloudflare-d1-sql-basics.html">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+
+    :root{--bg:#08090d;--panel:#12141c;--panel2:#191b25;--text:#f6f7fb;--muted:#b9bdca;--red:#ff304f;--red-dark:#a90025;--orange:#ff7a35;--line:rgba(255,255,255,.12)}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;overflow-x:hidden}
+    body{margin:0;min-height:100vh;display:flex;flex-direction:column;background:radial-gradient(circle at 80% 0%,rgba(255,48,79,.14),transparent 30%),var(--bg);color:var(--text);font-family:Inter,Arial,Helvetica,sans-serif;line-height:1.7;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    .container{width:min(1120px,calc(100% - 36px));margin:0 auto}
+    .topbar{position:sticky;top:0;z-index:20;background:rgba(8,9,13,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:inline-flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.5px}
+    .brand img{display:block;width:auto;height:auto;max-width:180px;max-height:58px;object-fit:contain}
+    .nav-links{display:flex;align-items:center;justify-content:flex-end;gap:20px;flex-wrap:wrap;color:#d8dbe4;font-size:13px}
+    .nav-links>a:not(.btn){transition:color .18s ease}
+    .nav-links>a:not(.btn):hover{color:#ff7187}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:9px 13px;border:1px solid rgba(255,255,255,.2);border-radius:9px;font-size:12px;font-weight:800;transition:.2s ease}
+    .btn:hover{border-color:var(--red);color:#fff}
+    .btn.active{background:linear-gradient(120deg,var(--red-dark),var(--red),var(--orange));border-color:transparent;color:#fff}
+    .hero{position:relative;isolation:isolate;overflow:hidden;padding:56px 0 44px;background:#05070d url("../broadcast.png") center/cover no-repeat}
+    .hero:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,rgba(5,7,13,.94),rgba(5,7,13,.78) 55%,rgba(5,7,13,.9))}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;color:#ff8b9c;font-size:12px;font-weight:900;letter-spacing:2px;text-transform:uppercase}
+    .eyebrow:before{content:"";width:25px;height:2px;background:linear-gradient(90deg,var(--red),var(--orange))}
+    h1{font-size:clamp(30px,4.6vw,48px);line-height:1.12;letter-spacing:-1px;margin:14px 0}
+    .gradient-text{background:linear-gradient(100deg,#fff 0%,#ff7187 48%,#ff9b52 100%);color:transparent;background-clip:text;-webkit-background-clip:text}
+    .hero p{max-width:820px;color:#d5d8e2;font-size:16px;margin:0}
+    main.article-section{flex:1 0 auto;padding:42px 0 72px}
+    .article-content{max-width:900px;margin:0 auto;padding:30px 34px;background:linear-gradient(145deg,rgba(25,27,37,.94),rgba(18,20,28,.94));border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 50px rgba(0,0,0,.2)}
+    .article-content h2{font-size:23px;line-height:1.3;margin:30px 0 9px;color:#fff}
+    .article-content h3{font-size:18px;margin:22px 0 8px}
+    .article-content p,.article-content li{color:#d5d8e2}
+    .article-content .meta{font-size:13px;color:var(--muted);margin-top:0}
+    .article-content .intro{font-size:18px;color:#e3e5ec}
+    .article-content .card{background:rgba(8,9,13,.55);border:1px solid var(--line);border-radius:14px;padding:20px;margin:18px 0}
+    .article-content pre{white-space:pre;overflow-x:auto;background:#090b11;border:1px solid var(--line);border-radius:10px;padding:16px;color:#f4f4f4;line-height:1.55}
+    .article-content code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#090b11;border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:2px 6px;color:#ffbdc8}
+    .article-content pre code{background:transparent;border:0;padding:0;color:inherit}
+    .article-content a{color:#ff9aaa;text-decoration:underline;text-underline-offset:3px}
+    .article-content .card strong{color:#fff}
+    .article-content li{margin:7px 0}
+    .back-link{display:inline-flex;align-items:center;gap:9px;color:#ff899a;font-size:13px;font-weight:900;margin:0 0 18px}
+    .back-link:hover{color:#fff}
+    .footer-wrap{margin-top:auto}
+    @media(max-width:850px){.nav{padding:14px 0;align-items:flex-start;flex-direction:column;gap:12px}.nav-links{justify-content:flex-start;gap:12px}}
+    @media(max-width:600px){.container{width:min(100% - 28px,1120px)}.hero{padding:44px 0 36px}.hero p{font-size:15px}.article-content{padding:22px 18px}.article-content h2{font-size:21px}main.article-section{padding:26px 0 52px}}
+    @media(hover:hover) and (pointer:fine){.btn:hover{transform:translateY(-1px)}.back-link:hover{color:#fff}}
+  
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="../index.html" aria-label="KasuhaNET home"><img src="../img/logo3.png" alt="KasuhaNET.STORE"></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="../index.html">HOME</a>
+        <a href="../about-us-EN.html">ABOUT US</a>
+        <a href="index.html">KNOWLEDGE CENTRE</a>
+        <a href="../privacy-policy-EN.html">PRIVACY POLICY</a>
+        <a href="../support-centre-EN.html">SUPPORT</a>
+        <a class="btn" href="../MS/panduan/cloudflare-d1-sql-basics.html" lang="ms">BM</a>
+        <a class="btn active" href="cloudflare-d1-sql-basics.html" lang="en" aria-current="page">EN</a>
+      </nav>
+    </div>
+  </header>
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">KasuhaNET Resources · Technical Guide</span>
+      <h1>Cloudflare D1: Inspect Tables and Run Safe SQL Queries</h1>
+      <p>Cloudflare D1 is a serverless SQL database built on SQLite. The first step when maintaining an existing project is to inspect its schema and understand the data before changing anything.</p>
+    </div>
+  </section>
+  <main class="article-section">
+    <div class="container">
+      <article class="article-content">
+        <a class="back-link" href="index.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> BACK TO KNOWLEDGE CENTRE</a>
+        <p class="meta">KasuhaNET Resources · Technical guide · Updated 12 November 2026</p>
+        <section class="card"><strong>Important</strong><p>Use the database name shown in your Cloudflare configuration or dashboard. A Worker binding name such as <code>DB</code> is a code-level variable and is not necessarily the actual D1 database name.</p></section><h2>1. List available D1 databases</h2><p>With Wrangler installed and authenticated to the correct Cloudflare account, run:</p><pre><code>npx wrangler d1 list</code></pre><p>Identify the database used by the project. Check the project's Wrangler configuration and deployment environment before running remote commands.</p><h2>2. Inspect the table list</h2><p>Replace <code>YOUR_DATABASE_NAME</code> with the exact database name returned by the previous command:</p><pre><code>npx wrangler d1 execute YOUR_DATABASE_NAME --remote --command "SELECT name FROM sqlite_master WHERE type = 'table' ORDER BY name;"</code></pre><p>This query reads SQLite's schema metadata and lists tables. It does not modify records.</p><h2>3. Inspect a table's columns</h2><pre><code>npx wrangler d1 execute YOUR_DATABASE_NAME --remote --command "PRAGMA table_info('stripe_orders');"</code></pre><p>Replace <code>stripe_orders</code> with the table you want to inspect. The result describes column names, types, nullability, default values and primary-key information.</p><h2>4. Read a small sample</h2><pre><code>npx wrangler d1 execute YOUR_DATABASE_NAME --remote --command "SELECT id, status, created_at FROM stripe_orders ORDER BY created_at DESC LIMIT 10;"</code></pre><p>Select only the columns you need and use a small limit. Avoid printing customer names, email addresses, phone numbers or other personal data into public logs or screenshots.</p><h2>5. Use parameterised queries in Workers</h2><p>When application input is involved, bind values instead of concatenating them into SQL strings:</p><pre><code>const result = await env.DB.prepare(
   "SELECT id, status FROM stripe_orders WHERE id = ?"
-).bind(orderId).first();</code></pre><p>Parameter binding helps prevent SQL injection and keeps data values separate from SQL syntax. Table and column names generally cannot be supplied as ordinary bound values; choose those from trusted, fixed application logic.</p><h2>6. Back up and change schema carefully</h2><p>Before a migration or destructive query, confirm the target database and environment, create a backup using the current Cloudflare-supported workflow, and test the migration against a non-production copy when possible. Review every <code>UPDATE</code> or <code>DELETE</code> with a matching <code>WHERE</code> clause. Never run a destructive statement just to discover what it does.</p><h2>Useful checks</h2><ul><li>Confirm the correct Cloudflare account and database before using <code>--remote</code>.</li><li>Keep production and development database names clearly distinguished.</li><li>Use migrations tracked in version control for repeatable schema changes.</li><li>Keep database credentials and API tokens out of source files.</li></ul><p>Refer to Cloudflare's current D1 and Wrangler documentation for version-specific commands and backup procedures.</p></main><footer>© 2026 KasuhaNET Resources · <a href="../terms-EN.html" style="color:#ff9aaa">Terms & Policies</a></footer></body></html>
+).bind(orderId).first();</code></pre><p>Parameter binding helps prevent SQL injection and keeps data values separate from SQL syntax. Table and column names generally cannot be supplied as ordinary bound values; choose those from trusted, fixed application logic.</p><h2>6. Back up and change schema carefully</h2><p>Before a migration or destructive query, confirm the target database and environment, create a backup using the current Cloudflare-supported workflow, and test the migration against a non-production copy when possible. Review every <code>UPDATE</code> or <code>DELETE</code> with a matching <code>WHERE</code> clause. Never run a destructive statement just to discover what it does.</p><h2>Useful checks</h2><ul><li>Confirm the correct Cloudflare account and database before using <code>--remote</code>.</li><li>Keep production and development database names clearly distinguished.</li><li>Use migrations tracked in version control for repeatable schema changes.</li><li>Keep database credentials and API tokens out of source files.</li></ul><p>Refer to Cloudflare's current D1 and Wrangler documentation for version-specific commands and backup procedures.</p>
+      </article>
+    </div>
+  </main>
+  <div class="footer-wrap" id="footer-placeholder"></div>
+  <script>
+    fetch("../template-text/EN/template-footer-EN.html")
+      .then(response => { if (!response.ok) throw new Error("Footer template failed to load"); return response.text(); })
+      .then(data => {
+        data = data.replaceAll('href="about-us-EN.html"', 'href="../about-us-EN.html"')
+          .replaceAll('href="support-centre-EN.html"', 'href="../support-centre-EN.html"')
+          .replaceAll('href="privacy-policy-EN.html"', 'href="../privacy-policy-EN.html"')
+          .replaceAll('href="guides/index.html"', 'href="index.html"');
+        document.getElementById("footer-placeholder").innerHTML = data;
+        const year = document.getElementById("year");
+        if (year) year.textContent = new Date().getFullYear();
+      })
+      .catch(error => console.error(error));
+  </script>
+</body>
+</html>
