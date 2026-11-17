@@ -83,6 +83,20 @@ h1{font-size:clamp(32px,4.8vw,50px);line-height:1.12;letter-spacing:-1px;margin:
       <a class="btn active" href="privacy-policy-MS.html" lang="ms" aria-current="page">BM</a>
     </nav>
   </div></header>
+
+<!-- KREDIT RAKAN KONGSI: MUATKAN TEMPLATE PUSAT -->
+<div id="partner-credit-placeholder"></div>
+<script>
+  fetch("../template-text/MS/partner-credit-MS.html")
+    .then(response => {
+      if (!response.ok) throw new Error("Template Kredit Rakan Kongsi Gagal Dimuatkan");
+      return response.text();
+    })
+    .then(data => {
+      document.getElementById("partner-credit-placeholder").innerHTML = data;
+    })
+    .catch(error => console.error(error));
+</script>
   <section class="hero"><div class="container">
     <span class="eyebrow">KasuhaNET Resources · Maklumat Laman</span>
     <h1>Polisi <span class="gradient-text">Privasi</span></h1>
