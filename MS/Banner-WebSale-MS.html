@@ -383,9 +383,9 @@ main .grid .card a.websale-buy-btn:active {
       <label for="knCustomerName">Nama penuh</label>
       <input id="knCustomerName" name="name" autocomplete="name" maxlength="100" toolparamdescription="Nama penuh pelanggan untuk pesanan pakej laman web." required>
       <label for="knCustomerEmail">Alamat e-mel</label>
-      <input id="knCustomerEmail" name="email" type="email" autocomplete="email" maxlength="254" toolparamdescription="Alamat e-mel yang sah untuk pengesahan pesanan dan rekod pembayaran." required>
+      <input id="knCustomerEmail" name="email" type="email" autocomplete="email" maxlength="254" toolparamdescription="Alamat e-mel yang sah untuk pengesahan pesanan dan rekod pembayaran." required title="Enter a valid email address, e.g. name@example.com.">
       <label for="knCustomerPhone">Nombor telefon</label>
-      <input id="knCustomerPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60" toolparamdescription="Nombor telefon untuk dihubungi, termasuk kod negara jika tersedia.">
+      <input id="knCustomerPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60" toolparamdescription="Nombor telefon untuk dihubungi, termasuk kod negara jika tersedia." required inputmode="tel"
       <div class="kn-payment-choice"><span class="kn-payment-step">LANGKAH 1 · PILIH CARA BAYAR</span><label for="knPaymentMethod">KAEDAH PEMBAYARAN</label><select id="knPaymentMethod" name="paymentMethod" aria-describedby="knPaymentHint"><option value="stripe">Stripe · Kad / Kaedah tersedia</option><option value="toyyibpay">ToyyibPay · FPX / Kad / DuitNow QR (jika aktif)</option></select><p id="knPaymentHint">Tekan kotak pilihan ini untuk memilih penyedia pembayaran sebelum teruskan.</p></div>
       <button class="kn-checkout-submit" id="knCheckoutSubmit" type="submit">TERUSKAN KE PEMBAYARAN SELAMAT</button>
       <p class="kn-checkout-note">Pembayaran diproses dengan selamat melalui Stripe. Kaedah pembayaran yang tersedia akan dipaparkan pada halaman Stripe mengikut kelayakan dan tetapan akaun peniaga. Jangan kongsi maklumat kad atau perbankan anda dengan KasuhaNET.</p>
@@ -536,5 +536,38 @@ main .grid .card a.websale-buy-btn:active {
   const waURL = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(DEFAULT_MESSAGE);  
   document.getElementById("floating-whatsapp").href = waURL;  
 </script>  
+
+<script id="kn-contact-validation">
+(function(){
+  const form=document.getElementById("knCheckoutForm");
+  const email=document.getElementById("knCustomerEmail");
+  const phone=document.getElementById("knCustomerPhone");
+  if(!form||!email||!phone)return;
+  function validEmail(value){
+    const v=value.trim();
+    if(v.length>254||/\s/.test(v))return false;
+    const parts=v.split("@");
+    if(parts.length!==2||!parts[0]||parts[0].length>64)return false;
+    if(!/^[A-Z0-9.!#$%&'*+/=?^_`{|}~-]+$/i.test(parts[0]))return false;
+    const labels=parts[1].split(".");
+    if(labels.length<2||labels.some(x=>!x||x.length>63||! /^[A-Z0-9](?:[A-Z0-9-]*[A-Z0-9])?$/i.test(x)))return false;
+    return /^[A-Z]{2,}$/i.test(labels[labels.length-1]);
+  }
+  function validateEmail(){
+    email.setCustomValidity(validEmail(email.value)?"":"Masukkan alamat e-mel yang sah, contohnya nama@example.com.");
+  }
+  function validatePhone(){
+    const digits=phone.value.replace(/\D/g,"");
+    const ok=digits.length>=9&&digits.length<=15&&/^[+0-9().\s-]+$/.test(phone.value.trim());
+    phone.setCustomValidity(ok?"":"Nombor telefon mesti mengandungi 9 hingga 15 digit. Contoh: +60123456789.");
+  }
+  email.addEventListener("input",validateEmail);
+  email.addEventListener("change",validateEmail);
+  phone.addEventListener("input",validatePhone);
+  phone.addEventListener("change",validatePhone);
+  validateEmail();
+  validatePhone();
+})();
+</script>
 </body>
 </html>
