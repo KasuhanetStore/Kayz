@@ -210,6 +210,23 @@ main .grid .card a.websale-buy-btn:active {
 #knCheckout .kn-payment-choice p { font-size:10px; }
 @media(max-width:600px){#knCheckout{padding:8px!important}#knCheckout .kn-checkout-panel{width:min(100%,390px)!important;max-height:calc(100vh - 16px)!important;max-height:calc(100dvh - 16px)!important;padding:13px!important;border-radius:13px}}
 </style>
+<style id="kn-payment-card-style">
+.kn-payment-choice{display:grid;gap:11px;margin:12px 0 10px;padding:15px;border:2px solid #00f0ff;border-radius:12px;background:linear-gradient(135deg,rgba(0,240,255,.13),rgba(79,49,232,.2));box-shadow:0 0 20px rgba(0,240,255,.13)}
+.kn-payment-step{display:inline-flex;align-items:center;justify-self:start;padding:5px 9px;border-radius:5px;background:#00f0ff;color:#061014;font-size:10px;font-weight:1000;letter-spacing:1px}
+.kn-payment-heading{color:#fff;font-size:16px;font-weight:950;letter-spacing:.6px}
+.kn-payment-options{display:grid;grid-template-columns:1fr;gap:10px}
+.kn-payment-option{position:relative;display:flex;align-items:center;gap:13px;min-height:76px;box-sizing:border-box;margin:0!important;padding:14px!important;border:2px solid rgba(255,255,255,.22);border-radius:12px;background:#0b1422;color:#fff!important;cursor:pointer;transition:border-color .18s,background .18s,box-shadow .18s}
+.kn-payment-option.is-selected{border-color:#00f0ff;background:linear-gradient(110deg,rgba(0,240,255,.17),rgba(79,49,232,.22));box-shadow:0 0 18px rgba(0,240,255,.2)}
+.kn-payment-option input{position:absolute;width:1px!important;height:1px!important;opacity:0}
+.kn-payment-radio{flex:0 0 22px;width:22px;height:22px;box-sizing:border-box;border:2px solid #aeb8c8;border-radius:50%;background:transparent}
+.kn-payment-option.is-selected .kn-payment-radio{border:6px solid #00f0ff;background:#fff}
+.kn-payment-option-copy{display:grid;gap:5px}
+.kn-payment-option-copy strong{color:#fff;font-size:16px;font-weight:950;letter-spacing:.7px}
+.kn-payment-option-copy small{color:#d4e1ed;font-size:12px;line-height:1.4;font-weight:600}
+.kn-payment-choice select,#knPaymentMethod{display:none!important}
+.kn-payment-choice p{margin:0;color:#d7e8ef;font-size:11px;line-height:1.5}
+@media(max-width:600px){.kn-payment-choice{gap:10px;padding:13px}.kn-payment-option{min-height:72px;padding:12px!important}}
+</style>
 </head>
 <body>
 
@@ -386,7 +403,7 @@ main .grid .card a.websale-buy-btn:active {
       <input id="knCustomerEmail" name="email" type="email" autocomplete="email" maxlength="254" toolparamdescription="Alamat e-mel yang sah untuk pengesahan pesanan dan rekod pembayaran." required title="Masukkan e-mel yang sah, contohnya nama@example.com.">
       <label for="knCustomerPhone">Nombor telefon</label>
       <input id="knCustomerPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60" toolparamdescription="Nombor telefon untuk dihubungi, termasuk kod negara jika tersedia." required inputmode="tel" title="Masukkan 9 hingga 15 digit nombor telefon. Contoh: +60123456789.">
-      <div class="kn-payment-choice"><span class="kn-payment-step">LANGKAH 1 · PILIH CARA BAYAR</span><label for="knPaymentMethod">KAEDAH PEMBAYARAN</label><select id="knPaymentMethod" name="paymentMethod" aria-describedby="knPaymentHint"><option value="stripe">Stripe · Kad / Kaedah tersedia</option><option value="toyyibpay">ToyyibPay · FPX / Kad / DuitNow QR (jika aktif)</option></select><p id="knPaymentHint">Tekan kotak pilihan ini untuk memilih penyedia pembayaran sebelum teruskan.</p></div>
+      <div class="kn-payment-choice"><span class="kn-payment-step">LANGKAH 1 · PILIH CARA BAYAR</span><strong class="kn-payment-heading">KAEDAH PEMBAYARAN</strong><div class="kn-payment-options" role="radiogroup" aria-label="KAEDAH PEMBAYARAN"><label class="kn-payment-option is-selected"><input type="radio" name="knPaymentChoice" value="stripe" checked><span class="kn-payment-radio"></span><span class="kn-payment-option-copy"><strong>STRIPE</strong><small>Kad debit / kredit dan kaedah tersedia</small></span></label><label class="kn-payment-option"><input type="radio" name="knPaymentChoice" value="toyyibpay"><span class="kn-payment-radio"></span><span class="kn-payment-option-copy"><strong>TOYYIBPAY</strong><small>FPX · Kad · DuitNow QR (jika aktif)</small></span></label></div><select id="knPaymentMethod" name="paymentMethod" aria-hidden="true" tabindex="-1"><option value="stripe">Stripe</option><option value="toyyibpay">ToyyibPay</option></select><p id="knPaymentHint">Pilih salah satu kotak pembayaran di atas sebelum meneruskan.</p></div>
       <button class="kn-checkout-submit" id="knCheckoutSubmit" type="submit">TERUSKAN KE PEMBAYARAN SELAMAT</button>
       <p class="kn-checkout-note">Pembayaran diproses dengan selamat melalui Stripe. Kaedah pembayaran yang tersedia akan dipaparkan pada halaman Stripe mengikut kelayakan dan tetapan akaun peniaga. Jangan kongsi maklumat kad atau perbankan anda dengan KasuhaNET.</p>
       <div class="kn-checkout-error" id="knCheckoutError" role="alert"></div>
@@ -567,6 +584,19 @@ main .grid .card a.websale-buy-btn:active {
   phone.addEventListener("change",validatePhone);
   validateEmail();
   validatePhone();
+})();
+</script>
+<script id="kn-payment-choice-sync">
+(function(){
+ const select=document.getElementById("knPaymentMethod");
+ if(!select)return;
+ document.querySelectorAll('input[name="knPaymentChoice"]').forEach(option=>{
+  option.addEventListener("change",()=>{
+   if(!option.checked)return;
+   select.value=option.value;
+   document.querySelectorAll(".kn-payment-option").forEach(tile=>tile.classList.toggle("is-selected",tile.contains(option)));
+  });
+ });
 })();
 </script>
 </body>
