@@ -472,3 +472,8 @@ label,
   .credit-text { font-size: 0.78rem; letter-spacing: 1.4px; }
   .partner-name { font-size: 0.9rem; }
 }
+
+/* Shared footer brand background: 5% opacity */
+footer { position: relative; isolation: isolate; overflow: hidden; }
+footer::before { content: ""; position: absolute; inset: 0; background: url("/img/LogoOfficialTeks.png") center center / contain no-repeat; opacity: .05; pointer-events: none; z-index: 0; }
+footer > * { position: relative; z-index: 1; }
