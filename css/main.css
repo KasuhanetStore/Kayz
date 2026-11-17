@@ -169,8 +169,6 @@ p, a, span, button {
 .hero { padding: 78px 0 58px; overflow: hidden; }
 .hero-grid { display: grid; grid-template-columns: 1.02fr .98fr; gap: 44px; align-items: center; }
 .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: #ff8b9c; font-size: 12px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
-.eyebrow::before { content: ""; width: 25px; height: 2px; background: linear-gradient(90deg,var(--red),var(--orange)); }
-
 .gradient-text { background: linear-gradient(100deg,#fff 0%,#ff7187 48%,#ff9b52 100%); color: transparent; background-clip: text; -webkit-background-clip: text; }
 .hero p { color: var(--muted); font-size: 17px; max-width: 610px; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
