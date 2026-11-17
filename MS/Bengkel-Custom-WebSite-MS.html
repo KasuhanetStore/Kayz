@@ -21,9 +21,9 @@
 <meta name="theme-color" content="#08090d">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <link rel="canonical" href="https://kasuhanet.store/MS/Bengkel-Custom-WebSite-MS">
-<link rel="alternate" hreflang="en" href="https://kasuhanet.store/MS/Bengkel-Custom-WebSite-MS">
+<link rel="alternate" hreflang="en" href="https://kasuhanet.store/custom-web-workshop-EN">
 <link rel="alternate" hreflang="ms" href="https://kasuhanet.store/MS/Bengkel-Custom-WebSite-MS">
-<link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/MS/Bengkel-Custom-WebSite-MS">
+<link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/custom-web-workshop-EN">
 
 <!-- TWITTER -->
 <meta name="twitter:card" content="summary_large_image">
@@ -557,7 +557,7 @@ main > .container { max-width:900px !important; width:100%; }
     <div class="workshop-container">    
         <!-- INTRO TRADEMARK IMAGE BANNER -->
         <div class="intro-trademark-box">
-            <img src="../img/Bengkel-Custom-WebSite-EN.png" alt="Custom Web Workshop Official Trademark Banner">
+            <img src="../img/Bengkel-Custom-WebSite-EN.png" alt="Banner Rasmi Bengkel Web Custom">
         </div>
         
         <span class="eyebrow">Servis Setup & Deployment</span>
@@ -566,7 +566,7 @@ main > .container { max-width:900px !important; width:100%; }
         </h1>
         
         <p class="subtitle-intro">
-            Welcome to <strong>kasuhanet.store</strong>! For those looking to build or upgrade a website, we now offer Transparent Servis Setup & Deployment tailored to your exact needs and budget. Here, you have full freedom to choose your preferred purchase and installation method.
+            Selamat datang ke <strong>kasuhanet.store</strong>! Jika anda ingin membina atau menaik taraf website, kami menyediakan servis setup dan deployment yang telus mengikut keperluan serta bajet anda. Anda bebas memilih kaedah pembelian dan pemasangan yang paling sesuai.
         </p>
 
         <!-- SECTION 1 -->
@@ -821,9 +821,9 @@ main > .container { max-width:900px !important; width:100%; }
 
 
 <script>
-  fetch("template-text/EN/partner-credit-EN.html")
+  fetch("/template-text/MS/partner-credit-MS.html")
     .then(response => {
-      if (!response.ok) throw new Error("Partner Credit Template Failed to Load");
+      if (!response.ok) throw new Error("Templat kredit rakan kerjasama gagal dimuatkan");
       return response.text();
     })
     .then(data => {
@@ -872,7 +872,7 @@ main > .container { max-width:900px !important; width:100%; }
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.value = serviceIds[index];
-    checkbox.setAttribute("aria-label","Add "+title+" to order");
+    checkbox.setAttribute("aria-label","Tambah "+title+" ke pesanan");
     const caption = document.createElement("span");
     caption.textContent = "Tambah servis ini ke troli";
     label.append(checkbox,caption);
