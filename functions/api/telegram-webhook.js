@@ -84,9 +84,7 @@ async function beginCheckout(env, chatId, item, id, isService) {
     ON CONFLICT(chat_id) DO UPDATE SET item_type=excluded.item_type,item_id=excluded.item_id,
     payment_method=NULL,step='name',customer_name=NULL,customer_email=NULL,customer_phone=NULL,
     created_at=CURRENT_TIMESTAMP`).bind(String(chatId),isService?"service":"package",id).run();
-  await send(env, chatId,
-    "<b>" + item.name + "</b>\\nHarga: <b>" + money(item.amount) + "</b>\\n\\nSila isi nama penuh anda. Taip nama dan tekan Enter.\\n\\nHantar /cancel untuk batalkan."
-  );
+  await send(env, chatId, "Nama:");
 }
 
 async function createStripePayment(env, chatId, session, item, packageId) {
