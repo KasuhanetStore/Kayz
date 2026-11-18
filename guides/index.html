@@ -61,7 +61,7 @@ h1{font-size:clamp(34px,5vw,56px);line-height:1.1;letter-spacing:-1.5px;margin:1
     @media(max-width:600px){.whatsapp-float{right:16px;bottom:16px;width:56px;height:56px}}
 
 /* HEADER NAVIGATION: matched to the Support Centre header */
-    .brand-logo{width:85px;height:65px;object-fit:contain;object-position:left center;display:block;margin-bottom:-3px}
+    .brand img.brand-logo{width:85px;height:65px;max-width:none;max-height:none;object-fit:contain;object-position:left center;display:block;margin-bottom:-3px}
     .brand{display:inline-flex;flex-direction:column;align-items:flex-start;text-decoration:none;gap:0;line-height:1}
     .brand small{display:block;font-size:9px;font-weight:700;letter-spacing:.5px;white-space:nowrap;line-height:1;margin:0;padding:0}
 
@@ -119,10 +119,16 @@ h1{font-size:clamp(34px,5vw,56px);line-height:1.1;letter-spacing:-1.5px;margin:1
       <a class="brand" href="../index.html" aria-label="KasuhaNET home"><img src="../img/logo3.png" alt="KasuhaNET.STORE"></a>
     </div>
     <script>
-      fetch("template-text/EN/kasuhanet-icon-official-EN.html").then(response => response.text()).then(data => {
-        data = data.replace(/src=["'][^"']*logo3\\.png["']/, 'src="/img/logo3.png"');
-        data = data.replace(/href=["'][^"']*index\\.html["']/, 'href="/');
-        document.getElementById("branding-title").innerHTML = data;
+      fetch("/template-text/EN/kasuhanet-icon-official-EN.html").then(response => {
+        if (!response.ok) throw new Error("Official logo template unavailable");
+        return response.text();
+      }).then(data => {
+        const branding = document.getElementById("branding-title");
+        branding.innerHTML = data;
+        const logo = branding.querySelector("img");
+        const homeLink = branding.querySelector("a");
+        if (logo) logo.src = "/img/logo3.png";
+        if (homeLink) homeLink.href = "/";
       }).catch(err => console.log(err));
     </script>
     <nav class="nav-links" id="navLinks" aria-label="Main Navigation">
