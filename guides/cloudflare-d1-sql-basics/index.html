@@ -7,10 +7,10 @@
   
   <meta name="google-adsense-account" content="ca-pub-4280897190566760">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://kasuhanet.store/guides/cloudflare-d1-sql-basics.html">
-  <link rel="alternate" hreflang="en" href="https://kasuhanet.store/guides/cloudflare-d1-sql-basics.html">
-  <link rel="alternate" hreflang="ms" href="https://kasuhanet.store/MS/panduan/cloudflare-d1-sql-basics.html">
-  <link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/guides/cloudflare-d1-sql-basics.html">
+  <link rel="canonical" href="https://kasuhanet.store/guides/cloudflare-d1-sql-basics/">
+  <link rel="alternate" hreflang="en" href="https://kasuhanet.store/guides/cloudflare-d1-sql-basics/">
+  <link rel="alternate" hreflang="ms" href="https://kasuhanet.store/guides/cloudflare-d1-sql-basics/MS/">
+  <link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/guides/cloudflare-d1-sql-basics/">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -139,7 +139,7 @@ h1{font-size:clamp(30px,4.6vw,48px);line-height:1.12;letter-spacing:-1px;margin:
   <main class="article-section">
     <div class="container">
       <article class="article-content">
-        <a class="back-link" href="index.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> BACK TO GUIDES</a>
+        <a class="back-link" href="/guides/"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> BACK TO GUIDES</a>
         <p class="meta">KasuhaNET Resources · Technical guide · Updated 12 November 2026</p>
         <section class="card"><strong>Important</strong><p>Use the database name shown in your Cloudflare configuration or dashboard. A Worker binding name such as <code>DB</code> is a code-level variable and is not necessarily the actual D1 database name.</p></section><h2>1. List available D1 databases</h2><p>With Wrangler installed and authenticated to the correct Cloudflare account, run:</p><pre><code>npx wrangler d1 list</code></pre><p>Identify the database used by the project. Check the project's Wrangler configuration and deployment environment before running remote commands.</p><h2>2. Inspect the table list</h2><p>Replace <code>YOUR_DATABASE_NAME</code> with the exact database name returned by the previous command:</p><pre><code>npx wrangler d1 execute YOUR_DATABASE_NAME --remote --command "SELECT name FROM sqlite_master WHERE type = 'table' ORDER BY name;"</code></pre><p>This query reads SQLite's schema metadata and lists tables. It does not modify records.</p><h2>3. Inspect a table's columns</h2><pre><code>npx wrangler d1 execute YOUR_DATABASE_NAME --remote --command "PRAGMA table_info('stripe_orders');"</code></pre><p>Replace <code>stripe_orders</code> with the table you want to inspect. The result describes column names, types, nullability, default values and primary-key information.</p><h2>4. Read a small sample</h2><pre><code>npx wrangler d1 execute YOUR_DATABASE_NAME --remote --command "SELECT id, status, created_at FROM stripe_orders ORDER BY created_at DESC LIMIT 10;"</code></pre><p>Select only the columns you need and use a small limit. Avoid printing customer names, email addresses, phone numbers or other personal data into public logs or screenshots.</p><h2>5. Use parameterised queries in Workers</h2><p>When application input is involved, bind values instead of concatenating them into SQL strings:</p><pre><code>const result = await env.DB.prepare(
   "SELECT id, status FROM stripe_orders WHERE id = ?"
@@ -152,10 +152,6 @@ h1{font-size:clamp(30px,4.6vw,48px);line-height:1.12;letter-spacing:-1px;margin:
     fetch("/template-text/EN/template-footer-EN.html")
       .then(response => { if (!response.ok) throw new Error("Footer template failed to load"); return response.text(); })
       .then(data => {
-        data = data.replaceAll('href="/About-Us/"', 'href="/About-Us/"')
-          .replaceAll('href="support-centre-EN.html"', 'href="../support-centre-EN.html"')
-          .replaceAll('href="privacy-policy-EN.html"', 'href="../privacy-policy-EN.html"')
-          .replaceAll('href="guides/index.html"', 'href="index.html"');
         document.getElementById("footer-placeholder").innerHTML = data;
         const year = document.getElementById("year");
         if (year) year.textContent = new Date().getFullYear();
