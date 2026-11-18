@@ -57,62 +57,178 @@ function mainMenu() {
   ];
 }
 
-async function createCheckout(env, chatId, item, id, isService) {
-  if (!env.DB || !env.STRIPE_SECRET_KEY) {
-    await send(env, chatId, "Checkout belum tersedia. Sila cuba semula kemudian atau lawati " + SITE);
+async function ensureTelegramTables(db) {
+  await db.prepare(`CREATE TABLE IF NOT EXISTS telegram_checkout_sessions (
+    chat_id TEXT PRIMARY KEY, item_type TEXT NOT NULL, item_id TEXT NOT NULL,
+    payment_method TEXT, step TEXT NOT NULL, customer_name TEXT, customer_email TEXT,
+    customer_phone TEXT, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+  )`).run();
+  await db.prepare(`CREATE TABLE IF NOT EXISTS toyyibpay_orders (
+    id TEXT PRIMARY KEY, external_ref TEXT NOT NULL UNIQUE, bill_code TEXT UNIQUE,
+    package_id TEXT NOT NULL, package_name TEXT NOT NULL, amount INTEGER NOT NULL,
+    currency TEXT NOT NULL DEFAULT 'myr', customer_name TEXT NOT NULL,
+    customer_email TEXT NOT NULL, customer_phone TEXT, status TEXT NOT NULL DEFAULT 'pending',
+    payment_ref TEXT, paid_at TEXT, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+  )`).run();
+}
+
+async function beginCheckout(env, chatId, item, id, isService) {
+  if (!env.DB) {
+    await send(env, chatId, "Checkout belum tersedia. Sila cuba semula kemudian.");
     return;
   }
+  await ensureTelegramTables(env.DB);
+  await env.DB.prepare(`INSERT INTO telegram_checkout_sessions
+    (chat_id,item_type,item_id,step) VALUES(?,?,?,'payment')
+    ON CONFLICT(chat_id) DO UPDATE SET item_type=excluded.item_type,item_id=excluded.item_id,
+    payment_method=NULL,step='payment',customer_name=NULL,customer_email=NULL,customer_phone=NULL,
+    created_at=CURRENT_TIMESTAMP`).bind(String(chatId),isService?"service":"package",id).run();
+  await send(env, chatId,
+    "<b>" + item.name + "</b>\nHarga: <b>" + money(item.amount) + "</b>\n\nPilih kaedah pembayaran:",
+    [
+      [{text:"STRIPE • Kad Debit / Kredit",callback_data:"pay:stripe"}],
+      [{text:"TOYYIBPAY • FPX / DuitNow QR*",callback_data:"pay:toyyibpay"}],
+      [{text:"Kembali ke Menu",callback_data:"menu:home"}]
+    ]
+  );
+}
 
-  const orderId = crypto.randomUUID();
-  const packageId = isService ? "telegram-workshop-" + id : id;
-  const description = isService ? "KasuhaNET Custom Web Workshop service" : item.description;
+async function createStripePayment(env, chatId, session, item, packageId) {
+  if (!env.STRIPE_SECRET_KEY) throw new Error("Stripe is not configured");
+  const orderId=crypto.randomUUID();
+  await env.DB.prepare(`INSERT INTO stripe_orders
+    (id,package_id,package_name,amount,currency,customer_name,customer_email,customer_phone,status)
+    VALUES(?,?,?,?,'myr',?,?,?,'pending')`)
+    .bind(orderId,packageId,item.name,item.amount,session.customer_name,session.customer_email,session.customer_phone).run();
 
+  const form=new URLSearchParams();
+  form.set("mode","payment");
+  form.set("success_url",SITE+"/Banner-WebSale-EN.html?payment=success&session_id={CHECKOUT_SESSION_ID}");
+  form.set("cancel_url",SITE+"/Banner-WebSale-EN.html?payment=cancel");
+  form.set("customer_creation","always");
+  form.set("customer_email",session.customer_email);
+  form.set("billing_address_collection","auto");
+  form.set("phone_number_collection[enabled]","true");
+  form.set("line_items[0][quantity]","1");
+  form.set("line_items[0][price_data][currency]","myr");
+  form.set("line_items[0][price_data][unit_amount]",String(item.amount));
+  form.set("line_items[0][price_data][product_data][name]",item.name);
+  form.set("metadata[order_id]",orderId);
+  form.set("metadata[package_id]",packageId);
+  form.set("metadata[telegram_chat_id]",String(chatId));
+  form.set("metadata[customer_name]",session.customer_name);
+  form.set("metadata[customer_phone]",session.customer_phone);
+
+  const response=await fetch("https://api.stripe.com/v1/checkout/sessions",{
+    method:"POST",
+    headers:{"Authorization":"Bearer "+env.STRIPE_SECRET_KEY,"Content-Type":"application/x-www-form-urlencoded"},
+    body:form.toString()
+  });
+  const result=await response.json();
+  if(!response.ok||!result.url||!result.id) throw new Error("Stripe checkout creation failed");
+  await env.DB.prepare("UPDATE stripe_orders SET stripe_checkout_session_id=?,updated_at=CURRENT_TIMESTAMP WHERE id=?")
+    .bind(result.id,orderId).run();
+  await send(env,chatId,
+    "<b>Stripe checkout sedia.</b>\n"+item.name+"\nJumlah: <b>"+money(item.amount)+"</b>\n\nTekan pautan di bawah untuk membuat pembayaran.",
+    [[{text:"PAY NOW • "+money(item.amount),url:result.url}],[{text:"Menu Utama",callback_data:"menu:home"}]]
+  );
+}
+
+async function createToyyibPayPayment(env, chatId, session, item, packageId) {
+  if(!env.TOYYIBPAY_SECRET_KEY||!env.TOYYIBPAY_CATEGORY_CODE) throw new Error("ToyyibPay Live credentials are not configured");
+  const id=crypto.randomUUID();
+  const externalRef=id.replace(/-/g,"").slice(0,20).toUpperCase();
+  await env.DB.prepare(`INSERT INTO toyyibpay_orders
+    (id,external_ref,package_id,package_name,amount,customer_name,customer_email,customer_phone,status)
+    VALUES(?,?,?,?,?,?,?,?,'pending')`)
+    .bind(id,externalRef,packageId,item.name,item.amount,session.customer_name,session.customer_email,session.customer_phone).run();
+
+  let duitNowQrEnabled=false;
   try {
-    await env.DB.prepare(
-      `INSERT INTO stripe_orders
-       (id, package_id, package_name, amount, currency, customer_name, customer_email, customer_phone, status)
-       VALUES (?, ?, ?, ?, 'myr', ?, ?, ?, 'pending')`
-    ).bind(orderId, packageId, item.name, item.amount, "Telegram Customer", "telegram-" + chatId + "@customer.invalid", "Not provided").run();
-
-    const form = new URLSearchParams();
-    form.set("mode", "payment");
-    form.set("success_url", SITE + "/Banner-WebSale-EN.html?payment=success&session_id={CHECKOUT_SESSION_ID}");
-    form.set("cancel_url", SITE + "/Banner-WebSale-EN.html?payment=cancel");
-    form.set("customer_creation", "always");
-    form.set("billing_address_collection", "auto");
-    form.set("phone_number_collection[enabled]", "true");
-    form.set("line_items[0][quantity]", "1");
-    form.set("line_items[0][price_data][currency]", "myr");
-    form.set("line_items[0][price_data][unit_amount]", String(item.amount));
-    form.set("line_items[0][price_data][product_data][name]", item.name);
-    form.set("line_items[0][price_data][product_data][description]", description);
-    form.set("metadata[order_id]", orderId);
-    form.set("metadata[package_id]", packageId);
-    form.set("metadata[telegram_chat_id]", String(chatId));
-
-    const response = await fetch("https://api.stripe.com/v1/checkout/sessions", {
-      method: "POST",
-      headers: {
-        "Authorization": "Bearer " + env.STRIPE_SECRET_KEY,
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      body: form.toString()
+    const statusForm=new URLSearchParams({userSecretKey:env.TOYYIBPAY_SECRET_KEY.trim()});
+    const statusResponse=await fetch("https://toyyibpay.com/index.php/api/checkDuitNowQRStatus",{
+      method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:statusForm.toString()
     });
-    const result = await response.json();
-    if (!response.ok || !result.url || !result.id) throw new Error("Stripe checkout creation failed");
+    const statusData=await statusResponse.json();
+    duitNowQrEnabled=statusResponse.ok&&statusData?.status==="success"&&statusData?.duitnowqr_activated===true;
+  } catch {}
 
-    await env.DB.prepare(
-      "UPDATE stripe_orders SET stripe_checkout_session_id = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?"
-    ).bind(result.id, orderId).run();
-
-    await send(env, chatId,
-      "<b>" + item.name + "</b>\nHarga: <b>" + money(item.amount) + "</b>\n\nTekan butang di bawah untuk isi maklumat pembayaran dan selesaikan pesanan.",
-      [[{ text: "SECURE CHECKOUT • " + money(item.amount), url: result.url }], [{ text: "Kembali ke Menu", callback_data: "menu:home" }]]
-    );
-  } catch {
-    await env.DB.prepare("UPDATE stripe_orders SET status = 'failed', updated_at = CURRENT_TIMESTAMP WHERE id = ?").bind(orderId).run().catch(() => {});
-    await send(env, chatId, "Checkout gagal dijana. Sila cuba lagi atau hubungi sokongan KasuhaNET.");
+  const fields={
+    userSecretKey:env.TOYYIBPAY_SECRET_KEY.trim(),
+    categoryCode:env.TOYYIBPAY_CATEGORY_CODE.trim(),
+    billName:("KasuhaNET_"+externalRef).slice(0,30),
+    billDescription:("Payment_"+externalRef).slice(0,100),
+    billPriceSetting:"1",billPayorInfo:"1",billAmount:String(item.amount),
+    billReturnUrl:SITE+"/Banner-WebSale-EN.html?payment=toyyibpay_return&order_id="+encodeURIComponent(id),
+    billCallbackUrl:SITE+"/api/toyyibpay-callback",
+    billExternalReferenceNo:externalRef,billTo:session.customer_name,
+    billEmail:session.customer_email,billPhone:session.customer_phone,
+    billPaymentChannel:"2",billExpiryDays:"1"
+  };
+  if(duitNowQrEnabled){fields.enableDuitNowQR="1";fields.chargeDuitNowQR="0";}
+  const response=await fetch("https://toyyibpay.com/index.php/api/createBill",{
+    method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},
+    body:new URLSearchParams(fields).toString()
+  });
+  const data=await response.json().catch(()=>null);
+  const billCode=Array.isArray(data)?data[0]?.BillCode:null;
+  if(!response.ok||!billCode||!/^[a-zA-Z0-9]+$/.test(billCode)){
+    await env.DB.prepare("UPDATE toyyibpay_orders SET status='failed',updated_at=CURRENT_TIMESTAMP WHERE id=?").bind(id).run();
+    throw new Error("ToyyibPay could not create the payment bill");
   }
+  await env.DB.prepare("UPDATE toyyibpay_orders SET bill_code=?,updated_at=CURRENT_TIMESTAMP WHERE id=?").bind(billCode,id).run();
+  await send(env,chatId,
+    "<b>ToyyibPay bill sedia.</b>\n"+item.name+"\nJumlah: <b>"+money(item.amount)+"</b>\n\nBuka pautan untuk bayar melalui kaedah yang diaktifkan pada akaun ToyyibPay.",
+    [[{text:"PAY WITH TOYYIBPAY • "+money(item.amount),url:"https://toyyibpay.com/"+billCode}],[{text:"Menu Utama",callback_data:"menu:home"}]]
+  );
+}
+
+async function handleCheckoutMessage(env, chatId, input) {
+  await ensureTelegramTables(env.DB);
+  const session=await env.DB.prepare("SELECT * FROM telegram_checkout_sessions WHERE chat_id=?").bind(String(chatId)).first();
+  if(!session) return false;
+  if(input==="/cancel"){
+    await env.DB.prepare("DELETE FROM telegram_checkout_sessions WHERE chat_id=?").bind(String(chatId)).run();
+    await send(env,chatId,"Checkout dibatalkan. Gunakan /start untuk buka menu.");
+    return true;
+  }
+  if(session.step==="name"){
+    if(input.length<2||input.length>100){await send(env,chatId,"Nama tidak sah. Masukkan nama penuh (2 hingga 100 aksara), atau /cancel.");return true;}
+    await env.DB.prepare("UPDATE telegram_checkout_sessions SET customer_name=?,step='email' WHERE chat_id=?").bind(input,String(chatId)).run();
+    await send(env,chatId,"Masukkan alamat e-mel yang sah:");
+    return true;
+  }
+  if(session.step==="email"){
+    if(input.length>254||! /^[^\\s@]+@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\\.)+[A-Za-z]{2,}$/.test(input)){
+      await send(env,chatId,"Format e-mel tidak sah. Cuba semula, atau /cancel.");return true;
+    }
+    await env.DB.prepare("UPDATE telegram_checkout_sessions SET customer_email=?,step='phone' WHERE chat_id=?").bind(input,String(chatId)).run();
+    await send(env,chatId,"Masukkan nombor telefon dengan kod negara. Contoh: +60123456789");
+    return true;
+  }
+  if(session.step==="phone"){
+    const digits=input.replace(/\\D/g,"");
+    if(!/^[+0-9().\\s-]+$/.test(input)||digits.length<9||digits.length>15){
+      await send(env,chatId,"Nombor telefon tidak sah. Masukkan 9 hingga 15 digit, atau /cancel.");return true;
+    }
+    await env.DB.prepare("UPDATE telegram_checkout_sessions SET customer_phone=?,step='processing' WHERE chat_id=?").bind(input,String(chatId)).run();
+    const item=session.item_type==="service"?SERVICES[session.item_id]:PACKAGES[session.item_id];
+    const packageId=session.item_type==="service"?"telegram-workshop-"+session.item_id:session.item_id;
+    const completed={...session,customer_phone:input};
+    try {
+      if(!item) throw new Error("Invalid item");
+      if(session.payment_method==="stripe") await createStripePayment(env,chatId,completed,item,packageId);
+      else if(session.payment_method==="toyyibpay") await createToyyibPayPayment(env,chatId,completed,item,packageId);
+      else throw new Error("Invalid payment method");
+      await env.DB.prepare("DELETE FROM telegram_checkout_sessions WHERE chat_id=?").bind(String(chatId)).run();
+    } catch {
+      await env.DB.prepare("DELETE FROM telegram_checkout_sessions WHERE chat_id=?").bind(String(chatId)).run();
+      await send(env,chatId,"Pembayaran tidak dapat dijana. Semak konfigurasi gateway atau hubungi Support KasuhaNET.");
+    }
+    return true;
+  }
+  return true;
 }
 
 export async function onRequestPost({ request, env }) {
@@ -151,7 +267,9 @@ export async function onRequestPost({ request, env }) {
     if (message?.chat?.id) {
       const chatId = message.chat.id;
       const input = (message.text || "").trim();
-      if (input === "/start" || input === "/menu") {
+      if (input !== "/start" && input !== "/menu" && await handleCheckoutMessage(env, chatId, input)) {
+        // Checkout conversation handled.
+      } else if (input === "/start" || input === "/menu") {
         await send(env, chatId,
           "<b>Selamat datang ke KasuhaNET Store.</b>\nPilih servis atau produk yang ingin dibeli. Harga dipaparkan dalam MYR.",
           mainMenu()
@@ -184,10 +302,20 @@ export async function onRequestPost({ request, env }) {
         await send(env, chatId, "<b>Custom Web Workshop</b>\nPilih satu servis. Untuk gabungan beberapa servis, gunakan laman bengkel.", rows);
       } else if (action.startsWith("buy:package:")) {
         const id = action.slice("buy:package:".length);
-        if (PACKAGES[id]) await createCheckout(env, chatId, PACKAGES[id], id, false);
+        if (PACKAGES[id]) await beginCheckout(env, chatId, PACKAGES[id], id, false);
       } else if (action.startsWith("buy:service:")) {
         const id = action.slice("buy:service:".length);
-        if (SERVICES[id]) await createCheckout(env, chatId, SERVICES[id], id, true);
+        if (SERVICES[id]) await beginCheckout(env, chatId, SERVICES[id], id, true);
+      } else if (action === "pay:stripe" || action === "pay:toyyibpay") {
+        await ensureTelegramTables(env.DB);
+        const method=action==="pay:stripe"?"stripe":"toyyibpay";
+        const result=await env.DB.prepare("UPDATE telegram_checkout_sessions SET payment_method=?,step='name' WHERE chat_id=? AND step='payment'")
+          .bind(method,String(chatId)).run();
+        if(result.meta?.changes===0) {
+          await send(env,chatId,"Sesi checkout tamat. Sila pilih produk semula melalui /start.");
+        } else {
+          await send(env,chatId,"Masukkan nama penuh untuk invois/pembayaran. Hantar /cancel untuk batalkan.");
+        }
       }
     }
   } catch {
