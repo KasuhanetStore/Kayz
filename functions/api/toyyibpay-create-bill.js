@@ -1,6 +1,7 @@
 const PACKAGES = {
   "landing-page": { name: "KasuhaNET Landing Page Package", amount: 29900 },
-  "premium-standard": { name: "KasuhaNET Premium Standard", amount: 90000 }
+  "premium-standard": { name: "KasuhaNET Premium Standard", amount: 90000 },
+  "dualstream-pro": { name: "DualStream Pro", amount: 4770 }
 };
 const WORKSHOP_SERVICES = {
   "domain-dns": { name: "Domain Management & DNS Routing", amount: 5000 },
@@ -94,7 +95,7 @@ export async function onRequestPost({request,env}){
       VALUES(?,?,?,?,?,?,?,?,'pending')`).bind(id,externalRef,isWorkshop?"custom-workshop":input.packageId,packageName,amount,name,email,phone).run();
   }catch{return json({error:"Unable to save the ToyyibPay order. Please try again."},500);}
   const locale=input.locale==="MS"?"MS":"EN";
-  const returnPage=isWorkshop?(locale==="MS"?"https://kasuhanet.store/MS/Bengkel-Custom-WebSite-MS.html":"https://kasuhanet.store/custom-web-workshop-EN"):"https://kasuhanet.store/Banner-WebSale-EN.html";
+  const returnPage=isWorkshop?(locale==="MS"?"https://kasuhanet.store/MS/Bengkel-Custom-WebSite-MS.html":"https://kasuhanet.store/custom-web-workshop-EN"):(input.packageId==="dualstream-pro"?"https://kasuhanet.store/Terminal-Option_MS.html":"https://kasuhanet.store/Banner-WebSale-EN.html");
   const billName=("KasuhaNET_"+externalRef).slice(0,30);
   const billDescription=("Payment_"+externalRef).slice(0,100);
   // Check whether DuitNow QR has been activated for this ToyyibPay merchant.
