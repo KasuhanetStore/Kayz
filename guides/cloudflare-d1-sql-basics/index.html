@@ -140,10 +140,58 @@ h1{font-size:clamp(30px,4.6vw,48px);line-height:1.12;letter-spacing:-1px;margin:
     <div class="container">
       <article class="article-content">
         <a class="back-link" href="/guides/"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> BACK TO GUIDES</a>
-        <p class="meta">KasuhaNET Resources · Technical guide · Updated 12 November 2026</p>
-        <section class="card"><strong>Important</strong><p>Use the database name shown in your Cloudflare configuration or dashboard. A Worker binding name such as <code>DB</code> is a code-level variable and is not necessarily the actual D1 database name.</p></section><h2>1. List available D1 databases</h2><p>With Wrangler installed and authenticated to the correct Cloudflare account, run:</p><pre><code>npx wrangler d1 list</code></pre><p>Identify the database used by the project. Check the project's Wrangler configuration and deployment environment before running remote commands.</p><h2>2. Inspect the table list</h2><p>Replace <code>YOUR_DATABASE_NAME</code> with the exact database name returned by the previous command:</p><pre><code>npx wrangler d1 execute YOUR_DATABASE_NAME --remote --command "SELECT name FROM sqlite_master WHERE type = 'table' ORDER BY name;"</code></pre><p>This query reads SQLite's schema metadata and lists tables. It does not modify records.</p><h2>3. Inspect a table's columns</h2><pre><code>npx wrangler d1 execute YOUR_DATABASE_NAME --remote --command "PRAGMA table_info('stripe_orders');"</code></pre><p>Replace <code>stripe_orders</code> with the table you want to inspect. The result describes column names, types, nullability, default values and primary-key information.</p><h2>4. Read a small sample</h2><pre><code>npx wrangler d1 execute YOUR_DATABASE_NAME --remote --command "SELECT id, status, created_at FROM stripe_orders ORDER BY created_at DESC LIMIT 10;"</code></pre><p>Select only the columns you need and use a small limit. Avoid printing customer names, email addresses, phone numbers or other personal data into public logs or screenshots.</p><h2>5. Use parameterised queries in Workers</h2><p>When application input is involved, bind values instead of concatenating them into SQL strings:</p><pre><code>const result = await env.DB.prepare(
+        <p class="meta">KasuhaNET Resources · Technical guide · Updated 19 November 2026</p>
+<section class="card"><strong>Before you run commands</strong><p>Use the database name shown in your Cloudflare configuration or dashboard. A Worker binding such as <code>DB</code> is a code-level variable, not necessarily the D1 database name. Commands marked <code>--remote</code> act on a remote database, so confirm the account, database and environment first.</p></section>
+<h2>1. List your D1 databases</h2>
+<p>With Wrangler installed and authenticated to the intended Cloudflare account, list the available databases:</p>
+<pre><code>npx wrangler d1 list</code></pre>
+<p>Match the database to the project's Wrangler configuration. Check the database name, database ID, binding and environment rather than choosing one based on a similar name.</p>
+<h2>2. List tables without changing data</h2>
+<p>Replace <code>YOUR_DATABASE_NAME</code> with the exact database name:</p>
+<pre><code>npx wrangler d1 execute YOUR_DATABASE_NAME --remote --command "SELECT name FROM sqlite_schema WHERE type = 'table' ORDER BY name;"</code></pre>
+<p>This reads SQLite schema metadata. It does not insert, update or delete application records. D1 may expose internal system objects in schema listings; do not treat undocumented internal tables as application tables or attempt to modify them.</p>
+<h2>3. Inspect a table's columns</h2>
+<pre><code>npx wrangler d1 execute YOUR_DATABASE_NAME --remote --command "PRAGMA table_info('stripe_orders');"</code></pre>
+<p>Replace <code>stripe_orders</code> with the table you need to inspect. The output includes column names, declared types, whether NULL is allowed, default values and primary-key position. It describes the schema, not the actual customer data.</p>
+<h2>4. Read a limited sample</h2>
+<pre><code>npx wrangler d1 execute YOUR_DATABASE_NAME --remote --command "SELECT id, status, created_at FROM stripe_orders ORDER BY created_at DESC LIMIT 10;"</code></pre>
+<p>This is an example only. Use column names that really exist in your table, and keep the result set small. Select only what is needed. Avoid exposing names, email addresses, phone numbers, payment details or other personal information in logs, screenshots or support messages.</p>
+<h2>5. Use parameterised queries in a Worker</h2>
+<p>When a query uses application input, bind values instead of joining them into an SQL string:</p>
+<pre><code>const order = await env.DB.prepare(
   "SELECT id, status FROM stripe_orders WHERE id = ?"
-).bind(orderId).first();</code></pre><p>Parameter binding helps prevent SQL injection and keeps data values separate from SQL syntax. Table and column names generally cannot be supplied as ordinary bound values; choose those from trusted, fixed application logic.</p><h2>6. Back up and change schema carefully</h2><p>Before a migration or destructive query, confirm the target database and environment, create a backup using the current Cloudflare-supported workflow, and test the migration against a non-production copy when possible. Review every <code>UPDATE</code> or <code>DELETE</code> with a matching <code>WHERE</code> clause. Never run a destructive statement just to discover what it does.</p><h2>Useful checks</h2><ul><li>Confirm the correct Cloudflare account and database before using <code>--remote</code>.</li><li>Keep production and development database names clearly distinguished.</li><li>Use migrations tracked in version control for repeatable schema changes.</li><li>Keep database credentials and API tokens out of source files.</li></ul><p>Refer to Cloudflare's current D1 and Wrangler documentation for version-specific commands and backup procedures.</p>
+).bind(orderId).first();</code></pre>
+<p><code>first()</code> returns the first matching row, or <code>null</code> when no row matches. For multiple rows, use <code>all()</code>; for statements that change data, use <code>run()</code> and inspect the result. Parameter binding helps prevent SQL injection by keeping values separate from SQL syntax. It does not make arbitrary SQL fragments safe: table names, column names and sort directions should come from trusted, fixed application logic.</p>
+<h2>6. Check database integrity</h2>
+<p>SQLite's quick check can help identify structural problems:</p>
+<pre><code>npx wrangler d1 execute YOUR_DATABASE_NAME --remote --command "PRAGMA quick_check;"</code></pre>
+<p>A result of <code>ok</code> means the check did not report a structural issue. It is not a substitute for checking whether application data is complete, correct or consistent with business rules.</p>
+<h2>7. Export a backup before risky changes</h2>
+<p>Wrangler can export a remote D1 database to a SQL file:</p>
+<pre><code>npx wrangler d1 export YOUR_DATABASE_NAME --remote --output=./d1-backup.sql</code></pre>
+<p>Store the export in a private, access-controlled location. A full export can contain personal and business data, so do not commit it to a public repository or attach it to a public support request. Confirm that the export completed and that the file is protected before proceeding.</p>
+<h2>8. Make schema changes through migrations</h2>
+<p>For a maintained project, keep schema changes as version-controlled migration files and test them against a local or preview database before production. Wrangler provides migration commands such as:</p>
+<pre><code>npx wrangler d1 migrations list YOUR_DATABASE_NAME
+npx wrangler d1 migrations apply YOUR_DATABASE_NAME --local</code></pre>
+<p>Only apply migrations to the remote production database after reviewing the exact changes and testing the migration path. Cloudflare's migration workflow captures a backup when migrations are applied, but this does not remove the need to verify the target environment and keep an independent export when appropriate.</p>
+<h2>9. Review destructive SQL carefully</h2>
+<p>Before running <code>UPDATE</code> or <code>DELETE</code>, first run a matching <code>SELECT</code> with the same <code>WHERE</code> condition to confirm which rows will be affected. Check the affected-row result after the change. Never run <code>DROP TABLE</code>, an unrestricted <code>DELETE</code> or a broad <code>UPDATE</code> just to discover what it does.</p>
+<h2>Practical safety checklist</h2>
+<ul>
+<li>Confirm the Cloudflare account, database name and environment before every remote command.</li>
+<li>Keep development, preview and production databases clearly distinguished.</li>
+<li>Use prepared statements for values received from users or other untrusted sources.</li>
+<li>Keep API tokens, database exports and customer records out of public source control.</li>
+<li>Use reviewed migrations for repeatable schema changes and retain protected backups.</li>
+<li>Limit database access to the people and services that need it.</li>
+</ul>
+<h2>Further reading</h2>
+<ul>
+<li><a href="https://developers.cloudflare.com/d1/wrangler-commands/" target="_blank" rel="noopener noreferrer">Cloudflare D1 Wrangler commands</a></li>
+<li><a href="https://developers.cloudflare.com/d1/sql-api/sql-statements/" target="_blank" rel="noopener noreferrer">Cloudflare D1 SQL statements</a></li>
+<li><a href="https://developers.cloudflare.com/d1/best-practices/import-export-data/" target="_blank" rel="noopener noreferrer">Cloudflare D1 import and export</a></li>
+</ul>
       </article>
     </div>
   </main>
