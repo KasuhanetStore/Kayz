@@ -7,10 +7,10 @@
   
   <meta name="google-adsense-account" content="ca-pub-4280897190566760">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://kasuhanet.store/guides/linux-package-management.html">
-  <link rel="alternate" hreflang="en" href="https://kasuhanet.store/guides/linux-package-management.html">
-  <link rel="alternate" hreflang="ms" href="https://kasuhanet.store/MS/panduan/linux-package-management.html">
-  <link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/guides/linux-package-management.html">
+  <link rel="canonical" href="https://kasuhanet.store/guides/linux-package-management/linux-package-management.html">
+  <link rel="alternate" hreflang="en" href="https://kasuhanet.store/guides/linux-package-management/linux-package-management.html">
+  <link rel="alternate" hreflang="ms" href="https://kasuhanet.store/guides/linux-package-management/MS/linux-package-management.html">
+  <link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/guides/linux-package-management/linux-package-management.html">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -139,7 +139,7 @@ h1{font-size:clamp(30px,4.6vw,48px);line-height:1.12;letter-spacing:-1px;margin:
   <main class="article-section">
     <div class="container">
       <article class="article-content">
-        <a class="back-link" href="index.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> BACK TO GUIDES</a>
+        <a class="back-link" href="/guides/"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> BACK TO GUIDES</a>
         <p class="meta">KasuhaNET Resources · Technical guide · Updated 12 November 2026</p>
         <section class="card"><strong>Before you begin</strong><p>These commands are intended for Debian and Ubuntu systems. You need an account with sudo privileges. Package names and availability can differ between releases.</p></section><h2>1. Confirm the operating system</h2><p>Check the distribution and release before following instructions written for a particular system:</p><pre><code>cat /etc/os-release</code></pre><p>Look at the <code>ID</code> and <code>VERSION_ID</code> values. If you are using a different Linux family, its package manager may not be APT.</p><h2>2. Refresh the package index</h2><pre><code>sudo apt update</code></pre><p>This downloads the latest package metadata from the repositories configured on the machine. It does not upgrade installed applications by itself. Read the output and investigate repository or signature errors rather than ignoring them.</p><h2>3. Install a package</h2><p>For example, to install the <code>curl</code> command-line tool:</p><pre><code>sudo apt install curl</code></pre><p>APT displays the packages and disk space involved and asks for confirmation. Review the proposed changes before accepting them, especially on production servers.</p><h2>4. Verify the installation</h2><pre><code>curl --version
 apt policy curl</code></pre><p>The first command prints the installed program version. The second shows package status and repository information.</p><h2>5. Find a package or inspect details</h2><pre><code>apt search package-name
@@ -152,10 +152,6 @@ apt show package-name</code></pre><p>Replace <code>package-name</code> with the 
     fetch("/template-text/EN/template-footer-EN.html")
       .then(response => { if (!response.ok) throw new Error("Footer template failed to load"); return response.text(); })
       .then(data => {
-        data = data.replaceAll('href="/About-Us/"', 'href="/About-Us/"')
-          .replaceAll('href="support-centre-EN.html"', 'href="../support-centre-EN.html"')
-          .replaceAll('href="privacy-policy-EN.html"', 'href="../privacy-policy-EN.html"')
-          .replaceAll('href="guides/index.html"', 'href="index.html"');
         document.getElementById("footer-placeholder").innerHTML = data;
         const year = document.getElementById("year");
         if (year) year.textContent = new Date().getFullYear();
