@@ -84,7 +84,10 @@ async function beginCheckout(env, chatId, item, id, isService) {
     ON CONFLICT(chat_id) DO UPDATE SET item_type=excluded.item_type,item_id=excluded.item_id,
     payment_method=NULL,step='name',customer_name=NULL,customer_email=NULL,customer_phone=NULL,
     created_at=CURRENT_TIMESTAMP`).bind(String(chatId),isService?"service":"package",id).run();
-  await send(env, chatId, "Nama:");
+  await send(env, chatId,
+    "<b>Sila Isikan Maklumat Pembeli</b>\\nTEKAN ENTER TERUSKAN",
+    [[{text:"TEKAN ENTER TERUSKAN",callback_data:"checkout:start_details"}]]
+  );
 }
 
 async function createStripePayment(env, chatId, session, item, packageId) {
@@ -294,6 +297,15 @@ export async function onRequestPost({ request, env }) {
       } else if (action.startsWith("buy:service:")) {
         const id = action.slice("buy:service:".length);
         if (SERVICES[id]) await beginCheckout(env, chatId, SERVICES[id], id, true);
+      } else if (action === "checkout:start_details") {
+        await ensureTelegramTables(env.DB);
+        const result=await env.DB.prepare("UPDATE telegram_checkout_sessions SET step='name' WHERE chat_id=? AND step='name'")
+          .bind(String(chatId)).run();
+        if(result.meta?.changes===0) {
+          await send(env,chatId,"Sesi checkout tamat. Sila pilih produk semula melalui /start.");
+        } else {
+          await send(env,chatId,"Nama:");
+        }
       } else if (action === "pay:stripe" || action === "pay:toyyibpay") {
         await ensureTelegramTables(env.DB);
         const method=action==="pay:stripe"?"stripe":"toyyibpay";
