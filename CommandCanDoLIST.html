@@ -416,7 +416,7 @@ footer > * { position: relative; z-index: 1; }
   <p id="knCommandCartEmpty">Your cart is empty.</p>
   <div class="kn-command-cart-row" id="knCommandCartItem" hidden><span>DualStreamPro</span><strong>RM 47.70</strong></div>
   <div class="kn-command-cart-actions">
-    <a href="Terminal-Option_EN.html" id="knCommandCartView" hidden>VIEW PRODUCT</a>
+    <a href="Terminal-Option_EN.html?checkout=1" id="knCommandCartView" hidden>PAY NOW</a>
     <button type="button" id="knCommandCartClose">CLOSE</button>
   </div>
 </aside>
@@ -446,13 +446,13 @@ footer > * { position: relative; z-index: 1; }
   const count=document.getElementById("knCommandCartCount");
   const empty=document.getElementById("knCommandCartEmpty");
   const item=document.getElementById("knCommandCartItem");
-  const view=document.getElementById("knCommandCartView");
+  const pay=document.getElementById("knCommandCartView");
   function render(){
     const selected=check.checked;
     count.textContent=selected?"1":"0";
     empty.hidden=selected;
     item.hidden=!selected;
-    view.hidden=!selected;
+    pay.hidden=!selected;
     if(!selected)cart.classList.remove("is-open");
   }
   check.addEventListener("change",render);
