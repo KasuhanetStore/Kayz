@@ -1041,7 +1041,7 @@ footer > * { position: relative; z-index: 1; }
     document.getElementById("knWorkshopCount").textContent=items.length+" item(s) in cart";
     document.getElementById("knWorkshopCheckout").disabled=!items.length;
     document.getElementById("knWorkshopFloatCount").textContent=String(items.length);
-    floatButton.classList.toggle("is-visible",items.length>0);
+    floatButton.classList.add("is-visible");
     if(!items.length)cart.classList.remove("is-open");
   }
 
