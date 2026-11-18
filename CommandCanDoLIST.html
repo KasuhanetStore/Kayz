@@ -361,6 +361,10 @@ footer > * { position: relative; z-index: 1; }
         <style id="dualstream-listing-style">
 .dualstream-listing-card{position:relative;display:flex;flex-direction:column;gap:13px;padding:22px;border:1px solid rgba(0,240,255,.3);border-radius:14px;background:linear-gradient(145deg,rgba(13,22,38,.98),rgba(20,10,35,.96));box-shadow:0 8px 28px rgba(0,0,0,.22);transition:transform .2s,border-color .2s,box-shadow .2s}
 .dualstream-listing-card:hover{transform:translateY(-3px);border-color:#00f0ff;box-shadow:0 10px 32px rgba(0,240,255,.12)}
+.dualstream-listing-preview{position:relative;display:grid;place-items:center;width:100%;aspect-ratio:16/9;overflow:hidden;border:1px solid rgba(0,240,255,.18);border-radius:10px;background:radial-gradient(ellipse at center,rgba(0,240,255,.1),rgba(8,13,25,.95) 70%);color:#7795a8}
+.dualstream-listing-preview img{display:block;width:100%;height:100%;object-fit:cover}
+.dualstream-listing-preview-placeholder{display:flex;flex-direction:column;align-items:center;gap:8px;color:#7d91a9;font-size:11px;letter-spacing:1px;text-transform:uppercase}
+.dualstream-listing-preview-placeholder svg{width:34px;height:34px;opacity:.7}
 .dualstream-listing-tag{align-self:flex-start;padding:5px 10px;border:1px solid rgba(0,240,255,.35);border-radius:99px;color:#00f0ff;font-size:10px;font-weight:800;letter-spacing:.8px;text-transform:uppercase}
 .dualstream-listing-title{color:#fff;font-size:21px;font-weight:900;text-decoration:none;line-height:1.25}
 .dualstream-listing-title:hover{color:#00f0ff}
@@ -387,6 +391,12 @@ footer > * { position: relative; z-index: 1; }
 @media(prefers-reduced-motion:reduce){.kn-command-cart-float{animation:none}}
 </style>
 <article class="dualstream-listing-card">
+  <div class="dualstream-listing-preview" data-image-name="" aria-label="Product image preview">
+    <div class="dualstream-listing-preview-placeholder">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+      <span>Product Preview</span>
+    </div>
+  </div>
   <span class="dualstream-listing-tag">Linux Terminal Tool</span>
   <a class="dualstream-listing-title" href="Terminal-Option_EN.html">DualStreamPro</a>
   <p class="dualstream-listing-desc">A terminal-based downloader for supported video links. Copy a video link from a supported platform, paste it into your Linux terminal, then choose to download the video or extract audio as MP3.</p>
@@ -411,6 +421,22 @@ footer > * { position: relative; z-index: 1; }
   </div>
 </aside>
 <button class="kn-command-cart-float" id="knCommandCartToggle" type="button" aria-label="Open shopping cart">🛒 Cart <span class="kn-command-cart-count" id="knCommandCartCount">0</span></button>
+<script>
+(function(){
+  // Product preview: fill only data-image-name with the image filename.
+  // Place image files in /images/products/ (example: DualStreamPro-preview.png).
+  document.querySelectorAll(".dualstream-listing-preview[data-image-name]").forEach(frame=>{
+    const filename=(frame.dataset.imageName||"").trim();
+    if(!filename) return;
+    const image=document.createElement("img");
+    image.alt="Product preview";
+    image.loading="lazy";
+    image.src="/images/products/"+filename;
+    image.onerror=()=>{image.remove();};
+    frame.prepend(image);
+  });
+})();
+</script>
 <script>
 (function(){
   const check=document.getElementById("dualStreamCartCheck");
