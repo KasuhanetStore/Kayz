@@ -237,42 +237,7 @@
   <meta name="twitter:image" content="https://kasuhanet.store/img/logo3.png">
   <meta name="twitter:image:alt" content="Mengenai Kami | KasuhaNET.STORE"></head>
 <body><!-- TOPBAR HEADER -->
-<header class="topbar">
-  <div class="container nav">
-    <div id="branding-title">
-      <div class="brand">
-        <div class="brand-mark">K</div>
-        <div>
-          KasuhaNET
-          <small>STORE</small>
-        </div>
-      </div>
-    </div>
-
-    <script>
-    fetch("/template-text/MS/kasuhanet-icon-official-MS.html")
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById("branding-title").innerHTML = data;
-    }).catch(err => console.log(err));
-    </script>    
-    
-    <nav class="nav-links" id="navLinks" aria-label="Navigasi Utama">
-        
-        <a href="/MS/">LAMAN UTAMA</a>
-        <a href="/About-Us/MS/" style="color:#ff7187; font-weight:800;">TENTANG KAMI</a>
-        <a href="/MS/panduan/">PANDUAN</a>
-        <a href="/Privacy-Policy/MS/">POLISI PRIVASI</a>
-        <a href="/Support/MS/">SOKONGAN</a>
-        <a class="btn btn-outline" href="/About-Us/" lang="en">EN</a>
-        <a class="btn btn-outline" href="/About-Us/MS/" lang="ms">BM</a>
-    </nav>
-
-    <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Tukar Navigasi">
-        <i class="fa-solid fa-bars"></i>
-    </button>
-  </div>
-</header>
+<div data-kn-header="policy" data-en-href="/About-Us/" data-ms-href="/About-Us/MS/"></div>
 
 <!-- PARTNER CREDIT: LOAD CENTRAL TEMPLATE -->
 <div id="partner-credit-placeholder"></div>
@@ -403,5 +368,6 @@
   if (document.getElementById("main-whatsapp")) document.getElementById("main-whatsapp").href = waURL;  
 </script>  
   <script src="/js/inbox-chat-widget.js" defer></script>
+<script src="/template-text/Header-Navigation/header-loader.js" defer></script>
 </body>
 </html>
