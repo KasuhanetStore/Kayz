@@ -93,7 +93,7 @@ h1{font-size:clamp(30px,4.6vw,48px);line-height:1.12;letter-spacing:-1px;margin:
       <a class="brand" href="../index.html" aria-label="KasuhaNET home"><img src="../img/logo3.png" alt="KasuhaNET.STORE"></a>
       <nav class="nav-links" aria-label="Main navigation">
         <a href="../index.html">HOME</a>
-        <a href="../about-us-EN.html">ABOUT US</a>
+        <a href="/About-Us/">ABOUT US</a>
         <a href="index.html">GUIDES</a>
         <a href="../privacy-policy-EN.html">PRIVACY POLICY</a>
         <a href="../support-centre-EN.html">SUPPORT</a>
@@ -125,7 +125,7 @@ apt show package-name</code></pre><p>Replace <code>package-name</code> with the 
     fetch("../template-text/EN/template-footer-EN.html")
       .then(response => { if (!response.ok) throw new Error("Footer template failed to load"); return response.text(); })
       .then(data => {
-        data = data.replaceAll('href="about-us-EN.html"', 'href="../about-us-EN.html"')
+        data = data.replaceAll('href="/About-Us/"', 'href="/About-Us/"')
           .replaceAll('href="support-centre-EN.html"', 'href="../support-centre-EN.html"')
           .replaceAll('href="privacy-policy-EN.html"', 'href="../privacy-policy-EN.html"')
           .replaceAll('href="guides/index.html"', 'href="index.html"');
