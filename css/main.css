@@ -189,6 +189,7 @@ p, a, span, button {
 
 .section { padding: 68px 0; }
 .section-head { text-align: center; max-width: 720px; margin: 0 auto 36px; }
+.section-head h1,
 .section-head h2 { font-size: clamp(28px,4vw,42px); line-height: 1.15; margin: 12px 0; }
 .section-head p { color: var(--muted); margin: 0; }
 
