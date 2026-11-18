@@ -136,10 +136,58 @@ h1{font-size:clamp(30px,4.6vw,48px);line-height:1.12;letter-spacing:-1px;margin:
     <div class="container">
       <article class="article-content">
         <a class="back-link" href="/guides/MS/"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> KEMBALI KE PUSAT PANDUAN</a>
-        <p class="meta">KasuhaNET Resources · Panduan teknikal · Dikemas kini 12 November 2026</p>
-        <section class="card"><strong>Penting</strong><p>Gunakan nama pangkalan data yang tertera dalam konfigurasi atau dashboard Cloudflare. Nama binding Worker seperti <code>DB</code> ialah pemboleh ubah pada peringkat kod dan tidak semestinya nama sebenar pangkalan data D1.</p></section><h2>1. Senaraikan pangkalan data D1</h2><p>Dengan Wrangler dipasang dan telah disahkan ke akaun Cloudflare yang betul, jalankan:</p><pre><code>npx wrangler d1 list</code></pre><p>Kenal pasti pangkalan data yang digunakan oleh projek. Semak konfigurasi Wrangler dan persekitaran deployment sebelum menjalankan arahan jauh.</p><h2>2. Semak senarai jadual</h2><p>Gantikan <code>NAMA_DATABASE_ANDA</code> dengan nama tepat daripada arahan sebelumnya:</p><pre><code>npx wrangler d1 execute NAMA_DATABASE_ANDA --remote --command "SELECT name FROM sqlite_master WHERE type = 'table' ORDER BY name;"</code></pre><p>Pertanyaan ini membaca metadata skema SQLite dan menyenaraikan jadual. Ia tidak mengubah rekod.</p><h2>3. Semak lajur jadual</h2><pre><code>npx wrangler d1 execute NAMA_DATABASE_ANDA --remote --command "PRAGMA table_info('stripe_orders');"</code></pre><p>Gantikan <code>stripe_orders</code> dengan jadual yang ingin diperiksa. Hasilnya menerangkan nama lajur, jenis data, kebolehan menerima NULL, nilai lalai dan maklumat primary key.</p><h2>4. Baca sampel kecil</h2><pre><code>npx wrangler d1 execute NAMA_DATABASE_ANDA --remote --command "SELECT id, status, created_at FROM stripe_orders ORDER BY created_at DESC LIMIT 10;"</code></pre><p>Pilih lajur yang diperlukan sahaja dan gunakan had rekod yang kecil. Elakkan memaparkan nama pelanggan, alamat e-mel, nombor telefon atau data peribadi dalam log awam dan tangkap layar.</p><h2>5. Gunakan pertanyaan berparameter dalam Workers</h2><p>Apabila input aplikasi digunakan, ikat nilai parameter dan bukannya mencantumkannya terus ke dalam rentetan SQL:</p><pre><code>const result = await env.DB.prepare(
+        <p class="meta">KasuhaNET Resources · Panduan teknikal · Dikemas kini 19 November 2026</p>
+<section class="card"><strong>Sebelum menjalankan arahan</strong><p>Gunakan nama pangkalan data yang tertera dalam konfigurasi atau dashboard Cloudflare. Binding Worker seperti <code>DB</code> ialah pemboleh ubah pada peringkat kod, bukan semestinya nama pangkalan data D1. Arahan yang menggunakan <code>--remote</code> akan mengakses pangkalan data jauh. Sahkan akaun, pangkalan data dan persekitaran terlebih dahulu.</p></section>
+<h2>1. Senaraikan pangkalan data D1</h2>
+<p>Dengan Wrangler dipasang dan telah disahkan ke akaun Cloudflare yang betul, senaraikan pangkalan data yang tersedia:</p>
+<pre><code>npx wrangler d1 list</code></pre>
+<p>Padankan pangkalan data dengan konfigurasi Wrangler projek. Semak nama pangkalan data, ID pangkalan data, binding dan persekitaran. Jangan pilih hanya kerana namanya kelihatan hampir sama.</p>
+<h2>2. Senaraikan jadual tanpa mengubah data</h2>
+<p>Gantikan <code>NAMA_DATABASE_ANDA</code> dengan nama pangkalan data yang tepat:</p>
+<pre><code>npx wrangler d1 execute NAMA_DATABASE_ANDA --remote --command "SELECT name FROM sqlite_schema WHERE type = 'table' ORDER BY name;"</code></pre>
+<p>Arahan ini membaca metadata skema SQLite. Ia tidak memasukkan, mengemas kini atau memadam rekod aplikasi. D1 mungkin memaparkan objek sistem dalaman dalam senarai skema. Jangan anggap jadual dalaman yang tidak didokumenkan sebagai jadual aplikasi atau cuba mengubahnya.</p>
+<h2>3. Periksa lajur jadual</h2>
+<pre><code>npx wrangler d1 execute NAMA_DATABASE_ANDA --remote --command "PRAGMA table_info('stripe_orders');"</code></pre>
+<p>Gantikan <code>stripe_orders</code> dengan jadual yang ingin diperiksa. Hasilnya merangkumi nama lajur, jenis data yang diisytiharkan, sama ada NULL dibenarkan, nilai lalai dan kedudukan primary key. Ia menerangkan struktur jadual, bukan data pelanggan sebenar.</p>
+<h2>4. Baca sampel rekod yang terhad</h2>
+<pre><code>npx wrangler d1 execute NAMA_DATABASE_ANDA --remote --command "SELECT id, status, created_at FROM stripe_orders ORDER BY created_at DESC LIMIT 10;"</code></pre>
+<p>Ini hanyalah contoh. Gunakan nama lajur yang benar-benar wujud dalam jadual anda dan hadkan jumlah hasil. Pilih data yang diperlukan sahaja. Elakkan mendedahkan nama, alamat e-mel, nombor telefon, butiran pembayaran atau maklumat peribadi lain dalam log, tangkap layar atau mesej sokongan.</p>
+<h2>5. Gunakan pertanyaan berparameter dalam Worker</h2>
+<p>Apabila pertanyaan menggunakan input aplikasi, ikat nilai parameter dan bukannya mencantumkannya ke dalam rentetan SQL:</p>
+<pre><code>const order = await env.DB.prepare(
   "SELECT id, status FROM stripe_orders WHERE id = ?"
-).bind(orderId).first();</code></pre><p>Parameter binding membantu mencegah SQL injection dan memisahkan nilai data daripada sintaks SQL. Nama jadual dan lajur biasanya tidak boleh dibekalkan sebagai nilai parameter biasa; pilihnya melalui logik aplikasi tetap yang dipercayai.</p><h2>6. Sandarkan data dan ubah skema dengan cermat</h2><p>Sebelum migrasi atau pertanyaan yang memadam data, sahkan pangkalan data dan persekitaran sasaran, buat sandaran menggunakan kaedah Cloudflare yang disokong semasa, dan uji migrasi pada salinan bukan produksi jika boleh. Semak setiap arahan <code>UPDATE</code> atau <code>DELETE</code> supaya mempunyai klausa <code>WHERE</code> yang betul. Jangan jalankan arahan pemusnah semata-mata untuk melihat kesannya.</p><h2>Semakan berguna</h2><ul><li>Sahkan akaun Cloudflare dan pangkalan data yang betul sebelum menggunakan <code>--remote</code>.</li><li>Bezakan nama pangkalan data produksi dan pembangunan dengan jelas.</li><li>Gunakan migrasi yang dijejak dalam version control untuk perubahan skema yang boleh diulang.</li><li>Jangan simpan kelayakan pangkalan data dan token API dalam fail sumber.</li></ul><p>Rujuk dokumentasi D1 dan Wrangler Cloudflare yang terkini untuk arahan dan prosedur sandaran mengikut versi.</p>
+).bind(orderId).first();</code></pre>
+<p><code>first()</code> memulangkan rekod pertama yang sepadan, atau <code>null</code> jika tiada rekod sepadan. Untuk beberapa rekod, gunakan <code>all()</code>; untuk arahan yang mengubah data, gunakan <code>run()</code> dan semak hasilnya. Parameter binding membantu mencegah SQL injection dengan memisahkan nilai daripada sintaks SQL. Ia tidak menjadikan fragmen SQL sewenang-wenangnya selamat: nama jadual, nama lajur dan arah susunan perlu datang daripada logik aplikasi tetap yang dipercayai.</p>
+<h2>6. Semak integriti pangkalan data</h2>
+<p>Semakan pantas SQLite boleh membantu mengesan masalah struktur:</p>
+<pre><code>npx wrangler d1 execute NAMA_DATABASE_ANDA --remote --command "PRAGMA quick_check;"</code></pre>
+<p>Hasil <code>ok</code> bermaksud semakan itu tidak melaporkan masalah struktur. Ia bukan pengganti kepada pemeriksaan sama ada data aplikasi lengkap, tepat atau mematuhi peraturan perniagaan.</p>
+<h2>7. Eksport sandaran sebelum perubahan berisiko</h2>
+<p>Wrangler boleh mengeksport pangkalan data D1 jauh ke fail SQL:</p>
+<pre><code>npx wrangler d1 export NAMA_DATABASE_ANDA --remote --output=./d1-backup.sql</code></pre>
+<p>Simpan fail eksport di lokasi persendirian dengan kawalan akses. Eksport penuh mungkin mengandungi data peribadi dan perniagaan. Jangan commit fail tersebut ke repositori awam atau lampirkannya dalam permintaan sokongan awam. Pastikan eksport selesai dan fail dilindungi sebelum meneruskan kerja.</p>
+<h2>8. Urus perubahan skema melalui migrasi</h2>
+<p>Bagi projek yang diselenggara, simpan perubahan skema sebagai fail migrasi yang dijejak dalam version control dan uji pada pangkalan data tempatan atau preview sebelum produksi. Wrangler menyediakan arahan migrasi seperti:</p>
+<pre><code>npx wrangler d1 migrations list NAMA_DATABASE_ANDA
+npx wrangler d1 migrations apply NAMA_DATABASE_ANDA --local</code></pre>
+<p>Hanya gunakan migrasi pada pangkalan data produksi jauh selepas menyemak perubahan sebenar dan menguji proses migrasi. Aliran migrasi Cloudflare mengambil sandaran apabila migrasi digunakan, tetapi ini tidak menggantikan keperluan mengesahkan persekitaran sasaran dan menyimpan eksport berasingan yang dilindungi apabila sesuai.</p>
+<h2>9. Semak arahan SQL yang memusnahkan data</h2>
+<p>Sebelum menjalankan <code>UPDATE</code> atau <code>DELETE</code>, jalankan dahulu arahan <code>SELECT</code> dengan syarat <code>WHERE</code> yang sama untuk mengesahkan rekod yang akan terlibat. Semak jumlah rekod yang terjejas selepas perubahan. Jangan jalankan <code>DROP TABLE</code>, <code>DELETE</code> tanpa syarat atau <code>UPDATE</code> yang terlalu luas semata-mata untuk melihat kesannya.</p>
+<h2>Senarai semak keselamatan</h2>
+<ul>
+<li>Sahkan akaun Cloudflare, nama pangkalan data dan persekitaran sebelum setiap arahan jauh.</li>
+<li>Bezakan pangkalan data pembangunan, preview dan produksi dengan jelas.</li>
+<li>Gunakan prepared statements untuk nilai daripada pengguna atau sumber yang tidak dipercayai.</li>
+<li>Jangan simpan token API, eksport pangkalan data dan rekod pelanggan dalam repositori awam.</li>
+<li>Gunakan migrasi yang telah disemak untuk perubahan skema berulang dan simpan sandaran yang dilindungi.</li>
+<li>Hadkan akses pangkalan data kepada individu dan perkhidmatan yang memerlukannya sahaja.</li>
+</ul>
+<h2>Rujukan lanjut</h2>
+<ul>
+<li><a href="https://developers.cloudflare.com/d1/wrangler-commands/" target="_blank" rel="noopener noreferrer">Arahan Wrangler Cloudflare D1</a></li>
+<li><a href="https://developers.cloudflare.com/d1/sql-api/sql-statements/" target="_blank" rel="noopener noreferrer">Pernyataan SQL Cloudflare D1</a></li>
+<li><a href="https://developers.cloudflare.com/d1/best-practices/import-export-data/" target="_blank" rel="noopener noreferrer">Import dan eksport Cloudflare D1</a></li>
+</ul>
       </article>
     </div>
   </main>
