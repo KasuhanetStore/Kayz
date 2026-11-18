@@ -212,42 +212,7 @@
 <body>
 
 <!-- TOPBAR HEADER -->
-<header class="topbar">
-  <div class="container nav">
-    <div id="branding-title">
-      <div class="brand">
-        <div class="brand-mark">K</div>
-        <div>
-          KasuhaNET
-          <small>STORE</small>
-        </div>
-      </div>
-    </div>
-
-    <script>
-    fetch("/template-text/EN/kasuhanet-icon-official-EN.html")
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById("branding-title").innerHTML = data;
-    }).catch(err => console.log(err));
-    </script>    
-    
-    <nav class="nav-links" id="navLinks" aria-label="Main Navigation">
-        
-        <a href="/">HOME</a>
-        <a href="/About-Us/" style="color:#ff7187; font-weight:800;">ABOUT US</a>
-        <a href="/guides/">GUIDES</a>
-        <a href="/Privacy-Policy/">PRIVACY POLICY</a>
-        <a href="/Support/">SUPPORT</a>
-        <a class="btn btn-outline" href="/About-Us/" lang="en">EN</a>
-        <a class="btn btn-outline" href="/About-Us/MS/" lang="ms">BM</a>
-    </nav>
-
-    <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Navigation">
-        <i class="fa-solid fa-bars"></i>
-    </button>
-  </div>
-</header>
+<div data-kn-header="policy" data-en-href="/About-Us/" data-ms-href="/About-Us/MS/"></div>
 
 <!-- PARTNER CREDIT: LOAD CENTRAL TEMPLATE -->
 <div id="partner-credit-placeholder"></div>
@@ -378,5 +343,6 @@
   if (document.getElementById("main-whatsapp")) document.getElementById("main-whatsapp").href = waURL;  
 </script>  
   <script src="/js/inbox-chat-widget.js" defer></script>
+<script src="/template-text/Header-Navigation/header-loader.js" defer></script>
 </body>
 </html>
