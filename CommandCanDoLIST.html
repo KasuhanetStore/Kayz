@@ -391,7 +391,7 @@ footer > * { position: relative; z-index: 1; }
 @media(prefers-reduced-motion:reduce){.kn-command-cart-float{animation:none}}
 </style>
 <article class="dualstream-listing-card">
-  <div class="dualstream-listing-preview" data-image-name="" aria-label="Product image preview">
+  <div class="dualstream-listing-preview" data-image-name="Terminal-Option_1.jpg" aria-label="Product image preview">
     <div class="dualstream-listing-preview-placeholder">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
       <span>Product Preview</span>
@@ -424,14 +424,14 @@ footer > * { position: relative; z-index: 1; }
 <script>
 (function(){
   // Product preview: fill only data-image-name with the image filename.
-  // Place image files in /images/products/ (example: DualStreamPro-preview.png).
+  // Place product preview images in /img/ (example: Terminal-Option_1.jpg).
   document.querySelectorAll(".dualstream-listing-preview[data-image-name]").forEach(frame=>{
     const filename=(frame.dataset.imageName||"").trim();
     if(!filename) return;
     const image=document.createElement("img");
     image.alt="Product preview";
     image.loading="lazy";
-    image.src="/images/products/"+filename;
+    image.src="/img/"+filename;
     image.onerror=()=>{image.remove();};
     frame.prepend(image);
   });
