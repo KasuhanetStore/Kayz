@@ -226,31 +226,22 @@
 <header class="topbar">
   <div class="container nav">
     <div id="branding-title">
-      <div class="brand">
-        <div class="brand-mark">K</div>
-        <div>
-          KasuhaNET
-          <small>STORE</small>
-        </div>
-      </div>
+      <a class="brand" href="/MS/" aria-label="Laman Rasmi KasuhaNET">
+        <img src="/img/logo3.png" class="brand-logo" alt="KasuhaNET.STORE">
+      </a>
     </div>
-
-    <script>
-    fetch("/template-text/MS/kasuhanet-icon-official-MS.html")
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById("branding-title").innerHTML = data;
-    }).catch(err => console.log(err));
-    </script>
     
     <nav class="nav-links" id="navLinks" aria-label="Navigasi Utama">
-        
         <a href="/MS/">LAMAN UTAMA</a>
         <a href="/About-Us/MS/">TENTANG KAMI</a>
+        <a href="/MS/panduan/">PANDUAN</a>
         <a href="/Privacy-Policy/MS/">POLISI PRIVASI</a>
         <a href="/Support/MS/" style="color: var(--red);">SOKONGAN</a>
-        <a class="btn btn-outline" href="/Support/" lang="en">EN</a>
-        <a class="btn btn-outline" href="/Support/MS/" lang="ms">BM</a>
+        <div style="display:flex;gap:8px;margin:4px 0;">
+          <a class="btn btn-outline" href="/Support/" lang="en">EN</a>
+          <a class="btn btn-outline" href="/Support/MS/" lang="ms">BM</a>
+        </div>
+        <a class="btn-cyber-animated" href="/MS/Banner-WebSale-MS.html"><span>DAPATKAN LAMAN WEB!</span><i class="fa-solid fa-computer-mouse"></i></a>
     </nav>
 
     <!-- Butang Hamburger Menu untuk Mobile di sebelah kanan -->
