@@ -308,27 +308,6 @@
 
 <!-- SCRIPT LOGIC -->
 <script>
-  function toggleMobileMenu() {
-    const navLinks = document.getElementById("navLinks");
-    navLinks.classList.toggle("active");
-  }
-
-  function toggleDropdown() {
-    document.getElementById("servicesDropdown").classList.toggle("show");
-  }
-
-  window.addEventListener('click', function(e) {
-    if (!e.target.matches('.dropdown a') && !e.target.matches('.dropdown i')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        for (var i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-            }
-        }
-    }
-  });
-
   const WHATSAPP_NUMBER = "60167390501"; 
   const DEFAULT_MESSAGE = "Helo, saya berminat dengan perkhidmatan KasuhaNET.STORE.";  
   const waURL = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(DEFAULT_MESSAGE);  
