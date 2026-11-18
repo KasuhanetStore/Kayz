@@ -59,7 +59,27 @@ h1{font-size:clamp(34px,5vw,56px);line-height:1.1;letter-spacing:-1.5px;margin:1
     .whatsapp-float:hover{transform:translateY(-4px) scale(1.04)}
     .whatsapp-float svg{width:30px;height:30px;fill:currentColor}
     @media(max-width:600px){.whatsapp-float{right:16px;bottom:16px;width:56px;height:56px}}
-</style>
+
+/* HEADER NAVIGATION: matched to the Support Centre header */
+.topbar{position:sticky;top:0;z-index:10;background:rgba(8,9,13,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:.5px}
+.brand img{display:block;width:auto;height:auto;max-width:180px;max-height:58px;object-fit:contain}
+.nav-links{display:flex;align-items:center;gap:24px;flex-wrap:nowrap;color:#d8dbe4;font-size:14px}
+.nav-links a:hover{color:#ff667d}
+.nav-links a[aria-current="page"]{color:var(--red)}
+.btn{display:inline-flex;justify-content:center;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;border:1px solid rgba(255,255,255,.2);font-weight:800;font-size:13px;cursor:pointer;transition:.2s ease}
+.btn-outline{border-color:rgba(255,255,255,.2);color:white;background:rgba(255,255,255,.03)}
+.btn-outline:hover{border-color:var(--red)}
+.menu-toggle{display:none;background:transparent;border:1px solid var(--line);color:var(--text);font-size:20px;padding:8px 12px;border-radius:8px;cursor:pointer}
+@media(max-width:850px){
+ .nav{min-height:70px;padding:10px 0;align-items:center;flex-direction:row;gap:12px}
+ .menu-toggle{display:inline-flex;align-items:center;justify-content:center}
+ .nav-links{display:none;flex-direction:column;position:absolute;top:70px;left:0;width:100%;background:rgba(8,9,13,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:24px;gap:16px;box-shadow:0 15px 30px rgba(0,0,0,.6);z-index:99;align-items:flex-start}
+ .nav-links.active{display:flex}
+ .nav-links a:not(.btn){display:block!important;width:100%}
+}
+  </style>
   
   
   
@@ -86,20 +106,36 @@ h1{font-size:clamp(34px,5vw,56px);line-height:1.1;letter-spacing:-1.5px;margin:1
   <meta name="twitter:url" content="https://kasuhanet.store/MS/panduan/index.html">
   <meta name="twitter:image" content="https://kasuhanet.store/img/logo3.png">
   <meta name="twitter:image:alt" content="Pusat Panduan KasuhaNET | Panduan Teknikal Praktikal"></head>
-<body><header class="topbar">
-    <div class="container nav">
+<body>
+<header class="topbar">
+  <div class="container nav">
+    <div id="branding-title">
       <a class="brand" href="../../MS/index.html" aria-label="KasuhaNET home"><img src="../../img/logo3.png" alt="KasuhaNET.STORE"></a>
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="../../MS/index.html">LAMAN UTAMA</a>
-        <a href="../../MS/about-us-MS.html">TENTANG KAMI</a>
-        <a href="index.html" aria-current="page">PANDUAN</a>
-        <a href="../../MS/privacy-policy-MS.html">POLISI PRIVASI</a>
-        <a href="../../MS/support-centre-MS.html">SOKONGAN</a>
-        <a class="btn" href="../../guides/">EN</a>
-        <a class="btn active" href="index.html" lang="ms" aria-current="page">BM</a>
-      </nav>
     </div>
-  </header>
+    <script>
+      fetch("../../template-text/MS/kasuhanet-icon-official-MS.html").then(response => response.text()).then(data => {
+        document.getElementById("branding-title").innerHTML = data;
+      }).catch(err => console.log(err));
+    </script>
+    <nav class="nav-links" id="navLinks" aria-label="Navigasi Utama">
+      <a href="../../MS/index.html">LAMAN UTAMA</a>
+      <a href="../../MS/about-us-MS.html">TENTANG KAMI</a>
+      <a href="../../MS/privacy-policy-MS.html" >POLISI PRIVASI</a>
+      <a href="../../MS/support-centre-MS.html" >SOKONGAN</a>
+      <a class="btn btn-outline" href="../../guides/" lang="en">EN</a>
+      <a class="btn btn-outline" href="../../MS/panduan/index.html" lang="ms">BM</a>
+    </nav>
+    <button class="menu-toggle" type="button" onclick="toggleMobileMenu()" aria-label="Tukar Navigasi">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+</header>
+<script>
+function toggleMobileMenu(){
+  const navLinks=document.getElementById("navLinks");
+  if(navLinks) navLinks.classList.toggle("active");
+}
+</script>
 
   <section class="hero">
     <div class="container">
