@@ -166,7 +166,6 @@
 
             <!-- Pautan Navigasi Desktop -->
             <div class="hidden md:flex items-center gap-6 font-extrabold text-sm lg:text-base">
-                <a href="#pelan-tapak" class="hover:text-comic-pink transition-colors">Pelan Tapak</a>
                 <a href="#pakej-sewa" class="hover:text-comic-purple transition-colors">Pakej & Kalkulator</a>
                 <a href="#kemudahan" class="hover:text-comic-cyan transition-colors">Kemudahan</a>
                 <a href="#soalan-lazim" class="hover:text-comic-orange transition-colors">Soalan Lazim</a>
@@ -216,10 +215,6 @@
                         </p>
 
                         <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-1">
-                            <a href="#pelan-tapak" class="comic-btn w-full sm:w-auto bg-comic-pink text-white font-comic text-xl px-8 py-4 rounded-2xl flex items-center justify-center gap-3">
-                                <span>LIHAT PELAN TAPAK</span>
-                                <span class="bg-comic-yellow text-comic-ink w-8 h-8 rounded-full border-2 border-comic-ink flex items-center justify-center font-extrabold">↓</span>
-                            </a>
                             <button onclick="openCalculatorModal()" class="comic-btn w-full sm:w-auto bg-comic-lime text-comic-ink font-comic text-xl px-7 py-4 rounded-2xl flex items-center justify-center gap-2 cursor-pointer">
                                 <span>🧮 KIRA SEWAAN</span>
                             </button>
@@ -330,72 +325,6 @@
             <span>📣 PROMOSI PERCUMA DI APLIKASI PENDUDUK SHOPGO</span>
         </div>
     </div>
-
-    <!-- ==================== SEKSYEN PELAN TAPAK & PEMILIHAN LOT INTERAKTIF ==================== -->
-    <section id="pelan-tapak" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
-            <div class="space-y-3">
-                <span class="bg-comic-cyan text-comic-ink font-extrabold text-xs uppercase px-4 py-1.5 rounded-full border-3 border-comic-ink shadow-comic-sm inline-block">
-                    🗺️ PELAN LANTAI INTERAKTIF
-                </span>
-                <h2 class="font-comic text-4xl sm:text-5xl font-bold text-comic-ink">
-                    PILIH <span class="bg-comic-yellow px-3 py-0.5 rounded-2xl border-3 border-comic-ink inline-block transform -rotate-1">TAPAK & RUANG</span> JUALAN
-                </h2>
-                <p class="font-bold text-gray-700 max-w-2xl">
-                    Tapis mengikut jenis perniagaan anda, semak saiz kaki persegi (sqft), kadar sewa bulanan, dan klik <span class="text-comic-pink underline">"Tempah Tapak Ini"</span> untuk terus ke panel kiraan sewaan.
-                </p>
-            </div>
-
-            <!-- Petunjuk Status Lot -->
-            <div class="flex flex-wrap items-center gap-3 bg-white border-3 border-comic-ink p-3 rounded-2xl shadow-comic-sm self-start lg:self-end">
-                <div class="flex items-center gap-2 text-xs font-extrabold">
-                    <span class="w-4 h-4 rounded-md bg-comic-lime border-2 border-comic-ink"></span>
-                    <span>Tersedia (Boleh Tempah)</span>
-                </div>
-                <div class="flex items-center gap-2 text-xs font-extrabold">
-                    <span class="w-4 h-4 rounded-md bg-gray-300 border-2 border-comic-ink"></span>
-                    <span>Telah Disewa</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bar Penapis Zon / Jenis Tapak -->
-        <div class="flex flex-wrap items-center gap-3 mb-10" id="zone-filters">
-            <button onclick="filterLots('semua')" data-zone="semua" class="zone-btn comic-btn bg-comic-ink text-white font-comic text-base px-5 py-2.5 rounded-2xl cursor-pointer">
-                🏢 Semua Tapak (6)
-            </button>
-            <button onclick="filterLots('atrium')" data-zone="atrium" class="zone-btn comic-btn bg-white text-comic-ink font-comic text-base px-5 py-2.5 rounded-2xl cursor-pointer">
-                🎪 Kiosk Tengah (Atrium)
-            </button>
-            <button onclick="filterLots('corner')" data-zone="corner" class="zone-btn comic-btn bg-white text-comic-ink font-comic text-base px-5 py-2.5 rounded-2xl cursor-pointer">
-                🏪 Lot Kedai Sudut (Corner)
-            </button>
-            <button onclick="filterLots('fnb')" data-zone="fnb" class="zone-btn comic-btn bg-white text-comic-ink font-comic text-base px-5 py-2.5 rounded-2xl cursor-pointer">
-                🍔 Tapak F&B / Kafe
-            </button>
-            <button onclick="filterLots('popup')" data-zone="popup" class="zone-btn comic-btn bg-white text-comic-ink font-comic text-base px-5 py-2.5 rounded-2xl cursor-pointer">
-                ⛺ Pop-Up Booth
-            </button>
-        </div>
-
-        <!-- Peta Mini Visual Blok Lantai (Floor Plan Overview) -->
-        <div class="bg-white border-4 border-comic-ink rounded-3xl p-5 sm:p-6 shadow-comic mb-10">
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="font-comic text-xl font-bold flex items-center gap-2">
-                    <span>📍 Susun Atur Aras Utama (Ground Concourse)</span>
-                </h3>
-                <span class="text-xs font-extrabold bg-comic-yellow px-3 py-1 rounded-full border-2 border-comic-ink">Klik kod lot untuk sorotan pantas</span>
-            </div>
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3" id="mini-floorplan">
-                <!-- Dijana secara dinamik oleh JS -->
-            </div>
-        </div>
-
-        <!-- Grid Kad Butiran Tapak / Lot -->
-        <div id="lots-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Kad lot akan dijana oleh JavaScript -->
-        </div>
-    </section>
 
     <!-- ==================== SEKSYEN KALKULATOR SEWAAN INTERAKTIF PANTAS ==================== -->
     <section id="pakej-sewa" class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
@@ -1225,8 +1154,6 @@
 
         // Mulakan Halaman
         window.addEventListener('DOMContentLoaded', () => {
-            renderMiniFloorPlan();
-            renderLots('semua');
             initQuickCalculator();
         });
     </script>
