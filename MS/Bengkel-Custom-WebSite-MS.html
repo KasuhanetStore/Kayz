@@ -1037,8 +1037,99 @@ footer > * { position: relative; z-index: 1; }
   modal.className="kn-payment-modal";
   modal.id="knWorkshopPaymentModal";
   modal.hidden=true;
-  modal.innerHTML='<section class="kn-payment-panel" role="dialog" aria-modal="true" aria-labelledby="knWorkshopPaymentTitle"><div class="kn-payment-head"><h2 id="knWorkshopPaymentTitle">PEMBAYARAN SELAMAT</h2><button type="button" class="kn-payment-close" aria-label="Tutup pembayaran">×</button></div><div class="kn-payment-summary"><p id="knWorkshopSummaryCount"></p><strong id="knWorkshopSummaryJumlah"></strong><p>Bayaran sekali sahaja · MYR</p></div><form class="kn-checkout-form kn-payment-form" id="knWorkshopPaymentForm"><label for="knWorkshopName">Nama penuh</label><input id="knWorkshopName" name="name" autocomplete="name" maxlength="100" required><label for="knWorkshopEmail">Alamat emel</label><input id="knWorkshopEmail" name="email" type="email" autocomplete="email" maxlength="254" required title="Masukkan e-mel yang sah, contohnya nama@example.com."><label for="knWorkshopPhone">Nombor telefon</label><input id="knWorkshopPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60" required inputmode="tel" title="Masukkan 9 hingga 15 digit nombor telefon. Contoh: +60123456789.">
-<div class="kn-payment-choice"><span class="kn-payment-step">LANGKAH 1 · PILIH CARA BAYAR</span><strong class="kn-payment-heading">KAEDAH PEMBAYARAN</strong><div class="kn-payment-options" role="radiogroup" aria-label="Pilih kaedah pembayaran"><label class="kn-payment-option is-selected"><input type="radio" name="knPaymentChoice" value="stripe" checked><span class="kn-payment-radio"></span><span class="kn-payment-option-copy"><strong>STRIPE</strong><small>Kad debit / kredit dan kaedah tersedia</small></span></label><label class="kn-payment-option"><input type="radio" name="knPaymentChoice" value="toyyibpay"><span class="kn-payment-radio"></span><span class="kn-payment-option-copy"><strong>TOYYIBPAY</strong><small>FPX · Kad · DuitNow QR (jika aktif)</small></span></label></div><select id="knPaymentMethod" name="paymentMethod" aria-hidden="true" tabindex="-1"><option value="stripe">Stripe</option><option value="toyyibpay">ToyyibPay</option></select><p id="knPaymentHint">Pilih salah satu kotak pembayaran di atas, kemudian teruskan.</p></div><button class="kn-checkout-submit" type="submit" id="knWorkshopPaySubmit">TERUSKAN KE PEMBAYARAN SELAMAT</button><p class="kn-checkout-note">Pilih Stripe atau ToyyibPay. Anda akan dibawa ke halaman pembayaran selamat penyedia yang dipilih. Jangan kongsi maklumat kad atau perbankan dengan KasuhaNET.</p><div class="kn-checkout-error kn-payment-error" id="knWorkshopPaymentError" role="alert"></div></form></section>';
+  modal.innerHTML = `
+<section class="kn-payment-panel"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="knWorkshopPaymentTitle">
+
+  <div class="kn-payment-head">
+    <h2 id="knWorkshopPaymentTitle">PEMBAYARAN SELAMAT</h2>
+    <button type="button" class="kn-payment-close" aria-label="Tutup pembayaran">×</button>
+  </div>
+
+  <div class="kn-payment-summary">
+    <p id="knWorkshopSummaryCount"></p>
+    <strong id="knWorkshopSummaryJumlah"></strong>
+    <p>Bayaran sekali sahaja · MYR</p>
+  </div>
+
+  <form class="kn-checkout-form kn-payment-form" id="knWorkshopPaymentForm">
+
+    <label for="knWorkshopName">Nama penuh</label>
+    <input id="knWorkshopName" name="name"
+      autocomplete="name" maxlength="100" required>
+
+    <label for="knWorkshopEmail">Alamat emel</label>
+    <input id="knWorkshopEmail" name="email"
+      type="email" autocomplete="email" maxlength="254" required>
+
+    <label for="knWorkshopPhone">Nombor telefon</label>
+    <input id="knWorkshopPhone" name="phone"
+      type="tel" autocomplete="tel" maxlength="25" placeholder="+60" required>
+
+    <div class="kn-payment-choice">
+
+      <span class="kn-payment-step">
+        LANGKAH 1 · PILIH CARA BAYAR
+      </span>
+
+      <strong class="kn-payment-heading">
+        KAEDAH PEMBAYARAN
+      </strong>
+
+      <div class="kn-payment-options" role="radiogroup" aria-label="Pilih kaedah pembayaran">
+
+        <label class="kn-payment-option is-selected">
+          <input type="radio"
+            name="knPaymentChoice"
+            value="stripe" checked>
+          <span class="kn-payment-radio"></span>
+          <span class="kn-payment-option-copy">
+            <strong>STRIPE</strong>
+            <small>Kad debit / kredit dan kaedah tersedia</small>
+          </span>
+        </label>
+
+        <label class="kn-payment-option">
+          <input type="radio"
+            name="knPaymentChoice"
+            value="toyyibpay">
+          <span class="kn-payment-radio"></span>
+          <span class="kn-payment-option-copy">
+            <strong>TOYYIBPAY</strong>
+            <small>FPX · Kad · DuitNow QR (jika aktif)</small>
+          </span>
+        </label>
+
+      </div>
+
+      <select id="knPaymentMethod" name="paymentMethod" aria-hidden="true" tabindex="-1">
+        <option value="stripe">Stripe</option>
+        <option value="toyyibpay">ToyyibPay</option>
+      </select>
+
+      <p id="knPaymentHint">
+        Pilih salah satu kotak pembayaran di atas,
+        kemudian tekan BAYAR.
+      </p>
+
+    </div>
+
+    <button type="submit" class="kn-checkout-submit" id="knWorkshopPaySubmit">
+      BAYAR
+    </button>
+
+    <p class="kn-checkout-note">
+      Pilih Stripe atau ToyyibPay. Anda akan dibawa
+      ke halaman pembayaran rasmi penyedia yang dipilih.
+    </p>
+
+    <div class="kn-checkout-error kn-payment-error"
+      id="knWorkshopPaymentError" role="alert"></div>
+
+  </form>
+</section>`;
   document.body.append(modal);
   const paymentSelect=document.getElementById("knPaymentMethod");
   modal.querySelectorAll('input[name="knPaymentChoice"]').forEach(option=>{
