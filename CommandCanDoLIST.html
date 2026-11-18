@@ -225,70 +225,13 @@
             margin-bottom: 15px;
             text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
         }
-        /* FOOTER */
-        .footer {
-            background: #090d16;
-            border-top: 2px solid #4F31E8;
-            box-shadow: 0 -5px 25px rgba(79, 49, 232, 0.15);
-            margin-top: 60px;
-            padding: 30px 20px 15px 20px;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .footer h3 {
-            color: #fff;
-            margin: 0 0 10px 0;
-            font-size: 18px;
-        }
-        .footer h4 {
-            color: #E600A4;
-            margin: 0 0 10px 0;
-            font-size: 14px;
-        }
-        .footer p {
-            color: #999;
-            font-size: 12px;
-            line-height: 1.5;
-            margin: 0;
-        }
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-        .footer-links a {
-            color: #ccc;
-            text-decoration: none;
-            font-size: 12px;
-            transition: color 0.2s;
-        }
-        .footer-links a:hover {
-            color: #00F0FF;
-        }
-        .footer-bottom {
-            font-family: 'Orbitron', sans-serif;
-            text-align: center;
-            font-size: 11px;
-            color: #666;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            margin-top: 25px;
-        }
+        /* Footer styling is loaded from the shared EN footer template. */
         /* MOBILE RESPONSIVE FIXES */
         @media (max-width: 600px) {
             header {
                 flex-direction: column;
                 gap: 10px;
                 text-align: center;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
             }
             .partner-logos {
                 flex-direction: column;
@@ -476,42 +419,21 @@ footer > * { position: relative; z-index: 1; }
     </div>
 </div>
 
-<!-- BOXED CYBER FOOTER -->
-<div id="broadcast-footer-preview" style="display:flex;justify-content:center;align-items:center;margin:24px auto 18px;padding:0 16px;">
-  <a href="/broadcast.png" target="_blank" rel="noopener" aria-label="View broadcast image in full size" style="display:inline-block;line-height:0;">
-    <img src="/broadcast.png" alt="KasuhaNET Broadcast" loading="lazy" style="display:block;width:700px;max-width:96vw;height:auto;object-fit:contain;border-radius:8px;">
-  </a>
-</div>
-
-<footer class="footer">
-    <div class="footer-grid">
-        <div>
-            <h3>KasuhaNET.STORE</h3>
-            <p>Multi-service digital ecosystem focused on Linux solutions, affiliate systems, monetization and digital learning.</p>
-        </div>
-        <div class="footer-links">
-            <h4>Services</h4>
-            <a href="CommandCanDoLIST.html">CommandCanDo</a>
-            <a href="Shop-MyAffliate-homeEN.html">MyAffiliate</a>
-            <a href="CashOutServicePayLater.html">PayLater BNPL</a>
-        </div>
-        <div class="footer-links">
-            <h4>Resources</h4>
-            <a href="About-Us.html">About Us</a>
-            <a href="Support.html">Support</a>
-            <a href="privacy-policy-EN.html">Privacy Policy</a>
-        </div>
-        <div class="footer-links">
-            <h4>Follow</h4>
-            <a href="https://www.facebook.com/share/1BfeDZJqjP/" target="_blank">Facebook</a>
-            <a href="https://tiktok.com/@kasuhanet.store" target="_blank">TikTok</a>
-            <a href="https://t.me/kasuhanetstorebot" target="_blank">Telegram</a>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        © 2026 KasuhaNET Resources (202503248308). All Rights Reserved.
-    </div>
-</footer>
+<!-- SHARED STANDARD FOOTER TEMPLATE -->
+<div id="footer-placeholder"></div>
+<script>
+fetch("/template-text/EN/template-footer-EN.html")
+  .then(response => {
+    if (!response.ok) throw new Error("Footer Template Failed Load");
+    return response.text();
+  })
+  .then(data => {
+    document.getElementById("footer-placeholder").innerHTML = data;
+    const footerYear = document.querySelector("#footer-placeholder #year");
+    if (footerYear) footerYear.textContent = new Date().getFullYear();
+  })
+  .catch(error => console.error("Footer loading error:", error));
+</script>
 
 <!-- WHATSAPP FLOATING BUTTON -->
 <a href="https://wa.me/60167390501?text=Assalamualaikum,%20saya%20ingin%20bertanya%20tentang%20perkhidmatan%20KasuhaNET.STORE"
