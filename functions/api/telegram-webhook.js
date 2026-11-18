@@ -118,6 +118,21 @@ async function createCheckout(env, chatId, item, id, isService) {
 export async function onRequestPost({ request, env }) {
   if (!env.TELEGRAM_BOT_TOKEN) return new Response("Bot not configured", { status: 503 });
 
+  const setupKey = request.headers.get("X-KasuhaNET-Setup-Key");
+  if (setupKey && env.TELEGRAM_WEBHOOK_SECRET && setupKey === env.TELEGRAM_WEBHOOK_SECRET) {
+    try {
+      await telegram(env, "setWebhook", {
+        url: SITE + "/api/telegram-webhook",
+        secret_token: env.TELEGRAM_WEBHOOK_SECRET,
+        allowed_updates: ["message", "callback_query"],
+        drop_pending_updates: false
+      });
+      return new Response("Telegram webhook connected successfully.", { status: 200 });
+    } catch {
+      return new Response("Unable to register Telegram webhook. Check bot token and webhook secret.", { status: 502 });
+    }
+  }
+
   const suppliedSecret = request.headers.get("X-Telegram-Bot-Api-Secret-Token");
   if (!env.TELEGRAM_WEBHOOK_SECRET || suppliedSecret !== env.TELEGRAM_WEBHOOK_SECRET) {
     return new Response("Forbidden", { status: 403 });
@@ -182,25 +197,7 @@ export async function onRequestPost({ request, env }) {
   return new Response("OK", { status: 200 });
 }
 
-export async function onRequestGet({ request, env }) {
-  const url = new URL(request.url);
-  const setupKey = url.searchParams.get("setup");
-  if (setupKey && env.TELEGRAM_WEBHOOK_SECRET && setupKey === env.TELEGRAM_WEBHOOK_SECRET) {
-    try {
-      const result = await telegram(env, "setWebhook", {
-        url: SITE + "/api/telegram-webhook",
-        secret_token: env.TELEGRAM_WEBHOOK_SECRET,
-        allowed_updates: ["message", "callback_query"],
-        drop_pending_updates: false
-      });
-      return new Response(result ? "Telegram webhook connected successfully." : "Telegram webhook setup failed.", {
-        status: result ? 200 : 502,
-        headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" }
-      });
-    } catch {
-      return new Response("Unable to register Telegram webhook. Check bot token and webhook secret.", { status: 502 });
-    }
-  }
+export async function onRequestGet() {
   return new Response("KasuhaNET Telegram webhook is ready.", {
     headers: { "Content-Type": "text/plain; charset=utf-8" }
   });
