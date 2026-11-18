@@ -6,16 +6,16 @@
   const copy = isMalay ? {
     launcher:"Inbox Chat", title:"KasuhaNET Inbox", status:"Sokongan pelanggan",
     greeting:"Hai! Selamat datang ke KasuhaNET.",
-    intro:"Ruang chat ini sedang disediakan. Chat ID akan dijana apabila sistem chat diaktifkan.",
+    intro:"Mesej anda akan dihantar terus kepada pasukan sokongan KasuhaNET.",
     placeholder:"Taip mesej anda...", send:"Hantar",
-    notReady:"Sistem chat belum disambungkan. Mesej ini belum dihantar.",
+    notReady:"Tidak dapat menghantar mesej. Sila cuba semula.",
     close:"Tutup", minimize:"Kecilkan", maximize:"Besarkan", restore:"Pulihkan"
   } : {
     launcher:"Inbox Chat", title:"KasuhaNET Inbox", status:"Customer support",
     greeting:"Hello! Welcome to KasuhaNET.",
-    intro:"This chat window is being prepared. Your Chat ID will be generated when the chat service is activated.",
+    intro:"Your messages will be sent to the KasuhaNET support team.",
     placeholder:"Type your message...", send:"Send",
-    notReady:"Live chat is not connected yet. This message has not been sent.",
+    notReady:"Unable to send your message. Please try again.",
     close:"Close", minimize:"Minimize", maximize:"Maximize", restore:"Restore"
   };
 
@@ -42,6 +42,10 @@
     #knInboxPanel .kn-inbox-welcome p{margin:0;color:#aab9ca;font-size:12px;line-height:1.6}
     #knInboxPanel .kn-inbox-id{margin-top:12px;padding:10px 11px;border:1px dashed rgba(0,225,255,.28);border-radius:9px;color:#93a9bb;font-size:11px;text-align:center}
     #knInboxPanel .kn-inbox-id b{display:block;margin-top:4px;color:#00eaff;font-size:13px;letter-spacing:1px}
+    #knInboxPanel .kn-inbox-messages{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+    #knInboxPanel .kn-inbox-message{max-width:88%;padding:9px 11px;border-radius:11px;background:#142638;color:#eaf3ff;font-size:12px;line-height:1.5;overflow-wrap:anywhere;white-space:pre-wrap}
+    #knInboxPanel .kn-inbox-message.kn-mine{align-self:flex-end;background:#063c50;border:1px solid rgba(0,225,255,.22)}
+    #knInboxPanel .kn-inbox-message.kn-admin{align-self:flex-start}
     #knInboxPanel .kn-inbox-compose{display:flex;gap:7px;padding:11px;border-top:1px solid rgba(0,225,255,.16);background:#0b1420}
     #knInboxPanel .kn-inbox-compose input{min-width:0;flex:1;padding:10px 11px;border:1px solid rgba(255,255,255,.14);border-radius:9px;outline:none;background:#101e2c;color:#fff;font:12px Inter,Arial,sans-serif}
     #knInboxPanel .kn-inbox-compose input:focus{border-color:#00dff5}
@@ -86,11 +90,12 @@
         <strong>${copy.greeting}</strong>
         <p>${copy.intro}</p>
       </div>
-      <div class="kn-inbox-id">CHAT ID<b>Will be generated</b></div>
+      <div class="kn-inbox-id">CHAT ID <b id="knInboxChatId">Connecting...</b></div>
+      <div class="kn-inbox-messages" id="knInboxMessages" aria-live="polite"></div>
     </div>
     <form class="kn-inbox-compose">
-      <input type="text" maxlength="500" placeholder="${copy.placeholder}" aria-label="${copy.placeholder}">
-      <button type="submit">${copy.send}</button>
+      <input type="text" maxlength="500" placeholder="${copy.placeholder}" aria-label="${copy.placeholder}" autocomplete="off" disabled>
+      <button type="submit" disabled>${copy.send}</button>
     </form>
     <p class="kn-inbox-note" role="status">${copy.notReady}</p>
   `;
@@ -98,8 +103,75 @@
   document.body.append(launcher, panel);
   const maximizeButton = panel.querySelector('[data-action="maximize"]');
   const note = panel.querySelector(".kn-inbox-note");
+  const chatIdNode = panel.querySelector("#knInboxChatId");
+  const messagesNode = panel.querySelector("#knInboxMessages");
+  const form = panel.querySelector(".kn-inbox-compose");
+  const messageInput = form.querySelector("input");
+  const sendButton = form.querySelector("button");
+  const storageKey = "kn_inbox_session_v1";
+  let session = null;
+  let pollHandle = null;
+  const renderedIds = new Set();
 
-  function openPanel(){panel.classList.add("kn-open");launcher.hidden=true;}
+  function showMessage(item){
+    if(!item || renderedIds.has(item.id)) return;
+    renderedIds.add(item.id);
+    const bubble=document.createElement("div");
+    bubble.className="kn-inbox-message "+(item.sender==="buyer"?"kn-mine":"kn-admin");
+    bubble.textContent=item.message;
+    messagesNode.appendChild(bubble);
+    const body=panel.querySelector(".kn-inbox-body");
+    body.scrollTop=body.scrollHeight;
+  }
+  async function pollMessages(){
+    if(!session) return;
+    try{
+      const response=await fetch("/api/chat/messages?chatId="+encodeURIComponent(session.chatId),{
+        headers:{Authorization:"Bearer "+session.sessionToken},cache:"no-store"
+      });
+      if(response.status===401) return;
+      if(!response.ok) return;
+      const data=await response.json();
+      (data.messages||[]).forEach(showMessage);
+    }catch{}
+  }
+  async function connectChat(){
+    if(session) return;
+    chatIdNode.textContent="Connecting...";
+    try{
+      const saved=localStorage.getItem(storageKey);
+      if(saved){
+        const parsed=JSON.parse(saved);
+        if(parsed && /^KN-[A-F0-9]{10}$/.test(parsed.chatId) && /^[a-f0-9]{64}$/.test(parsed.sessionToken)){
+          session=parsed;
+          const check=await fetch("/api/chat/messages?chatId="+encodeURIComponent(session.chatId),{
+            headers:{Authorization:"Bearer "+session.sessionToken},cache:"no-store"
+          });
+          if(check.ok){
+            chatIdNode.textContent=session.chatId;
+            messageInput.disabled=false;sendButton.disabled=false;
+            const data=await check.json();(data.messages||[]).forEach(showMessage);
+            pollHandle=setInterval(pollMessages,5000);
+            return;
+          }
+        }
+        localStorage.removeItem(storageKey);
+        session=null;
+      }
+      const response=await fetch("/api/chat/start",{method:"POST",headers:{"Content-Type":"application/json"},body:"{}"});
+      const data=await response.json();
+      if(!response.ok || !data.chatId || !data.sessionToken) throw new Error("Chat setup failed");
+      session={chatId:data.chatId,sessionToken:data.sessionToken};
+      localStorage.setItem(storageKey,JSON.stringify(session));
+      chatIdNode.textContent=session.chatId;
+      messageInput.disabled=false;sendButton.disabled=false;
+      pollHandle=setInterval(pollMessages,5000);
+    }catch{
+      chatIdNode.textContent="Unavailable";
+      note.textContent=copy.notReady;note.style.display="block";
+    }
+  }
+  function openPanel(){panel.classList.add("kn-open");launcher.hidden=true;connectChat();}
   function closePanel(){panel.classList.remove("kn-open","kn-maximized");launcher.hidden=false;maximizeButton.textContent="□";maximizeButton.title=copy.maximize;}
   function toggleMaximize(){
     const maximized=panel.classList.toggle("kn-maximized");
@@ -110,8 +182,25 @@
   panel.querySelector('[data-action="close"]').addEventListener("click",closePanel);
   panel.querySelector('[data-action="minimize"]').addEventListener("click",closePanel);
   maximizeButton.addEventListener("click",toggleMaximize);
-  panel.querySelector(".kn-inbox-compose").addEventListener("submit",function(e){
+  form.addEventListener("submit",async function(e){
     e.preventDefault();
-    note.style.display="block";
+    const message=messageInput.value.trim();
+    if(!message || !session) return;
+    sendButton.disabled=true;
+    try{
+      const response=await fetch("/api/chat/messages",{
+        method:"POST",
+        headers:{"Content-Type":"application/json",Authorization:"Bearer "+session.sessionToken},
+        body:JSON.stringify({chatId:session.chatId,message})
+      });
+      const data=await response.json();
+      if(!response.ok) throw new Error(data.error||"Message failed");
+      messageInput.value="";
+      await pollMessages();
+      note.style.display="none";
+    }catch(error){
+      note.textContent=error.message||copy.notReady;
+      note.style.display="block";
+    }finally{sendButton.disabled=false;}
   });
 })();
