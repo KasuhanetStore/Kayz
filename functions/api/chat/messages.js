@@ -1,0 +1,70 @@
+const ALLOWED_HOSTS = new Set(["kasuhanet.store", "www.kasuhanet.store"]);
+function json(data,status=200){return new Response(JSON.stringify(data),{status,headers:{"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"}});}
+function allowed(request){
+  try{
+    const url=new URL(request.url), origin=request.headers.get("Origin");
+    if(url.protocol!=="https:" || !ALLOWED_HOSTS.has(url.hostname)) return false;
+    if(!origin) return true;
+    const parsed=new URL(origin);
+    return parsed.protocol==="https:" && ALLOWED_HOSTS.has(parsed.hostname) && parsed.origin===url.origin;
+  }catch{return false;}
+}
+async function ensureTables(db){
+  await db.prepare(`CREATE TABLE IF NOT EXISTS inbox_chats (
+    id TEXT PRIMARY KEY, chat_id TEXT NOT NULL UNIQUE, session_token_hash TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'open', created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, last_message_at TEXT
+  )`).run();
+  await db.prepare(`CREATE TABLE IF NOT EXISTS inbox_messages (
+    id TEXT PRIMARY KEY, chat_id TEXT NOT NULL,
+    sender TEXT NOT NULL CHECK(sender IN ('buyer','admin')), message TEXT NOT NULL,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, telegram_message_id TEXT
+  )`).run();
+  await db.prepare("CREATE INDEX IF NOT EXISTS idx_inbox_messages_chat_created ON inbox_messages(chat_id, created_at)").run();
+}
+async function sha256(value){
+  const digest=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(value));
+  return Array.from(new Uint8Array(digest),b=>b.toString(16).padStart(2,"0")).join("");
+}
+async function authorize(db,chatId,token){
+  if(!/^KN-[A-F0-9]{10}$/.test(chatId) || typeof token!=="string" || !/^[a-f0-9]{64}$/.test(token)) return false;
+  const row=await db.prepare("SELECT session_token_hash,status FROM inbox_chats WHERE chat_id=?").bind(chatId).first();
+  if(!row || row.status!=="open") return false;
+  return row.session_token_hash===await sha256(token);
+}
+export async function onRequestGet({request,env}){
+  if(!allowed(request)) return json({error:"Request origin is not allowed."},403);
+  if(!env.DB) return json({error:"D1 database binding DB is not configured."},503);
+  const url=new URL(request.url), chatId=url.searchParams.get("chatId")||"";
+  const token=request.headers.get("Authorization")?.replace(/^Bearer\s+/i,"")||"";
+  try{
+    await ensureTables(env.DB);
+    if(!(await authorize(env.DB,chatId,token))) return json({error:"Chat session is invalid or expired."},401);
+    const after=url.searchParams.get("after")||"";
+    const rows=await env.DB.prepare(`SELECT id,sender,message,created_at FROM inbox_messages
+      WHERE chat_id=? AND (?='' OR created_at>?)
+      ORDER BY created_at ASC LIMIT 100`).bind(chatId,after,after).all();
+    return json({messages:rows.results||[]});
+  }catch{return json({error:"Unable to load chat messages."},500);}
+}
+export async function onRequestPost({request,env}){
+  if(!allowed(request)) return json({error:"Request origin is not allowed."},403);
+  if(!env.DB) return json({error:"D1 database binding DB is not configured."},503);
+  let input;
+  try{input=await request.json();}catch{return json({error:"Invalid message request."},400);}
+  const chatId=typeof input?.chatId==="string"?input.chatId:"";
+  const message=typeof input?.message==="string"?input.message.trim():"";
+  const token=request.headers.get("Authorization")?.replace(/^Bearer\s+/i,"")||"";
+  if(!message || message.length>500) return json({error:"Message must contain 1 to 500 characters."},400);
+  try{
+    await ensureTables(env.DB);
+    if(!(await authorize(env.DB,chatId,token))) return json({error:"Chat session is invalid or expired."},401);
+    const recent=await env.DB.prepare(`SELECT COUNT(*) AS total FROM inbox_messages
+      WHERE chat_id=? AND sender='buyer' AND created_at>=datetime('now','-1 minute')`).bind(chatId).first();
+    if((recent?.total||0)>=10) return json({error:"Please wait before sending another message."},429);
+    const id=crypto.randomUUID();
+    await env.DB.prepare("INSERT INTO inbox_messages (id,chat_id,sender,message) VALUES (?,?,'buyer',?)").bind(id,chatId,message).run();
+    await env.DB.prepare("UPDATE inbox_chats SET updated_at=CURRENT_TIMESTAMP,last_message_at=CURRENT_TIMESTAMP WHERE chat_id=?").bind(chatId).run();
+    return json({sent:true,id},201);
+  }catch{return json({error:"Unable to send your message. Please try again."},500);}
+}
