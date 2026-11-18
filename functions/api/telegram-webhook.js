@@ -192,7 +192,7 @@ async function handleCheckoutMessage(env, chatId, input) {
   if(session.step==="name"){
     if(input.length<2||input.length>100){await send(env,chatId,"Nama tidak sah. Masukkan nama penuh (2 hingga 100 aksara), atau /cancel.");return true;}
     await env.DB.prepare("UPDATE telegram_checkout_sessions SET customer_name=?,step='email' WHERE chat_id=?").bind(input,String(chatId)).run();
-    await send(env,chatId,"Masukkan alamat e-mel yang sah:");
+    await send(env,chatId,"EMAIL:");
     return true;
   }
   if(session.step==="email"){
@@ -200,7 +200,7 @@ async function handleCheckoutMessage(env, chatId, input) {
       await send(env,chatId,"Format e-mel tidak sah. Cuba semula, atau /cancel.");return true;
     }
     await env.DB.prepare("UPDATE telegram_checkout_sessions SET customer_email=?,step='phone' WHERE chat_id=?").bind(input,String(chatId)).run();
-    await send(env,chatId,"Masukkan nombor telefon dengan kod negara. Contoh: +60123456789");
+    await send(env,chatId,"NO.TELEFON:");
     return true;
   }
   if(session.step==="phone"){
@@ -304,7 +304,7 @@ export async function onRequestPost({ request, env }) {
         if(result.meta?.changes===0) {
           await send(env,chatId,"Sesi checkout tamat. Sila pilih produk semula melalui /start.");
         } else {
-          await send(env,chatId,"Nama:");
+          await send(env,chatId,"NAMA:");
         }
       } else if (action === "pay:stripe" || action === "pay:toyyibpay") {
         await ensureTelegramTables(env.DB);
