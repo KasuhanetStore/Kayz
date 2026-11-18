@@ -97,7 +97,7 @@ export async function onRequestPost({request,env}){
   const locale=input.locale==="MS"?"MS":"EN";
   const returnPage=isWorkshop?(locale==="MS"?"https://kasuhanet.store/MS/Bengkel-Custom-WebSite-MS.html":"https://kasuhanet.store/custom-web-workshop-EN"):(input.packageId==="dualstream-pro"?"https://kasuhanet.store/Terminal-Option_MS.html":"https://kasuhanet.store/Banner-WebSale-EN.html");
   const billName=("KasuhaNET_"+externalRef).slice(0,30);
-  const billDescription=("Payment_"+externalRef).slice(0,100);
+  const billDescription=(input.packageId==="dualstream-pro"?"DualStream Pro "+externalRef:"Payment_"+externalRef).slice(0,100);
   // Check whether DuitNow QR has been activated for this ToyyibPay merchant.
   // If it is not active or the status endpoint is unavailable, keep the existing FPX/card checkout working.
   let duitNowQrEnabled=false;
