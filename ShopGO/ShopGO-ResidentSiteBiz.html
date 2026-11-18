@@ -111,6 +111,15 @@
             animation: marquee 22s linear infinite;
         }
 
+        /* Butang Tapak Masuk Niaga: kilauan kuning HD */
+        @keyframes shopgoYellowPulse {
+            0%, 100% { box-shadow: 5px 5px 0 #18181B, 0 0 8px rgba(255,214,10,.65), 0 0 16px rgba(255,214,10,.4); filter: brightness(1); }
+            50% { box-shadow: 5px 5px 0 #18181B, 0 0 16px rgba(255,214,10,1), 0 0 30px rgba(255,214,10,.85), 0 0 46px rgba(255,214,10,.55); filter: brightness(1.12); }
+        }
+        .shopgo-entry-button { animation: shopgoYellowPulse 1.35s ease-in-out infinite; text-decoration: none; }
+        .shopgo-entry-button:hover { animation-duration: .75s; }
+        @media (prefers-reduced-motion: reduce) { .shopgo-entry-button { animation: none; } }
+
         /* Garisan Teks Kartun (Text Stroke) */
         .text-stroke {
             -webkit-text-stroke: 2px #18181B;
@@ -579,15 +588,11 @@
                 </ul>
             </div>
 
-            <div>
-                <h4 class="font-toon text-xl font-bold text-toon-pink mb-4">Berita & Diskaun</h4>
-                <p class="text-xs font-bold text-gray-300 mb-3">Daftar emel untuk baucar RM15 serta-merta!</p>
-                <form onsubmit="handleNewsletter(event)" class="flex gap-2">
-                    <input type="email" required placeholder="Emel anda..." class="w-full px-3 py-2.5 rounded-xl bg-white text-toon-ink font-bold text-sm border-2 border-toon-yellow focus:outline-none">
-                    <button type="submit" class="bg-toon-yellow text-toon-ink font-toon font-bold px-4 py-2.5 rounded-xl hover:bg-toon-lime cursor-pointer">
-                        Sertai
-                    </button>
-                </form>
+            <div class="border-4 border-toon-ink rounded-2xl bg-white p-5 shadow-toon flex flex-col items-center justify-center text-center">
+                <p class="font-toon text-lg font-bold text-toon-ink mb-4">Sedia memulakan perniagaan online anda?</p>
+                <a href="/ShopGO/index.html" class="toon-btn shopgo-entry-button inline-flex w-full min-h-16 items-center justify-center rounded-xl bg-toon-yellow px-5 py-4 text-center font-toon text-xl font-bold text-toon-ink hover:bg-toon-yellow focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-toon-yellow" aria-label="Tapak Masuk Niaga, masuk ke ShopGO">
+                    TAPAK MASUK NIAGA!
+                </a>
             </div>
         </div>
         <div class="max-w-7xl mx-auto pt-6 text-center text-xs font-bold text-gray-400">
