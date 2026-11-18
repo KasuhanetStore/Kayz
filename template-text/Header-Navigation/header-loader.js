@@ -5,7 +5,6 @@
   const mount = document.querySelector("[data-kn-header]");
   if (!mount) return;
 
-  const path = window.location.pathname.replace(/\\/+$/, "") || "/";
   const language = (document.documentElement.lang || "").toLowerCase().startsWith("ms") ? "MS" : "EN";
   const variant = mount.dataset.knHeader === "home" ? "home" : "policy";
   const file = `/template-text/Header-Navigation/header-navigation-${variant}-${language}.html`;
@@ -40,18 +39,18 @@
       const header = document.importNode(templateHeader, true);
       const currentPath = normalize(window.location.pathname);
 
-      header.querySelectorAll("nav a").forEach((link) => {
-        link.removeAttribute("aria-current");
-        const href = link.getAttribute("href");
-        if (!href || href === "#") return;
-        if (normalize(href) === currentPath) link.setAttribute("aria-current", "page");
-      });
-
       const languageLinks = header.querySelectorAll(".nav-lang a[lang]");
       languageLinks.forEach((link) => {
         const lang = (link.getAttribute("lang") || "").toLowerCase();
         const target = lang === "en" ? mount.dataset.enHref : mount.dataset.msHref;
         if (target) link.setAttribute("href", target);
+      });
+
+      header.querySelectorAll("nav a").forEach((link) => {
+        link.removeAttribute("aria-current");
+        const href = link.getAttribute("href");
+        if (!href || href === "#") return;
+        if (normalize(href) === currentPath) link.setAttribute("aria-current", "page");
       });
 
       const toggle = header.querySelector(".menu-toggle");
