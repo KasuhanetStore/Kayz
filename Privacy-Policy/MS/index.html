@@ -14,6 +14,10 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/css/Branding.css">
+  <link rel="stylesheet" href="/css/Balancing.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/home-main.js" defer></script>
   <style>
     :root{--bg:#08090d;--panel:#12141c;--panel2:#191b25;--text:#f6f7fb;--muted:#b9bdca;--red:#ff304f;--red-dark:#a90025;--orange:#ff7a35;--line:rgba(255,255,255,.12)}
     *{box-sizing:border-box}html{scroll-behavior:smooth;overflow-x:hidden}
@@ -26,7 +30,7 @@
     .nav-links>a:not(.btn):hover{color:#ff7187}
     .btn{display:inline-flex;align-items:center;justify-content:center;padding:9px 13px;border:1px solid rgba(255,255,255,.2);border-radius:9px;font-size:12px;font-weight:800;transition:.2s ease}
     .btn:hover{border-color:var(--red);color:#fff}.btn.active{background:linear-gradient(120deg,var(--red-dark),var(--red),var(--orange));border-color:transparent;color:#fff}
-    .hero{position:relative;isolation:isolate;overflow:hidden;padding:56px 0 44px;background:#05070d url("../broadcast.png") center/cover no-repeat}
+    .hero{position:relative;isolation:isolate;overflow:hidden;padding:56px 0 44px;background:#05070d url("/broadcast.png") center/cover no-repeat}
     .hero:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,rgba(5,7,13,.94),rgba(5,7,13,.78) 55%,rgba(5,7,13,.9))}
     .eyebrow{display:inline-flex;align-items:center;gap:8px;color:#ff8b9c;font-size:12px;font-weight:900;letter-spacing:2px;text-transform:uppercase}
 h1{font-size:clamp(32px,4.8vw,50px);line-height:1.12;letter-spacing:-1px;margin:14px 0}
@@ -128,47 +132,33 @@ h1{font-size:clamp(32px,4.8vw,50px);line-height:1.12;letter-spacing:-1px;margin:
 <header class="topbar">
   <div class="container nav">
     <div id="branding-title">
-      <a class="brand" href="/MS/" aria-label="KasuhaNET home"><img src="/img/logo3.png" class="brand-logo" alt="KasuhaNET.STORE"></a>
+      <a class="brand" href="/MS/" aria-label="Laman Rasmi KasuhaNET">
+        <img src="/img/logo3.png" class="brand-logo" alt="KasuhaNET.STORE">
+      </a>
     </div>
-    <script>
-      fetch("/template-text/MS/kasuhanet-icon-official-MS.html").then(response => {
-        if (!response.ok) throw new Error("Official logo template unavailable");
-        return response.text();
-      }).then(data => {
-        data = data.replace(/<style[\\s\\S]*?<\\/style>/i, "");
-        const branding = document.getElementById("branding-title");
-        branding.innerHTML = data;
-        const logo = branding.querySelector("img");
-        const homeLink = branding.querySelector("a");
-        if (logo) logo.src = "/img/logo3.png";
-        if (homeLink) homeLink.href = "/MS/";
-      }).catch(err => console.log(err));
-    </script>
     <nav class="nav-links" id="navLinks" aria-label="Navigasi Utama">
       <a href="/MS/">LAMAN UTAMA</a>
       <a href="/About-Us/MS/">TENTANG KAMI</a>
       <a href="/MS/panduan/">PANDUAN</a>
-      <a href="/Privacy-Policy/MS/" aria-current="page">POLISI PRIVASI</a>
+      <a href="/Privacy-Policy/MS/" style="color: var(--red);">POLISI PRIVASI</a>
       <a href="/Support/MS/">SOKONGAN</a>
-      <a class="btn btn-outline" href="/Privacy-Policy/" lang="en">EN</a>
-      <a class="btn btn-outline" href="/Privacy-Policy/MS/" lang="ms">BM</a>
+      <div style="display:flex;gap:8px;margin:4px 0;">
+        <a class="btn btn-outline" href="/Privacy-Policy/" lang="en">EN</a>
+        <a class="btn btn-outline" href="/Privacy-Policy/MS/" lang="ms">BM</a>
+      </div>
+      <a class="btn-cyber-animated" href="/MS/Banner-WebSale-MS.html"><span>DAPATKAN LAMAN WEB!</span><i class="fa-solid fa-computer-mouse"></i></a>
     </nav>
     <button class="menu-toggle" type="button" onclick="toggleMobileMenu()" aria-label="Tukar Navigasi">
       <i class="fa-solid fa-bars"></i>
     </button>
   </div>
 </header>
-<script>
-function toggleMobileMenu(){
-  const navLinks=document.getElementById("navLinks");
-  if(navLinks) navLinks.classList.toggle("active");
-}
-</script>
+
 
 <!-- KREDIT RAKAN KONGSI: MUATKAN TEMPLATE PUSAT -->
 <div id="partner-credit-placeholder"></div>
 <script>
-  fetch("../template-text/MS/partner-credit-MS.html")
+  fetch("/template-text/MS/partner-credit-MS.html")
     .then(response => {
       if (!response.ok) throw new Error("Template Kredit Rakan Kongsi Gagal Dimuatkan");
       return response.text();
@@ -208,7 +198,7 @@ function toggleMobileMenu(){
   </article></div></main>
   <div class="footer-wrap" id="footer-placeholder"></div>
   <script>
-    fetch("../template-text/MS/template-footer-MS.html")
+    fetch("/template-text/MS/template-footer-MS.html")
       .then(response => { if (!response.ok) throw new Error("Footer template failed to load"); return response.text(); })
       .then(data => {
         document.getElementById("footer-placeholder").innerHTML = data;
