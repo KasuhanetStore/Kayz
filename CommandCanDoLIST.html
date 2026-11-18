@@ -328,9 +328,9 @@ footer > * { position: relative; z-index: 1; }
 .kn-command-cart-actions{display:flex;gap:8px;margin-top:13px}
 .kn-command-cart-actions a,.kn-command-cart-actions button{flex:1;min-height:40px;display:flex;align-items:center;justify-content:center;border:0;border-radius:8px;padding:8px;background:linear-gradient(110deg,#4f31e8,#00bcd4);color:#fff;text-decoration:none;font-size:12px;font-weight:900;cursor:pointer}
 .kn-command-cart-actions button{background:#273044}
-.kn-command-cart-float{position:fixed;left:18px;bottom:18px;z-index:99991;display:flex;align-items:center;gap:8px;min-height:58px;padding:12px 18px;border:2px solid #00f0ff;border-radius:999px;background:linear-gradient(120deg,#4f31e8,#00aebf);color:#fff;font-size:14px;font-weight:900;box-shadow:0 8px 32px rgba(0,0,0,.5);cursor:pointer;animation:knCommandCartPulse 1.2s ease-in-out infinite}
+.kn-command-cart-float{position:fixed;left:18px;bottom:18px;z-index:99991;display:none;align-items:center;gap:8px;min-height:58px;padding:12px 18px;border:2px solid #00f0ff;border-radius:999px;background:linear-gradient(120deg,#4f31e8,#00aebf);color:#fff;font-size:14px;font-weight:900;box-shadow:0 8px 32px rgba(0,0,0,.5);cursor:pointer;animation:knCommandCartPulse 1.2s ease-in-out infinite}
 .kn-command-cart-count{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 5px;border-radius:50%;background:#fff;color:#101722;font-size:11px}
-@keyframes knCommandCartPulse{0%,100%{filter:brightness(1);transform:scale(1)}50%{filter:brightness(1.2);transform:scale(1.035)}}
+.kn-command-cart-float.is-visible{display:flex}\n@keyframes knCommandCartPulse{0%,100%{filter:brightness(1);transform:scale(1)}50%{filter:brightness(1.2);transform:scale(1.035)}}
 @media(prefers-reduced-motion:reduce){.kn-command-cart-float{animation:none}}
 </style>
 <article class="dualstream-listing-card">
@@ -393,6 +393,7 @@ footer > * { position: relative; z-index: 1; }
   function render(){
     const selected=check.checked;
     count.textContent=selected?"1":"0";
+    toggle.classList.toggle("is-visible",selected);
     empty.hidden=selected;
     item.hidden=!selected;
     pay.hidden=!selected;
