@@ -103,8 +103,10 @@
       background: rgba(8,9,13,.88); backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--line);
     }
-    .nav { min-height: 70px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .brand { display: flex; align-items: center; gap: 11px; font-weight: 900; letter-spacing: .5px; }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 0; line-height: 1; text-decoration: none; }
+    .brand-logo, #branding-title img, #branding-title svg { max-width: 180px; max-height: 60px; width: auto; height: auto; object-fit: contain; object-position: left center; display: block; }
+    .brand small { display: block; font-size: 9px; font-weight: 700; letter-spacing: .5px; white-space: nowrap; line-height: 1; margin: 0; padding: 0; }
     .brand-mark {
       width: 38px; height: 38px; display: grid; place-items: center; border-radius: 12px;
       background: linear-gradient(135deg, var(--red), #ff814a); color: white; font-weight: 1000;
@@ -200,7 +202,7 @@
         display: none;
         flex-direction: column;
         position: absolute;
-        top: 70px;
+        top: 76px;
         left: 0;
         width: 100%;
         background: rgba(8, 9, 13, 0.97);
@@ -250,7 +252,7 @@
     </div>
 
     <script>
-    fetch("template-text/EN/kasuhanet-icon-official-EN.html")
+    fetch("/template-text/EN/kasuhanet-icon-official-EN.html")
     .then(response => response.text())
     .then(data => {
         document.getElementById("branding-title").innerHTML = data;
@@ -259,12 +261,12 @@
     
     <nav class="nav-links" id="navLinks" aria-label="Main Navigation">
         
-        <a href="index.html">HOME</a>
-        <a href="../About-Us/index.html">ABOUT US</a>
-        <a href="../Privacy-Policy/index.html">PRIVACY POLICY</a>
-        <a href="../Support/index.html" style="color: var(--red);">SUPPORT</a>
-        <a class="btn btn-outline" href="../Support/index.html" lang="en">EN</a>
-        <a class="btn btn-outline" href="../Support/MS/index.html" lang="ms">MS</a>
+        <a href="/">HOME</a>
+        <a href="/About-Us/">ABOUT US</a>
+        <a href="/Privacy-Policy/">PRIVACY POLICY</a>
+        <a href="/Support/" style="color: var(--red);">SUPPORT</a>
+        <a class="btn btn-outline" href="/Support/" lang="en">EN</a>
+        <a class="btn btn-outline" href="/Support/MS/" lang="ms">MS</a>
     </nav>
 
     <!-- Butang Hamburger Menu untuk Mobile di sebelah kanan -->
@@ -278,7 +280,7 @@
 <div id="partner-credit-placeholder"></div>
 
 <script>
-  fetch("template-text/EN/partner-credit-EN.html")
+  fetch("/template-text/EN/partner-credit-EN.html")
     .then(response => {
         if (!response.ok) throw new Error('Partner Credit Template Failed to Load');
         return response.text();
@@ -342,7 +344,7 @@
 <!-- FOOTER DINAMIK -->
 <div id="footer-placeholder"></div>
 <script>
-  fetch("template-text/EN/template-footer-EN.html")
+  fetch("/template-text/EN/template-footer-EN.html")
     .then(response => {
         if (!response.ok) throw new Error('Footer Template Failed Load');
         return response.text();
