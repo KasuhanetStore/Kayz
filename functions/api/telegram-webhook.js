@@ -197,7 +197,7 @@ async function handleCheckoutMessage(env, chatId, input) {
   }
   if(session.step==="email"){
     if(input.length>254||! /^[^\s@]+@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z]{2,}$/.test(input)){
-      await send(env,chatId,"Format e-mel tidak sah. Cuba semula, atau /cancel.");return true;
+      await send(env,chatId,"EMAIL TIDAK SAH. Sila isi semula dengan format yang betul.\nContoh: nama@email.com\nPastikan ada @ dan domain seperti .com");return true;
     }
     await env.DB.prepare("UPDATE telegram_checkout_sessions SET customer_email=?,step='phone' WHERE chat_id=?").bind(input,String(chatId)).run();
     await send(env,chatId,"NO.TELEFON:");
