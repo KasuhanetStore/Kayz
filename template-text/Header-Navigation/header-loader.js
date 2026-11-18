@@ -14,7 +14,7 @@
       const url = new URL(value, window.location.origin);
       let pathname = url.pathname;
       if (pathname.endsWith("/index.html")) pathname = pathname.slice(0, -10) || "/";
-      pathname = pathname.replace(/\\/+$/, "") || "/";
+      pathname = pathname.replace(/\/+$/, "") || "/";
       return pathname;
     } catch (_) {
       return value;
