@@ -13,7 +13,7 @@ Repository source for the KasuhaNET website deployed through Cloudflare Pages.
 | `js/` | Shared browser-side JavaScript |
 | `img/` | Shared image assets |
 | `functions/api/` | Cloudflare Pages Functions, including checkout and payment callbacks |
-| `php/` | Legacy PHP files retained for reference/compatibility checks |
+| `php/` | Remaining legacy files, pending review |
 | `template-text/` | Reusable page, footer and partner-credit templates |
 | `docs/` | Repository and migration documentation |
 
