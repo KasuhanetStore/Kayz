@@ -281,7 +281,9 @@ export async function onRequestPost({ request, env }) {
     if (message?.chat?.id) {
       const chatId = message.chat.id;
       const input = (message.text || "").trim();
-      if (input !== "/start" && input !== "/menu" && await handleCheckoutMessage(env, chatId, input)) {
+      if (input === "/myid") {
+        await send(env, chatId, "Telegram Chat ID anda: <code>" + String(chatId) + "</code>\\nSimpan nombor ini sebagai TELEGRAM_ADMIN_CHAT_ID di Cloudflare Pages Secrets.");
+      } else if (input !== "/start" && input !== "/menu" && await handleCheckoutMessage(env, chatId, input)) {
         // Checkout conversation handled.
       } else if (input === "/start") {
         await getLanguage(env.DB,chatId);
