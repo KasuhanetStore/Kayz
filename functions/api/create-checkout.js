@@ -41,6 +41,30 @@ function json(data, status) {
   });
 }
 
+async function verifyWorkshopRecaptcha(token, env) {
+  if (!env.RECAPTCHA_SECRET_KEY || typeof token !== "string" || token.length > 4096) return false;
+  try {
+    const body = new URLSearchParams({
+      secret: env.RECAPTCHA_SECRET_KEY,
+      response: token
+    });
+    const response = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: body.toString()
+    });
+    if (!response.ok) return false;
+    const result = await response.json();
+    return result.success === true &&
+      result.action === "workshop_checkout" &&
+      ALLOWED_HOSTS.has(result.hostname) &&
+      typeof result.score === "number" &&
+      result.score >= 0.5;
+  } catch {
+    return false;
+  }
+}
+
 export async function onRequestPost(context) {
   const request = context.request;
   const env = context.env;
@@ -122,6 +146,10 @@ export async function onRequestPost(context) {
   const phoneDigits = phone.replace(/\D/g, "");
   if (!/^[+0-9().\s-]+$/.test(phone) || phoneDigits.length < 9 || phoneDigits.length > 15) {
     return json({ error: "Please enter a phone number containing 9 to 15 digits." }, 400);
+  }
+
+  if (isWorkshopOrder && !(await verifyWorkshopRecaptcha(input.recaptchaToken, env))) {
+    return json({ error: "Security verification failed. Please refresh the page and try again." }, 403);
   }
 
   const orderId = crypto.randomUUID();
