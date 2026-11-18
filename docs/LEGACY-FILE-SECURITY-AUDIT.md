@@ -26,9 +26,11 @@ This is a review of selected legacy, duplicate and unusual files. It is not a fu
 
 ## Older or test-looking pages
 
-Files such as `PageTest.html`, `TemaBaru.html`, `BuatWebSendiri.html`, `AffliateShopSupport.html`, `KasuhaNET-index-refreshed.html`, `article.html`, and `artikel.html` have older or inconsistent route references. Some may still be directly accessible or linked externally. Keep them until inbound links, sitemap status, analytics and owner intent are checked.
+Files such as `PageTest.html`, `TemaBaru.html`, `BuatWebSendiri.html`, `AffliateShopSupport.html`, `KasuhaNET-index-refreshed.html`, `article.html`, and `artikel.html` have older or inconsistent route references. A scan of all repository HTML/template pages found no inbound source references to these routes; none appears in the current sitemap. However, `BuatWebSendiri.html` is a deliberate meta-refresh redirect to the homepage, `KasuhaNET-index-refreshed.html` declares the homepage as canonical, and the others remain directly addressable public files. Keep them until analytics, external backlinks and owner intent are checked. `Rwanda-SupportDevelopement.html` and `Timor-Leste-SupportDevelopement.html` are linked from both homepages and must be kept. `ProDownloaderVIDEOanywhereEN.html`, `SellerRimau.html` and `SellerTachtical.html` were not found in the sitemap or other page references, but are still public pages and should not be removed without owner approval.
 
 ## Follow-up cleanup completed on preview
+
+- Removed `css/icon-follow-us.html`: it was an empty file and no reference to its path or name was found in the repository HTML, CSS or template files reviewed.
 
 - Removed `img/footer.js` because it was byte-for-byte identical to root `footer.js` and no explicit load/reference was found in the reviewed HTML, CSS or template sources.
 - Kept root `footer.js`, both `header.js` variants, duplicate logo paths, all AdSense file variants, and older/test-looking pages. Their usage or public URL impact is not sufficiently established for safe deletion.
