@@ -951,6 +951,7 @@ footer > * { position: relative; z-index: 1; }
     .catch(error => console.error(error));
 </script>
 
+<script src="https://www.google.com/recaptcha/api.js?render=6Lcs9yUuAAAAAD15iECIUiJBQ5x1hp_c7BxuAIAi"></script>
 <script>
 (function(){
   "use strict";
@@ -1136,11 +1137,22 @@ footer > * { position: relative; z-index: 1; }
     button.textContent=paymentMethod==="toyyibpay"?"CONNECTING TO TOYYIBPAY...":"CONNECTING TO STRIPE...";
     error.style.display="none";
     try{
+      const recaptchaToken = await new Promise((resolve, reject) => {
+        if (!window.grecaptcha) return reject(new Error("Security verification could not load. Please refresh and try again."));
+        window.grecaptcha.ready(async () => {
+          try {
+            resolve(await window.grecaptcha.execute("6Lcs9yUuAAAAAD15iECIUiJBQ5x1hp_c7BxuAIAi", { action: "workshop_checkout" }));
+          } catch {
+            reject(new Error("Security verification failed. Please try again."));
+          }
+        });
+      });
       const response=await fetch(paymentMethod==="toyyibpay"?"/api/toyyibpay-create-bill":"/api/create-checkout",{
         method:"POST",
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify({
           serviceIds:items.map(item=>item.id),
+          recaptchaToken,
           name:document.getElementById("knWorkshopName").value.trim(),
           email:document.getElementById("knWorkshopEmail").value.trim(),
           phone:document.getElementById("knWorkshopPhone").value.trim(),
