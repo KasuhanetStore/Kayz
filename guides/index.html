@@ -11,7 +11,7 @@
   <link rel="alternate" hreflang="en" href="https://kasuhanet.store/guides/">
   <link rel="alternate" hreflang="ms" href="https://kasuhanet.store/MS/panduan/">
   <link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/guides/">
-  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
@@ -83,7 +83,23 @@ h1{font-size:clamp(34px,5vw,56px);line-height:1.1;letter-spacing:-1.5px;margin:1
  .nav-links.active{display:flex}
  .nav-links a:not(.btn){display:block!important;width:100%}
 }
-  </style>
+  
+/* Shared Knowledge Centre header aligned with Support */
+.topbar{position:sticky;top:0;z-index:20;background:rgba(8,9,13,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{position:relative;min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:inline-flex;align-items:center;gap:0;font-weight:900;letter-spacing:.5px;text-decoration:none}
+.brand img.brand-logo{display:block;width:85px;height:65px;max-width:none;max-height:none;object-fit:contain;object-position:left center}
+.nav-links{display:flex;align-items:center;justify-content:flex-end;gap:20px;flex-wrap:wrap;color:#d8dbe4;font-size:13px}
+.nav-links>a:not(.btn){transition:color .18s ease}
+.nav-links>a:not(.btn):hover{color:#ff7187}
+.nav-links>a[aria-current="page"]{color:var(--red)}
+.btn-outline{display:inline-flex;align-items:center;justify-content:center;padding:9px 13px;border:1px solid rgba(255,255,255,.2);border-radius:9px;color:#fff;background:rgba(255,255,255,.03);font-size:12px;font-weight:800;transition:.2s ease}
+.btn-outline:hover{border-color:var(--red);color:#fff}
+.btn-cyber-animated{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 15px;border:1px solid rgba(255,112,135,.6);border-radius:9px;background:linear-gradient(120deg,var(--red-dark),var(--red),var(--orange));color:#fff;font-size:12px;font-weight:900;white-space:nowrap;box-shadow:0 5px 18px rgba(255,48,79,.18);transition:transform .2s ease,box-shadow .2s ease}
+.btn-cyber-animated:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,48,79,.3)}
+.menu-toggle{display:none;background:transparent;border:1px solid var(--line);color:var(--text);font-size:20px;padding:8px 12px;border-radius:8px;cursor:pointer}
+@media(max-width:850px){.nav{min-height:70px;padding:10px 0;align-items:center;flex-direction:row;gap:12px}.menu-toggle{display:inline-flex;align-items:center;justify-content:center}.nav-links{display:none;flex-direction:column;position:absolute;top:70px;left:0;width:100%;background:rgba(8,9,13,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:24px;gap:16px;box-shadow:0 15px 30px rgba(0,0,0,.6);z-index:99;align-items:flex-start}.nav-links.active{display:flex}.nav-links a:not(.btn){display:block!important;width:100%}.nav-links>div{display:flex!important;gap:8px!important;margin:4px 0!important}}
+</style>
   
   
   
@@ -116,35 +132,28 @@ h1{font-size:clamp(34px,5vw,56px);line-height:1.1;letter-spacing:-1.5px;margin:1
 <header class="topbar">
   <div class="container nav">
     <div id="branding-title">
-      <a class="brand" href="../index.html" aria-label="KasuhaNET home"><img src="../img/logo3.png" alt="KasuhaNET.STORE"></a>
+      <a class="brand" href="/" aria-label="KasuhaNET Official Page">
+        <img src="/img/logo3.png" class="brand-logo" alt="KasuhaNET.STORE">
+      </a>
     </div>
-    <script>
-      fetch("/template-text/EN/kasuhanet-icon-official-EN.html").then(response => {
-        if (!response.ok) throw new Error("Official logo template unavailable");
-        return response.text();
-      }).then(data => {
-        const branding = document.getElementById("branding-title");
-        branding.innerHTML = data;
-        const logo = branding.querySelector("img");
-        const homeLink = branding.querySelector("a");
-        if (logo) logo.src = "/img/logo3.png";
-        if (homeLink) homeLink.href = "/";
-      }).catch(err => console.log(err));
-    </script>
     <nav class="nav-links" id="navLinks" aria-label="Main Navigation">
-      <a href="../index.html">HOME</a>
+      <a href="/">HOME</a>
       <a href="/About-Us/">ABOUT US</a>
-      <a href="index.html" aria-current="page" style="color:var(--red);">GUIDES</a>
-      <a href="../privacy-policy-EN.html">PRIVACY POLICY</a>
-      <a href="../support-centre-EN.html"  >SUPPORT</a>
-      <a class="btn btn-outline" href="../guides/" lang="en">EN</a>
-      <a class="btn btn-outline" href="../MS/panduan/index.html" lang="ms">MS</a>
+      <a href="/guides/" aria-current="page" style="color:var(--red);">GUIDES</a>
+      <a href="/Privacy-Policy/">PRIVACY POLICY</a>
+      <a href="/Support/">SUPPORT</a>
+      <div style="display:flex;gap:8px;margin:4px 0;">
+        <a class="btn btn-outline" href="/guides/" lang="en">EN</a>
+        <a class="btn btn-outline" href="/guides/MS/" lang="ms">MS</a>
+      </div>
+      <a class="btn-cyber-animated" href="/Banner-WebSale-EN.html"><span>GET WEBSITE!</span><i class="fa-solid fa-computer-mouse"></i></a>
     </nav>
     <button class="menu-toggle" type="button" onclick="toggleMobileMenu()" aria-label="Toggle Navigation">
       <i class="fa-solid fa-bars"></i>
     </button>
   </div>
 </header>
+
 <script>
 function toggleMobileMenu(){
   const navLinks=document.getElementById("navLinks");
@@ -193,7 +202,7 @@ function toggleMobileMenu(){
   <!-- Shared site footer, matching the main EN pages -->
   <div id="footer-placeholder"></div>
   <script>
-    fetch("../template-text/EN/template-footer-EN.html")
+    fetch("/template-text/EN/template-footer-EN.html")
       .then(response => {
         if (!response.ok) throw new Error("Footer template failed to load");
         return response.text();
