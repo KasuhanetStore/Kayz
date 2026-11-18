@@ -989,7 +989,6 @@ footer > * { position: relative; z-index: 1; }
   floatButton.setAttribute("aria-label","Open shopping cart");
   floatButton.innerHTML='<svg class="kn-workshop-cart-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 4h2l2.1 10.1a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 1.9-1.4L22 8H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="20" r="1.5" fill="currentColor"/><circle cx="18" cy="20" r="1.5" fill="currentColor"/></svg><span>Cart</span><span class="kn-workshop-float-count" id="knWorkshopFloatCount">0</span>';
   document.body.append(floatButton);
-  floatButton.classList.add("is-visible");
   floatButton.addEventListener("click",()=>cart.classList.toggle("is-open"));
   document.addEventListener("click",event=>{
     if(cart.classList.contains("is-open")&&!cart.contains(event.target)&&!floatButton.contains(event.target))cart.classList.remove("is-open");
@@ -1056,7 +1055,7 @@ footer > * { position: relative; z-index: 1; }
     document.getElementById("knWorkshopCount").textContent=items.length+" item(s) in cart";
     document.getElementById("knWorkshopCheckout").disabled=!items.length;
     document.getElementById("knWorkshopFloatCount").textContent=String(items.length);
-    floatButton.classList.add("is-visible");
+    floatButton.classList.toggle("is-visible",items.length>0);
     if(!items.length)cart.classList.remove("is-open");
   }
 
