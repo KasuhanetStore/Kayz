@@ -11,6 +11,11 @@
   <link rel="alternate" hreflang="en" href="https://kasuhanet.store/Privacy-Policy/">
   <link rel="alternate" hreflang="ms" href="https://kasuhanet.store/Privacy-Policy/MS/">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/css/Branding.css">
+  <link rel="stylesheet" href="/css/Balancing.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <script src="/js/home-main.js" defer></script>
   <style>
     :root{--bg:#08090d;--panel:#12141c;--panel2:#191b25;--text:#f6f7fb;--muted:#b9bdca;--red:#ff304f;--red-dark:#a90025;--orange:#ff7a35;--line:rgba(255,255,255,.12)}
     *{box-sizing:border-box}html{scroll-behavior:smooth;overflow-x:hidden}
@@ -23,7 +28,7 @@
     .nav-links>a:not(.btn):hover{color:#ff7187}
     .btn{display:inline-flex;align-items:center;justify-content:center;padding:9px 13px;border:1px solid rgba(255,255,255,.2);border-radius:9px;font-size:12px;font-weight:800;transition:.2s ease}
     .btn:hover{border-color:var(--red);color:#fff}.btn.active{background:linear-gradient(120deg,var(--red-dark),var(--red),var(--orange));border-color:transparent;color:#fff}
-    .hero{position:relative;isolation:isolate;overflow:hidden;padding:56px 0 44px;background:#05070d url("broadcast.png") center/cover no-repeat}
+    .hero{position:relative;isolation:isolate;overflow:hidden;padding:56px 0 44px;background:#05070d url("/broadcast.png") center/cover no-repeat}
     .hero:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,rgba(5,7,13,.94),rgba(5,7,13,.78) 55%,rgba(5,7,13,.9))}
     .eyebrow{display:inline-flex;align-items:center;gap:8px;color:#ff8b9c;font-size:12px;font-weight:900;letter-spacing:2px;text-transform:uppercase}
 h1{font-size:clamp(32px,4.8vw,50px);line-height:1.12;letter-spacing:-1px;margin:14px 0}
@@ -83,7 +88,7 @@ h1{font-size:clamp(32px,4.8vw,50px);line-height:1.12;letter-spacing:-1px;margin:
     .btn-outline{border-color:rgba(255,255,255,.2);color:white;background:rgba(255,255,255,.03)}
     .btn:hover,.btn-outline:hover{border-color:var(--red);color:#fff}
     .menu-toggle{display:none;background:transparent;border:1px solid var(--line);color:var(--text);font-size:20px;padding:8px 12px;border-radius:8px;cursor:pointer}
-    .hero{padding:70px 0 58px;background:#05070d url("broadcast.png") center/cover no-repeat}
+    .hero{padding:70px 0 58px;background:#05070d url("/broadcast.png") center/cover no-repeat}
     .hero:before{background:linear-gradient(110deg,rgba(5,7,13,.92),rgba(5,7,13,.72) 55%,rgba(5,7,13,.86))}
     h1{font-size:clamp(34px,5vw,56px);line-height:1.1;letter-spacing:-1.5px;margin:16px 0}
     .hero p{max-width:760px;font-size:17px;font-weight:800;margin:0 auto;color:#d5d8e2}
@@ -128,46 +133,33 @@ h1{font-size:clamp(32px,4.8vw,50px);line-height:1.12;letter-spacing:-1px;margin:
 <header class="topbar">
   <div class="container nav">
     <div id="branding-title">
-      <a class="brand" href="/" aria-label="KasuhaNET home"><img src="/img/logo3.png" class="brand-logo" alt="KasuhaNET.STORE"></a>
+      <a class="brand" href="/" aria-label="KasuhaNET Official Page">
+        <img src="/img/logo3.png" class="brand-logo" alt="KasuhaNET.STORE">
+      </a>
     </div>
-    <script>
-      fetch("/template-text/EN/kasuhanet-icon-official-EN.html").then(response => {
-        if (!response.ok) throw new Error("Official logo template unavailable");
-        return response.text();
-      }).then(data => {
-        const branding = document.getElementById("branding-title");
-        branding.innerHTML = data;
-        const logo = branding.querySelector("img");
-        const homeLink = branding.querySelector("a");
-        if (logo) logo.src = "/img/logo3.png";
-        if (homeLink) homeLink.href = "/";
-      }).catch(err => console.log(err));
-    </script>
     <nav class="nav-links" id="navLinks" aria-label="Main Navigation">
       <a href="/">HOME</a>
       <a href="/About-Us/">ABOUT US</a>
       <a href="/guides/">GUIDES</a>
-      <a href="/Privacy-Policy/" aria-current="page">PRIVACY POLICY</a>
+      <a href="/Privacy-Policy/" style="color: var(--red);">PRIVACY POLICY</a>
       <a href="/Support/">SUPPORT</a>
-      <a class="btn btn-outline" href="/Privacy-Policy/" lang="en">EN</a>
-      <a class="btn btn-outline" href="/Privacy-Policy/MS/" lang="ms">MS</a>
+      <div style="display:flex;gap:8px;margin:4px 0;">
+        <a class="btn btn-outline" href="/Privacy-Policy/" lang="en">EN</a>
+        <a class="btn btn-outline" href="/Privacy-Policy/MS/" lang="ms">BM</a>
+      </div>
+      <a class="btn-cyber-animated" href="/Banner-WebSale-EN.html"><span>GET WEBSITE!</span><i class="fa-solid fa-computer-mouse"></i></a>
     </nav>
     <button class="menu-toggle" type="button" onclick="toggleMobileMenu()" aria-label="Toggle Navigation">
       <i class="fa-solid fa-bars"></i>
     </button>
   </div>
 </header>
-<script>
-function toggleMobileMenu(){
-  const navLinks=document.getElementById("navLinks");
-  if(navLinks) navLinks.classList.toggle("active");
-}
-</script>
+
 
 <!-- PARTNER CREDIT: LOAD CENTRAL TEMPLATE -->
 <div id="partner-credit-placeholder"></div>
 <script>
-  fetch("template-text/EN/partner-credit-EN.html")
+  fetch("/template-text/EN/partner-credit-EN.html")
     .then(response => {
       if (!response.ok) throw new Error("Partner Credit Template Failed to Load");
       return response.text();
@@ -204,7 +196,7 @@ function toggleMobileMenu(){
   </article></div></main>
   <div class="footer-wrap" id="footer-placeholder"></div>
   <script>
-    fetch("template-text/EN/template-footer-EN.html")
+    fetch("/template-text/EN/template-footer-EN.html")
       .then(response => { if (!response.ok) throw new Error("Footer template failed to load"); return response.text(); })
       .then(data => {
         document.getElementById("footer-placeholder").innerHTML = data;
