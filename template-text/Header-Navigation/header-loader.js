@@ -12,8 +12,9 @@
   const normalize = (value) => {
     try {
       const url = new URL(value, window.location.origin);
-      let pathname = url.pathname.replace(/\\/+$/, "") || "/";
+      let pathname = url.pathname;
       if (pathname.endsWith("/index.html")) pathname = pathname.slice(0, -10) || "/";
+      pathname = pathname.replace(/\\/+$/, "") || "/";
       return pathname;
     } catch (_) {
       return value;
@@ -52,7 +53,10 @@
       header.querySelectorAll(".nav-lang a[lang]").forEach((link) => {
         const lang = (link.getAttribute("lang") || "").toLowerCase();
         const target = lang === "en" ? mount.dataset.enHref : mount.dataset.msHref;
-        if (target) link.setAttribute("href", target);
+        if (target) {
+          link.setAttribute("href", target);
+          if (normalize(target) === currentPath) link.setAttribute("aria-current", "page");
+        }
       });
 
       const toggle = header.querySelector(".menu-toggle");
