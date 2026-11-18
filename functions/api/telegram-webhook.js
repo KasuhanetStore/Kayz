@@ -80,17 +80,12 @@ async function beginCheckout(env, chatId, item, id, isService) {
   }
   await ensureTelegramTables(env.DB);
   await env.DB.prepare(`INSERT INTO telegram_checkout_sessions
-    (chat_id,item_type,item_id,step) VALUES(?,?,?,'payment')
+    (chat_id,item_type,item_id,step) VALUES(?,?,?,'name')
     ON CONFLICT(chat_id) DO UPDATE SET item_type=excluded.item_type,item_id=excluded.item_id,
-    payment_method=NULL,step='payment',customer_name=NULL,customer_email=NULL,customer_phone=NULL,
+    payment_method=NULL,step='name',customer_name=NULL,customer_email=NULL,customer_phone=NULL,
     created_at=CURRENT_TIMESTAMP`).bind(String(chatId),isService?"service":"package",id).run();
   await send(env, chatId,
-    "<b>" + item.name + "</b>\nHarga: <b>" + money(item.amount) + "</b>\n\nPilih kaedah pembayaran:",
-    [
-      [{text:"STRIPE • Kad Debit / Kredit",callback_data:"pay:stripe"}],
-      [{text:"TOYYIBPAY • FPX / DuitNow QR*",callback_data:"pay:toyyibpay"}],
-      [{text:"Kembali ke Menu",callback_data:"menu:home"}]
-    ]
+    "<b>" + item.name + "</b>\\nHarga: <b>" + money(item.amount) + "</b>\\n\\nSila isi nama penuh anda. Taip nama dan tekan Enter.\\n\\nHantar /cancel untuk batalkan."
   );
 }
 
@@ -212,20 +207,15 @@ async function handleCheckoutMessage(env, chatId, input) {
     if(!/^[+0-9().\s-]+$/.test(input)||digits.length<9||digits.length>15){
       await send(env,chatId,"Nombor telefon tidak sah. Masukkan 9 hingga 15 digit, atau /cancel.");return true;
     }
-    await env.DB.prepare("UPDATE telegram_checkout_sessions SET customer_phone=?,step='processing' WHERE chat_id=?").bind(input,String(chatId)).run();
-    const item=session.item_type==="service"?SERVICES[session.item_id]:PACKAGES[session.item_id];
-    const packageId=session.item_type==="service"?"telegram-workshop-"+session.item_id:session.item_id;
-    const completed={...session,customer_phone:input};
-    try {
-      if(!item) throw new Error("Invalid item");
-      if(session.payment_method==="stripe") await createStripePayment(env,chatId,completed,item,packageId);
-      else if(session.payment_method==="toyyibpay") await createToyyibPayPayment(env,chatId,completed,item,packageId);
-      else throw new Error("Invalid payment method");
-      await env.DB.prepare("DELETE FROM telegram_checkout_sessions WHERE chat_id=?").bind(String(chatId)).run();
-    } catch {
-      await env.DB.prepare("DELETE FROM telegram_checkout_sessions WHERE chat_id=?").bind(String(chatId)).run();
-      await send(env,chatId,"Pembayaran tidak dapat dijana. Semak konfigurasi gateway atau hubungi Support KasuhaNET.");
-    }
+    await env.DB.prepare("UPDATE telegram_checkout_sessions SET customer_phone=?,step='payment' WHERE chat_id=?").bind(input,String(chatId)).run();
+    await send(env,chatId,
+      "<b>Maklumat pelanggan diterima.</b>\\nNama: "+session.customer_name+"\\nEmail: "+session.customer_email+"\\nTelefon: "+input+"\\n\\n<b>Pilih Payment Gateway:</b>",
+      [
+        [{text:"STRIPE • Kad Debit / Kredit",callback_data:"pay:stripe"}],
+        [{text:"TOYYIBPAY • FPX / DuitNow QR*",callback_data:"pay:toyyibpay"}],
+        [{text:"Batalkan",callback_data:"checkout:cancel"}]
+      ]
+    );
     return true;
   }
   return true;
@@ -309,13 +299,27 @@ export async function onRequestPost({ request, env }) {
       } else if (action === "pay:stripe" || action === "pay:toyyibpay") {
         await ensureTelegramTables(env.DB);
         const method=action==="pay:stripe"?"stripe":"toyyibpay";
-        const result=await env.DB.prepare("UPDATE telegram_checkout_sessions SET payment_method=?,step='name' WHERE chat_id=? AND step='payment'")
+        const result=await env.DB.prepare("UPDATE telegram_checkout_sessions SET payment_method=?,step='processing' WHERE chat_id=? AND step='payment'")
           .bind(method,String(chatId)).run();
         if(result.meta?.changes===0) {
           await send(env,chatId,"Sesi checkout tamat. Sila pilih produk semula melalui /start.");
         } else {
-          await send(env,chatId,"Masukkan nama penuh untuk invois/pembayaran. Hantar /cancel untuk batalkan.");
+          const session=await env.DB.prepare("SELECT * FROM telegram_checkout_sessions WHERE chat_id=?").bind(String(chatId)).first();
+          const item=session?.item_type==="service"?SERVICES[session.item_id]:PACKAGES[session?.item_id];
+          const packageId=session?.item_type==="service"?"telegram-workshop-"+session.item_id:session?.item_id;
+          try {
+            if(!session||!item||!session.customer_name||!session.customer_email||!session.customer_phone) throw new Error("Incomplete checkout");
+            if(method==="stripe") await createStripePayment(env,chatId,session,item,packageId);
+            else await createToyyibPayPayment(env,chatId,session,item,packageId);
+            await env.DB.prepare("DELETE FROM telegram_checkout_sessions WHERE chat_id=?").bind(String(chatId)).run();
+          } catch {
+            await env.DB.prepare("DELETE FROM telegram_checkout_sessions WHERE chat_id=?").bind(String(chatId)).run();
+            await send(env,chatId,"Pembayaran tidak dapat dijana. Semak konfigurasi gateway atau hubungi Support KasuhaNET.");
+          }
         }
+      } else if (action === "checkout:cancel") {
+        await env.DB.prepare("DELETE FROM telegram_checkout_sessions WHERE chat_id=?").bind(String(chatId)).run();
+        await send(env,chatId,"Checkout dibatalkan. Gunakan /start untuk mula semula.");
       }
     }
   } catch {
