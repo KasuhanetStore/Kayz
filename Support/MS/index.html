@@ -37,15 +37,15 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
 <!-- CSS (MENGIKUT PATH MS) -->
-<link rel="stylesheet" href="../css/Branding.css">
-<link rel="stylesheet" href="../css/Balancing.css">
+<link rel="stylesheet" href="../../css/Branding.css">
+<link rel="stylesheet" href="../../css/Balancing.css">
 
 <!-- FAVICONS -->
-<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="icon" type="image/png" href="../../favicon.png">
 <link rel="shortcut icon" href="https://kasuhanet.store/favicon.ico">
 
-<link rel="stylesheet" href="../css/style.css">
-<script src="../js/home-main.js" defer></script>
+<link rel="stylesheet" href="../../css/style.css">
+<script src="../../js/home-main.js" defer></script>
   
 <script type="application/ld+json">
 {
@@ -103,8 +103,10 @@
       background: rgba(8,9,13,.88); backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--line);
     }
-    .nav { min-height: 70px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .brand { display: flex; align-items: center; gap: 11px; font-weight: 900; letter-spacing: .5px; }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 0; line-height: 1; text-decoration: none; }
+    .brand-logo, #branding-title img, #branding-title svg { max-width: 180px; max-height: 60px; width: auto; height: auto; object-fit: contain; object-position: left center; display: block; }
+    .brand small { display: block; font-size: 9px; font-weight: 700; letter-spacing: .5px; white-space: nowrap; line-height: 1; margin: 0; padding: 0; }
     .brand-mark {
       width: 38px; height: 38px; display: grid; place-items: center; border-radius: 12px;
       background: linear-gradient(135deg, var(--red), #ff814a); color: white; font-weight: 1000;
@@ -187,7 +189,7 @@
         display: none;
         flex-direction: column;
         position: absolute;
-        top: 70px;
+        top: 76px;
         left: 0;
         width: 100%;
         background: rgba(8, 9, 13, 0.97);
@@ -234,7 +236,7 @@
     </div>
 
     <script>
-    fetch("../template-text/MS/kasuhanet-icon-official-MS.html")
+    fetch("/template-text/MS/kasuhanet-icon-official-MS.html")
     .then(response => response.text())
     .then(data => {
         document.getElementById("branding-title").innerHTML = data;
@@ -243,7 +245,7 @@
     
     <nav class="nav-links" id="navLinks" aria-label="Navigasi Utama">
         
-        <a href="index.html">LAMAN UTAMA</a>
+        <a href="/MS/">LAMAN UTAMA</a>
         <a href="/About-Us/MS/">TENTANG KAMI</a>
         <a href="/Privacy-Policy/MS/">POLISI PRIVASI</a>
         <a href="/Support/MS/" style="color: var(--red);">SOKONGAN</a>
@@ -262,7 +264,7 @@
 <div id="partner-credit-placeholder"></div>
 
 <script>
-  fetch("../template-text/MS/partner-credit-MS.html")
+  fetch("/template-text/MS/partner-credit-MS.html")
     .then(response => {
         if (!response.ok) throw new Error('Partner Credit Template Failed to Load');
         return response.text();
@@ -326,7 +328,7 @@
 <!-- FOOTER DINAMIK -->
 <div id="footer-placeholder"></div>
 <script>
-  fetch("../template-text/MS/template-footer-MS.html")
+  fetch("/template-text/MS/template-footer-MS.html")
     .then(response => {
         if (!response.ok) throw new Error('Footer Template Failed Load');
         return response.text();
