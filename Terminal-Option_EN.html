@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charSet="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
     <link rel="stylesheet" href="https://gum.new/_next/static/css/d588472e02840010.css?dpl=dpl_3bMqMNF5ENwYsebffEswrKcBmebp" data-precedence="next"/>
     <link rel="preload" as="script" fetchPriority="low" href="https://gum.new/_next/static/chunks/webpack-cdb1554516a744d5.js?dpl=dpl_3bMqMNF5ENwYsebffEswrKcBmebp"/>
     <script src="https://gum.new/_next/static/chunks/30ae1664-6ff90ee99247bf65.js?dpl=dpl_3bMqMNF5ENwYsebffEswrKcBmebp" async=""></script>
@@ -42,6 +42,32 @@
             border-color: #01acd2;
             font-weight: bold;
             box-shadow: 0 0 15px rgba(1, 172, 210, 0.4);
+        }
+
+        /* Mobile layout support for in-app browsers and Android WebViews */
+        @media (max-width: 767px), (pointer: coarse) and (max-width: 1024px) {
+            html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
+            body { -webkit-text-size-adjust: 100%; }
+            .min-h-screen, section, footer { max-width: 100%; }
+            section { padding-left: 18px !important; padding-right: 18px !important; }
+            section.py-20 { padding-top: 48px !important; padding-bottom: 48px !important; }
+            section.py-16 { padding-top: 38px !important; padding-bottom: 38px !important; }
+            section.py-32 { padding-top: 48px !important; padding-bottom: 48px !important; }
+            h1 { font-size: clamp(2.35rem, 11vw, 3.2rem) !important; line-height: 1.08 !important; }
+            h2 { font-size: clamp(1.55rem, 7vw, 2rem) !important; line-height: 1.2 !important; }
+            p { overflow-wrap: anywhere; }
+            .grid { grid-template-columns: minmax(0, 1fr) !important; }
+            .flex.items-center.justify-center.gap-6 { flex-wrap: wrap; gap: 12px 18px !important; }
+            #btn-back { font-size: 11px; padding: 8px 10px; }
+            .max-w-6xl.mx-auto.px-6.pt-6 { padding-left: 16px; padding-right: 16px; gap: 12px; }
+            #knDualStreamBuy { width: 100%; max-width: 360px; padding: 14px 18px; font-size: 16px; }
+            #broadcast-footer-preview img { width: 100% !important; max-width: 100% !important; }
+            footer { padding-left: 14px; padding-right: 14px; letter-spacing: .04em; }
+        }
+        @media (max-width: 380px) {
+            section { padding-left: 14px !important; padding-right: 14px !important; }
+            .max-w-6xl.mx-auto.px-6.pt-6 { padding-left: 12px; padding-right: 12px; }
+            #btn-back { max-width: 190px; }
         }
     </style>
   
