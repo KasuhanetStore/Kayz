@@ -408,18 +408,10 @@ footer { position: relative; isolation: isolate; overflow: hidden; }
 footer::before { content: ""; position: absolute; inset: 0; background: url("/img/LogoOfficialTeks.png") center center / contain no-repeat; opacity: .05; pointer-events: none; z-index: 0; }
 footer > * { position: relative; z-index: 1; }
 </style></head>
-<body><!-- Header / Navigasi Utama -->
-    <header class="top-header">
-        <!-- FIX 3: Link ditukar ke root absolut '/' untuk mengelakkan isu URL bertindih -->
-        <a href="/" class="brand-logo" title="Kasuhanet Resources Home">
-            Kasuha<span>NET•STORE oversea | RWANDA</span>
-        </a>
-        <nav class="lang-switcher" aria-label="Language Switcher">
-            <span style="color: #fff; font-size: 0.85rem; margin-right: 8px;">Language:</span>
-            <button class="lang-btn active" onclick="changeLang('kin', this)" aria-label="Tukura Kinyarwanda">KIN</button>
-            <button class="lang-btn" onclick="changeLang('eng', this)" aria-label="Switch to English">ENG</button>
-        </nav>
-    </header>
+<body>
+<div data-kn-header="policy" data-en-href="/Rwanda-SupportDevelopement.html" data-ms-href="/Rwanda-SupportDevelopement.html"></div>
+<script src="/template-text/Header-Navigation/header-loader.js" defer></script><!-- Header / Navigasi Utama -->
+    
 
     <!-- Content Utama Wrapper -->
     <main class="main-content">
