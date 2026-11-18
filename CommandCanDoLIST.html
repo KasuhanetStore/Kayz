@@ -358,9 +358,85 @@ footer > * { position: relative; z-index: 1; }
     
     <!-- Ruang Kosong: Letakkan elemen/kad/kandungan baru di bawah ini -->
     <div class="grid-products">
-        
+        <style id="dualstream-listing-style">
+.dualstream-listing-card{position:relative;display:flex;flex-direction:column;gap:13px;padding:22px;border:1px solid rgba(0,240,255,.3);border-radius:14px;background:linear-gradient(145deg,rgba(13,22,38,.98),rgba(20,10,35,.96));box-shadow:0 8px 28px rgba(0,0,0,.22);transition:transform .2s,border-color .2s,box-shadow .2s}
+.dualstream-listing-card:hover{transform:translateY(-3px);border-color:#00f0ff;box-shadow:0 10px 32px rgba(0,240,255,.12)}
+.dualstream-listing-tag{align-self:flex-start;padding:5px 10px;border:1px solid rgba(0,240,255,.35);border-radius:99px;color:#00f0ff;font-size:10px;font-weight:800;letter-spacing:.8px;text-transform:uppercase}
+.dualstream-listing-title{color:#fff;font-size:21px;font-weight:900;text-decoration:none;line-height:1.25}
+.dualstream-listing-title:hover{color:#00f0ff}
+.dualstream-listing-desc{color:#b9c4d6;font-size:13px;line-height:1.65}
+.dualstream-listing-features{display:flex;flex-wrap:wrap;gap:7px}
+.dualstream-listing-features span{padding:5px 8px;border-radius:6px;background:rgba(0,240,255,.08);color:#b9f8ff;font-size:11px}
+.dualstream-listing-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto;padding-top:13px;border-top:1px solid rgba(255,255,255,.09)}
+.dualstream-listing-price{color:#00f0ff;font-size:20px;font-weight:900}
+.dualstream-listing-view{display:inline-flex;align-items:center;justify-content:center;padding:10px 13px;border-radius:8px;background:linear-gradient(110deg,#4f31e8,#00aebf);color:#fff;text-decoration:none;font-size:12px;font-weight:900}
+.dualstream-cart-select{display:flex;align-items:center;gap:9px;color:#fff;font-size:13px;font-weight:800;cursor:pointer}
+.dualstream-cart-select input{width:19px;height:19px;accent-color:#00f0ff;cursor:pointer}
+.kn-command-cart{display:none;position:fixed;left:18px;bottom:96px;z-index:99990;width:min(360px,calc(100vw - 28px));padding:17px;border:1px solid rgba(0,240,255,.45);border-radius:14px;background:#111722;color:#fff;box-shadow:0 18px 55px rgba(0,0,0,.55)}
+.kn-command-cart.is-open{display:block}
+.kn-command-cart h3{margin:0 0 8px;color:#00f0ff;font-size:16px}
+.kn-command-cart p{margin:4px 0;color:#c4cad7;font-size:12px}
+.kn-command-cart-row{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:13px}
+.kn-command-cart-row strong{color:#25d366;white-space:nowrap}
+.kn-command-cart-actions{display:flex;gap:8px;margin-top:13px}
+.kn-command-cart-actions a,.kn-command-cart-actions button{flex:1;min-height:40px;display:flex;align-items:center;justify-content:center;border:0;border-radius:8px;padding:8px;background:linear-gradient(110deg,#4f31e8,#00bcd4);color:#fff;text-decoration:none;font-size:12px;font-weight:900;cursor:pointer}
+.kn-command-cart-actions button{background:#273044}
+.kn-command-cart-float{position:fixed;left:18px;bottom:18px;z-index:99991;display:flex;align-items:center;gap:8px;min-height:58px;padding:12px 18px;border:2px solid #00f0ff;border-radius:999px;background:linear-gradient(120deg,#4f31e8,#00aebf);color:#fff;font-size:14px;font-weight:900;box-shadow:0 8px 32px rgba(0,0,0,.5);cursor:pointer;animation:knCommandCartPulse 1.2s ease-in-out infinite}
+.kn-command-cart-count{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 5px;border-radius:50%;background:#fff;color:#101722;font-size:11px}
+@keyframes knCommandCartPulse{0%,100%{filter:brightness(1);transform:scale(1)}50%{filter:brightness(1.2);transform:scale(1.035)}}
+@media(prefers-reduced-motion:reduce){.kn-command-cart-float{animation:none}}
+</style>
+<article class="dualstream-listing-card">
+  <span class="dualstream-listing-tag">Linux Terminal Tool</span>
+  <a class="dualstream-listing-title" href="Terminal-Option_EN.html">DualStreamPro</a>
+  <p class="dualstream-listing-desc">A terminal-based downloader for supported video links. Copy a video link from a supported platform, paste it into your Linux terminal, then choose to download the video or extract audio as MP3.</p>
+  <div class="dualstream-listing-features"><span>Video Download</span><span>MP3 Audio</span><span>Linux Terminal</span><span>One-time Purchase</span></div>
+  <div class="dualstream-listing-bottom">
+    <strong class="dualstream-listing-price">RM 47.70</strong>
+    <a class="dualstream-listing-view" href="Terminal-Option_EN.html">VIEW PRODUCT →</a>
+  </div>
+  <label class="dualstream-cart-select"><input id="dualStreamCartCheck" type="checkbox"> <span>Add DualStreamPro to Cart</span></label>
+</article>
     </div>
 </main>
+
+
+<aside class="kn-command-cart" id="knCommandCart" aria-label="Shopping cart">
+  <h3>Shopping Cart</h3>
+  <p id="knCommandCartEmpty">Your cart is empty.</p>
+  <div class="kn-command-cart-row" id="knCommandCartItem" hidden><span>DualStreamPro</span><strong>RM 47.70</strong></div>
+  <div class="kn-command-cart-actions">
+    <a href="Terminal-Option_EN.html" id="knCommandCartView" hidden>VIEW PRODUCT</a>
+    <button type="button" id="knCommandCartClose">CLOSE</button>
+  </div>
+</aside>
+<button class="kn-command-cart-float" id="knCommandCartToggle" type="button" aria-label="Open shopping cart">🛒 Cart <span class="kn-command-cart-count" id="knCommandCartCount">0</span></button>
+<script>
+(function(){
+  const check=document.getElementById("dualStreamCartCheck");
+  const cart=document.getElementById("knCommandCart");
+  const toggle=document.getElementById("knCommandCartToggle");
+  const count=document.getElementById("knCommandCartCount");
+  const empty=document.getElementById("knCommandCartEmpty");
+  const item=document.getElementById("knCommandCartItem");
+  const view=document.getElementById("knCommandCartView");
+  function render(){
+    const selected=check.checked;
+    count.textContent=selected?"1":"0";
+    empty.hidden=selected;
+    item.hidden=!selected;
+    view.hidden=!selected;
+    if(!selected)cart.classList.remove("is-open");
+  }
+  check.addEventListener("change",render);
+  toggle.addEventListener("click",()=>cart.classList.toggle("is-open"));
+  document.getElementById("knCommandCartClose").addEventListener("click",()=>cart.classList.remove("is-open"));
+  document.addEventListener("click",event=>{
+    if(cart.classList.contains("is-open")&&!cart.contains(event.target)&&!toggle.contains(event.target))cart.classList.remove("is-open");
+  });
+  render();
+})();
+</script>
 
 <!-- FADE ANIMATION POPUP PREVIEW MODAL -->
 <div class="modal-overlay" id="previewModal" onclick="closePreview(event)">
