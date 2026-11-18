@@ -8,9 +8,9 @@ This is a review of selected legacy, duplicate and unusual files. It is not a fu
 
 - `php/send.php` contains a hard-coded Telegram bot credential. Treat it as compromised because it has been committed to a repository that may be publicly readable.
 - Revoke the exposed token in BotFather and issue a replacement. Do not reuse the exposed token.
-- The PHP sender and reply scripts also write user-supplied message content to a JSON file and the reply script has no visible authentication check in the inspected source. They should not be exposed as active endpoints without a security redesign.
-- No page reference to `php/send.php` or `php/reply.php` was found in the selected-page checks or repository code search. This is not proof that no external client or bookmark calls them.
-- After credential rotation, remove the hard-coded credential from the production branch and review Git history. Deleting a secret from the latest file alone does not erase it from earlier commits.
+- The unused legacy files `php/send.php` and `php/reply.php` have been deleted from this preview branch after the owner confirmed the old Telegram RSA integration is no longer used.
+- No page reference to these scripts was found in the selected-page checks or repository code search. This is not proof that no external client or bookmark calls them.
+- Deleting the files from the latest branch does not erase their contents or the exposed credential from earlier Git commits. Revoke the old token in BotFather if it was ever valid; history cleanup or secret revocation is still required.
 
 ## Duplicate and conflicting files
 
