@@ -22,7 +22,7 @@ This branch is a SAFE PREVIEW. It does not move or rename production files and d
 ├── css/                        # existing stylesheets; preserve paths initially
 ├── js/                          # existing JavaScript; preserve paths initially
 ├── functions/                  # Cloudflare Pages Functions; preserve paths
-├── php/                        # legacy PHP files; audit hosting/runtime use
+├── php/                        # remaining legacy files; audit before changing
 ├── img/                         # existing image assets
 ├── assets/                     # destination for assets after references are migrated
 │   ├── images/
