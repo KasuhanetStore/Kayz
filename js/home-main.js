@@ -1,3 +1,26 @@
+/* PWA MOBILE VIEW: force device-width only inside the installed KasuhaNET app.
+   Normal browser sessions keep the user's Desktop Site preference untouched. */
+(function () {
+  const standalone = window.matchMedia &&
+    (window.matchMedia('(display-mode: standalone)').matches ||
+     window.matchMedia('(display-mode: fullscreen)').matches ||
+     window.navigator.standalone === true);
+  const phoneScreen = Math.min(window.screen.width, window.screen.height) <= 850;
+  if (!standalone || !phoneScreen) return;
+
+  const applyMobileViewport = function () {
+    let viewport = document.querySelector('meta[name="viewport"]');
+    if (!viewport) {
+      viewport = document.createElement('meta');
+      viewport.name = 'viewport';
+      document.head.appendChild(viewport);
+    }
+    viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, viewport-fit=cover');
+  };
+  applyMobileViewport();
+  window.addEventListener('pageshow', applyMobileViewport);
+})();
+
 /**
  * KASUHANET.STORE - MASTER ENGINE & AUTO-RECOVERY SCRIPT
  * Mengendalikan Navigasi, Dropdown, Menu Mobile, dan Auto-Fix Layout.
