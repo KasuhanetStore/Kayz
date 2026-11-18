@@ -200,7 +200,7 @@ async function handleCheckoutMessage(env, chatId, input) {
     return true;
   }
   if(session.step==="email"){
-    if(input.length>254||! /^[^\\s@]+@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\\.)+[A-Za-z]{2,}$/.test(input)){
+    if(input.length>254||! /^[^\s@]+@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z]{2,}$/.test(input)){
       await send(env,chatId,"Format e-mel tidak sah. Cuba semula, atau /cancel.");return true;
     }
     await env.DB.prepare("UPDATE telegram_checkout_sessions SET customer_email=?,step='phone' WHERE chat_id=?").bind(input,String(chatId)).run();
@@ -208,8 +208,8 @@ async function handleCheckoutMessage(env, chatId, input) {
     return true;
   }
   if(session.step==="phone"){
-    const digits=input.replace(/\\D/g,"");
-    if(!/^[+0-9().\\s-]+$/.test(input)||digits.length<9||digits.length>15){
+    const digits=input.replace(/\D/g,"");
+    if(!/^[+0-9().\s-]+$/.test(input)||digits.length<9||digits.length>15){
       await send(env,chatId,"Nombor telefon tidak sah. Masukkan 9 hingga 15 digit, atau /cancel.");return true;
     }
     await env.DB.prepare("UPDATE telegram_checkout_sessions SET customer_phone=?,step='processing' WHERE chat_id=?").bind(input,String(chatId)).run();
@@ -292,7 +292,7 @@ export async function onRequestPost({ request, env }) {
           callback_data: "buy:package:" + id
         }]);
         rows.push([{ text: "Kembali", callback_data: "menu:home" }]);
-        await send(env, chatId, "<b>Website Packages</b>\nPilih pakej untuk meneruskan ke pembayaran selamat Stripe.", rows);
+        await send(env, chatId, "<b>Website Packages</b>\nPilih pakej, kemudian pilih kaedah pembayaran.", rows);
       } else if (action === "menu:services") {
         const rows = Object.entries(SERVICES).map(([id, item]) => [{
           text: item.name + " • " + money(item.amount),
