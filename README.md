@@ -27,4 +27,4 @@ Repository source for the KasuhaNET website deployed through Cloudflare Pages.
 
 ## Migration notes
 
-See [Repository structure proposal](docs/REPOSITORY-STRUCTURE.md) and [Migration audit](docs/REPOSITORY-MIGRATION-AUDIT.md) for the current safe-migration scope and findings.
+See [Repository structure proposal](docs/REPOSITORY-STRUCTURE.md), [Migration audit](docs/REPOSITORY-MIGRATION-AUDIT.md), and [Asset reference check](docs/ASSET-REFERENCE-CHECK.md) for the current safe-migration scope and findings.
