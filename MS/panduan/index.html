@@ -132,7 +132,7 @@ h1{font-size:clamp(34px,5vw,56px);line-height:1.1;letter-spacing:-1.5px;margin:1
     </script>
     <nav class="nav-links" id="navLinks" aria-label="Navigasi Utama">
       <a href="../../MS/index.html">LAMAN UTAMA</a>
-      <a href="../../MS/about-us-MS.html">TENTANG KAMI</a>
+      <a href="/About-Us/MS/">TENTANG KAMI</a>
       <a href="index.html" aria-current="page" style="color:var(--red);">PANDUAN</a>
       <a href="../../MS/privacy-policy-MS.html">POLISI PRIVASI</a>
       <a href="../../MS/support-centre-MS.html" >SOKONGAN</a>
@@ -198,7 +198,7 @@ function toggleMobileMenu(){
         return response.text();
       })
       .then(data => {
-        data = data.replaceAll('href="about-us-MS.html"', 'href="../../MS/about-us-MS.html"')
+        data = data.replaceAll('href="/About-Us/MS/"', 'href="/About-Us/MS/"')
           .replaceAll('href="support-centre-MS.html"', 'href="../../MS/support-centre-MS.html"')
           .replaceAll('href="privacy-policy-MS.html"', 'href="../../MS/privacy-policy-MS.html"')
           .replaceAll('href="privacy-policy-MS.html"', 'href="../../MS/privacy-policy-MS.html"')
