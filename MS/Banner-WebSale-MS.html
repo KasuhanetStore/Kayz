@@ -274,39 +274,7 @@ main .grid .card a.websale-buy-btn:active {
 
 </head>
 <body><!-- TOPBAR HEADER -->
-<header class="topbar">
-  <div class="container nav">
-    <div id="branding-title">
-      <div class="brand">
-        <div class="brand-mark">K</div>
-        <div>
-          KasuhaNET
-          <small>STORE</small>
-        </div>
-      </div>
-    </div>
-
-    <script>
-    fetch("../template-text/MS/kasuhanet-icon-official-MS.html")
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById("branding-title").innerHTML = data;
-    }).catch(err => console.log(err));
-    </script>    
-    
-    <nav class="nav-links" id="navLinks" aria-label="Navigasi Utama">
-        
-        <a href="index.html">LAMAN UTAMA</a>
-        <a href="/About-Us/MS/">TENTANG KAMI</a>
-        <a href="/Privacy-Policy/MS/">TERMA & POLISI</a>
-        <a href="/Support/MS/">SOKONGAN</a>
-        <a class="btn btn-outline" href="../Banner-WebSale-EN.html" lang="en">EN</a>
-        <a class="btn btn-outline" href="Banner-WebSale-MS.html" lang="ms">BM</a>
-    </nav><button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Tukar Navigasi">
-        <i class="fa-solid fa-bars"></i>
-    </button>
-  </div>
-</header>
+<div data-kn-header="policy" data-en-href="../Banner-WebSale-EN.html" data-ms-href="Banner-WebSale-MS.html"></div>
 
 <!-- PARTNER CREDIT: LOAD CENTRAL TEMPLATE -->
 <div id="partner-credit-placeholder"></div>
@@ -671,5 +639,6 @@ main .grid .card a.websale-buy-btn:active {
 })();
 </script>
   <script src="/js/inbox-chat-widget.js" defer></script>
+<script src="/template-text/Header-Navigation/header-loader.js" defer></script>
 </body>
 </html>
