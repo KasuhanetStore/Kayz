@@ -1,30 +1,46 @@
 # Repository migration audit
 
-Audit branch: `chore/reorganize-repository-preview`
+Production baseline: `main`  
+Last reviewed: 18 November 2026  
+Repository: `KasuhanetStore/Kayz`
 
-## Current decision
+## Current status
 
-This is a conservative, non-production migration. The production branch `main` is not changed. Public page routes and asset paths must remain stable during the first cleanup stage.
+The conservative first-pass cleanup was merged into `main` through PR #13 on 18 November 2026. The merge commit is `e816efa555f7456c6f68ce4d9820cfec0cfaf2e6`.
 
-## Findings
+The merge removed confirmed unused or duplicate files and corrected selected paths and references. It did not relocate public page routes or shared image assets. The live site remains deployed through Cloudflare Pages from `main`.
 
-1. The repository already has useful working directories: `MS/`, `guides/`, `MS/panduan/`, `css/`, `js/`, `img/`, `functions/api/`, remaining `php/` files and `template-text/`.
-2. Some image files remain at the repository root and are referenced by existing pages using root-relative URLs. Examples include `/KasuhaKZintro.png`, `/KasuhaKZintroEN.png` and `/OculusLogo.png`. These files must not be moved until every consumer is updated and verified. Keeping them at root for compatibility is acceptable.
-3. `OculusLogo.png` is also present under `img/`, but metadata and page/template references still use the root URL. The root copy therefore remains the canonical public asset for now.
-4. The English and Malay page routes are established and are also listed in `sitemap.xml`. Do not rename or relocate route HTML as part of asset cleanup.
-5. `functions/api/` contains checkout and payment handlers. These are runtime code, not general assets; keep their paths and bindings unchanged.
-6. Both `Ads.txt` and `ads.txt` exist at root, with additional ads-related files elsewhere. Their contents and case-sensitive URL behavior must be reconciled before any deletion or rename.
-7. `header.js` and `footer.js` exist at root; similarly named files also appear under `img/`. Do not consolidate them until script references and actual behavior are verified page by page. The unused Telegram PHP sender/reply scripts have been removed from this preview branch; remaining files under `php/` still need review.
+## Findings and decisions
 
-## Safe migration order
+1. Existing public route directories remain in place: `MS/`, `guides/` and `MS/panduan/`. Do not rename or relocate them without redirects and a full SEO/navigation check.
+2. Root-level images such as `/KasuhaKZintro.png`, `/KasuhaKZintroEN.png` and `/OculusLogo.png` remain public dependencies. Keep their paths stable.
+3. `OculusLogo.png` also exists under `img/`; metadata and other references use the root asset. Keep the root URL stable.
+4. `functions/api/` contains checkout and payment handlers. Their paths, secrets, bindings and logic are outside the scope of repository organization.
+5. Root `ads.txt` contains the expected publisher record: `google.com, pub-4280897190566760, DIRECT, f08c47fec0942fa0`. The malformed uppercase root `Ads.txt` was removed in PR #13. Similar records remain at `img/ads.txt` and `php/Ads.txt`; do not remove these until their public URL use and the live `/ads.txt` response are confirmed.
+6. Root `header.js` and `img/header.js` are different implementations. Keep both until every script reference and runtime behavior is mapped.
+7. The unused legacy `php/send.php` and `php/reply.php` endpoints were removed in PR #13 after owner confirmation that the old integration was no longer used. Their historical Git contents remain in repository history.
+8. `index.php`, `index.ts` and the empty `composer.lock` remain pending checks against Cloudflare project configuration, access logs and any external consumers.
+9. Older directly addressable HTML pages remain in place until analytics, external backlinks and owner intent have been checked.
 
-1. Keep public HTML route paths unchanged.
-2. Inventory every file reference in HTML, CSS, JavaScript, templates, metadata, sitemap and configuration.
-3. Move one small group of confirmed internal-only assets at a time. Update every reference in the same commit.
-4. Preserve root-level public assets when their current URLs are in use. Organization does not require moving every file.
-5. Verify EN/MS navigation, styles, images, checkout, Stripe, ToyyibPay, support submission, sitemap, robots and ads.txt on a preview deployment.
-6. Merge to `main` only after preview checks pass and the owner approves.
+## Cleanup merged into main
 
-## Scope of this audit
+- Removed `php/send.php` and `php/reply.php`.
+- Removed `img/footer.js`, which was byte-for-byte identical to root `footer.js` and had no explicit reference in the reviewed sources.
+- Removed empty `css/icon-follow-us.html`.
+- Removed malformed root `Ads.txt`; retained lowercase root `ads.txt`.
+- Corrected selected favicon, affiliate image, navigation and privacy self-links.
+- Removed duplicate non-deferred `js/home-main.js` imports from the reviewed About and Support pages.
+- Corrected the header logo sizing on English Guides and Malay Panduan index pages.
 
-This audit does not claim that every file has been proven unused. No production route, payment handler, support endpoint, asset or Cloudflare setting is deleted or renamed in this stage.
+## Remaining verification
+
+1. Confirm the production HTTP response for `https://kasuhanet.store/ads.txt` and decide whether nested ads files are needed.
+2. Run real browser smoke tests on mobile and desktop for EN/MS navigation, template loads, images, workshop checkout and support submission.
+3. Check Stripe and ToyyibPay using non-destructive test procedures. Do not create real charges as part of a smoke test.
+4. Check Cloudflare project settings and access logs before changing `index.php`, `index.ts` or other legacy routes.
+5. Check analytics and external backlinks before deleting older public HTML pages.
+6. Rotate any credential that was ever committed in plaintext. Deleting a file does not erase old Git history.
+
+## Scope and limitations
+
+This is a source-level repository audit, not a complete browser, security penetration, analytics or server-log audit. A successful Cloudflare preview deployment confirms build/deploy success only; it does not prove every interactive form or payment path works end to end.

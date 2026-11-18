@@ -1,59 +1,50 @@
 # Legacy file and security audit
 
-Branch: `chore/reorganize-repository-preview`
+Baseline: production source branch `main`  
+Last reviewed: 18 November 2026
 
-This is a review of selected legacy, duplicate and unusual files. It is not a full runtime or deployment audit. Nothing in this report authorizes deleting files from production.
+This is a review of selected legacy, duplicate and unusual files. It is not a complete runtime or deployment audit.
 
 ## Security finding requiring owner action
 
-- `php/send.php` contains a hard-coded Telegram bot credential. Treat it as compromised because it has been committed to a repository that may be publicly readable.
-- Revoke the exposed token in BotFather and issue a replacement. Do not reuse the exposed token.
-- The unused legacy files `php/send.php` and `php/reply.php` have been deleted from this preview branch after the owner confirmed the old Telegram RSA integration is no longer used.
-- No page reference to these scripts was found in the selected-page checks or repository code search. This is not proof that no external client or bookmark calls them.
-- Deleting the files from the latest branch does not erase their contents or the exposed credential from earlier Git commits. Revoke the old token in BotFather if it was ever valid; history cleanup or secret revocation is still required.
+- A Telegram bot credential was previously hard-coded in `php/send.php` and committed to Git history. Treat that credential as compromised if it was ever valid.
+- The legacy `php/send.php` and `php/reply.php` endpoints were removed in PR #13 after the owner confirmed the old integration was no longer used.
+- Removing those files from the current branch does not erase their contents from earlier Git commits. Revoke the old credential in BotFather if this has not already been done. Do not reuse it.
 
 ## Duplicate and conflicting files
 
 | Files | Finding | Safe decision |
 |---|---|---|
-| `footer.js`, `img/footer.js` | Same Git blob SHA; exact duplicate content. A source scan of the reviewed HTML, CSS and template files found no explicit reference to either path. | `img/footer.js` removed from this preview branch; keep root `footer.js` for now. Recheck preview before merging. |
-| `header.js`, `img/header.js` | Different implementations; root version contains older route names, image version contains a separate older header | Keep both until page-by-page script loading is mapped |
-| `OculusLogo.png`, `img/OculusLogo.png` | Duplicate basename; root asset is used in absolute metadata URLs | Keep root URL stable |
-| `Ads.txt`, `ads.txt`, `img/ads.txt`, `php/Ads.txt` | Similar but not identical AdSense records; root `Ads.txt` contains a malformed publisher identifier with a duplicated `pub-` prefix, while lowercase root `ads.txt` has the normal `pub-` format | Do not delete or rename until the live `/ads.txt` response and AdSense account publisher ID are confirmed |
-| `index.php` | Minimal PHP placeholder, while site is deployed on Cloudflare Pages | Retain until deployment and access logs confirm it is unused |
-| `index.ts` | Generic KV example using placeholder values; no direct HTML reference found in sampled pages | Retain until Cloudflare build/runtime configuration is checked |
-| `composer.lock` | Empty file | No action until PHP dependency/runtime usage is established |
+| `footer.js`, `img/footer.js` | Same Git blob SHA; exact duplicate. No explicit reference was found in the reviewed HTML, CSS or templates. | `img/footer.js` removed in PR #13; keep root `footer.js`. |
+| `header.js`, `img/header.js` | Different implementations; root version contains older route names and the image-folder version has a separate older header. | Keep both until page-by-page script loading and behavior are mapped. |
+| `OculusLogo.png`, `img/OculusLogo.png` | Duplicate basename; root asset is used in absolute metadata URLs. | Keep root URL stable. |
+| `ads.txt`, `img/ads.txt`, `php/Ads.txt` | Root lowercase file has the expected publisher record. The two nested files contain the same publisher record. | Keep root `ads.txt`; retain nested copies until their public URL use and live `/ads.txt` response are confirmed. The malformed uppercase root `Ads.txt` was removed in PR #13. |
+| `index.php` | Minimal PHP placeholder; the website is deployed through Cloudflare Pages. | Retain until deployment settings and access logs confirm it is unused. |
+| `index.ts` | Generic KV example; no direct HTML reference was found in the reviewed sources. | Retain until Cloudflare project configuration is checked. |
+| `composer.lock` | Empty file. | No action until PHP dependency/runtime use is established. |
 
 ## Older or test-looking pages
 
-Files such as `PageTest.html`, `TemaBaru.html`, `BuatWebSendiri.html`, `AffliateShopSupport.html`, `KasuhaNET-index-refreshed.html`, `article.html`, and `artikel.html` have older or inconsistent route references. A scan of all repository HTML/template pages found no inbound source references to these routes; none appears in the current sitemap. However, `BuatWebSendiri.html` is a deliberate meta-refresh redirect to the homepage, `KasuhaNET-index-refreshed.html` declares the homepage as canonical, and the others remain directly addressable public files. Keep them until analytics, external backlinks and owner intent are checked. `Rwanda-SupportDevelopement.html` and `Timor-Leste-SupportDevelopement.html` are linked from both homepages and must be kept. `ProDownloaderVIDEOanywhereEN.html`, `SellerRimau.html` and `SellerTachtical.html` were not found in the sitemap or other page references, but are still public pages and should not be removed without owner approval.
+Files such as `PageTest.html`, `TemaBaru.html`, `BuatWebSendiri.html`, `AffliateShopSupport.html`, `KasuhaNET-index-refreshed.html`, `article.html` and `artikel.html` have older or inconsistent route references. They are not in the current sitemap and no inbound repository references were found in the reviewed source scan. However, they remain directly addressable public files. Keep them until analytics, external backlinks and owner intent have been checked.
 
-## Follow-up cleanup completed on preview
+`BuatWebSendiri.html` is a deliberate meta-refresh redirect to the homepage, and `KasuhaNET-index-refreshed.html` declares the homepage as canonical. `Rwanda-SupportDevelopement.html` and `Timor-Leste-SupportDevelopement.html` are linked from both homepages and must be kept. `ProDownloaderVIDEOanywhereEN.html`, `SellerRimau.html` and `SellerTachtical.html` were not found in the sitemap or reviewed inbound references, but must not be removed without checking external traffic and owner intent.
 
-- Removed `css/icon-follow-us.html`: it was an empty file and no reference to its path or name was found in the repository HTML, CSS or template files reviewed.
+## Cleanup merged into main
 
-- Removed `img/footer.js` because it was byte-for-byte identical to root `footer.js` and no explicit load/reference was found in the reviewed HTML, CSS or template sources.
-- Kept root `footer.js`, both `header.js` variants, duplicate logo paths, all AdSense file variants, and older/test-looking pages. Their usage or public URL impact is not sufficiently established for safe deletion.
-- This was a conservative source-level reference check, not a complete browser runtime, external-link, analytics or server-log audit.
+- Removed empty `css/icon-follow-us.html`.
+- Removed `img/footer.js`, an exact duplicate of root `footer.js` with no explicit reference in reviewed sources.
+- Removed unused legacy `php/send.php` and `php/reply.php` after owner confirmation.
+- Removed malformed uppercase root `Ads.txt`; retained lowercase root `ads.txt`.
+- Kept root `footer.js`, both `header.js` variants, duplicate logo paths, nested ads files and older/test-looking public pages because their external or runtime use is not fully established.
+- Removed duplicate non-deferred `js/home-main.js` imports from `about-us-EN.html`, `support-centre-EN.html` and `MS/support-centre-MS.html`. The Malay About page already loaded it once.
+- Corrected selected navigation, affiliate image and favicon references.
 
-## Migration decision
+## Remaining verification
 
-- Do not remove duplicate-looking files solely because their names match.
-- Do not rename the AdSense file variants until the live URL is checked.
-- Do not move or activate legacy PHP endpoints as part of repository cleanup.
-- Prioritize credential rotation and safe retirement of the unused PHP scripts, separately from cosmetic file organization.
-- No production code or asset was changed by this audit.
+1. Confirm the live HTTP response for `/ads.txt` and check whether nested ads files have any legitimate consumer.
+2. Run browser smoke tests on EN/MS navigation, images, mobile menus, workshop checkout and support submission. A successful Pages deployment is not proof that forms work end to end.
+3. Check analytics and external backlinks before removing older public HTML pages.
+4. Review Cloudflare project configuration and access logs before removing `index.php` or `index.ts`.
+5. Confirm that the historical Telegram credential has been revoked. Git history still contains the old file contents.
 
-## Active-page reference and script follow-up
-
-- Fixed the English privacy page's two self-links to point to `/privacy-policy-EN.html`.
-- Rechecked `CommandCanDoLIST.html`, both affiliate pages, both sale pages, both privacy pages, both About pages and the EN/MS support pages. The previously reported CommandCanDo navigation and affiliate product-image issues are already corrected in the current preview source; no additional route changes were needed in this pass.
-- Removed duplicate non-deferred `js/home-main.js` imports from `about-us-EN.html`, `support-centre-EN.html` and `MS/support-centre-MS.html`. Each now loads the shared script once. The Malay About page already loaded it once and was left unchanged.
-- Root `ads.txt` contains the expected publisher format `pub-4280897190566760`. `Ads.txt` has a malformed duplicated `pub-pub-` prefix. Do not delete or rename case variants until the actual `/ads.txt` response on production and preview can be confirmed; direct HTTP retrieval was unavailable during this pass.
-- Cloudflare Pages reports a successful preview deployment for the latest preview commit. This is not a substitute for browser-based interaction testing.
-
-## Remaining verification before merge
-
-- Confirm the live and preview HTTP response bodies for `/ads.txt` and `/Ads.txt`, then decide whether the malformed uppercase duplicate can be removed safely.
-- Run browser smoke tests on the preview for EN/MS navigation, images, mobile menu, workshop checkout, Stripe, ToyyibPay and support submission. Do not change payment or support runtime code as part of this cleanup.
-- Check analytics and external backlinks before removing any legacy public HTML pages.
+This audit does not authorize deleting public routes, payment handlers, support endpoints, secrets, D1 bindings or Cloudflare settings.

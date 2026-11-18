@@ -1,54 +1,49 @@
 # KasuhaNET repository structure proposal
 
-This branch is a SAFE PREVIEW. It does not move or rename production files and does not change the live site.
+This document describes the current repository layout and a cautious target organization. The first-pass cleanup has already been merged into the production source branch `main`.
 
 ## Current deployment constraints
 
 - Cloudflare Pages publishes this repository as a static site.
-- Existing public URLs depend on root-level HTML files and the current `MS/`, `guides/`, and `MS/panduan/` paths.
-- Existing HTML, CSS, JavaScript, image, sitemap, robots, payment, and Cloudflare Function paths are treated as production dependencies until every reference has been checked.
-- Therefore, route-bearing HTML files stay at their current paths in the first cleanup pass. Moving them into a `pages/` folder would change public URLs and could break navigation, SEO, payment flows, or indexed links.
+- Existing public URLs depend on root-level HTML files and the current `MS/`, `guides/` and `MS/panduan/` paths.
+- Existing HTML, CSS, JavaScript, image, sitemap, robots, payment and Cloudflare Function paths are production dependencies until every reference has been checked.
+- Route-bearing HTML files must stay at their current paths unless permanent redirects and SEO updates are prepared and tested.
+- Payment handlers under `functions/api/` must not be moved or edited during general file organization.
 
-## Target organization
+## Current high-level structure
 
 ```text
 /
-├── index.html                  # English homepage; keep public URL
-├── index.php                   # legacy file; audit before changing
+├── index.html                  # English homepage; public URL
 ├── MS/                         # Malay public routes; keep URLs
 │   ├── index.html
 │   └── panduan/
 ├── guides/                     # English public routes; keep URLs
-├── css/                        # existing stylesheets; preserve paths initially
-├── js/                          # existing JavaScript; preserve paths initially
-├── functions/                  # Cloudflare Pages Functions; preserve paths
-├── php/                        # remaining legacy files; audit before changing
-├── img/                         # existing image assets
-├── assets/                     # destination for assets after references are migrated
-│   ├── images/
-│   ├── banners/
-│   └── logos/
+├── css/                        # shared stylesheets
+├── js/                         # shared browser-side JavaScript
+├── functions/api/              # Cloudflare Pages Functions
+├── php/                        # remaining legacy files, pending review
+├── img/                        # shared image assets
 ├── template-text/              # reusable page/template fragments
 ├── docs/                       # repository and maintenance documentation
-├── sitemap.xml
+├── ads.txt                     # canonical root AdSense record
 ├── robots.txt
-├── ads.txt / Ads.txt           # verify canonical filename and references first
-└── _redirects                  # only if a future route migration needs redirects
+└── sitemap.xml
 ```
 
-## Safe migration sequence
+## Safe future organization
 
-1. Inventory every file and classify it as a public route, shared asset, Cloudflare function, legacy/server file, or documentation.
-2. Search all HTML, CSS, JS, sitemap, manifest, and configuration files for references to each asset before moving it.
-3. Move shared assets in small batches and update every reference in the same commit.
+1. Inventory every file and classify it as a public route, shared asset, Cloudflare function, legacy/server file or documentation.
+2. Search HTML, CSS, JavaScript, templates, metadata, sitemap, manifest and configuration before moving any asset.
+3. Move only small groups of confirmed internal-only assets. Update all references in the same commit.
 4. Keep public route paths stable. If a route must move, add and test a permanent redirect before removing the old route.
-5. Check EN/MS navigation, images, CSS, JavaScript, guides, checkout/payment endpoints, support form, sitemap, robots, and ads.txt.
-6. Run a Cloudflare Pages preview and verify key pages before merging anything into `main`.
+5. Preserve the root-level public assets whose URLs are already in use.
+6. Test EN/MS navigation, styles, images, JavaScript, guides, checkout/payment endpoints, support form, sitemap, robots and ads.txt on a Cloudflare Pages preview.
+7. Merge only after preview checks pass.
 
-## First-pass findings
+## Current first-pass findings
 
-- The repository currently contains root-level page files alongside images and other assets.
-- There are already useful folders for `MS/`, `guides/`, `css/`, `js/`, `img/`, `functions/`, `php/`, and `template-text/`.
-- Both `Ads.txt` and `ads.txt` exist at the root. Do not delete either until case-sensitivity and Google AdSense access are verified.
-- Files with unusual names or legacy extensions need usage checks before removal.
-- No production file has been renamed, moved, or deleted in this preview branch.
+- Public route paths have not been reorganized.
+- Existing folders for `MS/`, `guides/`, `css/`, `js/`, `img/`, `functions/`, `php/` and `template-text/` are retained.
+- Root `ads.txt` is the canonical record. The malformed uppercase root `Ads.txt` was removed. Nested `img/ads.txt` and `php/Ads.txt` remain pending URL-use verification.
+- Legacy or unusual files are retained unless there is clear evidence they are unused and no public URL or external consumer depends on them.
