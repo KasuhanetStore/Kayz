@@ -89,7 +89,7 @@ h1{font-size:clamp(30px,4.6vw,48px);line-height:1.12;letter-spacing:-1px;margin:
       <a class="brand" href="../../MS/index.html" aria-label="KasuhaNET home"><img src="../../img/logo3.png" alt="KasuhaNET.STORE"></a>
       <nav class="nav-links" aria-label="Navigasi utama">
         <a href="../../MS/index.html">LAMAN UTAMA</a>
-        <a href="../../MS/about-us-MS.html">TENTANG KAMI</a>
+        <a href="/About-Us/MS/">TENTANG KAMI</a>
         <a href="index.html">PUSAT PANDUAN</a>
         <a href="../../MS/privacy-policy-MS.html">POLISI PRIVASI</a>
         <a href="../../MS/support-centre-MS.html">SOKONGAN</a>
@@ -121,7 +121,7 @@ h1{font-size:clamp(30px,4.6vw,48px);line-height:1.12;letter-spacing:-1px;margin:
     fetch("../../template-text/MS/template-footer-MS.html")
       .then(response => { if (!response.ok) throw new Error("Footer template failed to load"); return response.text(); })
       .then(data => {
-        data = data.replaceAll('href="about-us-MS.html"', 'href="../../MS/about-us-MS.html"')
+        data = data.replaceAll('href="/About-Us/MS/"', 'href="/About-Us/MS/"')
           .replaceAll('href="support-centre-MS.html"', 'href="../../MS/support-centre-MS.html"')
           .replaceAll('href="privacy-policy-MS.html"', 'href="../../MS/privacy-policy-MS.html"')
           .replaceAll('href="privacy-policy-MS.html"', 'href="../../MS/privacy-policy-MS.html"')
