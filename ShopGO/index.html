@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopGO Resident Site — Panel Urusan Sewa Tapak & Ruang Perniagaan</title>
+    
+    <!-- Google Fonts: Fredoka (Tajuk Kartun Bulat) & Plus Jakarta Sans (Teks Jelas & Moden) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Konfigurasi Sistem Warna Kartun HD / Neo-Brutalist -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Fredoka', 'sans-serif'],
+                        body: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        'comic-yellow': '#FACC15',
+                        'comic-pink': '#FF6B9D',
+                        'comic-cyan': '#38BDF8',
+                        'comic-lime': '#A3E635',
+                        'comic-purple': '#C084FC',
+                        'comic-orange': '#FB923C',
+                        'comic-cream': '#FFFBEB',
+                        'comic-ink': '#18181B',
+                    },
+                    boxShadow: {
+                        'comic-sm': '4px 4px 0px 0px #18181B',
+                        'comic': '6px 6px 0px 0px #18181B',
+                        'comic-lg': '10px 10px 0px 0px #18181B',
+                        'comic-xl': '14px 14px 0px 0px #18181B',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Gaya Asas & Corak Titik Komik (Halftone Dots) */
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FFFBEB;
+            color: #18181B;
+            background-image: radial-gradient(#18181B 1.4px, transparent 1.4px);
+            background-size: 26px 26px;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .font-comic {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        /* Butang Interaktif Komik 3D */
+        .comic-btn {
+            border: 3px solid #18181B;
+            box-shadow: 5px 5px 0px 0px #18181B;
+            transition: transform 0.14s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.14s ease;
+        }
+        .comic-btn:hover:not(:disabled) {
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0px 0px #18181B;
+        }
+        .comic-btn:active:not(:disabled) {
+            transform: translate(3px, 3px);
+            box-shadow: 1px 1px 0px 0px #18181B;
+        }
+
+        /* Kad Ruang / Lot Komik */
+        .comic-card {
+            border: 3px solid #18181B;
+            box-shadow: 6px 6px 0px 0px #18181B;
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+        }
+        .comic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 10px 10px 0px 0px #18181B;
+        }
+
+        /* Garisan Teks Komik (Text Stroke) */
+        .text-stroke {
+            -webkit-text-stroke: 2px #18181B;
+            paint-order: stroke fill;
+        }
+        .text-stroke-lg {
+            -webkit-text-stroke: 3px #18181B;
+            paint-order: stroke fill;
+        }
+
+        /* Animasi Terapung & Riben Bergerak */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2.5deg); }
+        }
+        @keyframes floatReverse {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(8px) rotate(-3deg); }
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .animate-float { animation: floatSlow 4s ease-in-out infinite; }
+        .animate-float-rev { animation: floatReverse 4.5s ease-in-out infinite; }
+        .animate-marquee {
+            display: flex;
+            width: max-content;
+            animation: marquee 24s linear infinite;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: #FFFBEB; border-left: 3px solid #18181B; }
+        ::-webkit-scrollbar-thumb { background: #FACC15; border: 3px solid #18181B; border-radius: 999px; }
+    </style>
+</head>
+<body class="antialiased selection:bg-comic-pink selection:text-white">
+
+    <!-- ==================== BAR STATUS PENGURUSAN ATAS ==================== -->
+    <div class="bg-comic-ink text-white border-b-4 border-comic-ink py-2 px-4 text-xs sm:text-sm font-bold">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+                <span class="bg-comic-lime text-comic-ink px-2.5 py-0.5 rounded-full border-2 border-white font-extrabold uppercase tracking-wider">
+                    🏢 PORTAL PENYEWA RASMI
+                </span>
+                <span>Pengambilan Usahawan Fasa 2 Kini Dibuka! <span class="text-comic-yellow underline">Diskaun 20%</span> untuk kontrak tahunan.</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-comic-lime animate-ping"></span>
+                <span class="text-comic-cyan font-extrabold" id="live-available-count">5 Tapak Kekosongan Hari Ini</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== NAVIGASI UTAMA MELEKIT (STICKY NAVBAR) ==================== -->
+    <header class="sticky top-0 z-40 pt-3 px-4 sm:px-6 lg:px-8">
+        <nav class="max-w-7xl mx-auto bg-white border-3 border-comic-ink rounded-3xl shadow-comic px-4 sm:px-6 py-3 flex items-center justify-between">
+            <!-- Logo ShopGO Resident -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 bg-comic-yellow border-3 border-comic-ink rounded-2xl flex items-center justify-center shadow-comic-sm group-hover:-rotate-6 transition-transform">
+                    <!-- SVG Ikon Kedai / Kiosk Komik -->
+                    <svg class="w-7 h-7" viewBox="0 0 64 64" fill="none">
+                        <path d="M10 24L16 10H48L54 24H10Z" fill="#FF6B9D" stroke="#18181B" stroke-width="4" stroke-linejoin="round"/>
+                        <path d="M10 24C10 29 14 32 18 32C22 32 25 29 25 24C25 29 28 32 32 32C36 32 39 29 39 24C39 29 42 32 46 32C50 32 54 29 54 24" fill="#FACC15" stroke="#18181B" stroke-width="4" stroke-linejoin="round"/>
+                        <rect x="14" y="31" width="36" height="23" rx="3" fill="#38BDF8" stroke="#18181B" stroke-width="4"/>
+                        <rect x="26" y="38" width="12" height="16" fill="#FFFFFF" stroke="#18181B" stroke-width="3.5"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="font-comic text-xl sm:text-2xl font-bold tracking-tight text-comic-ink block leading-none">
+                        ShopGO <span class="text-comic-pink">Resident</span>
+                    </span>
+                    <span class="text-[11px] font-extrabold uppercase tracking-wider bg-comic-lime px-2 py-0.5 rounded-md border-2 border-comic-ink inline-block mt-1">
+                        Panel Sewa Ruang Niaga
+                    </span>
+                </div>
+            </a>
+
+            <!-- Pautan Navigasi Desktop -->
+            <div class="hidden md:flex items-center gap-6 font-extrabold text-sm lg:text-base">
+                <a href="#pelan-tapak" class="hover:text-comic-pink transition-colors">Pelan Tapak</a>
+                <a href="#pakej-sewa" class="hover:text-comic-purple transition-colors">Pakej & Kalkulator</a>
+                <a href="#kemudahan" class="hover:text-comic-cyan transition-colors">Kemudahan</a>
+                <a href="#soalan-lazim" class="hover:text-comic-orange transition-colors">Soalan Lazim</a>
+            </div>
+
+            <!-- Butang Status Permohonan / Akaun Penyewa -->
+            <div class="flex items-center gap-2.5">
+                <button onclick="toggleDrawer()" class="comic-btn bg-comic-cyan hover:bg-comic-yellow px-3.5 sm:px-5 py-2.5 rounded-2xl font-comic font-bold text-sm sm:text-base flex items-center gap-2 cursor-pointer">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="#18181B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                    </svg>
+                    <span class="hidden sm:inline">Panel Tempahan</span>
+                    <span class="sm:hidden">Panel</span>
+                    <span id="application-badge" class="bg-comic-pink text-white text-xs font-extrabold px-2 py-0.5 rounded-full border-2 border-comic-ink">0</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ==================== SEKSYEN HERO (PENGENALAN PORTAL) ==================== -->
+    <section class="pt-8 pb-14 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="bg-comic-yellow border-4 border-comic-ink rounded-[2.5rem] shadow-comic-xl p-6 sm:p-10 lg:p-14 relative overflow-hidden">
+                
+                <!-- Bentuk Latar Belakang Komik -->
+                <div class="absolute -top-14 -right-14 w-52 h-52 bg-comic-pink rounded-full border-4 border-comic-ink opacity-85 pointer-events-none"></div>
+                <div class="absolute -bottom-16 -left-16 w-60 h-60 bg-comic-cyan rounded-full border-4 border-comic-ink opacity-85 pointer-events-none"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+                    
+                    <!-- Kolum Kiri: Copywriting Sewa Tapak -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 bg-white border-3 border-comic-ink px-4 py-1.5 rounded-full shadow-comic-sm transform -rotate-1">
+                            <span class="w-3 h-3 rounded-full bg-comic-lime border-2 border-comic-ink"></span>
+                            <span class="font-extrabold text-xs sm:text-sm uppercase tracking-wide">Kekosongan Terhad • Zon Komersial Utama</span>
+                        </div>
+
+                        <h1 class="font-comic text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] text-white text-stroke-lg drop-shadow-[4px_4px_0px_#18181B]">
+                            SEWA TAPAK & RUANG KEDAI IMPIAN ANDA DI <span class="text-comic-cyan">SHOPGO RESIDENT!</span>
+                        </h1>
+
+                        <p class="text-base sm:text-lg font-bold text-comic-ink bg-comic-cream border-3 border-comic-ink p-4 sm:p-5 rounded-2xl shadow-comic-sm max-w-2xl mx-auto lg:mx-0">
+                            Kembangkan jenama anda di hab komuniti paling meriah! Pilih terus dari pelan lantai interaktif kami — sedia dengan elektrik 3-fasa, WiFi berkelajuan tinggi, dan trafik pelanggan tetap setiap hari.
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-1">
+                            <a href="#pelan-tapak" class="comic-btn w-full sm:w-auto bg-comic-pink text-white font-comic text-xl px-8 py-4 rounded-2xl flex items-center justify-center gap-3">
+                                <span>LIHAT PELAN TAPAK</span>
+                                <span class="bg-comic-yellow text-comic-ink w-8 h-8 rounded-full border-2 border-comic-ink flex items-center justify-center font-extrabold">↓</span>
+                            </a>
+                            <button onclick="openCalculatorModal()" class="comic-btn w-full sm:w-auto bg-comic-lime text-comic-ink font-comic text-xl px-7 py-4 rounded-2xl flex items-center justify-center gap-2 cursor-pointer">
+                                <span>🧮 KIRA SEWAAN</span>
+                            </button>
+                        </div>
+
+                        <!-- 3 Kad Statistik Utama -->
+                        <div class="grid grid-cols-3 gap-3 pt-3 max-w-xl mx-auto lg:mx-0">
+                            <div class="bg-white border-3 border-comic-ink rounded-2xl p-3 text-center shadow-comic-sm">
+                                <div class="font-comic text-2xl sm:text-3xl font-bold text-comic-pink">50+</div>
+                                <div class="text-xs font-extrabold text-comic-ink">Tapak Strategik</div>
+                            </div>
+                            <div class="bg-white border-3 border-comic-ink rounded-2xl p-3 text-center shadow-comic-sm">
+                                <div class="font-comic text-2xl sm:text-3xl font-bold text-comic-purple">12K+</div>
+                                <div class="text-xs font-extrabold text-comic-ink">Trafik Harian</div>
+                            </div>
+                            <div class="bg-white border-3 border-comic-ink rounded-2xl p-3 text-center shadow-comic-sm">
+                                <div class="font-comic text-2xl sm:text-3xl font-bold text-comic-cyan text-stroke">100%</div>
+                                <div class="text-xs font-extrabold text-comic-ink">Plug & Niaga</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kolum Kanan: Ilustrasi SVG Kartun HD Kiosk & Pemilik Kedai -->
+                    <div class="lg:col-span-5 flex justify-center relative">
+                        <div class="relative w-full max-w-md">
+                            <!-- Lencana Terapung Atas -->
+                            <div class="absolute -top-4 -left-2 sm:-left-5 z-20 bg-comic-lime border-3 border-comic-ink rounded-2xl px-4 py-2 shadow-comic animate-float">
+                                <span class="font-comic font-bold text-base sm:text-lg block leading-none">DEPOSIT RENDAH</span>
+                                <span class="text-xs font-extrabold">Mula Berniaga 48 Jam!</span>
+                            </div>
+
+                            <!-- Lencana Terapung Bawah -->
+                            <div class="absolute -bottom-4 -right-2 sm:-right-4 z-20 bg-comic-purple text-white border-3 border-comic-ink rounded-full px-4 py-2 shadow-comic animate-float-rev">
+                                <span class="font-comic font-bold text-sm">⚡ PERCUMA PROMO DI APP</span>
+                            </div>
+
+                            <!-- Kanvas Ilustrasi Storefront Kartun HD -->
+                            <div class="bg-comic-cream border-4 border-comic-ink rounded-[2rem] p-4 shadow-comic-lg transform rotate-1 hover:rotate-0 transition-transform duration-300">
+                                <svg viewBox="0 0 400 380" class="w-full h-auto rounded-2xl bg-comic-cyan/25 border-3 border-comic-ink">
+                                    <!-- Awan Kartun -->
+                                    <path d="M50 75 C40 75 33 68 33 59 C33 51 39 44 47 43 C50 32 61 24 73 24 C87 24 98 35 100 49 C107 50 112 56 112 63 C112 70 107 75 100 75 Z" fill="#FFFFFF" stroke="#18181B" stroke-width="4.5" stroke-linejoin="round"/>
+                                    <path d="M295 65 C287 65 281 59 281 52 C281 45 286 40 293 39 C295 30 304 23 314 23 C325 23 334 32 336 43 C342 44 346 49 346 55 C346 61 342 65 336 65 Z" fill="#FFFFFF" stroke="#18181B" stroke-width="4.5" stroke-linejoin="round"/>
+
+                                    <!-- Bumbung / Papan Tanda Atas Kedai -->
+                                    <rect x="85" y="55" width="230" height="44" rx="14" fill="#C084FC" stroke="#18181B" stroke-width="6"/>
+                                    <text x="200" y="84" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="22" fill="#FFFFFF" stroke="#18181B" stroke-width="3">SHOPGO KIOSK</text>
+
+                                    <!-- Struktur Utama Kiosk -->
+                                    <rect x="65" y="135" width="270" height="190" rx="18" fill="#FFFFFF" stroke="#18181B" stroke-width="6"/>
+
+                                    <!-- Kanopi / Awning Berbelang -->
+                                    <path d="M50 135 L72 95 H328 L350 135 Z" fill="#FF6B9D" stroke="#18181B" stroke-width="6" stroke-linejoin="round"/>
+                                    <!-- Jalur Kuning Awning -->
+                                    <polygon points="115,95 155,95 148,135 102,135" fill="#FACC15" stroke="#18181B" stroke-width="5"/>
+                                    <polygon points="200,95 240,95 246,135 200,135" fill="#FACC15" stroke="#18181B" stroke-width="5"/>
+                                    <polygon points="285,95 325,95 344,135 298,135" fill="#FACC15" stroke="#18181B" stroke-width="5"/>
+                                    <!-- Lengkungan Bawah Awning -->
+                                    <path d="M50 135 C50 148 75 148 75 135 C75 148 100 148 100 135 C100 148 125 148 125 135 C125 148 150 148 150 135 C150 148 175 148 175 135 C175 148 200 148 200 135 C200 148 225 148 225 135 C225 148 250 148 250 135 C250 148 275 148 275 135 C275 148 300 148 300 135 C300 148 325 148 325 135 C325 148 350 148 350 135" fill="#FF6B9D" stroke="#18181B" stroke-width="5"/>
+
+                                    <!-- Tingkap Jualan Kiosk -->
+                                    <rect x="90" y="155" width="220" height="90" rx="14" fill="#38BDF8" stroke="#18181B" stroke-width="5"/>
+
+                                    <!-- Maskot Usahawan Kartun Ceria di Dalam Kiosk -->
+                                    <!-- Badan -->
+                                    <path d="M155 245 C155 215 245 215 245 245 Z" fill="#A3E635" stroke="#18181B" stroke-width="5"/>
+                                    <!-- Kepala -->
+                                    <circle cx="200" cy="195" r="28" fill="#FDE68A" stroke="#18181B" stroke-width="5"/>
+                                    <!-- Topi Visor Usahawan -->
+                                    <path d="M174 185 C174 166 226 166 226 185 Z" fill="#FF6B9D" stroke="#18181B" stroke-width="5"/>
+                                    <path d="M172 185 H235 C239 185 239 191 232 191 H172 Z" fill="#FACC15" stroke="#18181B" stroke-width="4"/>
+                                    <!-- Mata & Senyuman -->
+                                    <circle cx="191" cy="197" r="3.5" fill="#18181B"/>
+                                    <circle cx="209" cy="197" r="3.5" fill="#18181B"/>
+                                    <path d="M193 207 Q200 214 207 207" fill="none" stroke="#18181B" stroke-width="3.5" stroke-linecap="round"/>
+
+                                    <!-- Kaunter Bawah Kiosk -->
+                                    <rect x="78" y="242" width="244" height="16" rx="8" fill="#FACC15" stroke="#18181B" stroke-width="5"/>
+                                    <rect x="90" y="258" width="220" height="67" fill="#FF6B9D" stroke="#18181B" stroke-width="5"/>
+
+                                    <!-- Papan Tanda "BUKA / OPEN" di Kaunter -->
+                                    <rect x="145" y="272" width="110" height="36" rx="10" fill="#A3E635" stroke="#18181B" stroke-width="4.5" transform="rotate(-2 200 290)"/>
+                                    <text x="200" y="296" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="18" fill="#18181B" transform="rotate(-2 200 290)">JOM NIAGA!</text>
+
+                                    <!-- Lantai Jalan -->
+                                    <line x1="30" y1="326" x2="370" y2="326" stroke="#18181B" stroke-width="7" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== MARQUEE RIBEN MAKLUMAT ==================== -->
+    <div class="bg-comic-ink text-comic-yellow border-y-4 border-comic-ink py-3 overflow-hidden select-none my-2">
+        <div class="animate-marquee flex items-center gap-8 font-comic text-lg sm:text-xl font-bold uppercase tracking-wide">
+            <span>★ PELAN TAPAK DIGITAL MASA NYATA</span>
+            <span>⚡ BEKALAN ELEKTRIK & AIR TERSEDIA</span>
+            <span>📶 WIFI FIBER PERCUMA UNTUK PENYEWA</span>
+            <span>🛡️ KAWALAN KESELAMATAN 24/7 & CCTV</span>
+            <span>📣 PROMOSI PERCUMA DI APLIKASI PENDUDUK SHOPGO</span>
+            <span>★ PELAN TAPAK DIGITAL MASA NYATA</span>
+            <span>⚡ BEKALAN ELEKTRIK & AIR TERSEDIA</span>
+            <span>📶 WIFI FIBER PERCUMA UNTUK PENYEWA</span>
+            <span>🛡️ KAWALAN KESELAMATAN 24/7 & CCTV</span>
+            <span>📣 PROMOSI PERCUMA DI APLIKASI PENDUDUK SHOPGO</span>
+        </div>
+    </div>
+
+    <!-- ==================== SEKSYEN PELAN TAPAK & PEMILIHAN LOT INTERAKTIF ==================== -->
+    <section id="pelan-tapak" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+            <div class="space-y-3">
+                <span class="bg-comic-cyan text-comic-ink font-extrabold text-xs uppercase px-4 py-1.5 rounded-full border-3 border-comic-ink shadow-comic-sm inline-block">
+                    🗺️ PELAN LANTAI INTERAKTIF
+                </span>
+                <h2 class="font-comic text-4xl sm:text-5xl font-bold text-comic-ink">
+                    PILIH <span class="bg-comic-yellow px-3 py-0.5 rounded-2xl border-3 border-comic-ink inline-block transform -rotate-1">TAPAK & RUANG</span> JUALAN
+                </h2>
+                <p class="font-bold text-gray-700 max-w-2xl">
+                    Tapis mengikut jenis perniagaan anda, semak saiz kaki persegi (sqft), kadar sewa bulanan, dan klik <span class="text-comic-pink underline">"Tempah Tapak Ini"</span> untuk terus ke panel kiraan sewaan.
+                </p>
+            </div>
+
+            <!-- Petunjuk Status Lot -->
+            <div class="flex flex-wrap items-center gap-3 bg-white border-3 border-comic-ink p-3 rounded-2xl shadow-comic-sm self-start lg:self-end">
+                <div class="flex items-center gap-2 text-xs font-extrabold">
+                    <span class="w-4 h-4 rounded-md bg-comic-lime border-2 border-comic-ink"></span>
+                    <span>Tersedia (Boleh Tempah)</span>
+                </div>
+                <div class="flex items-center gap-2 text-xs font-extrabold">
+                    <span class="w-4 h-4 rounded-md bg-gray-300 border-2 border-comic-ink"></span>
+                    <span>Telah Disewa</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bar Penapis Zon / Jenis Tapak -->
+        <div class="flex flex-wrap items-center gap-3 mb-10" id="zone-filters">
+            <button onclick="filterLots('semua')" data-zone="semua" class="zone-btn comic-btn bg-comic-ink text-white font-comic text-base px-5 py-2.5 rounded-2xl cursor-pointer">
+                🏢 Semua Tapak (6)
+            </button>
+            <button onclick="filterLots('atrium')" data-zone="atrium" class="zone-btn comic-btn bg-white text-comic-ink font-comic text-base px-5 py-2.5 rounded-2xl cursor-pointer">
+                🎪 Kiosk Tengah (Atrium)
+            </button>
+            <button onclick="filterLots('corner')" data-zone="corner" class="zone-btn comic-btn bg-white text-comic-ink font-comic text-base px-5 py-2.5 rounded-2xl cursor-pointer">
+                🏪 Lot Kedai Sudut (Corner)
+            </button>
+            <button onclick="filterLots('fnb')" data-zone="fnb" class="zone-btn comic-btn bg-white text-comic-ink font-comic text-base px-5 py-2.5 rounded-2xl cursor-pointer">
+                🍔 Tapak F&B / Kafe
+            </button>
+            <button onclick="filterLots('popup')" data-zone="popup" class="zone-btn comic-btn bg-white text-comic-ink font-comic text-base px-5 py-2.5 rounded-2xl cursor-pointer">
+                ⛺ Pop-Up Booth
+            </button>
+        </div>
+
+        <!-- Peta Mini Visual Blok Lantai (Floor Plan Overview) -->
+        <div class="bg-white border-4 border-comic-ink rounded-3xl p-5 sm:p-6 shadow-comic mb-10">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="font-comic text-xl font-bold flex items-center gap-2">
+                    <span>📍 Susun Atur Aras Utama (Ground Concourse)</span>
+                </h3>
+                <span class="text-xs font-extrabold bg-comic-yellow px-3 py-1 rounded-full border-2 border-comic-ink">Klik kod lot untuk sorotan pantas</span>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3" id="mini-floorplan">
+                <!-- Dijana secara dinamik oleh JS -->
+            </div>
+        </div>
+
+        <!-- Grid Kad Butiran Tapak / Lot -->
+        <div id="lots-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Kad lot akan dijana oleh JavaScript -->
+        </div>
+    </section>
+
+    <!-- ==================== SEKSYEN KALKULATOR SEWAAN INTERAKTIF PANTAS ==================== -->
+    <section id="pakej-sewa" class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="bg-comic-purple border-4 border-comic-ink rounded-[2.5rem] p-6 sm:p-10 lg:p-12 shadow-comic-xl">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-6 text-white space-y-4">
+                    <span class="bg-comic-yellow text-comic-ink font-extrabold text-xs uppercase px-3.5 py-1 rounded-full border-2 border-comic-ink inline-block">
+                        💡 SIMULATOR KOS PERNIAGAAN
+                    </span>
+                    <h2 class="font-comic text-3xl sm:text-5xl font-bold text-stroke leading-tight">
+                        RANCANG BAJET SEWAAN ANDA DENGAN TELUS!
+                    </h2>
+                    <p class="font-bold text-comic-ink bg-white border-3 border-comic-ink p-4 rounded-2xl shadow-comic-sm text-sm sm:text-base">
+                        Tiada caj tersembunyi! Pilih tempoh kontrak yang fleksibel dari 1 bulan hingga 12 bulan. Kontrak jangka panjang menikmati potongan harga terus pada sewa bulanan.
+                    </p>
+                    <div class="grid grid-cols-2 gap-3 pt-2 text-comic-ink">
+                        <div class="bg-comic-lime border-3 border-comic-ink p-3 rounded-2xl font-extrabold text-sm">
+                            ✨ Kontrak 6 Bulan: <span class="block font-comic text-xl">DISKAUN 10%</span>
+                        </div>
+                        <div class="bg-comic-cyan border-3 border-comic-ink p-3 rounded-2xl font-extrabold text-sm">
+                            🔥 Kontrak 12 Bulan: <span class="block font-comic text-xl">DISKAUN 20%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kad Kalkulator Segera -->
+                <div class="lg:col-span-6 bg-comic-cream border-4 border-comic-ink rounded-3xl p-6 shadow-comic-lg space-y-4">
+                    <h3 class="font-comic text-2xl font-bold text-comic-ink border-b-3 border-comic-ink pb-2">
+                        🧮 Anggaran Pantas Sewa Tapak
+                    </h3>
+                    
+                    <div>
+                        <label class="block text-xs font-extrabold uppercase mb-1">1. Pilih Lot Tersedia</label>
+                        <select id="quick-lot-select" onchange="updateQuickCalc()" class="w-full bg-white border-3 border-comic-ink rounded-xl px-3.5 py-2.5 font-bold text-sm focus:outline-none">
+                            <!-- Pilihan dijana dari lot tersedia -->
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-extrabold uppercase mb-1">2. Tempoh Kontrak</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="quick-duration-btns">
+                            <button type="button" onclick="setQuickDuration(1)" data-dur="1" class="q-dur-btn comic-btn bg-comic-ink text-white font-comic text-sm py-2 rounded-xl cursor-pointer">1 Bulan</button>
+                            <button type="button" onclick="setQuickDuration(3)" data-dur="3" class="q-dur-btn comic-btn bg-white text-comic-ink font-comic text-sm py-2 rounded-xl cursor-pointer">3 Bulan</button>
+                            <button type="button" onclick="setQuickDuration(6)" data-dur="6" class="q-dur-btn comic-btn bg-white text-comic-ink font-comic text-sm py-2 rounded-xl cursor-pointer">6 Bln (-10%)</button>
+                            <button type="button" onclick="setQuickDuration(12)" data-dur="12" class="q-dur-btn comic-btn bg-white text-comic-ink font-comic text-sm py-2 rounded-xl cursor-pointer">12 Bln (-20%)</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border-3 border-comic-ink rounded-2xl p-4 space-y-2 text-sm font-bold">
+                        <div class="flex justify-between">
+                            <span>Sewa Bulanan (Selepas Diskaun):</span>
+                            <span id="q-monthly" class="font-extrabold text-comic-purple">RM 0.00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Deposit Keselamatan & Utiliti (2+1):</span>
+                            <span id="q-deposit" class="font-extrabold">RM 0.00</span>
+                        </div>
+                        <div class="border-t-2 border-dashed border-comic-ink pt-2 flex justify-between items-center text-base">
+                            <span class="font-extrabold">Anggaran Bayaran Mula:</span>
+                            <span id="q-total" class="font-comic text-2xl text-comic-pink">RM 0.00</span>
+                        </div>
+                    </div>
+
+                    <button onclick="bookFromQuickCalc()" class="comic-btn w-full bg-comic-yellow hover:bg-comic-lime text-comic-ink font-comic text-lg py-3.5 rounded-2xl cursor-pointer">
+                        ISI BORANG TEMPAHAN TAPAK INI ➔
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SEKSYEN KEMUDAHAN & KELEBIHAN PENYEWA ==================== -->
+    <section id="kemudahan" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+            <span class="bg-comic-pink text-white font-extrabold text-xs uppercase px-4 py-1.5 rounded-full border-3 border-comic-ink shadow-comic-sm inline-block">
+                🌟 EKOSISTEM PERNIAGAAN LENGKAP
+            </span>
+            <h2 class="font-comic text-4xl sm:text-5xl font-bold text-comic-ink">
+                KENAPA BERNIAGA DI <span class="text-comic-purple">SHOPGO RESIDENT</span>?
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Kemudahan 1 -->
+            <div class="comic-card bg-comic-yellow rounded-3xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="w-16 h-16 bg-white border-3 border-comic-ink rounded-2xl flex items-center justify-center mb-4 shadow-comic-sm">
+                        <svg class="w-9 h-9" viewBox="0 0 48 48" fill="none">
+                            <path d="M24 6L8 13V24C8 34.5 14.8 43.8 24 46C33.2 43.8 40 34.5 40 24V13L24 6Z" fill="#38BDF8" stroke="#18181B" stroke-width="3.5" stroke-linejoin="round"/>
+                            <path d="M18 24L22 28L31 19" stroke="#18181B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-comic text-2xl font-bold mb-2">Keselamatan 24 Jam</h3>
+                    <p class="font-bold text-sm text-comic-ink/90">
+                        Rondaan pengawal keselamatan berkala, akses kad pintar penyewa, dan liputan CCTV HD di setiap koridor.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Kemudahan 2 -->
+            <div class="comic-card bg-comic-cyan rounded-3xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="w-16 h-16 bg-white border-3 border-comic-ink rounded-2xl flex items-center justify-center mb-4 shadow-comic-sm">
+                        <svg class="w-9 h-9" viewBox="0 0 48 48" fill="none">
+                            <rect x="13" y="5" width="22" height="38" rx="5" fill="#FF6B9D" stroke="#18181B" stroke-width="3.5"/>
+                            <circle cx="24" cy="36" r="2.5" fill="#18181B"/>
+                            <path d="M19 18L24 13L29 18M24 13V26" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-comic text-2xl font-bold mb-2">Promo di ShopGO App</h3>
+                    <p class="font-bold text-sm text-comic-ink/90">
+                        Kedai anda disenaraikan secara automatik dalam aplikasi penduduk untuk pesanan penghantaran terus ke rumah!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Kemudahan 3 -->
+            <div class="comic-card bg-comic-lime rounded-3xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="w-16 h-16 bg-white border-3 border-comic-ink rounded-2xl flex items-center justify-center mb-4 shadow-comic-sm">
+                        <svg class="w-9 h-9" viewBox="0 0 48 48" fill="none">
+                            <rect x="6" y="16" width="36" height="18" rx="6" fill="#FACC15" stroke="#18181B" stroke-width="3.5"/>
+                            <path d="M12 16L16 9H32L36 16" fill="#38BDF8" stroke="#18181B" stroke-width="3.5" stroke-linejoin="round"/>
+                            <circle cx="15" cy="34" r="5" fill="#18181B"/>
+                            <circle cx="33" cy="34" r="5" fill="#18181B"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-comic text-2xl font-bold mb-2">Parkir & Loading Luas</h3>
+                    <p class="font-bold text-sm text-comic-ink/90">
+                        Ruang pemunggahan barang (loading bay) khas untuk peniaga serta 400+ petak parkir percuma untuk pelanggan.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Kemudahan 4 -->
+            <div class="comic-card bg-comic-pink rounded-3xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="w-16 h-16 bg-white border-3 border-comic-ink rounded-2xl flex items-center justify-center mb-4 shadow-comic-sm">
+                        <svg class="w-9 h-9" viewBox="0 0 48 48" fill="none">
+                            <polygon points="26,5 12,26 23,26 20,43 36,21 25,21" fill="#FACC15" stroke="#18181B" stroke-width="3.5" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-comic text-2xl font-bold mb-2">Elektrik & WiFi Laju</h3>
+                    <p class="font-bold text-sm text-comic-ink/90">
+                        Soket kuasa mencukupi termasuk pilihan 3-Fasa untuk F&B serta sambungan WiFi Fiber 500Mbps bagi sistem POS.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SEKSYEN SOALAN LAZIM (FAQ ACCORDION) ==================== -->
+    <section id="soalan-lazim" class="py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+        <div class="text-center mb-10">
+            <h2 class="font-comic text-3xl sm:text-5xl font-bold text-comic-ink">
+                SOALAN LAZIM <span class="bg-comic-lime px-3 py-0.5 rounded-2xl border-3 border-comic-ink">PENYEWA</span>
+            </h2>
+        </div>
+
+        <div class="space-y-4" id="faq-container">
+            <!-- FAQ 1 -->
+            <div class="bg-white border-3 border-comic-ink rounded-2xl shadow-comic-sm overflow-hidden">
+                <button onclick="toggleFaq(0)" class="w-full p-5 text-left font-comic text-lg sm:text-xl font-bold flex items-center justify-between cursor-pointer hover:bg-comic-yellow/30">
+                    <span>1. Apakah dokumen yang diperlukan untuk menyewa tapak?</span>
+                    <span id="faq-icon-0" class="w-8 h-8 rounded-xl bg-comic-yellow border-2 border-comic-ink flex items-center justify-center font-extrabold">+</span>
+                </button>
+                <div id="faq-ans-0" class="hidden px-5 pb-5 font-bold text-gray-700 text-sm sm:text-base border-t-2 border-comic-ink pt-3">
+                    Anda hanya perlukan salinan Kad Pengenalan pemilik, Sijil Pendaftaran Perniagaan (SSM), dan profil ringkas produk/perkhidmatan anda. Permohonan dalam talian diluluskan dalam masa 24 jam bekerja.
+                </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="bg-white border-3 border-comic-ink rounded-2xl shadow-comic-sm overflow-hidden">
+                <button onclick="toggleFaq(1)" class="w-full p-5 text-left font-comic text-lg sm:text-xl font-bold flex items-center justify-between cursor-pointer hover:bg-comic-yellow/30">
+                    <span>2. Adakah struktur kiosk atau kaunter disediakan?</span>
+                    <span id="faq-icon-1" class="w-8 h-8 rounded-xl bg-comic-cyan border-2 border-comic-ink flex items-center justify-center font-extrabold">+</span>
+                </button>
+                <div id="faq-ans-1" class="hidden px-5 pb-5 font-bold text-gray-700 text-sm sm:text-base border-t-2 border-comic-ink pt-3">
+                    Ya! Untuk kategori Kiosk Tengah dan Pop-Up Booth, kaunter asas berkunci dan punca kuasa elektrik disediakan. Bagi Lot Kedai Sudut dan F&B, ruang kosong berjubin dengan sambungan air dan paip pelepasan tersedia untuk ubah suai mengikut identiti jenama anda.
+                </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="bg-white border-3 border-comic-ink rounded-2xl shadow-comic-sm overflow-hidden">
+                <button onclick="toggleFaq(2)" class="w-full p-5 text-left font-comic text-lg sm:text-xl font-bold flex items-center justify-between cursor-pointer hover:bg-comic-yellow/30">
+                    <span>3. Bilakah waktu operasi perniagaan di ShopGO Resident?</span>
+                    <span id="faq-icon-2" class="w-8 h-8 rounded-xl bg-comic-pink text-white border-2 border-comic-ink flex items-center justify-center font-extrabold">+</span>
+                </button>
+                <div id="faq-ans-2" class="hidden px-5 pb-5 font-bold text-gray-700 text-sm sm:text-base border-t-2 border-comic-ink pt-3">
+                    Waktu operasi rasmi adalah setiap hari dari jam 10:00 pagi hingga 10:00 malam (termasuk hujung minggu dan cuti umum). Penyewa F&B dibenarkan beroperasi sehingga jam 12:00 tengah malam bagi pesanan penghantaran.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER PEJABAT PENGURUSAN SHOPGO RESIDENT ==================== -->
+    <footer class="bg-comic-ink text-white border-t-4 border-comic-ink pt-14 pb-8 px-4 sm:px-6 lg:px-8 mt-14">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 pb-10 border-b-2 border-gray-800">
+            <div class="md:col-span-2 space-y-4">
+                <div class="font-comic text-3xl font-bold text-comic-yellow">
+                    ShopGO <span class="text-comic-pink">Resident</span>
+                </div>
+                <p class="text-gray-300 font-bold text-sm max-w-md">
+                    Pejabat Pengurusan Komersial & Pajakan Ruang Niaga, Aras G, Residensi ShopGO, Johor Bahru. Membantu usahawan tempatan berkembang bersama komuniti.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-1">
+                    <span class="bg-comic-lime text-comic-ink font-extrabold px-3 py-1 rounded-xl text-xs">📞 07-234 8899 (Unit Pajakan)</span>
+                    <span class="bg-comic-cyan text-comic-ink font-extrabold px-3 py-1 rounded-xl text-xs">✉️ sewa@shopgoresident.my</span>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-comic text-xl font-bold text-comic-yellow mb-4">Navigasi Panel</h4>
+                <ul class="space-y-2 font-bold text-gray-300 text-sm">
+                    <li><a href="#pelan-tapak" class="hover:text-comic-cyan">Pelan Tapak Interaktif</a></li>
+                    <li><a href="#pakej-sewa" class="hover:text-comic-cyan">Kalkulator & Pakej</a></li>
+                    <li><a href="#kemudahan" class="hover:text-comic-cyan">Kemudahan Penyewa</a></li>
+                    <li><a href="#soalan-lazim" class="hover:text-comic-cyan">Soalan Lazim</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-comic text-xl font-bold text-comic-pink mb-4">Waktu Pejabat Pengurusan</h4>
+                <p class="text-xs font-bold text-gray-300 leading-relaxed">
+                    Isnin – Jumaat: 9:00 PG – 6:00 PTG<br>
+                    Sabtu: 9:00 PG – 1:00 PTG<br>
+                    Lawatan tapak fizikal boleh ditempah melalui borang permohonan.
+                </p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto pt-6 text-center text-xs font-bold text-gray-400">
+            © 2026 ShopGO Resident Site Management. Hak Cipta Terpelihara.
+        </div>
+    </footer>
+
+    <!-- ==================== LACI PANEL TEMPAHAN & KALKULATOR SEWAAN (DRAWER) ==================== -->
+    <div id="drawer-overlay" onclick="toggleDrawer()" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden transition-opacity"></div>
+
+    <aside id="rental-drawer" class="fixed top-0 right-0 h-full w-full max-w-lg bg-comic-cream border-l-4 border-comic-ink z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
+        <!-- Header Laci -->
+        <div class="bg-comic-yellow border-b-4 border-comic-ink p-5 flex items-center justify-between">
+            <div>
+                <h3 class="font-comic text-2xl font-bold text-comic-ink leading-none">Panel Tempahan Tapak</h3>
+                <span class="text-xs font-extrabold text-comic-ink/80">Lengkapkan maklumat untuk kunci lot pilihan</span>
+            </div>
+            <button onclick="toggleDrawer()" class="comic-btn bg-comic-pink text-white w-10 h-10 rounded-xl font-comic font-bold text-xl flex items-center justify-center cursor-pointer">
+                ✕
+            </button>
+        </div>
+
+        <!-- Kandungan Laci (Boleh Skrol) -->
+        <div class="flex-1 overflow-y-auto p-5 space-y-5" id="drawer-content">
+            <!-- Dijana secara dinamik berdasarkan tapak dipilih -->
+        </div>
+    </aside>
+
+    <!-- ==================== MODAL SLIP PENGESAHAN PERMOHONAN DIGITAL ==================== -->
+    <div id="slip-modal" class="fixed inset-0 bg-black/75 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white border-4 border-comic-ink rounded-[2rem] max-w-md w-full p-6 sm:p-8 shadow-comic-xl space-y-5 relative">
+            <div class="flex items-center justify-between border-b-3 border-comic-ink pb-4">
+                <div class="flex items-center gap-2">
+                    <span class="w-10 h-10 rounded-xl bg-comic-lime border-3 border-comic-ink flex items-center justify-center text-xl">✅</span>
+                    <div>
+                        <h3 class="font-comic text-2xl font-bold leading-none">PERMOHONAN DIHANTAR!</h3>
+                        <span class="text-xs font-extrabold text-comic-purple">ShopGO Resident Leasing</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-comic-cream border-3 border-comic-ink rounded-2xl p-4 space-y-2.5 text-sm font-bold" id="slip-details">
+                <!-- Butiran slip dijana oleh JS -->
+            </div>
+
+            <p class="text-xs font-bold text-gray-600 text-center">
+                Pegawai Pajakan kami akan menghubungi anda melalui WhatsApp/Emel dalam masa 24 jam untuk sesi lawatan tapak & tandatangan perjanjian.
+            </p>
+
+            <button onclick="closeSlipModal()" class="comic-btn w-full bg-comic-yellow hover:bg-comic-lime text-comic-ink font-comic text-xl py-3.5 rounded-2xl cursor-pointer">
+                SELESAI & KEMBALI KE PORTAL
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== NOTIFIKASI TOAST ==================== -->
+    <div id="toast-box" class="fixed bottom-5 left-1/2 transform -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-300 translate-y-4">
+        <div class="bg-comic-ink text-white border-3 border-comic-yellow px-5 py-3 rounded-2xl shadow-comic flex items-center gap-3 font-extrabold text-sm">
+            <span class="text-lg">🏢</span>
+            <span id="toast-msg">Tapak dipilih!</span>
+        </div>
+    </div>
+
+    <!-- ==================== SKRIP LOGIK PANEL SEWA TAPAK ==================== -->
+    <script>
+        // Data Tapak & Ruang Niaga ShopGO Resident Site
+        const retailLots = [
+            {
+                id: "A-01",
+                name: "Kiosk Tengah Atrium Utama",
+                zone: "atrium",
+                zoneLabel: "Kiosk Tengah",
+                size: "100 sqft (10' x 10')",
+                monthlyRate: 1800,
+                traffic: "Sangat Tinggi (Pintu Masuk Utama)",
+                status: "available",
+                bgColor: "bg-comic-yellow",
+                facilities: ["Elektrik 13A (3 Soket)", "Kaunter Berkunci", "WiFi Fiber 500Mbps"],
+                svg: `<svg viewBox="0 0 200 160" class="w-40 h-32 mx-auto">
+                        <path d="M35 60 L50 30 H150 L165 60 Z" fill="#FF6B9D" stroke="#18181B" stroke-width="5" stroke-linejoin="round"/>
+                        <rect x="45" y="60" width="110" height="75" rx="8" fill="#FFFFFF" stroke="#18181B" stroke-width="5"/>
+                        <rect x="55" y="100" width="90" height="35" fill="#38BDF8" stroke="#18181B" stroke-width="4"/>
+                        <rect x="72" y="72" width="56" height="20" rx="6" fill="#A3E635" stroke="#18181B" stroke-width="4"/>
+                        <text x="100" y="86" text-anchor="middle" font-family="Fredoka" font-weight="700" font-size="11" fill="#18181B">LOT A-01</text>
+                      </svg>`
+            },
+            {
+                id: "C-02",
+                name: "Lot Kedai Sudut Premium (Corner)",
+                zone: "corner",
+                zoneLabel: "Lot Kedai Sudut",
+                size: "450 sqft (15' x 30')",
+                monthlyRate: 4200,
+                traffic: "Tinggi (2 Muka Laluan)",
+                status: "available",
+                bgColor: "bg-comic-pink",
+                facilities: ["Elektrik 3-Fasa", "Pintu Roller Shutter", "Stor Simpanan", "WiFi Fiber"],
+                svg: `<svg viewBox="0 0 200 160" class="w-40 h-32 mx-auto">
+                        <rect x="30" y="35" width="140" height="100" rx="12" fill="#FFFFFF" stroke="#18181B" stroke-width="5"/>
+                        <rect x="30" y="25" width="140" height="24" rx="8" fill="#FACC15" stroke="#18181B" stroke-width="5"/>
+                        <rect x="45" y="62" width="50" height="55" rx="6" fill="#38BDF8" stroke="#18181B" stroke-width="4"/>
+                        <rect x="110" y="62" width="42" height="73" rx="4" fill="#A3E635" stroke="#18181B" stroke-width="4"/>
+                        <circle cx="142" cy="100" r="3" fill="#18181B"/>
+                      </svg>`
+            },
+            {
+                id: "D-01",
+                name: "Tapak Kafe & F&B Zon Santai",
+                zone: "fnb",
+                zoneLabel: "Tapak F&B / Kafe",
+                size: "320 sqft + Ruang Meja",
+                monthlyRate: 3500,
+                traffic: "Sangat Tinggi (Waktu Makan)",
+                status: "available",
+                bgColor: "bg-comic-cyan",
+                facilities: ["Sinki & Paip Air", "Perangkap Minyak", "Elektrik 3-Fasa", "Ruang Duduk Pelanggan"],
+                svg: `<svg viewBox="0 0 200 160" class="w-40 h-32 mx-auto">
+                        <rect x="40" y="45" width="120" height="90" rx="12" fill="#FF6B9D" stroke="#18181B" stroke-width="5"/>
+                        <circle cx="100" cy="36" r="18" fill="#FACC15" stroke="#18181B" stroke-width="5"/>
+                        <path d="M92 36 H108 M100 28 V44" stroke="#18181B" stroke-width="4" stroke-linecap="round"/>
+                        <rect x="55" y="65" width="90" height="45" rx="8" fill="#FFFFFF" stroke="#18181B" stroke-width="4"/>
+                        <path d="M88 95 H112 L108 106 H92 Z" fill="#A3E635" stroke="#18181B" stroke-width="3.5"/>
+                      </svg>`
+            },
+            {
+                id: "E-03",
+                name: "Pop-Up Booth Hujung Minggu / Bulanan",
+                zone: "popup",
+                zoneLabel: "Pop-Up Booth",
+                size: "64 sqft (8' x 8')",
+                monthlyRate: 1100,
+                traffic: "Tinggi (Laluan Lif Penduduk)",
+                status: "available",
+                bgColor: "bg-comic-lime",
+                facilities: ["Meja Pameran 6 Kaki", "2 Kerusi", "1 Soket Elektrik", "WiFi"],
+                svg: `<svg viewBox="0 0 200 160" class="w-40 h-32 mx-auto">
+                        <polygon points="100,22 38,58 162,58" fill="#C084FC" stroke="#18181B" stroke-width="5" stroke-linejoin="round"/>
+                        <line x1="50" y1="58" x2="50" y2="132" stroke="#18181B" stroke-width="5"/>
+                        <line x1="150" y1="58" x2="150" y2="132" stroke="#18181B" stroke-width="5"/>
+                        <rect x="42" y="92" width="116" height="40" rx="6" fill="#FACC15" stroke="#18181B" stroke-width="5"/>
+                      </svg>`
+            },
+            {
+                id: "B-04",
+                name: "Kiosk Tengah Zon Gaya Hidup",
+                zone: "atrium",
+                zoneLabel: "Kiosk Tengah",
+                size: "120 sqft (10' x 12')",
+                monthlyRate: 2100,
+                traffic: "Tinggi (Berhampiran Pasaraya)",
+                status: "available",
+                bgColor: "bg-comic-purple",
+                facilities: ["Kaunter Kaca Paparan", "Lampu Spotlight LED", "Elektrik 13A", "WiFi"],
+                svg: `<svg viewBox="0 0 200 160" class="w-40 h-32 mx-auto">
+                        <rect x="40" y="55" width="120" height="80" rx="10" fill="#FACC15" stroke="#18181B" stroke-width="5"/>
+                        <rect x="52" y="68" width="96" height="32" rx="6" fill="#38BDF8" stroke="#18181B" stroke-width="4"/>
+                        <rect x="65" y="28" width="70" height="20" rx="8" fill="#A3E635" stroke="#18181B" stroke-width="4"/>
+                        <line x1="80" y1="48" x2="80" y2="55" stroke="#18181B" stroke-width="5"/>
+                        <line x1="120" y1="48" x2="120" y2="55" stroke="#18181B" stroke-width="5"/>
+                      </svg>`
+            },
+            {
+                id: "F-06",
+                name: "Lot Kedai Studio & Servis",
+                zone: "corner",
+                zoneLabel: "Lot Kedai Sudut",
+                size: "380 sqft (15' x 25')",
+                monthlyRate: 3600,
+                traffic: "Sederhana-Tinggi",
+                status: "occupied",
+                bgColor: "bg-gray-200",
+                facilities: ["Penyaman Udara", "Pintu Kaca", "Elektrik 3-Fasa"],
+                svg: `<svg viewBox="0 0 200 160" class="w-40 h-32 mx-auto opacity-75">
+                        <rect x="35" y="35" width="130" height="100" rx="12" fill="#E5E7EB" stroke="#18181B" stroke-width="5"/>
+                        <rect x="55" y="65" width="90" height="40" rx="8" fill="#18181B"/>
+                        <text x="100" y="90" text-anchor="middle" font-family="Fredoka" font-weight="700" font-size="14" fill="#FACC15">DISEWA</text>
+                      </svg>`
+            }
+        ];
+
+        // Keadaan Aplikasi
+        let selectedLotId = "A-01";
+        let selectedDuration = 3; // Bulan
+        let selectedAddons = {
+            ledSign: false,     // RM 150 sekali bayar
+            extraTable: false,  // RM 80 / bulan
+            extraSocket: false  // RM 100 sekali bayar
+        };
+        let submittedApplications = [];
+        let quickDuration = 1;
+
+        // 1. Jana Peta Mini Floor Plan
+        function renderMiniFloorPlan() {
+            const container = document.getElementById('mini-floorplan');
+            container.innerHTML = retailLots.map(lot => {
+                const isAvail = lot.status === 'available';
+                return `
+                    <button onclick="scrollToLot('${lot.id}')" class="p-3 rounded-2xl border-3 border-comic-ink text-left transition-transform hover:-translate-y-1 cursor-pointer ${isAvail ? 'bg-comic-lime/40 hover:bg-comic-lime' : 'bg-gray-200 opacity-75'}">
+                        <div class="flex items-center justify-between">
+                            <span class="font-comic font-bold text-base">${lot.id}</span>
+                            <span class="w-3 h-3 rounded-full border-2 border-comic-ink ${isAvail ? 'bg-comic-lime' : 'bg-gray-400'}"></span>
+                        </div>
+                        <div class="text-[11px] font-extrabold truncate mt-0.5">${lot.zoneLabel}</div>
+                        <div class="text-xs font-black mt-1 ${isAvail ? 'text-comic-pink' : 'text-gray-600'}">
+                            ${isAvail ? `RM ${lot.monthlyRate}/bln` : 'Penuh'}
+                        </div>
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function scrollToLot(lotId) {
+            filterLots('semua');
+            setTimeout(() => {
+                const el = document.getElementById(`card-${lotId}`);
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    el.classList.add('ring-4', 'ring-comic-pink');
+                    setTimeout(() => el.classList.remove('ring-4', 'ring-comic-pink'), 1600);
+                }
+            }, 100);
+        }
+
+        // 2. Jana Kad Senarai Tapak
+        function renderLots(zone = 'semua') {
+            const grid = document.getElementById('lots-grid');
+            const filtered = retailLots.filter(l => zone === 'semua' || l.zone === zone);
+
+            grid.innerHTML = filtered.map(lot => {
+                const isAvail = lot.status === 'available';
+                return `
+                    <div id="card-${lot.id}" class="comic-card bg-white rounded-[2rem] overflow-hidden flex flex-col justify-between transition-all">
+                        <div>
+                            <!-- Bahagian Visual SVG Tapak -->
+                            <div class="${lot.bgColor} border-b-3 border-comic-ink p-5 relative">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="bg-comic-ink text-white font-comic font-bold text-sm px-3 py-1 rounded-xl">
+                                        LOT ${lot.id}
+                                    </span>
+                                    <span class="${isAvail ? 'bg-comic-lime text-comic-ink' : 'bg-gray-300 text-gray-700'} font-extrabold text-xs px-3 py-1 rounded-full border-2 border-comic-ink">
+                                        ${isAvail ? '● TERSEDIA' : '✕ TELAH DISEWA'}
+                                    </span>
+                                </div>
+                                <div class="py-2 transform hover:scale-105 transition-transform">
+                                    ${lot.svg}
+                                </div>
+                            </div>
+
+                            <!-- Butiran Ruang -->
+                            <div class="p-6 space-y-3">
+                                <div class="text-xs font-extrabold uppercase text-comic-purple tracking-wider">${lot.zoneLabel} • ${lot.size}</div>
+                                <h3 class="font-comic text-2xl font-bold text-comic-ink leading-snug">${lot.name}</h3>
+                                <div class="text-xs font-bold text-gray-600 flex items-center gap-1.5">
+                                    <span>👥 Trafik:</span>
+                                    <span class="text-comic-ink font-extrabold">${lot.traffic}</span>
+                                </div>
+
+                                <!-- Tag Kemudahan -->
+                                <div class="flex flex-wrap gap-1.5 pt-1">
+                                    ${lot.facilities.map(f => `
+                                        <span class="bg-comic-cream border-2 border-comic-ink text-[11px] font-extrabold px-2.5 py-0.5 rounded-lg">
+                                            ✓ ${f}
+                                        </span>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Harga & Butang Tempah -->
+                        <div class="px-6 pb-6 pt-3 border-t-2 border-dashed border-gray-300 flex items-center justify-between gap-3">
+                            <div>
+                                <span class="text-[11px] font-extrabold text-gray-500 block uppercase">Kadar Sewa</span>
+                                <span class="font-comic text-2xl sm:text-3xl font-bold text-comic-pink">RM ${lot.monthlyRate.toLocaleString()}</span>
+                                <span class="text-xs font-bold text-gray-600">/bln</span>
+                            </div>
+
+                            ${isAvail ? `
+                                <button onclick="openBookingForLot('${lot.id}')" class="comic-btn bg-comic-yellow hover:bg-comic-lime text-comic-ink font-comic font-bold text-base px-5 py-3 rounded-2xl cursor-pointer">
+                                    Tempah Tapak Ini
+                                </button>
+                            ` : `
+                                <button disabled class="border-3 border-gray-400 bg-gray-200 text-gray-500 font-comic font-bold text-sm px-4 py-3 rounded-2xl cursor-not-allowed">
+                                    Tidak Tersedia
+                                </button>
+                            `}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Penapis Zon
+        function filterLots(zone) {
+            document.querySelectorAll('.zone-btn').forEach(btn => {
+                if (btn.dataset.zone === zone) {
+                    btn.classList.remove('bg-white', 'text-comic-ink');
+                    btn.classList.add('bg-comic-ink', 'text-white');
+                } else {
+                    btn.classList.remove('bg-comic-ink', 'text-white');
+                    btn.classList.add('bg-white', 'text-comic-ink');
+                }
+            });
+            renderLots(zone);
+        }
+
+        // 3. Kalkulator Pantas di Halaman Utama
+        function initQuickCalculator() {
+            const select = document.getElementById('quick-lot-select');
+            const availLots = retailLots.filter(l => l.status === 'available');
+            select.innerHTML = availLots.map(l => `
+                <option value="${l.id}">LOT ${l.id} — ${l.name} (RM ${l.monthlyRate}/bln)</option>
+            `).join('');
+            updateQuickCalc();
+        }
+
+        function setQuickDuration(months) {
+            quickDuration = months;
+            document.querySelectorAll('.q-dur-btn').forEach(btn => {
+                if (parseInt(btn.dataset.dur) === months) {
+                    btn.classList.remove('bg-white', 'text-comic-ink');
+                    btn.classList.add('bg-comic-ink', 'text-white');
+                } else {
+                    btn.classList.remove('bg-comic-ink', 'text-white');
+                    btn.classList.add('bg-white', 'text-comic-ink');
+                }
+            });
+            updateQuickCalc();
+        }
+
+        function updateQuickCalc() {
+            const lotId = document.getElementById('quick-lot-select').value;
+            const lot = retailLots.find(l => l.id === lotId);
+            if (!lot) return;
+
+            let discountRate = 0;
+            if (quickDuration === 6) discountRate = 0.10;
+            if (quickDuration === 12) discountRate = 0.20;
+
+            const discountedMonthly = lot.monthlyRate * (1 - discountRate);
+            const deposit = discountedMonthly * 2; // Deposit 2 bulan
+            const initialPayable = discountedMonthly + deposit; // 2+1
+
+            document.getElementById('q-monthly').textContent = `RM ${discountedMonthly.toLocaleString('en-MY', { minimumFractionDigits: 2 })}`;
+            document.getElementById('q-deposit').textContent = `RM ${deposit.toLocaleString('en-MY', { minimumFractionDigits: 2 })}`;
+            document.getElementById('q-total').textContent = `RM ${initialPayable.toLocaleString('en-MY', { minimumFractionDigits: 2 })}`;
+        }
+
+        function bookFromQuickCalc() {
+            const lotId = document.getElementById('quick-lot-select').value;
+            selectedDuration = quickDuration;
+            openBookingForLot(lotId);
+        }
+
+        // 4. Panel Laci Tempahan & Borang Permohonan
+        function openBookingForLot(lotId) {
+            selectedLotId = lotId;
+            renderDrawerContent();
+            const drawer = document.getElementById('rental-drawer');
+            const overlay = document.getElementById('drawer-overlay');
+            drawer.classList.remove('translate-x-full');
+            overlay.classList.remove('hidden');
+            showToast(`LOT ${lotId} dimuatkan ke dalam Panel Tempahan!`);
+        }
+
+        function openCalculatorModal() {
+            renderDrawerContent();
+            toggleDrawer();
+        }
+
+        function toggleDrawer() {
+            const drawer = document.getElementById('rental-drawer');
+            const overlay = document.getElementById('drawer-overlay');
+            const isClosed = drawer.classList.contains('translate-x-full');
+            if (isClosed) {
+                renderDrawerContent();
+                drawer.classList.remove('translate-x-full');
+                overlay.classList.remove('hidden');
+            } else {
+                drawer.classList.add('translate-x-full');
+                overlay.classList.add('hidden');
+            }
+        }
+
+        function setDrawerDuration(months) {
+            selectedDuration = months;
+            renderDrawerContent();
+        }
+
+        function toggleAddon(key) {
+            selectedAddons[key] = !selectedAddons[key];
+            renderDrawerContent();
+        }
+
+        function renderDrawerContent() {
+            const container = document.getElementById('drawer-content');
+            const lot = retailLots.find(l => l.id === selectedLotId) || retailLots[0];
+
+            // Kiraan Sewa & Diskaun
+            let discountPct = 0;
+            if (selectedDuration === 6) discountPct = 0.10;
+            if (selectedDuration === 12) discountPct = 0.20;
+
+            const baseMonthly = lot.monthlyRate * (1 - discountPct);
+            const addonMonthly = selectedAddons.extraTable ? 80 : 0;
+            const totalMonthly = baseMonthly + addonMonthly;
+            const deposit2Months = baseMonthly * 2;
+            const oneTimeAddons = (selectedAddons.ledSign ? 150 : 0) + (selectedAddons.extraSocket ? 100 : 0);
+            const grandInitialTotal = totalMonthly + deposit2Months + oneTimeAddons;
+
+            container.innerHTML = `
+                <!-- Kad Ringkasan Tapak Dipilih -->
+                <div class="${lot.bgColor} border-3 border-comic-ink rounded-2xl p-4 shadow-comic-sm flex items-center justify-between">
+                    <div>
+                        <span class="bg-comic-ink text-white text-xs font-bold px-2.5 py-0.5 rounded-lg">LOT ${lot.id}</span>
+                        <h4 class="font-comic text-xl font-bold mt-1">${lot.name}</h4>
+                        <p class="text-xs font-extrabold">${lot.size} • Kadar Asal RM ${lot.monthlyRate}/bln</p>
+                    </div>
+                    <select onchange="openBookingForLot(this.value)" class="bg-white border-2 border-comic-ink rounded-xl px-2.5 py-1.5 text-xs font-extrabold cursor-pointer">
+                        ${retailLots.filter(l => l.status === 'available').map(l => `
+                            <option value="${l.id}" ${l.id === lot.id ? 'selected' : ''}>Tukar: ${l.id}</option>
+                        `).join('')}
+                    </select>
+                </div>
+
+                <!-- Pilihan Tempoh Kontrak -->
+                <div class="space-y-2">
+                    <label class="block font-comic text-lg font-bold">1. Pilih Tempoh Sewaan</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        ${[
+                            { m: 1, label: '1 Bulan', tag: 'Fleksibel' },
+                            { m: 3, label: '3 Bulan', tag: 'Popular' },
+                            { m: 6, label: '6 Bulan', tag: 'Jimat 10%' },
+                            { m: 12, label: '12 Bulan', tag: 'Jimat 20%' }
+                        ].map(opt => `
+                            <button type="button" onclick="setDrawerDuration(${opt.m})" class="p-2.5 rounded-xl border-3 border-comic-ink text-left cursor-pointer transition-all ${selectedDuration === opt.m ? 'bg-comic-ink text-white shadow-comic-sm' : 'bg-white text-comic-ink'}">
+                                <div class="font-comic font-bold text-base">${opt.label}</div>
+                                <div class="text-[11px] font-extrabold ${selectedDuration === opt.m ? 'text-comic-yellow' : 'text-comic-pink'}">${opt.tag}</div>
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <!-- Pilihan Kemudahan Tambahan (Add-Ons) -->
+                <div class="space-y-2">
+                    <label class="block font-comic text-lg font-bold">2. Tambahan Kelengkapan (Pilihan)</label>
+                    <div class="space-y-2 text-xs font-extrabold">
+                        <label onclick="toggleAddon('ledSign')" class="flex items-center justify-between p-3 bg-white border-3 border-comic-ink rounded-xl cursor-pointer">
+                            <span>💡 Papan Tanda LED Jenama (Sekali Bayar)</span>
+                            <span class="px-2.5 py-1 rounded-lg border-2 border-comic-ink ${selectedAddons.ledSign ? 'bg-comic-lime' : 'bg-gray-100'}">
+                                ${selectedAddons.ledSign ? '✓ RM 150' : '+ RM 150'}
+                            </span>
+                        </label>
+                        <label onclick="toggleAddon('extraTable')" class="flex items-center justify-between p-3 bg-white border-3 border-comic-ink rounded-xl cursor-pointer">
+                            <span>🪑 Set Meja & 2 Kerusi Tambahan (/bulan)</span>
+                            <span class="px-2.5 py-1 rounded-lg border-2 border-comic-ink ${selectedAddons.extraTable ? 'bg-comic-lime' : 'bg-gray-100'}">
+                                ${selectedAddons.extraTable ? '✓ RM 80/bln' : '+ RM 80/bln'}
+                            </span>
+                        </label>
+                        <label onclick="toggleAddon('extraSocket')" class="flex items-center justify-between p-3 bg-white border-3 border-comic-ink rounded-xl cursor-pointer">
+                            <span>🔌 Tambahan 2 Soket Kuasa 13A (Sekali Bayar)</span>
+                            <span class="px-2.5 py-1 rounded-lg border-2 border-comic-ink ${selectedAddons.extraSocket ? 'bg-comic-lime' : 'bg-gray-100'}">
+                                ${selectedAddons.extraSocket ? '✓ RM 100' : '+ RM 100'}
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Ringkasan Kewangan -->
+                <div class="bg-white border-3 border-comic-ink rounded-2xl p-4 space-y-2 text-xs sm:text-sm font-bold">
+                    <div class="flex justify-between">
+                        <span>Sewa Bulan Pertama (${discountPct > 0 ? `Diskaun ${discountPct*100}%` : 'Kadar Biasa'}):</span>
+                        <span>RM ${totalMonthly.toFixed(2)}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Deposit Sekuriti (2 Bulan - Dipulangkan):</span>
+                        <span>RM ${deposit2Months.toFixed(2)}</span>
+                    </div>
+                    ${oneTimeAddons > 0 ? `
+                    <div class="flex justify-between text-comic-purple">
+                        <span>Kelengkapan Tambahan Sekali Bayar:</span>
+                        <span>RM ${oneTimeAddons.toFixed(2)}</span>
+                    </div>` : ''}
+                    <div class="border-t-3 border-comic-ink pt-2 flex justify-between items-center">
+                        <span class="font-extrabold text-base">Jumlah Deposit & Bulan 1:</span>
+                        <span class="font-comic text-2xl text-comic-pink">RM ${grandInitialTotal.toFixed(2)}</span>
+                    </div>
+                </div>
+
+                <!-- Borang Maklumat Usahawan -->
+                <form onsubmit="submitRentalApplication(event, '${lot.id}', ${grandInitialTotal})" class="space-y-3 pt-1">
+                    <label class="block font-comic text-lg font-bold">3. Maklumat Pemohon / Syarikat</label>
+                    <input type="text" id="biz-name" required placeholder="Nama Perniagaan / Jenama (cth: Kopi Kita)" class="w-full bg-white border-3 border-comic-ink rounded-xl px-3.5 py-2.5 text-sm font-bold focus:outline-none">
+                    <div class="grid grid-cols-2 gap-2">
+                        <input type="text" id="ssm-no" required placeholder="No. SSM (cth: 202601001234)" class="w-full bg-white border-3 border-comic-ink rounded-xl px-3.5 py-2.5 text-sm font-bold focus:outline-none">
+                        <input type="tel" id="owner-phone" required placeholder="No. WhatsApp (012-...)" class="w-full bg-white border-3 border-comic-ink rounded-xl px-3.5 py-2.5 text-sm font-bold focus:outline-none">
+                    </div>
+                    <select id="biz-category" class="w-full bg-white border-3 border-comic-ink rounded-xl px-3.5 py-2.5 text-sm font-bold focus:outline-none">
+                        <option value="Makanan & Minuman (F&B)">Kategori: Makanan & Minuman (F&B)</option>
+                        <option value="Fesyen, Pakaian & Aksesori">Kategori: Fesyen, Pakaian & Aksesori</option>
+                        <option value="Gajet, Elektronik & Hobi">Kategori: Gajet, Elektronik & Hobi</option>
+                        <option value="Kesihatan, Kecantikan & Servis">Kategori: Kesihatan, Kecantikan & Servis</option>
+                    </select>
+
+                    <button type="submit" class="comic-btn w-full bg-comic-lime hover:bg-comic-yellow text-comic-ink font-comic text-xl py-4 rounded-2xl cursor-pointer mt-2">
+                        HANTAR PERMOHONAN SEWA 🚀
+                    </button>
+                </form>
+
+                <!-- Senarai Permohonan Dihantar Dalam Sesi Ini -->
+                ${submittedApplications.length > 0 ? `
+                    <div class="pt-4 border-t-3 border-comic-ink space-y-2">
+                        <h4 class="font-comic text-base font-bold text-comic-purple">📋 Rekod Permohonan Anda (${submittedApplications.length})</h4>
+                        ${submittedApplications.map(app => `
+                            <div class="bg-comic-yellow/40 border-2 border-comic-ink rounded-xl p-3 text-xs font-extrabold flex justify-between items-center">
+                                <div>
+                                    <div>${app.ref} • LOT ${app.lotId} (${app.bizName})</div>
+                                    <div class="text-gray-700">Tempoh: ${app.duration} Bulan • RM ${app.total.toFixed(2)}</div>
+                                </div>
+                                <span class="bg-comic-lime px-2 py-0.5 rounded-md border border-comic-ink">DITERIMA</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                ` : ''}
+            `;
+        }
+
+        // Hantar Permohonan Sewa
+        function submitRentalApplication(e, lotId, totalAmount) {
+            e.preventDefault();
+            const bizName = document.getElementById('biz-name').value;
+            const ssmNo = document.getElementById('ssm-no').value;
+            const phone = document.getElementById('owner-phone').value;
+            const category = document.getElementById('biz-category').value;
+            const refCode = `SGR-${Math.floor(100000 + Math.random() * 900000)}`;
+
+            submittedApplications.push({
+                ref: refCode,
+                lotId,
+                bizName,
+                ssmNo,
+                phone,
+                category,
+                duration: selectedDuration,
+                total: totalAmount
+            });
+
+            document.getElementById('application-badge').textContent = submittedApplications.length;
+            toggleDrawer();
+
+            // Papar Slip Digital
+            document.getElementById('slip-details').innerHTML = `
+                <div class="flex justify-between"><span class="text-gray-500">No. Rujukan:</span><span class="font-comic text-base text-comic-pink">${refCode}</span></div>
+                <div class="flex justify-between"><span class="text-gray-500">Tapak Pilihan:</span><span>LOT ${lotId} (${selectedDuration} Bulan)</span></div>
+                <div class="flex justify-between"><span class="text-gray-500">Nama Perniagaan:</span><span>${bizName}</span></div>
+                <div class="flex justify-between"><span class="text-gray-500">No. SSM:</span><span>${ssmNo}</span></div>
+                <div class="flex justify-between"><span class="text-gray-500">No. WhatsApp:</span><span>${phone}</span></div>
+                <div class="border-t-2 border-dashed border-comic-ink pt-2 flex justify-between text-base">
+                    <span>Anggaran Permulaan:</span>
+                    <span class="font-comic text-xl text-comic-purple">RM ${totalAmount.toFixed(2)}</span>
+                </div>
+            `;
+
+            const modal = document.getElementById('slip-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeSlipModal() {
+            const modal = document.getElementById('slip-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Accordion Soalan Lazim
+        function toggleFaq(index) {
+            const ans = document.getElementById(`faq-ans-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            const isHidden = ans.classList.contains('hidden');
+            if (isHidden) {
+                ans.classList.remove('hidden');
+                icon.textContent = '−';
+            } else {
+                ans.classList.add('hidden');
+                icon.textContent = '+';
+            }
+        }
+
+        // Notifikasi Toast
+        let toastTimer;
+        function showToast(message) {
+            const box = document.getElementById('toast-box');
+            document.getElementById('toast-msg').textContent = message;
+            box.classList.remove('opacity-0', 'translate-y-4');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                box.classList.add('opacity-0', 'translate-y-4');
+            }, 2500);
+        }
+
+        // Mulakan Halaman
+        window.addEventListener('DOMContentLoaded', () => {
+            renderMiniFloorPlan();
+            renderLots('semua');
+            initQuickCalculator();
+        });
+    </script>
+</body>
+</html>
