@@ -42,8 +42,8 @@ export async function onRequestGet({request,env}){
     if(!(await authorize(env.DB,chatId,token))) return json({error:"Chat session is invalid or expired."},401);
     const after=url.searchParams.get("after")||"";
     const rows=await env.DB.prepare(`SELECT id,sender,message,created_at FROM inbox_messages
-      WHERE chat_id=? ORDER BY created_at ASC LIMIT 100`).bind(chatId).all();
-    return json({messages:rows.results||[]});
+      WHERE chat_id=? ORDER BY created_at DESC LIMIT 100`).bind(chatId).all();
+    return json({messages:(rows.results||[]).reverse()});
   }catch{return json({error:"Unable to load chat messages."},500);}
 }
 export async function onRequestPost({request,env}){
