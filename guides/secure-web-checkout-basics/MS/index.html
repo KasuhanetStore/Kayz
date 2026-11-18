@@ -157,5 +157,11 @@ h1{font-size:clamp(30px,4.6vw,48px);line-height:1.12;letter-spacing:-1px;margin:
       })
       .catch(error => console.error(error));
   </script>
+<script>
+function toggleMobileMenu(){
+  const navLinks=document.getElementById("navLinks");
+  if(navLinks) navLinks.classList.toggle("active");
+}
+</script>
 </body>
 </html>
