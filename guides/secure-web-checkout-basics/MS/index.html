@@ -11,7 +11,7 @@
   <link rel="alternate" hreflang="en" href="https://kasuhanet.store/guides/secure-web-checkout-basics.html">
   <link rel="alternate" hreflang="ms" href="https://kasuhanet.store/MS/panduan/secure-web-checkout-basics.html">
   <link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/guides/secure-web-checkout-basics.html">
-  <link rel="icon" type="image/png" href="../../favicon.png">
+  <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
@@ -57,7 +57,23 @@ h1{font-size:clamp(30px,4.6vw,48px);line-height:1.12;letter-spacing:-1px;margin:
     @media(max-width:850px){.nav{padding:14px 0;align-items:flex-start;flex-direction:column;gap:12px}.nav-links{justify-content:flex-start;gap:12px}}
     @media(max-width:600px){.container{width:min(100% - 28px,1120px)}.hero{padding:44px 0 36px}.hero p{font-size:15px}.article-content{padding:22px 18px}.article-content h2{font-size:21px}main.article-section{padding:26px 0 52px}}
     @media(hover:hover) and (pointer:fine){.btn:hover{transform:translateY(-1px)}.back-link:hover{color:#fff}}
-  </style>
+  
+/* Shared Knowledge Centre header aligned with Support */
+.topbar{position:sticky;top:0;z-index:20;background:rgba(8,9,13,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{position:relative;min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:inline-flex;align-items:center;gap:0;font-weight:900;letter-spacing:.5px;text-decoration:none}
+.brand img.brand-logo{display:block;width:85px;height:65px;max-width:none;max-height:none;object-fit:contain;object-position:left center}
+.nav-links{display:flex;align-items:center;justify-content:flex-end;gap:20px;flex-wrap:wrap;color:#d8dbe4;font-size:13px}
+.nav-links>a:not(.btn){transition:color .18s ease}
+.nav-links>a:not(.btn):hover{color:#ff7187}
+.nav-links>a[aria-current="page"]{color:var(--red)}
+.btn-outline{display:inline-flex;align-items:center;justify-content:center;padding:9px 13px;border:1px solid rgba(255,255,255,.2);border-radius:9px;color:#fff;background:rgba(255,255,255,.03);font-size:12px;font-weight:800;transition:.2s ease}
+.btn-outline:hover{border-color:var(--red);color:#fff}
+.btn-cyber-animated{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 15px;border:1px solid rgba(255,112,135,.6);border-radius:9px;background:linear-gradient(120deg,var(--red-dark),var(--red),var(--orange));color:#fff;font-size:12px;font-weight:900;white-space:nowrap;box-shadow:0 5px 18px rgba(255,48,79,.18);transition:transform .2s ease,box-shadow .2s ease}
+.btn-cyber-animated:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,48,79,.3)}
+.menu-toggle{display:none;background:transparent;border:1px solid var(--line);color:var(--text);font-size:20px;padding:8px 12px;border-radius:8px;cursor:pointer}
+@media(max-width:850px){.nav{min-height:70px;padding:10px 0;align-items:center;flex-direction:row;gap:12px}.menu-toggle{display:inline-flex;align-items:center;justify-content:center}.nav-links{display:none;flex-direction:column;position:absolute;top:70px;left:0;width:100%;background:rgba(8,9,13,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:24px;gap:16px;box-shadow:0 15px 30px rgba(0,0,0,.6);z-index:99;align-items:flex-start}.nav-links.active{display:flex}.nav-links a:not(.btn){display:block!important;width:100%}.nav-links>div{display:flex!important;gap:8px!important;margin:4px 0!important}}
+</style>
   
   
   
@@ -85,19 +101,30 @@ h1{font-size:clamp(30px,4.6vw,48px);line-height:1.12;letter-spacing:-1px;margin:
   <meta name="twitter:image" content="https://kasuhanet.store/img/logo3.png">
   <meta name="twitter:image:alt" content="Membina Checkout Web Lebih Selamat: Validasi, Secrets dan Webhook | KasuhaNET"></head>
 <body><header class="topbar">
-    <div class="container nav">
-      <a class="brand" href="../../MS/index.html" aria-label="KasuhaNET home"><img src="../../img/logo3.png" alt="KasuhaNET.STORE"></a>
-      <nav class="nav-links" aria-label="Navigasi utama">
-        <a href="../../MS/index.html">LAMAN UTAMA</a>
-        <a href="/About-Us/MS/">TENTANG KAMI</a>
-        <a href="index.html">PUSAT PANDUAN</a>
-        <a href="../../MS/privacy-policy-MS.html">POLISI PRIVASI</a>
-        <a href="../../MS/support-centre-MS.html">SOKONGAN</a>
-        <a class="btn" href="../../guides/secure-web-checkout-basics.html">EN</a>
-        <a class="btn active" href="secure-web-checkout-basics.html" lang="ms" aria-current="page">BM</a>
-      </nav>
+  <div class="container nav">
+    <div id="branding-title">
+      <a class="brand" href="/MS/" aria-label="Laman Rasmi KasuhaNET">
+        <img src="/img/logo3.png" class="brand-logo" alt="KasuhaNET.STORE">
+      </a>
     </div>
-  </header>
+    <nav class="nav-links" id="navLinks" aria-label="Navigasi Utama">
+      <a href="/MS/">LAMAN UTAMA</a>
+      <a href="/About-Us/MS/">TENTANG KAMI</a>
+      <a href="/guides/MS/" >PANDUAN</a>
+      <a href="/Privacy-Policy/MS/">POLISI PRIVASI</a>
+      <a href="/Support/MS/">SOKONGAN</a>
+      <div style="display:flex;gap:8px;margin:4px 0;">
+        <a class="btn btn-outline" href="/guides/secure-web-checkout-basics/secure-web-checkout-basics.html" lang="en">EN</a>
+        <a class="btn btn-outline" href="/guides/secure-web-checkout-basics/MS/" lang="ms">BM</a>
+      </div>
+      <a class="btn-cyber-animated" href="/MS/Banner-WebSale-MS.html"><span>DAPATKAN LAMAN WEB!</span><i class="fa-solid fa-computer-mouse"></i></a>
+    </nav>
+    <button class="menu-toggle" type="button" onclick="toggleMobileMenu()" aria-label="Tukar Navigasi">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+</header>
+
   <section class="hero">
     <div class="container">
       <span class="eyebrow">KasuhaNET Resources · Panduan Teknikal</span>
@@ -116,7 +143,7 @@ h1{font-size:clamp(30px,4.6vw,48px);line-height:1.12;letter-spacing:-1px;margin:
   </main>
   <div class="footer-wrap" id="footer-placeholder"></div>
   <script>
-    fetch("../../template-text/MS/template-footer-MS.html")
+    fetch("/template-text/MS/template-footer-MS.html")
       .then(response => { if (!response.ok) throw new Error("Footer template failed to load"); return response.text(); })
       .then(data => {
         data = data.replaceAll('href="/About-Us/MS/"', 'href="/About-Us/MS/"')
