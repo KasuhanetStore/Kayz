@@ -6,6 +6,10 @@ const PACKAGES = {
   "premium-standard": {
     name: "KasuhaNET Premium Standard",
     amount: 90000
+  },
+  "dualstream-pro": {
+    name: "DualStream Pro",
+    amount: 4770
   }
 };
 
@@ -179,7 +183,7 @@ export async function onRequestPost(context) {
     ? (workshopLocale === "MS"
         ? "https://kasuhanet.store/MS/Bengkel-Custom-WebSite-MS.html"
         : "https://kasuhanet.store/custom-web-workshop-EN")
-    : "https://kasuhanet.store/Banner-WebSale-EN.html";
+    : (input.packageId === "dualstream-pro" ? "https://kasuhanet.store/Terminal-Option_MS.html" : "https://kasuhanet.store/Banner-WebSale-EN.html");
   form.set("success_url", returnPage + "?payment=success&session_id={CHECKOUT_SESSION_ID}");
   form.set("cancel_url", returnPage + "?payment=cancel");
   form.set("customer_email", email);
