@@ -416,18 +416,18 @@ main .grid .card a.websale-buy-btn:active {
 
 
 <!-- KASUHANET SECURE CHECKOUT -->
-<div class="kn-checkout-overlay" id="knCheckout" aria-hidden="true" hidden>
-  <section class="kn-checkout-panel" role="dialog" aria-modal="true" aria-labelledby="knCheckoutTitle">
-    <div class="kn-checkout-head">
+<div class="kn-checkout-overlay kn-payment-modal" id="knCheckout" aria-hidden="true" hidden>
+  <section class="kn-checkout-panel kn-payment-panel" role="dialog" aria-modal="true" aria-labelledby="knCheckoutTitle">
+    <div class="kn-checkout-head kn-payment-head">
       <h2 id="knCheckoutTitle">SECURE CHECKOUT</h2>
-      <button type="button" class="kn-checkout-close" onclick="closeCheckout()" aria-label="Close checkout">✕</button>
+      <button type="button" class="kn-checkout-close kn-payment-close" onclick="closeCheckout()" aria-label="Close checkout">✕</button>
     </div>
-    <div class="kn-order-summary">
+    <div class="kn-order-summary kn-payment-summary">
       <strong id="knPackageName">Selected package</strong>
-      <span id="knPackagePrice">RM 0</span>
+      <strong id="knPackagePrice">RM 0</strong>
       <p style="font-size:11px;color:#aeb5c4;margin:5px 0 0">One-time payment · MYR</p>
     </div>
-    <form class="kn-checkout-form" id="knCheckoutForm" toolname="start_website_checkout" tooldescription="Prepare customer details for a KasuhaNET website package checkout. The visitor must select a package first. This form never submits payment automatically; the visitor must review the details and press the payment button.">
+    <form class="kn-checkout-form kn-payment-form" id="knCheckoutForm" toolname="start_website_checkout" tooldescription="Prepare customer details for a KasuhaNET website package checkout. The visitor must select a package first. This form never submits payment automatically; the visitor must review the details and press the payment button.">
       <label for="knCustomerName">Full name</label>
       <input id="knCustomerName" name="name" autocomplete="name" maxlength="100" toolparamdescription="Customer full name for the website package order." required>
       <label for="knCustomerEmail">Email address</label>
