@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEDAI TOONZ! — Gajet & Gaya Hidup Kartun HD</title>
+    
+    <!-- Google Fonts: Fredoka (Tajuk Kartun Bulat) & Nunito (Teks Jelas) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Konfigurasi Tema Kartun HD -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Fredoka', 'sans-serif'],
+                        body: ['Nunito', 'sans-serif'],
+                    },
+                    colors: {
+                        'toon-yellow': '#FFD60A',
+                        'toon-pink': '#FF4D8D',
+                        'toon-cyan': '#00E5FF',
+                        'toon-lime': '#A3FF12',
+                        'toon-purple': '#9D4EDD',
+                        'toon-orange': '#FF7B00',
+                        'toon-cream': '#FFFDF5',
+                        'toon-ink': '#18181B',
+                    },
+                    boxShadow: {
+                        'toon': '6px 6px 0px 0px #18181B',
+                        'toon-sm': '4px 4px 0px 0px #18181B',
+                        'toon-lg': '10px 10px 0px 0px #18181B',
+                        'toon-xl': '14px 14px 0px 0px #18181B',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Gaya Asas & Corak Latar Belakang Kartun */
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #FFFDF5;
+            color: #18181B;
+            background-image: radial-gradient(#18181B 1.5px, transparent 1.5px);
+            background-size: 28px 28px;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .font-toon {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        /* Kesan Tekan Butang Kartun 3D */
+        .toon-btn {
+            border: 3.5px solid #18181B;
+            box-shadow: 5px 5px 0px 0px #18181B;
+            transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.12s ease;
+        }
+        .toon-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0px 0px #18181B;
+        }
+        .toon-btn:active {
+            transform: translate(4px, 4px);
+            box-shadow: 1px 1px 0px 0px #18181B;
+        }
+
+        /* Kad Produk Kartun */
+        .toon-card {
+            border: 4px solid #18181B;
+            box-shadow: 8px 8px 0px 0px #18181B;
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+        }
+        .toon-card:hover {
+            transform: translateY(-6px) rotate(-0.5deg);
+            box-shadow: 12px 12px 0px 0px #18181B;
+        }
+
+        /* Animasi Terapung & Melantun */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(3deg); }
+        }
+        @keyframes floatReverse {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(10px) rotate(-4deg); }
+        }
+        @keyframes spinSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .animate-float { animation: floatSlow 4s ease-in-out infinite; }
+        .animate-float-rev { animation: floatReverse 4.5s ease-in-out infinite; }
+        .animate-spin-slow { animation: spinSlow 16s linear infinite; }
+        .animate-marquee {
+            display: flex;
+            width: max-content;
+            animation: marquee 22s linear infinite;
+        }
+
+        /* Garisan Teks Kartun (Text Stroke) */
+        .text-stroke {
+            -webkit-text-stroke: 2px #18181B;
+            paint-order: stroke fill;
+        }
+        .text-stroke-lg {
+            -webkit-text-stroke: 3px #18181B;
+            paint-order: stroke fill;
+        }
+
+        /* Custom Scrollbar Kartun */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFFDF5;
+            border-left: 3px solid #18181B;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FFD60A;
+            border: 3px solid #18181B;
+            border-radius: 999px;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-toon-pink selection:text-white">
+
+    <!-- ==================== BANNER PROMOSI ATAS & PEMASA ==================== -->
+    <div class="bg-toon-ink text-white border-b-4 border-toon-ink py-2.5 px-4 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm font-extrabold">
+            <div class="flex items-center gap-2">
+                <span class="bg-toon-lime text-toon-ink px-2.5 py-0.5 rounded-full border-2 border-white uppercase tracking-wider animate-pulse">🔥 JUALAN KILAT</span>
+                <span>Diskaun sehingga <span class="text-toon-yellow underline">50% OFF</span> + Penghantaran Percuma seluruh Malaysia!</span>
+            </div>
+            <div class="flex items-center gap-2 bg-toon-purple px-3 py-1 rounded-xl border-2 border-white">
+                <span>Tamat dalam:</span>
+                <span id="countdown-timer" class="font-toon text-toon-yellow tracking-wider text-sm sm:text-base">04:59:59</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== NAVIGASI UTAMA ==================== -->
+    <header class="pt-4 px-4 sm:px-6 lg:px-8 relative z-30">
+        <nav class="max-w-7xl mx-auto bg-white border-4 border-toon-ink rounded-3xl shadow-toon px-4 sm:px-6 py-3 flex items-center justify-between">
+            <!-- Logo Kartun -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 bg-toon-yellow border-4 border-toon-ink rounded-2xl flex items-center justify-center shadow-toon-sm group-hover:rotate-12 transition-transform">
+                    <!-- Ikon Roket SVG Kartun -->
+                    <svg class="w-7 h-7" viewBox="0 0 64 64" fill="none">
+                        <path d="M44 10C32 10 20 22 18 34L30 46C42 44 54 32 54 20C54 14 50 10 44 10Z" fill="#FF4D8D" stroke="#18181B" stroke-width="4" stroke-linejoin="round"/>
+                        <circle cx="38" cy="26" r="6" fill="#00E5FF" stroke="#18181B" stroke-width="3.5"/>
+                        <path d="M18 34L8 36L14 44L18 34Z" fill="#FFD60A" stroke="#18181B" stroke-width="3.5" stroke-linejoin="round"/>
+                        <path d="M30 46L28 56L20 50L30 46Z" fill="#FFD60A" stroke="#18181B" stroke-width="3.5" stroke-linejoin="round"/>
+                        <path d="M15 49C11 53 9 57 9 57C9 57 13 55 17 51" stroke="#FF7B00" stroke-width="4" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="font-toon text-2xl sm:text-3xl font-bold tracking-tight text-toon-ink block leading-none">TOONZ<span class="text-toon-pink">MART</span></span>
+                    <span class="text-[11px] font-black uppercase tracking-widest bg-toon-cyan px-2 py-0.5 rounded-md border-2 border-toon-ink inline-block mt-0.5">Edisi HD 2026</span>
+                </div>
+            </a>
+
+            <!-- Pautan Menu Desktop -->
+            <div class="hidden md:flex items-center gap-6 font-extrabold text-base">
+                <a href="#koleksi" class="hover:text-toon-pink transition-colors">Koleksi Panas</a>
+                <a href="#kelebihan" class="hover:text-toon-purple transition-colors">Kenapa Kami?</a>
+                <a href="#ulasan" class="hover:text-toon-orange transition-colors">Ulasan Geng</a>
+                <a href="#promo" class="hover:text-toon-pink transition-colors">Kotak Misteri</a>
+            </div>
+
+            <!-- Butang Troli & Tindakan -->
+            <div class="flex items-center gap-3">
+                <button onclick="toggleCart()" class="toon-btn bg-toon-yellow hover:bg-toon-lime px-4 py-2.5 rounded-2xl font-toon font-bold text-base sm:text-lg flex items-center gap-2 relative cursor-pointer">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="#18181B" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1.5" fill="#18181B"/>
+                        <circle cx="20" cy="21" r="1.5" fill="#18181B"/>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                    </svg>
+                    <span class="hidden sm:inline">Troli</span>
+                    <span id="cart-badge" class="bg-toon-pink text-white text-xs font-black w-6 h-6 rounded-full border-2 border-toon-ink flex items-center justify-center">2</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ==================== SEKSYEN HERO (UTAMA) ==================== -->
+    <section class="pt-8 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="bg-toon-cyan border-4 border-toon-ink rounded-[2.5rem] shadow-toon-xl p-6 sm:p-10 lg:p-14 relative overflow-hidden">
+                
+                <!-- Dekorasi Latar Belakang Kartun -->
+                <div class="absolute -top-12 -right-12 w-48 h-48 bg-toon-yellow rounded-full border-4 border-toon-ink opacity-80 pointer-events-none"></div>
+                <div class="absolute -bottom-16 -left-16 w-56 h-56 bg-toon-pink rounded-full border-4 border-toon-ink opacity-80 pointer-events-none"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+                    
+                    <!-- Kolum Kiri: Teks Jualan -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 bg-toon-lime border-3 border-toon-ink px-4 py-1.5 rounded-full shadow-toon-sm transform -rotate-2">
+                            <span class="text-lg">⚡</span>
+                            <span class="font-extrabold text-xs sm:text-sm uppercase tracking-wider">Barangan Paling Hype & Comel Di Malaysia!</span>
+                        </div>
+
+                        <h1 class="font-toon text-4xl sm:text-6xl lg:text-7xl font-bold leading-[1.08] text-white text-stroke-lg drop-shadow-[4px_4px_0px_#18181B]">
+                            GAYA HIDUP <span class="text-toon-yellow">WARNA-WARNI</span> MACAM KARTUN!
+                        </h1>
+
+                        <p class="text-base sm:text-xl font-extrabold text-toon-ink bg-white/90 border-3 border-toon-ink p-4 rounded-2xl shadow-toon-sm max-w-2xl mx-auto lg:mx-0">
+                            Tingkatkan vibe bilik, meja kerja, dan gaya harian anda dengan koleksi gajet, aksesori & mainan pereka berdefinisi tinggi. Kualiti padu, warna meletup!
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                            <a href="#koleksi" class="toon-btn w-full sm:w-auto bg-toon-pink text-white font-toon text-xl px-8 py-4 rounded-2xl flex items-center justify-center gap-3">
+                                <span>MULA MEMBELI</span>
+                                <span class="bg-toon-yellow text-toon-ink w-8 h-8 rounded-full border-2 border-toon-ink flex items-center justify-center font-black">➔</span>
+                            </a>
+                            <a href="#promo" class="toon-btn w-full sm:w-auto bg-toon-yellow text-toon-ink font-toon text-xl px-8 py-4 rounded-2xl flex items-center justify-center gap-2">
+                                <span>🎁 KOTAK MISTERI</span>
+                            </a>
+                        </div>
+
+                        <!-- Statistik Ringkas -->
+                        <div class="grid grid-cols-3 gap-3 pt-4 max-w-lg mx-auto lg:mx-0">
+                            <div class="bg-white border-3 border-toon-ink rounded-2xl p-3 text-center shadow-toon-sm">
+                                <div class="font-toon text-2xl sm:text-3xl font-bold text-toon-pink">15K+</div>
+                                <div class="text-xs font-extrabold text-toon-ink">Pelanggan Puas</div>
+                            </div>
+                            <div class="bg-white border-3 border-toon-ink rounded-2xl p-3 text-center shadow-toon-sm">
+                                <div class="font-toon text-2xl sm:text-3xl font-bold text-toon-purple">4.9★</div>
+                                <div class="text-xs font-extrabold text-toon-ink">Penarafan Padu</div>
+                            </div>
+                            <div class="bg-white border-3 border-toon-ink rounded-2xl p-3 text-center shadow-toon-sm">
+                                <div class="font-toon text-2xl sm:text-3xl font-bold text-toon-orange">24 Jam</div>
+                                <div class="text-xs font-extrabold text-toon-ink">Pos Pantas</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kolum Kanan: Ilustrasi Kartun HD Utama (Custom SVG) -->
+                    <div class="lg:col-span-5 flex justify-center relative">
+                        <div class="relative w-full max-w-md">
+                            <!-- Lencana Terapung 1 -->
+                            <div class="absolute -top-4 -left-2 sm:-left-6 z-20 bg-toon-yellow border-4 border-toon-ink rounded-2xl px-4 py-2 shadow-toon animate-float">
+                                <span class="font-toon font-bold text-lg block leading-none">DISKAUN 50%</span>
+                                <span class="text-xs font-black">KOD: TOONZ50</span>
+                            </div>
+
+                            <!-- Lencana Terapung 2 -->
+                            <div class="absolute -bottom-4 -right-2 sm:-right-4 z-20 bg-toon-lime border-4 border-toon-ink rounded-full px-4 py-2 shadow-toon animate-float-rev">
+                                <span class="font-toon font-bold text-sm sm:text-base">✨ EDISI TERHAD HD</span>
+                            </div>
+
+                            <!-- Bingkai Ilustrasi Utama -->
+                            <div class="bg-toon-cream border-4 border-toon-ink rounded-[2rem] p-4 shadow-toon-lg transform rotate-2 hover:rotate-0 transition-transform duration-300">
+                                <svg viewBox="0 0 400 400" class="w-full h-auto rounded-2xl bg-toon-purple/20 border-3 border-toon-ink">
+                                    <!-- Sinaran Matahari Latar -->
+                                    <g transform="translate(200,200)" class="animate-spin-slow" style="transform-origin: 200px 200px;">
+                                        <polygon points="0,-240 25,-30 240,0 25,30 0,240 -25,30 -240,0 -25,-30" fill="#FFD60A" opacity="0.45"/>
+                                        <polygon points="-170,-170 20,-20 170,170 -20,20" fill="#FF4D8D" opacity="0.35"/>
+                                        <polygon points="170,-170 20,20 -170,170 -20,-20" fill="#00E5FF" opacity="0.35"/>
+                                    </g>
+
+                                    <!-- Awan Kartun -->
+                                    <path d="M55 95 C45 95 38 87 38 78 C38 70 44 63 52 62 C55 50 66 42 79 42 C94 42 106 53 108 68 C115 69 121 75 121 83 C121 90 115 95 108 95 Z" fill="#FFFFFF" stroke="#18181B" stroke-width="5" stroke-linejoin="round"/>
+                                    <path d="M295 115 C287 115 281 109 281 101 C281 94 286 89 293 88 C295 78 304 71 315 71 C327 71 337 80 339 92 C345 93 350 98 350 105 C350 111 345 115 339 115 Z" fill="#FFFFFF" stroke="#18181B" stroke-width="5" stroke-linejoin="round"/>
+
+                                    <!-- Maskot Utama: Robot Boombox / Konsol Kartun Comel -->
+                                    <!-- Antena -->
+                                    <line x1="200" y1="95" x2="200" y2="55" stroke="#18181B" stroke-width="7" stroke-linecap="round"/>
+                                    <circle cx="200" cy="48" r="14" fill="#FF4D8D" stroke="#18181B" stroke-width="5"/>
+                                    <circle cx="196" cy="44" r="4" fill="#FFFFFF"/>
+
+                                    <!-- Telinga Headphone -->
+                                    <rect x="68" y="155" width="32" height="75" rx="14" fill="#FFD60A" stroke="#18181B" stroke-width="6"/>
+                                    <rect x="300" y="155" width="32" height="75" rx="14" fill="#FFD60A" stroke="#18181B" stroke-width="6"/>
+                                    <path d="M84 155 C84 90 316 90 316 155" fill="none" stroke="#18181B" stroke-width="8" stroke-linecap="round"/>
+
+                                    <!-- Badan / Kepala Utama -->
+                                    <rect x="95" y="95" width="210" height="190" rx="42" fill="#FF4D8D" stroke="#18181B" stroke-width="7"/>
+                                    <!-- Kilauan Highlight Badan -->
+                                    <path d="M125 112 H225" stroke="#FF85B3" stroke-width="7" stroke-linecap="round"/>
+
+                                    <!-- Skrin Muka Kartun -->
+                                    <rect x="118" y="122" width="164" height="105" rx="24" fill="#18181B"/>
+                                    
+                                    <!-- Mata Kartun Bercahaya -->
+                                    <circle cx="162" cy="168" r="20" fill="#00E5FF"/>
+                                    <circle cx="168" cy="162" r="7" fill="#FFFFFF"/>
+                                    <circle cx="238" cy="168" r="20" fill="#00E5FF"/>
+                                    <circle cx="244" cy="162" r="7" fill="#FFFFFF"/>
+
+                                    <!-- Mulut Senyum Kartun -->
+                                    <path d="M180 196 Q200 218 220 196" fill="none" stroke="#A3FF12" stroke-width="6" stroke-linecap="round"/>
+                                    
+                                    <!-- Pipi Merah -->
+                                    <ellipse cx="140" cy="192" rx="10" ry="6" fill="#FF4D8D"/>
+                                    <ellipse cx="260" cy="192" rx="10" ry="6" fill="#FF4D8D"/>
+
+                                    <!-- Butang Kawalan Bawah -->
+                                    <circle cx="145" cy="255" r="14" fill="#A3FF12" stroke="#18181B" stroke-width="5"/>
+                                    <circle cx="185" cy="255" r="14" fill="#FFD60A" stroke="#18181B" stroke-width="5"/>
+                                    <rect x="220" y="245" width="50" height="20" rx="10" fill="#00E5FF" stroke="#18181B" stroke-width="5"/>
+
+                                    <!-- Kaki Kartun -->
+                                    <path d="M145 285 V325 H125 C115 325 115 342 128 342 H172 C182 342 182 325 170 325 V285" fill="#FFD60A" stroke="#18181B" stroke-width="6" stroke-linejoin="round"/>
+                                    <path d="M255 285 V325 H235 C225 325 225 342 238 342 H282 C292 342 292 325 280 325 V285" fill="#FFD60A" stroke="#18181B" stroke-width="6" stroke-linejoin="round"/>
+
+                                    <!-- Bintang Berkilau -->
+                                    <path d="M55 250 L62 265 L77 272 L62 279 L55 294 L48 279 L33 272 L48 265 Z" fill="#FFD60A" stroke="#18181B" stroke-width="4" stroke-linejoin="round"/>
+                                    <path d="M350 245 L355 256 L366 261 L355 266 L350 277 L345 266 L334 261 L345 256 Z" fill="#A3FF12" stroke="#18181B" stroke-width="4" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== MARQUEE RIBEN BERGERAK ==================== -->
+    <div class="bg-toon-yellow border-y-4 border-toon-ink py-3.5 overflow-hidden select-none transform -rotate-1 my-4 shadow-toon">
+        <div class="animate-marquee flex items-center gap-8 font-toon text-xl sm:text-2xl font-bold uppercase tracking-wide text-toon-ink">
+            <span>★ REKAAN KARTUN HD EKSKLUSIF</span>
+            <span>⚡ PENGHANTARAN PANTAS 24 JAM</span>
+            <span>🎨 WARNA TAK LUNTUR & TAHAN LASAK</span>
+            <span>🎁 PERCUMA PELEKAT KARTUN SETIAP ORDER</span>
+            <span>🛡️ JAMINAN PULANGAN WANG 30 HARI</span>
+            <span>★ REKAAN KARTUN HD EKSKLUSIF</span>
+            <span>⚡ PENGHANTARAN PANTAS 24 JAM</span>
+            <span>🎨 WARNA TAK LUNTUR & TAHAN LASAK</span>
+            <span>🎁 PERCUMA PELEKAT KARTUN SETIAP ORDER</span>
+            <span>🛡️ JAMINAN PULANGAN WANG 30 HARI</span>
+        </div>
+    </div>
+
+    <!-- ==================== SEKSYEN KATALOG PRODUK INTERAKTIF ==================== -->
+    <section id="koleksi" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-10 space-y-4">
+            <span class="bg-toon-pink text-white font-extrabold text-xs sm:text-sm uppercase px-4 py-1.5 rounded-full border-3 border-toon-ink shadow-toon-sm inline-block">
+                🔥 PALING LARIS MINGGU INI
+            </span>
+            <h2 class="font-toon text-4xl sm:text-5xl lg:text-6xl font-bold text-toon-ink">
+                KOLEKSI <span class="bg-toon-lime px-3 py-0.5 rounded-2xl border-3 border-toon-ink inline-block transform rotate-1">TOONZ</span> PILIHAN
+            </h2>
+            <p class="font-bold text-gray-700 text-base sm:text-lg">
+                Pilih kategori kegemaran anda dan masukkan terus ke dalam troli sebelum stok edisi terhad habis!
+            </p>
+        </div>
+
+        <!-- Butang Penapis Kategori -->
+        <div class="flex flex-wrap items-center justify-center gap-3 mb-12" id="category-filters">
+            <button onclick="filterProducts('semua')" data-cat="semua" class="filter-btn toon-btn bg-toon-ink text-white font-toon text-base sm:text-lg px-6 py-2.5 rounded-2xl cursor-pointer">
+                🌈 Semua Item
+            </button>
+            <button onclick="filterProducts('gajet')" data-cat="gajet" class="filter-btn toon-btn bg-white text-toon-ink font-toon text-base sm:text-lg px-6 py-2.5 rounded-2xl cursor-pointer">
+                🎧 Gajet & Audio
+            </button>
+            <button onclick="filterProducts('fesyengaya')" data-cat="fesyengaya" class="filter-btn toon-btn bg-white text-toon-ink font-toon text-base sm:text-lg px-6 py-2.5 rounded-2xl cursor-pointer">
+                👟 Kasut & Beg
+            </button>
+            <button onclick="filterProducts('hiasan')" data-cat="hiasan" class="filter-btn toon-btn bg-white text-toon-ink font-toon text-base sm:text-lg px-6 py-2.5 rounded-2xl cursor-pointer">
+                👾 Figur & Lampu
+            </button>
+        </div>
+
+        <!-- Grid Produk (Dijana oleh JavaScript dengan Ilustrasi SVG HD) -->
+        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Kad produk akan dimasukkan di sini -->
+        </div>
+    </section>
+
+    <!-- ==================== SEKSYEN KELEBIHAN / KENAPA PILIH KAMI ==================== -->
+    <section id="kelebihan" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="bg-toon-purple border-4 border-toon-ink rounded-[2.5rem] p-8 sm:p-12 shadow-toon-xl text-white">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="font-toon text-3xl sm:text-5xl font-bold text-toon-yellow text-stroke">
+                    KENAPA GENG SUKA BELI DI TOONZMART?
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-toon-ink">
+                <!-- Kad 1 -->
+                <div class="bg-toon-yellow border-4 border-toon-ink rounded-3xl p-6 shadow-toon">
+                    <div class="w-16 h-16 bg-white border-3 border-toon-ink rounded-2xl flex items-center justify-center text-3xl mb-4 shadow-toon-sm">
+                        🎨
+                    </div>
+                    <h3 class="font-toon text-2xl font-bold mb-2">Kualiti Cetakan HD</h3>
+                    <p class="font-bold text-sm sm:text-base">
+                        Setiap garisan dan warna dicetak menggunakan teknologi UV definisi tinggi. Tak mudah calar, tak pudar walaupun guna bertahun!
+                    </p>
+                </div>
+
+                <!-- Kad 2 -->
+                <div class="bg-toon-cyan border-4 border-toon-ink rounded-3xl p-6 shadow-toon">
+                    <div class="w-16 h-16 bg-white border-3 border-toon-ink rounded-2xl flex items-center justify-center text-3xl mb-4 shadow-toon-sm">
+                        🚀
+                    </div>
+                    <h3 class="font-toon text-2xl font-bold mb-2">Penghantaran Kilat</h3>
+                    <p class="font-bold text-sm sm:text-base">
+                        Tempah sebelum jam 3 petang, kami terus pos pada hari yang sama dengan kotak bungkusan kalis kemek edisi kolektor!
+                    </p>
+                </div>
+
+                <!-- Kad 3 -->
+                <div class="bg-toon-lime border-4 border-toon-ink rounded-3xl p-6 shadow-toon">
+                    <div class="w-16 h-16 bg-white border-3 border-toon-ink rounded-2xl flex items-center justify-center text-3xl mb-4 shadow-toon-sm">
+                        💎
+                    </div>
+                    <h3 class="font-toon text-2xl font-bold mb-2">100% Rekaan Asli</h3>
+                    <p class="font-bold text-sm sm:text-base">
+                        Direka khas oleh artis ilustrasi tempatan & antarabangsa. Anda takkan jumpa rekaan seunik ini di kedai biasa!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SEKSYEN PROMO KOTAK MISTERI ==================== -->
+    <section id="promo" class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="bg-toon-pink border-4 border-toon-ink rounded-[2.5rem] p-6 sm:p-12 shadow-toon-xl relative overflow-hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7 text-white space-y-4">
+                    <span class="bg-toon-yellow text-toon-ink font-black text-xs uppercase px-3 py-1 rounded-full border-2 border-toon-ink inline-block">
+                        🎁 TAWARAN KOMBO JIMAT
+                    </span>
+                    <h2 class="font-toon text-4xl sm:text-5xl font-bold text-stroke leading-tight">
+                        KOTAK MISTERI MEGA TOONZ!
+                    </h2>
+                    <p class="font-extrabold text-toon-ink bg-white border-3 border-toon-ink p-4 rounded-2xl shadow-toon-sm text-base sm:text-lg">
+                        Dapatkan <span class="text-toon-pink underline">3 Barangan Rawak Bernilai RM250+</span> pada harga satu kotak sahaja! Dijamin tiada item berulang dan disertakan figur emas rahsia jika bertuah!
+                    </p>
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <div class="bg-toon-ink text-toon-yellow font-toon text-3xl font-bold px-5 py-2.5 rounded-2xl border-3 border-white">
+                            RM 99.00 <span class="text-sm text-gray-300 line-through font-body">RM 250</span>
+                        </div>
+                        <button onclick="addToCart(99)" class="toon-btn bg-toon-lime text-toon-ink font-toon text-xl px-7 py-3.5 rounded-2xl cursor-pointer">
+                            + REBUT KOTAK MISTERI
+                        </button>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 flex justify-center">
+                    <!-- Ilustrasi SVG Kotak Misteri Kartun -->
+                    <div class="w-64 sm:w-72 animate-float">
+                        <svg viewBox="0 0 260 260" class="w-full h-auto drop-shadow-[8px_8px_0px_#18181B]">
+                            <!-- Badan Kotak -->
+                            <rect x="35" y="95" width="190" height="135" rx="20" fill="#FFD60A" stroke="#18181B" stroke-width="7"/>
+                            <!-- Jalur Reben Menegak -->
+                            <rect x="112" y="95" width="36" height="135" fill="#00E5FF" stroke="#18181B" stroke-width="6"/>
+                            <!-- Penutup Kotak Terangkat Sedikit -->
+                            <g transform="rotate(-6 130 85)">
+                                <rect x="25" y="65" width="210" height="36" rx="14" fill="#FF7B00" stroke="#18181B" stroke-width="7"/>
+                                <rect x="112" y="65" width="36" height="36" fill="#00E5FF" stroke="#18181B" stroke-width="6"/>
+                                <!-- Reben Atas -->
+                                <path d="M130 65 C105 30 75 45 105 65 Z" fill="#A3FF12" stroke="#18181B" stroke-width="6" stroke-linejoin="round"/>
+                                <path d="M130 65 C155 30 185 45 155 65 Z" fill="#A3FF12" stroke="#18181B" stroke-width="6" stroke-linejoin="round"/>
+                            </g>
+                            <!-- Tanda Soal Kartun Besar -->
+                            <text x="130" y="185" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="76" fill="#FFFFFF" stroke="#18181B" stroke-width="5">?</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SEKSYEN ULASAN PELANGGAN (AVATAR KARTUN) ==================== -->
+    <section id="ulasan" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="font-toon text-4xl sm:text-5xl font-bold text-toon-ink">
+                APA KATA <span class="text-toon-pink">GENG TOONZ</span>?
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Ulasan 1 -->
+            <div class="bg-white border-4 border-toon-ink rounded-3xl p-6 shadow-toon flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-1 text-toon-yellow text-2xl mb-3">
+                        ★★★★★
+                    </div>
+                    <p class="font-bold text-gray-800 mb-6">
+                        "Gila lawa headphone kartun ni! Warna dia sebijik macam dalam gambar, bunyi bass pun padu. Kawan pejabat semua tanya beli kat mana!"
+                    </p>
+                </div>
+                <div class="flex items-center gap-3 pt-4 border-t-3 border-toon-ink">
+                    <div class="w-12 h-12 rounded-full bg-toon-cyan border-3 border-toon-ink flex items-center justify-center font-toon font-bold text-xl">
+                        😎
+                    </div>
+                    <div>
+                        <div class="font-toon font-bold text-lg leading-none">Amirul Hakim</div>
+                        <div class="text-xs font-extrabold text-toon-pink">Kuala Lumpur • Pembeli Sah</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ulasan 2 -->
+            <div class="bg-white border-4 border-toon-ink rounded-3xl p-6 shadow-toon flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-1 text-toon-yellow text-2xl mb-3">
+                        ★★★★★
+                    </div>
+                    <p class="font-bold text-gray-800 mb-6">
+                        "Beli Lampu Neon Awan & Kasut Toonz untuk adik, dia melompat gembira! Penghantaran ke Johor Bahru ambil masa 1 hari je. Terbaik!"
+                    </p>
+                </div>
+                <div class="flex items-center gap-3 pt-4 border-t-3 border-toon-ink">
+                    <div class="w-12 h-12 rounded-full bg-toon-pink border-3 border-toon-ink flex items-center justify-center font-toon font-bold text-xl">
+                        🤩
+                    </div>
+                    <div>
+                        <div class="font-toon font-bold text-lg leading-none">Siti Nurhaliza M.</div>
+                        <div class="text-xs font-extrabold text-toon-purple">Johor Bahru • Pembeli Sah</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ulasan 3 -->
+            <div class="bg-white border-4 border-toon-ink rounded-3xl p-6 shadow-toon flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-1 text-toon-yellow text-2xl mb-3">
+                        ★★★★★
+                    </div>
+                    <p class="font-bold text-gray-800 mb-6">
+                        "Kotak Misteri RM99 memang berbaloi! Dapat beg sandang kartun, botol air komik, dan figur edisi terhad. Memang repeat order lepas ni!"
+                    </p>
+                </div>
+                <div class="flex items-center gap-3 pt-4 border-t-3 border-toon-ink">
+                    <div class="w-12 h-12 rounded-full bg-toon-lime border-3 border-toon-ink flex items-center justify-center font-toon font-bold text-xl">
+                        🥳
+                    </div>
+                    <div>
+                        <div class="font-toon font-bold text-lg leading-none">Daniel Chong</div>
+                        <div class="text-xs font-extrabold text-toon-orange">Pulau Pinang • Pembeli Sah</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-toon-ink text-white border-t-4 border-toon-ink pt-14 pb-8 px-4 sm:px-6 lg:px-8 mt-12">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 pb-10 border-b-2 border-gray-800">
+            <div class="md:col-span-2 space-y-4">
+                <div class="font-toon text-3xl font-bold text-toon-yellow">
+                    TOONZ<span class="text-toon-pink">MART</span>
+                </div>
+                <p class="text-gray-300 font-bold max-w-md">
+                    Destinasi e-Dagang nombor satu untuk peminat seni pop, gaya kartun HD, dan aksesori unik yang menceriakan hari anda.
+                </p>
+                <div class="flex gap-3 pt-2">
+                    <span class="bg-toon-cyan text-toon-ink font-black px-3 py-1 rounded-xl text-xs">FPX ONLINE</span>
+                    <span class="bg-toon-lime text-toon-ink font-black px-3 py-1 rounded-xl text-xs">TNG EWALLET</span>
+                    <span class="bg-toon-yellow text-toon-ink font-black px-3 py-1 rounded-xl text-xs">VISA / MASTER</span>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-toon text-xl font-bold text-toon-cyan mb-4">Pautan Pantas</h4>
+                <ul class="space-y-2 font-bold text-gray-300 text-sm">
+                    <li><a href="#koleksi" class="hover:text-toon-yellow">Semua Koleksi</a></li>
+                    <li><a href="#promo" class="hover:text-toon-yellow">Kotak Misteri</a></li>
+                    <li><a href="#kelebihan" class="hover:text-toon-yellow">Jaminan Kualiti</a></li>
+                    <li><a href="#ulasan" class="hover:text-toon-yellow">Testimoni Pelanggan</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-toon text-xl font-bold text-toon-pink mb-4">Berita & Diskaun</h4>
+                <p class="text-xs font-bold text-gray-300 mb-3">Daftar emel untuk baucar RM15 serta-merta!</p>
+                <form onsubmit="handleNewsletter(event)" class="flex gap-2">
+                    <input type="email" required placeholder="Emel anda..." class="w-full px-3 py-2.5 rounded-xl bg-white text-toon-ink font-bold text-sm border-2 border-toon-yellow focus:outline-none">
+                    <button type="submit" class="bg-toon-yellow text-toon-ink font-toon font-bold px-4 py-2.5 rounded-xl hover:bg-toon-lime cursor-pointer">
+                        Sertai
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto pt-6 text-center text-xs font-bold text-gray-400">
+            © 2026 TOONZMART MALAYSIA. Hak Cipta Terpelihara. Direka dengan penuh warna & keceriaan.
+        </div>
+    </footer>
+
+    <!-- ==================== LACI TROLI BELI-BELAH (CART DRAWER) ==================== -->
+    <div id="cart-overlay" onclick="toggleCart()" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden transition-opacity"></div>
+    
+    <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-toon-cream border-l-4 border-toon-ink z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
+        <!-- Header Troli -->
+        <div class="bg-toon-yellow border-b-4 border-toon-ink p-5 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="text-2xl">🛒</span>
+                <h3 class="font-toon text-2xl font-bold text-toon-ink">Troli Kartun Anda</h3>
+            </div>
+            <button onclick="toggleCart()" class="toon-btn bg-toon-pink text-white w-10 h-10 rounded-xl font-toon font-bold text-xl flex items-center justify-center cursor-pointer">
+                ✕
+            </button>
+        </div>
+
+        <!-- Bar Penghantaran Percuma -->
+        <div class="bg-toon-cyan/30 border-b-3 border-toon-ink px-5 py-2.5 text-xs font-extrabold text-toon-ink flex items-center justify-between">
+            <span>🚚 Penghantaran Percuma diaktifkan!</span>
+            <span class="bg-toon-lime px-2 py-0.5 rounded-md border-2 border-toon-ink">JIMAT RM10</span>
+        </div>
+
+        <!-- Senarai Item Troli -->
+        <div id="cart-items-container" class="flex-1 overflow-y-auto p-5 space-y-4">
+            <!-- Item akan dijana melalui JavaScript -->
+        </div>
+
+        <!-- Footer & Checkout Troli -->
+        <div class="bg-white border-t-4 border-toon-ink p-5 space-y-4">
+            <div class="flex items-center justify-between font-extrabold text-lg">
+                <span>Jumlah Keseluruhan:</span>
+                <span id="cart-total" class="font-toon text-3xl text-toon-pink">RM 0.00</span>
+            </div>
+            <button onclick="checkoutNow()" class="toon-btn w-full bg-toon-lime text-toon-ink font-toon text-xl py-4 rounded-2xl flex items-center justify-center gap-2 cursor-pointer">
+                <span>BAYAR SEKARANG</span>
+                <span>⚡</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ==================== NOTIFIKASI TOAST & MODAL CHECKOUT ==================== -->
+    <div id="toast-box" class="fixed bottom-5 left-1/2 transform -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-300 translate-y-4">
+        <div class="bg-toon-ink text-white border-4 border-toon-yellow px-6 py-3 rounded-2xl shadow-toon flex items-center gap-3 font-extrabold text-sm sm:text-base">
+            <span class="text-xl">🎉</span>
+            <span id="toast-message">Item berjaya ditambah ke troli!</span>
+        </div>
+    </div>
+
+    <!-- Modal Pengesahan Pesanan -->
+    <div id="checkout-modal" class="fixed inset-0 bg-black/70 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white border-4 border-toon-ink rounded-[2rem] max-w-md w-full p-6 sm:p-8 shadow-toon-xl text-center space-y-5 relative">
+            <div class="w-20 h-20 bg-toon-lime border-4 border-toon-ink rounded-full flex items-center justify-center text-4xl mx-auto shadow-toon-sm">
+                🎊
+            </div>
+            <h3 class="font-toon text-3xl font-bold text-toon-ink">PESANAN DITERIMA!</h3>
+            <p class="font-bold text-gray-700">
+                Terima kasih kerana membeli di <span class="text-toon-pink">TOONZMART</span>! Bungkusan penuh warna anda sedang disediakan oleh pasukan robot kami.
+            </p>
+            <div class="bg-toon-yellow/40 border-3 border-toon-ink rounded-2xl p-3 font-extrabold text-sm">
+                Nombor Penjejakan: <span class="text-toon-purple">#TNZ-88291-MY</span>
+            </div>
+            <button onclick="closeCheckoutModal()" class="toon-btn w-full bg-toon-cyan text-toon-ink font-toon text-xl py-3.5 rounded-2xl cursor-pointer">
+                TERUSKAN MEMBELI-BELAH
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== SKRIP INTERAKTIF & DATA PRODUK ==================== -->
+    <script>
+        // Pangkalan Data Produk dengan Ilustrasi SVG Kartun HD Khas
+        const products = [
+            {
+                id: 1,
+                name: "Headphone Bass Meletup Pro",
+                category: "gajet",
+                price: 149.00,
+                oldPrice: 229.00,
+                badge: "TERLARIS",
+                bgColor: "bg-toon-yellow",
+                desc: "Bunyi stereo HD dengan kusyen telinga lembut corak komik 3D.",
+                svg: `<svg viewBox="0 0 200 200" class="w-36 h-36 mx-auto">
+                        <path d="M40 110 C40 50 160 50 160 110" fill="none" stroke="#18181B" stroke-width="14" stroke-linecap="round"/>
+                        <path d="M45 105 C45 55 155 55 155 105" fill="none" stroke="#FF4D8D" stroke-width="8" stroke-linecap="round"/>
+                        <rect x="24" y="95" width="32" height="60" rx="14" fill="#00E5FF" stroke="#18181B" stroke-width="6"/>
+                        <rect x="144" y="95" width="32" height="60" rx="14" fill="#00E5FF" stroke="#18181B" stroke-width="6"/>
+                        <circle cx="40" cy="125" r="8" fill="#FFD60A" stroke="#18181B" stroke-width="4"/>
+                        <circle cx="160" cy="125" r="8" fill="#FFD60A" stroke="#18181B" stroke-width="4"/>
+                        <path d="M85 130 L95 110 L105 135 L115 115" fill="none" stroke="#18181B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>`
+            },
+            {
+                id: 2,
+                name: "Sneakers Pop-Art Komik 2D",
+                category: "fesyengaya",
+                price: 189.00,
+                oldPrice: 280.00,
+                badge: "BARU",
+                bgColor: "bg-toon-pink",
+                desc: "Kasut kanvas lukisan tangan garisan tebal ilusi kartun sebenar.",
+                svg: `<svg viewBox="0 0 200 200" class="w-36 h-36 mx-auto">
+                        <path d="M30 135 H170 C175 135 178 148 170 152 H30 C22 152 22 135 30 135 Z" fill="#FFFFFF" stroke="#18181B" stroke-width="6"/>
+                        <path d="M35 135 V85 L75 75 L110 105 L165 112 C175 114 175 135 165 135 Z" fill="#FFD60A" stroke="#18181B" stroke-width="6" stroke-linejoin="round"/>
+                        <path d="M125 110 C145 110 165 118 168 135 H125 Z" fill="#FFFFFF" stroke="#18181B" stroke-width="5"/>
+                        <line x1="85" y1="88" x2="102" y2="82" stroke="#18181B" stroke-width="5" stroke-linecap="round"/>
+                        <line x1="95" y1="98" x2="112" y2="92" stroke="#18181B" stroke-width="5" stroke-linecap="round"/>
+                        <circle cx="58" cy="112" r="10" fill="#00E5FF" stroke="#18181B" stroke-width="4"/>
+                      </svg>`
+            },
+            {
+                id: 3,
+                name: "Lampu Meja Awan Petir Neon",
+                category: "hiasan",
+                price: 79.00,
+                oldPrice: 120.00,
+                badge: "-34%",
+                bgColor: "bg-toon-cyan",
+                desc: "Lampu LED warna-warni kawalan jauh untuk setup gaming & bilik tidur.",
+                svg: `<svg viewBox="0 0 200 200" class="w-36 h-36 mx-auto">
+                        <path d="M55 115 C40 115 30 103 30 90 C30 78 39 68 50 66 C55 48 72 36 92 36 C114 36 132 52 135 73 C147 75 156 85 156 97 C156 108 147 115 135 115 Z" fill="#FFFFFF" stroke="#18181B" stroke-width="6" stroke-linejoin="round"/>
+                        <polygon points="95,105 75,142 96,142 84,175 122,130 100,130" fill="#FFD60A" stroke="#18181B" stroke-width="5" stroke-linejoin="round"/>
+                        <circle cx="75" cy="82" r="5" fill="#18181B"/>
+                        <circle cx="110" cy="82" r="5" fill="#18181B"/>
+                        <path d="M86 92 Q92 99 98 92" fill="none" stroke="#18181B" stroke-width="4" stroke-linecap="round"/>
+                      </svg>`
+            },
+            {
+                id: 4,
+                name: "Beg Sandang Astro Toonz",
+                category: "fesyengaya",
+                price: 119.00,
+                oldPrice: 169.00,
+                badge: "EDISI TERHAD",
+                bgColor: "bg-toon-lime",
+                desc: "Kalis air, muat laptop 15 inci dengan poket lutsinar pamer pin!",
+                svg: `<svg viewBox="0 0 200 200" class="w-36 h-36 mx-auto">
+                        <path d="M80 48 C80 30 120 30 120 48" fill="none" stroke="#18181B" stroke-width="7" stroke-linecap="round"/>
+                        <rect x="48" y="48" width="104" height="122" rx="28" fill="#9D4EDD" stroke="#18181B" stroke-width="6"/>
+                        <rect x="64" y="105" width="72" height="50" rx="14" fill="#FFD60A" stroke="#18181B" stroke-width="5"/>
+                        <circle cx="100" cy="78" r="14" fill="#00E5FF" stroke="#18181B" stroke-width="5"/>
+                        <line x1="75" y1="125" x2="125" y2="125" stroke="#18181B" stroke-width="5" stroke-linecap="round"/>
+                      </svg>`
+            },
+            {
+                id: 5,
+                name: "Keyboard Mekanikal Retro Pop",
+                category: "gajet",
+                price: 215.00,
+                oldPrice: 299.00,
+                badge: "PADU",
+                bgColor: "bg-toon-orange",
+                desc: "Suis klik-klak sedap dengar dengan keycaps bulat gaya mesin taip kartun.",
+                svg: `<svg viewBox="0 0 200 200" class="w-36 h-36 mx-auto">
+                        <rect x="22" y="65" width="156" height="80" rx="16" fill="#00E5FF" stroke="#18181B" stroke-width="6"/>
+                        <rect x="36" y="80" width="22" height="20" rx="5" fill="#FFFFFF" stroke="#18181B" stroke-width="4"/>
+                        <rect x="65" y="80" width="22" height="20" rx="5" fill="#FFD60A" stroke="#18181B" stroke-width="4"/>
+                        <rect x="94" y="80" width="22" height="20" rx="5" fill="#FFFFFF" stroke="#18181B" stroke-width="4"/>
+                        <rect x="123" y="80" width="40" height="20" rx="5" fill="#FF4D8D" stroke="#18181B" stroke-width="4"/>
+                        <rect x="36" y="108" width="28" height="20" rx="5" fill="#A3FF12" stroke="#18181B" stroke-width="4"/>
+                        <rect x="70" y="108" width="62" height="20" rx="5" fill="#FFFFFF" stroke="#18181B" stroke-width="4"/>
+                        <rect x="138" y="108" width="25" height="20" rx="5" fill="#FFD60A" stroke="#18181B" stroke-width="4"/>
+                      </svg>`
+            },
+            {
+                id: 6,
+                name: "Figur Vinyl Kucing Angkasa",
+                category: "hiasan",
+                price: 95.00,
+                oldPrice: 140.00,
+                badge: "KOLEKTOR",
+                bgColor: "bg-toon-purple",
+                desc: "Tinggi 18cm, kepala boleh pusing dengan visor helmet berkilat.",
+                svg: `<svg viewBox="0 0 200 200" class="w-36 h-36 mx-auto">
+                        <polygon points="58,68 48,32 82,52" fill="#FFD60A" stroke="#18181B" stroke-width="6" stroke-linejoin="round"/>
+                        <polygon points="142,68 152,32 118,52" fill="#FFD60A" stroke="#18181B" stroke-width="6" stroke-linejoin="round"/>
+                        <circle cx="100" cy="95" r="52" fill="#FFFFFF" stroke="#18181B" stroke-width="6"/>
+                        <rect x="64" y="74" width="72" height="36" rx="18" fill="#18181B"/>
+                        <circle cx="84" cy="92" r="7" fill="#A3FF12"/>
+                        <circle cx="116" cy="92" r="7" fill="#A3FF12"/>
+                        <rect x="72" y="142" width="56" height="34" rx="14" fill="#FF4D8D" stroke="#18181B" stroke-width="6"/>
+                      </svg>`
+            },
+            {
+                id: 99,
+                name: "Kotak Misteri Mega Toonz",
+                category: "promo",
+                price: 99.00,
+                oldPrice: 250.00,
+                badge: "MISTERI",
+                bgColor: "bg-toon-yellow",
+                desc: "3 item rawak bernilai RM250+ dalam satu kotak!",
+                svg: `<svg viewBox="0 0 200 200" class="w-36 h-36 mx-auto">
+                        <rect x="35" y="65" width="130" height="105" rx="16" fill="#FF4D8D" stroke="#18181B" stroke-width="6"/>
+                        <rect x="88" y="65" width="24" height="105" fill="#00E5FF" stroke="#18181B" stroke-width="5"/>
+                        <rect x="28" y="48" width="144" height="26" rx="10" fill="#FFD60A" stroke="#18181B" stroke-width="6"/>
+                        <text x="100" y="138" text-anchor="middle" font-family="Fredoka" font-weight="700" font-size="54" fill="#FFFFFF" stroke="#18181B" stroke-width="4">?</text>
+                      </svg>`
+            }
+        ];
+
+        // Keadaan Troli Awal (2 item contoh supaya pengguna terus nampak fungsi troli)
+        let cart = [
+            { id: 1, qty: 1 },
+            { id: 3, qty: 1 }
+        ];
+
+        let currentCategory = 'semua';
+
+        // Fungsi Papar Produk
+        function renderProducts(category = 'semua') {
+            const grid = document.getElementById('products-grid');
+            const filtered = products.filter(p => p.category !== 'promo' && (category === 'semua' || p.category === category));
+
+            grid.innerHTML = filtered.map(product => `
+                <div class="toon-card bg-white rounded-[2rem] overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <!-- Kotak Ilustrasi Produk -->
+                        <div class="${product.bgColor} border-b-4 border-toon-ink p-6 relative">
+                            <span class="absolute top-4 left-4 bg-white text-toon-ink font-black text-xs px-3 py-1 rounded-full border-3 border-toon-ink shadow-toon-sm">
+                                ${product.badge}
+                            </span>
+                            <div class="transform hover:scale-110 transition-transform duration-300 py-2">
+                                ${product.svg}
+                            </div>
+                        </div>
+
+                        <!-- Butiran Produk -->
+                        <div class="p-6 space-y-2">
+                            <h3 class="font-toon text-2xl font-bold text-toon-ink leading-snug">${product.name}</h3>
+                            <p class="text-sm font-bold text-gray-600">${product.desc}</p>
+                        </div>
+                    </div>
+
+                    <!-- Harga & Butang Beli -->
+                    <div class="px-6 pb-6 pt-2 flex items-center justify-between gap-3">
+                        <div>
+                            <span class="text-xs font-extrabold text-gray-400 line-through block">RM ${product.oldPrice.toFixed(2)}</span>
+                            <span class="font-toon text-2xl sm:text-3xl font-bold text-toon-pink">RM ${product.price.toFixed(2)}</span>
+                        </div>
+                        <button onclick="addToCart(${product.id})" class="toon-btn bg-toon-yellow hover:bg-toon-lime text-toon-ink font-toon font-bold text-base px-5 py-3 rounded-2xl cursor-pointer">
+                            + Troli
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Fungsi Tapis Kategori
+        function filterProducts(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.dataset.cat === cat) {
+                    btn.classList.remove('bg-white', 'text-toon-ink');
+                    btn.classList.add('bg-toon-ink', 'text-white');
+                } else {
+                    btn.classList.remove('bg-toon-ink', 'text-white');
+                    btn.classList.add('bg-white', 'text-toon-ink');
+                }
+            });
+            renderProducts(cat);
+        }
+
+        // Tambah ke Troli
+        function addToCart(productId) {
+            const existing = cart.find(item => item.id === productId);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({ id: productId, qty: 1 });
+            }
+            updateCartUI();
+            const prod = products.find(p => p.id === productId);
+            showToast(`"${prod.name}" masuk ke troli!`);
+        }
+
+        // Ubah Kuantiti
+        function changeQty(productId, delta) {
+            const index = cart.findIndex(item => item.id === productId);
+            if (index > -1) {
+                cart[index].qty += delta;
+                if (cart[index].qty <= 0) {
+                    cart.splice(index, 1);
+                }
+            }
+            updateCartUI();
+        }
+
+        // Kemaskini Paparan Troli
+        function updateCartUI() {
+            const container = document.getElementById('cart-items-container');
+            const badge = document.getElementById('cart-badge');
+            const totalEl = document.getElementById('cart-total');
+
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            badge.textContent = totalQty;
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-16 space-y-4">
+                        <div class="text-6xl">🏜️</div>
+                        <h4 class="font-toon text-2xl font-bold">Troli Masih Kosong!</h4>
+                        <p class="font-bold text-gray-600 text-sm">Jom pilih beberapa barangan kartun yang comel sekarang.</p>
+                    </div>
+                `;
+                totalEl.textContent = 'RM 0.00';
+                return;
+            }
+
+            let grandTotal = 0;
+
+            container.innerHTML = cart.map(item => {
+                const product = products.find(p => p.id === item.id);
+                const subtotal = product.price * item.qty;
+                grandTotal += subtotal;
+
+                return `
+                    <div class="bg-white border-3 border-toon-ink rounded-2xl p-3.5 shadow-toon-sm flex items-center gap-3">
+                        <div class="w-16 h-16 ${product.bgColor} border-2 border-toon-ink rounded-xl flex items-center justify-center shrink-0 p-1">
+                            ${product.svg.replace('w-36 h-36', 'w-12 h-12')}
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-toon font-bold text-base truncate">${product.name}</h4>
+                            <div class="font-extrabold text-toon-pink text-sm">RM ${product.price.toFixed(2)}</div>
+                            <div class="flex items-center gap-2 mt-2">
+                                <button onclick="changeQty(${product.id}, -1)" class="w-7 h-7 bg-toon-yellow border-2 border-toon-ink rounded-lg font-black flex items-center justify-center cursor-pointer">-</button>
+                                <span class="font-toon font-bold text-base w-6 text-center">${item.qty}</span>
+                                <button onclick="changeQty(${product.id}, 1)" class="w-7 h-7 bg-toon-lime border-2 border-toon-ink rounded-lg font-black flex items-center justify-center cursor-pointer">+</button>
+                            </div>
+                        </div>
+                        <button onclick="changeQty(${product.id}, -${item.qty})" class="text-gray-400 hover:text-toon-pink font-black text-lg px-2 cursor-pointer" title="Buang">
+                            🗑️
+                        </button>
+                    </div>
+                `;
+            }).join('');
+
+            totalEl.textContent = `RM ${grandTotal.toFixed(2)}`;
+        }
+
+        // Buka / Tutup Laci Troli
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            const overlay = document.getElementById('cart-overlay');
+            const isClosed = drawer.classList.contains('translate-x-full');
+
+            if (isClosed) {
+                drawer.classList.remove('translate-x-full');
+                overlay.classList.remove('hidden');
+            } else {
+                drawer.classList.add('translate-x-full');
+                overlay.classList.add('hidden');
+            }
+        }
+
+        // Proses Checkout
+        function checkoutNow() {
+            if (cart.length === 0) {
+                showToast("Sila masukkan sekurang-kurangnya 1 item ke troli!");
+                return;
+            }
+            toggleCart();
+            cart = [];
+            updateCartUI();
+            const modal = document.getElementById('checkout-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeCheckoutModal() {
+            const modal = document.getElementById('checkout-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Notifikasi Toast
+        let toastTimeout;
+        function showToast(msg) {
+            const box = document.getElementById('toast-box');
+            document.getElementById('toast-message').textContent = msg;
+            box.classList.remove('opacity-0', 'translate-y-4');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                box.classList.add('opacity-0', 'translate-y-4');
+            }, 2600);
+        }
+
+        // Borang Newsletter
+        function handleNewsletter(e) {
+            e.preventDefault();
+            e.target.reset();
+            showToast("Kod baucar RM15 (GENGTOON15) dihantar ke emel anda!");
+        }
+
+        // Pemasa Undur (Countdown Timer) Jualan Kilat
+        function startCountdown() {
+            let seconds = 4 * 3600 + 59 * 60 + 59;
+            const timerEl = document.getElementById('countdown-timer');
+            setInterval(() => {
+                if (seconds <= 0) seconds = 5 * 3600;
+                seconds--;
+                const h = String(Math.floor(seconds / 3600)).padStart(2, '0');
+                const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+                const s = String(seconds % 60).padStart(2, '0');
+                timerEl.textContent = `${h}:${m}:${s}`;
+            }, 1000);
+        }
+
+        // Mulakan Aplikasi
+        window.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            updateCartUI();
+            startCountdown();
+        });
+    </script>
+</body>
+</html>
