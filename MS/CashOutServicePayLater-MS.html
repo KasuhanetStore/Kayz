@@ -430,8 +430,8 @@
     <h3>NOTIS KELAYAKAN MUTLAK</h3>
     <p>Sila pastikan anda memenuhi kriteria wajib di bawah sebelum meneruskan permohonan:</p>
     <ul>
-      <li class="highlight-alert">HANYA pemohon yang mempunyai nama pada dokumen pengenalan SAMA dengan nama pemegang akaun bank penerima akan diproses.</li>
-      <li>Jika NAMA akaun PayLater dan NAMA akaun bank tidak sepadan, permohonan akan DITOLAK SECARA AUTOMATIK atas faktor keselamatan.</li>
+      <li class="highlight-alert">Semakan kelayakan akan diterangkan selepas pertanyaan awal. Jangan hantar butiran akaun bank atau pengenalan melalui WhatsApp.</li>
+      <li>Do not share account numbers, passwords, PINs or OTPs during the initial enquiry.</li>
       <li>Platform Sokongan Rasmi: <span class="badge">Boost PayFlex</span> <span class="badge">Ryt PayLater</span></li>
     </ul>
   </div>
@@ -443,58 +443,21 @@
     <ul>
       <li>Caj pemprosesan ialah <strong>5%</strong> daripada jumlah keseluruhan pengeluaran.</li>
       <li>Tempoh pengesahan bergantung pada giliran sistem. Maklumat akaun syarikat akan diberikan selepas permohonan lulus pengesahan.</li>
-      <li>Sebarang kesilapan transaksi akibat kecuaian pemohon seperti nombor akaun atau jumlah yang salah adalah tanggungjawab pemohon sepenuhnya.</li>
+      <li>Menghantar pertanyaan tidak bermaksud permohonan diluluskan atau transaksi akan dilakukan.</li>
     </ul>
   </div>
 
   <!-- APPLICATION FORM -->
   <div class="card-box">
-    <h2 style="color: var(--secondary-neon); margin-bottom: 20px; font-size: 1.4rem;">Borang Permohonan Cash Out</h2>
+    <h2 style="color: var(--secondary-neon); margin-bottom: 20px; font-size: 1.4rem;">Borang Pertanyaan Awal PayLater</h2>
     
     <form onsubmit="processWhatsAppApplication(); return false;">
-      
-      <div class="input-group">
-        <label>Nama Penuh (Mestilah Sama Seperti Kad Pengenalan & Akaun Bank)</label>
-        <input type="text" id="inp-nama" placeholder="CONTOH: ALEX RAFFLES / ALI BIN ABU" required>
-      </div>
-
-      <div class="input-group">
-        <label>Platform PayLater Yang Digunakan</label>
-        <select id="inp-platform" required>
-          <option value="" disabled selected>-- Pilih Platform --</option>
-          <option value="Boost PayFlex">Boost PayFlex</option>
-          <option value="Ryt PayLater">Ryt PayLater</option>
-        </select>
-      </div>
-
-      <div class="input-group">
-        <label>Nama Bank Penerima</label>
-        <input type="text" id="inp-bank" placeholder="Contoh: Maybank / CIMB" required>
-      </div>
-
-      <div class="input-group">
-        <label>Nombor Akaun Bank</label>
-        <input type="text" id="inp-akaun" placeholder="Masukkan nombor akaun tanpa tanda sengkang (-)" required>
-      </div>
-
-      <div class="input-group">
-        <label>Jumlah Cash Out (RM)</label>
-        <input type="number" id="inp-jumlah" value="200" readonly style="background: rgba(255, 255, 255, 0.1); cursor: not-allowed;">
-      </div>
-
-      <div class="input-group">
-        <label>Nombor Akaun PayLater</label>
-        <input type="text" id="inp-id" placeholder="Masukkan nombor akaun PayLater" required>
-      </div>
-
-      <label class="checkbox-container">
-        <input type="checkbox" id="chk-agree" required>
-        <span>Saya mengesahkan nama akaun bank saya adalah SAMA dengan nama akaun PayLater saya dan bersetuju dengan semua Terma & Syarat di atas.</span>
-      </label>
-
-      <button type="submit" class="submit-btn">Hantar Permohonan</button>
-
-    </form>
+<div class="input-group"><label>Nama Pilihan</label><input type="text" id="inp-nama" placeholder="Masukkan nama anda" maxlength="80" required></div>
+<div class="input-group"><label>Platform PayLater</label><select id="inp-platform" required><option value="" disabled selected>-- Pilih Platform --</option><option value="Boost PayFlex">Boost PayFlex</option><option value="Ryt PayLater">Ryt PayLater</option></select></div>
+<div class="input-group"><label>Jumlah Pertanyaan (RM)</label><input type="number" id="inp-jumlah" value="200" readonly style="background: rgba(255, 255, 255, 0.1); cursor: not-allowed;"></div>
+<div class="card-box notice-box" style="margin:18px 0;padding:16px;"><p><strong>Notis privasi:</strong> Ini hanya pertanyaan awal. Jangan hantar nombor akaun bank, nombor akaun PayLater, butiran kad pengenalan, kata laluan, PIN atau OTP melalui borang ini atau WhatsApp. Kelulusan atau cash out tidak dijamin.</p></div>
+<label class="checkbox-container"><input type="checkbox" id="chk-agree" required><span>Saya faham ini hanya pertanyaan awal dan bersetuju nama, platform pilihan serta jumlah pertanyaan dimasukkan ke dalam mesej WhatsApp kepada KasuhaNET.</span></label>
+<button type="submit" class="submit-btn">Hantar Pertanyaan Awal</button></form></form>
   </div>
 
   <div class="flicker-text">
@@ -507,30 +470,10 @@
 
 <script>
 function processWhatsAppApplication(){
-  const nama      = document.getElementById("inp-nama").value.toUpperCase();
-  const platform  = document.getElementById("inp-platform").value;
-  const bank      = document.getElementById("inp-bank").value;
-  const akaun     = document.getElementById("inp-akaun").value;
-  const jumlah    = document.getElementById("inp-jumlah").value;
-  const plAccount = document.getElementById("inp-id").value;
-
-  const textMessage = 
-`! PERMOHONAN CASH OUT BNPL !
-----------------------------------
-Nama Pemohon   : ${nama}
-Platform PL    : ${platform}
-Nama Bank      : ${bank}
-No Akaun Bank  : ${akaun}
-Jumlah Mohon   : RM ${jumlah}
-No Akaun PL    : ${plAccount}
-----------------------------------
-*Status Identiti: Nama Bank & BNPL adalah SAMA.*
-*Pemohon bersetuju dengan Terma & Syarat (Caj 5%).*`;
-
-  const targetPhone = "60167390501"; 
-  const whatsappUrl = `https://wa.me/${targetPhone}?text=${encodeURIComponent(textMessage)}`;
-
-  window.open(whatsappUrl, "_blank");
+const nama=document.getElementById("inp-nama").value.trim(), platform=document.getElementById("inp-platform").value, jumlah=document.getElementById("inp-jumlah").value;
+if(!nama||!platform||!document.getElementById("chk-agree").checked)return;
+const textMessage=`PERTANYAAN AWAL PAYLATER KASUHANET\nNama: ${nama}\nPlatform: ${platform}\nJumlah pertanyaan: RM ${jumlah}\n\nIni hanya pertanyaan awal. Tiada nombor akaun bank, akaun PayLater atau butiran pengenalan disertakan.`;
+window.open(`https://wa.me/60167390501?text=${encodeURIComponent(textMessage)}`,"_blank","noopener,noreferrer");
 }
 </script>
 
