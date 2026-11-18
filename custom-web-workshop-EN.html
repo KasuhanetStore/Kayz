@@ -1050,8 +1050,59 @@ footer > * { position: relative; z-index: 1; }
   modal.className="kn-payment-modal";
   modal.id="knWorkshopPaymentModal";
   modal.hidden=true;
-  modal.innerHTML='<section class="kn-payment-panel" role="dialog" aria-modal="true" aria-labelledby="knWorkshopPaymentTitle"><div class="kn-payment-head"><h2 id="knWorkshopPaymentTitle">SECURE CHECKOUT</h2><button type="button" class="kn-payment-close" aria-label="Close checkout">×</button></div><div class="kn-payment-summary"><p id="knWorkshopSummaryCount"></p><strong id="knWorkshopSummaryTotal"></strong><p>One-time payment · MYR</p></div><form class="kn-checkout-form kn-payment-form" id="knWorkshopPaymentForm"><label for="knWorkshopName">Full name</label><input id="knWorkshopName" name="name" autocomplete="name" maxlength="100" required><label for="knWorkshopEmail">Email address</label><input id="knWorkshopEmail" name="email" type="email" autocomplete="email" maxlength="254" required title="Enter a valid email address, e.g. name@example.com."><label for="knWorkshopPhone">Phone number</label><input id="knWorkshopPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60" required inputmode="tel" title="Enter 9 to 15 digits. Example: +60123456789.">
-<div class="kn-payment-choice"><span class="kn-payment-step">STEP 1 · CHOOSE HOW TO PAY</span><strong class="kn-payment-heading">PAYMENT METHOD</strong><div class="kn-payment-options" role="radiogroup" aria-label="Choose payment method"><label class="kn-payment-option is-selected"><input type="radio" name="knPaymentChoice" value="stripe" checked><span class="kn-payment-radio"></span><span class="kn-payment-option-copy"><strong>STRIPE</strong><small>Debit / credit cards and available methods</small></span></label><label class="kn-payment-option"><input type="radio" name="knPaymentChoice" value="toyyibpay"><span class="kn-payment-radio"></span><span class="kn-payment-option-copy"><strong>TOYYIBPAY</strong><small>FPX · Card · DuitNow QR (if active)</small></span></label></div><select id="knPaymentMethod" name="paymentMethod" aria-hidden="true" tabindex="-1"><option value="stripe">Stripe</option><option value="toyyibpay">ToyyibPay</option></select><p id="knPaymentHint">Select one of the payment options above, then continue.</p></div><button class="kn-checkout-submit" type="submit" id="knWorkshopPaySubmit">CONTINUE TO SECURE PAYMENT</button><p class="kn-checkout-note">Choose Stripe or ToyyibPay. You will be redirected to the selected provider’s secure payment page. Do not share your card or banking credentials with KasuhaNET.</p><div class="kn-checkout-error kn-payment-error" id="knWorkshopPaymentError" role="alert"></div></form></section>';
+  modal.innerHTML = `
+<section class="kn-payment-panel"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="knWorkshopPaymentTitle">
+  <div class="kn-payment-head">
+    <h2 id="knWorkshopPaymentTitle">SECURE CHECKOUT</h2>
+    <button type="button" class="kn-payment-close" aria-label="Close checkout">×</button>
+  </div>
+  <div class="kn-payment-summary">
+    <p id="knWorkshopSummaryCount"></p>
+    <strong id="knWorkshopSummaryJumlah"></strong>
+    <p>One-time payment · MYR</p>
+  </div>
+  <form class="kn-checkout-form kn-payment-form" id="knWorkshopPaymentForm">
+    <label for="knWorkshopName">Full name</label>
+    <input id="knWorkshopName" name="name" autocomplete="name" maxlength="100" required>
+    <label for="knWorkshopEmail">Email address</label>
+    <input id="knWorkshopEmail" name="email" type="email" autocomplete="email" maxlength="254" required title="Enter a valid email address, e.g. name@example.com.">
+    <label for="knWorkshopPhone">Phone number</label>
+    <input id="knWorkshopPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+60" inputmode="tel" required title="Enter 9 to 15 digits. Example: +60123456789.">
+    <div class="kn-payment-choice">
+      <span class="kn-payment-step">STEP 1 · CHOOSE HOW TO PAY</span>
+      <strong class="kn-payment-heading">PAYMENT METHOD</strong>
+      <div class="kn-payment-options" role="radiogroup" aria-label="Choose payment method">
+        <label class="kn-payment-option is-selected">
+          <input type="radio" name="knPaymentChoice" value="stripe" checked>
+          <span class="kn-payment-radio"></span>
+          <span class="kn-payment-option-copy">
+            <strong>STRIPE</strong>
+            <small>Debit / credit cards and available methods</small>
+          </span>
+        </label>
+        <label class="kn-payment-option">
+          <input type="radio" name="knPaymentChoice" value="toyyibpay">
+          <span class="kn-payment-radio"></span>
+          <span class="kn-payment-option-copy">
+            <strong>TOYYIBPAY</strong>
+            <small>FPX · Card · DuitNow QR (if active)</small>
+          </span>
+        </label>
+      </div>
+      <select id="knPaymentMethod" name="paymentMethod" aria-hidden="true" tabindex="-1">
+        <option value="stripe">Stripe</option>
+        <option value="toyyibpay">ToyyibPay</option>
+      </select>
+      <p id="knPaymentHint">Select one of the payment options above, then press PAY.</p>
+    </div>
+    <button type="submit" class="kn-checkout-submit" id="knWorkshopPaySubmit">PAY</button>
+    <p class="kn-checkout-note">Choose Stripe or ToyyibPay. You will be redirected to the selected provider's official payment page.</p>
+    <div class="kn-checkout-error kn-payment-error" id="knWorkshopPaymentError" role="alert"></div>
+  </form>
+</section>`;
   document.body.append(modal);
   const paymentSelect=document.getElementById("knPaymentMethod");
   modal.querySelectorAll('input[name="knPaymentChoice"]').forEach(option=>{
@@ -1068,7 +1119,7 @@ footer > * { position: relative; z-index: 1; }
     const items=selected();
     if(!items.length)return;
     document.getElementById("knWorkshopSummaryCount").textContent=items.length+" selected service(s)";
-    document.getElementById("knWorkshopSummaryTotal").textContent=money(items.reduce((sum,item)=>sum+item.amount,0));
+    document.getElementById("knWorkshopSummaryJumlah").textContent=money(items.reduce((sum,item)=>sum+item.amount,0));
     document.getElementById("knWorkshopPaymentError").style.display="none";
     modal.hidden=false;
     document.body.style.overflow="hidden";
