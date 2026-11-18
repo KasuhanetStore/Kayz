@@ -425,8 +425,8 @@
     <h3>ABSOLUTE ELIGIBILITY NOTICE</h3>
     <p>Please ensure you meet the mandatory criteria below before proceeding with the application:</p>
     <ul>
-      <li class="highlight-alert">ONLY applicants whose identity ID name MATCHES the recipient's Bank Account Holder Name will be processed.</li>
-      <li>If the PayLater account NAME and bank account NAME conflict, the application will be AUTOMATICALLY REJECTED for security purposes.</li>
+      <li class="highlight-alert">Any eligibility checks will be explained after the initial enquiry. Do not send bank account or identity details through WhatsApp.</li>
+      <li>Do not share account numbers, passwords, PINs or OTPs during the initial enquiry.</li>
       <li>Officially Supported Platforms: <span class="badge">Boost PayFlex</span> <span class="badge">Ryt PayLater</span></li>
     </ul>
   </div>
@@ -438,58 +438,21 @@
     <ul>
       <li>The processing fee is <strong>5%</strong> of the total withdrawal amount.</li>
       <li>Verification time depends on the system queue (company account details will be provided upon passing verification).</li>
-      <li>Any transaction errors due to personal negligence (wrong account number/amount) are solely the applicant's responsibility.</li>
+      <li>Submitting an enquiry does not mean an application is approved or that a transaction will take place.</li>
     </ul>
   </div>
 
   <!-- APPLICATION FORM -->
   <div class="card-box">
-    <h2 style="color: var(--secondary-neon); margin-bottom: 20px; font-size: 1.4rem;">Cash Out Application Form</h2>
+    <h2 style="color: var(--secondary-neon); margin-bottom: 20px; font-size: 1.4rem;">PayLater Initial Enquiry Form</h2>
     
     <form onsubmit="processWhatsAppApplication(); return false;">
-      
-      <div class="input-group">
-        <label>Full Name (Must Match IC & Bank Account)</label>
-        <input type="text" id="inp-nama" placeholder="EXAMPLE: ALEX RAFFLES / ALI BIN ABU" required>
-      </div>
-
-      <div class="input-group">
-        <label>PayLater Platform Used</label>
-        <select id="inp-platform" required>
-          <option value="" disabled selected>-- Select Platform --</option>
-          <option value="Boost PayFlex">Boost PayFlex</option>
-          <option value="Ryt PayLater">Ryt PayLater</option>
-        </select>
-      </div>
-
-      <div class="input-group">
-        <label>Recipient Bank Name</label>
-        <input type="text" id="inp-bank" placeholder="Example: Maybank / CIMB" required>
-      </div>
-
-      <div class="input-group">
-        <label>Bank Account Number</label>
-        <input type="text" id="inp-akaun" placeholder="Enter account number without hyphens (-)" required>
-      </div>
-
-      <div class="input-group">
-        <label>Cash Out Amount (RM)</label>
-        <input type="number" id="inp-jumlah" value="200" readonly style="background: rgba(255, 255, 255, 0.1); cursor: not-allowed;">
-      </div>
-
-      <div class="input-group">
-        <label>PayLater Account Number</label>
-        <input type="text" id="inp-id" placeholder="Enter PayLater account number" required>
-      </div>
-
-      <label class="checkbox-container">
-        <input type="checkbox" id="chk-agree" required>
-        <span>I confirm that my bank account name is the SAME as my PayLater account name, and I agree to all Terms & Conditions above.</span>
-      </label>
-
-      <button type="submit" class="submit-btn">Submit Application</button>
-
-    </form>
+<div class="input-group"><label>Preferred Name</label><input type="text" id="inp-nama" placeholder="Enter your name" maxlength="80" required></div>
+<div class="input-group"><label>PayLater Platform</label><select id="inp-platform" required><option value="" disabled selected>-- Select Platform --</option><option value="Boost PayFlex">Boost PayFlex</option><option value="Ryt PayLater">Ryt PayLater</option></select></div>
+<div class="input-group"><label>Enquiry Amount (RM)</label><input type="number" id="inp-jumlah" value="200" readonly style="background: rgba(255, 255, 255, 0.1); cursor: not-allowed;"></div>
+<div class="card-box notice-box" style="margin:18px 0;padding:16px;"><p><strong>Privacy notice:</strong> This is an initial enquiry only. Do not send bank account numbers, PayLater account numbers, identity card details, passwords, PINs or OTPs through this form or WhatsApp. No approval or cash-out is guaranteed.</p></div>
+<label class="checkbox-container"><input type="checkbox" id="chk-agree" required><span>I understand this is only an initial enquiry and agree that my name, selected platform and enquiry amount will be included in a WhatsApp message to KasuhaNET.</span></label>
+<button type="submit" class="submit-btn">Send Initial Enquiry</button></form></form>
   </div>
 
   <div class="flicker-text">
@@ -502,30 +465,10 @@
 
 <script>
 function processWhatsAppApplication(){
-  const nama      = document.getElementById("inp-nama").value.toUpperCase();
-  const platform  = document.getElementById("inp-platform").value;
-  const bank      = document.getElementById("inp-bank").value;
-  const akaun     = document.getElementById("inp-akaun").value;
-  const jumlah    = document.getElementById("inp-jumlah").value;
-  const plAccount = document.getElementById("inp-id").value;
-
-  const textMessage = 
-`! BNPL CASH OUT APPLICATION !
-----------------------------------
-Applicant Name  : ${nama}
-PL Platform     : ${platform}
-Bank Name       : ${bank}
-Bank Account No : ${akaun}
-Req Amount      : RM ${jumlah}
-PL Account No   : ${plAccount}
-----------------------------------
-*Identity Status: Bank & BNPL Names MATCH.*
-*Applicant agrees to Terms & Conditions (5% Fee).*`;
-
-  const targetPhone = "60167390501"; 
-  const whatsappUrl = `https://wa.me/${targetPhone}?text=${encodeURIComponent(textMessage)}`;
-
-  window.open(whatsappUrl, "_blank");
+const nama=document.getElementById("inp-nama").value.trim(), platform=document.getElementById("inp-platform").value, jumlah=document.getElementById("inp-jumlah").value;
+if(!nama||!platform||!document.getElementById("chk-agree").checked)return;
+const textMessage=`KASUHANET PAYLATER INITIAL ENQUIRY\nName: ${nama}\nPlatform: ${platform}\nEnquiry amount: RM ${jumlah}\n\nThis is an initial enquiry only. No bank account, PayLater account or identity details are included.`;
+window.open(`https://wa.me/60167390501?text=${encodeURIComponent(textMessage)}`,"_blank","noopener,noreferrer");
 }
 </script>
 
