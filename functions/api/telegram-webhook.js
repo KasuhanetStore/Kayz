@@ -65,7 +65,7 @@ async function setLanguage(db,chatId,lang){
   await db.prepare(`INSERT INTO telegram_user_settings(chat_id,language) VALUES(?,?) ON CONFLICT(chat_id) DO UPDATE SET language=excluded.language,updated_at=CURRENT_TIMESTAMP`).bind(String(chatId),lang).run();
 }
 function languageMenu(){return [[{text:"English",callback_data:"lang:en"},{text:"Bahasa Melayu",callback_data:"lang:ms"}],[{text:"中文",callback_data:"lang:zh"},{text:"தமிழ்",callback_data:"lang:ta"}]];}
-function mainMenu(lang="en"){return [[{text:tr(lang,"packages"),callback_data:"menu:packages"}],[{text:tr(lang,"services"),callback_data:"menu:services"}],[{text:tr(lang,"affiliate"),url:SITE+"/Shop-MyAffliate-home-EN.html"}],[{text:tr(lang,"visit"),url:SITE}]];}
+function mainMenu(lang="en"){return [[{text:tr(lang,"packages"),callback_data:"menu:packages"}],[{text:tr(lang,"services"),callback_data:"menu:services"}],[{text:tr(lang,"affiliate"),url:SITE+"/Shop-MyAffliate-home-EN.html"}],[{text:tr(lang,"visit"),url:SITE}],[{text:"🌐 English / Malay / 中文 / தமிழ்",callback_data:"menu:language"}]];}
 
 async function ensureTelegramTables(db) {
   await db.prepare(`CREATE TABLE IF NOT EXISTS telegram_checkout_sessions (
@@ -95,7 +95,7 @@ async function beginCheckout(env, chatId, item, id, isService) {
     payment_method=NULL,step='name',customer_name=NULL,customer_email=NULL,customer_phone=NULL,
     created_at=CURRENT_TIMESTAMP`).bind(String(chatId),isService?"service":"package",id).run();
   const lang=await getLanguage(env.DB,chatId);
-  await send(env,chatId,"<b>"+tr(lang,"buyer")+"</b>\\n"+tr(lang,"continue"),[[{text:tr(lang,"continue"),callback_data:"checkout:start_details"}]]);
+  await send(env,chatId,"<b>"+tr(lang,"buyer")+"</b>\n"+tr(lang,"continue"),[[{text:tr(lang,"continue"),callback_data:"checkout:start_details"}]]);
 }
 
 async function createStripePayment(env, chatId, session, item, packageId) {
@@ -219,7 +219,7 @@ async function handleCheckoutMessage(env, chatId, input) {
     await env.DB.prepare("UPDATE telegram_checkout_sessions SET customer_phone=?,step='payment' WHERE chat_id=?").bind(input,String(chatId)).run();
     const lang=await getLanguage(env.DB,chatId);
     await send(env,chatId,
-      "<b>"+tr(lang,"detailsAccepted")+"</b>\\n"+tr(lang,"name")+" "+session.customer_name+"\\n"+tr(lang,"email")+" "+session.customer_email+"\\n"+tr(lang,"phone")+" "+input+"\\n\\n<b>"+tr(lang,"gateway")+"</b>",
+      "<b>"+tr(lang,"detailsAccepted")+"</b>\n"+tr(lang,"name")+" "+session.customer_name+"\n"+tr(lang,"email")+" "+session.customer_email+"\n"+tr(lang,"phone")+" "+input+"\n\n<b>"+tr(lang,"gateway")+"</b>",
       [
         [{text:"STRIPE • Debit / Credit Card",callback_data:"pay:stripe"}],
         [{text:"TOYYIBPAY • FPX / DuitNow QR*",callback_data:"pay:toyyibpay"}],
@@ -270,10 +270,10 @@ export async function onRequestPost({ request, env }) {
         // Checkout conversation handled.
       } else if (input === "/start") {
         await getLanguage(env.DB,chatId);
-        await send(env,chatId,"<b>KasuhaNET STORE</b>\\nChoose your language / Pilih bahasa / 选择语言 / மொழியைத் தேர்ந்தெடுக்கவும்",languageMenu());
+        await send(env,chatId,"<b>KasuhaNET STORE</b>\nChoose your language / Pilih bahasa / 选择语言 / மொழியைத் தேர்ந்தெடுக்கவும்",languageMenu());
       } else if (input === "/menu") {
         const lang=await getLanguage(env.DB,chatId);
-        await send(env,chatId,"<b>"+tr(lang,"welcome")+"</b>\\n"+tr(lang,"choose"),mainMenu(lang));
+        await send(env,chatId,"<b>"+tr(lang,"welcome")+"</b>\n"+tr(lang,"choose"),mainMenu(lang));
       } else if (input === "/help") {
         await send(env,chatId,tr(await getLanguage(env.DB,chatId),"help"));
       } else {
@@ -288,26 +288,26 @@ export async function onRequestPost({ request, env }) {
         const lang=action.slice(5);
         if(LANG[lang]) {
           await setLanguage(env.DB,chatId,lang);
-          await send(env,chatId,"<b>"+tr(lang,"welcome")+"</b>\\n"+tr(lang,"choose"),mainMenu(lang));
+          await send(env,chatId,"<b>"+tr(lang,"welcome")+"</b>\n"+tr(lang,"choose"),mainMenu(lang));
         }
       } else if (action === "menu:language") {
         const lang=await getLanguage(env.DB,chatId);
         await send(env,chatId,"Choose your language / Pilih bahasa / 选择语言 / மொழியைத் தேர்ந்தெடுக்கவும்",languageMenu());
       } else if (action === "menu:home") {
         const lang=await getLanguage(env.DB,chatId);
-        await send(env,chatId,"<b>"+tr(lang,"welcome")+"</b>\\n"+tr(lang,"choose"),mainMenu(lang));
+        await send(env,chatId,"<b>"+tr(lang,"welcome")+"</b>\n"+tr(lang,"choose"),mainMenu(lang));
       } else if (action === "menu:packages") {
         const lang=await getLanguage(env.DB,chatId);
         const rows=Object.entries(PACKAGES).map(([id,item])=>[{text:item.name+" • "+money(item.amount),callback_data:"buy:package:"+id}]);
         rows.push([{text:tr(lang,"back"),callback_data:"menu:home"}]);
         rows.push([{text:"🌐 Language / Bahasa / 语言 / மொழி",callback_data:"menu:language"}]);
-        await send(env,chatId,"<b>"+tr(lang,"packages")+"</b>\\n"+tr(lang,"packageIntro"),rows);
+        await send(env,chatId,"<b>"+tr(lang,"packages")+"</b>\n"+tr(lang,"packageIntro"),rows);
       } else if (action === "menu:services") {
         const lang=await getLanguage(env.DB,chatId);
         const rows=Object.entries(SERVICES).map(([id,item])=>[{text:item.name+" • "+money(item.amount),callback_data:"buy:service:"+id}]);
         rows.push([{text:tr(lang,"back"),callback_data:"menu:home"}]);
         rows.push([{text:"🌐 Language / Bahasa / 语言 / மொழி",callback_data:"menu:language"}]);
-        await send(env,chatId,"<b>"+tr(lang,"services")+"</b>\\n"+tr(lang,"serviceIntro"),rows);
+        await send(env,chatId,"<b>"+tr(lang,"services")+"</b>\n"+tr(lang,"serviceIntro"),rows);
       } else if (action.startsWith("buy:package:")) {
         const id = action.slice("buy:package:".length);
         if (PACKAGES[id]) await beginCheckout(env, chatId, PACKAGES[id], id, false);
