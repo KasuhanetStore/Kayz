@@ -16,7 +16,7 @@ This is a review of selected legacy, duplicate and unusual files. It is not a fu
 
 | Files | Finding | Safe decision |
 |---|---|---|
-| `footer.js`, `img/footer.js` | Same Git blob SHA; exact duplicate content | Do not delete until all references are checked |
+| `footer.js`, `img/footer.js` | Same Git blob SHA; exact duplicate content. A source scan of the reviewed HTML, CSS and template files found no explicit reference to either path. | `img/footer.js` removed from this preview branch; keep root `footer.js` for now. Recheck preview before merging. |
 | `header.js`, `img/header.js` | Different implementations; root version contains older route names, image version contains a separate older header | Keep both until page-by-page script loading is mapped |
 | `OculusLogo.png`, `img/OculusLogo.png` | Duplicate basename; root asset is used in absolute metadata URLs | Keep root URL stable |
 | `Ads.txt`, `ads.txt`, `img/ads.txt`, `php/Ads.txt` | Similar but not identical AdSense records; root `Ads.txt` contains a malformed publisher identifier with a duplicated `pub-` prefix, while lowercase root `ads.txt` has the normal `pub-` format | Do not delete or rename until the live `/ads.txt` response and AdSense account publisher ID are confirmed |
@@ -27,6 +27,12 @@ This is a review of selected legacy, duplicate and unusual files. It is not a fu
 ## Older or test-looking pages
 
 Files such as `PageTest.html`, `TemaBaru.html`, `BuatWebSendiri.html`, `AffliateShopSupport.html`, `KasuhaNET-index-refreshed.html`, `article.html`, and `artikel.html` have older or inconsistent route references. Some may still be directly accessible or linked externally. Keep them until inbound links, sitemap status, analytics and owner intent are checked.
+
+## Follow-up cleanup completed on preview
+
+- Removed `img/footer.js` because it was byte-for-byte identical to root `footer.js` and no explicit load/reference was found in the reviewed HTML, CSS or template sources.
+- Kept root `footer.js`, both `header.js` variants, duplicate logo paths, all AdSense file variants, and older/test-looking pages. Their usage or public URL impact is not sufficiently established for safe deletion.
+- This was a conservative source-level reference check, not a complete browser runtime, external-link, analytics or server-log audit.
 
 ## Migration decision
 
