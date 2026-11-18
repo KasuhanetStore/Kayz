@@ -25,15 +25,15 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     
     <!-- LINKED STYLESHEET (MENGIKUT STRUCTURE MS) -->
-    <link rel="stylesheet" href="css/Branding.css">
+    <link rel="stylesheet" href="/css/Branding.css">
 
     <!-- FAVICONS -->
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png">
     <link rel="shortcut icon" href="https://kasuhanet.store/favicon.ico">
 
-    <link rel="stylesheet" href="css/style.css">
-<script src="js/home-main.js" defer></script>
+    <link rel="stylesheet" href="/css/style.css">
+<script src="/js/home-main.js" defer></script>
     
 
     <!-- STYLES EMBEDDED FROM ABOUT-US-MS.HTML FOR 100% MATCHING THEME -->
@@ -101,7 +101,7 @@
     .btn-outline { border-color: rgba(255,255,255,.2); color: white; background: rgba(255,255,255,.03); }
     .btn-outline:hover { border-color: var(--red); }
     .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: #ff8b9c; font-size: 12px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
-    .hero { position: relative; isolation: isolate; overflow: hidden; padding: 56px 0 44px; background: #05070d url("broadcast.png") center/cover no-repeat; }
+    .hero { position: relative; isolation: isolate; overflow: hidden; padding: 56px 0 44px; background: #05070d url("/broadcast.png") center/cover no-repeat; }
     .hero:before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(110deg,rgba(5,7,13,.94),rgba(5,7,13,.78) 55%,rgba(5,7,13,.9)); }
     .hero .container { text-align: center; }
     .hero .eyebrow { display: block; text-align: center; }
@@ -225,7 +225,7 @@
     </div>
 
     <script>
-    fetch("template-text/EN/kasuhanet-icon-official-EN.html")
+    fetch("/template-text/EN/kasuhanet-icon-official-EN.html")
     .then(response => response.text())
     .then(data => {
         document.getElementById("branding-title").innerHTML = data;
@@ -234,11 +234,11 @@
     
     <nav class="nav-links" id="navLinks" aria-label="Main Navigation">
         
-        <a href="index.html">HOME</a>
+        <a href="/">HOME</a>
         <a href="/About-Us/" style="color:#ff7187; font-weight:800;">ABOUT US</a>
-        <a href="guides/index.html">GUIDES</a>
-        <a href="privacy-policy-EN.html">PRIVACY POLICY</a>
-        <a href="support-centre-EN.html">SUPPORT</a>
+        <a href="/guides/">GUIDES</a>
+        <a href="/privacy-policy-EN.html">PRIVACY POLICY</a>
+        <a href="/support-centre-EN.html">SUPPORT</a>
         <a class="btn btn-outline" href="/About-Us/" lang="en">EN</a>
         <a class="btn btn-outline" href="/About-Us/MS/" lang="ms">BM</a>
     </nav>
@@ -252,7 +252,7 @@
 <!-- PARTNER CREDIT: LOAD CENTRAL TEMPLATE -->
 <div id="partner-credit-placeholder"></div>
 <script>
-  fetch("template-text/EN/partner-credit-EN.html")
+  fetch("/template-text/EN/partner-credit-EN.html")
     .then(response => {
       if (!response.ok) throw new Error("Partner Credit Template Failed to Load");
       return response.text();
@@ -336,7 +336,7 @@
 <!-- FOOTER DINAMIK -->
 <div id="footer-placeholder"></div>
 <script>
-  fetch("template-text/EN/template-footer-EN.html")
+  fetch("/template-text/EN/template-footer-EN.html")
     .then(response => {
         if (!response.ok) throw new Error('Footer Template Failed Load');
         return response.text();
