@@ -54,6 +54,19 @@ const LANG = {
   zh:{welcome:"欢迎来到 KasuhaNET 商店。",choose:"请选择以下类别。",packages:"网站配套",services:"定制网站服务",affiliate:"联盟商店",visit:"访问 KasuhaNET",packageIntro:"请选择一个配套。",serviceIntro:"请选择一项服务。多项服务请使用网站上的定制工作室。",back:"返回",buyer:"请填写买家资料",continue:"点击继续",name:"姓名：",email:"电子邮箱：",phone:"电话号码：",emailInvalid:"邮箱格式无效，请重新输入。例如：name@email.com",phoneInvalid:"电话号码无效。请输入 9 至 15 位数字。",detailsAccepted:"已收到买家资料。",gateway:"请选择付款方式：",cancel:"取消",canceled:"付款流程已取消。发送 /start 重新开始。",help:"发送 /start 打开 KasuhaNET 商店菜单。"},
   ta:{welcome:"KasuhaNET Store-க்கு வரவேற்கிறோம்.",choose:"கீழே உள்ள பிரிவைத் தேர்ந்தெடுக்கவும்.",packages:"இணையதளத் தொகுப்புகள்",services:"தனிப்பயன் இணைய சேவை",affiliate:"அஃபிலியேட் கடை",visit:"KasuhaNET-ஐ பார்வையிடு",packageIntro:"தேவையான தொகுப்பைத் தேர்ந்தெடுக்கவும்.",serviceIntro:"ஒரு சேவையைத் தேர்ந்தெடுக்கவும். பல சேவைகளுக்கு இணையதளப் பணிமனையைப் பயன்படுத்தவும்.",back:"பின்செல்",buyer:"வாங்குபவர் விவரங்களை உள்ளிடவும்",continue:"தொடர அழுத்தவும்",name:"பெயர்:",email:"மின்னஞ்சல்:",phone:"தொலைபேசி எண்:",emailInvalid:"தவறான மின்னஞ்சல். மீண்டும் உள்ளிடவும். உதாரணம்: name@email.com",phoneInvalid:"தவறான தொலைபேசி எண். 9 முதல் 15 இலக்கங்கள் உள்ளிடவும்.",detailsAccepted:"வாங்குபவர் விவரங்கள் பெறப்பட்டன.",gateway:"கட்டண முறையைத் தேர்ந்தெடுக்கவும்:",cancel:"ரத்து செய்",canceled:"செக்அவுட் ரத்து செய்யப்பட்டது. மீண்டும் தொடங்க /start அனுப்பவும்.",help:"KasuhaNET கடை பட்டியைத் திறக்க /start அனுப்பவும்."}
 };
+Object.assign(LANG.en,{
+  stripeReady:"Stripe checkout is ready.",amount:"Amount:",payLink:"Open the link below to complete payment.",payNow:"PAY NOW",toyyibReady:"ToyyibPay payment is ready.",toyyibInfo:"Use the link below to pay with the methods enabled on your ToyyibPay account.",payToyyib:"PAY WITH TOYYIBPAY",home:"Main Menu",nameInvalid:"Invalid name. Enter your full name (2 to 100 characters), or /cancel.",sessionExpired:"Checkout session expired. Please select the product again using /start.",paymentFailed:"Unable to create payment. Please check the payment gateway or contact KasuhaNET Support.",checkoutUnavailable:"Checkout is unavailable. Please try again later."
+});
+Object.assign(LANG.ms,{
+  stripeReady:"Checkout Stripe sedia.",amount:"Jumlah:",payLink:"Buka pautan di bawah untuk membuat pembayaran.",payNow:"BAYAR SEKARANG",toyyibReady:"Pembayaran ToyyibPay sedia.",toyyibInfo:"Gunakan pautan di bawah untuk membayar melalui kaedah yang diaktifkan pada akaun ToyyibPay anda.",payToyyib:"BAYAR DENGAN TOYYIBPAY",home:"Menu Utama",nameInvalid:"Nama tidak sah. Masukkan nama penuh (2 hingga 100 aksara), atau /cancel.",sessionExpired:"Sesi checkout tamat. Sila pilih produk semula melalui /start.",paymentFailed:"Pembayaran tidak dapat dijana. Semak konfigurasi gateway atau hubungi Support KasuhaNET.",checkoutUnavailable:"Checkout belum tersedia. Sila cuba semula kemudian."
+});
+Object.assign(LANG.zh,{
+  stripeReady:"Stripe 付款页面已准备好。",amount:"金额：",payLink:"请点击下方链接完成付款。",payNow:"立即付款",toyyibReady:"ToyyibPay 付款已准备好。",toyyibInfo:"请使用下方链接，通过您的 ToyyibPay 账户已启用的方式付款。",payToyyib:"使用 TOYYIBPAY 付款",home:"主菜单",nameInvalid:"姓名无效。请输入完整姓名（2 至 100 个字符），或发送 /cancel。",sessionExpired:"结账会话已过期。请发送 /start 重新选择产品。",paymentFailed:"无法创建付款。请检查付款网关或联系 KasuhaNET 支持。",checkoutUnavailable:"暂时无法结账，请稍后再试。"
+});
+Object.assign(LANG.ta,{
+  stripeReady:"Stripe கட்டணப் பக்கம் தயாராக உள்ளது.",amount:"தொகை:",payLink:"கட்டணத்தை முடிக்க கீழே உள்ள இணைப்பைத் திறக்கவும்.",payNow:"இப்போது செலுத்தவும்",toyyibReady:"ToyyibPay கட்டணம் தயாராக உள்ளது.",toyyibInfo:"உங்கள் ToyyibPay கணக்கில் செயல்படுத்தப்பட்ட முறைகள் மூலம் கீழே உள்ள இணைப்பில் பணம் செலுத்தவும்.",payToyyib:"TOYYIBPAY மூலம் செலுத்தவும்",home:"முதன்மை பட்டி",nameInvalid:"தவறான பெயர். முழுப் பெயரை உள்ளிடவும் (2 முதல் 100 எழுத்துகள்), அல்லது /cancel அனுப்பவும்.",sessionExpired:"செக்அவுட் அமர்வு காலாவதியானது. /start மூலம் மீண்டும் தயாரிப்பைத் தேர்ந்தெடுக்கவும்.",paymentFailed:"கட்டணத்தை உருவாக்க முடியவில்லை. கட்டண நுழைவாயிலைச் சரிபார்க்கவும் அல்லது KasuhaNET ஆதரவைத் தொடர்புகொள்ளவும்.",checkoutUnavailable:"செக்அவுட் தற்போது கிடைக்கவில்லை. பின்னர் முயற்சிக்கவும்."
+});
+
 function tr(lang,key){return (LANG[lang]&&LANG[lang][key])||LANG.en[key]||key;}
 async function getLanguage(db,chatId){
   await db.prepare(`CREATE TABLE IF NOT EXISTS telegram_user_settings(chat_id TEXT PRIMARY KEY,language TEXT NOT NULL DEFAULT 'en',updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)`).run();
@@ -85,7 +98,7 @@ async function ensureTelegramTables(db) {
 
 async function beginCheckout(env, chatId, item, id, isService) {
   if (!env.DB) {
-    await send(env, chatId, "Checkout belum tersedia. Sila cuba semula kemudian.");
+    await send(env, chatId, tr(await getLanguage(env.DB,chatId),"checkoutUnavailable"));
     return;
   }
   await ensureTelegramTables(env.DB);
@@ -133,9 +146,10 @@ async function createStripePayment(env, chatId, session, item, packageId) {
   if(!response.ok||!result.url||!result.id) throw new Error("Stripe checkout creation failed");
   await env.DB.prepare("UPDATE stripe_orders SET stripe_checkout_session_id=?,updated_at=CURRENT_TIMESTAMP WHERE id=?")
     .bind(result.id,orderId).run();
+  const lang=await getLanguage(env.DB,chatId);
   await send(env,chatId,
-    "<b>Stripe checkout sedia.</b>\n"+item.name+"\nJumlah: <b>"+money(item.amount)+"</b>\n\nTekan pautan di bawah untuk membuat pembayaran.",
-    [[{text:"PAY NOW • "+money(item.amount),url:result.url}],[{text:"Menu Utama",callback_data:"menu:home"}]]
+    "<b>"+tr(lang,"stripeReady")+"</b>\n"+item.name+"\n"+tr(lang,"amount")+" <b>"+money(item.amount)+"</b>\n\n"+tr(lang,"payLink"),
+    [[{text:tr(lang,"payNow")+" • "+money(item.amount),url:result.url}],[{text:tr(lang,"home"),callback_data:"menu:home"}]]
   );
 }
 
@@ -182,9 +196,10 @@ async function createToyyibPayPayment(env, chatId, session, item, packageId) {
     throw new Error("ToyyibPay could not create the payment bill");
   }
   await env.DB.prepare("UPDATE toyyibpay_orders SET bill_code=?,updated_at=CURRENT_TIMESTAMP WHERE id=?").bind(billCode,id).run();
+  const lang=await getLanguage(env.DB,chatId);
   await send(env,chatId,
-    "<b>ToyyibPay bill sedia.</b>\n"+item.name+"\nJumlah: <b>"+money(item.amount)+"</b>\n\nBuka pautan untuk bayar melalui kaedah yang diaktifkan pada akaun ToyyibPay.",
-    [[{text:"PAY WITH TOYYIBPAY • "+money(item.amount),url:"https://toyyibpay.com/"+billCode}],[{text:"Menu Utama",callback_data:"menu:home"}]]
+    "<b>"+tr(lang,"toyyibReady")+"</b>\n"+item.name+"\n"+tr(lang,"amount")+" <b>"+money(item.amount)+"</b>\n\n"+tr(lang,"toyyibInfo"),
+    [[{text:tr(lang,"payToyyib")+" • "+money(item.amount),url:"https://toyyibpay.com/"+billCode}],[{text:tr(lang,"home"),callback_data:"menu:home"}]]
   );
 }
 
@@ -198,7 +213,7 @@ async function handleCheckoutMessage(env, chatId, input) {
     return true;
   }
   if(session.step==="name"){
-    if(input.length<2||input.length>100){await send(env,chatId,"Nama tidak sah. Masukkan nama penuh (2 hingga 100 aksara), atau /cancel.");return true;}
+    if(input.length<2||input.length>100){await send(env,chatId,tr(await getLanguage(env.DB,chatId),"nameInvalid"));return true;}
     await env.DB.prepare("UPDATE telegram_checkout_sessions SET customer_name=?,step='email' WHERE chat_id=?").bind(input,String(chatId)).run();
     await send(env,chatId,tr(await getLanguage(env.DB,chatId),"email"));
     return true;
@@ -221,7 +236,7 @@ async function handleCheckoutMessage(env, chatId, input) {
     await send(env,chatId,
       "<b>"+tr(lang,"detailsAccepted")+"</b>\n"+tr(lang,"name")+" "+session.customer_name+"\n"+tr(lang,"email")+" "+session.customer_email+"\n"+tr(lang,"phone")+" "+input+"\n\n<b>"+tr(lang,"gateway")+"</b>",
       [
-        [{text:"STRIPE • Debit / Credit Card",callback_data:"pay:stripe"}],
+        [{text:(lang==="ms"?"STRIPE • Kad Debit / Kredit":lang==="zh"?"STRIPE • 借记卡 / 信用卡":lang==="ta"?"STRIPE • பற்று / கடன் அட்டை":"STRIPE • Debit / Credit Card"),callback_data:"pay:stripe"}],
         [{text:"TOYYIBPAY • FPX / DuitNow QR*",callback_data:"pay:toyyibpay"}],
         [{text:tr(lang,"cancel"),callback_data:"checkout:cancel"}]
       ]
@@ -319,7 +334,7 @@ export async function onRequestPost({ request, env }) {
         const result=await env.DB.prepare("UPDATE telegram_checkout_sessions SET step='name' WHERE chat_id=? AND step='name'")
           .bind(String(chatId)).run();
         if(result.meta?.changes===0) {
-          await send(env,chatId,"Sesi checkout tamat. Sila pilih produk semula melalui /start.");
+          await send(env,chatId,tr(await getLanguage(env.DB,chatId),"sessionExpired"));
         } else {
           await send(env,chatId,tr(await getLanguage(env.DB,chatId),"name"));
         }
@@ -341,7 +356,7 @@ export async function onRequestPost({ request, env }) {
             await env.DB.prepare("DELETE FROM telegram_checkout_sessions WHERE chat_id=?").bind(String(chatId)).run();
           } catch {
             await env.DB.prepare("DELETE FROM telegram_checkout_sessions WHERE chat_id=?").bind(String(chatId)).run();
-            await send(env,chatId,"Pembayaran tidak dapat dijana. Semak konfigurasi gateway atau hubungi Support KasuhaNET.");
+            await send(env,chatId,tr(await getLanguage(env.DB,chatId),"paymentFailed"));
           }
         }
       } else if (action === "checkout:cancel") {
