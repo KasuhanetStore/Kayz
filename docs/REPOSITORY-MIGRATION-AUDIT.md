@@ -8,13 +8,13 @@ This is a conservative, non-production migration. The production branch `main` i
 
 ## Findings
 
-1. The repository already has useful working directories: `MS/`, `guides/`, `MS/panduan/`, `css/`, `js/`, `img/`, `functions/api/`, `php/` and `template-text/`.
+1. The repository already has useful working directories: `MS/`, `guides/`, `MS/panduan/`, `css/`, `js/`, `img/`, `functions/api/`, remaining `php/` files and `template-text/`.
 2. Some image files remain at the repository root and are referenced by existing pages using root-relative URLs. Examples include `/KasuhaKZintro.png`, `/KasuhaKZintroEN.png` and `/OculusLogo.png`. These files must not be moved until every consumer is updated and verified. Keeping them at root for compatibility is acceptable.
 3. `OculusLogo.png` is also present under `img/`, but metadata and page/template references still use the root URL. The root copy therefore remains the canonical public asset for now.
 4. The English and Malay page routes are established and are also listed in `sitemap.xml`. Do not rename or relocate route HTML as part of asset cleanup.
 5. `functions/api/` contains checkout and payment handlers. These are runtime code, not general assets; keep their paths and bindings unchanged.
 6. Both `Ads.txt` and `ads.txt` exist at root, with additional ads-related files elsewhere. Their contents and case-sensitive URL behavior must be reconciled before any deletion or rename.
-7. `header.js` and `footer.js` exist at root; similarly named files also appear under `img/`. Do not consolidate them until script references and actual behavior are verified page by page.
+7. `header.js` and `footer.js` exist at root; similarly named files also appear under `img/`. Do not consolidate them until script references and actual behavior are verified page by page. The unused Telegram PHP sender/reply scripts have been removed from this preview branch; remaining files under `php/` still need review.
 
 ## Safe migration order
 
