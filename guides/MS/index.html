@@ -7,9 +7,9 @@
   
   <meta name="google-adsense-account" content="ca-pub-4280897190566760">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://kasuhanet.store/MS/panduan/">
+  <link rel="canonical" href="https://kasuhanet.store/guides/MS/">
   <link rel="alternate" hreflang="en" href="https://kasuhanet.store/guides/">
-  <link rel="alternate" hreflang="ms" href="https://kasuhanet.store/MS/panduan/">
+  <link rel="alternate" hreflang="ms" href="https://kasuhanet.store/guides/MS/">
   <link rel="alternate" hreflang="x-default" href="https://kasuhanet.store/guides/">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -170,19 +170,19 @@ h1{font-size:clamp(34px,5vw,56px);line-height:1.1;letter-spacing:-1.5px;margin:1
         <p>Panduan asli yang diselenggara oleh KasuhaNET Resources, merangkumi pentadbiran server, operasi pangkalan data dan pembayaran dalam talian yang lebih selamat.</p>
       </div>
       <div class="guide-grid">
-        <a class="guide-card" href="linux-package-management.html">
+        <a class="guide-card" href="/guides/linux-package-management/MS/linux-package-management.html">
           <span class="guide-icon"><i class="fa-solid fa-terminal" aria-hidden="true"></i></span>
           <h3>Pengurusan Pakej APT</h3>
           <p>Kemas kini senarai pakej, pasang perisian, sahkan pemasangan dan selesaikan ralat lazim pada Debian dan Ubuntu.</p>
           <span class="read-link">BACA PANDUAN <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
         </a>
-        <a class="guide-card" href="cloudflare-d1-sql-basics.html">
+        <a class="guide-card" href="/guides/cloudflare-d1-sql-basics/MS/">
           <span class="guide-icon"><i class="fa-solid fa-database" aria-hidden="true"></i></span>
           <h3>Cloudflare D1 dan SQL</h3>
           <p>Semak jadual, fahami skema, jalankan pertanyaan baca sahaja dan gunakan arahan berparameter dalam Workers.</p>
           <span class="read-link">BACA PANDUAN <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
         </a>
-        <a class="guide-card" href="secure-web-checkout-basics.html">
+        <a class="guide-card" href="/guides/secure-web-checkout-basics/MS/">
           <span class="guide-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
           <h3>Checkout Web Lebih Selamat</h3>
           <p>Validasi pada server, penyimpanan secret, webhook yang disahkan dan pengurusan status pesanan yang selamat.</p>
@@ -201,11 +201,6 @@ h1{font-size:clamp(34px,5vw,56px);line-height:1.1;letter-spacing:-1.5px;margin:1
         return response.text();
       })
       .then(data => {
-        data = data.replaceAll('href="/About-Us/MS/"', 'href="/About-Us/MS/"')
-          .replaceAll('href="support-centre-MS.html"', 'href="../../MS/support-centre-MS.html"')
-          .replaceAll('href="privacy-policy-MS.html"', 'href="../../MS/privacy-policy-MS.html"')
-          .replaceAll('href="privacy-policy-MS.html"', 'href="../../MS/privacy-policy-MS.html"')
-          .replaceAll('href="panduan/index.html"', 'href="../../MS/panduan/"');
         document.getElementById("footer-placeholder").innerHTML = data;
         const year = document.getElementById("year");
         if (year) year.textContent = new Date().getFullYear();
