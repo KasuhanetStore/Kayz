@@ -217,15 +217,15 @@ async function handleCheckoutMessage(env, chatId, input) {
       await send(env,chatId,tr(await getLanguage(env.DB,chatId),"phoneInvalid"));return true;
     }
     await env.DB.prepare("UPDATE telegram_checkout_sessions SET customer_phone=?,step='payment' WHERE chat_id=?").bind(input,String(chatId)).run();
+    const lang=await getLanguage(env.DB,chatId);
     await send(env,chatId,
-      "<b>Maklumat pelanggan diterima.</b>\\nNama: "+session.customer_name+"\\nEmail: "+session.customer_email+"\\nTelefon: "+input+"\\n\\n<b>Pilih Payment Gateway:</b>",
+      "<b>"+tr(lang,"detailsAccepted")+"</b>\\n"+tr(lang,"name")+" "+session.customer_name+"\\n"+tr(lang,"email")+" "+session.customer_email+"\\n"+tr(lang,"phone")+" "+input+"\\n\\n<b>"+tr(lang,"gateway")+"</b>",
       [
-        [{text:"STRIPE • Kad Debit / Kredit",callback_data:"pay:stripe"}],
+        [{text:"STRIPE • Debit / Credit Card",callback_data:"pay:stripe"}],
         [{text:"TOYYIBPAY • FPX / DuitNow QR*",callback_data:"pay:toyyibpay"}],
         [{text:tr(lang,"cancel"),callback_data:"checkout:cancel"}]
       ]
-    );
-    return true;
+    );    return true;
   }
   return true;
 }
@@ -291,26 +291,23 @@ export async function onRequestPost({ request, env }) {
           await send(env,chatId,"<b>"+tr(lang,"welcome")+"</b>\\n"+tr(lang,"choose"),mainMenu(lang));
         }
       } else if (action === "menu:language") {
+        const lang=await getLanguage(env.DB,chatId);
         await send(env,chatId,"Choose your language / Pilih bahasa / 选择语言 / மொழியைத் தேர்ந்தெடுக்கவும்",languageMenu());
       } else if (action === "menu:home") {
         const lang=await getLanguage(env.DB,chatId);
         await send(env,chatId,"<b>"+tr(lang,"welcome")+"</b>\\n"+tr(lang,"choose"),mainMenu(lang));
       } else if (action === "menu:packages") {
-        await send(env, chatId, "<b>KasuhaNET Store</b>\nPilih kategori:", mainMenu());
-      } else if (action === "menu:packages") {
-        const rows = Object.entries(PACKAGES).map(([id, item]) => [{
-          text: item.name + " • " + money(item.amount),
-          callback_data: "buy:package:" + id
-        }]);
-        rows.push([{ text: "Kembali", callback_data: "menu:home" }]);
-        await send(env, chatId, "<b>Website Packages</b>\nPilih pakej, kemudian pilih kaedah pembayaran.", rows);
+        const lang=await getLanguage(env.DB,chatId);
+        const rows=Object.entries(PACKAGES).map(([id,item])=>[{text:item.name+" • "+money(item.amount),callback_data:"buy:package:"+id}]);
+        rows.push([{text:tr(lang,"back"),callback_data:"menu:home"}]);
+        rows.push([{text:"🌐 Language / Bahasa / 语言 / மொழி",callback_data:"menu:language"}]);
+        await send(env,chatId,"<b>"+tr(lang,"packages")+"</b>\\n"+tr(lang,"packageIntro"),rows);
       } else if (action === "menu:services") {
-        const rows = Object.entries(SERVICES).map(([id, item]) => [{
-          text: item.name + " • " + money(item.amount),
-          callback_data: "buy:service:" + id
-        }]);
-        rows.push([{ text: "Kembali", callback_data: "menu:home" }]);
-        await send(env, chatId, "<b>Custom Web Workshop</b>\nPilih satu servis. Untuk gabungan beberapa servis, gunakan laman bengkel.", rows);
+        const lang=await getLanguage(env.DB,chatId);
+        const rows=Object.entries(SERVICES).map(([id,item])=>[{text:item.name+" • "+money(item.amount),callback_data:"buy:service:"+id}]);
+        rows.push([{text:tr(lang,"back"),callback_data:"menu:home"}]);
+        rows.push([{text:"🌐 Language / Bahasa / 语言 / மொழி",callback_data:"menu:language"}]);
+        await send(env,chatId,"<b>"+tr(lang,"services")+"</b>\\n"+tr(lang,"serviceIntro"),rows);
       } else if (action.startsWith("buy:package:")) {
         const id = action.slice("buy:package:".length);
         if (PACKAGES[id]) await beginCheckout(env, chatId, PACKAGES[id], id, false);
