@@ -198,7 +198,7 @@ export async function onRequestPost(context) {
     form.set(`line_items[${index}][price_data][currency]`, "myr");
     form.set(`line_items[${index}][price_data][unit_amount]`, String(item.amount));
     form.set(`line_items[${index}][price_data][product_data][name]`, item.name);
-    form.set(`line_items[${index}][price_data][product_data][description]`, "KasuhaNET one-time setup and deployment service");
+    form.set(`line_items[${index}][price_data][product_data][description]`, input.packageId === "dualstream-pro" ? "DualStream Pro Linux terminal downloader software." : "KasuhaNET one-time setup and deployment service");
   });
   form.set("metadata[order_id]", orderId);
   form.set("metadata[package_id]", isWorkshopOrder ? "custom-workshop" : input.packageId);
