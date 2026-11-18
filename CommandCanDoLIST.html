@@ -333,6 +333,16 @@ footer > * { position: relative; z-index: 1; }
 .kn-command-cart-float.is-visible{display:flex}\n@keyframes knCommandCartPulse{0%,100%{filter:brightness(1);transform:scale(1)}50%{filter:brightness(1.2);transform:scale(1.035)}}
 @media(prefers-reduced-motion:reduce){.kn-command-cart-float{animation:none}}
 </style>
+
+<style id="kn-command-cart-hd-effects">
+.kn-command-cart{isolation:isolate;overflow:hidden}
+.kn-command-cart::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle at 15% 15%,rgba(0,210,255,.18),transparent 48%),radial-gradient(circle at 90% 90%,rgba(79,49,232,.18),transparent 48%);opacity:.9}
+.kn-command-cart.is-open{animation:knCommandCartMaterialize .48s cubic-bezier(.16,1,.3,1) both;box-shadow:0 18px 55px rgba(0,0,0,.55),0 0 28px rgba(0,210,255,.18)}
+.kn-command-cart>*:not(.kn-command-cart-particle-canvas){position:relative;z-index:2}
+.kn-command-cart-particle-canvas{position:absolute;inset:0;z-index:1;width:100%;height:100%;pointer-events:none;opacity:.8;mix-blend-mode:screen}
+@keyframes knCommandCartMaterialize{0%{opacity:0;transform:translateY(18px) scale(.96);filter:blur(5px)}100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+@media(prefers-reduced-motion:reduce){.kn-command-cart.is-open{animation:none!important}.kn-command-cart-particle-canvas{display:none!important}}
+</style>
 <article class="dualstream-listing-card">
   <div class="dualstream-listing-preview" data-image-name="Terminal-Option_1.jpg" aria-label="Product image preview">
     <div class="dualstream-listing-preview-placeholder">
@@ -390,6 +400,14 @@ footer > * { position: relative; z-index: 1; }
   const empty=document.getElementById("knCommandCartEmpty");
   const item=document.getElementById("knCommandCartItem");
   const pay=document.getElementById("knCommandCartView");
+  const cartCanvas=document.createElement("canvas");cartCanvas.className="kn-command-cart-particle-canvas";cartCanvas.setAttribute("aria-hidden","true");cart.prepend(cartCanvas);
+  const cartContext=cartCanvas.getContext("2d"),reduceCartMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let cartParticles=[],cartFrame=0,cartRunning=false,cartWidth=0,cartHeight=0;
+  function resizeCartParticles(){const b=cart.getBoundingClientRect(),dpr=Math.min(window.devicePixelRatio||1,1.5);cartWidth=b.width;cartHeight=b.height;cartCanvas.width=Math.max(1,Math.round(b.width*dpr));cartCanvas.height=Math.max(1,Math.round(b.height*dpr));cartContext.setTransform(dpr,0,0,dpr,0,0);cartParticles=Array.from({length:26},()=>({x:Math.random()*cartWidth,y:Math.random()*cartHeight,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*1.4+.5,a:Math.random()*.5+.2}));}
+  function drawCartParticles(){if(!cartRunning)return;cartContext.clearRect(0,0,cartWidth,cartHeight);for(let i=0;i<cartParticles.length;i++){const p=cartParticles[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=cartWidth;if(p.x>cartWidth)p.x=0;if(p.y<0)p.y=cartHeight;if(p.y>cartHeight)p.y=0;for(let j=i+1;j<cartParticles.length;j++){const q=cartParticles[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<85){cartContext.beginPath();cartContext.moveTo(p.x,p.y);cartContext.lineTo(q.x,q.y);cartContext.strokeStyle="rgba(0,220,255,"+((1-d/85)*.16)+")";cartContext.stroke();}}cartContext.beginPath();cartContext.arc(p.x,p.y,p.r,0,Math.PI*2);cartContext.fillStyle="rgba(105,238,255,"+p.a+")";cartContext.shadowBlur=8;cartContext.shadowColor="rgba(0,220,255,.8)";cartContext.fill();}cartContext.shadowBlur=0;cartFrame=requestAnimationFrame(drawCartParticles);}
+  function openCart(){cart.classList.add("is-open");if(reduceCartMotion||cartRunning)return;resizeCartParticles();cartRunning=true;cartFrame=requestAnimationFrame(drawCartParticles);}
+  function closeCart(){cart.classList.remove("is-open");cartRunning=false;cancelAnimationFrame(cartFrame);}
+  window.addEventListener("resize",()=>{if(cartRunning)resizeCartParticles();},{passive:true});
   function render(){
     const selected=check.checked;
     count.textContent=selected?"1":"0";
@@ -397,13 +415,13 @@ footer > * { position: relative; z-index: 1; }
     empty.hidden=selected;
     item.hidden=!selected;
     pay.hidden=!selected;
-    if(!selected)cart.classList.remove("is-open");
+    if(!selected)closeCart();
   }
   check.addEventListener("change",render);
-  toggle.addEventListener("click",()=>cart.classList.toggle("is-open"));
-  document.getElementById("knCommandCartClose").addEventListener("click",()=>cart.classList.remove("is-open"));
+  toggle.addEventListener("click",()=>cart.classList.contains("is-open")?closeCart():openCart());
+  document.getElementById("knCommandCartClose").addEventListener("click",closeCart);
   document.addEventListener("click",event=>{
-    if(cart.classList.contains("is-open")&&!cart.contains(event.target)&&!toggle.contains(event.target))cart.classList.remove("is-open");
+    if(cart.classList.contains("is-open")&&!cart.contains(event.target)&&!toggle.contains(event.target))closeCart();
   });
   render();
 })();
