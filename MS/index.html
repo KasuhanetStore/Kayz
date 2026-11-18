@@ -25,7 +25,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
 <!-- FAVICON -->
-<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="icon" type="image/png" href="/favicon.png">
 
 <!-- OPEN GRAPH -->
 
@@ -45,8 +45,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="googlebot" content="index, follow">
 <!-- CSS -->
-<link rel="stylesheet" href="../css/style.css">
-<script src="../js/home-main.js" defer></script>
+<link rel="stylesheet" href="/css/style.css">
+<script src="/js/home-main.js" defer></script>
 
   <style>
     :root {
@@ -129,7 +129,7 @@
       padding: 78px 0 58px;
       overflow: hidden;
       background-color: #05070d;
-      background-image: linear-gradient(110deg, rgba(5,7,13,.88), rgba(5,7,13,.68) 55%, rgba(5,7,13,.78)), url("../broadcast.png");
+      background-image: linear-gradient(110deg, rgba(5,7,13,.88), rgba(5,7,13,.68) 55%, rgba(5,7,13,.78)), url("/broadcast.png");
       background-repeat: no-repeat;
       background-position: center center;
       background-size: cover;
@@ -282,7 +282,7 @@
     .process-card::before { content: "0" counter(step); color: #ff7187; font-size: 12px; font-weight: 900; letter-spacing: 2px; }
     .process-card h3 { font-size: 16px; margin: 10px 0 5px; }
     .process-card p { font-size: 13px; color: var(--muted); margin: 0; }
-    .cta-box { padding: 36px; border: 3px solid #ffffff; border-radius: 22px; background-color: #08090d; background-image: linear-gradient(110deg, rgba(5,7,13,.88), rgba(5,7,13,.68) 55%, rgba(5,7,13,.78)), url("../img/LogoOfficialTeks.png"); background-repeat: no-repeat; background-position: center center; background-size: cover; box-shadow: 0 0 7px rgba(255,255,255,.95), 0 0 18px rgba(255,255,255,.42), inset 0 0 9px rgba(255,255,255,.28); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .cta-box { padding: 36px; border: 3px solid #ffffff; border-radius: 22px; background-color: #08090d; background-image: linear-gradient(110deg, rgba(5,7,13,.88), rgba(5,7,13,.68) 55%, rgba(5,7,13,.78)), url("/img/LogoOfficialTeks.png"); background-repeat: no-repeat; background-position: center center; background-size: cover; box-shadow: 0 0 7px rgba(255,255,255,.95), 0 0 18px rgba(255,255,255,.42), inset 0 0 9px rgba(255,255,255,.28); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
     .cta-box h2 { margin: 0 0 8px; font-size: clamp(25px,3vw,36px); }
     .cta-box p { margin: 0; color: var(--muted); }
 
@@ -625,7 +625,7 @@
   <meta name="title" content="KasuhaNET.STORE | Platform Pelbagai Servis Perkhidmatan">
   <meta property="og:title" content="Servis Bina Website &amp; Penyelesaian Digital Malaysia | KasuhaNET">
   <meta property="og:description" content="KasuhaNET.STORE menyediakan servis pembangunan website, bengkel web custom, panduan terminal Linux dan penyelesaian digital untuk individu serta perniagaan di Malaysia.">
-  <meta property="og:url" content="https://kasuhanet.store/MS/index.html">
+  <meta property="og:url" content="https://kasuhanet.store/MS/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="KasuhaNET.STORE">
   <meta property="og:locale" content="ms_MY">
@@ -634,7 +634,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Servis Bina Website &amp; Penyelesaian Digital Malaysia | KasuhaNET">
   <meta name="twitter:description" content="KasuhaNET.STORE menyediakan servis pembangunan website, bengkel web custom, panduan terminal Linux dan penyelesaian digital untuk individu serta perniagaan di Malaysia.">
-  <meta name="twitter:url" content="https://kasuhanet.store/MS/index.html">
+  <meta name="twitter:url" content="https://kasuhanet.store/MS/">
   <meta name="twitter:image" content="https://kasuhanet.store/img/logo3.png">
   <meta name="twitter:image:alt" content="KasuhaNET.STORE | Platform Pelbagai Servis Perkhidmatan">
 
@@ -755,57 +755,26 @@
 
 <header class="topbar">
   <div class="container nav">
-    <!-- LOGO KASUHANET -->
     <div id="branding-title">
-      <div class="brand">
-        <div class="brand-mark">K</div>
-        <div>
-          KasuhaNET
-          <small>STORE</small>
-        </div>
-      </div>
+      <a class="brand" href="/MS/" aria-label="Laman Rasmi KasuhaNET">
+        <img src="/img/logo3.png" class="brand-logo" alt="KasuhaNET.STORE">
+      </a>
     </div>
-
-    <!-- PAUTAN NAVIGASI UTAMA -->
+    
     <nav class="nav-links" id="navLinks" aria-label="Navigasi Utama">
-        <div class="dropdown">
-            <a href="javascript:void(0)" onclick="toggleDropdown()" style="cursor: pointer;">
-                Overseas <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 3px; color: #ff7187;"></i>
-            </a>
-            <div class="dropdown-content" id="servicesDropdown">
-                <a href="https://kasuhanet.store/Rwanda-SupportDevelopement.html">
-                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: #00F0FF;"></i> RWANDA (Afrika)
-                </a>
-                <a href="https://kasuhanet.store/Timor-Leste-SupportDevelopement.html">
-                    <i class="fa-solid fa-globe" style="margin-right: 8px; color: #E600A4;"></i> TIMOR LESTE (Asia)
-                </a>
-            </div>
-        </div>
-      <script>
-    fetch("../template-text/MS/kasuhanet-icon-official-MS.html")
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById("branding-title").innerHTML = data;
-    }).catch(err => console.log(err));
-      </script>
-        <a href="index.html" style="color: var(--red);">LAMAN UTAMA</a>
+        <a href="/MS/" style="color: var(--red);">LAMAN UTAMA</a>
         <a href="/About-Us/MS/">TENTANG KAMI</a>
-        <a href="/guides/MS/index.html">PANDUAN</a>
-        <a href="/Privacy-Policy/MS/index.html">POLISI PRIVASI</a>
-        <a href="/Support/MS/index.html">SOKONGAN</a>
-        <div style="display: flex; gap: 8px; margin: 4px 0;">
-          <a class="btn btn-outline" href="/index.html" lang="en">EN</a>
-          <a class="btn btn-outline" href="/MS/index.html" lang="ms">BM</a>
+        <a href="/MS/panduan/">PANDUAN</a>
+        <a href="/Privacy-Policy/MS/">POLISI PRIVASI</a>
+        <a href="/Support/MS/">SOKONGAN</a>
+        <div style="display:flex;gap:8px;margin:4px 0;">
+          <a class="btn btn-outline" href="/" lang="en">EN</a>
+          <a class="btn btn-outline" href="/MS/" lang="ms">BM</a>
         </div>
-        
-        <!-- BUTANG ANIMASI CYBER WEB SALE -->
-        <a class="btn-cyber-animated" href="../MS/Banner-WebSale-MS.html">
-            <span>GET WEBSITE!</span>
-            <i class="fa-solid fa-computer-mouse"></i> 
-        </a>
+        <a class="btn-cyber-animated" href="/MS/Banner-WebSale-MS.html"><span>DAPATKAN LAMAN WEB!</span><i class="fa-solid fa-computer-mouse"></i></a>
     </nav>
 
-    <!-- BUTANG HAMBURGER MENU (TERKUNCI DI KANAN MOBILE) -->
+    <!-- Butang Hamburger Menu untuk Mobile di sebelah kanan -->
     <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Tukar Navigasi">
         <i class="fa-solid fa-bars"></i>
     </button>
@@ -1060,7 +1029,7 @@
 <!-- FOOTER DINAMIK -->
 <div id="footer-placeholder"></div>
 <script>
-  fetch("../template-text/MS/template-footer-MS.html")
+  fetch("/template-text/MS/template-footer-MS.html")
     .then(response => {
         if (!response.ok) throw new Error('Footer Template Failed Load');
         return response.text();
@@ -1103,7 +1072,7 @@
 </script>  
 
 <script>
-  fetch("../template-text/MS/partner-credit-MS.html")
+  fetch("/template-text/MS/partner-credit-MS.html")
     .then(response => {
       if (!response.ok) throw new Error("Partner Credit Template Failed to Load");
       return response.text();
