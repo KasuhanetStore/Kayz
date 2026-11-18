@@ -43,3 +43,17 @@ Files such as `PageTest.html`, `TemaBaru.html`, `BuatWebSendiri.html`, `Affliate
 - Do not move or activate legacy PHP endpoints as part of repository cleanup.
 - Prioritize credential rotation and safe retirement of the unused PHP scripts, separately from cosmetic file organization.
 - No production code or asset was changed by this audit.
+
+## Active-page reference and script follow-up
+
+- Fixed the English privacy page's two self-links to point to `/privacy-policy-EN.html`.
+- Rechecked `CommandCanDoLIST.html`, both affiliate pages, both sale pages, both privacy pages, both About pages and the EN/MS support pages. The previously reported CommandCanDo navigation and affiliate product-image issues are already corrected in the current preview source; no additional route changes were needed in this pass.
+- Removed duplicate non-deferred `js/home-main.js` imports from `about-us-EN.html`, `support-centre-EN.html` and `MS/support-centre-MS.html`. Each now loads the shared script once. The Malay About page already loaded it once and was left unchanged.
+- Root `ads.txt` contains the expected publisher format `pub-4280897190566760`. `Ads.txt` has a malformed duplicated `pub-pub-` prefix. Do not delete or rename case variants until the actual `/ads.txt` response on production and preview can be confirmed; direct HTTP retrieval was unavailable during this pass.
+- Cloudflare Pages reports a successful preview deployment for the latest preview commit. This is not a substitute for browser-based interaction testing.
+
+## Remaining verification before merge
+
+- Confirm the live and preview HTTP response bodies for `/ads.txt` and `/Ads.txt`, then decide whether the malformed uppercase duplicate can be removed safely.
+- Run browser smoke tests on the preview for EN/MS navigation, images, mobile menu, workshop checkout, Stripe, ToyyibPay and support submission. Do not change payment or support runtime code as part of this cleanup.
+- Check analytics and external backlinks before removing any legacy public HTML pages.
