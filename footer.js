@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
         </footer>
         <div class="footer-bottom">
-            &copy; ${new Date().getFullYear()} KasuhaNET Resources. All Rights Reserved.
+            &copy; ${new Date().getFullYear()} Kasuhanet Resources. All Rights Reserved.
         </div>
     `;
 });
