@@ -24,7 +24,7 @@
   style.textContent = `
     #knInboxLauncher{position:fixed;right:22px;bottom:96px;z-index:99990;display:flex;align-items:center;gap:10px;padding:11px 15px;border:1px solid rgba(0,240,255,.55);border-radius:14px;background:linear-gradient(135deg,#071522,#101827);color:#eafcff;font:600 13px/1.2 Inter,Arial,sans-serif;box-shadow:0 8px 28px rgba(0,0,0,.42),0 0 18px rgba(0,220,255,.14);cursor:pointer;transition:transform .2s,box-shadow .2s}
     #knInboxLauncher:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(0,0,0,.5),0 0 22px rgba(0,220,255,.24)}
-    .whatsapp-float,#floating-whatsapp{display:none!important}
+    .whatsapp-float,#floating-whatsapp,#whatsapp-float,.floating-whatsapp,.float-whatsapp,a.whatsapp-float{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}
     #knInboxLauncher .kn-inbox-dot{width:9px;height:9px;border-radius:50%;background:#19e6c1;box-shadow:0 0 10px #19e6c1}
     #knInboxPanel{position:fixed;right:22px;bottom:158px;z-index:99991;width:min(350px,calc(100vw - 28px));height:440px;max-height:calc(100dvh - 185px);display:none;flex-direction:column;overflow:hidden;border:1px solid rgba(0,225,255,.42);border-radius:16px;background:#080f19;color:#eaf3ff;box-shadow:0 18px 55px rgba(0,0,0,.58),0 0 24px rgba(0,210,255,.12);font-family:Inter,Arial,sans-serif}
     #knInboxPanel.kn-open{display:flex;animation:knInboxIn .2s ease-out}
@@ -64,6 +64,19 @@
     @media(prefers-reduced-motion:reduce){#knInboxPanel.kn-open{animation:none}#knInboxLauncher{transition:none}}
   `;
   document.head.appendChild(style);
+
+  // Remove only the floating WhatsApp shortcut; keep normal WhatsApp links elsewhere.
+  function hideWhatsAppFloat(){
+    document.querySelectorAll('.whatsapp-float,#floating-whatsapp,#whatsapp-float,.floating-whatsapp,.float-whatsapp').forEach(function(node){
+      node.style.setProperty('display','none','important');
+      node.style.setProperty('visibility','hidden','important');
+      node.setAttribute('aria-hidden','true');
+    });
+  }
+  hideWhatsAppFloat();
+  if(document.body){
+    new MutationObserver(hideWhatsAppFloat).observe(document.body,{childList:true,subtree:true});
+  }
 
   const launcher = document.createElement("button");
   launcher.id = "knInboxLauncher";
