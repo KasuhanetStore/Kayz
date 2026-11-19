@@ -11,7 +11,7 @@
      crossorigin="anonymous"></script>
 
 
-<meta name="keywords" content="Kasuha Zukarnain, KasuhaNET, Kasuhanet Resources, Kasuha Oculus Organisation, servis pembangunan website Malaysia, bengkel custom web, sistem digital, pembangunan portal, alatan terminal Linux">
+<meta name="keywords" content="Kasuha, Kasuha Zukarnain, Shafiq Zukarnain, Kasuha Okulus, KZ Organisation, KasuhaNET.STORE, Kasuhanet Resources, pembangunan website Malaysia">
 <meta name="author" content="Kasuhanet Resources">
 <meta name="robots" content="index, follow">
 
@@ -40,44 +40,78 @@
 
 
 
-<!-- GRAF ENTITI JENAMA: KasuhaNET, Kasuhanet Resources dan pengasas -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://kasuhanet.store/#organization",
-      "name": "Kasuhanet Resources",
-      "alternateName": ["KasuhaNET", "KasuhaNET.STORE"],
-      "url": "https://kasuhanet.store/",
-      "logo": "https://kasuhanet.store/img/logo3.png",
-      "description": "Perniagaan di sebalik KasuhaNET.STORE, platform perkhidmatan digital dan sumber teknikal yang beroperasi dari Malaysia.",
-      "identifier": "202503248308",
-      "founder": { "@id": "https://kasuhanet.store/Kasuha-Zukarnain/#person" },
-      "brand": { "@type": "Brand", "name": "KasuhaNET" },
-      "sameAs": ["https://www.tiktok.com/@kasuhanet.store"]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://kasuhanet.store/#website",
-      "url": "https://kasuhanet.store/",
-      "name": "KasuhaNET.STORE",
-      "alternateName": "KasuhaNET",
-      "publisher": { "@id": "https://kasuhanet.store/#organization" },
-      "inLanguage": ["en", "ms"]
-    },
-    {
-      "@type": "Person",
-      "@id": "https://kasuhanet.store/Kasuha-Zukarnain/#person",
-      "name": "Kasuha Zukarnain",
-      "alternateName": "Kasuha",
-      "url": "https://kasuhanet.store/Kasuha-Zukarnain/",
-      "worksFor": { "@id": "https://kasuhanet.store/#organization" }
-    }
-  ]
-}
-</script>
+  <!-- GRAF ENTITI KASUHA: Pengasas, pertubuhan, syarikat berdaftar dan platform dalam talian -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://kasuhanet.store/#company",
+        "name": "Kasuhanet Resources",
+        "url": "https://kasuhanet.store/",
+        "identifier": {
+          "@type": "PropertyValue",
+          "propertyID": "Nombor Pendaftaran Perniagaan SSM",
+          "value": "202503248308"
+        },
+        "description": "Syarikat berdaftar yang mengendalikan platform perniagaan dalam talian KasuhaNET.STORE.",
+        "founder": {
+          "@id": "https://kasuhanet.store/Kasuha-Zukarnain/#person"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://kasuhanet.store/#kasuha-okulus",
+        "name": "Kasuha Okulus",
+        "alternateName": [
+          "KZ Organisation",
+          "Pertubuhan Kasuha Okulus"
+        ],
+        "url": "https://kasuhanet.store/About-Us/MS/",
+        "description": "Pertubuhan yang diasaskan oleh Kasuha Zukarnain, yang juga dikenali dengan nama sebenar Shafiq Zukarnain.",
+        "founder": {
+          "@id": "https://kasuhanet.store/Kasuha-Zukarnain/#person"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://kasuhanet.store/#website",
+        "url": "https://kasuhanet.store/",
+        "name": "KasuhaNET.STORE",
+        "alternateName": "KasuhaNET",
+        "description": "Platform perniagaan dalam talian yang dikendalikan oleh Kasuhanet Resources.",
+        "publisher": {
+          "@id": "https://kasuhanet.store/#company"
+        },
+        "inLanguage": "ms"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://kasuhanet.store/Kasuha-Zukarnain/#person",
+        "name": "Kasuha Zukarnain",
+        "alternateName": [
+          "Shafiq Zukarnain",
+          "Kasuha"
+        ],
+        "url": "https://kasuhanet.store/Kasuha-Zukarnain/",
+        "image": "https://kasuhanet.store/KasuhaKZintro.png",
+        "description": "Kasuha Zukarnain, yang nama sebenarnya ialah Shafiq Zukarnain, merupakan pengasas utama Kasuha Okulus dan platform perniagaan digital KasuhaNET.",
+        "founderOf": [
+          {
+            "@id": "https://kasuhanet.store/#kasuha-okulus"
+          },
+          {
+            "@id": "https://kasuhanet.store/#company"
+          }
+        ],
+        "worksFor": {
+          "@id": "https://kasuhanet.store/#company"
+        }
+      }
+    ]
+  }
+  </script>
 
 <!-- MOBILE -->
 <meta name="theme-color" content="#08090d">
@@ -660,10 +694,10 @@
   .kn-payment-choice p { margin:0; color:#d7e8ef; font-size:11px; line-height:1.5; }
 </style>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-  <meta name="description" content="KasuhaNET ialah platform digital Malaysia oleh Kasuha Zukarnain dan Kasuhanet Resources yang menawarkan pembangunan website, naik taraf web tersuai, sistem digital, alatan Linux dan integrasi perisian.">
+  <meta name="description" content="KasuhaNET.STORE ialah platform perniagaan digital dalam talian yang dikendalikan oleh Kasuhanet Resources dan diasaskan oleh Kasuha Zukarnain, nama sebenar Shafiq Zukarnain, pengasas Kasuha Okulus.">
   <meta name="title" content="KasuhaNET | Servis Pembangunan Website &amp; Sistem Digital oleh Kasuha Zukarnain">
   <meta property="og:title" content="KasuhaNET | Servis Pembangunan Website &amp; Sistem Digital oleh Kasuha Zukarnain">
-  <meta property="og:description" content="KasuhaNET ialah platform digital Malaysia oleh Kasuha Zukarnain dan Kasuhanet Resources yang menawarkan pembangunan website, naik taraf web tersuai, sistem digital, alatan Linux dan integrasi perisian.">
+  <meta property="og:description" content="Platform perniagaan digital dalam talian yang dikendalikan oleh Kasuhanet Resources dan diasaskan oleh Kasuha Zukarnain, nama sebenar Shafiq Zukarnain, pengasas Kasuha Okulus.">
   <meta property="og:url" content="https://kasuhanet.store/MS/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="KasuhaNET.STORE">
@@ -672,7 +706,7 @@
   <meta property="og:image:alt" content="KasuhaNET, platform digital oleh Kasuha Zukarnain untuk pembangunan website dan sistem digital">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="KasuhaNET | Servis Pembangunan Website &amp; Sistem Digital oleh Kasuha Zukarnain">
-  <meta name="twitter:description" content="KasuhaNET ialah platform digital Malaysia oleh Kasuha Zukarnain dan Kasuhanet Resources yang menawarkan pembangunan website, naik taraf web tersuai, sistem digital, alatan Linux dan integrasi perisian.">
+  <meta name="twitter:description" content="Platform perniagaan digital dalam talian yang dikendalikan oleh Kasuhanet Resources dan diasaskan oleh Kasuha Zukarnain, nama sebenar Shafiq Zukarnain, pengasas Kasuha Okulus.">
   <meta name="twitter:url" content="https://kasuhanet.store/MS/">
   <meta name="twitter:image" content="https://kasuhanet.store/img/logo3.png">
   <meta name="twitter:image:alt" content="KasuhaNET, platform digital oleh Kasuha Zukarnain untuk pembangunan website dan sistem digital">
@@ -954,7 +988,7 @@
 <section class="section" id="servis"><div class="container"><div class="section-head"><span class="eyebrow">Pembangunan Web & Infrastruktur Digital</span><h1>Pembangunan Web Profesional <span class="gradient-text">oleh KasuhaNET</span></h1><p>Adakah anda mahukan kehadiran digital yang kelihatan profesional, berprestasi tinggi dan dibina mengikut spesifikasi industri terkini? <strong>KasuhaNET Resources</strong> menyediakan penyelesaian pembangunan web daripada landing page asas hingga sistem pelbagai halaman, disokong oleh pengurusan pelayan dan konfigurasi terminal.</p></div>
 <div class="service-grid"><article class="service-card"><div class="service-icon">⌘</div><h3>Prestasi Maximum & Kelajuan</h3><p>Kecekapan kod, pemampatan imej dan pengurusan sumber membantu halaman dimuatkan dengan pantas.</p></article><a class="service-card guide-background-card" href="/ShopGO/ShopGO-ResidentSiteBiz.html" style="display:block;color:inherit;text-decoration:none;cursor:pointer" aria-label="Terokai sewaan ruang perniagaan dalam talian"><div class="service-icon">▣</div><h3>SEWA RUANG PERNIAGAAN DALAM TALIAN - MULAKAN HARI INI!</h3><p>Sertai marketplace dan mula menjual melalui kedai anda sendiri. Pelawat boleh melihat, menyukai dan membeli produk.</p><span class="highlight-orange-glow" style="display:inline-block;margin-top:14px;font-size:22px;letter-spacing:2px;animation-duration:.65s">DAPATKAN!! ⚡</span></a><article class="service-card"><div class="service-icon">🔒</div><h3>Keselamatan Data & Pelesenan</h3><p>Struktur web bersih, HTTPS/SSL dan tetapan kebenaran fail yang betul.</p></article><article class="service-card"><div class="service-icon">⌘</div><h3>Terminal & Server Linux</h3><p>Bantuan mengurus persekitaran Linux, termasuk Linux pada Penguin/ChromeOS, kebergantungan perpustakaan dan skrip sistem.</p></article><article class="service-card guide-background-card"><div class="service-icon">⚙</div><h3>Bengkel Web Tersuai</h3><p>Pilih komponen modular dan alat berasaskan keperluan projek dan bajet anda.</p><a href="https://kasuhanet.store/MS/Bengkel-Custom-WebSite-MS.html" class="btn btn-outline highlight-orange-glow" style="margin-top:16px">⬅️ Ketahui Lanjut</a></article><article class="service-card guide-background-card"><div class="service-icon highlight-card-icon">↗</div><h3>CommandCanDo & Affiliate</h3><p>Teroka pilihan terminal, sokongan affiliate dan perkhidmatan digital lain yang terdapat di platform.</p><div class="subnav"><a class="highlight-orange-glow" href="https://kasuhanet.store/CommandCanDoLIST.html">CommandCanDo</a><a class="highlight-orange-glow" href="https://kasuhanet.store/MS/Shop-MyAffliate-home-MS.html">Sokongan Affiliate</a></div></article></div></div></section>
 
-<section class="section" id="about"><div class="container"><div class="section-head"><span class="eyebrow">Pengasas & Pembangun</span><h2>Hai, Saya <span class="gradient-text">Kasuha Zukarnain</span></h2><p>CallSign: Kasuha Zukarnain • Pengalaman Pembangun 8–9 Tahun</p></div><div class="profile-box"><ul class="feature-list"><li><strong>Pembangunan & Pengasasan:</strong> Pembangun utama di sebalik platform Kasuhanet.Store, pengasas Kasuhanet Resources untuk operasi perniagaan, dan pencipta Kasuha Oculus Organisation.</li><li><strong>Ketepatan Kod:</strong> Berminat dalam struktur kod bersih dan logik pengaturcaraan untuk membina fungsi digital yang lancar.</li><li><strong>Peminat OS & Android:</strong> Tumpuan pada dalaman Android dan sistem pengendalian (OS), termasuk konfigurasi yang meningkatkan prestasi dan reka bentuk perisian.</li><li><strong>Strategi & Pengewangan:</strong> Membangunkan sistem dan analisis data yang bertujuan untuk pertumbuhan kewangan mampan melalui ekosistem perniagaan.</li></ul><p><strong>Sistem & Seni Bina | Rangka Kerja Kasuha Oculus</strong></p><p><a href="/MS/Kasuha-Zukarnain/" aria-label="Baca profil rasmi Kasuha Zukarnain">Baca profil rasmi pengasas: Kasuha Zukarnain</a></p></div></div></section>
+<section class="section" id="about"><div class="container"><div class="section-head"><span class="eyebrow">Pengasas & Pembangun</span><h2>Hai, Saya <span class="gradient-text">Kasuha Zukarnain</span></h2><p>Nama awam: Kasuha Zukarnain • Nama sebenar: Shafiq Zukarnain</p></div><div class="profile-box"><ul class="feature-list"><li><strong>Pembangunan & Pengasasan:</strong> Pengasas utama Kasuha Okulus (KZ Organisation) dan pengasas di sebalik platform perniagaan dalam talian KasuhaNET.STORE yang dikendalikan oleh Kasuhanet Resources.</li><li><strong>Ketepatan Kod:</strong> Berminat dalam struktur kod bersih dan logik pengaturcaraan untuk membina fungsi digital yang lancar.</li><li><strong>Peminat OS & Android:</strong> Tumpuan pada dalaman Android dan sistem pengendalian (OS), termasuk konfigurasi yang meningkatkan prestasi dan reka bentuk perisian.</li><li><strong>Strategi & Pengewangan:</strong> Membangunkan sistem dan analisis data yang bertujuan untuk pertumbuhan kewangan mampan melalui ekosistem perniagaan.</li></ul><p><strong>Sistem & Seni Bina | Rangka Kerja Kasuha Oculus</strong></p><p><a href="/MS/Kasuha-Zukarnain/" aria-label="Baca profil rasmi Kasuha Zukarnain">Baca profil rasmi pengasas: Kasuha Zukarnain</a></p></div></div></section>
 
 <section class="section" id="referral">
   <div class="container">
