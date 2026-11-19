@@ -135,7 +135,7 @@
   const chatIdNode = panel.querySelector("#knInboxChatId");
   const messagesNode = panel.querySelector("#knInboxMessages");
   const form = panel.querySelector(".kn-inbox-compose");
-  const messageInput = form.querySelector("input");
+  const messageInput = form.querySelector('input[type="text"]');
   const sendButton = form.querySelector("button[type=submit]");\n  const attachButton=form.querySelector(".kn-attach");\n  const fileInput=form.querySelector("input[type=file]");\n  const tools=panel.querySelector(".kn-inbox-tools");\n  let recorder=null,recordChunks=[];
   const storageKey = "kn_inbox_session_v1";
   let session = null;
