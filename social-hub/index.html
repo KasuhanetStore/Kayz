@@ -59,16 +59,60 @@
       </article>
       <article class="module">
         <div class="module-head"><div class="app-icon">♪</div><div><h3>TikTok Manager</h3><div class="type">TikTok for Developers</div></div></div>
-        <span class="status"><i class="dot"></i> Belum disambungkan</span>
-        <p>Persediaan untuk sambungan akaun, kebenaran kandungan dan aliran penerbitan video melalui API rasmi.</p>
-        <div class="module-foot">Menunggu Developer App, OAuth dan audit yang berkaitan</div>
+        <span class="status" id="tt-status"><i class="dot"></i> Menunggu sambungan akaun</span>
+        <p>Sambungkan akaun TikTok melalui Login Kit. Token OAuth disimpan secara terenkripsi di backend dan tidak dihantar ke browser.</p>
+        <div class="tg-control">
+          <label for="tt-admin-token">Admin access token</label>
+          <div class="auth-row"><input id="tt-admin-token" type="password" autocomplete="off" placeholder="Masukkan token admin"><button id="tt-connect" type="button">SAMBUNG TIKTOK</button></div>
+          <div class="tg-result" id="tt-result" role="status" aria-live="polite">Sambungan memerlukan konfigurasi Client Key, Client Secret dan encryption key di Cloudflare.</div>
+        </div>
+        <div class="module-foot" id="tt-profile">Login Kit · Scope asas: user.info.basic</div>
       </article>
     </section>
-    <aside class="note"><div class="note-icon">ⓘ</div><div><b>Keselamatan dan status sebenar</b><p>Integrasi Telegram dan endpoint backend telah wujud dalam website. Paparan ini belum membuat semakan langsung terhadap status webhook di Telegram. Pengurusan terus akan menggunakan integrasi sedia ada tanpa menggandakan bot, menukar webhook atau mengganggu Inbox Chat dan checkout. Jangan masukkan token atau App Secret ke dalam halaman ini.</p></div></aside>
+    <aside class="note"><div class="note-icon">ⓘ</div><div><b>Keselamatan dan status sebenar</b><p>Integrasi Telegram dan endpoint backend telah wujud dalam website. Semakan Telegram menggunakan endpoint read-only. TikTok menggunakan OAuth rasmi dengan state anti-forgery dan token terenkripsi di D1. Jangan masukkan Client Secret atau token API ke dalam kod frontend.</p></div></aside>
   </main>
   <footer><div class="shell">© <span id="year"></span> Kasuhanet Resources · KasuhaNET Social Hub</div></footer>
   <script>
     document.getElementById("year").textContent=new Date().getFullYear();
+    const ttToken=document.getElementById("tt-admin-token");
+    const ttButton=document.getElementById("tt-connect");
+    const ttResult=document.getElementById("tt-result");
+    const ttStatus=document.getElementById("tt-status");
+    const ttProfile=document.getElementById("tt-profile");
+    async function checkTikTok(token){
+      const response=await fetch("/api/social-hub/tiktok/status",{headers:{Authorization:"Bearer "+token},cache:"no-store"});
+      const data=await response.json();
+      if(!response.ok)throw new Error(data.error||"Semakan TikTok gagal.");
+      if(data.connected){
+        ttStatus.innerHTML='<i class="dot" style="background:var(--cyan)"></i> Akaun disambungkan';
+        ttStatus.style.color="#80e8f3";
+        ttResult.textContent="Akaun TikTok berjaya disambungkan. Token disimpan dengan encryption di backend.";
+        ttResult.className="tg-result good";
+        ttProfile.textContent="Akaun: "+(data.profile.displayName||"TikTok")+" · Scope: "+(data.scopes||"user.info.basic");
+      }else{
+        ttStatus.innerHTML='<i class="dot"></i> Belum disambungkan';
+        ttResult.textContent="Belum ada akaun TikTok yang disambungkan.";
+        ttResult.className="tg-result";
+      }
+    }
+    ttButton.addEventListener("click",async()=>{
+      const token=ttToken.value.trim();
+      if(!token){ttResult.textContent="Masukkan admin access token dahulu.";return;}
+      ttButton.disabled=true;ttButton.textContent="MENYEMAK...";
+      try{
+        await checkTikTok(token);
+        const response=await fetch("/api/social-hub/tiktok/start",{headers:{Authorization:"Bearer "+token},redirect:"manual",cache:"no-store"});
+        if(response.type==="opaqueredirect"||response.status===302){window.location.href="/api/social-hub/tiktok/start";return;}
+        const data=await response.json();
+        if(!response.ok)throw new Error(data.error||"Tidak dapat memulakan OAuth TikTok.");
+        throw new Error("TikTok OAuth tidak dapat dimulakan.");
+      }catch(error){
+        ttResult.textContent=error.message||"Ralat sambungan TikTok.";
+        ttResult.className="tg-result bad";
+        ttButton.disabled=false;ttButton.textContent="SAMBUNG TIKTOK";
+      }
+    });
+
     const tgButton=document.getElementById("tg-check");
     const tgToken=document.getElementById("tg-admin-token");
     const tgResult=document.getElementById("tg-result");
