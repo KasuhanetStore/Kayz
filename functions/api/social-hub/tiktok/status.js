@@ -5,6 +5,7 @@ export async function onRequestGet({request,env}){
  if(!expected||!safeEqual(supplied,expected))return json({error:"Admin authentication required."},401);
  if(!env.DB)return json({error:"D1 database binding DB is not configured."},503);
  try{
+  await env.DB.prepare("CREATE TABLE IF NOT EXISTS social_hub_tiktok_connection (id TEXT PRIMARY KEY, encrypted_tokens TEXT NOT NULL, open_id TEXT, display_name TEXT, avatar_url TEXT, scopes TEXT, access_expires_at INTEGER, refresh_expires_at INTEGER, updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)").run();
   const row=await env.DB.prepare("SELECT open_id,display_name,avatar_url,scopes,access_expires_at,refresh_expires_at,updated_at FROM social_hub_tiktok_connection WHERE id='primary'").first();
   if(!row)return json({connected:false});
   return json({connected:true,profile:{openId:row.open_id||"",displayName:row.display_name||"TikTok account",avatarUrl:row.avatar_url||""},scopes:row.scopes||"",accessExpiresAt:row.access_expires_at||null,refreshExpiresAt:row.refresh_expires_at||null,updatedAt:row.updated_at||null});
