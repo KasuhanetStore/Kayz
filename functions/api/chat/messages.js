@@ -84,8 +84,15 @@ export async function onRequestPost({request,env}){
           const parts=attachment.data.split(",",2),mime=parts[0].match(/^data:([^;]+)/)?.[1]||"application/octet-stream";
           const bytes=Uint8Array.from(atob(parts[1]),c=>c.charCodeAt(0));
           const formData=new FormData();formData.append("chat_id",env.TELEGRAM_ADMIN_CHAT_ID);formData.append("reply_markup",JSON.stringify({inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}));
-          formData.append(attachment.kind==="image"?"photo":"voice",new Blob([bytes],{type:mime}),attachment.kind==="image"?"customer-image.jpg":"customer-voice.webm");
-          method=attachment.kind==="image"?"sendPhoto":"sendVoice";body=formData;
+          if(attachment.kind==="image"){
+            formData.append("photo",new Blob([bytes],{type:mime}),"customer-image.jpg");
+            method="sendPhoto";
+          }else{
+            const voiceFormat=/^(audio\/ogg|audio\/mpeg|audio\/mp4|audio\/x-m4a)/i.test(mime);
+            formData.append(voiceFormat?"voice":"document",new Blob([bytes],{type:mime}),voiceFormat?"customer-voice."+(/ogg/i.test(mime)?"ogg":/mpeg/i.test(mime)?"mp3":"m4a"):"customer-voice.webm");
+            method=voiceFormat?"sendVoice":"sendDocument";
+          }
+          body=formData;
         }else body={chat_id:env.TELEGRAM_ADMIN_CHAT_ID,text:"<b>New KasuhaNET Inbox Message</b>\\nChat ID: <code>"+chatId+"</code>\\n\\n"+safeMessage,parse_mode:"HTML",disable_web_page_preview:true,reply_markup:{inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}};
         const response=await fetch("https://api.telegram.org/bot"+env.TELEGRAM_BOT_TOKEN+"/"+method,{
           method:"POST",
