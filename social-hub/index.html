@@ -101,11 +101,11 @@
       ttButton.disabled=true;ttButton.textContent="MENYEMAK...";
       try{
         await checkTikTok(token);
-        const response=await fetch("/api/social-hub/tiktok/start",{headers:{Authorization:"Bearer "+token},redirect:"manual",cache:"no-store"});
-        if(response.type==="opaqueredirect"||response.status===302){window.location.href="/api/social-hub/tiktok/start";return;}
+        const response=await fetch("/api/social-hub/tiktok/start",{method:"POST",headers:{Authorization:"Bearer "+token},cache:"no-store"});
         const data=await response.json();
         if(!response.ok)throw new Error(data.error||"Tidak dapat memulakan OAuth TikTok.");
-        throw new Error("TikTok OAuth tidak dapat dimulakan.");
+        if(!data.authorizationUrl)throw new Error("Pautan kebenaran TikTok tidak diterima.");
+        window.location.href=data.authorizationUrl;
       }catch(error){
         ttResult.textContent=error.message||"Ralat sambungan TikTok.";
         ttResult.className="tg-result bad";
