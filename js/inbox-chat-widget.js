@@ -67,7 +67,10 @@
 
   // Remove only the floating WhatsApp shortcut; keep normal WhatsApp links elsewhere.
   function hideWhatsAppFloat(){
-    document.querySelectorAll('.whatsapp-float,#floating-whatsapp,#whatsapp-float,.floating-whatsapp,.float-whatsapp').forEach(function(node){
+    document.querySelectorAll('.whatsapp-float,#floating-whatsapp,#whatsapp-float,.floating-whatsapp,.float-whatsapp,a[href*="wa.me"]').forEach(function(node){
+      const isKnownFloat = node.matches('.whatsapp-float,#floating-whatsapp,#whatsapp-float,.floating-whatsapp,.float-whatsapp');
+      const isFixedWhatsApp = node.tagName === 'A' && getComputedStyle(node).position === 'fixed';
+      if(!isKnownFloat && !isFixedWhatsApp) return;
       node.style.setProperty('display','none','important');
       node.style.setProperty('visibility','hidden','important');
       node.setAttribute('aria-hidden','true');
