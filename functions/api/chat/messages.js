@@ -64,6 +64,32 @@ export async function onRequestPost({request,env}){
     const id=crypto.randomUUID();
     await env.DB.prepare("INSERT INTO inbox_messages (id,chat_id,sender,message) VALUES (?,?,'buyer',?)").bind(id,chatId,message).run();
     await env.DB.prepare("UPDATE inbox_chats SET updated_at=CURRENT_TIMESTAMP,last_message_at=CURRENT_TIMESTAMP WHERE chat_id=?").bind(chatId).run();
-    return json({sent:true,id},201);
+
+    // Notify the support admin in Telegram. The website message remains saved even
+    // if Telegram is temporarily unavailable.
+    let telegramNotified=false;
+    if(env.TELEGRAM_BOT_TOKEN && env.TELEGRAM_ADMIN_CHAT_ID){
+      try{
+        const safeMessage=message.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+        const response=await fetch("https://api.telegram.org/bot"+env.TELEGRAM_BOT_TOKEN+"/sendMessage",{
+          method:"POST",
+          headers:{"Content-Type":"application/json"},
+          body:JSON.stringify({
+            chat_id:env.TELEGRAM_ADMIN_CHAT_ID,
+            text:"<b>New KasuhaNET Inbox Message</b>\\nChat ID: <code>"+chatId+"</code>\\n\\n"+safeMessage,
+            parse_mode:"HTML",
+            disable_web_page_preview:true,
+            reply_markup:{inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}
+          })
+        });
+        const result=await response.json();
+        telegramNotified=response.ok && result.ok===true;
+        if(telegramNotified && result.result?.message_id){
+          await env.DB.prepare("UPDATE inbox_messages SET telegram_message_id=? WHERE id=?")
+            .bind(String(result.result.message_id),id).run();
+        }
+      }catch{}
+    }
+    return json({sent:true,id,telegramNotified},201);
   }catch{return json({error:"Unable to send your message. Please try again."},500);}
 }
