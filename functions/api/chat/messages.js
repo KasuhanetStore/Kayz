@@ -77,17 +77,19 @@ export async function onRequestPost({request,env}){
     let telegramNotified=false;
     if(env.TELEGRAM_BOT_TOKEN && env.TELEGRAM_ADMIN_CHAT_ID){
       try{
-        const safeMessage=message.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-        const response=await fetch("https://api.telegram.org/bot"+env.TELEGRAM_BOT_TOKEN+"/sendMessage",{
+        const safeMessage=(attachment?(attachment.kind==="image"?"[Customer sent an image]":attachment.kind==="voice"?"[Customer sent a voice message]":"[Customer shared location]"):message).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+        let method="sendMessage", body;
+        if(attachment?.kind==="location"){method="sendLocation";body={chat_id:env.TELEGRAM_ADMIN_CHAT_ID,latitude:attachment.lat,longitude:attachment.lng};}
+        else if(attachment?.kind==="image"||attachment?.kind==="voice"){
+          const parts=attachment.data.split(",",2),mime=parts[0].match(/^data:([^;]+)/)?.[1]||"application/octet-stream";
+          const bytes=Uint8Array.from(atob(parts[1]),c=>c.charCodeAt(0));
+          const formData=new FormData();formData.append("chat_id",env.TELEGRAM_ADMIN_CHAT_ID);
+          formData.append(attachment.kind==="image"?"photo":"voice",new Blob([bytes],{type:mime}),attachment.kind==="image"?"customer-image.jpg":"customer-voice.webm");
+          method=attachment.kind==="image"?"sendPhoto":"sendVoice";body=formData;
+        }else body={chat_id:env.TELEGRAM_ADMIN_CHAT_ID,text:"<b>New KasuhaNET Inbox Message</b>\\nChat ID: <code>"+chatId+"</code>\\n\\n"+safeMessage,parse_mode:"HTML",disable_web_page_preview:true,reply_markup:{inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}};
+        const response=await fetch("https://api.telegram.org/bot"+env.TELEGRAM_BOT_TOKEN+"/"+method,{
           method:"POST",
-          headers:{"Content-Type":"application/json"},
-          body:JSON.stringify({
-            chat_id:env.TELEGRAM_ADMIN_CHAT_ID,
-            text:"<b>New KasuhaNET Inbox Message</b>\\nChat ID: <code>"+chatId+"</code>\\n\\n"+safeMessage,
-            parse_mode:"HTML",
-            disable_web_page_preview:true,
-            reply_markup:{inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}
-          })
+          ...(body instanceof FormData?{body}:{headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
         });
         const result=await response.json();
         telegramNotified=response.ok && result.ok===true;
