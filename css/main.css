@@ -389,3 +389,7 @@ footer > * { position: relative; z-index: 1; }
 .kn-nav-dropdown[open] .kn-nav-menu{animation:knNavDropIn .14s ease-out}
 @keyframes knNavDropIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:760px){.kn-nav-dropdown{width:100%;display:block}.kn-nav-dropdown>summary{padding:8px 0}.kn-nav-dropdown .kn-nav-menu{position:static;min-width:0;margin:4px 0 8px 10px;box-shadow:none;background:rgba(8,18,31,.96)}.kn-nav-dropdown .kn-nav-menu a{white-space:normal}}
+
+
+/* Keep Support submenu links visible inside compact mobile navigation */
+@media(max-width:760px){.nav-links .kn-nav-dropdown .kn-nav-menu a{display:block!important;width:100%;}.nav-links .kn-nav-dropdown .kn-nav-menu{display:grid!important;}}
