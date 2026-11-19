@@ -26,7 +26,7 @@ async function telegram(token,method){
 }
 export async function onRequestGet({request,env}){
   const expected=env.SOCIAL_HUB_ADMIN_TOKEN;
-  const supplied=(request.headers.get("Authorization")||"").replace(/^Bearer\\s+/i,"");
+  const supplied=(request.headers.get("Authorization")||"").replace(/^Bearer\s+/i,"");
   if(!expected||!safeEqual(supplied,expected)) return json({error:"Admin authentication required."},401);
   if(!env.TELEGRAM_BOT_TOKEN) return json({error:"Telegram bot token is not configured."},503);
   try{
