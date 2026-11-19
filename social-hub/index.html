@@ -89,10 +89,12 @@
         ttResult.textContent="Akaun TikTok berjaya disambungkan. Token disimpan dengan encryption di backend.";
         ttResult.className="tg-result good";
         ttProfile.textContent="Akaun: "+(data.profile.displayName||"TikTok")+" · Scope: "+(data.scopes||"user.info.basic");
+        return true;
       }else{
         ttStatus.innerHTML='<i class="dot"></i> Belum disambungkan';
         ttResult.textContent="Belum ada akaun TikTok yang disambungkan.";
         ttResult.className="tg-result";
+        return false;
       }
     }
     ttButton.addEventListener("click",async()=>{
@@ -100,7 +102,7 @@
       if(!token){ttResult.textContent="Masukkan admin access token dahulu.";return;}
       ttButton.disabled=true;ttButton.textContent="MENYEMAK...";
       try{
-        await checkTikTok(token);
+        if(await checkTikTok(token)){ttButton.disabled=false;ttButton.textContent="SAMBUNG TIKTOK";return;}
         const response=await fetch("/api/social-hub/tiktok/start",{method:"POST",headers:{Authorization:"Bearer "+token},cache:"no-store"});
         const data=await response.json();
         if(!response.ok)throw new Error(data.error||"Tidak dapat memulakan OAuth TikTok.");
