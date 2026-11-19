@@ -1,7 +1,7 @@
 function json(data,status=200){return new Response(JSON.stringify(data),{status,headers:{"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store","X-Content-Type-Options":"nosniff"}});}
 function safeEqual(a,b){if(typeof a!=="string"||typeof b!=="string"||a.length!==b.length)return false;let d=0;for(let i=0;i<a.length;i++)d|=a.charCodeAt(i)^b.charCodeAt(i);return d===0;}
 export async function onRequestGet({request,env}){
- const expected=env.SOCIAL_HUB_ADMIN_TOKEN,supplied=(request.headers.get("Authorization")||"").replace(/^Bearer\\s+/i,"");
+ const expected=env.SOCIAL_HUB_ADMIN_TOKEN,supplied=(request.headers.get("Authorization")||"").replace(/^Bearer\s+/i,"");
  if(!expected||!safeEqual(supplied,expected))return json({error:"Admin authentication required."},401);
  if(!env.DB)return json({error:"D1 database binding DB is not configured."},503);
  try{
