@@ -9,14 +9,14 @@
     intro:"Mesej anda akan dihantar terus kepada pasukan sokongan KasuhaNET.",
     placeholder:"Taip mesej anda...", send:"Hantar",
     notReady:"Tidak dapat menghantar mesej. Sila cuba semula.",
-    close:"Tutup", minimize:"Kecilkan", maximize:"Besarkan", restore:"Pulihkan"
+    close:"Tutup", minimize:"Kecilkan", maximize:"Besarkan", restore:"Pulihkan", menu:"Pilihan", clear:"Kosongkan chat", confirmClear:"Padam semua mesej dalam chat ini?", image:"Gambar", location:"Lokasi", voice:"Suara", recording:"Sedang merakam...", stop:"Henti rakaman", cancel:"Batal"
   } : {
     launcher:"Live Chat Support", title:"Live Chat Support", status:"Customer support",
     greeting:"Hello! Welcome to KasuhaNET.",
     intro:"Your messages will be sent to the KasuhaNET support team.",
     placeholder:"Type your message...", send:"Send",
     notReady:"Unable to send your message. Please try again.",
-    close:"Close", minimize:"Minimize", maximize:"Maximize", restore:"Restore"
+    close:"Close", minimize:"Minimize", maximize:"Maximize", restore:"Restore", menu:"Actions", clear:"Clear chat", confirmClear:"Delete all messages in this chat?", image:"Image", location:"Location", voice:"Voice", recording:"Recording...", stop:"Stop recording", cancel:"Cancel"
   };
 
   const style = document.createElement("style");
@@ -39,6 +39,15 @@
     #knInboxPanel .kn-inbox-actions{display:flex;gap:5px}
     #knInboxPanel .kn-inbox-actions button{width:29px;height:29px;border:1px solid rgba(255,255,255,.13);border-radius:7px;background:rgba(255,255,255,.05);color:#eaf3ff;font-size:17px;line-height:1;cursor:pointer}
     #knInboxPanel .kn-inbox-actions button:hover{border-color:#00eaff;color:#00eaff}
+    #knInboxPanel .kn-inbox-tools{display:flex;gap:7px;padding:8px 11px;border-top:1px solid rgba(0,225,255,.12);background:#0b1420}
+    #knInboxPanel .kn-inbox-tools button{flex:1;padding:8px 5px;border:1px solid rgba(0,225,255,.22);border-radius:8px;background:#102234;color:#c9f8ff;font:600 10px Inter,Arial,sans-serif;cursor:pointer}
+    #knInboxPanel .kn-inbox-tools button:hover{border-color:#00eaff;color:#00eaff}
+    #knInboxPanel .kn-inbox-tools .kn-clear{color:#ffb2b2;border-color:rgba(255,100,100,.28)}
+    #knInboxPanel .kn-inbox-compose{align-items:center}
+    #knInboxPanel .kn-inbox-compose .kn-attach{padding:0;width:34px;height:36px;background:#142638;color:#00eaff;font-size:20px}
+    #knInboxPanel .kn-inbox-message img{display:block;max-width:100%;max-height:220px;border-radius:8px}
+    #knInboxPanel .kn-inbox-message audio{display:block;max-width:100%;width:220px}
+    #knInboxPanel .kn-inbox-message a{color:#62eaff}
     #knInboxPanel .kn-inbox-body{flex:1;overflow:auto;padding:17px 14px;background:radial-gradient(ellipse at top left,rgba(0,210,255,.07),transparent 58%)}
     #knInboxPanel .kn-inbox-welcome{padding:13px;border:1px solid rgba(0,225,255,.17);border-radius:12px;background:rgba(12,27,42,.88)}
     #knInboxPanel .kn-inbox-welcome strong{display:block;margin-bottom:7px;color:#f2fbff;font-size:13px}
@@ -127,7 +136,7 @@
   const messagesNode = panel.querySelector("#knInboxMessages");
   const form = panel.querySelector(".kn-inbox-compose");
   const messageInput = form.querySelector("input");
-  const sendButton = form.querySelector("button");
+  const sendButton = form.querySelector("button[type=submit]");\n  const attachButton=form.querySelector(".kn-attach");\n  const fileInput=form.querySelector("input[type=file]");\n  const tools=panel.querySelector(".kn-inbox-tools");\n  let recorder=null,recordChunks=[];
   const storageKey = "kn_inbox_session_v1";
   let session = null;
   let pollHandle = null;
@@ -198,10 +207,52 @@
     maximizeButton.textContent=maximized?"❐":"□";
     maximizeButton.title=maximized?copy.restore:copy.maximize;
   }
+  async function sendPayload(payload){
+    if(!session)return;
+    sendButton.disabled=true;
+    try{
+      const response=await fetch("/api/chat/messages",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+session.sessionToken},body:JSON.stringify({chatId:session.chatId,message:JSON.stringify(payload)})});
+      const data=await response.json();if(!response.ok)throw new Error(data.error||"Send failed");
+      await pollMessages();note.style.display="none";
+    }catch(error){note.textContent=error.message||copy.notReady;note.style.display="block";}
+    finally{sendButton.disabled=false;}
+  }
+  async function imageAsData(file){
+    if(!file||!file.type.startsWith("image/"))return;
+    const img=new Image(),url=URL.createObjectURL(file);
+    try{await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=reject;img.src=url;});
+      const scale=Math.min(1,1280/Math.max(img.width,img.height)),canvas=document.createElement("canvas");
+      canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);
+      canvas.getContext("2d").drawImage(img,0,0,canvas.width,canvas.height);
+      return canvas.toDataURL("image/jpeg",.72);
+    }finally{URL.revokeObjectURL(url);}
+  }
   launcher.addEventListener("click",openPanel);
   panel.querySelector('[data-action="close"]').addEventListener("click",closePanel);
   panel.querySelector('[data-action="minimize"]').addEventListener("click",closePanel);
   maximizeButton.addEventListener("click",toggleMaximize);
+  panel.querySelector('[data-action="menu"]').addEventListener("click",()=>{tools.hidden=!tools.hidden;});
+  attachButton.addEventListener("click",()=>{tools.hidden=!tools.hidden;});
+  panel.querySelector('[data-action="image"]').addEventListener("click",()=>fileInput.click());
+  fileInput.addEventListener("change",async()=>{const file=fileInput.files?.[0];fileInput.value="";if(!file)return;try{const data=await imageAsData(file);if(data)await sendPayload({kind:"image",name:file.name,data});}catch{note.textContent=copy.notReady;note.style.display="block";}});
+  panel.querySelector('[data-action="location"]').addEventListener("click",()=>{
+    if(!navigator.geolocation){note.textContent=copy.notReady;note.style.display="block";return;}
+    navigator.geolocation.getCurrentPosition(pos=>sendPayload({kind:"location",lat:pos.coords.latitude,lng:pos.coords.longitude}),()=>{note.textContent=copy.notReady;note.style.display="block";},{enableHighAccuracy:true,timeout:15000});
+  });
+  panel.querySelector('[data-action="voice"]').addEventListener("click",async()=>{
+    if(recorder&&recorder.state==="recording"){recorder.stop();return;}
+    if(!navigator.mediaDevices?.getUserMedia||!window.MediaRecorder){note.textContent=copy.notReady;note.style.display="block";return;}
+    try{
+      const stream=await navigator.mediaDevices.getUserMedia({audio:true});recordChunks=[];
+      recorder=new MediaRecorder(stream);recorder.ondataavailable=e=>{if(e.data.size)recordChunks.push(e.data);};
+      recorder.onstop=async()=>{stream.getTracks().forEach(t=>t.stop());const blob=new Blob(recordChunks,{type:recorder.mimeType||"audio/webm"});if(blob.size>850000){note.textContent=copy.notReady;note.style.display="block";return;}const reader=new FileReader();reader.onload=()=>sendPayload({kind:"voice",data:reader.result});reader.readAsDataURL(blob);panel.querySelector('[data-action="voice"]').textContent="● "+copy.voice;};
+      recorder.start();panel.querySelector('[data-action="voice"]').textContent="■ "+copy.stop;
+    }catch{note.textContent=copy.notReady;note.style.display="block";}
+  });
+  panel.querySelector('[data-action="clear"]').addEventListener("click",async()=>{
+    if(!session||!window.confirm(copy.confirmClear))return;
+    try{const response=await fetch("/api/chat/messages",{method:"DELETE",headers:{Authorization:"Bearer "+session.sessionToken,"Content-Type":"application/json"},body:JSON.stringify({chatId:session.chatId})});const data=await response.json();if(!response.ok)throw new Error(data.error||"Clear failed");messagesNode.replaceChildren();renderedIds.clear();tools.hidden=true;note.style.display="none";}catch(error){note.textContent=error.message||copy.notReady;note.style.display="block";}
+  });
   form.addEventListener("submit",async function(e){
     e.preventDefault();
     const message=messageInput.value.trim();
