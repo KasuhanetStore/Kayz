@@ -108,7 +108,8 @@
         <h2 class="kn-inbox-title">${copy.title}</h2>
         <div class="kn-inbox-status">${copy.status}</div>
       </div>
-      <div class="kn-inbox-actions">\n        <button type="button" data-action="menu" aria-label="${copy.menu}" title="${copy.menu}">⋮</button>
+      <div class="kn-inbox-actions">
+        <button type="button" data-action="menu" aria-label="${copy.menu}" title="${copy.menu}">⋮</button>
         <button type="button" data-action="minimize" aria-label="${copy.minimize}" title="${copy.minimize}">−</button>
         <button type="button" data-action="maximize" aria-label="${copy.maximize}" title="${copy.maximize}">□</button>
         <button type="button" data-action="close" aria-label="${copy.close}" title="${copy.close}">×</button>
@@ -122,8 +123,11 @@
       <div class="kn-inbox-id">CHAT ID <b id="knInboxChatId">Connecting...</b></div>
       <div class="kn-inbox-messages" id="knInboxMessages" aria-live="polite"></div>
     </div>
-    <div class="kn-inbox-tools" hidden><button type="button" data-action="image">＋ ${copy.image}</button><button type="button" data-action="location">⌖ ${copy.location}</button><button type="button" data-action="voice">● ${copy.voice}</button><button type="button" class="kn-clear" data-action="clear">× ${copy.clear}</button></div>\n    <form class="kn-inbox-compose">
-      <input type="file" accept="image/*" capture="environment" hidden>\n      <button type="button" class="kn-attach" aria-label="${copy.menu}">＋</button>\n      <input type="text" maxlength="500" placeholder="${copy.placeholder}" aria-label="${copy.placeholder}" autocomplete="off" disabled>
+    <div class="kn-inbox-tools" hidden><button type="button" data-action="image">＋ ${copy.image}</button><button type="button" data-action="location">⌖ ${copy.location}</button><button type="button" data-action="voice">● ${copy.voice}</button><button type="button" class="kn-clear" data-action="clear">× ${copy.clear}</button></div>
+    <form class="kn-inbox-compose">
+      <input type="file" accept="image/*" capture="environment" hidden>
+      <button type="button" class="kn-attach" aria-label="${copy.menu}">＋</button>
+      <input type="text" maxlength="500" placeholder="${copy.placeholder}" aria-label="${copy.placeholder}" autocomplete="off" disabled>
       <button type="submit" disabled>${copy.send}</button>
     </form>
     <p class="kn-inbox-note" role="status">${copy.notReady}</p>
