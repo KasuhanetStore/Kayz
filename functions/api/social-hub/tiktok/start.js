@@ -6,7 +6,9 @@ export async function onRequestPost({request,env}){
  const expected=env.SOCIAL_HUB_ADMIN_TOKEN;
  const supplied=(request.headers.get("Authorization")||"").replace(/^Bearer\s+/i,"");
  if(!expected||!safeEqual(supplied,expected))return json({error:"Admin authentication required."},401);
- if(!env.DB||!env.TIKTOK_CLIENT_KEY||!env.TIKTOK_CLIENT_SECRET||!env.TIKTOK_TOKEN_ENCRYPTION_KEY)return json({error:"TikTok API configuration is incomplete. Check D1, TIKTOK_CLIENT_KEY, TIKTOK_CLIENT_SECRET and TIKTOK_TOKEN_ENCRYPTION_KEY."},503);
+ const clientKey=String(env.TIKTOK_CLIENT_KEY||"").trim();
+ const clientSecret=String(env.TIKTOK_CLIENT_SECRET||"").trim();
+ if(!env.DB||!clientKey||!clientSecret||!env.TIKTOK_TOKEN_ENCRYPTION_KEY)return json({error:"TikTok API configuration is incomplete. Check D1, TIKTOK_CLIENT_KEY, TIKTOK_CLIENT_SECRET and TIKTOK_TOKEN_ENCRYPTION_KEY."},503);
  try{
   await ensureTable(env.DB);
   const state=Array.from(crypto.getRandomValues(new Uint8Array(32)),b=>b.toString(16).padStart(2,"0")).join("");
@@ -16,7 +18,7 @@ export async function onRequestPost({request,env}){
   await env.DB.prepare("DELETE FROM social_hub_tiktok_oauth_state WHERE expires_at < ?").bind(Math.floor(Date.now()/1000)).run();
   await env.DB.prepare("INSERT INTO social_hub_tiktok_oauth_state (state_hash,expires_at) VALUES (?,?)").bind(hash,expires).run();
   const auth=new URL("https://www.tiktok.com/v2/auth/authorize/");
-  auth.searchParams.set("client_key",env.TIKTOK_CLIENT_KEY);
+  auth.searchParams.set("client_key",clientKey);
   auth.searchParams.set("response_type","code");
   auth.searchParams.set("scope","user.info.basic");
   auth.searchParams.set("redirect_uri",REDIRECT_URI);
