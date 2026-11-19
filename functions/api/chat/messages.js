@@ -59,7 +59,7 @@ export async function onRequestPost({request,env}){
   const maxLength=attachment?1350000:500;
   if(!message || message.length>maxLength) return json({error:attachment?"Attachment is too large. Please use a smaller file.":"Message must contain 1 to 500 characters."},400);
   if(attachment?.kind==="image" && (typeof attachment.data!=="string" || !/^data:image\/(jpeg|png|webp);base64,/.test(attachment.data))) return json({error:"Invalid image attachment."},400);
-  if(attachment?.kind==="voice" && (typeof attachment.data!=="string" || !/^data:audio\/[a-z0-9.+-]+;base64,/i.test(attachment.data))) return json({error:"Invalid voice attachment."},400);
+  if(attachment?.kind==="voice" && (typeof attachment.data!=="string" || !/^data:audio\/[a-z0-9.+-]+(?:;[^,]+)*;base64,/i.test(attachment.data))) return json({error:"Invalid voice attachment."},400);
   if(attachment?.kind==="location" && (!Number.isFinite(attachment.lat)||!Number.isFinite(attachment.lng)||Math.abs(attachment.lat)>90||Math.abs(attachment.lng)>180)) return json({error:"Invalid location."},400);
   try{
     await ensureTables(env.DB);
@@ -108,7 +108,7 @@ export async function onRequestDelete({request,env}){
   if(!env.DB) return json({error:"D1 database binding DB is not configured."},503);
   let input;try{input=await request.json();}catch{return json({error:"Invalid clear request."},400);}
   const chatId=typeof input?.chatId==="string"?input.chatId:"";
-  const token=request.headers.get("Authorization")?.replace(/^Bearer\\s+/i,"")||"";
+  const token=request.headers.get("Authorization")?.replace(/^Bearer\s+/i,"")||"";
   try{
     await ensureTables(env.DB);
     if(!(await authorize(env.DB,chatId,token))) return json({error:"Chat session is invalid or expired."},401);
