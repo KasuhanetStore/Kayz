@@ -44,6 +44,55 @@ async function send(env, chatId, text, keyboard) {
   });
 }
 
+async function ensureInboxTables(db) {
+  await db.prepare(`CREATE TABLE IF NOT EXISTS inbox_chats (
+    id TEXT PRIMARY KEY, chat_id TEXT NOT NULL UNIQUE, session_token_hash TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'open', created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, last_message_at TEXT
+  )`).run();
+  await db.prepare(`CREATE TABLE IF NOT EXISTS inbox_messages (
+    id TEXT PRIMARY KEY, chat_id TEXT NOT NULL,
+    sender TEXT NOT NULL CHECK(sender IN ('buyer','admin')), message TEXT NOT NULL,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, telegram_message_id TEXT
+  )`).run();
+  await db.prepare(`CREATE TABLE IF NOT EXISTS inbox_admin_sessions (
+    admin_chat_id TEXT PRIMARY KEY, target_chat_id TEXT NOT NULL,
+    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+  )`).run();
+}
+async function handleInboxAdminMessage(env, adminChatId, input) {
+  if(!env.TELEGRAM_ADMIN_CHAT_ID || String(adminChatId)!==String(env.TELEGRAM_ADMIN_CHAT_ID)) return false;
+  await ensureInboxTables(env.DB);
+  if(input==="/cancelreply") {
+    await env.DB.prepare("DELETE FROM inbox_admin_sessions WHERE admin_chat_id=?").bind(String(adminChatId)).run();
+    await send(env,adminChatId,"Inbox reply mode cancelled.");
+    return true;
+  }
+  const session=await env.DB.prepare("SELECT target_chat_id FROM inbox_admin_sessions WHERE admin_chat_id=?")
+    .bind(String(adminChatId)).first();
+  if(!session) return false;
+  const reply=input.trim();
+  if(!reply) return true;
+  if(reply.length>500) {
+    await send(env,adminChatId,"Reply is too long. Maximum 500 characters.");
+    return true;
+  }
+  const chat=await env.DB.prepare("SELECT status FROM inbox_chats WHERE chat_id=?")
+    .bind(session.target_chat_id).first();
+  if(!chat || chat.status!=="open") {
+    await env.DB.prepare("DELETE FROM inbox_admin_sessions WHERE admin_chat_id=?").bind(String(adminChatId)).run();
+    await send(env,adminChatId,"This customer chat is unavailable or closed. No reply was sent.");
+    return true;
+  }
+  await env.DB.prepare("INSERT INTO inbox_messages (id,chat_id,sender,message) VALUES (?,?,'admin',?)")
+    .bind(crypto.randomUUID(),session.target_chat_id,reply).run();
+  await env.DB.prepare("UPDATE inbox_chats SET updated_at=CURRENT_TIMESTAMP,last_message_at=CURRENT_TIMESTAMP WHERE chat_id=?")
+    .bind(session.target_chat_id).run();
+  await env.DB.prepare("DELETE FROM inbox_admin_sessions WHERE admin_chat_id=?").bind(String(adminChatId)).run();
+  await send(env,adminChatId,"<b>Reply sent to customer Inbox.</b>\\nChat ID: <code>"+session.target_chat_id+"</code>\\n\\nSend another message from the customer's Telegram notification and press Reply again.");
+  return true;
+}
+
 function money(amount) {
   return "RM " + (amount / 100).toFixed(2);
 }
@@ -281,7 +330,9 @@ export async function onRequestPost({ request, env }) {
     if (message?.chat?.id) {
       const chatId = message.chat.id;
       const input = (message.text || "").trim();
-      if (input === "/myid") {
+      if (await handleInboxAdminMessage(env,chatId,input)) {
+        // Admin Inbox reply handled and stored for the website customer.
+      } else if (input === "/myid") {
         await send(env, chatId, "Telegram Chat ID anda: <code>" + String(chatId) + "</code>\\nSimpan nombor ini sebagai TELEGRAM_ADMIN_CHAT_ID di Cloudflare Pages Secrets.");
       } else if (input !== "/start" && input !== "/menu" && await handleCheckoutMessage(env, chatId, input)) {
         // Checkout conversation handled.
@@ -301,7 +352,28 @@ export async function onRequestPost({ request, env }) {
       const action = callback.data;
       await telegram(env, "answerCallbackQuery", { callback_query_id: callback.id });
 
-      if (action.startsWith("lang:")) {
+      if (action.startsWith("inbox:reply:")) {
+        if(!env.TELEGRAM_ADMIN_CHAT_ID || String(chatId)!==String(env.TELEGRAM_ADMIN_CHAT_ID)) {
+          await send(env,chatId,"You are not authorised to reply to KasuhaNET Inbox messages.");
+        } else {
+          const targetChatId=action.slice("inbox:reply:".length);
+          if(!/^KN-[A-F0-9]{10}$/.test(targetChatId)) {
+            await send(env,chatId,"Invalid Inbox Chat ID.");
+          } else {
+            await ensureInboxTables(env.DB);
+            const target=await env.DB.prepare("SELECT status FROM inbox_chats WHERE chat_id=?").bind(targetChatId).first();
+            if(!target || target.status!=="open") {
+              await send(env,chatId,"This customer chat is unavailable or closed.");
+            } else {
+              await env.DB.prepare(`INSERT INTO inbox_admin_sessions(admin_chat_id,target_chat_id)
+                VALUES(?,?) ON CONFLICT(admin_chat_id) DO UPDATE SET
+                target_chat_id=excluded.target_chat_id,updated_at=CURRENT_TIMESTAMP`)
+                .bind(String(chatId),targetChatId).run();
+              await send(env,chatId,"<b>Reply mode enabled.</b>\\nChat ID: <code>"+targetChatId+"</code>\\nSend your reply as the next Telegram message. Use /cancelreply to cancel.");
+            }
+          }
+        }
+      } else if (action.startsWith("lang:")) {
         const lang=action.slice(5);
         if(LANG[lang]) {
           await setLanguage(env.DB,chatId,lang);
