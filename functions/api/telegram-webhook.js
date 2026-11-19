@@ -260,7 +260,7 @@ async function handleCheckoutMessage(env, chatId, input) {
   if(!session) return false;
   if(input==="/cancel"){
     await env.DB.prepare("DELETE FROM telegram_checkout_sessions WHERE chat_id=?").bind(String(chatId)).run();
-    await send(env,chatId,tr(await getLanguage(env.DB,chatId),"canceled"));
+    await send(env,chatId,tr(await getLanguage(env.DB,chatId),"canceled"),undefined,callback.message.message_id);
     return true;
   }
   if(session.step==="name"){
@@ -412,7 +412,7 @@ export async function onRequestPost({ request, env }) {
         if(result.meta?.changes===0) {
           await send(env,chatId,tr(await getLanguage(env.DB,chatId),"sessionExpired"));
         } else {
-          await send(env,chatId,tr(await getLanguage(env.DB,chatId),"name"));
+          await send(env,chatId,tr(await getLanguage(env.DB,chatId),"name"),undefined,callback.message.message_id);
         }
       } else if (action === "pay:stripe" || action === "pay:toyyibpay") {
         await ensureTelegramTables(env.DB);
