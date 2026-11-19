@@ -93,7 +93,7 @@ export async function onRequestPost({request,env}){
             method=voiceFormat?"sendVoice":"sendDocument";
           }
           body=formData;
-        }else body={chat_id:env.TELEGRAM_ADMIN_CHAT_ID,text:"<b>New KasuhaNET Inbox Message</b>\\nChat ID: <code>"+chatId+"</code>\\n\\n"+safeMessage,parse_mode:"HTML",disable_web_page_preview:true,reply_markup:{inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}};
+        }else body={chat_id:env.TELEGRAM_ADMIN_CHAT_ID,text:"<b>NEW KASUHANET INBOX MESSAGE</b>\n\n<b>CHAT ID</b>\n<code>"+chatId+"</code>\n\n<b>CUSTOMER MESSAGE</b>\n"+safeMessage,parse_mode:"HTML",disable_web_page_preview:true,reply_markup:{inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}};
         const response=await fetch("https://api.telegram.org/bot"+env.TELEGRAM_BOT_TOKEN+"/"+method,{
           method:"POST",
           ...(body instanceof FormData?{body}:{headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
