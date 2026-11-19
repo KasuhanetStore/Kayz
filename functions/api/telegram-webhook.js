@@ -89,7 +89,7 @@ async function handleInboxAdminMessage(env, adminChatId, input) {
   await env.DB.prepare("UPDATE inbox_chats SET updated_at=CURRENT_TIMESTAMP,last_message_at=CURRENT_TIMESTAMP WHERE chat_id=?")
     .bind(session.target_chat_id).run();
   await env.DB.prepare("DELETE FROM inbox_admin_sessions WHERE admin_chat_id=?").bind(String(adminChatId)).run();
-  await send(env,adminChatId,"<b>Reply sent to customer Inbox.</b>\nChat ID: <code>"+session.target_chat_id+"</code>\n\nSend another message from the customer's Telegram notification and press Reply again.");
+  await send(env,adminChatId,"<b>REPLY SENT SUCCESSFULLY</b>\n\n<b>CHAT ID</b>\n<code>"+session.target_chat_id+"</code>\n\nYou can reply again when the customer sends another message.");
   return true;
 }
 
@@ -369,7 +369,7 @@ export async function onRequestPost({ request, env }) {
                 VALUES(?,?) ON CONFLICT(admin_chat_id) DO UPDATE SET
                 target_chat_id=excluded.target_chat_id,updated_at=CURRENT_TIMESTAMP`)
                 .bind(String(chatId),targetChatId).run();
-              await send(env,chatId,"<b>Reply mode enabled.</b>\nChat ID: <code>"+targetChatId+"</code>\nSend your reply as the next Telegram message. Use /cancelreply to cancel.");
+              await send(env,chatId,"<b>REPLY MODE ENABLED</b>\n\n<b>CHAT ID</b>\n<code>"+targetChatId+"</code>\n\nSend your reply as your next Telegram message. Use /cancelreply to cancel.");
             }
           }
         }
