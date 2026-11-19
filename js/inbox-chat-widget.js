@@ -40,6 +40,7 @@
     #knInboxPanel .kn-inbox-actions button{width:29px;height:29px;border:1px solid rgba(255,255,255,.13);border-radius:7px;background:rgba(255,255,255,.05);color:#eaf3ff;font-size:17px;line-height:1;cursor:pointer}
     #knInboxPanel .kn-inbox-actions button:hover{border-color:#00eaff;color:#00eaff}
     #knInboxPanel .kn-inbox-tools{display:flex;gap:7px;padding:8px 11px;border-top:1px solid rgba(0,225,255,.12);background:#0b1420}
+    #knInboxPanel .kn-inbox-tools[hidden]{display:none!important}
     #knInboxPanel .kn-inbox-tools button{flex:1;padding:8px 5px;border:1px solid rgba(0,225,255,.22);border-radius:8px;background:#102234;color:#c9f8ff;font:600 10px Inter,Arial,sans-serif;cursor:pointer}
     #knInboxPanel .kn-inbox-tools button:hover{border-color:#00eaff;color:#00eaff}
     #knInboxPanel .kn-inbox-tools .kn-clear{color:#ffb2b2;border-color:rgba(255,100,100,.28)}
@@ -140,7 +141,11 @@
   const messagesNode = panel.querySelector("#knInboxMessages");
   const form = panel.querySelector(".kn-inbox-compose");
   const messageInput = form.querySelector('input[type="text"]');
-  const sendButton = form.querySelector("button[type=submit]");\n  const attachButton=form.querySelector(".kn-attach");\n  const fileInput=form.querySelector("input[type=file]");\n  const tools=panel.querySelector(".kn-inbox-tools");\n  let recorder=null,recordChunks=[];
+  const sendButton = form.querySelector("button[type=submit]");
+  const attachButton=form.querySelector(".kn-attach");
+  const fileInput=form.querySelector("input[type=file]");
+  const tools=panel.querySelector(".kn-inbox-tools");
+  let recorder=null,recordChunks=[];
   const storageKey = "kn_inbox_session_v1";
   let session = null;
   let pollHandle = null;
@@ -151,7 +156,26 @@
     renderedIds.add(item.id);
     const bubble=document.createElement("div");
     bubble.className="kn-inbox-message "+(item.sender==="buyer"?"kn-mine":"kn-admin");
-    bubble.textContent=item.message;
+    const raw=String(item.message||"");
+    let attachment=null;
+    try{const parsed=JSON.parse(raw);if(parsed&&["image","voice","location"].includes(parsed.kind))attachment=parsed;}catch{}
+    if(attachment?.kind==="image" && typeof attachment.data==="string" && /^data:image\/(jpeg|png|webp);base64,/.test(attachment.data)){
+      const image=document.createElement("img");
+      image.src=attachment.data;image.alt=isMalay?"Gambar yang dihantar":"Image attachment";image.loading="lazy";
+      bubble.appendChild(image);
+    }else if(attachment?.kind==="voice" && typeof attachment.data==="string" && /^data:audio\//i.test(attachment.data)){
+      const audio=document.createElement("audio");
+      audio.controls=true;audio.preload="metadata";audio.src=attachment.data;
+      bubble.appendChild(audio);
+    }else if(attachment?.kind==="location" && Number.isFinite(attachment.lat) && Number.isFinite(attachment.lng)){
+      const link=document.createElement("a");
+      link.href="https://www.google.com/maps?q="+encodeURIComponent(attachment.lat+","+attachment.lng);
+      link.target="_blank";link.rel="noopener noreferrer";
+      link.textContent=isMalay?"Buka lokasi yang dikongsi":"Open shared location";
+      bubble.appendChild(link);
+    }else{
+      bubble.textContent=raw;
+    }
     messagesNode.appendChild(bubble);
     const body=panel.querySelector(".kn-inbox-body");
     body.scrollTop=body.scrollHeight;
@@ -248,7 +272,10 @@
     if(!navigator.mediaDevices?.getUserMedia||!window.MediaRecorder){note.textContent=copy.notReady;note.style.display="block";return;}
     try{
       const stream=await navigator.mediaDevices.getUserMedia({audio:true});recordChunks=[];
-      recorder=new MediaRecorder(stream);recorder.ondataavailable=e=>{if(e.data.size)recordChunks.push(e.data);};
+      const preferred=["audio/ogg;codecs=opus","audio/webm;codecs=opus","audio/webm"];
+      const mimeType=preferred.find(type=>MediaRecorder.isTypeSupported(type));
+      recorder=mimeType?new MediaRecorder(stream,{mimeType}):new MediaRecorder(stream);
+      recorder.ondataavailable=e=>{if(e.data.size)recordChunks.push(e.data);};
       recorder.onstop=async()=>{stream.getTracks().forEach(t=>t.stop());const blob=new Blob(recordChunks,{type:recorder.mimeType||"audio/webm"});if(blob.size>850000){note.textContent=copy.notReady;note.style.display="block";return;}const reader=new FileReader();reader.onload=()=>sendPayload({kind:"voice",data:reader.result});reader.readAsDataURL(blob);panel.querySelector('[data-action="voice"]').textContent="● "+copy.voice;};
       recorder.start();panel.querySelector('[data-action="voice"]').textContent="■ "+copy.stop;
     }catch{note.textContent=copy.notReady;note.style.display="block";}
