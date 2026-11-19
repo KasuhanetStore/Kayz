@@ -4,14 +4,14 @@
 
   const isMalay = /(^|\/)MS(\/|$)/i.test(location.pathname);
   const copy = isMalay ? {
-    launcher:"Inbox Chat", title:"KasuhaNET Inbox", status:"Sokongan pelanggan",
+    launcher:"Live Chat Support", title:"Live Chat Support", status:"Sokongan pelanggan",
     greeting:"Hai! Selamat datang ke KasuhaNET.",
     intro:"Mesej anda akan dihantar terus kepada pasukan sokongan KasuhaNET.",
     placeholder:"Taip mesej anda...", send:"Hantar",
     notReady:"Tidak dapat menghantar mesej. Sila cuba semula.",
     close:"Tutup", minimize:"Kecilkan", maximize:"Besarkan", restore:"Pulihkan"
   } : {
-    launcher:"Inbox Chat", title:"KasuhaNET Inbox", status:"Customer support",
+    launcher:"Live Chat Support", title:"Live Chat Support", status:"Customer support",
     greeting:"Hello! Welcome to KasuhaNET.",
     intro:"Your messages will be sent to the KasuhaNET support team.",
     placeholder:"Type your message...", send:"Send",
@@ -24,11 +24,14 @@
   style.textContent = `
     #knInboxLauncher{position:fixed;right:22px;bottom:96px;z-index:99990;display:flex;align-items:center;gap:10px;padding:11px 15px;border:1px solid rgba(0,240,255,.55);border-radius:14px;background:linear-gradient(135deg,#071522,#101827);color:#eafcff;font:600 13px/1.2 Inter,Arial,sans-serif;box-shadow:0 8px 28px rgba(0,0,0,.42),0 0 18px rgba(0,220,255,.14);cursor:pointer;transition:transform .2s,box-shadow .2s}
     #knInboxLauncher:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(0,0,0,.5),0 0 22px rgba(0,220,255,.24)}
+    .whatsapp-float,#floating-whatsapp{display:none!important}
     #knInboxLauncher .kn-inbox-dot{width:9px;height:9px;border-radius:50%;background:#19e6c1;box-shadow:0 0 10px #19e6c1}
     #knInboxPanel{position:fixed;right:22px;bottom:158px;z-index:99991;width:min(350px,calc(100vw - 28px));height:440px;max-height:calc(100dvh - 185px);display:none;flex-direction:column;overflow:hidden;border:1px solid rgba(0,225,255,.42);border-radius:16px;background:#080f19;color:#eaf3ff;box-shadow:0 18px 55px rgba(0,0,0,.58),0 0 24px rgba(0,210,255,.12);font-family:Inter,Arial,sans-serif}
     #knInboxPanel.kn-open{display:flex;animation:knInboxIn .2s ease-out}
     @keyframes knInboxIn{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
     #knInboxPanel .kn-inbox-head{display:flex;align-items:center;gap:10px;padding:13px 14px;background:linear-gradient(110deg,#071d2b,#111b2b);border-bottom:1px solid rgba(0,225,255,.2)}
+    #knInboxPanel .kn-inbox-logo{width:36px;height:36px;flex:0 0 36px;display:grid;place-items:center;border:1px solid rgba(0,225,255,.35);border-radius:11px;background:rgba(0,220,255,.1);color:#00eaff;box-shadow:0 0 14px rgba(0,220,255,.12)}
+    #knInboxPanel .kn-inbox-logo svg{width:22px;height:22px;display:block;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
     #knInboxPanel .kn-inbox-brand{min-width:0;flex:1}
     #knInboxPanel .kn-inbox-title{margin:0;color:#00eaff;font-size:14px;font-weight:800;letter-spacing:.25px}
     #knInboxPanel .kn-inbox-status{display:flex;align-items:center;gap:6px;margin-top:4px;color:#9eafc2;font-size:10px}
@@ -66,7 +69,7 @@
   launcher.id = "knInboxLauncher";
   launcher.type = "button";
   launcher.setAttribute("aria-label", copy.launcher);
-  launcher.innerHTML = '<span class="kn-inbox-dot"></span><span>' + copy.launcher + '</span>';
+  launcher.innerHTML = '<svg aria-hidden="true" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 9 9 0 0 1-4-.9L3 21l1.9-5.5a9 9 0 0 1-.9-4A8.5 8.5 0 0 1 12.5 3H13a8.5 8.5 0 0 1 8 8.5Z"/></svg><span>' + copy.launcher + '</span>';
 
   const panel = document.createElement("section");
   panel.id = "knInboxPanel";
@@ -75,6 +78,7 @@
   panel.setAttribute("aria-modal", "false");
   panel.innerHTML = `
     <header class="kn-inbox-head">
+      <div class="kn-inbox-logo" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 9 9 0 0 1-4-.9L3 21l1.9-5.5a9 9 0 0 1-.9-4A8.5 8.5 0 0 1 12.5 3H13a8.5 8.5 0 0 1 8 8.5Z"/><path d="M8 10h8M8 14h5"/></svg></div>
       <div class="kn-inbox-brand">
         <h2 class="kn-inbox-title">${copy.title}</h2>
         <div class="kn-inbox-status">${copy.status}</div>
