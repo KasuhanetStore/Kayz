@@ -29,7 +29,9 @@ async function encryptTokens(value,secret){
 export async function onRequestGet({request,env}){
  const url=new URL(request.url),code=url.searchParams.get("code"),state=url.searchParams.get("state");
  if(url.searchParams.has("error"))return page("TikTok menolak atau membatalkan kebenaran akses.");
- if(!code||!state||!env.DB||!env.TIKTOK_CLIENT_KEY||!env.TIKTOK_CLIENT_SECRET||!env.TIKTOK_TOKEN_ENCRYPTION_KEY)return page("Callback tidak lengkap atau konfigurasi backend TikTok belum siap.");
+ const clientKey=String(env.TIKTOK_CLIENT_KEY||"").trim();
+ const clientSecret=String(env.TIKTOK_CLIENT_SECRET||"").trim();
+ if(!code||!state||!env.DB||!clientKey||!clientSecret||!env.TIKTOK_TOKEN_ENCRYPTION_KEY)return page("Callback tidak lengkap atau konfigurasi backend TikTok belum siap.");
  try{
   await ensureTables(env.DB);
   const digest=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(state));
@@ -37,7 +39,7 @@ export async function onRequestGet({request,env}){
   const row=await env.DB.prepare("SELECT state_hash,expires_at FROM social_hub_tiktok_oauth_state WHERE state_hash=?").bind(hash).first();
   if(!row||Number(row.expires_at)<Math.floor(Date.now()/1000))return page("State OAuth tidak sah atau telah tamat tempoh. Mulakan sambungan sekali lagi.");
   await env.DB.prepare("DELETE FROM social_hub_tiktok_oauth_state WHERE state_hash=?").bind(hash).run();
-  const body=new URLSearchParams({client_key:env.TIKTOK_CLIENT_KEY,client_secret:env.TIKTOK_CLIENT_SECRET,code:code,grant_type:"authorization_code",redirect_uri:REDIRECT_URI});
+  const body=new URLSearchParams({client_key:clientKey,client_secret:clientSecret,code:code,grant_type:"authorization_code",redirect_uri:REDIRECT_URI});
   const tokenResponse=await fetch("https://open.tiktokapis.com/v2/oauth/token/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded","Cache-Control":"no-cache"},body:body});
   const tokens=await tokenResponse.json();
   if(!tokenResponse.ok||tokens.error||!tokens.access_token||!tokens.refresh_token)return page("TikTok gagal mengeluarkan token akses. Semak Redirect URI, Client Key dan status produk Login Kit.");
