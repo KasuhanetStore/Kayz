@@ -159,7 +159,7 @@ async function beginCheckout(env, chatId, item, id, isService, messageId) {
     payment_method=NULL,step='name',customer_name=NULL,customer_email=NULL,customer_phone=NULL,
     created_at=CURRENT_TIMESTAMP`).bind(String(chatId),isService?"service":"package",id).run();
   const lang=await getLanguage(env.DB,chatId);
-  await send(env,chatId,"<b>"+tr(lang,"buyer")+"</b>\n"+tr(lang,"continue"),[[{text:tr(lang,"continue"),callback_data:"checkout:start_details"}]]);
+  await send(env,chatId,"<b>"+tr(lang,"buyer")+"</b>\n"+tr(lang,"continue"),[[{text:tr(lang,"continue"),callback_data:"checkout:start_details"}]],messageId);
 }
 
 async function createStripePayment(env, chatId, session, item, packageId) {
@@ -379,26 +379,26 @@ export async function onRequestPost({ request, env }) {
         const lang=action.slice(5);
         if(LANG[lang]) {
           await setLanguage(env.DB,chatId,lang);
-          await send(env,chatId,"<b>"+tr(lang,"welcome")+"</b>\n"+tr(lang,"choose"),mainMenu(lang));
+          await send(env,chatId,"<b>"+tr(lang,"welcome")+"</b>\n"+tr(lang,"choose"),mainMenu(lang),callback.message.message_id);
         }
       } else if (action === "menu:language") {
         const lang=await getLanguage(env.DB,chatId);
         await send(env,chatId,"Choose your language / Pilih bahasa / 选择语言 / மொழியைத் தேர்ந்தெடுக்கவும்",languageMenu(),callback.message.message_id);
       } else if (action === "menu:home") {
         const lang=await getLanguage(env.DB,chatId);
-        await send(env,chatId,"<b>"+tr(lang,"welcome")+"</b>\n"+tr(lang,"choose"),mainMenu(lang));
+        await send(env,chatId,"<b>"+tr(lang,"welcome")+"</b>\n"+tr(lang,"choose"),mainMenu(lang),callback.message.message_id);
       } else if (action === "menu:packages") {
         const lang=await getLanguage(env.DB,chatId);
         const rows=Object.entries(PACKAGES).map(([id,item])=>[{text:item.name+" • "+money(item.amount),callback_data:"buy:package:"+id}]);
         rows.push([{text:tr(lang,"back"),callback_data:"menu:home"}]);
         rows.push([{text:"🌐 Language / Bahasa / 语言 / மொழி",callback_data:"menu:language"}]);
-        await send(env,chatId,"<b>"+tr(lang,"packages")+"</b>\n"+tr(lang,"packageIntro"),rows);
+        await send(env,chatId,"<b>"+tr(lang,"packages")+"</b>\n"+tr(lang,"packageIntro"),rows,callback.message.message_id);
       } else if (action === "menu:services") {
         const lang=await getLanguage(env.DB,chatId);
         const rows=Object.entries(SERVICES).map(([id,item])=>[{text:item.name+" • "+money(item.amount),callback_data:"buy:service:"+id}]);
         rows.push([{text:tr(lang,"back"),callback_data:"menu:home"}]);
         rows.push([{text:"🌐 Language / Bahasa / 语言 / மொழி",callback_data:"menu:language"}]);
-        await send(env,chatId,"<b>"+tr(lang,"services")+"</b>\n"+tr(lang,"serviceIntro"),rows);
+        await send(env,chatId,"<b>"+tr(lang,"services")+"</b>\n"+tr(lang,"serviceIntro"),rows,callback.message.message_id);
       } else if (action.startsWith("buy:package:")) {
         const id = action.slice("buy:package:".length);
         if (PACKAGES[id]) await beginCheckout(env, chatId, PACKAGES[id], id, false, callback.message.message_id);
