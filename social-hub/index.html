@@ -21,7 +21,7 @@
     .section-title{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 0 14px}.section-title h2{font-size:16px;margin:0}.section-title span{font-size:11px;color:var(--muted)}
     .modules{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.module{padding:20px;min-height:235px;display:flex;flex-direction:column}.module-head{display:flex;align-items:center;gap:12px;margin-bottom:17px}.app-icon{width:43px;height:43px;display:grid;place-items:center;border-radius:12px;background:rgba(49,215,237,.1);border:1px solid rgba(49,215,237,.2);font-size:18px;font-weight:800;color:var(--cyan)}.module:nth-child(2) .app-icon{color:#8ab5ff;background:rgba(67,140,255,.1);border-color:rgba(67,140,255,.2)}.module:nth-child(3) .app-icon{color:#fff;background:rgba(255,255,255,.08);border-color:var(--line)}.module h3{margin:0;font-size:15px}.module .type{color:var(--muted);font-size:11px;margin-top:4px}.status{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(243,189,98,.25);background:rgba(243,189,98,.07);color:#f4cb83;border-radius:999px;padding:6px 9px;font-size:10px;font-weight:700;width:max-content}.dot{width:6px;height:6px;border-radius:50%;background:var(--amber)}.module p{color:var(--muted);font-size:12px;line-height:1.65;margin:14px 0 18px}.module-foot{margin-top:auto;border-top:1px solid var(--line);padding-top:13px;color:#a8bacb;font-size:11px}
     .note{margin-top:22px;padding:17px 19px;display:flex;gap:12px;align-items:flex-start}.note b{display:block;font-size:12px;margin-bottom:5px}.note p{font-size:11px;color:var(--muted);line-height:1.65;margin:0}.note-icon{color:var(--cyan);font-size:17px}
-    footer{border-top:1px solid var(--line);padding:20px 0;color:#71869a;font-size:11px}
+    .tg-control{margin-top:16px;padding:13px;border:1px solid var(--line);border-radius:11px;background:rgba(5,11,18,.45)}.tg-control label{display:block;font-size:11px;color:#b8c8d7;margin-bottom:7px}.tg-control .auth-row{display:flex;gap:8px}.tg-control input{min-width:0;flex:1;background:#080f19;border:1px solid var(--line);border-radius:8px;color:#edf6ff;padding:10px;font:inherit;font-size:12px}.tg-control button{border:1px solid rgba(49,215,237,.35);background:rgba(49,215,237,.12);color:#9cecf5;border-radius:8px;padding:0 12px;font:inherit;font-size:11px;font-weight:700;cursor:pointer}.tg-control button:disabled{opacity:.55;cursor:wait}.tg-result{margin-top:10px;color:var(--muted);font-size:11px;line-height:1.7;white-space:pre-line}.tg-result strong{color:#edf6ff}.tg-result .bad{color:#f4a7a7}.tg-result .good{color:#80e8f3}\n    footer{border-top:1px solid var(--line);padding:20px 0;color:#71869a;font-size:11px}
     @media(max-width:760px){.hero{display:block}.system-state{display:inline-flex;margin-top:17px}.modules{grid-template-columns:1fr}.module{min-height:0}.overview{gap:9px}.metric{padding:13px}.metric strong{font-size:19px}.metric small{font-size:10px}.metric .sub{font-size:10px}}
     @media(max-width:420px){.shell{width:calc(100% - 26px)}main{padding-top:34px}.overview{grid-template-columns:1fr 1fr}.metric:last-child{grid-column:1/-1}}
   </style>
@@ -44,6 +44,11 @@
         <div class="module-head"><div class="app-icon">TG</div><div><h3>Telegram Bot Manager</h3><div class="type">Bot API · Webhook · Bot Control</div></div></div>
         <span class="status" style="border-color:rgba(49,215,237,.25);background:rgba(49,215,237,.07);color:#80e8f3"><i class="dot" style="background:var(--cyan)"></i> Integrasi sedia ada dikesan</span>
         <p>Mengurus bot Telegram yang telah digunakan oleh website, termasuk webhook sedia ada, menu jualan, checkout dan notifikasi Inbox Chat.</p>
+        <div class="tg-control">
+          <label for="tg-admin-token">Admin access token</label>
+          <div class="auth-row"><input id="tg-admin-token" type="password" autocomplete="off" placeholder="Masukkan token admin"><button id="tg-check" type="button">SEMAK STATUS</button></div>
+          <div class="tg-result" id="tg-result" role="status" aria-live="polite">Status langsung belum disemak. Token hanya digunakan untuk permintaan ini dan tidak disimpan.</div>
+        </div>
         <div class="module-foot">Endpoint sedia ada: /api/telegram-webhook · Tidak membuat webhook baharu</div>
       </article>
       <article class="module">
@@ -62,6 +67,36 @@
     <aside class="note"><div class="note-icon">ⓘ</div><div><b>Keselamatan dan status sebenar</b><p>Integrasi Telegram dan endpoint backend telah wujud dalam website. Paparan ini belum membuat semakan langsung terhadap status webhook di Telegram. Pengurusan terus akan menggunakan integrasi sedia ada tanpa menggandakan bot, menukar webhook atau mengganggu Inbox Chat dan checkout. Jangan masukkan token atau App Secret ke dalam halaman ini.</p></div></aside>
   </main>
   <footer><div class="shell">© <span id="year"></span> Kasuhanet Resources · KasuhaNET Social Hub</div></footer>
-  <script>document.getElementById("year").textContent=new Date().getFullYear();</script>
+  <script>
+    document.getElementById("year").textContent=new Date().getFullYear();
+    const tgButton=document.getElementById("tg-check");
+    const tgToken=document.getElementById("tg-admin-token");
+    const tgResult=document.getElementById("tg-result");
+    tgButton.addEventListener("click",async()=>{
+      const token=tgToken.value.trim();
+      if(!token){tgResult.textContent="Masukkan admin access token dahulu.";return;}
+      tgButton.disabled=true;tgButton.textContent="MENYEMAK...";
+      tgResult.textContent="Menghubungi Telegram API melalui backend yang dilindungi...";
+      try{
+        const response=await fetch("/api/social-hub/telegram/status",{headers:{Authorization:"Bearer "+token},cache:"no-store"});
+        const data=await response.json();
+        if(!response.ok) throw new Error(data.error||"Semakan gagal.");
+        const bot=data.bot||{},hook=data.webhook||{};
+        const lines=[
+          "BOT: "+(bot.name||"Telegram Bot")+(bot.username?" (@"+bot.username+")":""),
+          "WEBHOOK: "+(hook.configured?"Dikonfigurasi":"Tiada URL webhook"),
+          "PENDING UPDATES: "+(hook.pendingUpdates??0),
+          "ALLOWED UPDATES: "+((hook.allowedUpdates||[]).join(", ")||"Default / tidak dinyatakan"),
+          hook.lastErrorMessage?"RALAT TERAKHIR: "+hook.lastErrorMessage:"TIADA RALAT WEBHOOK DIREKODKAN",
+          "DISEMAK: "+new Date(data.checkedAt).toLocaleString()
+        ];
+        tgResult.textContent=lines.join("\\n");
+        tgResult.className="tg-result "+(hook.configured&&!hook.lastErrorMessage?"good":"bad");
+      }catch(error){
+        tgResult.textContent=error.message||"Tidak dapat menyemak status.";
+        tgResult.className="tg-result bad";
+      }finally{tgButton.disabled=false;tgButton.textContent="SEMAK STATUS";}
+    });
+  </script>
 </body>
 </html>
