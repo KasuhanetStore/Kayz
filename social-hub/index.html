@@ -90,7 +90,7 @@
           hook.lastErrorMessage?"RALAT TERAKHIR: "+hook.lastErrorMessage:"TIADA RALAT WEBHOOK DIREKODKAN",
           "DISEMAK: "+new Date(data.checkedAt).toLocaleString()
         ];
-        tgResult.textContent=lines.join("\\n");
+        tgResult.textContent=lines.join("\n");
         tgResult.className="tg-result "+(hook.configured&&!hook.lastErrorMessage?"good":"bad");
       }catch(error){
         tgResult.textContent=error.message||"Tidak dapat menyemak status.";
