@@ -35,16 +35,16 @@
     </section>
     <section class="overview" aria-label="Ringkasan sistem">
       <div class="metric"><small>MODUL TERSEDIA</small><strong>3</strong><div class="sub">Telegram · Facebook · TikTok</div></div>
-      <div class="metric"><small>AKAUN DISAMBUNGKAN</small><strong>0</strong><div class="sub">Belum ada sambungan API aktif</div></div>
-      <div class="metric"><small>STATUS BACKEND</small><strong>Belum aktif</strong><div class="sub">Menunggu konfigurasi Worker</div></div>
+      <div class="metric"><small>INTEGRASI TELEGRAM</small><strong>Sedia ada</strong><div class="sub">Webhook dan Inbox Chat telah tersedia</div></div>
+      <div class="metric"><small>BACKEND TELEGRAM</small><strong>Wujud</strong><div class="sub">Cloudflare Pages Functions + D1</div></div>
     </section>
     <div class="section-title"><h2>Modul Pengurusan</h2><span>Integrasi rasmi melalui API</span></div>
     <section class="modules">
       <article class="module">
         <div class="module-head"><div class="app-icon">TG</div><div><h3>Telegram Bot Manager</h3><div class="type">Bot API · Webhook · Bot Control</div></div></div>
-        <span class="status"><i class="dot"></i> Belum disambungkan</span>
-        <p>Persediaan untuk mengurus bot sedia ada, status webhook, penghantaran mesej, arahan bot dan rekod aktiviti.</p>
-        <div class="module-foot">Langkah integrasi pertama · Menunggu token bot dan konfigurasi Worker</div>
+        <span class="status" style="border-color:rgba(49,215,237,.25);background:rgba(49,215,237,.07);color:#80e8f3"><i class="dot" style="background:var(--cyan)"></i> Integrasi sedia ada dikesan</span>
+        <p>Mengurus bot Telegram yang telah digunakan oleh website, termasuk webhook sedia ada, menu jualan, checkout dan notifikasi Inbox Chat.</p>
+        <div class="module-foot">Endpoint sedia ada: /api/telegram-webhook · Tidak membuat webhook baharu</div>
       </article>
       <article class="module">
         <div class="module-head"><div class="app-icon">f</div><div><h3>Facebook Manager</h3><div class="type">Meta Graph API</div></div></div>
@@ -59,7 +59,7 @@
         <div class="module-foot">Menunggu Developer App, OAuth dan audit yang berkaitan</div>
       </article>
     </section>
-    <aside class="note"><div class="note-icon">ⓘ</div><div><b>Keselamatan dan status sebenar</b><p>Dashboard ini ialah rangka antaramuka awal. Tiada akaun sedang disambungkan dan tiada tindakan API akan dijalankan sehingga backend Cloudflare Worker, kebenaran OAuth atau token bot dikonfigurasi. Jangan masukkan token atau App Secret ke dalam halaman ini.</p></div></aside>
+    <aside class="note"><div class="note-icon">ⓘ</div><div><b>Keselamatan dan status sebenar</b><p>Integrasi Telegram dan endpoint backend telah wujud dalam website. Paparan ini belum membuat semakan langsung terhadap status webhook di Telegram. Pengurusan terus akan menggunakan integrasi sedia ada tanpa menggandakan bot, menukar webhook atau mengganggu Inbox Chat dan checkout. Jangan masukkan token atau App Secret ke dalam halaman ini.</p></div></aside>
   </main>
   <footer><div class="shell">© <span id="year"></span> Kasuhanet Resources · KasuhaNET Social Hub</div></footer>
   <script>document.getElementById("year").textContent=new Date().getFullYear();</script>
