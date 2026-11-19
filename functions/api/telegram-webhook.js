@@ -34,13 +34,15 @@ async function telegram(env, method, payload) {
   return data.result;
 }
 
-async function send(env, chatId, text, keyboard) {
-  return telegram(env, "sendMessage", {
+async function send(env, chatId, text, keyboard, messageId) {
+  const editing = Number.isInteger(messageId);
+  return telegram(env, editing ? "editMessageText" : "sendMessage", {
     chat_id: chatId,
+    ...(editing ? { message_id: messageId } : {}),
     text,
     parse_mode: "HTML",
     disable_web_page_preview: true,
-    ...(keyboard ? { reply_markup: { inline_keyboard: keyboard } } : {})
+    ...(keyboard || editing ? { reply_markup: { inline_keyboard: keyboard || [] } } : {})
   });
 }
 
@@ -145,7 +147,7 @@ async function ensureTelegramTables(db) {
   )`).run();
 }
 
-async function beginCheckout(env, chatId, item, id, isService) {
+async function beginCheckout(env, chatId, item, id, isService, messageId) {
   if (!env.DB) {
     await send(env, chatId, tr(await getLanguage(env.DB,chatId),"checkoutUnavailable"));
     return;
@@ -381,7 +383,7 @@ export async function onRequestPost({ request, env }) {
         }
       } else if (action === "menu:language") {
         const lang=await getLanguage(env.DB,chatId);
-        await send(env,chatId,"Choose your language / Pilih bahasa / 选择语言 / மொழியைத் தேர்ந்தெடுக்கவும்",languageMenu());
+        await send(env,chatId,"Choose your language / Pilih bahasa / 选择语言 / மொழியைத் தேர்ந்தெடுக்கவும்",languageMenu(),callback.message.message_id);
       } else if (action === "menu:home") {
         const lang=await getLanguage(env.DB,chatId);
         await send(env,chatId,"<b>"+tr(lang,"welcome")+"</b>\n"+tr(lang,"choose"),mainMenu(lang));
@@ -399,10 +401,10 @@ export async function onRequestPost({ request, env }) {
         await send(env,chatId,"<b>"+tr(lang,"services")+"</b>\n"+tr(lang,"serviceIntro"),rows);
       } else if (action.startsWith("buy:package:")) {
         const id = action.slice("buy:package:".length);
-        if (PACKAGES[id]) await beginCheckout(env, chatId, PACKAGES[id], id, false);
+        if (PACKAGES[id]) await beginCheckout(env, chatId, PACKAGES[id], id, false, callback.message.message_id);
       } else if (action.startsWith("buy:service:")) {
         const id = action.slice("buy:service:".length);
-        if (SERVICES[id]) await beginCheckout(env, chatId, SERVICES[id], id, true);
+        if (SERVICES[id]) await beginCheckout(env, chatId, SERVICES[id], id, true, callback.message.message_id);
       } else if (action === "checkout:start_details") {
         await ensureTelegramTables(env.DB);
         const result=await env.DB.prepare("UPDATE telegram_checkout_sessions SET step='name' WHERE chat_id=? AND step='name'")
