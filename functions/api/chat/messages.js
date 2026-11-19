@@ -54,7 +54,13 @@ export async function onRequestPost({request,env}){
   const chatId=typeof input?.chatId==="string"?input.chatId:"";
   const message=typeof input?.message==="string"?input.message.trim():"";
   const token=request.headers.get("Authorization")?.replace(/^Bearer\s+/i,"")||"";
-  if(!message || message.length>500) return json({error:"Message must contain 1 to 500 characters."},400);
+  let attachment=null;
+  try{const parsed=JSON.parse(message);if(parsed&&["image","voice","location"].includes(parsed.kind))attachment=parsed;}catch{}
+  const maxLength=attachment?1350000:500;
+  if(!message || message.length>maxLength) return json({error:attachment?"Attachment is too large. Please use a smaller file.":"Message must contain 1 to 500 characters."},400);
+  if(attachment?.kind==="image" && (typeof attachment.data!=="string" || !/^data:image\/(jpeg|png|webp);base64,/.test(attachment.data))) return json({error:"Invalid image attachment."},400);
+  if(attachment?.kind==="voice" && (typeof attachment.data!=="string" || !/^data:audio\/[a-z0-9.+-]+;base64,/i.test(attachment.data))) return json({error:"Invalid voice attachment."},400);
+  if(attachment?.kind==="location" && (!Number.isFinite(attachment.lat)||!Number.isFinite(attachment.lng)||Math.abs(attachment.lat)>90||Math.abs(attachment.lng)>180)) return json({error:"Invalid location."},400);
   try{
     await ensureTables(env.DB);
     if(!(await authorize(env.DB,chatId,token))) return json({error:"Chat session is invalid or expired."},401);
@@ -65,7 +71,8 @@ export async function onRequestPost({request,env}){
     await env.DB.prepare("INSERT INTO inbox_messages (id,chat_id,sender,message) VALUES (?,?,'buyer',?)").bind(id,chatId,message).run();
     await env.DB.prepare("UPDATE inbox_chats SET updated_at=CURRENT_TIMESTAMP,last_message_at=CURRENT_TIMESTAMP WHERE chat_id=?").bind(chatId).run();
 
-    // Notify the support admin in Telegram. The website message remains saved even
+    // Notify the support admin in Telegram. Attachments are delivered as native Telegram media.
+    // The website message remains saved even
     // if Telegram is temporarily unavailable.
     let telegramNotified=false;
     if(env.TELEGRAM_BOT_TOKEN && env.TELEGRAM_ADMIN_CHAT_ID){
@@ -92,4 +99,19 @@ export async function onRequestPost({request,env}){
     }
     return json({sent:true,id,telegramNotified},201);
   }catch{return json({error:"Unable to send your message. Please try again."},500);}
+}
+
+export async function onRequestDelete({request,env}){
+  if(!allowed(request)) return json({error:"Request origin is not allowed."},403);
+  if(!env.DB) return json({error:"D1 database binding DB is not configured."},503);
+  let input;try{input=await request.json();}catch{return json({error:"Invalid clear request."},400);}
+  const chatId=typeof input?.chatId==="string"?input.chatId:"";
+  const token=request.headers.get("Authorization")?.replace(/^Bearer\\s+/i,"")||"";
+  try{
+    await ensureTables(env.DB);
+    if(!(await authorize(env.DB,chatId,token))) return json({error:"Chat session is invalid or expired."},401);
+    await env.DB.prepare("DELETE FROM inbox_messages WHERE chat_id=?").bind(chatId).run();
+    await env.DB.prepare("UPDATE inbox_chats SET updated_at=CURRENT_TIMESTAMP,last_message_at=NULL WHERE chat_id=?").bind(chatId).run();
+    return json({cleared:true});
+  }catch{return json({error:"Unable to clear chat messages."},500);}
 }
