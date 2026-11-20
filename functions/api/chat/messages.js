@@ -1,5 +1,6 @@
 const ALLOWED_HOSTS = new Set(["kasuhanet.store", "www.kasuhanet.store"]);
 function json(data,status=200){return new Response(JSON.stringify(data),{status,headers:{"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"}});}
+function cleanAIText(value){return String(value||"").replace(/\\([*_`~])/g,"$1").replace(/\*\*(.*?)\*\*/gs,"$1").replace(/[ \t]{2,}/g," ").trim();}
 function allowed(request){
   try{
     const url=new URL(request.url), origin=request.headers.get("Origin");
@@ -74,7 +75,8 @@ async function generateSalesReply(env, db, chatId, latestMessage) {
     ? generatedText
     : Array.isArray(generatedText)
       ? generatedText.map(part => typeof part === "string" ? part : part?.text || "").join("")
-      : "").trim().slice(0, 1800);
+      : "").trim();
+  const reply = cleanAIText(generatedText).slice(0, 1800);
   if (!reply) {
     console.error("[KasuhaNET AI] Model returned no usable text. Response keys:", Object.keys(result || {}));
     return null;
