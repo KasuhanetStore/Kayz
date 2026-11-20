@@ -338,7 +338,7 @@ async function callKasuhaAI(env, messages) {
 }
 async function handleAILearningAdminCommand(env,chatId,input) {
   if(!env.TELEGRAM_ADMIN_CHAT_ID||String(chatId)!==String(env.TELEGRAM_ADMIN_CHAT_ID)) return false;
-  if(!/^\/(teach|knowledge|forget|orders)(\s|$)/i.test(input)) return false;
+  if(!/^\/(teach|knowledge|forget|orders|growth|promo)(\s|$)/i.test(input)) return false;
   await ensureAILearningTables(env.DB);
   if(input.startsWith('/teach ')) {
     const payload=input.slice(7).trim(); const split=payload.indexOf('|');
@@ -362,6 +362,35 @@ async function handleAILearningAdminCommand(env,chatId,input) {
     const moneyText=n=>'RM '+(Number(n||0)/100).toFixed(2);
     const report=items.map(o=>'<b>'+escapeTelegramHtml(o.package_name)+'</b>\n'+moneyText(o.amount)+' | '+escapeTelegramHtml(o.status.toUpperCase())+' | '+escapeTelegramHtml(o.gateway)+'\n'+escapeTelegramHtml(o.customer_name)+' | '+escapeTelegramHtml(o.customer_email)+'\nID: <code>'+escapeTelegramHtml(o.id)+'</code>\nInvois: '+escapeTelegramHtml(o.invoice_no||'Belum dijana')+'\nTarikh: '+escapeTelegramHtml(o.created_at)+(o.paid_at?'\nBayaran: '+escapeTelegramHtml(o.paid_at):'')).join('\n\n');
     await send(env,chatId,items.length?'<b>LAPORAN PESANAN TERKINI</b>\n'+report:'Tiada pesanan untuk status tersebut.');
+    return true;
+  }
+  if(input==='/growth' || input.startsWith('/growth ')) {
+    const focus=input.slice(7).trim().slice(0,180)||'Semua servis utama KasuhaNET';
+    let snapshot={period:'30 hari',paid_orders:0,gross_paid_rm:0,pending_orders:0,failed_orders:0,new_leads:0};
+    try {
+      const rows=await env.DB.prepare(`SELECT status,COUNT(*) AS total,COALESCE(SUM(CASE WHEN status='paid' THEN amount ELSE 0 END),0) AS paid_amount FROM (
+        SELECT status,amount,created_at FROM stripe_orders WHERE created_at>=datetime('now','-30 days')
+        UNION ALL
+        SELECT status,amount,created_at FROM toyyibpay_orders WHERE created_at>=datetime('now','-30 days')
+      ) GROUP BY status`).all();
+      for(const row of rows.results||[]) {
+        if(row.status==='paid'){snapshot.paid_orders+=Number(row.total||0);snapshot.gross_paid_rm+=Number(row.paid_amount||0)/100;}
+        if(row.status==='pending') snapshot.pending_orders+=Number(row.total||0);
+        if(row.status==='failed') snapshot.failed_orders+=Number(row.total||0);
+      }
+    } catch {}
+    try { const lead=await env.DB.prepare("SELECT COUNT(*) AS total FROM inbox_leads WHERE created_at>=datetime('now','-30 days')").first(); snapshot.new_leads=Number(lead?.total||0); } catch {}
+    const prompt="Anda MR.JAY (STAFF), penasihat pertumbuhan jualan KasuhaNET di Malaysia. Sediakan pelan tindakan 7 hari yang realistik untuk fokus: "+focus+". Data dalaman 30 hari: "+JSON.stringify(snapshot)+". Produk diketahui: Landing Page RM299++, Premium Standard RM900++, Custom Web Workshop (skop dan harga selepas penilaian). Objektif: dapatkan prospek dan pertanyaan berkualiti secara organik, naikkan kesedaran jenama KasuhaNET, dan tukarkan pertanyaan kepada jualan. Susun: (1) peluang/hipotesis pelanggan sasaran, jangan dakwa ia fakta pasaran; (2) saluran percuma yang sesuai seperti kandungan Facebook Page, TikTok video pendek, WhatsApp Status, Telegram dan SEO artikel di laman sendiri; (3) jadual harian 7 hari dengan tugasan kecil yang boleh dibuat melalui telefon; (4) CTA yang jelas ke https://kasuhanet.store dan halaman servis berkaitan jika diketahui; (5) metrik untuk direkod: reach/views, klik, pertanyaan, lead layak, quotation, paid order dan hasil RM; (6) eksperimen minggu depan berdasarkan hasil. Beri idea yang khusus kepada servis web untuk peniaga kecil/usahawan, bukan nasihat umum. Jangan cadang iklan berbayar, spam group/DM, beli followers, fake review atau dakwaan palsu. Jangan reka data jualan. Terangkan data dalaman ini bukan bukti saiz pasaran. Tiada capaian carian web langsung dalam fungsi ini, jadi senaraikan perkara yang perlu disahkan secara manual melalui Google Trends/Search Console/platform insight dan jangan berpura-pura sudah membuat carian.";
+    await send(env,chatId,'<b>MR.JAY | PELAN SALES GROWTH</b>\\nSedang susun pelan berdasarkan rekod dalaman 30 hari dan strategi organik...');
+    const answer=await callKasuhaAI(env,[{role:'system',content:'Anda penasihat pemasaran digital yang teliti. Jawab Bahasa Melayu, ringkas tetapi boleh terus dibuat. Jangan cipta statistik atau dakwaan telah membuat carian.'},{role:'user',content:prompt}]);
+    await send(env,chatId,escapeTelegramHtml(cleanAIText(answer).slice(0,3800)));
+    return true;
+  }
+  if(input==='/promo' || input.startsWith('/promo ')) {
+    const focus=input.slice(6).trim().slice(0,180)||'Promosi pengenalan KasuhaNET dan servis pembinaan website';
+    const prompt="Anda MR.JAY (STAFF), copywriter pemasaran KasuhaNET. Hasilkan satu set kempen organik untuk topik: "+focus+". Sasaran: peniaga kecil, usahawan mikro, freelancer dan organisasi kecil di Malaysia yang perlukan laman web. Maklumat sah: Landing Page RM299++ (satu halaman, responsive, AdSense optimisation, CTA WhatsApp/form; domain custom tidak termasuk); Premium Standard RM900++ (multi-page, CMS, SEO lanjutan; skop akhir tertakluk persetujuan); Custom Web Workshop ialah servis khusus dengan penilaian dan sebut harga berasingan. Sediakan: 1) tajuk kempen; 2) caption Facebook yang menarik tetapi tidak memaksa; 3) skrip video TikTok 20-30 saat dengan hook, isi dan CTA; 4) WhatsApp Status pendek; 5) ayat Telegram; 6) CTA dan pautan https://kasuhanet.store/custom-web-workshop-MS serta https://kasuhanet.store/Banner-WebSale-MS.html. Bahasa Melayu semula jadi, jelas dan tidak berlebihan. Jangan cipta testimoni, pelanggan, hasil, diskaun, jaminan, harga tambahan atau ciri pakej yang tiada dalam fakta. Elak spam, clickbait palsu dan janji ranking Google/pendapatan. Nyatakan harga dengan tepat RM299++ dan RM900++.";
+    const answer=await callKasuhaAI(env,[{role:'system',content:'Anda copywriter pemasaran BM untuk perniagaan digital Malaysia. Hasilkan bahan yang boleh terus disalin. Jangan tambah fakta yang tidak dibekalkan.'},{role:'user',content:prompt}]);
+    await send(env,chatId,'<b>MR.JAY | SET PROMOSI</b>\\n'+escapeTelegramHtml(cleanAIText(answer).slice(0,3700)));
     return true;
   }
   if(input.startsWith('/forget ')) { const id=Number(input.slice(8).trim()); const ok=Number.isInteger(id)&&id>0?await removeApprovedAIKnowledge(env.DB,id):false; await send(env,chatId,ok?'Memori ID '+id+' dipadam.':'ID tidak sah atau tidak ditemui.'); return true; }
