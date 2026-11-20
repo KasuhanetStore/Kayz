@@ -36,7 +36,10 @@ async function authorize(db,chatId,token){
 async function generateSalesReply(env, db, chatId, latestMessage) {
   // Cloudflare Workers AI binding is preferred. No paid API key is required
   // when the AI binding is enabled on the Pages project.
-  if (!env.AI || typeof env.AI.run !== "function") return null;
+  if (!env.AI || typeof env.AI.run !== "function") {
+    console.error("[KasuhaNET AI] Workers AI binding AI is missing or invalid in this deployment.");
+    return null;
+  }
   const history = await db.prepare(`SELECT sender,message FROM inbox_messages
     WHERE chat_id=? ORDER BY created_at DESC LIMIT 12`).bind(chatId).all();
   const messages = (history.results || []).reverse()
@@ -67,7 +70,10 @@ async function generateSalesReply(env, db, chatId, latestMessage) {
     result?.result?.response ??
     "";
   const reply = (typeof generatedText === "string" ? generatedText : "").trim().slice(0, 1800);
-  if (!reply) return null;
+  if (!reply) {
+    console.error("[KasuhaNET AI] Model returned no usable text. Response keys:", Object.keys(result || {}));
+    return null;
+  }
   await db.prepare("INSERT INTO inbox_messages (id,chat_id,sender,message) VALUES (?,?,'admin',?)")
     .bind(crypto.randomUUID(), chatId, reply).run();
   await db.prepare("UPDATE inbox_chats SET updated_at=CURRENT_TIMESTAMP,last_message_at=CURRENT_TIMESTAMP WHERE chat_id=?")
@@ -118,7 +124,12 @@ export async function onRequestPost({request,env}){
     // AI failure never blocks delivery of the original customer message to the human inbox.
     let aiReplied = false;
     if (!attachment) {
-      try { aiReplied = Boolean(await generateSalesReply(env, env.DB, chatId, message)); } catch { aiReplied = false; }
+      try {
+        aiReplied = Boolean(await generateSalesReply(env, env.DB, chatId, message));
+      } catch (error) {
+        console.error("[KasuhaNET AI] Reply generation failed:", error?.message || String(error));
+        aiReplied = false;
+      }
     }
 
     // Notify the support admin in Telegram. Attachments are delivered as native Telegram media.
