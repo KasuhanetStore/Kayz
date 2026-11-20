@@ -238,7 +238,7 @@
     }
   }
   function startPolling(){
-    if(pollHandle) return;
+    if(pollHandle || !panel.classList.contains("kn-open")) return;
     pollMessages();
     pollHandle=setInterval(pollMessages,2000);
   }
