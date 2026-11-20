@@ -11,30 +11,39 @@ function allowed(request){
     return parsed.protocol==="https:" && ALLOWED_HOSTS.has(parsed.hostname) && parsed.origin===url.origin;
   }catch{return false;}
 }
-async function ensureTables(db){
-  await ensureAILearningTables(db);
-  await db.prepare(`CREATE TABLE IF NOT EXISTS inbox_chats (
-    id TEXT PRIMARY KEY, chat_id TEXT NOT NULL UNIQUE, session_token_hash TEXT NOT NULL,
-    status TEXT NOT NULL DEFAULT 'open', created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, last_message_at TEXT
-  )`).run();
-  await db.prepare(`CREATE TABLE IF NOT EXISTS inbox_messages (
-    id TEXT PRIMARY KEY, chat_id TEXT NOT NULL,
-    sender TEXT NOT NULL CHECK(sender IN ('buyer','admin')), message TEXT NOT NULL,
-    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, telegram_message_id TEXT
-  )`).run();
-  try { await db.prepare("ALTER TABLE inbox_chats ADD COLUMN page_path TEXT").run(); } catch {}
-  await db.prepare("CREATE INDEX IF NOT EXISTS idx_inbox_messages_chat_created ON inbox_messages(chat_id, created_at)").run();
-  await db.prepare(`CREATE TABLE IF NOT EXISTS inbox_leads (
-    chat_id TEXT PRIMARY KEY,
-    customer_name TEXT,
-    customer_email TEXT,
-    customer_phone TEXT,
-    project_need TEXT,
-    status TEXT NOT NULL DEFAULT 'new',
-    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-  )`).run();
+const inboxSchemaReady = new WeakMap();
+function ensureTables(db){
+  let setup=inboxSchemaReady.get(db);
+  if(!setup){
+    setup=(async()=>{
+      await ensureAILearningTables(db);
+      await db.prepare(`CREATE TABLE IF NOT EXISTS inbox_chats (
+        id TEXT PRIMARY KEY, chat_id TEXT NOT NULL UNIQUE, session_token_hash TEXT NOT NULL,
+        status TEXT NOT NULL DEFAULT 'open', created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, last_message_at TEXT
+      )`).run();
+      await db.prepare(`CREATE TABLE IF NOT EXISTS inbox_messages (
+        id TEXT PRIMARY KEY, chat_id TEXT NOT NULL,
+        sender TEXT NOT NULL CHECK(sender IN ('buyer','admin')), message TEXT NOT NULL,
+        created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, telegram_message_id TEXT
+      )`).run();
+      try { await db.prepare("ALTER TABLE inbox_chats ADD COLUMN page_path TEXT").run(); } catch {}
+      await db.prepare("CREATE INDEX IF NOT EXISTS idx_inbox_messages_chat_created ON inbox_messages(chat_id, created_at)").run();
+      await db.prepare(`CREATE TABLE IF NOT EXISTS inbox_leads (
+        chat_id TEXT PRIMARY KEY,
+        customer_name TEXT,
+        customer_email TEXT,
+        customer_phone TEXT,
+        project_need TEXT,
+        status TEXT NOT NULL DEFAULT 'new',
+        created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+      )`).run();
+    })();
+    inboxSchemaReady.set(db,setup);
+    setup.catch(()=>inboxSchemaReady.delete(db));
+  }
+  return setup;
 }
 function extractLeadData(message) {
   const text = String(message || "").trim();
