@@ -184,7 +184,7 @@
     body.scrollTop=body.scrollHeight;
   }
   async function pollMessages(){
-    if(!session || pollInFlight) return;
+    if(!session || pollInFlight || !panel.classList.contains("kn-open")) return;
     pollInFlight=true;
     try{
       const url=new URL("/api/chat/messages",location.origin);
