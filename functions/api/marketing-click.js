@@ -14,7 +14,7 @@ export async function onRequestGet({ request, env }) {
   const source = SOURCES.has(rawSource) ? rawSource : "unknown";
   const rawCampaign = requestUrl.searchParams.get("campaign") || "organic";
   const campaign = rawCampaign.toLowerCase().replace(/[^a-z0-9_-]/g, "").slice(0, 60) || "organic";
-  const destinationPath = DESTINATIONS[offer] || DESTINATIONS.landing;
+  const validOffer = Object.prototype.hasOwnProperty.call(DESTINATIONS, offer);\n  const destinationPath = validOffer ? DESTINATIONS[offer] : DESTINATIONS.landing;
   const destination = new URL(destinationPath, requestUrl.origin);
 
   destination.searchParams.set("utm_source", source);
@@ -34,7 +34,7 @@ export async function onRequestGet({ request, env }) {
         (id,offer,source,campaign,referrer,user_agent) VALUES(?,?,?,?,?,?)`)
         .bind(
           crypto.randomUUID(),
-          offer in DESTINATIONS ? offer : "landing",
+          validOffer ? offer : "landing",
           source,
           campaign,
           (request.headers.get("Referer") || "").slice(0, 500),
