@@ -302,8 +302,8 @@ function escapeTelegramHtml(value) {
 }
 function safeAIDiagnostic(error) {
   return String(error?.message || error || "Unknown error")
-    .replace(/(sk-[A-Za-z0-9_-]{8,}|AIza[A-Za-z0-9_-]{20,}|Bearer\\s+\\S+)/gi,"[REDACTED]")
-    .replace(/[\\r\\n]+/g," ")
+    .replace(/(sk-[A-Za-z0-9_-]{8,}|AIza[A-Za-z0-9_-]{20,}|Bearer\s+\S+)/gi,"[REDACTED]")
+    .replace(/[\r\n]+/g," ")
     .slice(0,240);
 }
 async function callOpenAI(env, messages) {
