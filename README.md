@@ -15,7 +15,11 @@ Repository source for the KasuhaNET website deployed through Cloudflare Pages.
 | `functions/api/` | Cloudflare Pages Functions, including checkout and payment callbacks |
 | `php/` | Remaining legacy files, pending review |
 | `template-text/` | Reusable page, footer and partner-credit templates |
-| `docs/` | Repository and migration documentation |
+| `docs/` | Repository, governance and maintenance documentation |
+
+## Governance and change safety
+
+Read [KasuhaNET Core Governance and Operating Charter](docs/KASUHANET-CORE-GOVERNANCE.md) before making material changes. It defines protected project elements, configurable behaviour, approval boundaries, the required change workflow, API contracts, and backup/recovery expectations.
 
 ## Deployment safety
 
@@ -27,4 +31,4 @@ Repository source for the KasuhaNET website deployed through Cloudflare Pages.
 
 ## Migration notes
 
-See [Repository structure proposal](docs/REPOSITORY-STRUCTURE.md), [Migration audit](docs/REPOSITORY-MIGRATION-AUDIT.md), and [Asset reference check](docs/ASSET-REFERENCE-CHECK.md), and [Legacy file and security audit](docs/LEGACY-FILE-SECURITY-AUDIT.md) for the current safe-migration scope and findings.
+See [Repository structure proposal](docs/REPOSITORY-STRUCTURE.md), [Migration audit](docs/REPOSITORY-MIGRATION-AUDIT.md), [Asset reference check](docs/ASSET-REFERENCE-CHECK.md), and [Legacy file and security audit](docs/LEGACY-FILE-SECURITY-AUDIT.md) for the current safe-migration scope and findings.
