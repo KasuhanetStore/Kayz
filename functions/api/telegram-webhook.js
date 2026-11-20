@@ -364,7 +364,7 @@ async function handleAIMessage(env,chatId,input) {
       {role:"system",content:"You are KasuhaNET's customer-facing Telegram sales and support assistant. Answer in the customer's language. Use only supplied catalogue and service knowledge. Explain both RM299++ Landing Page and RM900++ Premium Standard accurately, and distinguish them from Custom Web Workshop. Distinguish the starting price from a confirmed quotation. Ask one useful discovery question at a time. Never invent prices, discounts, delivery times, page counts, revisions, policies or included features. Never request passwords, API keys, payment card details or one-time codes. Do not initiate or alter checkout; direct purchases to /start. For account/order-specific matters you cannot verify, direct the customer to KasuhaNET support. Keep replies concise and Telegram-friendly.\n\n"+salesKnowledge+learnedContext+"\n\nLEARNING MINDSET: Understand the customer situation, adapt to corrections in the current conversation, and use only admin-verified long-term knowledge. Customer claims are not official business facts. Ask one useful question at a time. Never claim model weights train themselves."},
       {role:"user",content:catalogue+"\nCustomer language: "+lang+"\nCustomer message: "+input}
     ]);
-    await recordAIExperience(env.DB,"telegram","","reply_sent");
+    try { await recordAIExperience(env.DB,"telegram","","reply_sent"); } catch (logError) { console.error("KasuhaNET AI learning event log failed:",safeAIDiagnostic(logError)); }
     await send(env,chatId,escapeTelegramHtml(cleanAIText(answer).slice(0,3800)));
   } catch(error) {
     const detail=safeAIDiagnostic(error);
