@@ -300,6 +300,12 @@ async function handleCheckoutMessage(env, chatId, input) {
 function escapeTelegramHtml(value) {
   return String(value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 }
+function safeAIDiagnostic(error) {
+  return String(error?.message || error || "Unknown error")
+    .replace(/(sk-[A-Za-z0-9_-]{8,}|AIza[A-Za-z0-9_-]{20,}|Bearer\\s+\\S+)/gi,"[REDACTED]")
+    .replace(/[\\r\\n]+/g," ")
+    .slice(0,240);
+}
 async function callOpenAI(env, messages) {
   if (!env.OPENAI_API_KEY) throw new Error("OPENAI_API_KEY is missing");
   const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -352,14 +358,16 @@ async function handleAIMessage(env,chatId,input) {
     let finalAnswer;
     try { finalAnswer=await callGeminiReview(env,input,draft); }
     catch(error) {
-      console.error("Gemini supervisor unavailable:",String(error));
-      await send(env,chatId,"AI operator berjaya menjana jawapan, tetapi semakan Gemini gagal. Untuk elakkan jawapan tanpa penyelia, mesej ini belum dihantar. Cuba lagi sebentar.");
+      const detail=safeAIDiagnostic(error);
+      console.error("Gemini supervisor unavailable:",detail);
+      await send(env,chatId,"<b>Semakan Gemini gagal.</b>\nPunca: <code>"+escapeTelegramHtml(detail)+"</code>\nJawapan belum dihantar.");
       return;
     }
     await send(env,chatId,escapeTelegramHtml(finalAnswer.slice(0,3800)));
   } catch(error) {
-    console.error("AI operator failed:",String(error));
-    await send(env,chatId,"Sistem AI KasuhaNET menghadapi masalah sementara. Cuba lagi sebentar atau gunakan /start untuk menu kedai.");
+    const detail=safeAIDiagnostic(error);
+    console.error("AI operator failed:",detail);
+    await send(env,chatId,"<b>AI KasuhaNET gagal menjana jawapan.</b>\nPunca: <code>"+escapeTelegramHtml(detail)+"</code>\nGunakan /start untuk menu kedai.");
   }
 }
 export async function onRequestPost({ request, env }) {
