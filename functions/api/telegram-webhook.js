@@ -373,7 +373,7 @@ async function fetchOrganicSignals(db) {
 
 async function handleAILearningAdminCommand(env,chatId,input) {
   if(!env.TELEGRAM_ADMIN_CHAT_ID||String(chatId)!==String(env.TELEGRAM_ADMIN_CHAT_ID)) return false;
-  if(!/^\/(teach|knowledge|forget|orders|growth|promo)(\s|$)/i.test(input)) return false;
+  if(!/^\/(teach|knowledge|forget|orders|research|growth|promo|share|traffic)(\s|$)/i.test(input)) return false;
   await ensureAILearningTables(env.DB);
   if(input.startsWith('/teach ')) {
     const payload=input.slice(7).trim(); const split=payload.indexOf('|');
@@ -435,6 +435,41 @@ async function handleAILearningAdminCommand(env,chatId,input) {
     const prompt="Anda MR.JAY (STAFF), copywriter pemasaran KasuhaNET. Hasilkan satu set kempen organik untuk topik: "+focus+". Sasaran: peniaga kecil, usahawan mikro, freelancer dan organisasi kecil di Malaysia yang perlukan laman web. Maklumat sah: Landing Page RM299++ (satu halaman, responsive, AdSense optimisation, CTA WhatsApp/form; domain custom tidak termasuk); Premium Standard RM900++ (multi-page, CMS, SEO lanjutan; skop akhir tertakluk persetujuan); Custom Web Workshop ialah servis khusus dengan penilaian dan sebut harga berasingan. Sediakan: 1) tajuk kempen; 2) caption Facebook yang menarik tetapi tidak memaksa; 3) skrip video TikTok 20-30 saat dengan hook, isi dan CTA; 4) WhatsApp Status pendek; 5) ayat Telegram; 6) CTA dan pautan https://kasuhanet.store/custom-web-workshop-MS serta https://kasuhanet.store/Banner-WebSale-MS.html. Bahasa Melayu semula jadi, jelas dan tidak berlebihan. Jangan cipta testimoni, pelanggan, hasil, diskaun, jaminan, harga tambahan atau ciri pakej yang tiada dalam fakta. Elak spam, clickbait palsu dan janji ranking Google/pendapatan. Nyatakan harga dengan tepat RM299++ dan RM900++.";
     const answer=await callKasuhaAI(env,[{role:'system',content:'Anda copywriter pemasaran BM untuk perniagaan digital Malaysia. Hasilkan bahan yang boleh terus disalin. Jangan tambah fakta yang tidak dibekalkan.'},{role:'user',content:prompt}]);
     await send(env,chatId,'<b>MR.JAY | SET PROMOSI</b>\n'+escapeTelegramHtml(cleanAIText(answer).slice(0,3700)));
+    return true;
+  }
+  if(input==='/traffic' || input.startsWith('/traffic ')) {
+    await env.DB.prepare(`CREATE TABLE IF NOT EXISTS marketing_clicks (
+      id TEXT PRIMARY KEY, offer TEXT NOT NULL, source TEXT NOT NULL,
+      campaign TEXT NOT NULL, referrer TEXT, user_agent TEXT,
+      created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+    )`).run();
+    const rows=await env.DB.prepare(`SELECT offer,source,campaign,COUNT(*) AS clicks,
+      MAX(created_at) AS latest_click FROM marketing_clicks
+      WHERE created_at>=datetime('now','-30 days')
+      GROUP BY offer,source,campaign ORDER BY clicks DESC LIMIT 15`).all();
+    const items=rows.results||[];
+    const total=items.reduce((sum,row)=>sum+Number(row.clicks||0),0);
+    const report=items.map(row=>'<b>'+escapeTelegramHtml(row.offer)+'</b> | '+escapeTelegramHtml(row.source)+'\nKempen: '+escapeTelegramHtml(row.campaign)+'\nKlik: '+Number(row.clicks||0)+' | Terakhir: '+escapeTelegramHtml(row.latest_click||'-')).join('\n\n');
+    await send(env,chatId,'<b>MR.JAY | TRAFIK KEMPEN 30 HARI</b>\nJumlah klik pautan kempen: <b>'+total+'</b>\n\n'+(items.length?report:'Belum ada klik direkodkan. Gunakan pautan /share supaya klik kempen boleh diukur.')+'\n\nNota: angka ini ialah klik pautan, bukan pelawat unik atau bukti jualan.');
+    return true;
+  }
+  if(input==='/share' || input.startsWith('/share ')) {
+    const focus=input.slice(6).trim().slice(0,160)||'Landing Page RM299++ untuk peniaga kecil';
+    const campaign='mrjay-'+new Date().toISOString().slice(0,10);
+    const offers=[
+      {name:'Landing Page RM299++',slug:'landing',path:'/Banner-WebSale-MS.html'},
+      {name:'Premium Standard RM900++',slug:'premium',path:'/Banner-WebSale-MS.html'},
+      {name:'Custom Web Workshop',slug:'workshop',path:'/custom-web-workshop-MS'}
+    ];
+    const tracked=(offer,source)=>SITE+'/api/marketing-click?offer='+encodeURIComponent(offer)+'&source='+encodeURIComponent(source)+'&campaign='+encodeURIComponent(campaign);
+    const links=offers.map(o=>o.name+': '+tracked(o.slug,'social')).join('\n');
+    const prompt="Anda MR.JAY (STAFF), pengurus kempen organik KasuhaNET. Bina bahan Share Offer Marketing untuk kempen: "+focus+". Fakta tawaran: Landing Page RM299++ ialah satu halaman responsif dengan AdSense optimisation dan CTA WhatsApp/form; domain custom tidak termasuk. Premium Standard RM900++ ialah laman berbilang halaman dengan CMS dan SEO lanjutan, skop akhir tertakluk persetujuan. Custom Web Workshop dinilai dan disebut harga berasingan. Sediakan caption Facebook, skrip TikTok 20-30 saat, WhatsApp Status dan Telegram. Setiap bahan mesti ada hook, manfaat yang realistik dan CTA. Jangan cipta diskaun, testimoni, angka prestasi, jaminan atau ciri yang tidak dinyatakan. Jangan janji ranking Google atau pendapatan. Pautan kempen yang perlu digunakan: "+links+". Jangan ubah atau pendekkan URL. Bahasa Melayu semula jadi.";
+    try {
+      const answer=await callKasuhaAI(env,[{role:'system',content:'Anda pengurus pemasaran digital. Bahan mesti terus boleh disalin, fakta tepat, tiada spam atau dakwaan palsu.'},{role:'user',content:prompt}]);
+      await send(env,chatId,'<b>MR.JAY | SHARE OFFER MARKETING</b>\nKempen: <code>'+campaign+'</code>\n\n'+escapeTelegramHtml(cleanAIText(answer).slice(0,3000))+'\n\n<b>PAUTAN KEMPEN</b>\n'+offers.map(o=>escapeTelegramHtml(o.name)+':\n'+escapeTelegramHtml(tracked(o.slug,'social'))).join('\n\n')+'\n\nGuna pautan ini semasa berkongsi. Klik akan direkodkan untuk laporan /traffic.');
+    } catch(error) {
+      await send(env,chatId,'MR.JAY gagal menjana bahan kempen. Semak Workers AI dan cuba lagi.');
+    }
     return true;
   }
   if(input.startsWith('/forget ')) { const id=Number(input.slice(8).trim()); const ok=Number.isInteger(id)&&id>0?await removeApprovedAIKnowledge(env.DB,id):false; await send(env,chatId,ok?'Memori ID '+id+' dipadam.':'ID tidak sah atau tidak ditemui.'); return true; }
