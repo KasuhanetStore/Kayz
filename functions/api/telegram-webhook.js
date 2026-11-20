@@ -313,7 +313,9 @@ async function callKasuhaAI(env, messages) {
   const result = await env.AI.run(env.AI_MODEL || "@cf/zai-org/glm-4.7-flash", {
     messages,
     temperature: 0.3,
-    max_completion_tokens: 700
+    max_completion_tokens: 700,
+    // GLM-4.7 enables reasoning by default; disable it for direct Telegram replies.
+    chat_template_kwargs: { enable_thinking: false }
   });
   const content =
     result?.choices?.[0]?.message?.content ??
