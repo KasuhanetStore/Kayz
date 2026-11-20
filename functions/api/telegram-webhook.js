@@ -360,7 +360,7 @@ async function handleAILearningAdminCommand(env,chatId,input) {
     ) WHERE (?='all' OR status=?) ORDER BY created_at DESC LIMIT 10`).bind(filter,filter).all();
     const items=rows.results||[];
     const moneyText=n=>'RM '+(Number(n||0)/100).toFixed(2);
-    const report=items.map(o=>'<b>'+escapeTelegramHtml(o.package_name)+'</b>\n'+moneyText(o.amount)+' | '+escapeTelegramHtml(o.status.toUpperCase())+' | '+escapeTelegramHtml(o.gateway)+'\n'+escapeTelegramHtml(o.customer_name)+' | '+escapeTelegramHtml(o.customer_email)+'\nID: <code>'+escapeTelegramHtml(o.id)+'</code>+'\nInvois: '+escapeTelegramHtml(o.invoice_no||'Belum dijana')\nTarikh: '+escapeTelegramHtml(o.created_at)+(o.paid_at?'\nBayaran: '+escapeTelegramHtml(o.paid_at):'')).join('\n\n');
+    const report=items.map(o=>'<b>'+escapeTelegramHtml(o.package_name)+'</b>\n'+moneyText(o.amount)+' | '+escapeTelegramHtml(o.status.toUpperCase())+' | '+escapeTelegramHtml(o.gateway)+'\n'+escapeTelegramHtml(o.customer_name)+' | '+escapeTelegramHtml(o.customer_email)+'\nID: <code>'+escapeTelegramHtml(o.id)+'</code>\nInvois: '+escapeTelegramHtml(o.invoice_no||'Belum dijana')+'\nTarikh: '+escapeTelegramHtml(o.created_at)+(o.paid_at?'\nBayaran: '+escapeTelegramHtml(o.paid_at):'')).join('\n\n');
     await send(env,chatId,items.length?'<b>LAPORAN PESANAN TERKINI</b>\n'+report:'Tiada pesanan untuk status tersebut.');
     return true;
   }
