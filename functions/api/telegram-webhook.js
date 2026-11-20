@@ -455,7 +455,7 @@ async function handleAILearningAdminCommand(env,chatId,input) {
   }
   if(input==='/share' || input.startsWith('/share ')) {
     const focus=input.slice(6).trim().slice(0,160)||'Landing Page RM299++ untuk peniaga kecil';
-    const campaign='mrjay-'+new Date().toISOString().slice(0,10);
+    const campaign='mrjay-'+new Date().toISOString().slice(0,10)+'-'+(focus.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,24)||'offer');
     const offers=[
       {name:'Landing Page RM299++',slug:'landing',path:'/Banner-WebSale-MS.html'},
       {name:'Premium Standard RM900++',slug:'premium',path:'/Banner-WebSale-MS.html'},
@@ -467,7 +467,7 @@ async function handleAILearningAdminCommand(env,chatId,input) {
     const prompt="Anda MR.JAY (STAFF), pengurus kempen organik KasuhaNET. Bina bahan Share Offer Marketing untuk kempen: "+focus+". Fakta tawaran: Landing Page RM299++ ialah satu halaman responsif dengan AdSense optimisation dan CTA WhatsApp/form; domain custom tidak termasuk. Premium Standard RM900++ ialah laman berbilang halaman dengan CMS dan SEO lanjutan, skop akhir tertakluk persetujuan. Custom Web Workshop dinilai dan disebut harga berasingan. Sediakan caption Facebook, skrip TikTok 20-30 saat, WhatsApp Status dan Telegram. Setiap bahan mesti ada hook, manfaat yang realistik dan CTA. Jangan cipta diskaun, testimoni, angka prestasi, jaminan atau ciri yang tidak dinyatakan. Jangan janji ranking Google atau pendapatan. Pautan kempen yang perlu digunakan mengikut saluran: "+links+". Gunakan pautan Facebook dalam caption Facebook, TikTok dalam skrip TikTok, WhatsApp dalam Status dan Telegram dalam mesej Telegram. Jangan ubah atau pendekkan URL. Bahasa Melayu semula jadi.";
     try {
       const answer=await callKasuhaAI(env,[{role:'system',content:'Anda pengurus pemasaran digital. Bahan mesti terus boleh disalin, fakta tepat, tiada spam atau dakwaan palsu.'},{role:'user',content:prompt}]);
-      await send(env,chatId,'<b>MR.JAY | SHARE OFFER MARKETING</b>\nKempen: <code>'+campaign+'</code>\n\n'+escapeTelegramHtml(cleanAIText(answer).slice(0,3000))+'\n\n<b>PAUTAN KEMPEN</b>\n'+offers.map(o=>escapeTelegramHtml(o.name)+'\n'+channels.map(channel=>channel.toUpperCase()+':\n'+escapeTelegramHtml(tracked(o.slug,channel))).join('\n')).join('\n\n')+'\n\nGuna pautan ini semasa berkongsi. Klik akan direkodkan untuk laporan /traffic.');
+      await send(env,chatId,'<b>MR.JAY | SHARE OFFER MARKETING</b>\nKempen: <code>'+campaign+'</code>\n\n'+escapeTelegramHtml(cleanAIText(answer).slice(0,1800))+'\n\n<b>PAUTAN KEMPEN</b>\n'+offers.map(o=>escapeTelegramHtml(o.name)+'\n'+channels.map(channel=>channel.toUpperCase()+':\n'+escapeTelegramHtml(tracked(o.slug,channel))).join('\n')).join('\n\n')+'\n\nGuna pautan ini semasa berkongsi. Klik akan direkodkan untuk laporan /traffic.');
     } catch(error) {
       await send(env,chatId,'MR.JAY gagal menjana bahan kempen. Semak Workers AI dan cuba lagi.');
     }
