@@ -1,3 +1,4 @@
+import { createPaidInvoiceRecord } from "./order-operations.js";
 function json(data, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
@@ -136,6 +137,10 @@ export async function onRequestPost(context) {
 
     if (result.meta && result.meta.changes === 0) {
       return json({ error: "Order not found for this Stripe session." }, 404);
+    }
+    if (status === "paid") {
+      const invoiceOrderId = orderId || (await env.DB.prepare("SELECT id FROM stripe_orders WHERE stripe_checkout_session_id=?").bind(session.id).first())?.id;
+      if (invoiceOrderId) await createPaidInvoiceRecord(env.DB,"stripe",invoiceOrderId);
     }
   } catch {
     return json({ error: "Unable to update the order in D1." }, 500);
