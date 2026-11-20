@@ -59,17 +59,22 @@ async function generateSalesReply(env, db, chatId, latestMessage) {
   const result = await env.AI.run(env.AI_MODEL || "@cf/zai-org/glm-4.7-flash", {
     messages: [{ role: "system", content: system }, ...messages],
     max_completion_tokens: 220,
-    temperature: 0.35
+    temperature: 0.35,
+    // GLM-4.7 enables reasoning by default. Disable it for a short customer-facing reply.
+    chat_template_kwargs: { enable_thinking: false }
   });
-  // Workers AI chat-completion models return text under choices[0].message.content.
-  // Keep alternate response fields for compatibility with other model families.
+  // Accept both plain text and text-part arrays returned by Workers AI models.
   const generatedText =
     result?.choices?.[0]?.message?.content ??
     result?.response ??
     result?.output_text ??
     result?.result?.response ??
     "";
-  const reply = (typeof generatedText === "string" ? generatedText : "").trim().slice(0, 1800);
+  const reply = (typeof generatedText === "string"
+    ? generatedText
+    : Array.isArray(generatedText)
+      ? generatedText.map(part => typeof part === "string" ? part : part?.text || "").join("")
+      : "").trim().slice(0, 1800);
   if (!reply) {
     console.error("[KasuhaNET AI] Model returned no usable text. Response keys:", Object.keys(result || {}));
     return null;
