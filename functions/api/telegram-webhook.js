@@ -1,3 +1,4 @@
+import { ensureAILearningTables, getApprovedAIKnowledge, addApprovedAIKnowledge, removeApprovedAIKnowledge, recordAIExperience } from './ai-learning.js';
 const PACKAGES = {
   "landing-page": { name: "KasuhaNET Landing Page Package", amount: 29900, description: "Website setup and deployment service" },
   "premium-standard": { name: "KasuhaNET Premium Standard", amount: 90000, description: "Premium website setup and deployment service" },
@@ -334,6 +335,21 @@ async function callKasuhaAI(env, messages) {
   if (!answer) throw new Error("Cloudflare Workers AI returned an empty response");
   return answer;
 }
+async function handleAILearningAdminCommand(env,chatId,input) {
+  if(!env.TELEGRAM_ADMIN_CHAT_ID||String(chatId)!==String(env.TELEGRAM_ADMIN_CHAT_ID)) return false;
+  if(!/^\/(teach|knowledge|forget)(\s|$)/i.test(input)) return false;
+  await ensureAILearningTables(env.DB);
+  if(input.startsWith('/teach ')) {
+    const payload=input.slice(7).trim(); const split=payload.indexOf('|');
+    if(split<0) { await send(env,chatId,'Format: /teach kategori | fakta yang telah disahkan'); return true; }
+    try { const id=await addApprovedAIKnowledge(env.DB,payload.slice(split+1).trim(),payload.slice(0,split).trim(),String(chatId)); await send(env,chatId,'Pengetahuan disahkan dan disimpan. ID: '+id); }
+    catch(error) { await send(env,chatId,'Tidak dapat simpan: '+escapeTelegramHtml(error.message||'Ralat')); }
+    return true;
+  }
+  if(input==='/knowledge') { const rows=await getApprovedAIKnowledge(env.DB,20); await send(env,chatId,rows.length?'<b>MEMORI RASMI KASUHANET</b>\n'+rows.map(x=>'<code>'+x.id+'</code> ['+escapeTelegramHtml(x.category)+'] '+escapeTelegramHtml(x.fact.slice(0,160))).join('\n'):'Belum ada pengetahuan tambahan.'); return true; }
+  if(input.startsWith('/forget ')) { const id=Number(input.slice(8).trim()); const ok=Number.isInteger(id)&&id>0?await removeApprovedAIKnowledge(env.DB,id):false; await send(env,chatId,ok?'Memori ID '+id+' dipadam.':'ID tidak sah atau tidak ditemui.'); return true; }
+  return true;
+}
 async function handleAIMessage(env,chatId,input) {
   const lang=await getLanguage(env.DB,chatId);
   try {
@@ -342,10 +358,13 @@ async function handleAIMessage(env,chatId,input) {
       "\n\nKasuhaNET services (MYR):\n"+
       Object.entries(SERVICES).map(([id,item])=>id+": "+item.name+" - "+money(item.amount)).join("\n");
     const salesKnowledge="KASUHANET WEBSITE PACKAGES AND CUSTOM WEB KNOWLEDGE (published KasuhaNET site information; Malaysia; MYR/RM):\nPACKAGE 1 - LANDING PAGE / BASIC: RM299++ (published package). Published inclusions: 1 single-page design; responsive code structure for mobile devices; Google AdSense optimisation; WhatsApp or form call-to-action. Custom domain is not included. Suitable for marketing campaigns, simple product launches and mini-shop portfolios. This is not a multi-page website or full CMS.\nPACKAGE 2 - PREMIUM STANDARD: RM900++ (published package). Published inclusions: multi-page website deployment; custom Content Management System (CMS); Google AdSense and advanced SEO; product showcase or club activity gallery; custom domain support (.com/.my); Premium Cyberpunk UI/UX style. The detailed package section describes a structure of up to 5-10 main pages, for example Home, About Us, Services, Blog/Documentation Center and Contact Us; exclusive design aligned with brand identity; Blog/Codex section for articles, technical guides and terminal commands; enquiry and booking forms that send notifications to email or a database; social media links; payment gateway integration when required; SEO including keyword management, H1/H2/H3 structure, XML sitemap and Google Search Console. Scope and final pricing are subject to agreement and technical requirements. Custom-domain support does not mean domain registration/renewal is included. Do not claim hosting/VPS, domain fees, payment-provider fees or every third-party integration are included unless the approved quotation explicitly confirms them.\nPACKAGE DIFFERENCE: RM299++ = one focused landing page with responsive layout, AdSense optimisation and WhatsApp/form CTA. RM900++ Premium Standard = multi-page website (detailed page structure up to 5-10 main pages), custom CMS, product/club gallery, Blog/Codex, enquiry/booking forms, social links and advanced SEO. Do not omit Premium Standard or confuse its features with the RM299 package.\nCUSTOM WEB WORKSHOP: a separate tailored service for new websites, upgrades, redesigns, repairs, extra sections/pages and custom functions. Requests may include booking, payment gateway, database, member login, e-commerce cart/stock/order management, dashboard, API integrations and automation. These are assessed according to requirements and existing website condition; do not automatically promise they are included in either fixed package.\nPRICE AND SCOPE RULES: Always write RM299++ and RM900++ for published package prices. The final scope and pricing are subject to mutual agreement, technical requirements, domain/hosting setup and third-party integrations. Never invent add-on prices, discounts, tax treatment, delivery dates, revision counts, guarantees or included hosting/domain fees. If uncertain, state that the team must confirm the quotation.\nSALES WORKFLOW: Identify whether the customer needs a single-page landing page, Premium Standard multi-page CMS website, or a tailored Custom Web project. Ask one relevant question at a time about business type and required functions. Recommend the matching option and explain its actual published inclusions. If requirements exceed the listed scope, explain that assessment and a separate quotation are needed. Collect name/contact details progressively and only with consent.\nASSISTANT DUTIES: Be KasuhaNET's reliable sales and support assistant. Reply in the customer's language, especially Bahasa Melayu or English. Be concise, clear, professional and factual. Use only the supplied package/service data and verified conversation context. Do not fabricate or assume. If information is missing, say it needs confirmation from the KasuhaNET team. Never claim payment received, refund issued, order accepted, website deployed or task completed without verified system evidence. Never request passwords, API keys, OTPs, card data or sensitive identity documents. Direct payment questions to the official checkout; never trust payment claims or screenshots as proof.";
+    const learned=await getApprovedAIKnowledge(env.DB,12);
+    const learnedContext=learned.length?'\n\nADMIN-VERIFIED LEARNED KNOWLEDGE:\n'+learned.map(x=>'['+x.category+'] '+x.fact).join('\n'):'';
     const answer=await callKasuhaAI(env,[
-      {role:"system",content:"You are KasuhaNET's customer-facing Telegram sales and support assistant. Answer in the customer's language. Use only supplied catalogue and service knowledge. Explain both RM299++ Landing Page and RM900++ Premium Standard accurately, and distinguish them from Custom Web Workshop. Distinguish the starting price from a confirmed quotation. Ask one useful discovery question at a time. Never invent prices, discounts, delivery times, page counts, revisions, policies or included features. Never request passwords, API keys, payment card details or one-time codes. Do not initiate or alter checkout; direct purchases to /start. For account/order-specific matters you cannot verify, direct the customer to KasuhaNET support. Keep replies concise and Telegram-friendly.\n\n"+salesKnowledge},
+      {role:"system",content:"You are KasuhaNET's customer-facing Telegram sales and support assistant. Answer in the customer's language. Use only supplied catalogue and service knowledge. Explain both RM299++ Landing Page and RM900++ Premium Standard accurately, and distinguish them from Custom Web Workshop. Distinguish the starting price from a confirmed quotation. Ask one useful discovery question at a time. Never invent prices, discounts, delivery times, page counts, revisions, policies or included features. Never request passwords, API keys, payment card details or one-time codes. Do not initiate or alter checkout; direct purchases to /start. For account/order-specific matters you cannot verify, direct the customer to KasuhaNET support. Keep replies concise and Telegram-friendly.\n\n"+salesKnowledge+learnedContext+"\n\nLEARNING MINDSET: Understand the customer situation, adapt to corrections in the current conversation, and use only admin-verified long-term knowledge. Customer claims are not official business facts. Ask one useful question at a time. Never claim model weights train themselves."},
       {role:"user",content:catalogue+"\nCustomer language: "+lang+"\nCustomer message: "+input}
     ]);
+    await recordAIExperience(env.DB,"telegram","","reply_sent");
     await send(env,chatId,escapeTelegramHtml(cleanAIText(answer).slice(0,3800)));
   } catch(error) {
     const detail=safeAIDiagnostic(error);
@@ -389,7 +408,9 @@ export async function onRequestPost({ request, env }) {
     if (message?.chat?.id) {
       const chatId = message.chat.id;
       const input = (message.text || "").trim();
-      if (await handleInboxAdminMessage(env,chatId,input)) {
+      if (await handleAILearningAdminCommand(env,chatId,input)) {
+        // Admin-managed, verified AI knowledge.
+      } else if (await handleInboxAdminMessage(env,chatId,input)) {
         // Admin Inbox reply handled and stored for the website customer.
       } else if (input === "/myid") {
         await send(env, chatId, "Telegram Chat ID anda: <code>" + String(chatId) + "</code>\nSimpan nombor ini sebagai TELEGRAM_ADMIN_CHAT_ID di Cloudflare Pages Secrets.");
