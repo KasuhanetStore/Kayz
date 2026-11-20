@@ -217,7 +217,7 @@
             messageInput.disabled=false;sendButton.disabled=false;
             const data=await check.json();(data.messages||[]).forEach(showMessage);
             if(data.messages?.length) lastMessageId=data.messages[data.messages.length-1].id;
-            pollHandle=setInterval(pollMessages,2000);
+            startPolling();
             return;
           }
         }
@@ -231,14 +231,28 @@
       localStorage.setItem(storageKey,JSON.stringify(session));
       chatIdNode.textContent=session.chatId;
       messageInput.disabled=false;sendButton.disabled=false;
-      pollHandle=setInterval(pollMessages,2000);
+      startPolling();
     }catch{
       chatIdNode.textContent="Unavailable";
       note.textContent=copy.notReady;note.style.display="block";
     }
   }
-  function openPanel(){panel.classList.add("kn-open");launcher.hidden=true;connectChat();}
-  function closePanel(){panel.classList.remove("kn-open","kn-maximized");launcher.hidden=false;maximizeButton.textContent="□";maximizeButton.title=copy.maximize;}
+  function startPolling(){
+    if(pollHandle) return;
+    pollMessages();
+    pollHandle=setInterval(pollMessages,2000);
+  }
+  function stopPolling(){
+    if(pollHandle){clearInterval(pollHandle);pollHandle=null;}
+  }
+  function openPanel(){
+    panel.classList.add("kn-open");launcher.hidden=true;
+    if(session) startPolling(); else connectChat();
+  }
+  function closePanel(){
+    panel.classList.remove("kn-open","kn-maximized");launcher.hidden=false;
+    stopPolling();maximizeButton.textContent="□";maximizeButton.title=copy.maximize;
+  }
   function toggleMaximize(){
     const maximized=panel.classList.toggle("kn-maximized");
     maximizeButton.textContent=maximized?"❐":"□";
