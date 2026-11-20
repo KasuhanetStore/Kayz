@@ -1,3 +1,4 @@
+import { createPaidInvoiceRecord } from "./order-operations.js";
 const PACKAGES = {
   "landing-page": { name: "KasuhaNET Landing Page Package", amount: 29900 },
   "premium-standard": { name: "KasuhaNET Premium Standard", amount: 90000 }
@@ -88,7 +89,7 @@ export async function onRequestPost({request,env}){
   await ensureTable(env.DB);
   const order=await env.DB.prepare("SELECT id,amount,bill_code,external_ref,status FROM toyyibpay_orders WHERE external_ref=?").bind(externalRef).first();
   if(!order || order.bill_code!==billCode) return new Response("Order not found",{status:404});
-  if(order.status==="paid") return new Response("OK",{status:200});
+  if(order.status==="paid") { try { await createPaidInvoiceRecord(env.DB,"toyyibpay",order.id); return new Response("OK",{status:200}); } catch { return new Response("Invoice record pending retry",{status:500}); } }
   let nextStatus=status==="2"?"pending":status==="3"?"failed":"pending";
   if(status==="1"){
     let verified=false;try{verified=await verifyPaidTransaction(env,billCode,externalRef,Number(order.amount));}catch{verified=false;}
@@ -98,5 +99,6 @@ export async function onRequestPost({request,env}){
   await env.DB.prepare(`UPDATE toyyibpay_orders SET status=?,
     payment_ref=?,paid_at=CASE WHEN ?='paid' THEN COALESCE(paid_at,CURRENT_TIMESTAMP) ELSE paid_at END,
     updated_at=CURRENT_TIMESTAMP WHERE id=? AND status!='paid'`).bind(nextStatus,refno,nextStatus,order.id).run();
+  if(nextStatus==="paid") { try { await createPaidInvoiceRecord(env.DB,"toyyibpay",order.id); } catch { return new Response("Invoice record pending retry",{status:500}); } }
   return new Response("OK",{status:200,headers:{"Cache-Control":"no-store"}});
 }
