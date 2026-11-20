@@ -22,6 +22,43 @@ async function ensureTables(db){
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, telegram_message_id TEXT
   )`).run();
   await db.prepare("CREATE INDEX IF NOT EXISTS idx_inbox_messages_chat_created ON inbox_messages(chat_id, created_at)").run();
+  await db.prepare(`CREATE TABLE IF NOT EXISTS inbox_leads (
+    chat_id TEXT PRIMARY KEY,
+    customer_name TEXT,
+    customer_email TEXT,
+    customer_phone TEXT,
+    project_need TEXT,
+    status TEXT NOT NULL DEFAULT 'new',
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+  )`).run();
+}
+function extractLeadData(message) {
+  const text = String(message || "").trim();
+  const email = (text.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i) || [])[0] || null;
+  const phoneMatch = text.match(/(?:\+?60|0)[\d\s().-]{7,18}/);
+  const phoneDigits = phoneMatch ? phoneMatch[0].replace(/\D/g, "") : "";
+  const phone = phoneDigits.length >= 9 && phoneDigits.length <= 15 ? phoneMatch[0].trim() : null;
+  const nameMatch = text.match(/(?:nama saya|nama|my name is|name is)\s*[:,-]?\s*([A-Za-zÀ-ÿ][A-Za-zÀ-ÿ .'-]{1,59})/i);
+  const customerName = nameMatch ? nameMatch[1].trim().replace(/[.,;:!?]+$/, "").slice(0, 80) : null;
+  const intent = /\b(website|web site|e-?commerce|online store|landing page|booking|portal|redesign|domain|hosting|business website)\b|\b(laman web|kedai online|tempahan|sistem bayaran|pembayaran|perniagaan|bisnes|ubah suai website|bina website|buat website|web custom)\b/i.test(text);
+  const projectNeed = intent && text.length >= 12 ? text.slice(0, 500) : null;
+  return { customerName, email, phone, projectNeed };
+}
+async function captureLead(db, chatId, message) {
+  const lead = extractLeadData(message);
+  if (!lead.customerName && !lead.email && !lead.phone && !lead.projectNeed) return null;
+  await db.prepare(\`INSERT INTO inbox_leads
+    (chat_id,customer_name,customer_email,customer_phone,project_need)
+    VALUES(?,?,?,?,?)
+    ON CONFLICT(chat_id) DO UPDATE SET
+      customer_name=COALESCE(excluded.customer_name,inbox_leads.customer_name),
+      customer_email=COALESCE(excluded.customer_email,inbox_leads.customer_email),
+      customer_phone=COALESCE(excluded.customer_phone,inbox_leads.customer_phone),
+      project_need=COALESCE(excluded.project_need,inbox_leads.project_need),
+      updated_at=CURRENT_TIMESTAMP\`)
+    .bind(chatId,lead.customerName,lead.email,lead.phone,lead.projectNeed).run();
+  return lead;
 }
 async function sha256(value){
   const digest=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(value));
@@ -51,7 +88,7 @@ async function generateSalesReply(env, db, chatId, latestMessage) {
     "Help visitors understand custom website development, website upgrades, digital services and support. Be concise, polite and commercially helpful.",
     "Reply in the language used by the customer: Bahasa Melayu or English. Use Malaysian Ringgit (RM) when discussing prices.",
     "The website service has an advertised starting price around RM299, subject to scope. Domain, hosting and third-party fees are not automatically included. Never invent a final quotation.",
-    "Ask only for the next useful detail needed to understand the customer's project. Do not request passwords, card details, OTPs or sensitive identity documents.",
+    "Qualify a sales enquiry one step at a time: first understand the website or service requirement, then ask for the customer's name, then ask for one preferred contact method (email or phone) only when the customer is interested. Never demand all details at once. Do not request passwords, card details, OTPs or sensitive identity documents.",
     "You may explain services and collect a voluntary name, contact method and project requirements. Do not claim that an order, payment, refund, deployment or task has been completed.",
     "Payment status must be confirmed by the secure payment system, never by a customer message or screenshot. After payment, tell the customer that the order will enter the fulfilment workflow and may require human review.",
     "If unsure, say so clearly and offer to pass the enquiry to the KasuhaNET team. Do not fabricate features, delivery dates, availability or guarantees.",
@@ -127,6 +164,7 @@ export async function onRequestPost({request,env}){
     const id=crypto.randomUUID();
     await env.DB.prepare("INSERT INTO inbox_messages (id,chat_id,sender,message) VALUES (?,?,'buyer',?)").bind(id,chatId,message).run();
     await env.DB.prepare("UPDATE inbox_chats SET updated_at=CURRENT_TIMESTAMP,last_message_at=CURRENT_TIMESTAMP WHERE chat_id=?").bind(chatId).run();
+    const capturedLead = attachment ? null : await captureLead(env.DB, chatId, message);
 
     // Generate an automatic sales/support reply when the Cloudflare AI binding is enabled.
     // AI failure never blocks delivery of the original customer message to the human inbox.
@@ -162,7 +200,16 @@ export async function onRequestPost({request,env}){
             method=voiceFormat?"sendVoice":"sendDocument";
           }
           body=formData;
-        }else body={chat_id:env.TELEGRAM_ADMIN_CHAT_ID,text:"<b>NEW KASUHANET INBOX MESSAGE</b>\n\n<b>CHAT ID</b>\n<code>"+chatId+"</code>\n\n<b>CUSTOMER MESSAGE</b>\n"+safeMessage,parse_mode:"HTML",disable_web_page_preview:true,reply_markup:{inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}};
+        }else {
+          const leadLines = capturedLead && (capturedLead.customerName || capturedLead.email || capturedLead.phone || capturedLead.projectNeed)
+            ? "\n\n<b>LEAD DETAILS CAPTURED</b>" +
+              (capturedLead.customerName ? "\nName: " + capturedLead.customerName.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "") +
+              (capturedLead.email ? "\nEmail: " + capturedLead.email.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "") +
+              (capturedLead.phone ? "\nPhone: " + capturedLead.phone.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "") +
+              (capturedLead.projectNeed ? "\nRequirement: " + capturedLead.projectNeed.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "")
+            : "";
+          body={chat_id:env.TELEGRAM_ADMIN_CHAT_ID,text:"<b>NEW KASUHANET INBOX MESSAGE</b>\n\n<b>CHAT ID</b>\n<code>"+chatId+"</code>\n\n<b>CUSTOMER MESSAGE</b>\n"+safeMessage+leadLines,parse_mode:"HTML",disable_web_page_preview:true,reply_markup:{inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}};
+        }
         const response=await fetch("https://api.telegram.org/bot"+env.TELEGRAM_BOT_TOKEN+"/"+method,{
           method:"POST",
           ...(body instanceof FormData?{body}:{headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
