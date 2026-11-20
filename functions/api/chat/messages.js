@@ -131,7 +131,7 @@ async function generateSalesReply(env, db, chatId, latestMessage) {
     .bind(crypto.randomUUID(), chatId, reply).run();
   await db.prepare("UPDATE inbox_chats SET updated_at=CURRENT_TIMESTAMP,last_message_at=CURRENT_TIMESTAMP WHERE chat_id=?")
     .bind(chatId).run();
-  await recordAIExperience(db,"website_inbox",chatContext?.page_path||"","reply_saved");
+  try { await recordAIExperience(db,"website_inbox",chatContext?.page_path||"","reply_saved"); } catch (error) { console.error("[KasuhaNET AI] Learning event log failed:",error?.message||String(error)); }
   console.log("[KasuhaNET AI] Inbox reply saved", { chatId, replyLength: reply.length });
   return reply;
 }
