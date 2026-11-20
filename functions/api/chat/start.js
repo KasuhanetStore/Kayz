@@ -24,6 +24,7 @@ async function ensureTables(db) {
     updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     last_message_at TEXT
   )`).run();
+  try { await db.prepare('ALTER TABLE inbox_chats ADD COLUMN page_path TEXT').run(); } catch {}
   await db.prepare(`CREATE TABLE IF NOT EXISTS inbox_messages (
     id TEXT PRIMARY KEY,
     chat_id TEXT NOT NULL,
@@ -48,13 +49,15 @@ export async function onRequestPost({request,env}) {
   if (!env.DB) return json({error:"D1 database binding DB is not configured."},503);
   try {
     await ensureTables(env.DB);
+    let pagePath = '/';
+    try { const ref = new URL(request.headers.get('Referer') || ''); if (ref.origin === new URL(request.url).origin && /^\/[A-Za-z0-9_./-]{0,170}$/.test(ref.pathname)) pagePath = ref.pathname; } catch {}
     const token = randomHex(32);
     let chatId, created = false;
     for (let attempt=0; attempt<5; attempt++) {
       chatId = "KN-" + randomHex(5).toUpperCase();
       try {
-        await env.DB.prepare("INSERT INTO inbox_chats (id,chat_id,session_token_hash) VALUES (?,?,?)")
-          .bind(crypto.randomUUID(),chatId,await sha256(token)).run();
+        await env.DB.prepare("INSERT INTO inbox_chats (id,chat_id,session_token_hash,page_path) VALUES (?,?,?,?)")
+          .bind(crypto.randomUUID(),chatId,await sha256(token),pagePath).run();
         created = true;
         break;
       } catch (error) {
