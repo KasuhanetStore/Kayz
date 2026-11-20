@@ -39,7 +39,7 @@ function extractLeadData(message) {
   const phoneMatch = text.match(/(?:\+?60|0)[\d\s().-]{7,18}/);
   const phoneDigits = phoneMatch ? phoneMatch[0].replace(/\D/g, "") : "";
   const phone = phoneDigits.length >= 9 && phoneDigits.length <= 15 ? phoneMatch[0].trim() : null;
-  const nameMatch = text.match(/(?:nama saya|nama|my name is|name is)\s*[:,-]?\s*([A-Za-zÀ-ÿ][A-Za-zÀ-ÿ .'-]{1,59})/i);
+  const nameMatch = text.match(/(?:nama saya|nama|my name is|name is)\s*[:,-]?\s*([A-Za-zÀ-ÿ][A-Za-zÀ-ÿ'-]*(?:\s+[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ'-]*){0,2})(?=[,.;\n]|$)/i);
   const customerName = nameMatch ? nameMatch[1].trim().replace(/[.,;:!?]+$/, "").slice(0, 80) : null;
   const intent = /\b(website|web site|e-?commerce|online store|landing page|booking|portal|redesign|domain|hosting|business website)\b|\b(laman web|kedai online|tempahan|sistem bayaran|pembayaran|perniagaan|bisnes|ubah suai website|bina website|buat website|web custom)\b/i.test(text);
   const projectNeed = intent && text.length >= 12 ? text.slice(0, 500) : null;
@@ -48,7 +48,7 @@ function extractLeadData(message) {
 async function captureLead(db, chatId, message) {
   const lead = extractLeadData(message);
   if (!lead.customerName && !lead.email && !lead.phone && !lead.projectNeed) return null;
-  await db.prepare(\`INSERT INTO inbox_leads
+  await db.prepare(`INSERT INTO inbox_leads
     (chat_id,customer_name,customer_email,customer_phone,project_need)
     VALUES(?,?,?,?,?)
     ON CONFLICT(chat_id) DO UPDATE SET
@@ -56,7 +56,7 @@ async function captureLead(db, chatId, message) {
       customer_email=COALESCE(excluded.customer_email,inbox_leads.customer_email),
       customer_phone=COALESCE(excluded.customer_phone,inbox_leads.customer_phone),
       project_need=COALESCE(excluded.project_need,inbox_leads.project_need),
-      updated_at=CURRENT_TIMESTAMP\`)
+      updated_at=CURRENT_TIMESTAMP`)
     .bind(chatId,lead.customerName,lead.email,lead.phone,lead.projectNeed).run();
   return lead;
 }
