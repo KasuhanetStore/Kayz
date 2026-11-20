@@ -412,7 +412,9 @@ export async function onRequestPost({ request, env }) {
         await send(env,chatId,"<b>"+tr(lang,"welcome")+"</b>\n"+tr(lang,"choose"),mainMenu(lang));
       } else if (input === "/help") {
         await send(env,chatId,tr(await getLanguage(env.DB,chatId),"help"));
-      } else {\n        await handleAIMessage(env, chatId, input);\n      }
+      } else {
+        await handleAIMessage(env, chatId, input);
+      }
     } else if (callback?.message?.chat?.id && callback.data) {
       const chatId = callback.message.chat.id;
       const action = callback.data;
