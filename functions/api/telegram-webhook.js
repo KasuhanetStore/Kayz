@@ -1,3 +1,4 @@
+import { ensureSalesInvoiceTables } from "./order-operations.js";
 import { ensureAILearningTables, getApprovedAIKnowledge, addApprovedAIKnowledge, removeApprovedAIKnowledge, recordAIExperience } from './ai-learning.js';
 const PACKAGES = {
   "landing-page": { name: "KasuhaNET Landing Page Package", amount: 29900, description: "Website setup and deployment service" },
@@ -349,12 +350,13 @@ async function handleAILearningAdminCommand(env,chatId,input) {
   if(input==='/knowledge') { const rows=await getApprovedAIKnowledge(env.DB,20); await send(env,chatId,rows.length?'<b>MEMORI RASMI KASUHANET</b>\n'+rows.map(x=>'<code>'+x.id+'</code> ['+escapeTelegramHtml(x.category)+'] '+escapeTelegramHtml(x.fact.slice(0,160))).join('\n'):'Belum ada pengetahuan tambahan.'); return true; }
   if(input==='/orders' || input.startsWith('/orders ')) {
     await ensureTelegramTables(env.DB);
+    await ensureSalesInvoiceTables(env.DB);
     const filter=(input.split(/\s+/)[1]||'all').toLowerCase();
     if(!['all','paid','pending','failed','expired'].includes(filter)) { await send(env,chatId,'Format: /orders [all|paid|pending|failed|expired]'); return true; }
     const rows=await env.DB.prepare(`SELECT * FROM (
-      SELECT id,package_name,amount,currency,status,customer_name,customer_email,created_at,paid_at,'Stripe' AS gateway FROM stripe_orders
+      SELECT id,package_name,amount,currency,status,customer_name,customer_email,created_at,paid_at,'Stripe' AS gateway,(SELECT invoice_no FROM sales_invoices WHERE gateway='stripe' AND order_id=stripe_orders.id) AS invoice_no FROM stripe_orders
       UNION ALL
-      SELECT id,package_name,amount,currency,status,customer_name,customer_email,created_at,paid_at,'ToyyibPay' AS gateway FROM toyyibpay_orders
+      SELECT id,package_name,amount,currency,status,customer_name,customer_email,created_at,paid_at,'ToyyibPay' AS gateway,(SELECT invoice_no FROM sales_invoices WHERE gateway='toyyibpay' AND order_id=toyyibpay_orders.id) AS invoice_no FROM toyyibpay_orders
     ) WHERE (?='all' OR status=?) ORDER BY created_at DESC LIMIT 10`).bind(filter,filter).all();
     const items=rows.results||[];
     const moneyText=n=>'RM '+(Number(n||0)/100).toFixed(2);
