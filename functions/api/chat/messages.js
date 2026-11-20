@@ -32,6 +32,41 @@ async function authorize(db,chatId,token){
   if(!row || row.status!=="open") return false;
   return row.session_token_hash===await sha256(token);
 }
+
+async function generateSalesReply(env, db, chatId, latestMessage) {
+  // Cloudflare Workers AI binding is preferred. No paid API key is required
+  // when the AI binding is enabled on the Pages project.
+  if (!env.AI || typeof env.AI.run !== "function") return null;
+  const history = await db.prepare(`SELECT sender,message FROM inbox_messages
+    WHERE chat_id=? ORDER BY created_at DESC LIMIT 12`).bind(chatId).all();
+  const messages = (history.results || []).reverse()
+    .filter(row => typeof row.message === "string" && row.message.length <= 500)
+    .map(row => ({ role: row.sender === "buyer" ? "user" : "assistant", content: row.message }));
+  const system = [
+    "You are KasuhaNET Sales Assistant, the customer-facing assistant for KasuhaNET.STORE, operated by Kasuhanet Resources in Malaysia.",
+    "Help visitors understand custom website development, website upgrades, digital services and support. Be concise, polite and commercially helpful.",
+    "Reply in the language used by the customer: Bahasa Melayu or English. Use Malaysian Ringgit (RM) when discussing prices.",
+    "The website service has an advertised starting price around RM299, subject to scope. Domain, hosting and third-party fees are not automatically included. Never invent a final quotation.",
+    "Ask only for the next useful detail needed to understand the customer's project. Do not request passwords, card details, OTPs or sensitive identity documents.",
+    "You may explain services and collect a voluntary name, contact method and project requirements. Do not claim that an order, payment, refund, deployment or task has been completed.",
+    "Payment status must be confirmed by the secure payment system, never by a customer message or screenshot. After payment, tell the customer that the order will enter the fulfilment workflow and may require human review.",
+    "If unsure, say so clearly and offer to pass the enquiry to the KasuhaNET team. Do not fabricate features, delivery dates, availability or guarantees.",
+    "Keep replies natural, clear and usually under 120 words."
+  ].join(" ");
+  const result = await env.AI.run(env.AI_MODEL || "@cf/zai-org/glm-4.7-flash", {
+    messages: [{ role: "system", content: system }, ...messages],
+    max_completion_tokens: 220,
+    temperature: 0.35
+  });
+  const reply = String(result?.response || result?.output_text || "").trim().slice(0, 1800);
+  if (!reply) return null;
+  await db.prepare("INSERT INTO inbox_messages (id,chat_id,sender,message) VALUES (?,?,'admin',?)")
+    .bind(crypto.randomUUID(), chatId, reply).run();
+  await db.prepare("UPDATE inbox_chats SET updated_at=CURRENT_TIMESTAMP,last_message_at=CURRENT_TIMESTAMP WHERE chat_id=?")
+    .bind(chatId).run();
+  return reply;
+}
+
 export async function onRequestGet({request,env}){
   if(!allowed(request)) return json({error:"Request origin is not allowed."},403);
   if(!env.DB) return json({error:"D1 database binding DB is not configured."},503);
@@ -71,6 +106,13 @@ export async function onRequestPost({request,env}){
     await env.DB.prepare("INSERT INTO inbox_messages (id,chat_id,sender,message) VALUES (?,?,'buyer',?)").bind(id,chatId,message).run();
     await env.DB.prepare("UPDATE inbox_chats SET updated_at=CURRENT_TIMESTAMP,last_message_at=CURRENT_TIMESTAMP WHERE chat_id=?").bind(chatId).run();
 
+    // Generate an automatic sales/support reply when the Cloudflare AI binding is enabled.
+    // AI failure never blocks delivery of the original customer message to the human inbox.
+    let aiReplied = false;
+    if (!attachment) {
+      try { aiReplied = Boolean(await generateSalesReply(env, env.DB, chatId, message)); } catch { aiReplied = false; }
+    }
+
     // Notify the support admin in Telegram. Attachments are delivered as native Telegram media.
     // The website message remains saved even
     // if Telegram is temporarily unavailable.
@@ -106,7 +148,7 @@ export async function onRequestPost({request,env}){
         }
       }catch{}
     }
-    return json({sent:true,id,telegramNotified},201);
+    return json({sent:true,id,telegramNotified,aiReplied},201);
   }catch{return json({error:"Unable to send your message. Please try again."},500);}
 }
 
