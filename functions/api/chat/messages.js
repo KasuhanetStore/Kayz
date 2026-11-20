@@ -53,9 +53,9 @@ async function generateSalesReply(env, db, chatId, latestMessage) {
     "If unsure, say so clearly and offer to pass the enquiry to the KasuhaNET team. Do not fabricate features, delivery dates, availability or guarantees.",
     "Keep replies natural, clear and usually under 120 words."
   ].join(" ");
-  const result = await env.AI.run(env.AI_MODEL || "@cf/meta/llama-3.1-8b-instruct", {
+  const result = await env.AI.run(env.AI_MODEL || "@cf/zai-org/glm-4.7-flash", {
     messages: [{ role: "system", content: system }, ...messages],
-    max_tokens: 220,
+    max_completion_tokens: 220,
     temperature: 0.35
   });
   const reply = String(result?.response || result?.output_text || "").trim().slice(0, 1800);
