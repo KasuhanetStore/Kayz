@@ -298,7 +298,7 @@ async function handleCheckoutMessage(env, chatId, input) {
 
 
 function cleanAIText(value) {
-  return String(value || "").replace(/\\\\([*_`~])/g, "$1").replace(/\\*\\*(.*?)\\*\\*/gs, "$1").replace(/[ \\t]{2,}/g, " ").trim();
+  return String(value || "").replace(/\\([*_~])/g, "$1").replace(/\*\*/g, "").replace(/[ \t]{2,}/g, " ").trim();
 }
 function escapeTelegramHtml(value) {
   return String(value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
