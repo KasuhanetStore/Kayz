@@ -58,7 +58,15 @@ async function generateSalesReply(env, db, chatId, latestMessage) {
     max_completion_tokens: 220,
     temperature: 0.35
   });
-  const reply = String(result?.response || result?.output_text || "").trim().slice(0, 1800);
+  // Workers AI chat-completion models return text under choices[0].message.content.
+  // Keep alternate response fields for compatibility with other model families.
+  const generatedText =
+    result?.choices?.[0]?.message?.content ??
+    result?.response ??
+    result?.output_text ??
+    result?.result?.response ??
+    "";
+  const reply = (typeof generatedText === "string" ? generatedText : "").trim().slice(0, 1800);
   if (!reply) return null;
   await db.prepare("INSERT INTO inbox_messages (id,chat_id,sender,message) VALUES (?,?,'admin',?)")
     .bind(crypto.randomUUID(), chatId, reply).run();
