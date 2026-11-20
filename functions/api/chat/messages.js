@@ -41,7 +41,7 @@ async function generateSalesReply(env, db, chatId, latestMessage) {
     return null;
   }
   const history = await db.prepare(`SELECT sender,message FROM inbox_messages
-    WHERE chat_id=? ORDER BY created_at DESC LIMIT 12`).bind(chatId).all();
+    WHERE chat_id=? ORDER BY created_at DESC, rowid DESC LIMIT 12`).bind(chatId).all();
   const messages = (history.results || []).reverse()
     .filter(row => typeof row.message === "string" && row.message.length <= 500)
     .map(row => ({ role: row.sender === "buyer" ? "user" : "assistant", content: row.message }));
@@ -78,6 +78,7 @@ async function generateSalesReply(env, db, chatId, latestMessage) {
     .bind(crypto.randomUUID(), chatId, reply).run();
   await db.prepare("UPDATE inbox_chats SET updated_at=CURRENT_TIMESTAMP,last_message_at=CURRENT_TIMESTAMP WHERE chat_id=?")
     .bind(chatId).run();
+  console.log("[KasuhaNET AI] Inbox reply saved", { chatId, replyLength: reply.length });
   return reply;
 }
 
@@ -91,7 +92,7 @@ export async function onRequestGet({request,env}){
     if(!(await authorize(env.DB,chatId,token))) return json({error:"Chat session is invalid or expired."},401);
     const after=url.searchParams.get("after")||"";
     const rows=await env.DB.prepare(`SELECT id,sender,message,created_at FROM inbox_messages
-      WHERE chat_id=? ORDER BY created_at DESC LIMIT 100`).bind(chatId).all();
+      WHERE chat_id=? ORDER BY created_at DESC, rowid DESC LIMIT 100`).bind(chatId).all();
     return json({messages:(rows.results||[]).reverse()});
   }catch{return json({error:"Unable to load chat messages."},500);}
 }
