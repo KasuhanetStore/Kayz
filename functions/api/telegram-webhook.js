@@ -297,6 +297,9 @@ async function handleCheckoutMessage(env, chatId, input) {
 }
 
 
+function cleanAIText(value) {
+  return String(value || "").replace(/\\\\([*_`~])/g, "$1").replace(/\\*\\*(.*?)\\*\\*/gs, "$1").replace(/[ \\t]{2,}/g, " ").trim();
+}
 function escapeTelegramHtml(value) {
   return String(value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 }
@@ -342,7 +345,7 @@ async function handleAIMessage(env,chatId,input) {
       {role:"system",content:"You are KasuhaNET's customer-facing Telegram sales and support assistant. Answer helpfully and accurately in the customer's language. Use only supplied catalogue facts. Never invent prices, discounts, delivery times, policies or stock, or claim an action was executed. Never request passwords, API keys, payment card details or one-time codes. Do not initiate or alter checkout; direct purchases to /start. For account/order-specific matters you cannot verify, direct the customer to KasuhaNET support. Keep replies concise and Telegram-friendly."},
       {role:"user",content:catalogue+"\nCustomer language: "+lang+"\nCustomer message: "+input}
     ]);
-    await send(env,chatId,escapeTelegramHtml(answer.slice(0,3800)));
+    await send(env,chatId,escapeTelegramHtml(cleanAIText(answer).slice(0,3800)));
   } catch(error) {
     const detail=safeAIDiagnostic(error);
     console.error("KasuhaNET Workers AI operator failed:",detail);
