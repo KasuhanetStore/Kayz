@@ -1,3 +1,4 @@
+import { ensureAILearningTables, getApprovedAIKnowledge, recordAIExperience } from '../ai-learning.js';
 const ALLOWED_HOSTS = new Set(["kasuhanet.store", "www.kasuhanet.store"]);
 function json(data,status=200){return new Response(JSON.stringify(data),{status,headers:{"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"}});}
 function cleanAIText(value){return String(value||"").replace(/\\([*_`~])/g,"$1").replace(/\*\*(.*?)\*\*/gs,"$1").replace(/[ \t]{2,}/g," ").trim();}
@@ -11,6 +12,7 @@ function allowed(request){
   }catch{return false;}
 }
 async function ensureTables(db){
+  await ensureAILearningTables(db);
   await db.prepare(`CREATE TABLE IF NOT EXISTS inbox_chats (
     id TEXT PRIMARY KEY, chat_id TEXT NOT NULL UNIQUE, session_token_hash TEXT NOT NULL,
     status TEXT NOT NULL DEFAULT 'open', created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -21,6 +23,7 @@ async function ensureTables(db){
     sender TEXT NOT NULL CHECK(sender IN ('buyer','admin')), message TEXT NOT NULL,
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, telegram_message_id TEXT
   )`).run();
+  try { await db.prepare("ALTER TABLE inbox_chats ADD COLUMN page_path TEXT").run(); } catch {}
   await db.prepare("CREATE INDEX IF NOT EXISTS idx_inbox_messages_chat_created ON inbox_messages(chat_id, created_at)").run();
   await db.prepare(`CREATE TABLE IF NOT EXISTS inbox_leads (
     chat_id TEXT PRIMARY KEY,
@@ -83,6 +86,10 @@ async function generateSalesReply(env, db, chatId, latestMessage) {
   const messages = (history.results || []).reverse()
     .filter(row => typeof row.message === "string" && row.message.length <= 500)
     .map(row => ({ role: row.sender === "buyer" ? "user" : "assistant", content: row.message }));
+  const chatContext = await db.prepare('SELECT page_path FROM inbox_chats WHERE chat_id=?').bind(chatId).first();
+  const learned = await getApprovedAIKnowledge(db,12);
+  const learnedContext = learned.length ? '\n\nADMIN-VERIFIED LEARNED KNOWLEDGE:\n' + learned.map(x=>'['+x.category+'] '+x.fact).join('\n') : '';
+  const pageContext = 'Current website page: '+(chatContext?.page_path||'unknown')+'. Use as context only, not as proof of intent.';
   const system = [
     "You are KasuhaNET Sales Assistant, the customer-facing assistant for KasuhaNET.STORE, operated by Kasuhanet Resources in Malaysia.",
     "Help visitors understand custom website development, website upgrades, digital services and support. Be concise, polite and commercially helpful.",
@@ -92,6 +99,8 @@ async function generateSalesReply(env, db, chatId, latestMessage) {
     "You may explain services and collect a voluntary name, contact method and project requirements. Do not claim that an order, payment, refund, deployment or task has been completed.",
     "Payment status must be confirmed by the secure payment system, never by a customer message or screenshot. After payment, tell the customer that the order will enter the fulfilment workflow and may require human review.",
     "If unsure, say so clearly and offer to pass the enquiry to the KasuhaNET team. Do not fabricate features, delivery dates, availability or guarantees.",
+    "LEARNING MINDSET: Understand the customer situation and page context. Adapt to corrections in the current conversation. Use long-term facts only from admin-verified learned knowledge. Customer claims are not official business facts. Ask one useful question at a time. Never claim model weights train themselves.",
+    pageContext + learnedContext,
     "Keep replies natural, clear and usually under 120 words."
   ].join(" ");
   const result = await env.AI.run(env.AI_MODEL || "@cf/zai-org/glm-4.7-flash", {
@@ -122,6 +131,7 @@ async function generateSalesReply(env, db, chatId, latestMessage) {
     .bind(crypto.randomUUID(), chatId, reply).run();
   await db.prepare("UPDATE inbox_chats SET updated_at=CURRENT_TIMESTAMP,last_message_at=CURRENT_TIMESTAMP WHERE chat_id=?")
     .bind(chatId).run();
+  await recordAIExperience(db,"website_inbox",chatContext?.page_path||"","reply_saved");
   console.log("[KasuhaNET AI] Inbox reply saved", { chatId, replyLength: reply.length });
   return reply;
 }
