@@ -71,12 +71,12 @@ async function generateSalesReply(env, db, chatId, latestMessage) {
     result?.output_text ??
     result?.result?.response ??
     "";
-  const reply = (typeof generatedText === "string"
+  const extractedText = typeof generatedText === "string"
     ? generatedText
     : Array.isArray(generatedText)
       ? generatedText.map(part => typeof part === "string" ? part : part?.text || "").join("")
-      : "").trim();
-  const reply = cleanAIText(generatedText).slice(0, 1800);
+      : "";
+  const reply = cleanAIText(extractedText).slice(0, 1800);
   if (!reply) {
     console.error("[KasuhaNET AI] Model returned no usable text. Response keys:", Object.keys(result || {}));
     return null;
