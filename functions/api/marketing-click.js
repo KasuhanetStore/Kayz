@@ -14,7 +14,8 @@ export async function onRequestGet({ request, env }) {
   const source = SOURCES.has(rawSource) ? rawSource : "unknown";
   const rawCampaign = requestUrl.searchParams.get("campaign") || "organic";
   const campaign = rawCampaign.toLowerCase().replace(/[^a-z0-9_-]/g, "").slice(0, 60) || "organic";
-  const validOffer = Object.prototype.hasOwnProperty.call(DESTINATIONS, offer);\n  const destinationPath = validOffer ? DESTINATIONS[offer] : DESTINATIONS.landing;
+  const validOffer = Object.prototype.hasOwnProperty.call(DESTINATIONS, offer);
+  const destinationPath = validOffer ? DESTINATIONS[offer] : DESTINATIONS.landing;
   const destination = new URL(destinationPath, requestUrl.origin);
 
   destination.searchParams.set("utm_source", source);
