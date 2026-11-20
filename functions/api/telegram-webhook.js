@@ -348,7 +348,8 @@ async function handleAILearningAdminCommand(env,chatId,input) {
   }
   if(input==='/knowledge') { const rows=await getApprovedAIKnowledge(env.DB,20); await send(env,chatId,rows.length?'<b>MEMORI RASMI KASUHANET</b>\n'+rows.map(x=>'<code>'+x.id+'</code> ['+escapeTelegramHtml(x.category)+'] '+escapeTelegramHtml(x.fact.slice(0,160))).join('\n'):'Belum ada pengetahuan tambahan.'); return true; }
   if(input==='/orders' || input.startsWith('/orders ')) {
-    const filter=(input.split(/\\s+/)[1]||'all').toLowerCase();
+    await ensureTelegramTables(env.DB);
+    const filter=(input.split(/\s+/)[1]||'all').toLowerCase();
     if(!['all','paid','pending','failed','expired'].includes(filter)) { await send(env,chatId,'Format: /orders [all|paid|pending|failed|expired]'); return true; }
     const rows=await env.DB.prepare(`SELECT * FROM (
       SELECT id,package_name,amount,currency,status,customer_name,customer_email,created_at,paid_at,'Stripe' AS gateway FROM stripe_orders
@@ -357,8 +358,8 @@ async function handleAILearningAdminCommand(env,chatId,input) {
     ) WHERE (?='all' OR status=?) ORDER BY created_at DESC LIMIT 10`).bind(filter,filter).all();
     const items=rows.results||[];
     const moneyText=n=>'RM '+(Number(n||0)/100).toFixed(2);
-    const report=items.map(o=>'<b>'+escapeTelegramHtml(o.package_name)+'</b>\\n'+moneyText(o.amount)+' | '+escapeTelegramHtml(o.status.toUpperCase())+' | '+escapeTelegramHtml(o.gateway)+'\\n'+escapeTelegramHtml(o.customer_name)+' | '+escapeTelegramHtml(o.customer_email)+'\\nID: <code>'+escapeTelegramHtml(o.id)+'</code>\\nTarikh: '+escapeTelegramHtml(o.created_at)+(o.paid_at?'\\nBayaran: '+escapeTelegramHtml(o.paid_at):'')).join('\\n\\n');
-    await send(env,chatId,items.length?'<b>LAPORAN PESANAN TERKINI</b>\\n'+report:'Tiada pesanan untuk status tersebut.');
+    const report=items.map(o=>'<b>'+escapeTelegramHtml(o.package_name)+'</b>\n'+moneyText(o.amount)+' | '+escapeTelegramHtml(o.status.toUpperCase())+' | '+escapeTelegramHtml(o.gateway)+'\n'+escapeTelegramHtml(o.customer_name)+' | '+escapeTelegramHtml(o.customer_email)+'\nID: <code>'+escapeTelegramHtml(o.id)+'</code>\nTarikh: '+escapeTelegramHtml(o.created_at)+(o.paid_at?'\nBayaran: '+escapeTelegramHtml(o.paid_at):'')).join('\n\n');
+    await send(env,chatId,items.length?'<b>LAPORAN PESANAN TERKINI</b>\n'+report:'Tiada pesanan untuk status tersebut.');
     return true;
   }
   if(input.startsWith('/forget ')) { const id=Number(input.slice(8).trim()); const ok=Number.isInteger(id)&&id>0?await removeApprovedAIKnowledge(env.DB,id):false; await send(env,chatId,ok?'Memori ID '+id+' dipadam.':'ID tidak sah atau tidak ditemui.'); return true; }
