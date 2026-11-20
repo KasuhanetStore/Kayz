@@ -14,7 +14,7 @@ If AI is unavailable or errors, the customer's message is still stored and the e
 4. Save the binding and redeploy the Pages project.
 5. Optionally add a Pages environment variable named `AI_MODEL` to override the default model identifier used by the function.
 
-The existing D1 binding must remain named `DB`. Do not replace or rename the current D1 database or Telegram secrets.
+The existing D1 binding must remain named `DB`. Do not replace or rename the current D1 database or Telegram secrets. The default model is `@cf/zai-org/glm-4.7-flash`, a multilingual dialogue model. Cloudflare currently lists a 10,000-Neuron daily free allocation for Workers AI; usage above that allocation requires the Workers Paid plan and is billed. Check the current account usage and pricing before enabling customer traffic.
 
 ## Behaviour and safety
 
