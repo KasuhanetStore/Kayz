@@ -336,6 +336,41 @@ async function callKasuhaAI(env, messages) {
   if (!answer) throw new Error("Cloudflare Workers AI returned an empty response");
   return answer;
 }
+async function fetchOrganicSignals(db) {
+  await db.prepare(`CREATE TABLE IF NOT EXISTS ai_market_signals (
+    id TEXT PRIMARY KEY, source TEXT NOT NULL, topic TEXT NOT NULL,
+    title TEXT NOT NULL, url TEXT, summary TEXT, published_at TEXT,
+    fetched_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(source,topic,title)
+  )`).run();
+  const feeds=[
+    {source:'Google Trends Malaysia',topic:'trending searches Malaysia',url:'https://trends.google.com/trending/rss?geo=MY'},
+    {source:'Google News Malaysia',topic:'SME website digital presence',url:'https://news.google.com/rss/search?q='+encodeURIComponent('Malaysia SME website digital presence OR small business online')+'&hl=en-MY&gl=MY&ceid=MY:en'},
+    {source:'Google News Malaysia',topic:'website design and SEO demand',url:'https://news.google.com/rss/search?q='+encodeURIComponent('Malaysia website design SEO small business ecommerce')+'&hl=en-MY&gl=MY&ceid=MY:en'},
+    {source:'Google News Malaysia',topic:'digital selling and online business',url:'https://news.google.com/rss/search?q='+encodeURIComponent('Malaysia digital marketing social commerce small business')+'&hl=en-MY&gl=MY&ceid=MY:en'}
+  ];
+  const decode=s=>String(s||'').replace(/<!\\[CDATA\\[([\\s\\S]*?)\\]\\]>/g,'$1').replace(/<[^>]*>/g,' ').replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;|&apos;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&#(\\d+);/g,(_,n)=>String.fromCodePoint(Number(n))).replace(/&#x([0-9a-f]+);/gi,(_,n)=>String.fromCodePoint(parseInt(n,16))).replace(/\\s+/g,' ').trim();
+  const extract=(xml,tag)=>{const m=xml.match(new RegExp('<'+tag+'(?:\\s[^>]*)?>([\\s\\S]*?)</'+tag+'>','i'));return m?decode(m[1]):'';};
+  const collected=[];
+  const responses=await Promise.all(feeds.map(async feed=>{
+    try {
+      const res=await fetch(feed.url,{headers:{'User-Agent':'KasuhaNET-MR-JAY/1.0','Accept':'application/rss+xml, application/xml, text/xml'}});
+      if(!res.ok) return [];
+      const xml=await res.text();
+      const items=[...xml.matchAll(/<item(?:\\s[^>]*)?>([\\s\\S]*?)</item>/gi)].slice(0,8);
+      return items.map(m=>({source:feed.source,topic:feed.topic,title:extract(m[1],'title').slice(0,240),url:extract(m[1],'link').slice(0,1000),summary:extract(m[1],'description').slice(0,600),published_at:extract(m[1],'pubDate').slice(0,100)})).filter(x=>x.title);
+    } catch { return []; }
+  }));
+  for(const group of responses) for(const item of group) collected.push(item);
+  for(const item of collected) {
+    await db.prepare(`INSERT INTO ai_market_signals(id,source,topic,title,url,summary,published_at)
+      VALUES(?,?,?,?,?,?,?) ON CONFLICT(source,topic,title) DO UPDATE SET
+      url=excluded.url,summary=excluded.summary,published_at=excluded.published_at,fetched_at=CURRENT_TIMESTAMP`)
+      .bind(crypto.randomUUID(),item.source,item.topic,item.title,item.url,item.summary,item.published_at).run();
+  }
+  return collected;
+}
+
 async function handleAILearningAdminCommand(env,chatId,input) {
   if(!env.TELEGRAM_ADMIN_CHAT_ID||String(chatId)!==String(env.TELEGRAM_ADMIN_CHAT_ID)) return false;
   if(!/^\/(teach|knowledge|forget|orders|growth|promo)(\s|$)/i.test(input)) return false;
@@ -364,9 +399,18 @@ async function handleAILearningAdminCommand(env,chatId,input) {
     await send(env,chatId,items.length?'<b>LAPORAN PESANAN TERKINI</b>\n'+report:'Tiada pesanan untuk status tersebut.');
     return true;
   }
+  if(input==='/research' || input.startsWith('/research ')) {
+    const signals=await fetchOrganicSignals(env.DB);
+    if(!signals.length) { await send(env,chatId,'MR.JAY tidak berjaya mengambil RSS semasa. Cuba lagi kemudian. Ini bukan data carian Google atau angka search volume.'); return true; }
+    const prompt="Anda MR.JAY (STAFF), penganalisis peluang organik KasuhaNET. Analisis isyarat RSS semasa Malaysia berikut: "+JSON.stringify(signals.slice(0,28))+". Fokus perniagaan KasuhaNET: website untuk peniaga kecil, landing page RM299++, Premium Standard RM900++, custom web workshop. Beri 5 topik kandungan yang boleh menarik carian/klik relevan, 3 idea video pendek, 5 frasa kata kunci sebagai HIPOTESIS untuk disahkan di Google Trends/Search Console, dan pelan tindakan 3 hari. Bezakan tajuk berita/trending daripada bukti search volume. Sertakan sumber URL yang diberi dan tarikh jika ada. Jangan reka statistik, trend volume, atau fakta. Jangan cadang spam atau iklan berbayar.";
+    const answer=await callKasuhaAI(env,[{role:'system',content:'Analisis sumber web secara kritikal. Jawab BM. Petik sumber URL hanya daripada data yang dibekalkan dan jangan buat dakwaan melebihi bukti.'},{role:'user',content:prompt}]);
+    await send(env,chatId,'<b>MR.JAY | LIVE MARKET RESEARCH</b>\\n'+escapeTelegramHtml(cleanAIText(answer).slice(0,3900)));
+    return true;
+  }
   if(input==='/growth' || input.startsWith('/growth ')) {
     const focus=input.slice(7).trim().slice(0,180)||'Semua servis utama KasuhaNET';
     let snapshot={period:'30 hari',paid_orders:0,gross_paid_rm:0,pending_orders:0,failed_orders:0,new_leads:0};
+    const marketSignals=await fetchOrganicSignals(env.DB);
     try {
       const rows=await env.DB.prepare(`SELECT status,COUNT(*) AS total,COALESCE(SUM(CASE WHEN status='paid' THEN amount ELSE 0 END),0) AS paid_amount FROM (
         SELECT status,amount,created_at FROM stripe_orders WHERE created_at>=datetime('now','-30 days')
@@ -380,7 +424,7 @@ async function handleAILearningAdminCommand(env,chatId,input) {
       }
     } catch {}
     try { const lead=await env.DB.prepare("SELECT COUNT(*) AS total FROM inbox_leads WHERE created_at>=datetime('now','-30 days')").first(); snapshot.new_leads=Number(lead?.total||0); } catch {}
-    const prompt="Anda MR.JAY (STAFF), penasihat pertumbuhan jualan KasuhaNET di Malaysia. Sediakan pelan tindakan 7 hari yang realistik untuk fokus: "+focus+". Data dalaman 30 hari: "+JSON.stringify(snapshot)+". Produk diketahui: Landing Page RM299++, Premium Standard RM900++, Custom Web Workshop (skop dan harga selepas penilaian). Objektif: dapatkan prospek dan pertanyaan berkualiti secara organik, naikkan kesedaran jenama KasuhaNET, dan tukarkan pertanyaan kepada jualan. Susun: (1) peluang/hipotesis pelanggan sasaran, jangan dakwa ia fakta pasaran; (2) saluran percuma yang sesuai seperti kandungan Facebook Page, TikTok video pendek, WhatsApp Status, Telegram dan SEO artikel di laman sendiri; (3) jadual harian 7 hari dengan tugasan kecil yang boleh dibuat melalui telefon; (4) CTA yang jelas ke https://kasuhanet.store dan halaman servis berkaitan jika diketahui; (5) metrik untuk direkod: reach/views, klik, pertanyaan, lead layak, quotation, paid order dan hasil RM; (6) eksperimen minggu depan berdasarkan hasil. Beri idea yang khusus kepada servis web untuk peniaga kecil/usahawan, bukan nasihat umum. Jangan cadang iklan berbayar, spam group/DM, beli followers, fake review atau dakwaan palsu. Jangan reka data jualan. Terangkan data dalaman ini bukan bukti saiz pasaran. Tiada capaian carian web langsung dalam fungsi ini, jadi senaraikan perkara yang perlu disahkan secara manual melalui Google Trends/Search Console/platform insight dan jangan berpura-pura sudah membuat carian.";
+    const prompt="Anda MR.JAY (STAFF), penasihat pertumbuhan jualan KasuhaNET di Malaysia. Sediakan pelan tindakan 7 hari yang realistik untuk fokus: "+focus+". Data dalaman 30 hari: "+JSON.stringify(snapshot)+". Isyarat penyelidikan web semasa (tajuk RSS, bukan angka search volume): "+JSON.stringify(marketSignals.slice(0,24))+". Produk diketahui: Landing Page RM299++, Premium Standard RM900++, Custom Web Workshop (skop dan harga selepas penilaian). Objektif: dapatkan prospek dan pertanyaan berkualiti secara organik, naikkan kesedaran jenama KasuhaNET, dan tukarkan pertanyaan kepada jualan. Susun: (1) peluang/hipotesis pelanggan sasaran, jangan dakwa ia fakta pasaran; (2) saluran percuma yang sesuai seperti kandungan Facebook Page, TikTok video pendek, WhatsApp Status, Telegram dan SEO artikel di laman sendiri; (3) jadual harian 7 hari dengan tugasan kecil yang boleh dibuat melalui telefon; (4) CTA yang jelas ke https://kasuhanet.store dan halaman servis berkaitan jika diketahui; (5) metrik untuk direkod: reach/views, klik, pertanyaan, lead layak, quotation, paid order dan hasil RM; (6) eksperimen minggu depan berdasarkan hasil. Beri idea yang khusus kepada servis web untuk peniaga kecil/usahawan, bukan nasihat umum. Jangan cadang iklan berbayar, spam group/DM, beli followers, fake review atau dakwaan palsu. Jangan reka data jualan. Terangkan data dalaman ini bukan bukti saiz pasaran. Tiada capaian carian web langsung dalam fungsi ini, jadi senaraikan perkara yang perlu disahkan secara manual melalui Google Trends/Search Console/platform insight dan jangan berpura-pura sudah membuat carian.";
     await send(env,chatId,'<b>MR.JAY | PELAN SALES GROWTH</b>\nSedang susun pelan berdasarkan rekod dalaman 30 hari dan strategi organik...');
     const answer=await callKasuhaAI(env,[{role:'system',content:'Anda penasihat pemasaran digital yang teliti. Jawab Bahasa Melayu, ringkas tetapi boleh terus dibuat. Jangan cipta statistik atau dakwaan telah membuat carian.'},{role:'user',content:prompt}]);
     await send(env,chatId,escapeTelegramHtml(cleanAIText(answer).slice(0,3800)));
