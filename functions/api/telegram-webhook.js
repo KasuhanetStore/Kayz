@@ -332,19 +332,19 @@ async function callKasuhaAI(env, messages) {
 async function handleAIMessage(env,chatId,input) {
   const lang=await getLanguage(env.DB,chatId);
   try {
-    const catalogue="KasuhaNET packages (MYR):\\n"+
-      Object.entries(PACKAGES).map(([id,item])=>id+": "+item.name+" - "+money(item.amount)).join("\\n")+
-      "\\n\\nKasuhaNET services (MYR):\\n"+
-      Object.entries(SERVICES).map(([id,item])=>id+": "+item.name+" - "+money(item.amount)).join("\\n");
+    const catalogue="KasuhaNET packages (MYR):\n"+
+      Object.entries(PACKAGES).map(([id,item])=>id+": "+item.name+" - "+money(item.amount)).join("\n")+
+      "\n\nKasuhaNET services (MYR):\n"+
+      Object.entries(SERVICES).map(([id,item])=>id+": "+item.name+" - "+money(item.amount)).join("\n");
     const answer=await callKasuhaAI(env,[
       {role:"system",content:"You are KasuhaNET's customer-facing Telegram sales and support assistant. Answer helpfully and accurately in the customer's language. Use only supplied catalogue facts. Never invent prices, discounts, delivery times, policies or stock, or claim an action was executed. Never request passwords, API keys, payment card details or one-time codes. Do not initiate or alter checkout; direct purchases to /start. For account/order-specific matters you cannot verify, direct the customer to KasuhaNET support. Keep replies concise and Telegram-friendly."},
-      {role:"user",content:catalogue+"\\nCustomer language: "+lang+"\\nCustomer message: "+input}
+      {role:"user",content:catalogue+"\nCustomer language: "+lang+"\nCustomer message: "+input}
     ]);
     await send(env,chatId,escapeTelegramHtml(answer.slice(0,3800)));
   } catch(error) {
     const detail=safeAIDiagnostic(error);
     console.error("KasuhaNET Workers AI operator failed:",detail);
-    await send(env,chatId,"<b>AI KasuhaNET tidak dapat menjawab buat sementara waktu.</b>\\nSila cuba lagi sebentar atau gunakan /start untuk menu kedai.");
+    await send(env,chatId,"<b>AI KasuhaNET tidak dapat menjawab buat sementara waktu.</b>\nSila cuba lagi sebentar atau gunakan /start untuk menu kedai.");
   }
 }
 export async function onRequestPost({ request, env }) {
