@@ -39,7 +39,7 @@ function extractLeadData(message) {
   const phoneMatch = text.match(/(?:\+?60|0)[\d\s().-]{7,18}/);
   const phoneDigits = phoneMatch ? phoneMatch[0].replace(/\D/g, "") : "";
   const phone = phoneDigits.length >= 9 && phoneDigits.length <= 15 ? phoneMatch[0].trim() : null;
-  const nameMatch = text.match(/(?:nama saya|nama|my name is|name is)\s*[:,-]?\s*([A-Za-zÀ-ÿ][A-Za-zÀ-ÿ'-]*(?:\s+[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ'-]*){0,2})(?=[,.;\n]|$)/i);
+  const nameMatch = text.match(/(?:nama saya|nama(?=\\s*[:,-])|my name is|name is)\s*[:,-]?\s*([A-Za-zÀ-ÿ][A-Za-zÀ-ÿ'-]*(?:\s+[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ'-]*){0,2})(?=[,.;\n]|$)/i);
   const customerName = nameMatch ? nameMatch[1].trim().replace(/[.,;:!?]+$/, "").slice(0, 80) : null;
   const intent = /\b(website|web site|e-?commerce|online store|landing page|booking|portal|redesign|domain|hosting|business website)\b|\b(laman web|kedai online|tempahan|sistem bayaran|pembayaran|perniagaan|bisnes|ubah suai website|bina website|buat website|web custom)\b/i.test(text);
   const projectNeed = intent && text.length >= 12 ? text.slice(0, 500) : null;
