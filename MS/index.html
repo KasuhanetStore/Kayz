@@ -818,6 +818,21 @@
 @media(prefers-reduced-motion:reduce){#knCheckout::before,#knCheckout .kn-checkout-panel,#knCheckout.kn-particle-active .kn-checkout-panel{animation:none!important}#knCheckout .kn-checkout-particle-canvas{display:none!important}}
 </style>
 
+
+  <!-- Metricool website tracking -->
+  <script>
+    function loadScript(a){
+      var b=document.getElementsByTagName("head")[0],c=document.createElement("script");
+      c.type="text/javascript";
+      c.src="https://tracker.metricool.com/resources/be.js";
+      c.onreadystatechange=a;
+      c.onload=a;
+      b.appendChild(c);
+    }
+    loadScript(function(){
+      beTracker.t({hash:"bb61254b52574c67ef12fcc0d16132c2"});
+    });
+  </script>
 </head>
 <body>
 <style>
