@@ -33,7 +33,7 @@ async function ensureTable(db){
   )`).run();
 }
 
-async function verifyWorkshopRecaptcha(token, env) {
+async function verifyRecaptcha(token, env, expectedAction) {
   if (!env.RECAPTCHA_SECRET_KEY || typeof token !== "string" || token.length > 4096) return false;
   try {
     const body = new URLSearchParams({
@@ -48,7 +48,7 @@ async function verifyWorkshopRecaptcha(token, env) {
     if (!response.ok) return false;
     const result = await response.json();
     return result.success === true &&
-      result.action === "workshop_checkout" &&
+      result.action === expectedAction &&
       ALLOWED_HOSTS.has(result.hostname) &&
       typeof result.score === "number" &&
       result.score >= 0.5;
@@ -84,7 +84,7 @@ export async function onRequestPost({request,env}){
   if(email.length>254 || !/^[^\s@]+@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z]{2,}$/.test(email)) return json({error:"Please enter a valid email address with a complete domain."},400);
   const phoneDigits=phone.replace(/\D/g,"");
   if(!/^[+0-9().\s-]+$/.test(phone) || phoneDigits.length<9 || phoneDigits.length>15) return json({error:"Please enter a phone number containing 9 to 15 digits."},400);
-  if(isWorkshop && !(await verifyWorkshopRecaptcha(input.recaptchaToken,env))) {
+  if(!(await verifyRecaptcha(input.recaptchaToken,env,isWorkshop?"workshop_checkout":"checkout"))) {
     return json({error:"Pengesahan keselamatan gagal. Sila muat semula halaman dan cuba lagi."},403);
   }
   const id=crypto.randomUUID();
