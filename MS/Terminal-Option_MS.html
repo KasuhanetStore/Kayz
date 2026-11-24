@@ -145,22 +145,28 @@ footer > * { position: relative; z-index: 1; }
 .kn-template-header .nav-lang a:hover{border-color:#ff304f}
 .kn-template-header .btn-cyber-animated{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 16px;border:1px solid rgba(255,113,135,.55);border-radius:10px;color:#fff!important;background:linear-gradient(120deg,#a90025,#ff304f,#ff7a35);font-size:13px;font-weight:900;white-space:nowrap}
 .kn-template-header .menu-toggle{display:none;background:transparent;border:1px solid rgba(255,255,255,.2);color:#f6f7fb;font-size:20px;padding:8px 12px;border-radius:8px;cursor:pointer}
-.kn-template-header .dropdown{position:relative}
-.kn-template-header .dropdown>a{cursor:pointer}
-.kn-template-header .dropdown-content{display:none;position:absolute;top:100%;left:0;min-width:190px;padding:8px;background:#10131c;border:1px solid rgba(255,255,255,.14);border-radius:10px;box-shadow:0 14px 30px rgba(0,0,0,.45)}
-.kn-template-header .dropdown-content.show{display:block}
-.kn-template-header .dropdown-content a{display:block;padding:9px 10px;border-radius:7px;white-space:nowrap}
-.kn-template-header .dropdown-content a:hover{background:rgba(255,48,79,.12)}
+.kn-template-header .kn-nav-dropdown{position:relative;flex:0 0 auto}
+.kn-template-header .kn-nav-dropdown>summary{display:flex;align-items:center;gap:9px;list-style:none;cursor:pointer;color:#f1f4fa;font-size:13px;font-weight:800;letter-spacing:.7px;padding:10px 13px;border:1px solid rgba(1,172,210,.28);border-radius:9px;background:rgba(1,172,210,.06);transition:all .2s ease}
+.kn-template-header .kn-nav-dropdown>summary::-webkit-details-marker{display:none}
+.kn-template-header .kn-nav-dropdown>summary::after{content:"";width:7px;height:7px;border-right:2px solid #01acd2;border-bottom:2px solid #01acd2;transform:rotate(45deg) translateY(-2px);transition:transform .2s ease}
+.kn-template-header .kn-nav-dropdown[open]>summary{border-color:rgba(1,172,210,.7);background:rgba(1,172,210,.13);color:#fff}
+.kn-template-header .kn-nav-dropdown[open]>summary::after{transform:rotate(225deg) translate(-1px,-1px)}
+.kn-template-header .kn-nav-menu{display:none;position:absolute;top:calc(100% + 10px);left:0;z-index:120;min-width:220px;padding:8px;background:rgba(12,16,25,.98);border:1px solid rgba(1,172,210,.35);border-radius:12px;box-shadow:0 16px 36px rgba(0,0,0,.55),0 0 18px rgba(1,172,210,.08);backdrop-filter:blur(14px)}
+.kn-template-header .kn-nav-dropdown[open]>.kn-nav-menu{display:grid;gap:3px}
+.kn-template-header .kn-nav-menu a{display:flex;align-items:center;min-height:39px;padding:9px 12px;border-radius:8px;color:#d8e1ed;text-decoration:none;font-size:12px;font-weight:750;letter-spacing:.45px;white-space:nowrap;transition:background .18s ease,color .18s ease,padding .18s ease}
+.kn-template-header .kn-nav-menu a:hover{color:#fff;background:rgba(1,172,210,.13);padding-left:16px}
 @media(max-width:850px){
  .kn-template-header .nav{min-height:70px;padding:10px 0;gap:12px}
  .kn-template-header .menu-toggle{display:inline-flex;align-items:center;justify-content:center}
  .kn-template-header .nav-links{display:none;position:absolute;top:70px;left:calc((min(1120px,100vw - 36px) - 100vw)/2);width:100vw;box-sizing:border-box;flex-direction:column;align-items:stretch;gap:14px;padding:20px 24px;background:rgba(8,9,13,.98);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.12);box-shadow:0 15px 30px rgba(0,0,0,.6)}
  .kn-template-header .nav-links.active{display:flex}
- .kn-template-header .nav-links>a:not(.btn-cyber-animated),.kn-template-header .nav-links>.dropdown{display:block;width:100%;padding:7px 0}
+ .kn-template-header .nav-links>a:not(.btn-cyber-animated),.kn-template-header .nav-links>.kn-nav-dropdown{display:block;width:100%;padding:4px 0}
+ .kn-template-header .kn-nav-dropdown>summary{width:100%;box-sizing:border-box;justify-content:space-between;padding:12px 14px}
+ .kn-template-header .kn-nav-menu{position:static;width:100%;min-width:0;box-sizing:border-box;margin-top:8px;padding:7px;background:rgba(1,172,210,.045);box-shadow:none}
+ .kn-template-header .kn-nav-menu a{white-space:normal}
  .kn-template-header .nav-lang{width:100%}
  .kn-template-header .nav-lang a{flex:1}
  .kn-template-header .btn-cyber-animated{width:100%;box-sizing:border-box}
- .kn-template-header .dropdown-content{position:static;width:100%;box-sizing:border-box;margin-top:7px}
 }
 @media(max-width:420px){.kn-template-header .container{width:calc(100% - 28px)}.kn-template-header .brand-logo{max-width:160px;max-height:56px}}
 </style>
