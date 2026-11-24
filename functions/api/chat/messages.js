@@ -254,7 +254,6 @@ export async function onRequestPost({request,env}){
     // Notify the support admin in Telegram. Attachments are delivered as native Telegram media.
     // The website message remains saved even
     // if Telegram is temporarily unavailable.
-    let telegramNotified=false;
     if(env.TELEGRAM_BOT_TOKEN && env.TELEGRAM_ADMIN_CHAT_ID && !telegramNotified){
       try{
         const safeMessage=(attachment?(attachment.kind==="image"?"[Customer sent an image]":attachment.kind==="voice"?"[Customer sent a voice message]":"[Customer shared location]"):message).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
