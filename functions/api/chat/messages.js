@@ -149,7 +149,7 @@ export async function onRequestGet({request,env}){
     const after=url.searchParams.get("after")||"";
     const rows=await env.DB.prepare(`SELECT id,sender,message,created_at FROM inbox_messages
       WHERE chat_id=? ORDER BY created_at DESC, rowid DESC LIMIT 100`).bind(chatId).all();
-    const chat=await env.DB.prepare("SELECT handoff_status FROM inbox_chats WHERE chat_id=?").bind(chatId).first();
+    const chat=await env.DB.prepare("undefined").bind(chatId).first();
     return json({messages:(rows.results||[]).reverse(),handoffStatus:chat?.handoff_status||"ai"});
   }catch{return json({error:"Unable to load chat messages."},500);}
 }
@@ -203,15 +203,16 @@ export async function onRequestPost({request,env}){
     const liveAgentRequest = !attachment && (
       /\b(live\s*agent|human\s*agent|real\s*person|customer\s*service|support\s*agent|operator|speak\s+to\s+(a\s+)?(person|human|agent)|talk\s+to\s+(a\s+)?(person|human|agent))\b/i.test(message) ||
       /\b(ejen\s+manusia|pegawai\s+(khidmat\s+pelanggan|support)|khidmat\s+pelanggan)\b/i.test(message) ||
-      /\b(nak|mahu|ingin|boleh)\s+(sambung(kan)?|bercakap|cakap|chat)\s+(saya\s+)?(dengan|ke)\s+(live\s+)?agent\b/i.test(message)
+      /\b(nak|mahu|ingin|boleh|tolong)\s+(sambung(kan)?|bercakap|cakap|chat)?\s*(saya\s+)?(dengan|ke)?\s*(live\s+)?agent\b/i.test(message)
     );
     let handoff=await env.DB.prepare("SELECT handoff_status FROM inbox_chats WHERE chat_id=?").bind(chatId).first();
     let liveAgentAutoRequested=false;
     if(liveAgentRequest && (!handoff?.handoff_status || handoff.handoff_status==="ai")){
       await env.DB.prepare("UPDATE inbox_chats SET handoff_status='requested',updated_at=CURRENT_TIMESTAMP WHERE chat_id=?").bind(chatId).run();
-      const notice=/\b(nak|mahu|ingin|boleh|saya|tolong|sambung|ejen|pegawai)\b/i.test(message)
+      const notice=String(handoff?.page_path||"").toLowerCase().includes("/ms/")
         ? "Permintaan Live Agent diterima. Pasukan KasuhaNET akan menyambung perbualan ini melalui Live Chat sebaik sahaja tersedia."
         : "Your Live Agent request has been received. The KasuhaNET team will join this chat as soon as an agent is available.";
+
       await env.DB.prepare("INSERT INTO inbox_messages (id,chat_id,sender,message) VALUES (?,?,'admin',?)")
         .bind(crypto.randomUUID(),chatId,notice).run();
       handoff={...handoff,handoff_status:"requested"};
