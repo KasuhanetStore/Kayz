@@ -149,7 +149,7 @@ export async function onRequestGet({request,env}){
     const after=url.searchParams.get("after")||"";
     const rows=await env.DB.prepare(`SELECT id,sender,message,created_at FROM inbox_messages
       WHERE chat_id=? ORDER BY created_at DESC, rowid DESC LIMIT 100`).bind(chatId).all();
-    const chat=await env.DB.prepare("undefined").bind(chatId).first();
+    const chat=await env.DB.prepare("SELECT handoff_status FROM inbox_chats WHERE chat_id=?").bind(chatId).first();
     return json({messages:(rows.results||[]).reverse(),handoffStatus:chat?.handoff_status||"ai"});
   }catch{return json({error:"Unable to load chat messages."},500);}
 }
