@@ -63,8 +63,6 @@ async function ensureInboxTables(db) {
     admin_chat_id TEXT PRIMARY KEY, target_chat_id TEXT NOT NULL,
     updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
   )`).run();
-  try { await db.prepare("ALTER TABLE inbox_chats ADD COLUMN handoff_status TEXT NOT NULL DEFAULT 'ai'").run(); } catch {}
-  try { await db.prepare("ALTER TABLE inbox_chats ADD COLUMN handoff_notified_at TEXT").run(); } catch {}
 }
 async function handleInboxAdminMessage(env, adminChatId, input) {
   if(!env.TELEGRAM_ADMIN_CHAT_ID || String(adminChatId)!==String(env.TELEGRAM_ADMIN_CHAT_ID)) return false;
@@ -561,20 +559,7 @@ export async function onRequestPost({ request, env }) {
       const action = callback.data;
       await telegram(env, "answerCallbackQuery", { callback_query_id: callback.id });
 
-      if (action.startsWith("inbox:resume:")) {
-        if(!env.TELEGRAM_ADMIN_CHAT_ID || String(chatId)!==String(env.TELEGRAM_ADMIN_CHAT_ID)) {
-          await send(env,chatId,"You are not authorised to manage KasuhaNET Inbox.");
-        } else {
-          const targetChatId=action.slice("inbox:resume:".length);
-          if(!/^KN-[A-F0-9]{10}$/.test(targetChatId)) await send(env,chatId,"Invalid Inbox Chat ID.");
-          else {
-            await ensureInboxTables(env.DB);
-            await env.DB.prepare("UPDATE inbox_chats SET handoff_status='ai',handoff_notified_at=NULL,updated_at=CURRENT_TIMESTAMP WHERE chat_id=? AND status='open'").bind(targetChatId).run();
-            await env.DB.prepare("DELETE FROM inbox_admin_sessions WHERE admin_chat_id=? AND target_chat_id=?").bind(String(chatId),targetChatId).run();
-            await send(env,chatId,"<b>AI MODE RESTORED</b>\n\nChat <code>"+targetChatId+"</code> has been returned to MR.JAY.");
-          }
-        }
-      } else if (action.startsWith("inbox:reply:")) {
+      if (action.startsWith("inbox:reply:")) {
         if(!env.TELEGRAM_ADMIN_CHAT_ID || String(chatId)!==String(env.TELEGRAM_ADMIN_CHAT_ID)) {
           await send(env,chatId,"You are not authorised to reply to KasuhaNET Inbox messages.");
         } else {
@@ -587,18 +572,11 @@ export async function onRequestPost({ request, env }) {
             if(!target || target.status!=="open") {
               await send(env,chatId,"This customer chat is unavailable or closed.");
             } else {
-              const targetChat=await env.DB.prepare("SELECT page_path FROM inbox_chats WHERE chat_id=?").bind(targetChatId).first();
-              await env.DB.prepare("UPDATE inbox_chats SET handoff_status='human',updated_at=CURRENT_TIMESTAMP WHERE chat_id=?").bind(targetChatId).run();
-              const connectedNotice=String(targetChat?.page_path||"").toLowerCase().includes("/ms/")
-                ? "Anda telah disambungkan kepada Live Agent kami. Sila teruskan perbualan di sini."
-                : "You have been connected to our Live Agent. Please continue the conversation here.";
-              await env.DB.prepare("INSERT INTO inbox_messages (id,chat_id,sender,message) VALUES (?,?,'admin',?)")
-                .bind(crypto.randomUUID(),targetChatId,connectedNotice).run();
               await env.DB.prepare(`INSERT INTO inbox_admin_sessions(admin_chat_id,target_chat_id)
                 VALUES(?,?) ON CONFLICT(admin_chat_id) DO UPDATE SET
                 target_chat_id=excluded.target_chat_id,updated_at=CURRENT_TIMESTAMP`)
                 .bind(String(chatId),targetChatId).run();
-              await send(env,chatId,"<b>LIVE AGENT MODE ENABLED</b>\n\n<b>CHAT ID</b>\n<code>"+targetChatId+"</code>\n\nSend your reply as your next Telegram message. AI replies are paused. Use /cancelreply to cancel typing mode, or finish the handover with the button below.",[[{text:"Return chat to MR.JAY (AI)",callback_data:"inbox:resume:"+targetChatId}]]);
+              await send(env,chatId,"<b>REPLY MODE ENABLED</b>\n\n<b>CHAT ID</b>\n<code>"+targetChatId+"</code>\n\nSend your reply as your next Telegram message. Use /cancelreply to cancel.");
             }
           }
         }
