@@ -151,7 +151,8 @@ export async function onRequestGet({request,env}){
     return json({messages:(rows.results||[]).reverse()});
   }catch{return json({error:"Unable to load chat messages."},500);}
 }
-export async function onRequestPost({request,env}){
+export async function onRequestPost(context){
+  const {request,env}=context;
   if(!allowed(request)) return json({error:"Request origin is not allowed."},403);
   if(!env.DB) return json({error:"D1 database binding DB is not configured."},503);
   let input;
@@ -177,63 +178,70 @@ export async function onRequestPost({request,env}){
     await env.DB.prepare("UPDATE inbox_chats SET updated_at=CURRENT_TIMESTAMP,last_message_at=CURRENT_TIMESTAMP WHERE chat_id=?").bind(chatId).run();
     const capturedLead = attachment ? null : await captureLead(env.DB, chatId, message);
 
-    // Generate an automatic sales/support reply when the Cloudflare AI binding is enabled.
-    // AI failure never blocks delivery of the original customer message to the human inbox.
-    let aiReplied = false;
-    if (!attachment) {
-      try {
-        aiReplied = Boolean(await generateSalesReply(env, env.DB, chatId, message));
-      } catch (error) {
-        console.error("[KasuhaNET AI] Reply generation failed:", error?.message || String(error));
-        aiReplied = false;
+    // Keep the customer-facing request fast: AI generation and Telegram delivery run after the message is saved.
+    const backgroundTask = (async () => {
+      // Generate an automatic sales/support reply when the Cloudflare AI binding is enabled.
+      // AI failure never blocks delivery of the original customer message to the human inbox.
+      let aiReplied = false;
+      if (!attachment) {
+        try {
+          aiReplied = Boolean(await generateSalesReply(env, env.DB, chatId, message));
+        } catch (error) {
+          console.error("[KasuhaNET AI] Reply generation failed:", error?.message || String(error));
+          aiReplied = false;
+        }
       }
-    }
 
-    // Notify the support admin in Telegram. Attachments are delivered as native Telegram media.
-    // The website message remains saved even
-    // if Telegram is temporarily unavailable.
-    let telegramNotified=false;
-    if(env.TELEGRAM_BOT_TOKEN && env.TELEGRAM_ADMIN_CHAT_ID){
-      try{
-        const safeMessage=(attachment?(attachment.kind==="image"?"[Customer sent an image]":attachment.kind==="voice"?"[Customer sent a voice message]":"[Customer shared location]"):message).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-        let method="sendMessage", body;
-        if(attachment?.kind==="location"){method="sendLocation";body={chat_id:env.TELEGRAM_ADMIN_CHAT_ID,latitude:attachment.lat,longitude:attachment.lng,reply_markup:{inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}};}
-        else if(attachment?.kind==="image"||attachment?.kind==="voice"){
-          const parts=attachment.data.split(",",2),mime=parts[0].match(/^data:([^;]+)/)?.[1]||"application/octet-stream";
-          const bytes=Uint8Array.from(atob(parts[1]),c=>c.charCodeAt(0));
-          const formData=new FormData();formData.append("chat_id",env.TELEGRAM_ADMIN_CHAT_ID);formData.append("reply_markup",JSON.stringify({inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}));
-          if(attachment.kind==="image"){
-            formData.append("photo",new Blob([bytes],{type:mime}),"customer-image.jpg");
-            method="sendPhoto";
-          }else{
-            const voiceFormat=/^(audio\/ogg|audio\/mpeg|audio\/mp4|audio\/x-m4a)/i.test(mime);
-            formData.append(voiceFormat?"voice":"document",new Blob([bytes],{type:mime}),voiceFormat?"customer-voice."+(/ogg/i.test(mime)?"ogg":/mpeg/i.test(mime)?"mp3":"m4a"):"customer-voice.webm");
-            method=voiceFormat?"sendVoice":"sendDocument";
+      // Notify the support admin in Telegram. Attachments are delivered as native Telegram media.
+      // The website message remains saved even
+      // if Telegram is temporarily unavailable.
+      let telegramNotified=false;
+      if(env.TELEGRAM_BOT_TOKEN && env.TELEGRAM_ADMIN_CHAT_ID){
+        try{
+          const safeMessage=(attachment?(attachment.kind==="image"?"[Customer sent an image]":attachment.kind==="voice"?"[Customer sent a voice message]":"[Customer shared location]"):message).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+          let method="sendMessage", body;
+          if(attachment?.kind==="location"){method="sendLocation";body={chat_id:env.TELEGRAM_ADMIN_CHAT_ID,latitude:attachment.lat,longitude:attachment.lng,reply_markup:{inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}};}
+          else if(attachment?.kind==="image"||attachment?.kind==="voice"){
+            const parts=attachment.data.split(",",2),mime=parts[0].match(/^data:([^;]+)/)?.[1]||"application/octet-stream";
+            const bytes=Uint8Array.from(atob(parts[1]),c=>c.charCodeAt(0));
+            const formData=new FormData();formData.append("chat_id",env.TELEGRAM_ADMIN_CHAT_ID);formData.append("reply_markup",JSON.stringify({inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}));
+            if(attachment.kind==="image"){
+              formData.append("photo",new Blob([bytes],{type:mime}),"customer-image.jpg");
+              method="sendPhoto";
+            }else{
+              const voiceFormat=/^(audio\/ogg|audio\/mpeg|audio\/mp4|audio\/x-m4a)/i.test(mime);
+              formData.append(voiceFormat?"voice":"document",new Blob([bytes],{type:mime}),voiceFormat?"customer-voice."+(/ogg/i.test(mime)?"ogg":/mpeg/i.test(mime)?"mp3":"m4a"):"customer-voice.webm");
+              method=voiceFormat?"sendVoice":"sendDocument";
+            }
+            body=formData;
+          }else {
+            const leadLines = capturedLead && (capturedLead.customerName || capturedLead.email || capturedLead.phone || capturedLead.projectNeed)
+              ? "\n\n<b>LEAD DETAILS CAPTURED</b>" +
+                (capturedLead.customerName ? "\nName: " + capturedLead.customerName.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "") +
+                (capturedLead.email ? "\nEmail: " + capturedLead.email.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "") +
+                (capturedLead.phone ? "\nPhone: " + capturedLead.phone.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "") +
+                (capturedLead.projectNeed ? "\nRequirement: " + capturedLead.projectNeed.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "")
+              : "";
+            body={chat_id:env.TELEGRAM_ADMIN_CHAT_ID,text:"<b>NEW KASUHANET INBOX MESSAGE</b>\n\n<b>CHAT ID</b>\n<code>"+chatId+"</code>\n\n<b>CUSTOMER MESSAGE</b>\n"+safeMessage+leadLines,parse_mode:"HTML",disable_web_page_preview:true,reply_markup:{inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}};
           }
-          body=formData;
-        }else {
-          const leadLines = capturedLead && (capturedLead.customerName || capturedLead.email || capturedLead.phone || capturedLead.projectNeed)
-            ? "\n\n<b>LEAD DETAILS CAPTURED</b>" +
-              (capturedLead.customerName ? "\nName: " + capturedLead.customerName.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "") +
-              (capturedLead.email ? "\nEmail: " + capturedLead.email.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "") +
-              (capturedLead.phone ? "\nPhone: " + capturedLead.phone.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "") +
-              (capturedLead.projectNeed ? "\nRequirement: " + capturedLead.projectNeed.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "")
-            : "";
-          body={chat_id:env.TELEGRAM_ADMIN_CHAT_ID,text:"<b>NEW KASUHANET INBOX MESSAGE</b>\n\n<b>CHAT ID</b>\n<code>"+chatId+"</code>\n\n<b>CUSTOMER MESSAGE</b>\n"+safeMessage+leadLines,parse_mode:"HTML",disable_web_page_preview:true,reply_markup:{inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}};
-        }
-        const response=await fetch("https://api.telegram.org/bot"+env.TELEGRAM_BOT_TOKEN+"/"+method,{
-          method:"POST",
-          ...(body instanceof FormData?{body}:{headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
-        });
-        const result=await response.json();
-        telegramNotified=response.ok && result.ok===true;
-        if(telegramNotified && result.result?.message_id){
-          await env.DB.prepare("UPDATE inbox_messages SET telegram_message_id=? WHERE id=?")
-            .bind(String(result.result.message_id),id).run();
-        }
-      }catch{}
-    }
-    return json({sent:true,id,telegramNotified,aiReplied},201);
+          const response=await fetch("https://api.telegram.org/bot"+env.TELEGRAM_BOT_TOKEN+"/"+method,{
+            method:"POST",
+            ...(body instanceof FormData?{body}:{headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+          });
+          const result=await response.json();
+          telegramNotified=response.ok && result.ok===true;
+          if(telegramNotified && result.result?.message_id){
+            await env.DB.prepare("UPDATE inbox_messages SET telegram_message_id=? WHERE id=?")
+              .bind(String(result.result.message_id),id).run();
+          }
+        }catch{}
+      }
+    })().catch(error => {
+      console.error("[KasuhaNET Inbox] Background processing failed:", error?.message || String(error));
+    });
+    if (typeof context.waitUntil === "function") context.waitUntil(backgroundTask);
+    else await backgroundTask;
+    return json({sent:true,id,queued:true},201);
   }catch{return json({error:"Unable to send your message. Please try again."},500);}
 }
 
