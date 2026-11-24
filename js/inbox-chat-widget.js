@@ -235,7 +235,7 @@
             chatIdNode.textContent=session.chatId;
             messageInput.disabled=false;sendButton.disabled=false;
             const data=await check.json();(data.messages||[]).forEach(showMessage);
-            pollHandle=setInterval(pollMessages,2500);
+            pollHandle=setInterval(pollMessages,5000);
             return;
           }
         }
@@ -250,7 +250,7 @@
       localStorage.setItem(storageKey,JSON.stringify(session));
       chatIdNode.textContent=session.chatId;
       messageInput.disabled=false;sendButton.disabled=false;
-      pollHandle=setInterval(pollMessages,2500);
+      pollHandle=setInterval(pollMessages,5000);
     }catch{
       chatIdNode.textContent="Unavailable";
       note.textContent=copy.notReady;note.style.display="block";
