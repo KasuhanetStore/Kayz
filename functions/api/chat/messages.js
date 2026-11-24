@@ -242,7 +242,7 @@ export async function onRequestPost({request,env}){
     // Generate an automatic sales/support reply when the Cloudflare AI binding is enabled.
     // AI failure never blocks delivery of the original customer message to the human inbox.
     let aiReplied = false;
-    if (!attachment && (!handoff?.handoff_status || handoff.handoff_status==="ai")) {
+    if (!attachment && (!handoff?.handoff_status || handoff.handoff_status==="ai" || (handoff.handoff_status==="requested" && !liveAgentRequest))) {
       try {
         aiReplied = Boolean(await generateSalesReply(env, env.DB, chatId, message));
       } catch (error) {
