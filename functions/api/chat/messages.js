@@ -293,6 +293,9 @@ export async function onRequestPost({request,env}){
           await env.DB.prepare("UPDATE inbox_messages SET telegram_message_id=? WHERE id=?")
             .bind(String(result.result.message_id),id).run();
         }
+        if(telegramNotified && liveAgentAutoRequested){
+          await env.DB.prepare("UPDATE inbox_chats SET handoff_notified_at=CURRENT_TIMESTAMP WHERE chat_id=?").bind(chatId).run();
+        }
       }catch{}
     }
     return json({sent:true,id,telegramNotified,aiReplied,handoffStatus:handoff?.handoff_status||"ai"},201);
