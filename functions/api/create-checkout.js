@@ -45,7 +45,7 @@ function json(data, status) {
   });
 }
 
-async function verifyWorkshopRecaptcha(token, env) {
+async function verifyRecaptcha(token, env, expectedAction) {
   if (!env.RECAPTCHA_SECRET_KEY || typeof token !== "string" || token.length > 4096) return false;
   try {
     const body = new URLSearchParams({
@@ -60,7 +60,7 @@ async function verifyWorkshopRecaptcha(token, env) {
     if (!response.ok) return false;
     const result = await response.json();
     return result.success === true &&
-      result.action === "workshop_checkout" &&
+      result.action === expectedAction &&
       ALLOWED_HOSTS.has(result.hostname) &&
       typeof result.score === "number" &&
       result.score >= 0.5;
@@ -152,7 +152,7 @@ export async function onRequestPost(context) {
     return json({ error: "Please enter a phone number containing 9 to 15 digits." }, 400);
   }
 
-  if (isWorkshopOrder && !(await verifyWorkshopRecaptcha(input.recaptchaToken, env))) {
+  if (!(await verifyRecaptcha(input.recaptchaToken, env, isWorkshopOrder ? "workshop_checkout" : "checkout"))) {
     return json({ error: "Security verification failed. Please refresh the page and try again." }, 403);
   }
 
