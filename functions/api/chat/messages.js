@@ -201,9 +201,9 @@ export async function onRequestPost({request,env}){
     await env.DB.prepare("UPDATE inbox_chats SET updated_at=CURRENT_TIMESTAMP,last_message_at=CURRENT_TIMESTAMP WHERE chat_id=?").bind(chatId).run();
     const capturedLead = attachment ? null : await captureLead(env.DB, chatId, message);
     const liveAgentRequest = !attachment && (
-      /\b(live\s*agent|human\s*agent|real\s*person|customer\s*service|support\s*agent|operator|speak\s+to\s+(a\s+)?(person|human|agent)|talk\s+to\s+(a\s+)?(person|human|agent))\b/i.test(message) ||
-      /\b(ejen\s+manusia|pegawai\s+(khidmat\s+pelanggan|support)|khidmat\s+pelanggan)\b/i.test(message) ||
-      /\b(nak|mahu|ingin|boleh|tolong)\s+(sambung(kan)?|bercakap|cakap|chat)?\s*(saya\s+)?(dengan|ke)?\s*(live\s+)?agent\b/i.test(message)
+      /\b(live\s*agent|human\s*agent|real\s*person|real\s*human|customer\s*service|support\s*agent|operator|speak\s+to\s+(a\s+)?(person|human|agent|staff)|talk\s+to\s+(a\s+)?(person|human|agent|staff))\b/i.test(message) ||
+      /\b(ejen\s+manusia|pegawai\s+(khidmat\s+pelanggan|support)|khidmat\s+pelanggan|manusia\s+sebenar|staf\s+(manusia|support)|staff\s+(support|member))\b/i.test(message) ||
+      /\b(nak|mahu|ingin|boleh|tolong|saya)\b.{0,45}\b(agent|ejen|manusia|staff|staf|pegawai|operator)\b/i.test(message)
     );
     let handoff=await env.DB.prepare("SELECT handoff_status,page_path FROM inbox_chats WHERE chat_id=?").bind(chatId).first();
     let liveAgentAutoRequested=false;
