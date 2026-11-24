@@ -36,7 +36,7 @@
     intro:"Mesej anda akan dihantar terus kepada pasukan sokongan KasuhaNET.",
     placeholder:"Taip mesej anda...", send:"Hantar",
     notReady:"Tidak dapat menghantar mesej. Sila cuba semula.",
-    liveAgent:"Minta Sambung ke Live Agent", agentWaiting:"Permintaan dihantar. Menunggu Live Agent...", agentConnected:"Live Agent telah disambungkan.",
+    liveAgent:"Minta Sambung ke Live Agent", agentWaiting:"Permintaan dihantar. Menunggu Live Agent...", agentRetry:"Cuba semula permintaan Live Agent", agentNotifyFailed:"Permintaan belum berjaya dihantar kepada admin. Tekan butang Live Agent untuk cuba semula.", agentConnected:"Live Agent telah disambungkan.",
     close:"Tutup", minimize:"Kecilkan", maximize:"Besarkan", restore:"Pulihkan", menu:"Pilihan", clear:"Kosongkan chat", confirmClear:"Padam semua mesej dalam chat ini?", image:"Gambar", location:"Lokasi", voice:"Suara", recording:"Sedang merakam...", stop:"Henti rakaman", cancel:"Batal"
   } : {
     launcher:"Live Chat Support", title:"Live Chat Support", status:"Customer support",
@@ -44,7 +44,7 @@
     intro:"Your messages will be sent to the KasuhaNET support team.",
     placeholder:"Type your message...", send:"Send",
     notReady:"Unable to send your message. Please try again.",
-    liveAgent:"Connect to Live Agent", agentWaiting:"Request sent. Waiting for a live agent...", agentConnected:"A live agent has connected.",
+    liveAgent:"Connect to Live Agent", agentWaiting:"Request sent. Waiting for a live agent...", agentRetry:"Retry Live Agent request", agentNotifyFailed:"The request was not delivered to the admin. Press the Live Agent button to retry.", agentConnected:"A live agent has connected.",
     close:"Close", minimize:"Minimize", maximize:"Maximize", restore:"Restore", menu:"Actions", clear:"Clear chat", confirmClear:"Delete all messages in this chat?", image:"Image", location:"Location", voice:"Voice", recording:"Recording...", stop:"Stop recording", cancel:"Cancel"
   };
 
@@ -177,10 +177,12 @@
   const agentButton=panel.querySelector("#knInboxAgent");
   const attachButton=form.querySelector(".kn-attach");
   let handoffStatus="ai";
-  function updateAgentButton(status){
+  let handoffNotified=false;
+  function updateAgentButton(status,notified=false){
     handoffStatus=["ai","requested","human"].includes(status)?status:"ai";
-    agentButton.disabled=handoffStatus!=="ai"||!session;
-    agentButton.textContent=handoffStatus==="requested"?copy.agentWaiting:handoffStatus==="human"?copy.agentConnected:copy.liveAgent;
+    handoffNotified=Boolean(notified);
+    agentButton.disabled=!session||handoffStatus==="human"||(handoffStatus==="requested"&&handoffNotified);
+    agentButton.textContent=handoffStatus==="human"?copy.agentConnected:handoffStatus==="requested"?(handoffNotified?copy.agentWaiting:copy.agentRetry):copy.liveAgent;
   }
   const fileInput=form.querySelector("input[type=file]");
   const tools=panel.querySelector(".kn-inbox-tools");
@@ -247,7 +249,7 @@
           if(check.ok){
             chatIdNode.textContent=session.chatId;
             messageInput.disabled=false;sendButton.disabled=false;
-            const data=await check.json();updateAgentButton(data.handoffStatus||"ai");(data.messages||[]).forEach(showMessage);
+            const data=await check.json();updateAgentButton(data.handoffStatus||"ai",data.handoffNotified);(data.messages||[]).forEach(showMessage);
             pollHandle=setInterval(pollMessages,5000);
             return;
           }
@@ -297,13 +299,14 @@
     }finally{URL.revokeObjectURL(url);}
   }
   agentButton.addEventListener("click",async()=>{
-    if(!session||handoffStatus!=="ai")return;
+    if(!session||handoffStatus==="human"||(handoffStatus==="requested"&&handoffNotified))return;
     agentButton.disabled=true;
     try{
       const response=await fetch("/api/chat/messages",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+session.sessionToken},body:JSON.stringify({chatId:session.chatId,requestLiveAgent:true})});
       const data=await response.json();if(!response.ok)throw new Error(data.error||copy.notReady);
-      updateAgentButton(data.handoffStatus||"requested");
-      note.style.display="none";
+      updateAgentButton(data.handoffStatus||"requested",data.telegramNotified);
+      if(data.telegramNotified){note.style.display="none";}
+      else{note.textContent=data.notificationReason||copy.agentNotifyFailed;note.style.display="block";}
     }catch(error){updateAgentButton("ai");note.textContent=error.message||copy.notReady;note.style.display="block";}
   });
   launcher.addEventListener("click",openPanel);
