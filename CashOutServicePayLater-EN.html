@@ -501,7 +501,7 @@ window.open(`https://wa.me/60167390501?text=${encodeURIComponent(textMessage)}`,
 <!-- OFFICIAL ENGLISH FOOTER -->
 <div id="footer-placeholder"></div>
 <script>
-  fetch("template-text/EN/template-footer-EN.html")
+  fetch("template-text/EN/template-footer-EN.html?v=20261124")
     .then(response => {
       if (!response.ok) throw new Error("English footer failed to load");
       return response.text();
