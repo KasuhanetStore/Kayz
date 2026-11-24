@@ -495,10 +495,11 @@ footer > * { position: relative; z-index: 1; }
         }
     }
 
-    // Auto-baca tetapan bahasa sewaktu halaman dimuatkan
+    // Halaman EN sentiasa menggunakan Bahasa Inggeris.
+    // Versi BM mempunyai fail dan tetapan bahasanya sendiri.
     document.addEventListener("DOMContentLoaded", function() {
-        const savedLang = localStorage.getItem('selectedLanguage') || 'en'; 
-        applyLang(savedLang);
+        localStorage.setItem('selectedLanguage', 'en');
+        applyLang('en');
     });
 
 
