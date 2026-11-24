@@ -36,7 +36,6 @@
     intro:"Mesej anda akan dihantar terus kepada pasukan sokongan KasuhaNET.",
     placeholder:"Taip mesej anda...", send:"Hantar",
     notReady:"Tidak dapat menghantar mesej. Sila cuba semula.",
-    liveAgent:"Minta Sambung ke Live Agent", agentWaiting:"Permintaan dihantar. Menunggu Live Agent...", agentRetry:"Cuba semula permintaan Live Agent", agentNotifyFailed:"Permintaan belum berjaya dihantar kepada admin. Tekan butang Live Agent untuk cuba semula.", agentConnected:"Live Agent telah disambungkan.",
     close:"Tutup", minimize:"Kecilkan", maximize:"Besarkan", restore:"Pulihkan", menu:"Pilihan", clear:"Kosongkan chat", confirmClear:"Padam semua mesej dalam chat ini?", image:"Gambar", location:"Lokasi", voice:"Suara", recording:"Sedang merakam...", stop:"Henti rakaman", cancel:"Batal"
   } : {
     launcher:"Live Chat Support", title:"Live Chat Support", status:"Customer support",
@@ -44,7 +43,6 @@
     intro:"Your messages will be sent to the KasuhaNET support team.",
     placeholder:"Type your message...", send:"Send",
     notReady:"Unable to send your message. Please try again.",
-    liveAgent:"Connect to Live Agent", agentWaiting:"Request sent. Waiting for a live agent...", agentRetry:"Retry Live Agent request", agentNotifyFailed:"The request was not delivered to the admin. Press the Live Agent button to retry.", agentConnected:"A live agent has connected.",
     close:"Close", minimize:"Minimize", maximize:"Maximize", restore:"Restore", menu:"Actions", clear:"Clear chat", confirmClear:"Delete all messages in this chat?", image:"Image", location:"Location", voice:"Voice", recording:"Recording...", stop:"Stop recording", cancel:"Cancel"
   };
 
@@ -68,8 +66,6 @@
     #knInboxPanel .kn-inbox-actions{display:flex;gap:5px}
     #knInboxPanel .kn-inbox-actions button{width:29px;height:29px;border:1px solid rgba(255,255,255,.13);border-radius:7px;background:rgba(255,255,255,.05);color:#eaf3ff;font-size:17px;line-height:1;cursor:pointer}
     #knInboxPanel .kn-inbox-actions button:hover{border-color:#00eaff;color:#00eaff}
-    #knInboxPanel .kn-inbox-agent{display:block;flex:0 0 auto;width:calc(100% - 22px);min-height:38px;margin:8px 11px 0;padding:9px 12px;position:relative;z-index:2;border:1px solid rgba(0,225,255,.55);border-radius:9px;background:linear-gradient(110deg,#102b3d,#102033);color:#9ff6ff;font:700 11px Inter,Arial,sans-serif;cursor:pointer;visibility:visible;opacity:1}
-    #knInboxPanel .kn-inbox-agent:disabled{opacity:.75;cursor:default}
     #knInboxPanel .kn-inbox-tools{display:flex;gap:7px;padding:8px 11px;border-top:1px solid rgba(0,225,255,.12);background:#0b1420}
     #knInboxPanel .kn-inbox-tools[hidden]{display:none!important}
     #knInboxPanel .kn-inbox-tools button{flex:1;padding:8px 5px;border:1px solid rgba(0,225,255,.22);border-radius:8px;background:#102234;color:#c9f8ff;font:600 10px Inter,Arial,sans-serif;cursor:pointer}
@@ -156,7 +152,6 @@
       <div class="kn-inbox-messages" id="knInboxMessages" aria-live="polite"></div>
     </div>
     <div class="kn-inbox-tools" hidden><button type="button" data-action="image">＋ ${copy.image}</button><button type="button" data-action="location">⌖ ${copy.location}</button><button type="button" data-action="voice">● ${copy.voice}</button><button type="button" class="kn-clear" data-action="clear">× ${copy.clear}</button></div>
-    <button type="button" class="kn-inbox-agent" id="knInboxAgent" disabled>${copy.liveAgent}</button>
     <form class="kn-inbox-compose">
       <input type="file" accept="image/*" capture="environment" hidden>
       <button type="button" class="kn-attach" aria-label="${copy.menu}">＋</button>
@@ -174,16 +169,7 @@
   const form = panel.querySelector(".kn-inbox-compose");
   const messageInput = form.querySelector('input[type="text"]');
   const sendButton = form.querySelector("button[type=submit]");
-  const agentButton=panel.querySelector("#knInboxAgent");
   const attachButton=form.querySelector(".kn-attach");
-  let handoffStatus="ai";
-  let handoffNotified=false;
-  function updateAgentButton(status,notified=false){
-    handoffStatus=["ai","requested","human"].includes(status)?status:"ai";
-    handoffNotified=Boolean(notified);
-    agentButton.disabled=!session||handoffStatus==="human"||(handoffStatus==="requested"&&handoffNotified);
-    agentButton.textContent=handoffStatus==="human"?copy.agentConnected:handoffStatus==="requested"?(handoffNotified?copy.agentWaiting:copy.agentRetry):copy.liveAgent;
-  }
   const fileInput=form.querySelector("input[type=file]");
   const tools=panel.querySelector(".kn-inbox-tools");
   let recorder=null,recordChunks=[];
@@ -230,7 +216,6 @@
       if(response.status===401) return;
       if(!response.ok) return;
       const data=await response.json();
-      updateAgentButton(data.handoffStatus||"ai",data.handoffNotified);
       (data.messages||[]).forEach(showMessage);
     }catch{}
   }
@@ -249,7 +234,7 @@
           if(check.ok){
             chatIdNode.textContent=session.chatId;
             messageInput.disabled=false;sendButton.disabled=false;
-            const data=await check.json();updateAgentButton(data.handoffStatus||"ai",data.handoffNotified);(data.messages||[]).forEach(showMessage);
+            const data=await check.json();(data.messages||[]).forEach(showMessage);
             pollHandle=setInterval(pollMessages,5000);
             return;
           }
@@ -264,7 +249,7 @@
       session={chatId:data.chatId,sessionToken:data.sessionToken};
       localStorage.setItem(storageKey,JSON.stringify(session));
       chatIdNode.textContent=session.chatId;
-      messageInput.disabled=false;sendButton.disabled=false;updateAgentButton(data.handoffStatus||"ai");
+      messageInput.disabled=false;sendButton.disabled=false;
       pollHandle=setInterval(pollMessages,5000);
     }catch{
       chatIdNode.textContent="Unavailable";
@@ -298,17 +283,6 @@
       return canvas.toDataURL("image/jpeg",.72);
     }finally{URL.revokeObjectURL(url);}
   }
-  agentButton.addEventListener("click",async()=>{
-    if(!session||handoffStatus==="human"||(handoffStatus==="requested"&&handoffNotified))return;
-    agentButton.disabled=true;
-    try{
-      const response=await fetch("/api/chat/messages",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+session.sessionToken},body:JSON.stringify({chatId:session.chatId,requestLiveAgent:true})});
-      const data=await response.json();if(!response.ok)throw new Error(data.error||copy.notReady);
-      updateAgentButton(data.handoffStatus||"requested",data.telegramNotified);
-      if(data.telegramNotified){note.style.display="none";}
-      else{note.textContent=data.notificationReason||copy.agentNotifyFailed;note.style.display="block";}
-    }catch(error){updateAgentButton("ai");note.textContent=error.message||copy.notReady;note.style.display="block";}
-  });
   launcher.addEventListener("click",openPanel);
   panel.querySelector('[data-action="close"]').addEventListener("click",closePanel);
   panel.querySelector('[data-action="minimize"]').addEventListener("click",closePanel);
@@ -353,12 +327,7 @@
       if(!response.ok) throw new Error(data.error||"Message failed");
       messageInput.value="";
       await pollMessages();
-      if(data.handoffStatus==="requested" && !data.telegramNotified){
-        note.textContent=copy.agentNotifyFailed;
-        note.style.display="block";
-      }else{
-        note.style.display="none";
-      }
+      note.style.display="none";
     }catch(error){
       note.textContent=error.message||copy.notReady;
       note.style.display="block";
