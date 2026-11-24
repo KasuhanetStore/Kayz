@@ -190,12 +190,18 @@ export async function onRequestPost(context) {
 
   const form = new URLSearchParams();
   form.set("mode", "payment");
-  const workshopLocale = input.locale === "MS" ? "MS" : "EN";
+  const locale = input.locale === "MS" ? "MS" : "EN";
   const returnPage = isWorkshopOrder
-    ? (workshopLocale === "MS"
+    ? (locale === "MS"
         ? "https://kasuhanet.store/MS/Bengkel-Custom-WebSite-MS.html"
-        : "https://kasuhanet.store/custom-web-workshop-EN")
-    : (input.packageId === "dualstream-pro" ? "https://kasuhanet.store/Terminal-Option_MS.html" : "https://kasuhanet.store/Banner-WebSale-EN.html");
+        : "https://kasuhanet.store/custom-web-workshop-EN.html")
+    : input.packageId === "dualstream-pro"
+      ? (locale === "MS"
+          ? "https://kasuhanet.store/MS/Terminal-Option_MS.html"
+          : "https://kasuhanet.store/Terminal-Option_EN.html")
+      : (locale === "MS"
+          ? "https://kasuhanet.store/MS/Banner-WebSale-MS.html"
+          : "https://kasuhanet.store/Banner-WebSale-EN.html");
   form.set("success_url", returnPage + "?payment=success&session_id={CHECKOUT_SESSION_ID}");
   form.set("cancel_url", returnPage + "?payment=cancel");
   form.set("customer_email", email);
