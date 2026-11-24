@@ -51,6 +51,7 @@ async function ensureTermsColumns(db, table) {
   const columns = new Set((info.results || []).map(column => column.name));
   if (!columns.has("terms_accepted")) await db.prepare("ALTER TABLE " + table + " ADD COLUMN terms_accepted INTEGER NOT NULL DEFAULT 0").run();
   if (!columns.has("terms_version")) await db.prepare("ALTER TABLE " + table + " ADD COLUMN terms_version TEXT").run();
+  if (!columns.has("terms_accepted_at")) await db.prepare("ALTER TABLE " + table + " ADD COLUMN terms_accepted_at TEXT").run();
 }
 async function verifyRecaptcha(token, env, expectedAction) {
   if (!env.RECAPTCHA_SECRET_KEY || typeof token !== "string" || token.length > 4096) return false;
@@ -171,8 +172,8 @@ export async function onRequestPost(context) {
     await ensureTermsColumns(env.DB, "stripe_orders");
     await env.DB.prepare(
       `INSERT INTO stripe_orders
-       (id, package_id, package_name, amount, currency, customer_name, customer_email, customer_phone, status, terms_accepted, terms_version)
-       VALUES (?, ?, ?, ?, 'myr', ?, ?, ?, 'pending', 1, ?)`
+       (id, package_id, package_name, amount, currency, customer_name, customer_email, customer_phone, status, terms_accepted, terms_version, terms_accepted_at)
+       VALUES (?, ?, ?, ?, 'myr', ?, ?, ?, 'pending', 1, ?, CURRENT_TIMESTAMP)`
     ).bind(
       orderId,
       isWorkshopOrder ? "custom-workshop" : input.packageId,
