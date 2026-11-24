@@ -209,7 +209,7 @@ export async function onRequestPost({request,env}){
     let liveAgentAutoRequested=false;
     if(liveAgentRequest && (!handoff?.handoff_status || handoff.handoff_status==="ai")){
       await env.DB.prepare("UPDATE inbox_chats SET handoff_status='requested',updated_at=CURRENT_TIMESTAMP WHERE chat_id=?").bind(chatId).run();
-      const notice=isMalayRequest(message)
+      const notice=/\\b(nak|mahu|ingin|boleh|saya|tolong|sambung|ejen|pegawai)\\b/i.test(message)
         ? "Permintaan Live Agent diterima. Pasukan KasuhaNET akan menyambung perbualan ini melalui Live Chat sebaik sahaja tersedia."
         : "Your Live Agent request has been received. The KasuhaNET team will join this chat as soon as an agent is available.";
       await env.DB.prepare("INSERT INTO inbox_messages (id,chat_id,sender,message) VALUES (?,?,'admin',?)")
