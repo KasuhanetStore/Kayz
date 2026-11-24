@@ -68,7 +68,7 @@
     #knInboxPanel .kn-inbox-actions{display:flex;gap:5px}
     #knInboxPanel .kn-inbox-actions button{width:29px;height:29px;border:1px solid rgba(255,255,255,.13);border-radius:7px;background:rgba(255,255,255,.05);color:#eaf3ff;font-size:17px;line-height:1;cursor:pointer}
     #knInboxPanel .kn-inbox-actions button:hover{border-color:#00eaff;color:#00eaff}
-    #knInboxPanel .kn-inbox-agent{margin:8px 11px 0;padding:9px 12px;border:1px solid rgba(0,225,255,.35);border-radius:9px;background:linear-gradient(110deg,#102b3d,#102033);color:#9ff6ff;font:700 11px Inter,Arial,sans-serif;cursor:pointer}
+    #knInboxPanel .kn-inbox-agent{display:block;flex:0 0 auto;width:calc(100% - 22px);min-height:38px;margin:8px 11px 0;padding:9px 12px;position:relative;z-index:2;border:1px solid rgba(0,225,255,.55);border-radius:9px;background:linear-gradient(110deg,#102b3d,#102033);color:#9ff6ff;font:700 11px Inter,Arial,sans-serif;cursor:pointer;visibility:visible;opacity:1}
     #knInboxPanel .kn-inbox-agent:disabled{opacity:.75;cursor:default}
     #knInboxPanel .kn-inbox-tools{display:flex;gap:7px;padding:8px 11px;border-top:1px solid rgba(0,225,255,.12);background:#0b1420}
     #knInboxPanel .kn-inbox-tools[hidden]{display:none!important}
