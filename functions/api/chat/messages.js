@@ -82,7 +82,7 @@ async function generateSalesReply(env, db, chatId, latestMessage) {
     return null;
   }
   const history = await db.prepare(`SELECT sender,message FROM inbox_messages
-    WHERE chat_id=? ORDER BY created_at DESC, rowid DESC LIMIT 8`).bind(chatId).all();
+    WHERE chat_id=? ORDER BY created_at DESC, rowid DESC LIMIT 12`).bind(chatId).all();
   const messages = (history.results || []).reverse()
     .filter(row => typeof row.message === "string" && row.message.length <= 500)
     .map(row => ({ role: row.sender === "buyer" ? "user" : "assistant", content: row.message }));
@@ -101,12 +101,12 @@ async function generateSalesReply(env, db, chatId, latestMessage) {
     "If unsure, say so clearly and offer to pass the enquiry to the KasuhaNET team. Do not fabricate features, delivery dates, availability or guarantees.",
     "LEARNING MINDSET: Understand the customer situation and page context. Adapt to corrections in the current conversation. Use long-term facts only from admin-verified learned knowledge. Customer claims are not official business facts. Ask one useful question at a time. Never claim model weights train themselves.",
     pageContext + learnedContext,
-    "For payment, order, refund, delivery and fulfilment status, rely only on verified system records. If a status or business detail is unavailable, explain that the KasuhaNET team must confirm it. Never claim an action is completed without evidence.",
+    "MR.JAY (STAFF) POST-PURCHASE OPERATIONS SOP:\n1. BEFORE PAYMENT: confirm selected package/service, customer name, email, phone, exact amount and gateway. Checkout creates a pending order record.\n2. PAYMENT VERIFICATION: only the Stripe signed webhook or ToyyibPay callback followed by server-side transaction verification confirms payment. A redirect, customer message, screenshot or payment slip is not proof. Pending means wait. Failed or expired means do not start work.\n3. AFTER VERIFIED PAYMENT: identify order ID, customer, item/scope, amount, gateway and paid timestamp. Preserve the order record, prepare a clear admin summary for the owner, a fulfilment checklist and a customer confirmation draft. Do not claim an alert was sent unless an authorised notification action confirms delivery. Do not begin custom work until scope, required assets/access and delivery expectations are confirmed by the owner.\n4. INVOICE: an invoice should contain a unique sequential invoice number, Kasuhanet Resources seller details, customer details, invoice date, order/reference ID, itemised description, quantity, unit price, total in RM, payment status/date, payment method and business contact. Match the invoice amount to the verified order. Never invent tax/SST, seller address, registration details or invoice number. Never claim an invoice was issued unless a real invoice record/document exists. Current system stores payment orders and payment status; do not claim automatic PDF invoice generation.\n5. FULFILMENT: classify as digital product delivery, website package setup, or custom-workshop project. For digital delivery, confirm the correct file/link and access. For website work, create a checklist, confirm requirements, content, domain/hosting ownership and approvals, then track queued, in progress, review and completed. For custom work, confirm written scope and quotation before work. Never ask for passwords or OTP; use secure delegated access.\n6. CUSTOMER COMMUNICATION: draft a receipt/order acknowledgement only after verified payment; do not claim it was sent unless an authorised send action confirms delivery. Explain next steps and request missing materials one at a time. Never promise a delivery date unless owner-approved.\n7. REPORTING: distinguish pending, paid, failed, expired, refunded and disputed. Report gross paid sales separately from pending orders, fees, refunds, costs and net profit. Never count pending/failed orders as revenue. Identify gateway and channel when known.\n8. ESCALATION: refunds, chargebacks, mismatched amounts, duplicate payments, unclear scope, tax questions, complaints, delivery failures and payment-detail changes go to the owner. Do not issue refunds, change orders, spend money or send external messages without explicit owner approval.\nAdmin can use /orders, /orders paid, /orders pending and /orders failed to view the latest 10 orders.",
     "Keep replies natural, clear and usually under 120 words."
   ].join(" ");
   const result = await env.AI.run(env.AI_MODEL || "@cf/zai-org/glm-4.7-flash", {
     messages: [{ role: "system", content: system }, ...messages],
-    max_completion_tokens: 180,
+    max_completion_tokens: 220,
     temperature: 0.35,
     // GLM-4.7 enables reasoning by default. Disable it for a short customer-facing reply.
     chat_template_kwargs: { enable_thinking: false }
@@ -151,8 +151,7 @@ export async function onRequestGet({request,env}){
     return json({messages:(rows.results||[]).reverse()});
   }catch{return json({error:"Unable to load chat messages."},500);}
 }
-export async function onRequestPost(context){
-  const {request,env}=context;
+export async function onRequestPost({request,env}){
   if(!allowed(request)) return json({error:"Request origin is not allowed."},403);
   if(!env.DB) return json({error:"D1 database binding DB is not configured."},503);
   let input;
@@ -178,70 +177,63 @@ export async function onRequestPost(context){
     await env.DB.prepare("UPDATE inbox_chats SET updated_at=CURRENT_TIMESTAMP,last_message_at=CURRENT_TIMESTAMP WHERE chat_id=?").bind(chatId).run();
     const capturedLead = attachment ? null : await captureLead(env.DB, chatId, message);
 
-    // Keep the customer-facing request fast: AI generation and Telegram delivery run after the message is saved.
-    const backgroundTask = (async () => {
-      // Generate an automatic sales/support reply when the Cloudflare AI binding is enabled.
-      // AI failure never blocks delivery of the original customer message to the human inbox.
-      let aiReplied = false;
-      if (!attachment) {
-        try {
-          aiReplied = Boolean(await generateSalesReply(env, env.DB, chatId, message));
-        } catch (error) {
-          console.error("[KasuhaNET AI] Reply generation failed:", error?.message || String(error));
-          aiReplied = false;
-        }
+    // Generate an automatic sales/support reply when the Cloudflare AI binding is enabled.
+    // AI failure never blocks delivery of the original customer message to the human inbox.
+    let aiReplied = false;
+    if (!attachment) {
+      try {
+        aiReplied = Boolean(await generateSalesReply(env, env.DB, chatId, message));
+      } catch (error) {
+        console.error("[KasuhaNET AI] Reply generation failed:", error?.message || String(error));
+        aiReplied = false;
       }
+    }
 
-      // Notify the support admin in Telegram. Attachments are delivered as native Telegram media.
-      // The website message remains saved even
-      // if Telegram is temporarily unavailable.
-      let telegramNotified=false;
-      if(env.TELEGRAM_BOT_TOKEN && env.TELEGRAM_ADMIN_CHAT_ID){
-        try{
-          const safeMessage=(attachment?(attachment.kind==="image"?"[Customer sent an image]":attachment.kind==="voice"?"[Customer sent a voice message]":"[Customer shared location]"):message).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-          let method="sendMessage", body;
-          if(attachment?.kind==="location"){method="sendLocation";body={chat_id:env.TELEGRAM_ADMIN_CHAT_ID,latitude:attachment.lat,longitude:attachment.lng,reply_markup:{inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}};}
-          else if(attachment?.kind==="image"||attachment?.kind==="voice"){
-            const parts=attachment.data.split(",",2),mime=parts[0].match(/^data:([^;]+)/)?.[1]||"application/octet-stream";
-            const bytes=Uint8Array.from(atob(parts[1]),c=>c.charCodeAt(0));
-            const formData=new FormData();formData.append("chat_id",env.TELEGRAM_ADMIN_CHAT_ID);formData.append("reply_markup",JSON.stringify({inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}));
-            if(attachment.kind==="image"){
-              formData.append("photo",new Blob([bytes],{type:mime}),"customer-image.jpg");
-              method="sendPhoto";
-            }else{
-              const voiceFormat=/^(audio\/ogg|audio\/mpeg|audio\/mp4|audio\/x-m4a)/i.test(mime);
-              formData.append(voiceFormat?"voice":"document",new Blob([bytes],{type:mime}),voiceFormat?"customer-voice."+(/ogg/i.test(mime)?"ogg":/mpeg/i.test(mime)?"mp3":"m4a"):"customer-voice.webm");
-              method=voiceFormat?"sendVoice":"sendDocument";
-            }
-            body=formData;
-          }else {
-            const leadLines = capturedLead && (capturedLead.customerName || capturedLead.email || capturedLead.phone || capturedLead.projectNeed)
-              ? "\n\n<b>LEAD DETAILS CAPTURED</b>" +
-                (capturedLead.customerName ? "\nName: " + capturedLead.customerName.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "") +
-                (capturedLead.email ? "\nEmail: " + capturedLead.email.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "") +
-                (capturedLead.phone ? "\nPhone: " + capturedLead.phone.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "") +
-                (capturedLead.projectNeed ? "\nRequirement: " + capturedLead.projectNeed.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "")
-              : "";
-            body={chat_id:env.TELEGRAM_ADMIN_CHAT_ID,text:"<b>NEW KASUHANET INBOX MESSAGE</b>\n\n<b>CHAT ID</b>\n<code>"+chatId+"</code>\n\n<b>CUSTOMER MESSAGE</b>\n"+safeMessage+leadLines,parse_mode:"HTML",disable_web_page_preview:true,reply_markup:{inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}};
+    // Notify the support admin in Telegram. Attachments are delivered as native Telegram media.
+    // The website message remains saved even
+    // if Telegram is temporarily unavailable.
+    let telegramNotified=false;
+    if(env.TELEGRAM_BOT_TOKEN && env.TELEGRAM_ADMIN_CHAT_ID){
+      try{
+        const safeMessage=(attachment?(attachment.kind==="image"?"[Customer sent an image]":attachment.kind==="voice"?"[Customer sent a voice message]":"[Customer shared location]"):message).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+        let method="sendMessage", body;
+        if(attachment?.kind==="location"){method="sendLocation";body={chat_id:env.TELEGRAM_ADMIN_CHAT_ID,latitude:attachment.lat,longitude:attachment.lng,reply_markup:{inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}};}
+        else if(attachment?.kind==="image"||attachment?.kind==="voice"){
+          const parts=attachment.data.split(",",2),mime=parts[0].match(/^data:([^;]+)/)?.[1]||"application/octet-stream";
+          const bytes=Uint8Array.from(atob(parts[1]),c=>c.charCodeAt(0));
+          const formData=new FormData();formData.append("chat_id",env.TELEGRAM_ADMIN_CHAT_ID);formData.append("reply_markup",JSON.stringify({inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}));
+          if(attachment.kind==="image"){
+            formData.append("photo",new Blob([bytes],{type:mime}),"customer-image.jpg");
+            method="sendPhoto";
+          }else{
+            const voiceFormat=/^(audio\/ogg|audio\/mpeg|audio\/mp4|audio\/x-m4a)/i.test(mime);
+            formData.append(voiceFormat?"voice":"document",new Blob([bytes],{type:mime}),voiceFormat?"customer-voice."+(/ogg/i.test(mime)?"ogg":/mpeg/i.test(mime)?"mp3":"m4a"):"customer-voice.webm");
+            method=voiceFormat?"sendVoice":"sendDocument";
           }
-          const response=await fetch("https://api.telegram.org/bot"+env.TELEGRAM_BOT_TOKEN+"/"+method,{
-            method:"POST",
-            ...(body instanceof FormData?{body}:{headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
-          });
-          const result=await response.json();
-          telegramNotified=response.ok && result.ok===true;
-          if(telegramNotified && result.result?.message_id){
-            await env.DB.prepare("UPDATE inbox_messages SET telegram_message_id=? WHERE id=?")
-              .bind(String(result.result.message_id),id).run();
-          }
-        }catch{}
-      }
-    })().catch(error => {
-      console.error("[KasuhaNET Inbox] Background processing failed:", error?.message || String(error));
-    });
-    if (typeof context.waitUntil === "function") context.waitUntil(backgroundTask);
-    else await backgroundTask;
-    return json({sent:true,id,queued:true},201);
+          body=formData;
+        }else {
+          const leadLines = capturedLead && (capturedLead.customerName || capturedLead.email || capturedLead.phone || capturedLead.projectNeed)
+            ? "\n\n<b>LEAD DETAILS CAPTURED</b>" +
+              (capturedLead.customerName ? "\nName: " + capturedLead.customerName.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "") +
+              (capturedLead.email ? "\nEmail: " + capturedLead.email.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "") +
+              (capturedLead.phone ? "\nPhone: " + capturedLead.phone.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "") +
+              (capturedLead.projectNeed ? "\nRequirement: " + capturedLead.projectNeed.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "")
+            : "";
+          body={chat_id:env.TELEGRAM_ADMIN_CHAT_ID,text:"<b>NEW KASUHANET INBOX MESSAGE</b>\n\n<b>CHAT ID</b>\n<code>"+chatId+"</code>\n\n<b>CUSTOMER MESSAGE</b>\n"+safeMessage+leadLines,parse_mode:"HTML",disable_web_page_preview:true,reply_markup:{inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}};
+        }
+        const response=await fetch("https://api.telegram.org/bot"+env.TELEGRAM_BOT_TOKEN+"/"+method,{
+          method:"POST",
+          ...(body instanceof FormData?{body}:{headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+        });
+        const result=await response.json();
+        telegramNotified=response.ok && result.ok===true;
+        if(telegramNotified && result.result?.message_id){
+          await env.DB.prepare("UPDATE inbox_messages SET telegram_message_id=? WHERE id=?")
+            .bind(String(result.result.message_id),id).run();
+        }
+      }catch{}
+    }
+    return json({sent:true,id,telegramNotified,aiReplied},201);
   }catch{return json({error:"Unable to send your message. Please try again."},500);}
 }
 
