@@ -200,8 +200,8 @@ footer > * { position: relative; z-index: 1; }
                                 <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 tracking-tight">
                                     DualStream<span class="text-[#01acd2]">Pro</span>
                                 </h1>
-                                <p id="hero-sub" data-en="Video &amp; MP3 Downloader for Linux Terminal" data-ms="Muat Turun Video &amp; MP3 Terus Dari Terminal Linux" class="text-lg md:text-2xl text-gray-300 font-normal max-w-3xl mx-auto mb-4">
-                                    Terminal Downloader for Video &amp; MP3 Downloader for Linux Terminal
+                                <p id="hero-sub" data-en="Video &amp; MP3 Downloader for Linux Terminal" data-ms="Pemuat Turun Video &amp; MP3 untuk Terminal Linux" class="text-lg md:text-2xl text-gray-300 font-normal max-w-3xl mx-auto mb-4">
+                                    Pemuat Turun Video &amp; MP3 untuk Terminal Linux
                                 </p>
                                 <p id="hero-desc" data-en="Copy a video link from a supported app or platform, paste it into your terminal, and run DualStream Pro. The script processes the link and downloads the video or extracts audio as MP3 to your Linux device. A straightforward terminal workflow without ad-filled downloader websites." data-ms="Salin pautan video daripada aplikasi atau platform yang disokong, tampal ke terminal dan jalankan DualStream Pro. Skrip akan memproses pautan itu dan memuat turun video atau audio MP3 terus ke peranti Linux anda. Mudah, pantas dan tanpa perlu membuka laman web downloader yang dipenuhi iklan." class="text-base md:text-lg text-gray-400 max-w-2xl mx-auto mb-10">
                                     Copy a video link from a supported app or platform, paste it into your terminal, and run DualStream Pro. The script processes the link and downloads the video or extracts audio as MP3 to your Linux device. A straightforward terminal workflow without ad-filled downloader websites.                                </p>
@@ -426,8 +426,8 @@ footer > * { position: relative; z-index: 1; }
 </div>
 
 <footer class="w-full text-center py-6 border-t border-gray-800 bg-[#0a0a0f] text-gray-500 text-xs md:text-sm tracking-widest">
-                            <span id="footer-text" data-en="2026©KasuhaNET Resources Copyright All Right Reserved" data-ms="2026©KasuhaNET Resources Copyright All Right Reserved">
-                                2026©KasuhaNET Resources Copyright All Right Reserved
+                            <span id="footer-text" data-en="2026©KasuhaNET Resources Copyright All Right Reserved" data-ms="2026©KasuhaNET Resources. Hak Cipta Terpelihara.">
+                                2026©KasuhaNET Resources. Hak Cipta Terpelihara.
                             </span>
                         </footer>
 
@@ -494,7 +494,8 @@ footer > * { position: relative; z-index: 1; }
 
     // Auto-baca tetapan bahasa sewaktu halaman dimuatkan
     document.addEventListener("DOMContentLoaded", function() {
-        const savedLang = localStorage.getItem('selectedLanguage') || 'ms'; 
+        const savedLang = 'ms';
+        localStorage.setItem('selectedLanguage', 'ms');
         applyLang(savedLang);
     });
 
