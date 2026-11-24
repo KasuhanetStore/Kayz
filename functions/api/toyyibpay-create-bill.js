@@ -22,15 +22,24 @@ const WORKSHOP_SERVICES = {
 const API = "https://toyyibpay.com/index.php/api";
 const ALLOWED_HOSTS = new Set(["kasuhanet.store", "www.kasuhanet.store"]);
 function json(data,status=200){return new Response(JSON.stringify(data),{status,headers:{"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"}});}
+async function ensureTermsColumns(db, table) {
+  if (table !== "stripe_orders" && table !== "toyyibpay_orders") throw new Error("Invalid order table.");
+  const info = await db.prepare("PRAGMA table_info(" + table + ")").all();
+  const columns = new Set((info.results || []).map(column => column.name));
+  if (!columns.has("terms_accepted")) await db.prepare("ALTER TABLE " + table + " ADD COLUMN terms_accepted INTEGER NOT NULL DEFAULT 0").run();
+  if (!columns.has("terms_version")) await db.prepare("ALTER TABLE " + table + " ADD COLUMN terms_version TEXT").run();
+}
 async function ensureTable(db){
   await db.prepare(`CREATE TABLE IF NOT EXISTS toyyibpay_orders (
     id TEXT PRIMARY KEY, external_ref TEXT NOT NULL UNIQUE, bill_code TEXT UNIQUE,
     package_id TEXT NOT NULL, package_name TEXT NOT NULL, amount INTEGER NOT NULL,
     currency TEXT NOT NULL DEFAULT 'myr', customer_name TEXT NOT NULL,
     customer_email TEXT NOT NULL, customer_phone TEXT, status TEXT NOT NULL DEFAULT 'pending',
-    payment_ref TEXT, paid_at TEXT, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    payment_ref TEXT, paid_at TEXT, terms_accepted INTEGER NOT NULL DEFAULT 0, terms_version TEXT,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
   )`).run();
+  await ensureTermsColumns(db, "toyyibpay_orders");
 }
 
 async function verifyRecaptcha(token, env, expectedAction) {
@@ -65,6 +74,7 @@ export async function onRequestPost({request,env}){
   if(!origin || origin.protocol!=="https:" || !ALLOWED_HOSTS.has(origin.hostname) || origin.origin!==url.origin) return json({error:"Request origin is not allowed."},403);
   let input;try{input=await request.json();}catch{return json({error:"Invalid checkout request."},400);}
   if(!input || typeof input!=="object" || Array.isArray(input)) return json({error:"Invalid checkout details."},400);
+  if(input.termsAccepted !== true || input.termsVersion !== "2026-11-25") return json({error:"Please accept the current Terms & Conditions before payment."},400);
   const rawIds=input.serviceIds;
   let services=[];
   if(Array.isArray(rawIds)){
@@ -91,8 +101,8 @@ export async function onRequestPost({request,env}){
   const externalRef=id.replace(/-/g,"").slice(0,20).toUpperCase();
   try{
     await ensureTable(env.DB);
-    await env.DB.prepare(`INSERT INTO toyyibpay_orders (id,external_ref,package_id,package_name,amount,customer_name,customer_email,customer_phone,status)
-      VALUES(?,?,?,?,?,?,?,?,'pending')`).bind(id,externalRef,isWorkshop?"custom-workshop":input.packageId,packageName,amount,name,email,phone).run();
+    await env.DB.prepare(`INSERT INTO toyyibpay_orders (id,external_ref,package_id,package_name,amount,customer_name,customer_email,customer_phone,status,terms_accepted,terms_version)
+      VALUES(?,?,?,?,?,?,?,?, 'pending',1,?)`).bind(id,externalRef,isWorkshop?"custom-workshop":input.packageId,packageName,amount,name,email,phone,input.termsVersion).run();
   }catch{return json({error:"Unable to save the ToyyibPay order. Please try again."},500);}
   const locale=input.locale==="MS"?"MS":"EN";
   const returnPage=isWorkshop?(locale==="MS"?"https://kasuhanet.store/MS/Bengkel-Custom-WebSite-MS.html":"https://kasuhanet.store/custom-web-workshop-EN"):(input.packageId==="dualstream-pro"?"https://kasuhanet.store/Terminal-Option_MS.html":"https://kasuhanet.store/Banner-WebSale-EN.html");
