@@ -202,8 +202,8 @@ export async function onRequestPost({request,env}){
       if(current.handoff_status==="ai" || !current.handoff_status){
         await env.DB.prepare("UPDATE inbox_chats SET handoff_status='requested',updated_at=CURRENT_TIMESTAMP WHERE chat_id=?").bind(chatId).run();
         const notice=String(current.page_path||"").toLowerCase().includes("/ms/")
-          ? "Permintaan Live Agent diterima. Pasukan KasuhaNET akan menyambung perbualan ini melalui Live Chat sebaik sahaja tersedia."
-          : "Your Live Agent request has been received. The KasuhaNET team will join this chat as soon as an agent is available.";
+          ? "Baik, permintaan anda diterima. Anda akan disambungkan kepada Live Agent kami sebentar lagi."
+          : "Certainly. Your request has been received. You will be connected to our Live Agent shortly.";
         await env.DB.prepare("INSERT INTO inbox_messages (id,chat_id,sender,message) VALUES (?,?,'admin',?)").bind(crypto.randomUUID(),chatId,notice).run();
       }
       const delivery=await notifyLiveAgent(env,env.DB,chatId,current.page_path,"Customer requested a Live Agent using the chat button.");
@@ -229,8 +229,8 @@ export async function onRequestPost({request,env}){
       if(!handoff?.handoff_status || handoff.handoff_status==="ai"){
         await env.DB.prepare("UPDATE inbox_chats SET handoff_status='requested',updated_at=CURRENT_TIMESTAMP WHERE chat_id=?").bind(chatId).run();
         const notice=String(handoff?.page_path||"").toLowerCase().includes("/ms/")
-          ? "Permintaan Live Agent diterima. Pasukan KasuhaNET akan menyambung perbualan ini melalui Live Chat sebaik sahaja tersedia."
-          : "Your Live Agent request has been received. The KasuhaNET team will join this chat as soon as an agent is available.";
+          ? "Baik, permintaan anda diterima. Anda akan disambungkan kepada Live Agent kami sebentar lagi."
+          : "Certainly. Your request has been received. You will be connected to our Live Agent shortly.";
         await env.DB.prepare("INSERT INTO inbox_messages (id,chat_id,sender,message) VALUES (?,?,'admin',?)").bind(crypto.randomUUID(),chatId,notice).run();
       }
       const delivery=await notifyLiveAgent(env,env.DB,chatId,handoff?.page_path,message);
