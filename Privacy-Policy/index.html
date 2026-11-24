@@ -220,7 +220,7 @@ h1{font-size:clamp(32px,4.8vw,50px);line-height:1.12;letter-spacing:-1px;margin:
   </article></div></main>
   <div class="footer-wrap" id="footer-placeholder"></div>
   <script>
-    fetch("/template-text/EN/template-footer-EN.html")
+    fetch("/template-text/EN/template-footer-EN.html?v=20261124")
       .then(response => { if (!response.ok) throw new Error("Footer template failed to load"); return response.text(); })
       .then(data => {
         document.getElementById("footer-placeholder").innerHTML = data;
