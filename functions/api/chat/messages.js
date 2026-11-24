@@ -25,6 +25,7 @@ async function ensureTables(db){
   )`).run();
   try { await db.prepare("ALTER TABLE inbox_chats ADD COLUMN page_path TEXT").run(); } catch {}
   try { await db.prepare("ALTER TABLE inbox_chats ADD COLUMN handoff_status TEXT NOT NULL DEFAULT 'ai'").run(); } catch {}
+  try { await db.prepare("ALTER TABLE inbox_chats ADD COLUMN handoff_notified_at TEXT").run(); } catch {}
   await db.prepare("CREATE INDEX IF NOT EXISTS idx_inbox_messages_chat_created ON inbox_messages(chat_id, created_at)").run();
   await db.prepare(`CREATE TABLE IF NOT EXISTS inbox_leads (
     chat_id TEXT PRIMARY KEY,
@@ -63,6 +64,29 @@ async function captureLead(db, chatId, message) {
       updated_at=CURRENT_TIMESTAMP`)
     .bind(chatId,lead.customerName,lead.email,lead.phone,lead.projectNeed).run();
   return lead;
+}
+async function notifyLiveAgent(env, db, chatId, pagePath, customerMessage="") {
+  const row=await db.prepare("SELECT handoff_status,handoff_notified_at FROM inbox_chats WHERE chat_id=?").bind(chatId).first();
+  if(!row || row.handoff_status==="human") return {telegramNotified:false,alreadyHandled:true};
+  if(row.handoff_notified_at) return {telegramNotified:true,alreadyNotified:true};
+  if(!env.TELEGRAM_BOT_TOKEN || !env.TELEGRAM_ADMIN_CHAT_ID) return {telegramNotified:false,reason:"Telegram bot configuration is missing."};
+  const safe=value=>String(value||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  try{
+    const response=await fetch("https://api.telegram.org/bot"+env.TELEGRAM_BOT_TOKEN+"/sendMessage",{
+      method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({chat_id:env.TELEGRAM_ADMIN_CHAT_ID,
+        text:"<b>LIVE AGENT REQUEST</b>\\n\\n<b>CHAT ID</b>\\n<code>"+safe(chatId)+"</code>\\n<b>PAGE</b>\\n"+safe(pagePath||"/")+"\\n\\n<b>CUSTOMER MESSAGE</b>\\n"+safe(customerMessage||"Customer requested a live agent from the chat button.")+"\\n\\nAI replies are paused for this chat.",
+        parse_mode:"HTML",disable_web_page_preview:true,
+        reply_markup:{inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}})
+    });
+    const result=await response.json();
+    if(!response.ok || result.ok!==true) return {telegramNotified:false,reason:result.description||"Telegram rejected the notification."};
+    await db.prepare("UPDATE inbox_chats SET handoff_notified_at=CURRENT_TIMESTAMP WHERE chat_id=?").bind(chatId).run();
+    return {telegramNotified:true};
+  }catch(error){
+    console.error("[KasuhaNET Inbox] Live Agent Telegram notification failed:",error?.message||String(error));
+    return {telegramNotified:false,reason:"Telegram notification failed."};
+  }
 }
 async function sha256(value){
   const digest=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(value));
@@ -174,24 +198,16 @@ export async function onRequestPost({request,env}){
     if(input?.requestLiveAgent===true){
       const current=await env.DB.prepare("SELECT handoff_status,page_path FROM inbox_chats WHERE chat_id=?").bind(chatId).first();
       if(!current) return json({error:"Chat session is unavailable."},404);
-      if(current.handoff_status==="ai"){
+      if(current.handoff_status==="human") return json({requested:true,handoffStatus:"human",telegramNotified:true,alreadyHandled:true});
+      if(current.handoff_status==="ai" || !current.handoff_status){
         await env.DB.prepare("UPDATE inbox_chats SET handoff_status='requested',updated_at=CURRENT_TIMESTAMP WHERE chat_id=?").bind(chatId).run();
-        let telegramNotified=false;
-        if(env.TELEGRAM_BOT_TOKEN && env.TELEGRAM_ADMIN_CHAT_ID){
-          try{
-            const response=await fetch("https://api.telegram.org/bot"+env.TELEGRAM_BOT_TOKEN+"/sendMessage",{
-              method:"POST",headers:{"Content-Type":"application/json"},
-              body:JSON.stringify({chat_id:env.TELEGRAM_ADMIN_CHAT_ID,
-                text:"<b>LIVE AGENT REQUEST</b>\n\n<b>CHAT ID</b>\n<code>"+chatId+"</code>\n<b>PAGE</b>\n"+String(current.page_path||"/").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")+"\n\nCustomer is requesting a human agent. AI replies are paused for this chat.",
-                parse_mode:"HTML",disable_web_page_preview:true,
-                reply_markup:{inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}})
-            });
-            const result=await response.json();telegramNotified=response.ok&&result.ok===true;
-          }catch{}
-        }
-        return json({requested:true,handoffStatus:"requested",telegramNotified});
+        const notice=String(current.page_path||"").toLowerCase().includes("/ms/")
+          ? "Permintaan Live Agent diterima. Pasukan KasuhaNET akan menyambung perbualan ini melalui Live Chat sebaik sahaja tersedia."
+          : "Your Live Agent request has been received. The KasuhaNET team will join this chat as soon as an agent is available.";
+        await env.DB.prepare("INSERT INTO inbox_messages (id,chat_id,sender,message) VALUES (?,?,'admin',?)").bind(crypto.randomUUID(),chatId,notice).run();
       }
-      return json({requested:true,handoffStatus:current.handoff_status||"ai",alreadyRequested:true});
+      const delivery=await notifyLiveAgent(env,env.DB,chatId,current.page_path,"Customer requested a Live Agent using the chat button.");
+      return json({requested:true,handoffStatus:"requested",telegramNotified:delivery.telegramNotified,notificationReason:delivery.reason||null});
     }
     const recent=await env.DB.prepare(`SELECT COUNT(*) AS total FROM inbox_messages
       WHERE chat_id=? AND sender='buyer' AND created_at>=datetime('now','-1 minute')`).bind(chatId).first();
@@ -208,14 +224,17 @@ export async function onRequestPost({request,env}){
     );
     let handoff=await env.DB.prepare("SELECT handoff_status,page_path FROM inbox_chats WHERE chat_id=?").bind(chatId).first();
     let liveAgentAutoRequested=false;
-    if(liveAgentRequest && (!handoff?.handoff_status || handoff.handoff_status==="ai")){
-      await env.DB.prepare("UPDATE inbox_chats SET handoff_status='requested',updated_at=CURRENT_TIMESTAMP WHERE chat_id=?").bind(chatId).run();
-      const notice=String(handoff?.page_path||"").toLowerCase().includes("/ms/")
-        ? "Permintaan Live Agent diterima. Pasukan KasuhaNET akan menyambung perbualan ini melalui Live Chat sebaik sahaja tersedia."
-        : "Your Live Agent request has been received. The KasuhaNET team will join this chat as soon as an agent is available.";
-
-      await env.DB.prepare("INSERT INTO inbox_messages (id,chat_id,sender,message) VALUES (?,?,'admin',?)")
-        .bind(crypto.randomUUID(),chatId,notice).run();
+    let telegramNotified=false;
+    if(liveAgentRequest && handoff?.handoff_status!=="human"){
+      if(!handoff?.handoff_status || handoff.handoff_status==="ai"){
+        await env.DB.prepare("UPDATE inbox_chats SET handoff_status='requested',updated_at=CURRENT_TIMESTAMP WHERE chat_id=?").bind(chatId).run();
+        const notice=String(handoff?.page_path||"").toLowerCase().includes("/ms/")
+          ? "Permintaan Live Agent diterima. Pasukan KasuhaNET akan menyambung perbualan ini melalui Live Chat sebaik sahaja tersedia."
+          : "Your Live Agent request has been received. The KasuhaNET team will join this chat as soon as an agent is available.";
+        await env.DB.prepare("INSERT INTO inbox_messages (id,chat_id,sender,message) VALUES (?,?,'admin',?)").bind(crypto.randomUUID(),chatId,notice).run();
+      }
+      const delivery=await notifyLiveAgent(env,env.DB,chatId,handoff?.page_path,message);
+      telegramNotified=delivery.telegramNotified;
       handoff={...handoff,handoff_status:"requested"};
       liveAgentAutoRequested=true;
     }
@@ -236,7 +255,7 @@ export async function onRequestPost({request,env}){
     // The website message remains saved even
     // if Telegram is temporarily unavailable.
     let telegramNotified=false;
-    if(env.TELEGRAM_BOT_TOKEN && env.TELEGRAM_ADMIN_CHAT_ID){
+    if(env.TELEGRAM_BOT_TOKEN && env.TELEGRAM_ADMIN_CHAT_ID && !telegramNotified){
       try{
         const safeMessage=(attachment?(attachment.kind==="image"?"[Customer sent an image]":attachment.kind==="voice"?"[Customer sent a voice message]":"[Customer shared location]"):message).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
         let method="sendMessage", body;
