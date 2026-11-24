@@ -349,7 +349,7 @@ async function fetchOrganicSignals(db) {
     {source:'Google News Malaysia',topic:'website design and SEO demand',url:'https://news.google.com/rss/search?q='+encodeURIComponent('Malaysia website design SEO small business ecommerce')+'&hl=en-MY&gl=MY&ceid=MY:en'},
     {source:'Google News Malaysia',topic:'digital selling and online business',url:'https://news.google.com/rss/search?q='+encodeURIComponent('Malaysia digital marketing social commerce small business')+'&hl=en-MY&gl=MY&ceid=MY:en'}
   ];
-  const decode=s=>String(s||'').replace(/<!\\[CDATA\\[([\\s\\S]*?)\\]\\]>/g,'$1').replace(/<[^>]*>/g,' ').replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;|&apos;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&#(\\d+);/g,(_,n)=>String.fromCodePoint(Number(n))).replace(/&#x([0-9a-f]+);/gi,(_,n)=>String.fromCodePoint(parseInt(n,16))).replace(/\\s+/g,' ').trim();
+  const decode=s=>String(s||'').replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g,'$1').replace(/<[^>]*>/g,' ').replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;|&apos;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&#(\d+);/g,(_,n)=>String.fromCodePoint(Number(n))).replace(/&#x([0-9a-f]+);/gi,(_,n)=>String.fromCodePoint(parseInt(n,16))).replace(/\s+/g,' ').trim();
   const extract=(xml,tag)=>{const m=xml.match(new RegExp('<'+tag+'(?:\\s[^>]*)?>([\\s\\S]*?)</'+tag+'>','i'));return m?decode(m[1]):'';};
   const collected=[];
   const responses=await Promise.all(feeds.map(async feed=>{
@@ -357,7 +357,7 @@ async function fetchOrganicSignals(db) {
       const res=await fetch(feed.url,{headers:{'User-Agent':'KasuhaNET-MR-JAY/1.0','Accept':'application/rss+xml, application/xml, text/xml'}});
       if(!res.ok) return [];
       const xml=await res.text();
-      const items=[...xml.matchAll(/<item(?:\\s[^>]*)?>([\\s\\S]*?)</item>/gi)].slice(0,8);
+      const items=[...xml.matchAll(/<item(?:\s[^>]*)?>([\s\S]*?)<\/item>/gi)].slice(0,8);
       return items.map(m=>({source:feed.source,topic:feed.topic,title:extract(m[1],'title').slice(0,240),url:extract(m[1],'link').slice(0,1000),summary:extract(m[1],'description').slice(0,600),published_at:extract(m[1],'pubDate').slice(0,100)})).filter(x=>x.title);
     } catch { return []; }
   }));
