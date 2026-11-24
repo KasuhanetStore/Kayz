@@ -26,22 +26,9 @@
   <link rel="icon" type="image/png" href="favicon.png">
 
   <!-- OPEN GRAPH -->
-  
-  
-  
-  
-  
-  
-  
   <meta property="og:video" content="https://files.catbox.moe/nteh0b.mp4">
   <meta property="og:video:type" content="video/mp4">
   <meta property="og:video:secure_url" content="https://files.catbox.moe/nteh0b.mp4">
-
-  <!-- TWITTER -->
-  
-  
-  
-  
 
   <!-- VIDEO SEO: structured data for the visible homepage video -->
   <script type="application/ld+json">
@@ -59,77 +46,77 @@
   }
   </script>
 
-    <!-- KASUHA ENTITY SEO: founder, organisation, registered company and online platform -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://kasuhanet.store/#kasuha-okulus",
-      "name": "Kasuha Okulus",
-      "alternateName": [
-        "KZ Organisation",
-        "Kasuha Okulus Organisation"
-      ],
-      "url": "https://kasuhanet.store/About-Us/",
-      "description": "The organisation founded and led by Kasuha Zukarnain, whose real name is Shafiq Zukarnain.",
-      "founder": {
-        "@id": "https://kasuhanet.store/#founder"
-      }
-    },
-    {
-      "@type": "Organization",
-      "@id": "https://kasuhanet.store/#company",
-      "name": "Kasuhanet Resources",
-      "url": "https://kasuhanet.store/",
-      "identifier": {
-        "@type": "PropertyValue",
-        "propertyID": "SSM Business Registration Number",
-        "value": "202503248308"
+  <!-- KASUHA ENTITY SEO: founder, organisation, registered company and online platform -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://kasuhanet.store/#kasuha-okulus",
+        "name": "Kasuha Okulus",
+        "alternateName": [
+          "KZ Organisation",
+          "Kasuha Okulus Organisation"
+        ],
+        "url": "https://kasuhanet.store/About-Us/",
+        "description": "The organisation founded and led by Kasuha Zukarnain, whose real name is Shafiq Zukarnain.",
+        "founder": {
+          "@id": "https://kasuhanet.store/#founder"
+        }
       },
-      "description": "The registered company operating the KasuhaNET.STORE online business platform.",
-      "founder": {
-        "@id": "https://kasuhanet.store/#founder"
-      }
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://kasuhanet.store/#website",
-      "url": "https://kasuhanet.store/",
-      "name": "KasuhaNET.STORE",
-      "alternateName": "KasuhaNET",
-      "description": "The online business platform operated by Kasuhanet Resources.",
-      "publisher": {
-        "@id": "https://kasuhanet.store/#company"
-      },
-      "inLanguage": "en"
-    },
-    {
-      "@type": "Person",
-      "@id": "https://kasuhanet.store/#founder",
-      "name": "Kasuha Zukarnain",
-      "alternateName": [
-        "Shafiq Zukarnain",
-        "Kasuha"
-      ],
-      "url": "https://kasuhanet.store/",
-      "description": "Kasuha Zukarnain, whose real name is Shafiq Zukarnain, is the principal founder of Kasuha Okulus and the founder behind KasuhaNET.STORE.",
-      "founderOf": [
-        {
-          "@id": "https://kasuhanet.store/#kasuha-okulus"
+      {
+        "@type": "Organization",
+        "@id": "https://kasuhanet.store/#company",
+        "name": "Kasuhanet Resources",
+        "url": "https://kasuhanet.store/",
+        "identifier": {
+          "@type": "PropertyValue",
+          "propertyID": "SSM Business Registration Number",
+          "value": "202503248308"
         },
-        {
+        "description": "The registered company operating the KasuhaNET.STORE online business platform.",
+        "founder": {
+          "@id": "https://kasuhanet.store/#founder"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://kasuhanet.store/#website",
+        "url": "https://kasuhanet.store/",
+        "name": "KasuhaNET.STORE",
+        "alternateName": "KasuhaNET",
+        "description": "The online business platform operated by Kasuhanet Resources.",
+        "publisher": {
+          "@id": "https://kasuhanet.store/#company"
+        },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://kasuhanet.store/#founder",
+        "name": "Kasuha Zukarnain",
+        "alternateName": [
+          "Shafiq Zukarnain",
+          "Kasuha"
+        ],
+        "url": "https://kasuhanet.store/",
+        "description": "Kasuha Zukarnain, whose real name is Shafiq Zukarnain, is the principal founder of Kasuha Okulus and the founder behind KasuhaNET.STORE.",
+        "founderOf": [
+          {
+            "@id": "https://kasuhanet.store/#kasuha-okulus"
+          },
+          {
+            "@id": "https://kasuhanet.store/#company"
+          }
+        ],
+        "worksFor": {
           "@id": "https://kasuhanet.store/#company"
         }
-      ],
-      "worksFor": {
-        "@id": "https://kasuhanet.store/#company"
       }
-    }
-  ]
-}
-</script>
+    ]
+  }
+  </script>
 
   <!-- MOBILE -->
   <meta name="theme-color" content="#05070d">
@@ -380,6 +367,9 @@
 
     /* Footer & WhatsApp Float Styles */
     footer { 
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
       border-top: 1px solid var(--line, rgba(255,255,255,.12)); 
       padding: 18px 0; 
       color: #aeb2c0; 
@@ -387,8 +377,16 @@
       width: 100%; 
       margin-top: auto; 
     }
-
-    footer { position: relative; isolation: isolate; overflow: hidden; }\n    footer::before { content: ""; position: absolute; inset: 0; background: url("/img/LogoOfficialTeks.png") center center / contain no-repeat; opacity: .05; pointer-events: none; z-index: 0; }\n    footer > * { position: relative; z-index: 1; }
+    footer::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("/img/LogoOfficialTeks.png") center center / contain no-repeat;
+      opacity: .05;
+      pointer-events: none;
+      z-index: 0;
+    }
+    footer > * { position: relative; z-index: 1; }
 
     .footer-inner { 
       display: flex; 
@@ -517,7 +515,7 @@
         display: block;
     }
 
-    /* BJAK referral panel: match the Malay page, using the root image path */
+    /* BJAK referral panel */
     .bjak-partner-box {
       position: relative;
       isolation: isolate;
@@ -699,19 +697,19 @@
       .hero-slider-container .swiper-slide img { transition: none; }
     }
 
-.guide-background-card { background-image: linear-gradient(110deg, rgba(5,7,13,.90), rgba(5,7,13,.72)), url("img/BackgroundGrid.png"); background-repeat: no-repeat; background-position: center; background-size: cover; }
- .highlight-orange-glow{color:#ff9b32!important;font-weight:900;text-shadow:0 0 5px rgba(255,145,0,.95),0 0 12px rgba(255,115,0,.8),0 0 22px rgba(255,85,0,.55);animation:highlight-orange-flash 1.15s ease-in-out infinite alternate;transition:color .2s ease,text-shadow .2s ease}
- .highlight-orange-glow:hover,.highlight-orange-glow:focus-visible{color:#ffd27a!important;text-shadow:0 0 7px rgba(255,190,70,1),0 0 17px rgba(255,120,0,.95),0 0 28px rgba(255,75,0,.7)}
- .highlight-card-icon{color:#ff9b32;text-shadow:0 0 6px rgba(255,145,0,.95),0 0 16px rgba(255,95,0,.7);animation:highlight-orange-flash 1.15s ease-in-out infinite alternate}
- @keyframes highlight-orange-flash{from{filter:brightness(1);text-shadow:0 0 4px rgba(255,145,0,.7),0 0 10px rgba(255,100,0,.5)}to{filter:brightness(1.55);text-shadow:0 0 8px rgba(255,190,70,1),0 0 18px rgba(255,115,0,.95),0 0 27px rgba(255,75,0,.65)}}
+    .guide-background-card { background-image: linear-gradient(110deg, rgba(5,7,13,.90), rgba(5,7,13,.72)), url("img/BackgroundGrid.png"); background-repeat: no-repeat; background-position: center; background-size: cover; }
+    .highlight-orange-glow{color:#ff9b32!important;font-weight:900;text-shadow:0 0 5px rgba(255,145,0,.95),0 0 12px rgba(255,115,0,.8),0 0 22px rgba(255,85,0,.55);animation:highlight-orange-flash 1.15s ease-in-out infinite alternate;transition:color .2s ease,text-shadow .2s ease}
+    .highlight-orange-glow:hover,.highlight-orange-glow:focus-visible{color:#ffd27a!important;text-shadow:0 0 7px rgba(255,190,70,1),0 0 17px rgba(255,120,0,.95),0 0 28px rgba(255,75,0,.7)}
+    .highlight-card-icon{color:#ff9b32;text-shadow:0 0 6px rgba(255,145,0,.95),0 0 16px rgba(255,95,0,.7);animation:highlight-orange-flash 1.15s ease-in-out infinite alternate}
+    @keyframes highlight-orange-flash{from{filter:brightness(1);text-shadow:0 0 4px rgba(255,145,0,.7),0 0 10px rgba(255,100,0,.5)}to{filter:brightness(1.55);text-shadow:0 0 8px rgba(255,190,70,1),0 0 18px rgba(255,115,0,.95),0 0 27px rgba(255,75,0,.65)}}
 
-  .kn-payment-choice { display:grid; gap:9px; margin:12px 0 8px; padding:15px; border:2px solid #00f0ff; border-radius:12px; background:linear-gradient(135deg,rgba(0,240,255,.13),rgba(79,49,232,.2)); box-shadow:0 0 20px rgba(0,240,255,.13); }
-  .kn-payment-step { display:inline-flex; justify-self:start; padding:5px 9px; border-radius:5px; background:#00f0ff; color:#061014; font-size:10px; font-weight:1000; letter-spacing:1px; }
-  .kn-payment-choice label { margin:2px 0 0; color:#fff; font-size:15px; font-weight:900; letter-spacing:.5px; }
-  .kn-payment-choice select { width:100%; min-height:60px; padding:13px 42px 13px 14px; border:2px solid #00f0ff; border-radius:9px; background:#080f1b; color:#fff; font-size:16px; font-weight:900; line-height:1.35; cursor:pointer; color-scheme:dark; }
-  .kn-payment-choice select:focus { outline:3px solid rgba(0,240,255,.35); outline-offset:2px; }
-  .kn-payment-choice p { margin:0; color:#d7e8ef; font-size:11px; line-height:1.5; }
-</style>
+    .kn-payment-choice { display:grid; gap:9px; margin:12px 0 8px; padding:15px; border:2px solid #00f0ff; border-radius:12px; background:linear-gradient(135deg,rgba(0,240,255,.13),rgba(79,49,232,.2)); box-shadow:0 0 20px rgba(0,240,255,.13); }
+    .kn-payment-step { display:inline-flex; justify-self:start; padding:5px 9px; border-radius:5px; background:#00f0ff; color:#061014; font-size:10px; font-weight:1000; letter-spacing:1px; }
+    .kn-payment-choice label { margin:2px 0 0; color:#fff; font-size:15px; font-weight:900; letter-spacing:.5px; }
+    .kn-payment-choice select { width:100%; min-height:60px; padding:13px 42px 13px 14px; border:2px solid #00f0ff; border-radius:9px; background:#080f1b; color:#fff; font-size:16px; font-weight:900; line-height:1.35; cursor:pointer; color-scheme:dark; }
+    .kn-payment-choice select:focus { outline:3px solid rgba(0,240,255,.35); outline-offset:2px; }
+    .kn-payment-choice p { margin:0; color:#d7e8ef; font-size:11px; line-height:1.5; }
+  </style>
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4280897190566760" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
@@ -762,84 +760,81 @@
     }
   </style>
 
-<style id="kn-payment-card-style">
-.kn-payment-choice{display:grid;gap:11px;margin:12px 0 10px;padding:15px;border:2px solid #00f0ff;border-radius:12px;background:linear-gradient(135deg,rgba(0,240,255,.13),rgba(79,49,232,.2));box-shadow:0 0 20px rgba(0,240,255,.13)}
-.kn-payment-step{display:inline-flex;align-items:center;justify-self:start;padding:5px 9px;border-radius:5px;background:#00f0ff;color:#061014;font-size:10px;font-weight:1000;letter-spacing:1px}
-.kn-payment-heading{color:#fff;font-size:16px;font-weight:950;letter-spacing:.6px}
-.kn-payment-options{display:grid;grid-template-columns:1fr;gap:10px}
-.kn-payment-option{position:relative;display:flex;align-items:center;gap:13px;min-height:76px;box-sizing:border-box;margin:0!important;padding:14px!important;border:2px solid rgba(255,255,255,.22);border-radius:12px;background:#0b1422;color:#fff!important;cursor:pointer;transition:border-color .18s,background .18s,box-shadow .18s}
-.kn-payment-option.is-selected{border-color:#00f0ff;background:linear-gradient(110deg,rgba(0,240,255,.17),rgba(79,49,232,.22));box-shadow:0 0 18px rgba(0,240,255,.2)}
-.kn-payment-option input{position:absolute;width:1px!important;height:1px!important;opacity:0}
-.kn-payment-radio{flex:0 0 22px;width:22px;height:22px;box-sizing:border-box;border:2px solid #aeb8c8;border-radius:50%;background:transparent}
-.kn-payment-option.is-selected .kn-payment-radio{border:6px solid #00f0ff;background:#fff}
-.kn-payment-option-copy{display:grid;gap:5px}
-.kn-payment-option-copy strong{color:#fff;font-size:16px;font-weight:950;letter-spacing:.7px}
-.kn-payment-option-copy small{color:#d4e1ed;font-size:12px;line-height:1.4;font-weight:600}
-.kn-payment-choice select,#knPaymentMethod{display:none!important}
-.kn-payment-choice p{margin:0;color:#d7e8ef;font-size:11px;line-height:1.5}
-@media(max-width:600px){.kn-payment-choice{gap:10px;padding:13px}.kn-payment-option{min-height:72px;padding:12px!important}}
-</style>
+  <style id="kn-payment-card-style">
+    .kn-payment-choice{display:grid;gap:11px;margin:12px 0 10px;padding:15px;border:2px solid #00f0ff;border-radius:12px;background:linear-gradient(135deg,rgba(0,240,255,.13),rgba(79,49,232,.2));box-shadow:0 0 20px rgba(0,240,255,.13)}
+    .kn-payment-step{display:inline-flex;align-items:center;justify-self:start;padding:5px 9px;border-radius:5px;background:#00f0ff;color:#061014;font-size:10px;font-weight:1000;letter-spacing:1px}
+    .kn-payment-heading{color:#fff;font-size:16px;font-weight:950;letter-spacing:.6px}
+    .kn-payment-options{display:grid;grid-template-columns:1fr;gap:10px}
+    .kn-payment-option{position:relative;display:flex;align-items:center;gap:13px;min-height:76px;box-sizing:border-box;margin:0!important;padding:14px!important;border:2px solid rgba(255,255,255,.22);border-radius:12px;background:#0b1422;color:#fff!important;cursor:pointer;transition:border-color .18s,background .18s,box-shadow .18s}
+    .kn-payment-option.is-selected{border-color:#00f0ff;background:linear-gradient(110deg,rgba(0,240,255,.17),rgba(79,49,232,.22));box-shadow:0 0 18px rgba(0,240,255,.2)}
+    .kn-payment-option input{position:absolute;width:1px!important;height:1px!important;opacity:0}
+    .kn-payment-radio{flex:0 0 22px;width:22px;height:22px;box-sizing:border-box;border:2px solid #aeb8c8;border-radius:50%;background:transparent}
+    .kn-payment-option.is-selected .kn-payment-radio{border:6px solid #00f0ff;background:#fff}
+    .kn-payment-option-copy{display:grid;gap:5px}
+    .kn-payment-option-copy strong{color:#fff;font-size:16px;font-weight:950;letter-spacing:.7px}
+    .kn-payment-option-copy small{color:#d4e1ed;font-size:12px;line-height:1.4;font-weight:600}
+    .kn-payment-choice select,#knPaymentMethod{display:none!important}
+    .kn-payment-choice p{margin:0;color:#d7e8ef;font-size:11px;line-height:1.5}
+    @media(max-width:600px){.kn-payment-choice{gap:10px;padding:13px}.kn-payment-option{min-height:72px;padding:12px!important}}
+  </style>
 
-<style id="kn-unified-payment-design">
-/* Shared KasuhaNET checkout and payment appearance */
-#knCheckout:not([hidden]),.kn-payment-modal:not([hidden]){box-sizing:border-box;display:flex!important;position:fixed!important;inset:0!important;z-index:99999!important;align-items:center!important;justify-content:center!important;padding:12px!important;overflow-y:auto!important;overscroll-behavior:contain;background:rgba(0,0,0,.78)!important;backdrop-filter:blur(8px)}
-#knCheckout .kn-checkout-panel,.kn-payment-modal .kn-payment-panel{box-sizing:border-box!important;width:min(100%,420px)!important;max-width:420px!important;max-height:calc(100vh - 24px)!important;max-height:calc(100dvh - 24px)!important;overflow-y:auto!important;overscroll-behavior:contain;padding:16px!important;border:1px solid rgba(0,240,255,.28)!important;border-radius:15px!important;color:#f6f7fb!important;background:#11141d!important;box-shadow:0 18px 55px rgba(0,0,0,.5)!important}
-#knCheckout .kn-checkout-head,.kn-payment-modal .kn-payment-head{display:flex;align-items:center;justify-content:space-between;gap:9px;margin:0 0 11px!important}
-#knCheckout .kn-checkout-head h2,.kn-payment-modal .kn-payment-head h2{margin:0;color:#00f0ff!important;font-size:15px!important;letter-spacing:.7px}
-#knCheckout .kn-checkout-close,.kn-payment-modal .kn-payment-close{flex:0 0 34px;width:34px;height:34px;border:1px solid rgba(255,255,255,.2);border-radius:8px;color:#fff;background:transparent;cursor:pointer}
-#knCheckout .kn-order-summary,.kn-payment-modal .kn-payment-summary{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px;margin:0 0 12px!important;padding:10px 11px!important;border:1px solid rgba(0,240,255,.18)!important;border-radius:9px!important;background:rgba(0,240,255,.055)!important}
-#knCheckout .kn-order-summary p,.kn-payment-modal .kn-payment-summary p{flex-basis:100%;margin:3px 0 0!important;color:#c4cad7!important;font-size:11px!important}
-#knCheckout .kn-order-summary strong,.kn-payment-modal .kn-payment-summary strong{color:#00f0ff!important;font-size:20px!important;font-weight:800}
-#knCheckout .kn-checkout-form,.kn-payment-modal .kn-payment-form{display:grid;gap:6px!important}
-#knCheckout .kn-checkout-form>label,.kn-payment-modal .kn-payment-form>label{margin:3px 0 0!important;color:#dfe3ed!important;font-size:11px!important;font-weight:700!important}
-#knCheckout .kn-checkout-form>input,.kn-payment-modal .kn-payment-form>input{box-sizing:border-box;width:100%;min-height:40px!important;padding:8px 10px!important;border:1px solid rgba(255,255,255,.15)!important;border-radius:8px!important;outline:none;color:#fff!important;background:#090b11!important;font:inherit;font-size:14px!important}
-#knCheckout .kn-checkout-form>input:focus,.kn-payment-modal .kn-payment-form>input:focus{border-color:#00f0ff!important;box-shadow:0 0 0 3px rgba(0,240,255,.1)!important}
-#knCheckout .kn-checkout-submit,.kn-payment-modal .kn-payment-form button{box-sizing:border-box;width:100%;min-height:44px!important;margin-top:8px!important;padding:10px!important;border:0!important;border-radius:9px!important;color:#061014!important;background:#00f0ff!important;font-size:11px!important;font-weight:900!important;cursor:pointer}
-#knCheckout .kn-checkout-note,.kn-payment-modal .kn-payment-note{margin:8px 0 0!important;color:#aeb5c4!important;font-size:9px!important;line-height:1.45!important}
-#knCheckout .kn-checkout-error,.kn-payment-modal .kn-payment-error{padding:8px;border:1px solid rgba(255,70,90,.35);border-radius:8px;color:#ff9aa8;background:rgba(255,48,79,.08);font-size:11px}
-#knCheckout .kn-payment-choice,.kn-payment-modal .kn-payment-choice{gap:11px!important;margin:12px 0 10px!important;padding:15px!important;border:2px solid #00f0ff!important;border-radius:12px!important;background:linear-gradient(135deg,rgba(0,240,255,.13),rgba(79,49,232,.2))!important;box-shadow:0 0 20px rgba(0,240,255,.13)!important}
-#knCheckout .kn-payment-heading,.kn-payment-modal .kn-payment-heading{color:#fff!important;font-size:16px!important;font-weight:950!important;letter-spacing:.6px!important}
-#knCheckout .kn-payment-options,.kn-payment-modal .kn-payment-options{display:grid;grid-template-columns:1fr;gap:10px}
-#knCheckout .kn-payment-option,.kn-payment-modal .kn-payment-option{position:relative;display:flex;align-items:center;gap:13px;min-height:76px;box-sizing:border-box;margin:0!important;padding:14px!important;border:2px solid rgba(255,255,255,.22)!important;border-radius:12px!important;background:#0b1422!important;color:#fff!important;cursor:pointer;transition:border-color .18s,background .18s,box-shadow .18s}
-#knCheckout .kn-payment-option.is-selected,.kn-payment-modal .kn-payment-option.is-selected{border-color:#00f0ff!important;background:linear-gradient(110deg,rgba(0,240,255,.17),rgba(79,49,232,.22))!important;box-shadow:0 0 18px rgba(0,240,255,.2)!important}
-#knCheckout .kn-payment-option input,.kn-payment-modal .kn-payment-option input{position:absolute;width:1px!important;height:1px!important;opacity:0}
-#knCheckout .kn-payment-radio,.kn-payment-modal .kn-payment-radio{flex:0 0 22px;width:22px;height:22px;box-sizing:border-box;border:2px solid #aeb8c8;border-radius:50%;background:transparent}
-#knCheckout .kn-payment-option.is-selected .kn-payment-radio,.kn-payment-modal .kn-payment-option.is-selected .kn-payment-radio{border:6px solid #00f0ff;background:#fff}
-#knCheckout .kn-payment-option-copy,.kn-payment-modal .kn-payment-option-copy{display:grid;gap:5px}
-#knCheckout .kn-payment-option-copy strong,.kn-payment-modal .kn-payment-option-copy strong{color:#fff!important;font-size:16px!important;font-weight:950!important;letter-spacing:.7px}
-#knCheckout .kn-payment-option-copy small,.kn-payment-modal .kn-payment-option-copy small{color:#d4e1ed!important;font-size:12px!important;line-height:1.4;font-weight:600}
-#knCheckout #knPaymentMethod,.kn-payment-modal #knPaymentMethod{display:none!important}
-#knCheckout #knPaymentHint,.kn-payment-modal #knPaymentHint{margin:0;color:#d7e8ef;font-size:11px;line-height:1.5}
-@media(max-width:600px){#knCheckout:not([hidden]),.kn-payment-modal:not([hidden]){padding:8px!important}#knCheckout .kn-checkout-panel,.kn-payment-modal .kn-payment-panel{width:min(100%,390px)!important;max-height:calc(100vh - 16px)!important;max-height:calc(100dvh - 16px)!important;padding:13px!important;border-radius:13px!important}#knCheckout .kn-payment-option,.kn-payment-modal .kn-payment-option{min-height:72px;padding:12px!important}}
-</style>
+  <style id="kn-unified-payment-design">
+    #knCheckout:not([hidden]),.kn-payment-modal:not([hidden]){box-sizing:border-box;display:flex!important;position:fixed!important;inset:0!important;z-index:99999!important;align-items:center!important;justify-content:center!important;padding:12px!important;overflow-y:auto!important;overscroll-behavior:contain;background:rgba(0,0,0,.78)!important;backdrop-filter:blur(8px)}
+    #knCheckout .kn-checkout-panel,.kn-payment-modal .kn-payment-panel{box-sizing:border-box!important;width:min(100%,420px)!important;max-width:420px!important;max-height:calc(100vh - 24px)!important;max-height:calc(100dvh - 24px)!important;overflow-y:auto!important;overscroll-behavior:contain;padding:16px!important;border:1px solid rgba(0,240,255,.28)!important;border-radius:15px!important;color:#f6f7fb!important;background:#11141d!important;box-shadow:0 18px 55px rgba(0,0,0,.5)!important}
+    #knCheckout .kn-checkout-head,.kn-payment-modal .kn-payment-head{display:flex;align-items:center;justify-content:space-between;gap:9px;margin:0 0 11px!important}
+    #knCheckout .kn-checkout-head h2,.kn-payment-modal .kn-payment-head h2{margin:0;color:#00f0ff!important;font-size:15px!important;letter-spacing:.7px}
+    #knCheckout .kn-checkout-close,.kn-payment-modal .kn-payment-close{flex:0 0 34px;width:34px;height:34px;border:1px solid rgba(255,255,255,.2);border-radius:8px;color:#fff;background:transparent;cursor:pointer}
+    #knCheckout .kn-order-summary,.kn-payment-modal .kn-payment-summary{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px;margin:0 0 12px!important;padding:10px 11px!important;border:1px solid rgba(0,240,255,.18)!important;border-radius:9px!important;background:rgba(0,240,255,.055)!important}
+    #knCheckout .kn-order-summary p,.kn-payment-modal .kn-payment-summary p{flex-basis:100%;margin:3px 0 0!important;color:#c4cad7!important;font-size:11px!important}
+    #knCheckout .kn-order-summary strong,.kn-payment-modal .kn-payment-summary strong{color:#00f0ff!important;font-size:20px!important;font-weight:800}
+    #knCheckout .kn-checkout-form,.kn-payment-modal .kn-payment-form{display:grid;gap:6px!important}
+    #knCheckout .kn-checkout-form>label,.kn-payment-modal .kn-payment-form>label{margin:3px 0 0!important;color:#dfe3ed!important;font-size:11px!important;font-weight:700!important}
+    #knCheckout .kn-checkout-form>input,.kn-payment-modal .kn-payment-form>input{box-sizing:border-box;width:100%;min-height:40px!important;padding:8px 10px!important;border:1px solid rgba(255,255,255,.15)!important;border-radius:8px!important;outline:none;color:#fff!important;background:#090b11!important;font:inherit;font-size:14px!important}
+    #knCheckout .kn-checkout-form>input:focus,.kn-payment-modal .kn-payment-form>input:focus{border-color:#00f0ff!important;box-shadow:0 0 0 3px rgba(0,240,255,.1)!important}
+    #knCheckout .kn-checkout-submit,.kn-payment-modal .kn-payment-form button{box-sizing:border-box;width:100%;min-height:44px!important;margin-top:8px!important;padding:10px!important;border:0!important;border-radius:9px!important;color:#061014!important;background:#00f0ff!important;font-size:11px!important;font-weight:900!important;cursor:pointer}
+    #knCheckout .kn-checkout-note,.kn-payment-modal .kn-payment-note{margin:8px 0 0!important;color:#aeb5c4!important;font-size:9px!important;line-height:1.45!important}
+    #knCheckout .kn-checkout-error,.kn-payment-modal .kn-payment-error{padding:8px;border:1px solid rgba(255,70,90,.35);border-radius:8px;color:#ff9aa8;background:rgba(255,48,79,.08);font-size:11px}
+    #knCheckout .kn-payment-choice,.kn-payment-modal .kn-payment-choice{gap:11px!important;margin:12px 0 10px!important;padding:15px!important;border:2px solid #00f0ff!important;border-radius:12px!important;background:linear-gradient(135deg,rgba(0,240,255,.13),rgba(79,49,232,.2))!important;box-shadow:0 0 20px rgba(0,240,255,.13)!important}
+    #knCheckout .kn-payment-heading,.kn-payment-modal .kn-payment-heading{color:#fff!important;font-size:16px!important;font-weight:950!important;letter-spacing:.6px!important}
+    #knCheckout .kn-payment-options,.kn-payment-modal .kn-payment-options{display:grid;grid-template-columns:1fr;gap:10px}
+    #knCheckout .kn-payment-option,.kn-payment-modal .kn-payment-option{position:relative;display:flex;align-items:center;gap:13px;min-height:76px;box-sizing:border-box;margin:0!important;padding:14px!important;border:2px solid rgba(255,255,255,.22)!important;border-radius:12px!important;background:#0b1422!important;color:#fff!important;cursor:pointer;transition:border-color .18s,background .18s,box-shadow .18s}
+    #knCheckout .kn-payment-option.is-selected,.kn-payment-modal .kn-payment-option.is-selected{border-color:#00f0ff!important;background:linear-gradient(110deg,rgba(0,240,255,.17),rgba(79,49,232,.22))!important;box-shadow:0 0 18px rgba(0,240,255,.2)!important}
+    #knCheckout .kn-payment-option input,.kn-payment-modal .kn-payment-option input{position:absolute;width:1px!important;height:1px!important;opacity:0}
+    #knCheckout .kn-payment-radio,.kn-payment-modal .kn-payment-radio{flex:0 0 22px;width:22px;height:22px;box-sizing:border-box;border:2px solid #aeb8c8;border-radius:50%;background:transparent}
+    #knCheckout .kn-payment-option.is-selected .kn-payment-radio,.kn-payment-modal .kn-payment-option.is-selected .kn-payment-radio{border:6px solid #00f0ff;background:#fff}
+    #knCheckout .kn-payment-option-copy,.kn-payment-modal .kn-payment-option-copy{display:grid;gap:5px}
+    #knCheckout .kn-payment-option-copy strong,.kn-payment-modal .kn-payment-option-copy strong{color:#fff!important;font-size:16px!important;font-weight:950!important;letter-spacing:.7px}
+    #knCheckout .kn-payment-option-copy small,.kn-payment-modal .kn-payment-option-copy small{color:#d4e1ed!important;font-size:12px!important;line-height:1.4;font-weight:600}
+    #knCheckout #knPaymentMethod,.kn-payment-modal #knPaymentMethod{display:none!important}
+    #knCheckout #knPaymentHint,.kn-payment-modal #knPaymentHint{margin:0;color:#d7e8ef;font-size:11px;line-height:1.5}
+    @media(max-width:600px){#knCheckout:not([hidden]),.kn-payment-modal:not([hidden]){padding:8px!important}#knCheckout .kn-checkout-panel,.kn-payment-modal .kn-payment-panel{width:min(100%,390px)!important;max-height:calc(100vh - 16px)!important;max-height:calc(100dvh - 16px)!important;padding:13px!important;border-radius:13px!important}#knCheckout .kn-payment-option,.kn-payment-modal .kn-payment-option{min-height:72px;padding:12px!important}}
+  </style>
 
-<style id="kn-payment-visibility-fix">
-/* Keep both payment choices visible on the EN and MS homepages. */
-#knCheckout .kn-payment-choice{display:grid!important;visibility:visible!important;opacity:1!important}
-#knCheckout .kn-payment-options{display:grid!important;grid-template-columns:1fr!important;gap:10px!important;visibility:visible!important}
-#knCheckout .kn-payment-option{display:flex!important;visibility:visible!important;opacity:1!important;min-height:76px!important}
-#knCheckout .kn-payment-option-copy{display:grid!important;visibility:visible!important}
-#knCheckout .kn-payment-option-copy strong,
-#knCheckout .kn-payment-option-copy small{display:block!important;visibility:visible!important;opacity:1!important}
-@media(max-width:600px){#knCheckout .kn-payment-option{min-height:72px!important}}
-</style>
+  <style id="kn-payment-visibility-fix">
+    #knCheckout .kn-payment-choice{display:grid!important;visibility:visible!important;opacity:1!important}
+    #knCheckout .kn-payment-options{display:grid!important;grid-template-columns:1fr!important;gap:10px!important;visibility:visible!important}
+    #knCheckout .kn-payment-option{display:flex!important;visibility:visible!important;opacity:1!important;min-height:76px!important}
+    #knCheckout .kn-payment-option-copy{display:grid!important;visibility:visible!important}
+    #knCheckout .kn-payment-option-copy strong,
+    #knCheckout .kn-payment-option-copy small{display:block!important;visibility:visible!important;opacity:1!important}
+    @media(max-width:600px){#knCheckout .kn-payment-option{min-height:72px!important}}
+  </style>
 
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-PSQ4KNCC');</script>
-<!-- End Google Tag Manager -->
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-PSQ4KNCC');</script>
+  <!-- End Google Tag Manager -->
 
-<style id="kn-checkout-particle-hd">
-#knCheckout{isolation:isolate;overflow:hidden}
-#knCheckout::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle at 50% 42%,rgba(0,210,255,.13),transparent 42%),radial-gradient(circle at 15% 85%,rgba(79,49,232,.13),transparent 38%);animation:knParticleAura 5s ease-in-out infinite alternate}
-#knCheckout .kn-checkout-panel{position:relative;z-index:2;transform-origin:center;animation:knCheckoutMaterialize .72s cubic-bezier(.16,1,.3,1) both;box-shadow:0 0 0 1px rgba(0,240,255,.08),0 18px 55px rgba(0,0,0,.5),0 0 34px rgba(0,210,255,.14)}
-#knCheckout .kn-checkout-particle-canvas{position:absolute;inset:0;z-index:1;width:100%;height:100%;pointer-events:none;opacity:.82;mix-blend-mode:screen}
-#knCheckout.kn-particle-active .kn-checkout-panel{animation:knCheckoutMaterialize .72s cubic-bezier(.16,1,.3,1) both,knCheckoutGlow 3.8s ease-in-out .72s infinite alternate}
-@keyframes knCheckoutMaterialize{0%{opacity:0;transform:perspective(900px) translateY(28px) scale(.91) rotateX(5deg);filter:blur(7px)}65%{opacity:1;filter:blur(0)}100%{opacity:1;transform:perspective(900px) translateY(0) scale(1) rotateX(0)}}
-@keyframes knCheckoutGlow{0%{box-shadow:0 0 0 1px rgba(0,240,255,.08),0 18px 55px rgba(0,0,0,.5),0 0 20px rgba(0,210,255,.12)}100%{box-shadow:0 0 0 1px rgba(0,240,255,.2),0 18px 55px rgba(0,0,0,.5),0 0 38px rgba(0,210,255,.24),0 0 58px rgba(79,49,232,.12)}}
-@keyframes knParticleAura{from{opacity:.55;filter:hue-rotate(0deg)}to{opacity:1;filter:hue-rotate(24deg)}}
-@media(prefers-reduced-motion:reduce){#knCheckout::before,#knCheckout .kn-checkout-panel,#knCheckout.kn-particle-active .kn-checkout-panel{animation:none!important}#knCheckout .kn-checkout-particle-canvas{display:none!important}}
-</style>
-
+  <style id="kn-checkout-particle-hd">
+    #knCheckout{isolation:isolate;overflow:hidden}
+    #knCheckout::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle at 50% 42%,rgba(0,210,255,.13),transparent 42%),radial-gradient(circle at 15% 85%,rgba(79,49,232,.13),transparent 38%);animation:knParticleAura 5s ease-in-out infinite alternate}
+    #knCheckout .kn-checkout-panel{position:relative;z-index:2;transform-origin:center;animation:knCheckoutMaterialize .72s cubic-bezier(.16,1,.3,1) both;box-shadow:0 0 0 1px rgba(0,240,255,.08),0 18px 55px rgba(0,0,0,.5),0 0 34px rgba(0,210,255,.14)}
+    #knCheckout .kn-checkout-particle-canvas{position:absolute;inset:0;z-index:1;width:100%;height:100%;pointer-events:none;opacity:.82;mix-blend-mode:screen}
+    #knCheckout.kn-particle-active .kn-checkout-panel{animation:knCheckoutMaterialize .72s cubic-bezier(.16,1,.3,1) both,knCheckoutGlow 3.8s ease-in-out .72s infinite alternate}
+    @keyframes knCheckoutMaterialize{0%{opacity:0;transform:perspective(900px) translateY(28px) scale(.91) rotateX(5deg);filter:blur(7px)}65%{opacity:1;filter:blur(0)}100%{opacity:1;transform:perspective(900px) translateY(0) scale(1) rotateX(0)}}
+    @keyframes knCheckoutGlow{0%{box-shadow:0 0 0 1px rgba(0,240,255,.08),0 18px 55px rgba(0,0,0,.5),0 0 20px rgba(0,210,255,.12)}100%{box-shadow:0 0 0 1px rgba(0,240,255,.2),0 18px 55px rgba(0,0,0,.5),0 0 38px rgba(0,210,255,.24),0 0 58px rgba(79,49,232,.12)}}
+    @keyframes knParticleAura{from{opacity:.55;filter:hue-rotate(0deg)}to{opacity:1;filter:hue-rotate(24deg)}}
+    @media(prefers-reduced-motion:reduce){#knCheckout::before,#knCheckout .kn-checkout-panel,#knCheckout.kn-particle-active .kn-checkout-panel{animation:none!important}#knCheckout .kn-checkout-particle-canvas{display:none!important}}
+  </style>
 
   <!-- Metricool website tracking -->
   <script>
@@ -892,7 +887,7 @@
 </style>
 <header class="kn-template-header">
  <div class="container nav">
-  <a class="brand"   aria-label="KasuhaNET Official Page" aria-current="page" href="/"><img src="/img/logo3.png" class="brand-logo" alt="KasuhaNET.STORE"></a>
+  <a class="brand" aria-label="KasuhaNET Official Page" aria-current="page" href="/"><img src="/img/logo3.png" class="brand-logo" alt="KasuhaNET.STORE"></a>
   <nav class="nav-links" id="knHomeTemplateNav" aria-label="Main Navigation">
    <div class="dropdown">
     <a href="#" onclick="event.preventDefault();this.nextElementSibling.classList.toggle('show')" aria-haspopup="true">Overseas <i class="fa-solid fa-chevron-down" aria-hidden="true" style="font-size:10px;margin-left:3px;color:#ff7187"></i></a>
@@ -916,8 +911,6 @@
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PSQ4KNCC" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-  
-<!-- TOPBAR HEADER SERAGAM -->
 <main>
 <section class="hero" id="home">
   <div class="container hero-grid">
@@ -991,7 +984,6 @@
   </div>
 </section>
 
-
 <!-- PROMOTIONAL BANNER SLIDER -->
 <section class="hero-slider-container" aria-label="Promotional banners">
   <div class="swiper myBannerSwiper">
@@ -1043,7 +1035,6 @@
         <li><strong>Strategy & Monetization:</strong> Develops systems and data analysis aimed at sustainable financial growth through a business ecosystem.</li>
       </ul>
       <p><strong>System & Architecture | Kasuha Oculus Framework</strong></p>
-      
     </div>
   </div>
 </section>
@@ -1139,8 +1130,8 @@
         <a href="https://vpsmalaysia.com.my/system/aff.php?aff=2530" target="_blank" rel="sponsored noopener">Banner Ads VPSMalaysia ↗</a>
       </div>
     </div>
-  <p class="small-muted" style="max-width:900px;margin:18px auto 0;text-align:center;">Affiliate disclosure: Some external links on this website are referral or affiliate links. KasuhaNET may receive a commission or reward if you use them. The third-party provider's own terms and privacy policy apply.</p>
-</div>
+    <p class="small-muted" style="max-width:900px;margin:18px auto 0;text-align:center;">Affiliate disclosure: Some external links on this website are referral or affiliate links. KasuhaNET may receive a commission or reward if you use them. The third-party provider's own terms and privacy policy apply.</p>
+  </div>
 </section>
 
 <section class="section" id="bjak">
@@ -1168,30 +1159,137 @@
   </div>
 </section>
 
-<section class="section kn-featured-reads" aria-labelledby="knFeaturedTitle"><style>.kn-featured-reads .fr-inline{display:grid;grid-template-columns:1fr 1.15fr;gap:0;overflow:hidden;border:1px solid rgba(0,220,255,.25);border-radius:20px;background:linear-gradient(120deg,#0d1c2b,#111521 70%);box-shadow:0 18px 48px rgba(0,0,0,.28)}.kn-featured-reads .fr-visual{min-height:240px;display:flex;align-items:flex-end;padding:24px;position:relative;overflow:hidden;background:linear-gradient(135deg,#0a536a,#10223b 65%,#171b2c)}.kn-featured-reads .fr-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center}.kn-featured-reads .fr-visual span{position:relative;z-index:1;font-size:12px;font-weight:900;letter-spacing:2px;color:#c5f8ff}.kn-featured-reads .fr-copy{padding:clamp(22px,4vw,38px);display:flex;flex-direction:column;justify-content:center}.kn-featured-reads .fr-copy small{color:#42dff1;font-weight:900;letter-spacing:1.5px}.kn-featured-reads .fr-copy h3{font-size:clamp(22px,3vw,32px);line-height:1.18;margin:10px 0}.kn-featured-reads .fr-copy p{color:#b9c5d4;font-size:14px;line-height:1.75;margin:0}.kn-featured-reads .fr-copy a{align-self:flex-start;margin-top:18px;padding:11px 16px;border-radius:9px;background:linear-gradient(110deg,#007eaa,#00b9cb);color:#fff;font-size:12px;font-weight:900;text-decoration:none}@media(max-width:700px){.kn-featured-reads .fr-inline{grid-template-columns:1fr}.kn-featured-reads .fr-visual{min-height:145px}}</style><div class="container"><div class="section-head"><span class="eyebrow">FEATURED READS</span><h2 id="knFeaturedTitle">Ideas worth stopping for.</h2><p>A quick read while you explore KasuhaNET.</p></div><article class="fr-inline"><div class="fr-visual"><img src="/PicArtikelPreviewer.png" alt="KasuhaNET article preview" loading="lazy"><span>DIGITAL BUSINESS · 6 MIN READ</span></div><div class="fr-copy"><small>KASUHANET INSIGHT</small><h3>Your Shop + Your Website: Build a Digital Storefront That Works for You</h3><p>A website can bring your products, service details, enquiries and online checkout together in one place. Discover how your own digital storefront can complement the channels you already use.</p><a href="/articles/your-shop-your-website.html">READ THE FULL ARTICLE →</a></div></article><p style="text-align:center;margin-top:18px"><a class="reading-link" href="/articles/">Explore all Featured Reads →</a></p></div></section>
+<section class="section kn-featured-reads" aria-labelledby="knFeaturedTitle">
+  <style>
+    .kn-featured-reads .fr-inline {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 0;
+      overflow: hidden;
+      border: 1px solid rgba(0, 220, 255, .25);
+      border-radius: 20px;
+      background: linear-gradient(120deg, #0d1c2b, #111521 70%);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, .28);
+    }
+    .kn-featured-reads .fr-visual {
+      min-height: 240px;
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0a536a, #10223b 65%, #171b2c);
+    }
+    .kn-featured-reads .fr-visual img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      z-index: 0;
+    }
+    .kn-featured-reads .fr-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(5, 7, 13, .78), transparent 60%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .kn-featured-reads .fr-visual span {
+      position: relative;
+      z-index: 2;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #c5f8ff;
+    }
+    .kn-featured-reads .fr-copy {
+      padding: clamp(22px, 4vw, 38px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .kn-featured-reads .fr-copy small {
+      color: #42dff1;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+    }
+    .kn-featured-reads .fr-copy h3 {
+      font-size: clamp(22px, 3vw, 32px);
+      line-height: 1.18;
+      margin: 10px 0;
+    }
+    .kn-featured-reads .fr-copy p {
+      color: #b9c5d4;
+      font-size: 14px;
+      line-height: 1.75;
+      margin: 0;
+    }
+    .kn-featured-reads .fr-copy a {
+      align-self: flex-start;
+      margin-top: 18px;
+      padding: 11px 16px;
+      border-radius: 9px;
+      background: linear-gradient(110deg, #007eaa, #00b9cb);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 900;
+      text-decoration: none;
+    }
+    @media (max-width: 700px) {
+      .kn-featured-reads .fr-inline { grid-template-columns: 1fr; }
+      .kn-featured-reads .fr-visual { min-height: 180px; }
+    }
+  </style>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">FEATURED READS</span>
+      <h2 id="knFeaturedTitle">Ideas worth stopping for.</h2>
+      <p>A quick read while you explore KasuhaNET.</p>
+    </div>
+    <article class="fr-inline">
+      <div class="fr-visual">
+        <img src="/PicArtikelPreviewer.png" alt="KasuhaNET article preview" decoding="async" onerror="this.style.display='none';">
+        <span>DIGITAL BUSINESS · 6 MIN READ</span>
+      </div>
+      <div class="fr-copy">
+        <small>KASUHANET INSIGHT</small>
+        <h3>Your Shop + Your Website: Build a Digital Storefront That Works for You</h3>
+        <p>A website can bring your products, service details, enquiries and online checkout together in one place. Discover how your own digital storefront can complement the channels you already use.</p>
+        <a href="/articles/your-shop-your-website.html">READ THE FULL ARTICLE →</a>
+      </div>
+    </article>
+    <p style="text-align:center;margin-top:18px">
+      <a class="reading-link" href="/articles/">Explore all Featured Reads →</a>
+    </p>
+  </div>
+</section>
+
 <section class="section" id="reading">
   <div class="container">
-    <div class="section-head"><span class="eyebrow">Reading Center</span><h2>Terminal Codex & <span class="gradient-text">Technical Support</span></h2><p>A collection of dependency installation commands and web data management guidance for Linux, Penguin and terminal environments.</p></div>
+    <div class="section-head"><span class="eyebrow">Reading Center</span><h2>Terminal Codex &amp; <span class="gradient-text">Technical Support</span></h2><p>A collection of dependency installation commands and web data management guidance for Linux, Penguin and terminal environments.</p></div>
     <div class="service-grid">
       <article class="service-card guide-background-card"><div class="service-icon">⌘</div><h3>APT Package Management</h3><p>A practical Debian and Ubuntu guide to refreshing package lists, installing software and checking common errors.</p><p><a class="reading-link" href="/guides/linux-package-management/linux-package-management.html">Read the Linux guide →</a></p></article>
-      <article class="service-card guide-background-card"><div class="service-icon">▤</div><h3>Cloudflare D1 & SQL</h3><p>Learn how to inspect database tables, understand schemas and run safe, parameterised queries.</p><p><a class="reading-link" href="/guides/cloudflare-d1-sql-basics/">Read the D1 guide →</a></p></article>
+      <article class="service-card guide-background-card"><div class="service-icon">▤</div><h3>Cloudflare D1 &amp; SQL</h3><p>Learn how to inspect database tables, understand schemas and run safe, parameterised queries.</p><p><a class="reading-link" href="/guides/cloudflare-d1-sql-basics/">Read the D1 guide →</a></p></article>
       <article class="service-card guide-background-card"><div class="service-icon">⚙</div><h3>Safer Web Checkout</h3><p>Understand server-side validation, secret storage, payment webhooks and reliable order updates.</p><p><a class="reading-link" href="/guides/secure-web-checkout-basics/secure-web-checkout-basics.html">Read the checkout guide →</a></p></article>
     </div>
 
     <details class="accordion-box">
-      <summary>End-to-End Workflow & Service Terms</summary>
+      <summary>End-to-End Workflow &amp; Service Terms</summary>
       <div class="accordion-content">
         <h3>End-to-End Workflow</h3>
         <ol>
           <li><strong>Package purchase:</strong> Choose the Landing Page or Premium option and complete payment using the provided link.</li>
           <li><strong>Briefing session:</strong> Contact us through the agreed communication channel. Details such as your logo, text, product images and social links will be required.</li>
-          <li><strong>Development & design:</strong> Code structure, visual design and integrations are built according to the package.</li>
-          <li><strong>Review & testing:</strong> A preview link is provided for review; mobile display and page performance are tested.</li>
-          <li><strong>Launch & handover:</strong> The website is published on the agreed domain. Administrator access and documentation are handed over if included in the scope.</li>
+          <li><strong>Development &amp; design:</strong> Code structure, visual design and integrations are built according to the package.</li>
+          <li><strong>Review &amp; testing:</strong> A preview link is provided for review; mobile display and page performance are tested.</li>
+          <li><strong>Launch &amp; handover:</strong> The website is published on the agreed domain. Administrator access and documentation are handed over if included in the scope.</li>
         </ol>
-        <h3>Terms & Conditions of Service</h3>
+        <h3>Terms &amp; Conditions of Service</h3>
         <ul class="feature-list">
-          <li><strong>Domain & Hosting:</strong> Costs depend on whether existing domain/hosting is used or new services are purchased.</li>
+          <li><strong>Domain &amp; Hosting:</strong> Costs depend on whether existing domain/hosting is used or new services are purchased.</li>
           <li><strong>Content:</strong> Text and images are provided by the customer; help with rewriting content can be discussed.</li>
           <li><strong>After-Sales Support:</strong> Basic technical support is free for 30 days after project handover, subject to the agreed scope.</li>
         </ul>
@@ -1403,7 +1501,6 @@
   }
 </script>
 
-
 <script>
 /* KasuhaNET WebMCP: safe, read-only tools for browser agents. */
 window.__kasuhaNetWebMCPReady = (async function registerKasuhaNetWebMCP() {
@@ -1477,7 +1574,6 @@ window.__kasuhaNetWebMCPReady = (async function registerKasuhaNetWebMCP() {
   return { supported: true, registered, errors };
 })();
 </script>
-
 
 <script id="kn-contact-validation">
 (function(){
