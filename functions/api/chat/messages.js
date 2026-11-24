@@ -202,8 +202,9 @@ export async function onRequestPost({request,env}){
     const capturedLead = attachment ? null : await captureLead(env.DB, chatId, message);
     const liveAgentRequest = !attachment && (
       /\b(live\s*agent|human\s*agent|real\s*person|real\s*human|customer\s*service|support\s*agent|operator|speak\s+to\s+(a\s+)?(person|human|agent|staff)|talk\s+to\s+(a\s+)?(person|human|agent|staff))\b/i.test(message) ||
-      /\b(ejen\s+manusia|pegawai\s+(khidmat\s+pelanggan|support)|khidmat\s+pelanggan|manusia\s+sebenar|staf\s+(manusia|support)|staff\s+(support|member))\b/i.test(message) ||
-      /\b(nak|mahu|ingin|boleh|tolong|saya)\b.{0,45}\b(agent|ejen|manusia|staff|staf|pegawai|operator)\b/i.test(message)
+      /\b(ejen\s+manusia|pegawai\s+(khidmat\s+pelanggan|support)|khidmat\s+pelanggan|manusia\s+sebenar|staf\s+(manusia|support)|staff\s+(support|member)|bantuan\s+manusia|sokongan\s+manusia|bercakap\s+dengan\s+manusia|cakap\s+dengan\s+manusia)\b/i.test(message) ||
+      /\b(nak|mahu|ingin|boleh|tolong|saya|perlukan|memerlukan)\b.{0,65}\b(agent|ejen|manusia|staff|staf|pegawai|operator|orang\s+sebenar)\b/i.test(message) ||
+      /\b(sambung(kan)?|hubungkan)\b.{0,45}\b(saya|kami)?\s*(kepada|dengan|ke)?\s*(agent|ejen|manusia|staff|staf|pegawai)\b/i.test(message)
     );
     let handoff=await env.DB.prepare("SELECT handoff_status,page_path FROM inbox_chats WHERE chat_id=?").bind(chatId).first();
     let liveAgentAutoRequested=false;
