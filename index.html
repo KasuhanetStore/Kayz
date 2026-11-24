@@ -1163,7 +1163,7 @@
 
 <section class="section kn-featured-reads" aria-labelledby="knFeaturedTitle">
   <style>
-    .kn-featured-reads .fr-inline {
+    .kn-featured-reads .fr-inline{transition:opacity .3s ease,transform .3s ease}.kn-featured-reads .fr-inline.is-changing{opacity:.18;transform:translateY(5px)}@media(prefers-reduced-motion:reduce){.kn-featured-reads .fr-inline{transition:none}}.kn-featured-reads .fr-inline{
       display: grid;
       grid-template-columns: 1fr 1.15fr;
       gap: 0;
@@ -1251,22 +1251,48 @@
       <h2 id="knFeaturedTitle">Ideas worth stopping for.</h2>
       <p>A quick read while you explore KasuhaNET.</p>
     </div>
-    <article class="fr-inline">
-      <div class="fr-visual">
-        <img src="/ArtikelPreviewer.png" alt="KasuhaNET article preview" decoding="async" onerror="this.style.display='none';">
-        <span>DIGITAL BUSINESS · 6 MIN READ</span>
-      </div>
-      <div class="fr-copy">
-        <small>KASUHANET INSIGHT</small>
-        <h3>Your Shop + Your Website: Build a Digital Storefront That Works for You</h3>
-        <p>A website can bring your products, service details, enquiries and online checkout together in one place. Discover how your own digital storefront can complement the channels you already use.</p>
-        <a href="/articles/your-shop-your-website.html">READ THE FULL ARTICLE →</a>
-      </div>
-    </article>
+    <article class="fr-inline" aria-live="polite"><div class="fr-visual"><img src="/ArtikelPreviewer.png" alt="KasuhaNET digital business article preview" decoding="async" loading="lazy" onerror="this.style.display='none';"><span>DIGITAL BUSINESS · 6 MIN READ</span></div><div class="fr-copy"><small>KASUHANET INSIGHT</small><h3>Your Shop + Your Website: Build a Digital Storefront That Works for You</h3><p>A website can bring your products, service details, enquiries and online checkout together in one place. Discover how your own digital storefront can complement the channels you already use.</p><a href="/articles/your-shop-your-website.html">READ THE FULL ARTICLE →</a></div></article>
     <p style="text-align:center;margin-top:18px">
       <a class="reading-link" href="/articles/">Explore all Featured Reads →</a>
     </p>
   </div>
+
+<script>
+(function(){
+  const card=document.querySelector('.kn-featured-reads .fr-inline');
+  if(!card) return;
+  const slides=[{"image":"/ArtikelPreviewer.png","alt":"KasuhaNET digital business article preview","tag":"DIGITAL BUSINESS · 6 MIN READ","eyebrow":"KASUHANET INSIGHT","title":"Your Shop + Your Website: Build a Digital Storefront That Works for You","desc":"A website can bring your products, service details, enquiries and online checkout together in one place. Discover how your own digital storefront can complement the channels you already use.","url":"/articles/your-shop-your-website.html","cta":"READ THE FULL ARTICLE →"},{"image":"/img/Upgradeartikel.png","alt":"KasuhaNET system upgrade article preview","tag":"SYSTEM UPGRADE · 5 MIN READ","eyebrow":"SYSTEM UPGRADE","title":"A Website Is a Starting Point. System Upgrades Help It Grow.","desc":"A website should evolve with the way a business operates. As enquiries increase or services change, small improvements can remove friction and make everyday tasks easier.","url":"/articles/upgrade-your-digital-system.html","cta":"READ FULL ARTICLE →"},{"image":"/img/EN/ArtikelWebCustom.png","alt":"KasuhaNET custom website workshop article preview","tag":"CUSTOM WORKSHOP · 4 MIN READ","eyebrow":"CUSTOM WORKSHOP","title":"Your Service Deserves Its Own Space Online","desc":"Every business has something worth presenting. A custom website can turn scattered information into a clear digital space where visitors understand what you offer and how to reach you.","url":"/articles/custom-web-workshop.html","cta":"READ FULL ARTICLE →"}];
+  const image=card.querySelector('.fr-visual img');
+  const category=card.querySelector('.fr-visual span');
+  const eyebrow=card.querySelector('.fr-copy small');
+  const title=card.querySelector('.fr-copy h3');
+  const description=card.querySelector('.fr-copy p');
+  const link=card.querySelector('.fr-copy a');
+  let current=0;
+  let pool=[1,2].sort(()=>Math.random()-.5);
+  function showSlide(index){
+    const item=slides[index];
+    card.classList.add('is-changing');
+    window.setTimeout(()=>{
+      image.src=item.image;
+      image.alt=item.alt;
+      category.textContent=item.tag;
+      eyebrow.textContent=item.eyebrow;
+      title.textContent=item.title;
+      description.textContent=item.desc;
+      link.href=item.url;
+      link.textContent=item.cta;
+      current=index;
+      card.classList.remove('is-changing');
+    },300);
+  }
+  window.setInterval(()=>{
+    if(document.hidden) return;
+    if(!pool.length) pool=slides.map((_,i)=>i).filter(i=>i!==current).sort(()=>Math.random()-.5);
+    showSlide(pool.shift());
+  },6500);
+})();
+</script>
 </section>
 
 <section class="section" id="reading">
