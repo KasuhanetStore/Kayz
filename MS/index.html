@@ -1266,10 +1266,17 @@
     errorBox.style.display = "none";
     errorBox.textContent = "";
     try {
+      if (!window.grecaptcha) throw new Error("Pengesahan keselamatan tidak dapat dimuatkan. Sila muat semula halaman.");
+      const recaptchaToken = await new Promise((resolve, reject) => {
+        window.grecaptcha.ready(async () => {
+          try { resolve(await window.grecaptcha.execute("6Lcs9yUuAAAAAD15iECIUiJBQ5x1hp_c7BxuAIAi", { action: "checkout" })); }
+          catch { reject(new Error("Pengesahan keselamatan gagal. Sila cuba lagi.")); }
+        });
+      });
       const response = await fetch(paymentMethod === "toyyibpay" ? "/api/toyyibpay-create-bill" : "/api/create-checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ packageId: knSelectedPackage, name, email, phone, locale: "MS" })
+        body: JSON.stringify({ packageId: knSelectedPackage, name, email, phone, locale: "MS", recaptchaToken })
       });
       const data = await response.json();
       if (!response.ok || !data.url) throw new Error(data.error || "Pembayaran tidak dapat dimulakan. Sila cuba lagi.");
@@ -1418,5 +1425,6 @@ window.__kasuhaNetWebMCPReady = (async function daftarWebMCPKasuhaNet() {
 })();
 </script>
   <script src="/js/inbox-chat-widget.js" defer></script>
+<script src="https://www.google.com/recaptcha/api.js?render=6Lcs9yUuAAAAAD15iECIUiJBQ5x1hp_c7BxuAIAi"></script>
 </body>
 </html>
