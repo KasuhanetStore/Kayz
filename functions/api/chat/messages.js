@@ -205,7 +205,7 @@ export async function onRequestPost({request,env}){
       /\b(ejen\s+manusia|pegawai\s+(khidmat\s+pelanggan|support)|khidmat\s+pelanggan)\b/i.test(message) ||
       /\b(nak|mahu|ingin|boleh|tolong)\s+(sambung(kan)?|bercakap|cakap|chat)?\s*(saya\s+)?(dengan|ke)?\s*(live\s+)?agent\b/i.test(message)
     );
-    let handoff=await env.DB.prepare("SELECT handoff_status FROM inbox_chats WHERE chat_id=?").bind(chatId).first();
+    let handoff=await env.DB.prepare("SELECT handoff_status,page_path FROM inbox_chats WHERE chat_id=?").bind(chatId).first();
     let liveAgentAutoRequested=false;
     if(liveAgentRequest && (!handoff?.handoff_status || handoff.handoff_status==="ai")){
       await env.DB.prepare("UPDATE inbox_chats SET handoff_status='requested',updated_at=CURRENT_TIMESTAMP WHERE chat_id=?").bind(chatId).run();
