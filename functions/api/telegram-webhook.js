@@ -64,6 +64,7 @@ async function ensureInboxTables(db) {
     updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
   )`).run();
   try { await db.prepare("ALTER TABLE inbox_chats ADD COLUMN handoff_status TEXT NOT NULL DEFAULT 'ai'").run(); } catch {}
+  try { await db.prepare("ALTER TABLE inbox_chats ADD COLUMN handoff_notified_at TEXT").run(); } catch {}
 }
 async function handleInboxAdminMessage(env, adminChatId, input) {
   if(!env.TELEGRAM_ADMIN_CHAT_ID || String(adminChatId)!==String(env.TELEGRAM_ADMIN_CHAT_ID)) return false;
@@ -568,7 +569,7 @@ export async function onRequestPost({ request, env }) {
           if(!/^KN-[A-F0-9]{10}$/.test(targetChatId)) await send(env,chatId,"Invalid Inbox Chat ID.");
           else {
             await ensureInboxTables(env.DB);
-            await env.DB.prepare("UPDATE inbox_chats SET handoff_status='ai',updated_at=CURRENT_TIMESTAMP WHERE chat_id=? AND status='open'").bind(targetChatId).run();
+            await env.DB.prepare("UPDATE inbox_chats SET handoff_status='ai',handoff_notified_at=NULL,updated_at=CURRENT_TIMESTAMP WHERE chat_id=? AND status='open'").bind(targetChatId).run();
             await env.DB.prepare("DELETE FROM inbox_admin_sessions WHERE admin_chat_id=? AND target_chat_id=?").bind(String(chatId),targetChatId).run();
             await send(env,chatId,"<b>AI MODE RESTORED</b>\n\nChat <code>"+targetChatId+"</code> has been returned to MR.JAY.");
           }
