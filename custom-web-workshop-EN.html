@@ -1145,6 +1145,7 @@ footer > * { position: relative; z-index: 1; }
       </select>
       <p id="knPaymentHint">Select one of the payment options above, then press PAY.</p>
     </div>
+<div class="kn-terms-consent" style="display:grid;gap:8px;margin:8px 0;padding:11px 12px;border:1px solid rgba(0,240,255,.28);border-radius:9px;background:rgba(0,240,255,.045);"><details><summary style="color:#75eaff;font-size:12px;font-weight:800;cursor:pointer;">Read Terms &amp; Conditions</summary><div style="display:grid;gap:7px;margin-top:9px;color:#cbd5e1;font-size:11px;line-height:1.55;"><p>Services and deliverables are limited to the package or service scope confirmed by KasuhaNET. Any additional work, third-party fees, domain or hosting costs must be agreed separately.</p><p>Customers must provide accurate information, keep account credentials secure and use the service lawfully. Redistribution, resale or misuse of supplied digital materials or services is not permitted without written permission.</p><p>Payments are processed by the selected payment provider and are subject to its payment process. Third-party products and platforms remain subject to their own terms and availability.</p><p>Service availability may be affected by maintenance, connectivity or third-party systems. Contact KasuhaNET support for order-related assistance.</p><p>Personal information is handled under the <a href="/Privacy-Policy/" style="color:#75eaff;text-decoration:underline;">Privacy Policy</a>.</p></div></details><label style="display:flex;align-items:flex-start;gap:9px;color:#e7edf5;font-size:11px;line-height:1.5;cursor:pointer;"><input type="checkbox" id="knTermsAccepted" name="termsAccepted" required style="width:16px;height:16px;flex:0 0 16px;margin:1px 0 0;accent-color:#00f0ff;"><span>I have read and agree to the Terms &amp; Conditions and Privacy Policy.</span></label></div>
     <button type="submit" class="kn-checkout-submit" id="knWorkshopPaySubmit">PAY</button>
     <p class="kn-checkout-note">Choose Stripe or ToyyibPay. You will be redirected to the selected provider's official payment page.</p>
     <div class="kn-checkout-error kn-payment-error" id="knWorkshopPaymentError" role="alert"></div>
@@ -1287,7 +1288,9 @@ footer > * { position: relative; z-index: 1; }
           name:document.getElementById("knWorkshopName").value.trim(),
           email:document.getElementById("knWorkshopEmail").value.trim(),
           phone:document.getElementById("knWorkshopPhone").value.trim(),
-          locale:"EN"
+          locale:"EN",
+          termsAccepted:document.getElementById("knTermsAccepted").checked,
+          termsVersion:"2026-11-25"
         })
       });
       const data=await response.json();
