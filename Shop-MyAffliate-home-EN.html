@@ -620,6 +620,18 @@
                     <button class="btn-action btn-shopee">BUY</button>
                 </div>
             </div>
+
+
+            <!-- Kad Produk 10 -->
+            <div class="card-product" onclick="openPreview('/img/KimeiHairClipperPreview.png', 'Kemei Rechargeable Wireless Electric Hair Clipper KM-709A', 'RM 41.40 - RM 137.70', 'https://s.shopee.com.my/7VIEA861pN', '/img/KimeiHairClipperPreview2.png')">
+                <span class="product-label label-shopee">Shopee</span>
+                <img src="/img/KimeiHairClipper.png" alt="Kemei Rechargeable Wireless Electric Hair Clipper KM-709A" class="product-img" onerror="this.src='/img/KimeiHairClipperPreview.png'">
+                <div class="product-content">
+                    <h3 class="product-title">Kemei Rechargeable Wireless Electric Hair Clipper KM-709A</h3>
+                    <p class="product-price">RM 41.40 - RM 137.70</p>
+                    <button class="btn-action btn-shopee">BUY</button>
+                </div>
+            </div>
         </div>
     
 <section class="fr-inline" aria-label="Featured article">
@@ -636,6 +648,7 @@
         <div class="modal-container" onclick="event.stopPropagation()">
             <span class="modal-close" onclick="forceClosePreview()" aria-label="Close preview">&times;</span>
             <img src="" id="modalImg" class="modal-img" alt="Product preview">
+            <img src="" id="modalImg2" class="modal-img" alt="Additional product preview" style="display:none;">
             <h3 id="modalTitle" class="modal-title">Product title</h3>
             <p id="modalPrice" class="modal-price">RM 0.00</p>
             <a id="modalBuyBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn-action btn-shopee">BUY NOW</a>
@@ -684,8 +697,11 @@
   });
 
 
-  function openPreview(imgSrc, title, price, buyUrl) {
+  function openPreview(imgSrc, title, price, buyUrl, secondImgSrc) {
     document.getElementById("modalImg").src = imgSrc;
+    const secondImage = document.getElementById("modalImg2");
+    secondImage.src = secondImgSrc || "";
+    secondImage.style.display = secondImgSrc ? "block" : "none";
     document.getElementById("modalTitle").textContent = title;
     document.getElementById("modalPrice").textContent = price;
     document.getElementById("modalBuyBtn").href = buyUrl;
