@@ -24,6 +24,7 @@ async function ensureTables(db){
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, telegram_message_id TEXT
   )`).run();
   try { await db.prepare("ALTER TABLE inbox_chats ADD COLUMN page_path TEXT").run(); } catch {}
+  try { await db.prepare("ALTER TABLE inbox_chats ADD COLUMN handoff_status TEXT NOT NULL DEFAULT 'ai'").run(); } catch {}
   await db.prepare("CREATE INDEX IF NOT EXISTS idx_inbox_messages_chat_created ON inbox_messages(chat_id, created_at)").run();
   await db.prepare(`CREATE TABLE IF NOT EXISTS inbox_leads (
     chat_id TEXT PRIMARY KEY,
@@ -148,7 +149,8 @@ export async function onRequestGet({request,env}){
     const after=url.searchParams.get("after")||"";
     const rows=await env.DB.prepare(`SELECT id,sender,message,created_at FROM inbox_messages
       WHERE chat_id=? ORDER BY created_at DESC, rowid DESC LIMIT 100`).bind(chatId).all();
-    return json({messages:(rows.results||[]).reverse()});
+    const chat=await env.DB.prepare("SELECT handoff_status FROM inbox_chats WHERE chat_id=?").bind(chatId).first();
+    return json({messages:(rows.results||[]).reverse(),handoffStatus:chat?.handoff_status||"ai"});
   }catch{return json({error:"Unable to load chat messages."},500);}
 }
 export async function onRequestPost({request,env}){
@@ -169,6 +171,28 @@ export async function onRequestPost({request,env}){
   try{
     await ensureTables(env.DB);
     if(!(await authorize(env.DB,chatId,token))) return json({error:"Chat session is invalid or expired."},401);
+    if(input?.requestLiveAgent===true){
+      const current=await env.DB.prepare("SELECT handoff_status,page_path FROM inbox_chats WHERE chat_id=?").bind(chatId).first();
+      if(!current) return json({error:"Chat session is unavailable."},404);
+      if(current.handoff_status==="ai"){
+        await env.DB.prepare("UPDATE inbox_chats SET handoff_status='requested',updated_at=CURRENT_TIMESTAMP WHERE chat_id=?").bind(chatId).run();
+        let telegramNotified=false;
+        if(env.TELEGRAM_BOT_TOKEN && env.TELEGRAM_ADMIN_CHAT_ID){
+          try{
+            const response=await fetch("https://api.telegram.org/bot"+env.TELEGRAM_BOT_TOKEN+"/sendMessage",{
+              method:"POST",headers:{"Content-Type":"application/json"},
+              body:JSON.stringify({chat_id:env.TELEGRAM_ADMIN_CHAT_ID,
+                text:"<b>LIVE AGENT REQUEST</b>\n\n<b>CHAT ID</b>\n<code>"+chatId+"</code>\n<b>PAGE</b>\n"+String(current.page_path||"/").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")+"\n\nCustomer is requesting a human agent. AI replies are paused for this chat.",
+                parse_mode:"HTML",disable_web_page_preview:true,
+                reply_markup:{inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}})
+            });
+            const result=await response.json();telegramNotified=response.ok&&result.ok===true;
+          }catch{}
+        }
+        return json({requested:true,handoffStatus:"requested",telegramNotified});
+      }
+      return json({requested:true,handoffStatus:current.handoff_status||"ai",alreadyRequested:true});
+    }
     const recent=await env.DB.prepare(`SELECT COUNT(*) AS total FROM inbox_messages
       WHERE chat_id=? AND sender='buyer' AND created_at>=datetime('now','-1 minute')`).bind(chatId).first();
     if((recent?.total||0)>=10) return json({error:"Please wait before sending another message."},429);
@@ -179,8 +203,9 @@ export async function onRequestPost({request,env}){
 
     // Generate an automatic sales/support reply when the Cloudflare AI binding is enabled.
     // AI failure never blocks delivery of the original customer message to the human inbox.
+    const handoff=await env.DB.prepare("SELECT handoff_status FROM inbox_chats WHERE chat_id=?").bind(chatId).first();
     let aiReplied = false;
-    if (!attachment) {
+    if (!attachment && (!handoff?.handoff_status || handoff.handoff_status==="ai")) {
       try {
         aiReplied = Boolean(await generateSalesReply(env, env.DB, chatId, message));
       } catch (error) {
