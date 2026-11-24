@@ -200,10 +200,26 @@ export async function onRequestPost({request,env}){
     await env.DB.prepare("INSERT INTO inbox_messages (id,chat_id,sender,message) VALUES (?,?,'buyer',?)").bind(id,chatId,message).run();
     await env.DB.prepare("UPDATE inbox_chats SET updated_at=CURRENT_TIMESTAMP,last_message_at=CURRENT_TIMESTAMP WHERE chat_id=?").bind(chatId).run();
     const capturedLead = attachment ? null : await captureLead(env.DB, chatId, message);
+    const liveAgentRequest = !attachment && (
+      /\\b(live\\s*agent|human\\s*agent|real\\s*person|customer\\s*service|support\\s*agent|operator|speak\\s+to\\s+(a\\s+)?(person|human|agent)|talk\\s+to\\s+(a\\s+)?(person|human|agent))\\b/i.test(message) ||
+      /\\b(ejen\\s+manusia|pegawai\\s+(khidmat\\s+pelanggan|support)|khidmat\\s+pelanggan)\\b/i.test(message) ||
+      /\\b(nak|mahu|ingin|boleh)\\s+(sambung(kan)?|bercakap|cakap|chat)\\s+(saya\\s+)?(dengan|ke)\\s+(live\\s+)?agent\\b/i.test(message)
+    );
+    let handoff=await env.DB.prepare("SELECT handoff_status FROM inbox_chats WHERE chat_id=?").bind(chatId).first();
+    let liveAgentAutoRequested=false;
+    if(liveAgentRequest && (!handoff?.handoff_status || handoff.handoff_status==="ai")){
+      await env.DB.prepare("UPDATE inbox_chats SET handoff_status='requested',updated_at=CURRENT_TIMESTAMP WHERE chat_id=?").bind(chatId).run();
+      const notice=isMalayRequest(message)
+        ? "Permintaan Live Agent diterima. Pasukan KasuhaNET akan menyambung perbualan ini melalui Live Chat sebaik sahaja tersedia."
+        : "Your Live Agent request has been received. The KasuhaNET team will join this chat as soon as an agent is available.";
+      await env.DB.prepare("INSERT INTO inbox_messages (id,chat_id,sender,message) VALUES (?,?,'admin',?)")
+        .bind(crypto.randomUUID(),chatId,notice).run();
+      handoff={...handoff,handoff_status:"requested"};
+      liveAgentAutoRequested=true;
+    }
 
     // Generate an automatic sales/support reply when the Cloudflare AI binding is enabled.
     // AI failure never blocks delivery of the original customer message to the human inbox.
-    const handoff=await env.DB.prepare("SELECT handoff_status FROM inbox_chats WHERE chat_id=?").bind(chatId).first();
     let aiReplied = false;
     if (!attachment && (!handoff?.handoff_status || handoff.handoff_status==="ai")) {
       try {
@@ -244,7 +260,7 @@ export async function onRequestPost({request,env}){
               (capturedLead.phone ? "\nPhone: " + capturedLead.phone.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "") +
               (capturedLead.projectNeed ? "\nRequirement: " + capturedLead.projectNeed.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "")
             : "";
-          body={chat_id:env.TELEGRAM_ADMIN_CHAT_ID,text:"<b>NEW KASUHANET INBOX MESSAGE</b>\n\n<b>CHAT ID</b>\n<code>"+chatId+"</code>\n\n<b>CUSTOMER MESSAGE</b>\n"+safeMessage+leadLines,parse_mode:"HTML",disable_web_page_preview:true,reply_markup:{inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}};
+          body={chat_id:env.TELEGRAM_ADMIN_CHAT_ID,text:(liveAgentAutoRequested?"<b>LIVE AGENT REQUEST</b>\n\n":"<b>NEW KASUHANET INBOX MESSAGE</b>\n\n")+"<b>CHAT ID</b>\n<code>"+chatId+"</code>\n\n<b>CUSTOMER MESSAGE</b>\n"+safeMessage+leadLines,parse_mode:"HTML",disable_web_page_preview:true,reply_markup:{inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}};
         }
         const response=await fetch("https://api.telegram.org/bot"+env.TELEGRAM_BOT_TOKEN+"/"+method,{
           method:"POST",
@@ -258,7 +274,7 @@ export async function onRequestPost({request,env}){
         }
       }catch{}
     }
-    return json({sent:true,id,telegramNotified,aiReplied},201);
+    return json({sent:true,id,telegramNotified,aiReplied,handoffStatus:handoff?.handoff_status||"ai"},201);
   }catch{return json({error:"Unable to send your message. Please try again."},500);}
 }
 
