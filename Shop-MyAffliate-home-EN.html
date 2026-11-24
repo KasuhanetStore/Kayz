@@ -263,6 +263,36 @@
         .modal-close:hover {
             color: #00F0FF;
         }
+        .preview-slider {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+        .preview-slider .modal-img { margin-bottom: 0; }
+        .preview-arrow {
+            position: absolute;
+            z-index: 2;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 34px;
+            height: 42px;
+            border: 1px solid rgba(0,240,255,.65);
+            border-radius: 6px;
+            background: rgba(0,0,0,.78);
+            color: #00F0FF;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        #previewPrev { left: 6px; }
+        #previewNext { right: 6px; }
+        .preview-counter {
+            margin: 8px 0 12px;
+            color: #00F0FF;
+            font-size: 12px;
+            text-align: center;
+        }
         .modal-img {
             width: 100%;
             max-height: 280px;
@@ -647,8 +677,12 @@
     <div class="modal-overlay" id="previewModal" onclick="closePreview(event)">
         <div class="modal-container" onclick="event.stopPropagation()">
             <span class="modal-close" onclick="forceClosePreview()" aria-label="Close preview">&times;</span>
-            <img src="" id="modalImg" class="modal-img" alt="Product preview">
-            <img src="" id="modalImg2" class="modal-img" alt="Additional product preview" style="display:none;">
+            <div class="preview-slider">
+                <button type="button" class="preview-arrow" id="previewPrev" onclick="changePreview(-1)" aria-label="Previous image">&#10094;</button>
+                <img src="" id="modalImg" class="modal-img" alt="Product preview">
+                <button type="button" class="preview-arrow" id="previewNext" onclick="changePreview(1)" aria-label="Next image">&#10095;</button>
+            </div>
+            <p id="previewCounter" class="preview-counter" style="display:none;">1 / 1</p>
             <h3 id="modalTitle" class="modal-title">Product title</h3>
             <p id="modalPrice" class="modal-price">RM 0.00</p>
             <a id="modalBuyBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn-action btn-shopee">BUY NOW</a>
@@ -697,11 +731,27 @@
   });
 
 
+  let previewImages = [];
+  let previewIndex = 0;
+  function showPreviewImage() {
+    document.getElementById("modalImg").src = previewImages[previewIndex];
+    const hasMultiple = previewImages.length > 1;
+    document.getElementById("previewPrev").style.display = hasMultiple ? "block" : "none";
+    document.getElementById("previewNext").style.display = hasMultiple ? "block" : "none";
+    const counter = document.getElementById("previewCounter");
+    counter.style.display = hasMultiple ? "block" : "none";
+    counter.textContent = (previewIndex + 1) + " / " + previewImages.length;
+  }
+  function changePreview(direction) {
+    if (previewImages.length < 2) return;
+    previewIndex = (previewIndex + direction + previewImages.length) % previewImages.length;
+    showPreviewImage();
+  }
   function openPreview(imgSrc, title, price, buyUrl, secondImgSrc) {
-    document.getElementById("modalImg").src = imgSrc;
-    const secondImage = document.getElementById("modalImg2");
-    secondImage.src = secondImgSrc || "";
-    secondImage.style.display = secondImgSrc ? "block" : "none";
+    previewImages = [imgSrc];
+    if (secondImgSrc) previewImages.push(secondImgSrc);
+    previewIndex = 0;
+    showPreviewImage();
     document.getElementById("modalTitle").textContent = title;
     document.getElementById("modalPrice").textContent = price;
     document.getElementById("modalBuyBtn").href = buyUrl;
