@@ -75,7 +75,7 @@ async function notifyLiveAgent(env, db, chatId, pagePath, customerMessage="") {
     const response=await fetch("https://api.telegram.org/bot"+env.TELEGRAM_BOT_TOKEN+"/sendMessage",{
       method:"POST",headers:{"Content-Type":"application/json"},
       body:JSON.stringify({chat_id:env.TELEGRAM_ADMIN_CHAT_ID,
-        text:"<b>LIVE AGENT REQUEST</b>\\n\\n<b>CHAT ID</b>\\n<code>"+safe(chatId)+"</code>\\n<b>PAGE</b>\\n"+safe(pagePath||"/")+"\\n\\n<b>CUSTOMER MESSAGE</b>\\n"+safe(customerMessage||"Customer requested a live agent from the chat button.")+"\\n\\nAI replies are paused for this chat.",
+        text:"<b>LIVE AGENT REQUEST</b>\n\n<b>CHAT ID</b>\n<code>"+safe(chatId)+"</code>\n<b>PAGE</b>\n"+safe(pagePath||"/")+"\n\n<b>CUSTOMER MESSAGE</b>\n"+safe(customerMessage||"Customer requested a live agent from the chat button.")+"\n\nAI replies are paused for this chat.",
         parse_mode:"HTML",disable_web_page_preview:true,
         reply_markup:{inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}})
     });
