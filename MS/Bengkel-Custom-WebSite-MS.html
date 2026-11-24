@@ -1176,6 +1176,7 @@ footer > * { position: relative; z-index: 1; }
 
     </div>
 
+<div class="kn-terms-consent" style="display:grid;gap:8px;margin:8px 0;padding:11px 12px;border:1px solid rgba(0,240,255,.28);border-radius:9px;background:rgba(0,240,255,.045);"><details><summary style="color:#75eaff;font-size:12px;font-weight:800;cursor:pointer;">Baca Terma &amp; Syarat</summary><div style="display:grid;gap:7px;margin-top:9px;color:#cbd5e1;font-size:11px;line-height:1.55;"><p>Servis dan hasil kerja adalah terhad kepada skop pakej atau servis yang disahkan oleh KasuhaNET. Kerja tambahan, caj pihak ketiga, kos domain atau hosting perlu dipersetujui secara berasingan.</p><p>Pelanggan perlu memberikan maklumat yang tepat, menjaga keselamatan kelayakan akaun dan menggunakan servis secara sah. Pengedaran semula, penjualan semula atau penyalahgunaan bahan dan servis digital yang dibekalkan tidak dibenarkan tanpa kebenaran bertulis.</p><p>Pembayaran diproses oleh penyedia pembayaran yang dipilih dan tertakluk pada proses penyedia tersebut. Produk serta platform pihak ketiga tertakluk pada terma dan ketersediaan masing-masing.</p><p>Ketersediaan servis mungkin terjejas oleh penyelenggaraan, sambungan atau sistem pihak ketiga. Hubungi sokongan KasuhaNET untuk bantuan berkaitan pesanan.</p><p>Maklumat peribadi dikendalikan mengikut <a href="/Privacy-Policy/MS/" style="color:#75eaff;text-decoration:underline;">Dasar Privasi</a>.</p></div></details><label style="display:flex;align-items:flex-start;gap:9px;color:#e7edf5;font-size:11px;line-height:1.5;cursor:pointer;"><input type="checkbox" id="knTermsAccepted" name="termsAccepted" required style="width:16px;height:16px;flex:0 0 16px;margin:1px 0 0;accent-color:#00f0ff;"><span>Saya telah membaca dan bersetuju dengan Terma &amp; Syarat serta Dasar Privasi.</span></label></div>
     <button type="submit" class="kn-checkout-submit" id="knWorkshopPaySubmit">
       BAYAR
     </button>
@@ -1327,7 +1328,9 @@ footer > * { position: relative; z-index: 1; }
           name:document.getElementById("knWorkshopName").value.trim(),
           email:document.getElementById("knWorkshopEmail").value.trim(),
           phone:document.getElementById("knWorkshopPhone").value.trim(),
-          locale:"MS"
+          locale:"MS",
+          termsAccepted:document.getElementById("knTermsAccepted").checked,
+          termsVersion:"2026-11-25"
         })
       });
       const data=await response.json();
