@@ -45,6 +45,13 @@ function json(data, status) {
   });
 }
 
+async function ensureTermsColumns(db, table) {
+  if (table !== "stripe_orders" && table !== "toyyibpay_orders") throw new Error("Invalid order table.");
+  const info = await db.prepare("PRAGMA table_info(" + table + ")").all();
+  const columns = new Set((info.results || []).map(column => column.name));
+  if (!columns.has("terms_accepted")) await db.prepare("ALTER TABLE " + table + " ADD COLUMN terms_accepted INTEGER NOT NULL DEFAULT 0").run();
+  if (!columns.has("terms_version")) await db.prepare("ALTER TABLE " + table + " ADD COLUMN terms_version TEXT").run();
+}
 async function verifyRecaptcha(token, env, expectedAction) {
   if (!env.RECAPTCHA_SECRET_KEY || typeof token !== "string" || token.length > 4096) return false;
   try {
@@ -111,6 +118,8 @@ export async function onRequestPost(context) {
     return json({ error: "Invalid checkout details." }, 400);
   }
 
+  if (input.termsAccepted !== true || input.termsVersion !== "2026-11-25") return json({ error: "Please accept the current Terms & Conditions before payment." }, 400);
+
   const selected = PACKAGES[input.packageId];
   const rawServiceIds = input.serviceIds;
   let selectedServices = [];
@@ -159,10 +168,11 @@ export async function onRequestPost(context) {
   const orderId = crypto.randomUUID();
 
   try {
+    await ensureTermsColumns(env.DB, "stripe_orders");
     await env.DB.prepare(
       `INSERT INTO stripe_orders
-       (id, package_id, package_name, amount, currency, customer_name, customer_email, customer_phone, status)
-       VALUES (?, ?, ?, ?, 'myr', ?, ?, ?, 'pending')`
+       (id, package_id, package_name, amount, currency, customer_name, customer_email, customer_phone, status, terms_accepted, terms_version)
+       VALUES (?, ?, ?, ?, 'myr', ?, ?, ?, 'pending', 1, ?)`
     ).bind(
       orderId,
       isWorkshopOrder ? "custom-workshop" : input.packageId,
@@ -170,7 +180,8 @@ export async function onRequestPost(context) {
       amount,
       name,
       email,
-      phone
+      phone,
+      input.termsVersion
     ).run();
   } catch {
     return json({ error: "Unable to save the order. Please try again." }, 500);
