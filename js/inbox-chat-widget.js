@@ -230,7 +230,7 @@
       if(response.status===401) return;
       if(!response.ok) return;
       const data=await response.json();
-      updateAgentButton(data.handoffStatus||"ai");
+      updateAgentButton(data.handoffStatus||"ai",data.handoffNotified);
       (data.messages||[]).forEach(showMessage);
     }catch{}
   }
