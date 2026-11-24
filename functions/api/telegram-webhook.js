@@ -587,7 +587,13 @@ export async function onRequestPost({ request, env }) {
             if(!target || target.status!=="open") {
               await send(env,chatId,"This customer chat is unavailable or closed.");
             } else {
+              const targetChat=await env.DB.prepare("SELECT page_path FROM inbox_chats WHERE chat_id=?").bind(targetChatId).first();
               await env.DB.prepare("UPDATE inbox_chats SET handoff_status='human',updated_at=CURRENT_TIMESTAMP WHERE chat_id=?").bind(targetChatId).run();
+              const connectedNotice=String(targetChat?.page_path||"").toLowerCase().includes("/ms/")
+                ? "Anda telah disambungkan kepada Live Agent kami. Sila teruskan perbualan di sini."
+                : "You have been connected to our Live Agent. Please continue the conversation here.";
+              await env.DB.prepare("INSERT INTO inbox_messages (id,chat_id,sender,message) VALUES (?,?,'admin',?)")
+                .bind(crypto.randomUUID(),targetChatId,connectedNotice).run();
               await env.DB.prepare(`INSERT INTO inbox_admin_sessions(admin_chat_id,target_chat_id)
                 VALUES(?,?) ON CONFLICT(admin_chat_id) DO UPDATE SET
                 target_chat_id=excluded.target_chat_id,updated_at=CURRENT_TIMESTAMP`)
