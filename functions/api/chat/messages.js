@@ -1,7 +1,7 @@
 import { ensureAILearningTables, getApprovedAIKnowledge, recordAIExperience } from '../ai-learning.js';
 const ALLOWED_HOSTS = new Set(["kasuhanet.store", "www.kasuhanet.store"]);
 function json(data,status=200){return new Response(JSON.stringify(data),{status,headers:{"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"}});}
-function cleanAIText(value){return String(value||"").replace(/\\([*_`~])/g,"$1").replace(/\*\*(.*?)\*\*/gs,"$1").replace(/[ \t]{2,}/g," ").trim();}
+function cleanAIText(value){return String(value||"").replace(/\([*_`~])/g,"$1").replace(/\*\*(.*?)\*\*/gs,"$1").replace(/[ \t]{2,}/g," ").trim();}
 function allowed(request){
   try{
     const url=new URL(request.url), origin=request.headers.get("Origin");
@@ -201,15 +201,15 @@ export async function onRequestPost({request,env}){
     await env.DB.prepare("UPDATE inbox_chats SET updated_at=CURRENT_TIMESTAMP,last_message_at=CURRENT_TIMESTAMP WHERE chat_id=?").bind(chatId).run();
     const capturedLead = attachment ? null : await captureLead(env.DB, chatId, message);
     const liveAgentRequest = !attachment && (
-      /\\b(live\\s*agent|human\\s*agent|real\\s*person|customer\\s*service|support\\s*agent|operator|speak\\s+to\\s+(a\\s+)?(person|human|agent)|talk\\s+to\\s+(a\\s+)?(person|human|agent))\\b/i.test(message) ||
-      /\\b(ejen\\s+manusia|pegawai\\s+(khidmat\\s+pelanggan|support)|khidmat\\s+pelanggan)\\b/i.test(message) ||
-      /\\b(nak|mahu|ingin|boleh)\\s+(sambung(kan)?|bercakap|cakap|chat)\\s+(saya\\s+)?(dengan|ke)\\s+(live\\s+)?agent\\b/i.test(message)
+      /\b(live\s*agent|human\s*agent|real\s*person|customer\s*service|support\s*agent|operator|speak\s+to\s+(a\s+)?(person|human|agent)|talk\s+to\s+(a\s+)?(person|human|agent))\b/i.test(message) ||
+      /\b(ejen\s+manusia|pegawai\s+(khidmat\s+pelanggan|support)|khidmat\s+pelanggan)\b/i.test(message) ||
+      /\b(nak|mahu|ingin|boleh)\s+(sambung(kan)?|bercakap|cakap|chat)\s+(saya\s+)?(dengan|ke)\s+(live\s+)?agent\b/i.test(message)
     );
     let handoff=await env.DB.prepare("SELECT handoff_status FROM inbox_chats WHERE chat_id=?").bind(chatId).first();
     let liveAgentAutoRequested=false;
     if(liveAgentRequest && (!handoff?.handoff_status || handoff.handoff_status==="ai")){
       await env.DB.prepare("UPDATE inbox_chats SET handoff_status='requested',updated_at=CURRENT_TIMESTAMP WHERE chat_id=?").bind(chatId).run();
-      const notice=/\\b(nak|mahu|ingin|boleh|saya|tolong|sambung|ejen|pegawai)\\b/i.test(message)
+      const notice=/\b(nak|mahu|ingin|boleh|saya|tolong|sambung|ejen|pegawai)\b/i.test(message)
         ? "Permintaan Live Agent diterima. Pasukan KasuhaNET akan menyambung perbualan ini melalui Live Chat sebaik sahaja tersedia."
         : "Your Live Agent request has been received. The KasuhaNET team will join this chat as soon as an agent is available.";
       await env.DB.prepare("INSERT INTO inbox_messages (id,chat_id,sender,message) VALUES (?,?,'admin',?)")
