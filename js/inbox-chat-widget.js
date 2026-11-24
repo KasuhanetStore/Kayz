@@ -353,7 +353,12 @@
       if(!response.ok) throw new Error(data.error||"Message failed");
       messageInput.value="";
       await pollMessages();
-      note.style.display="none";
+      if(data.handoffStatus==="requested" && !data.telegramNotified){
+        note.textContent=copy.agentNotifyFailed;
+        note.style.display="block";
+      }else{
+        note.style.display="none";
+      }
     }catch(error){
       note.textContent=error.message||copy.notReady;
       note.style.display="block";
