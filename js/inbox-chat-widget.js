@@ -1,5 +1,32 @@
 (function () {
   if (window.__KN_INBOX_WIDGET__) return;
+  const RECAPTCHA_SITE_KEY = "6Lcs9yUuAAAAAD15iECIUiJBQ5x1hp_c7BxuAIAi";
+  function getChatRecaptchaToken() {
+    return new Promise((resolve, reject) => {
+      const run = () => {
+        if (!window.grecaptcha) return reject(new Error("Security verification could not load."));
+        window.grecaptcha.ready(async () => {
+          try { resolve(await window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: "chat_start" })); }
+          catch { reject(new Error("Security verification failed. Please try again.")); }
+        });
+      };
+      if (window.grecaptcha) return run();
+      let script = document.querySelector('script[data-kn-recaptcha]');
+      if (!script) {
+        script = document.createElement("script");
+        script.src = "https://www.google.com/recaptcha/api.js?render=" + RECAPTCHA_SITE_KEY;
+        script.async = true;
+        script.defer = true;
+        script.dataset.knRecaptcha = "1";
+        script.onload = run;
+        script.onerror = () => reject(new Error("Security verification could not load."));
+        document.head.appendChild(script);
+      } else {
+        script.addEventListener("load", run, { once: true });
+        script.addEventListener("error", () => reject(new Error("Security verification could not load.")), { once: true });
+      }
+    });
+  }
   window.__KN_INBOX_WIDGET__ = true;
 
   const isMalay = /(^|\/)MS(\/|$)/i.test(location.pathname);
@@ -215,7 +242,8 @@
         localStorage.removeItem(storageKey);
         session=null;
       }
-      const response=await fetch("/api/chat/start",{method:"POST",headers:{"Content-Type":"application/json"},body:"{}"});
+      const recaptchaToken = await getChatRecaptchaToken();
+      const response=await fetch("/api/chat/start",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({recaptchaToken})});
       const data=await response.json();
       if(!response.ok || !data.chatId || !data.sessionToken) throw new Error("Chat setup failed");
       session={chatId:data.chatId,sessionToken:data.sessionToken};
