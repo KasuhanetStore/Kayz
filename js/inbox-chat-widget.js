@@ -176,6 +176,8 @@
   const storageKey = "kn_inbox_session_v1";
   let session = null;
   let pollHandle = null;
+  let lastMessageId = "";
+  let pollInFlight = false;
   const renderedIds = new Set();
 
   function showMessage(item){
@@ -183,6 +185,7 @@
     renderedIds.add(item.id);
     const bubble=document.createElement("div");
     bubble.className="kn-inbox-message "+(item.sender==="buyer"?"kn-mine":"kn-admin");
+    bubble.dataset.messageId=item.id;
     const raw=String(item.message||"");
     let attachment=null;
     try{const parsed=JSON.parse(raw);if(parsed&&["image","voice","location"].includes(parsed.kind))attachment=parsed;}catch{}
@@ -208,16 +211,21 @@
     body.scrollTop=body.scrollHeight;
   }
   async function pollMessages(){
-    if(!session) return;
+    if(!session || pollInFlight || !panel.classList.contains("kn-open")) return;
+    pollInFlight=true;
     try{
-      const response=await fetch("/api/chat/messages?chatId="+encodeURIComponent(session.chatId),{
+      const url=new URL("/api/chat/messages",location.origin);
+      url.searchParams.set("chatId",session.chatId);
+      if(lastMessageId) url.searchParams.set("after",lastMessageId);
+      const response=await fetch(url.toString(),{
         headers:{Authorization:"Bearer "+session.sessionToken},cache:"no-store"
       });
-      if(response.status===401) return;
-      if(!response.ok) return;
+      if(response.status===401 || !response.ok) return;
       const data=await response.json();
-      (data.messages||[]).forEach(showMessage);
-    }catch{}
+      const incoming=data.messages||[];
+      incoming.forEach(showMessage);
+      if(incoming.length) lastMessageId=incoming[incoming.length-1].id;
+    }catch{}finally{pollInFlight=false;}
   }
   async function connectChat(){
     if(session) return;
@@ -235,7 +243,8 @@
             chatIdNode.textContent=session.chatId;
             messageInput.disabled=false;sendButton.disabled=false;
             const data=await check.json();(data.messages||[]).forEach(showMessage);
-            pollHandle=setInterval(pollMessages,5000);
+            if(data.messages?.length) lastMessageId=data.messages[data.messages.length-1].id;
+            startPolling();
             return;
           }
         }
@@ -250,14 +259,28 @@
       localStorage.setItem(storageKey,JSON.stringify(session));
       chatIdNode.textContent=session.chatId;
       messageInput.disabled=false;sendButton.disabled=false;
-      pollHandle=setInterval(pollMessages,5000);
+      startPolling();
     }catch{
       chatIdNode.textContent="Unavailable";
       note.textContent=copy.notReady;note.style.display="block";
     }
   }
-  function openPanel(){panel.classList.add("kn-open");launcher.hidden=true;connectChat();}
-  function closePanel(){panel.classList.remove("kn-open","kn-maximized");launcher.hidden=false;maximizeButton.textContent="□";maximizeButton.title=copy.maximize;}
+  function startPolling(){
+    if(pollHandle || !panel.classList.contains("kn-open")) return;
+    pollMessages();
+    pollHandle=setInterval(pollMessages,2000);
+  }
+  function stopPolling(){
+    if(pollHandle){clearInterval(pollHandle);pollHandle=null;}
+  }
+  function openPanel(){
+    panel.classList.add("kn-open");launcher.hidden=true;
+    if(session) startPolling(); else connectChat();
+  }
+  function closePanel(){
+    panel.classList.remove("kn-open","kn-maximized");launcher.hidden=false;
+    stopPolling();maximizeButton.textContent="□";maximizeButton.title=copy.maximize;
+  }
   function toggleMaximize(){
     const maximized=panel.classList.toggle("kn-maximized");
     maximizeButton.textContent=maximized?"❐":"□";
@@ -316,6 +339,9 @@
     e.preventDefault();
     const message=messageInput.value.trim();
     if(!message || !session) return;
+    const optimisticId="pending-"+crypto.randomUUID();
+    showMessage({id:optimisticId,sender:"buyer",message});
+    messageInput.value="";
     sendButton.disabled=true;
     try{
       const response=await fetch("/api/chat/messages",{
@@ -324,11 +350,19 @@
         body:JSON.stringify({chatId:session.chatId,message})
       });
       const data=await response.json();
-      if(!response.ok) throw new Error(data.error||"Message failed");
-      messageInput.value="";
-      await pollMessages();
+      if(!response.ok || !data.id) throw new Error(data.error||"Message failed");
+      const pendingBubble=messagesNode.querySelector('[data-message-id="'+optimisticId+'"]');
+      if(pendingBubble) pendingBubble.dataset.messageId=data.id;
+      renderedIds.delete(optimisticId);
+      renderedIds.add(data.id);
+      lastMessageId=data.id;
       note.style.display="none";
+      pollMessages();
     }catch(error){
+      const pendingBubble=messagesNode.querySelector('[data-message-id="'+optimisticId+'"]');
+      if(pendingBubble) pendingBubble.remove();
+      renderedIds.delete(optimisticId);
+      if(!messageInput.value) messageInput.value=message;
       note.textContent=error.message||copy.notReady;
       note.style.display="block";
     }finally{sendButton.disabled=false;}

@@ -11,30 +11,39 @@ function allowed(request){
     return parsed.protocol==="https:" && ALLOWED_HOSTS.has(parsed.hostname) && parsed.origin===url.origin;
   }catch{return false;}
 }
-async function ensureTables(db){
-  await ensureAILearningTables(db);
-  await db.prepare(`CREATE TABLE IF NOT EXISTS inbox_chats (
-    id TEXT PRIMARY KEY, chat_id TEXT NOT NULL UNIQUE, session_token_hash TEXT NOT NULL,
-    status TEXT NOT NULL DEFAULT 'open', created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, last_message_at TEXT
-  )`).run();
-  await db.prepare(`CREATE TABLE IF NOT EXISTS inbox_messages (
-    id TEXT PRIMARY KEY, chat_id TEXT NOT NULL,
-    sender TEXT NOT NULL CHECK(sender IN ('buyer','admin')), message TEXT NOT NULL,
-    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, telegram_message_id TEXT
-  )`).run();
-  try { await db.prepare("ALTER TABLE inbox_chats ADD COLUMN page_path TEXT").run(); } catch {}
-  await db.prepare("CREATE INDEX IF NOT EXISTS idx_inbox_messages_chat_created ON inbox_messages(chat_id, created_at)").run();
-  await db.prepare(`CREATE TABLE IF NOT EXISTS inbox_leads (
-    chat_id TEXT PRIMARY KEY,
-    customer_name TEXT,
-    customer_email TEXT,
-    customer_phone TEXT,
-    project_need TEXT,
-    status TEXT NOT NULL DEFAULT 'new',
-    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-  )`).run();
+const inboxSchemaReady = new WeakMap();
+function ensureTables(db){
+  let setup=inboxSchemaReady.get(db);
+  if(!setup){
+    setup=(async()=>{
+      await ensureAILearningTables(db);
+      await db.prepare(`CREATE TABLE IF NOT EXISTS inbox_chats (
+        id TEXT PRIMARY KEY, chat_id TEXT NOT NULL UNIQUE, session_token_hash TEXT NOT NULL,
+        status TEXT NOT NULL DEFAULT 'open', created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, last_message_at TEXT
+      )`).run();
+      await db.prepare(`CREATE TABLE IF NOT EXISTS inbox_messages (
+        id TEXT PRIMARY KEY, chat_id TEXT NOT NULL,
+        sender TEXT NOT NULL CHECK(sender IN ('buyer','admin')), message TEXT NOT NULL,
+        created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, telegram_message_id TEXT
+      )`).run();
+      try { await db.prepare("ALTER TABLE inbox_chats ADD COLUMN page_path TEXT").run(); } catch {}
+      await db.prepare("CREATE INDEX IF NOT EXISTS idx_inbox_messages_chat_created ON inbox_messages(chat_id, created_at)").run();
+      await db.prepare(`CREATE TABLE IF NOT EXISTS inbox_leads (
+        chat_id TEXT PRIMARY KEY,
+        customer_name TEXT,
+        customer_email TEXT,
+        customer_phone TEXT,
+        project_need TEXT,
+        status TEXT NOT NULL DEFAULT 'new',
+        created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+      )`).run();
+    })();
+    inboxSchemaReady.set(db,setup);
+    setup.catch(()=>inboxSchemaReady.delete(db));
+  }
+  return setup;
 }
 function extractLeadData(message) {
   const text = String(message || "").trim();
@@ -146,12 +155,24 @@ export async function onRequestGet({request,env}){
     await ensureTables(env.DB);
     if(!(await authorize(env.DB,chatId,token))) return json({error:"Chat session is invalid or expired."},401);
     const after=url.searchParams.get("after")||"";
-    const rows=await env.DB.prepare(`SELECT id,sender,message,created_at FROM inbox_messages
-      WHERE chat_id=? ORDER BY created_at DESC, rowid DESC LIMIT 100`).bind(chatId).all();
-    return json({messages:(rows.results||[]).reverse()});
+    let rows;
+    if(after){
+      const cursor=await env.DB.prepare("SELECT rowid FROM inbox_messages WHERE id=? AND chat_id=?").bind(after,chatId).first();
+      if(cursor){
+        rows=await env.DB.prepare(`SELECT id,sender,message,created_at FROM inbox_messages
+          WHERE chat_id=? AND rowid>? ORDER BY rowid ASC LIMIT 100`).bind(chatId,cursor.rowid).all();
+      }
+    }
+    if(!rows){
+      rows=await env.DB.prepare(`SELECT id,sender,message,created_at FROM inbox_messages
+        WHERE chat_id=? ORDER BY rowid DESC LIMIT 100`).bind(chatId).all();
+      rows.results=(rows.results||[]).reverse();
+    }
+    return json({messages:rows.results||[]});
   }catch{return json({error:"Unable to load chat messages."},500);}
 }
-export async function onRequestPost({request,env}){
+export async function onRequestPost(context){
+  const {request,env}=context;
   if(!allowed(request)) return json({error:"Request origin is not allowed."},403);
   if(!env.DB) return json({error:"D1 database binding DB is not configured."},503);
   let input;
@@ -177,63 +198,69 @@ export async function onRequestPost({request,env}){
     await env.DB.prepare("UPDATE inbox_chats SET updated_at=CURRENT_TIMESTAMP,last_message_at=CURRENT_TIMESTAMP WHERE chat_id=?").bind(chatId).run();
     const capturedLead = attachment ? null : await captureLead(env.DB, chatId, message);
 
-    // Generate an automatic sales/support reply when the Cloudflare AI binding is enabled.
-    // AI failure never blocks delivery of the original customer message to the human inbox.
-    let aiReplied = false;
-    if (!attachment) {
-      try {
-        aiReplied = Boolean(await generateSalesReply(env, env.DB, chatId, message));
-      } catch (error) {
-        console.error("[KasuhaNET AI] Reply generation failed:", error?.message || String(error));
-        aiReplied = false;
+    // AI generation and Telegram delivery must never delay the visitor's send confirmation.
+    const backgroundTask=(async()=>{
+      // Generate an automatic sales/support reply when the Cloudflare AI binding is enabled.
+      // AI failure never blocks delivery of the original customer message to the human inbox.
+      let aiReplied = false;
+      if (!attachment) {
+        try {
+          aiReplied = Boolean(await generateSalesReply(env, env.DB, chatId, message));
+        } catch (error) {
+          console.error("[KasuhaNET AI] Reply generation failed:", error?.message || String(error));
+          aiReplied = false;
+        }
       }
-    }
-
-    // Notify the support admin in Telegram. Attachments are delivered as native Telegram media.
-    // The website message remains saved even
-    // if Telegram is temporarily unavailable.
-    let telegramNotified=false;
-    if(env.TELEGRAM_BOT_TOKEN && env.TELEGRAM_ADMIN_CHAT_ID){
-      try{
-        const safeMessage=(attachment?(attachment.kind==="image"?"[Customer sent an image]":attachment.kind==="voice"?"[Customer sent a voice message]":"[Customer shared location]"):message).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-        let method="sendMessage", body;
-        if(attachment?.kind==="location"){method="sendLocation";body={chat_id:env.TELEGRAM_ADMIN_CHAT_ID,latitude:attachment.lat,longitude:attachment.lng,reply_markup:{inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}};}
-        else if(attachment?.kind==="image"||attachment?.kind==="voice"){
-          const parts=attachment.data.split(",",2),mime=parts[0].match(/^data:([^;]+)/)?.[1]||"application/octet-stream";
-          const bytes=Uint8Array.from(atob(parts[1]),c=>c.charCodeAt(0));
-          const formData=new FormData();formData.append("chat_id",env.TELEGRAM_ADMIN_CHAT_ID);formData.append("reply_markup",JSON.stringify({inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}));
-          if(attachment.kind==="image"){
-            formData.append("photo",new Blob([bytes],{type:mime}),"customer-image.jpg");
-            method="sendPhoto";
-          }else{
-            const voiceFormat=/^(audio\/ogg|audio\/mpeg|audio\/mp4|audio\/x-m4a)/i.test(mime);
-            formData.append(voiceFormat?"voice":"document",new Blob([bytes],{type:mime}),voiceFormat?"customer-voice."+(/ogg/i.test(mime)?"ogg":/mpeg/i.test(mime)?"mp3":"m4a"):"customer-voice.webm");
-            method=voiceFormat?"sendVoice":"sendDocument";
+  
+      // Notify the support admin in Telegram. Attachments are delivered as native Telegram media.
+      // The website message remains saved even
+      // if Telegram is temporarily unavailable.
+      let telegramNotified=false;
+      if(env.TELEGRAM_BOT_TOKEN && env.TELEGRAM_ADMIN_CHAT_ID){
+        try{
+          const safeMessage=(attachment?(attachment.kind==="image"?"[Customer sent an image]":attachment.kind==="voice"?"[Customer sent a voice message]":"[Customer shared location]"):message).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+          let method="sendMessage", body;
+          if(attachment?.kind==="location"){method="sendLocation";body={chat_id:env.TELEGRAM_ADMIN_CHAT_ID,latitude:attachment.lat,longitude:attachment.lng,reply_markup:{inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}};}
+          else if(attachment?.kind==="image"||attachment?.kind==="voice"){
+            const parts=attachment.data.split(",",2),mime=parts[0].match(/^data:([^;]+)/)?.[1]||"application/octet-stream";
+            const bytes=Uint8Array.from(atob(parts[1]),c=>c.charCodeAt(0));
+            const formData=new FormData();formData.append("chat_id",env.TELEGRAM_ADMIN_CHAT_ID);formData.append("reply_markup",JSON.stringify({inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}));
+            if(attachment.kind==="image"){
+              formData.append("photo",new Blob([bytes],{type:mime}),"customer-image.jpg");
+              method="sendPhoto";
+            }else{
+              const voiceFormat=/^(audio\/ogg|audio\/mpeg|audio\/mp4|audio\/x-m4a)/i.test(mime);
+              formData.append(voiceFormat?"voice":"document",new Blob([bytes],{type:mime}),voiceFormat?"customer-voice."+(/ogg/i.test(mime)?"ogg":/mpeg/i.test(mime)?"mp3":"m4a"):"customer-voice.webm");
+              method=voiceFormat?"sendVoice":"sendDocument";
+            }
+            body=formData;
+          }else {
+            const leadLines = capturedLead && (capturedLead.customerName || capturedLead.email || capturedLead.phone || capturedLead.projectNeed)
+              ? "\n\n<b>LEAD DETAILS CAPTURED</b>" +
+                (capturedLead.customerName ? "\nName: " + capturedLead.customerName.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "") +
+                (capturedLead.email ? "\nEmail: " + capturedLead.email.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "") +
+                (capturedLead.phone ? "\nPhone: " + capturedLead.phone.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "") +
+                (capturedLead.projectNeed ? "\nRequirement: " + capturedLead.projectNeed.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "")
+              : "";
+            body={chat_id:env.TELEGRAM_ADMIN_CHAT_ID,text:"<b>NEW KASUHANET INBOX MESSAGE</b>\n\n<b>CHAT ID</b>\n<code>"+chatId+"</code>\n\n<b>CUSTOMER MESSAGE</b>\n"+safeMessage+leadLines,parse_mode:"HTML",disable_web_page_preview:true,reply_markup:{inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}};
           }
-          body=formData;
-        }else {
-          const leadLines = capturedLead && (capturedLead.customerName || capturedLead.email || capturedLead.phone || capturedLead.projectNeed)
-            ? "\n\n<b>LEAD DETAILS CAPTURED</b>" +
-              (capturedLead.customerName ? "\nName: " + capturedLead.customerName.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "") +
-              (capturedLead.email ? "\nEmail: " + capturedLead.email.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "") +
-              (capturedLead.phone ? "\nPhone: " + capturedLead.phone.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "") +
-              (capturedLead.projectNeed ? "\nRequirement: " + capturedLead.projectNeed.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") : "")
-            : "";
-          body={chat_id:env.TELEGRAM_ADMIN_CHAT_ID,text:"<b>NEW KASUHANET INBOX MESSAGE</b>\n\n<b>CHAT ID</b>\n<code>"+chatId+"</code>\n\n<b>CUSTOMER MESSAGE</b>\n"+safeMessage+leadLines,parse_mode:"HTML",disable_web_page_preview:true,reply_markup:{inline_keyboard:[[{text:"Reply to Customer",callback_data:"inbox:reply:"+chatId}]]}};
-        }
-        const response=await fetch("https://api.telegram.org/bot"+env.TELEGRAM_BOT_TOKEN+"/"+method,{
-          method:"POST",
-          ...(body instanceof FormData?{body}:{headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
-        });
-        const result=await response.json();
-        telegramNotified=response.ok && result.ok===true;
-        if(telegramNotified && result.result?.message_id){
-          await env.DB.prepare("UPDATE inbox_messages SET telegram_message_id=? WHERE id=?")
-            .bind(String(result.result.message_id),id).run();
-        }
-      }catch{}
-    }
-    return json({sent:true,id,telegramNotified,aiReplied},201);
+          const response=await fetch("https://api.telegram.org/bot"+env.TELEGRAM_BOT_TOKEN+"/"+method,{
+            method:"POST",
+            ...(body instanceof FormData?{body}:{headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})
+          });
+          const result=await response.json();
+          telegramNotified=response.ok && result.ok===true;
+          if(telegramNotified && result.result?.message_id){
+            await env.DB.prepare("UPDATE inbox_messages SET telegram_message_id=? WHERE id=?")
+              .bind(String(result.result.message_id),id).run();
+          }
+        }catch{}
+      }
+  
+    })().catch(error=>console.error("[KasuhaNET Inbox] Background processing failed:",error?.message||String(error)));
+    if(typeof context.waitUntil==="function") context.waitUntil(backgroundTask);
+    else await backgroundTask;
+    return json({sent:true,id,queued:true},201);
   }catch{return json({error:"Unable to send your message. Please try again."},500);}
 }
 
