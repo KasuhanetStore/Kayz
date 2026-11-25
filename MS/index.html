@@ -302,6 +302,14 @@
     .price { font-size: 38px; font-weight: 950; letter-spacing: -1px; margin: 4px 0 2px; }
     .price small { font-size: 13px; font-weight: 600; letter-spacing: 0; color: var(--muted); }
     .price-note { color: #9fa4b4; font-size: 12px; margin-bottom: 20px; }
+    .kn-seasonal-price { margin: 4px 0 16px; }
+    .kn-seasonal-price-top { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:2px; }
+    .kn-original-price { color:#8d98a8; font-size:15px; font-weight:750; text-decoration:line-through; text-decoration-color:rgba(255,255,255,.65); }
+    .kn-original-price small { font-size:11px; color:#8993a2; }
+    .kn-discount-label { display:inline-flex; align-items:center; padding:5px 9px; border:1px solid rgba(0,240,255,.55); border-radius:999px; background:rgba(0,220,255,.12); color:#8ff7ff; font-size:10px; font-weight:950; letter-spacing:.7px; box-shadow:0 0 12px rgba(0,220,255,.12); white-space:nowrap; }
+    .kn-seasonal-price .kn-discounted-price { margin:0; color:#8ff7ff; text-shadow:0 0 16px rgba(0,220,255,.18); }
+    .kn-seasonal-price .kn-discounted-price small { color:#aebbc9; }
+    .kn-seasonal-note { margin:2px 0 0; color:#8c9aa9; font-size:10px; line-height:1.45; }
     .feature-list { list-style: none; margin: 0 0 28px; padding: 0; flex: 1; }
     .feature-list li { padding: 10px 0; border-bottom: none !important; color: #e4e6ed; font-size: 14px; }
     .profile-box .feature-list li { border-bottom: none; }
@@ -1038,8 +1046,8 @@
     </details>
 
     <div class="pricing" style="margin-top:22px">
-      <article class="price-card"><span class="plan-tag">LANDING PAGE</span><h3>Pakej Landing Page</h3><div class="price">RM 299 <small>++</small></div><p class="price-sub">Untuk kempen pemasaran, pelancaran produk mudah dan portfolio kedai mini.</p><ul class="feature-list"><li>1 halaman utama (reka bentuk single-page)</li><li>Struktur kod responsif untuk peranti mudah alih</li><li>Pengoptimuman Google AdSense</li><li>Tindakan WhatsApp / borang</li><li><strong style="color:#ff4d4f;">Domain khusus tidak disertakan</strong></li></ul><a class="btn btn-primary" href="#checkout" onclick="openCheckout('landing-page'); return false;"><span>Langgan Sekarang ↗</span><img class="stripe-button-logo" src="../img/StripeLogo.png" alt="Stripe" loading="lazy"></a></article>
-      <article class="price-card premium"><span class="plan-tag">POPULAR</span><h3>Premium Standard</h3><div class="price">RM 900 <small>++</small></div><p class="price-sub">Sistem pengurusan lengkap untuk kelab, persatuan dan profil perniagaan dinamik.</p><ul class="feature-list"><li>Luncurkan laman web pelbagai halaman</li><li>Sistem Pengurusan Kandungan Tersuai</li><li>Google AdSense dan SEO lanjutan</li><li>Showcase produk / galeri aktiviti kelab</li><li>Sokongan domain khusus (.com/.my)</li><li>Gaya Premium Cyberpunk UI/UX</li></ul><a class="btn btn-primary" href="#checkout" onclick="openCheckout('premium-standard'); return false;"><span>Naik Taraf ke Premium ↗</span><img class="stripe-button-logo" src="../img/StripeLogo.png" alt="Stripe" loading="lazy"></a></article>
+      <article class="price-card"><span class="plan-tag">LANDING PAGE</span><h3>Pakej Landing Page</h3><div class="kn-seasonal-price"><div class="kn-seasonal-price-top"><span class="kn-original-price">RM 299 <small>++</small></span><span class="kn-discount-label">DISKAUN 30%</span></div><div class="price kn-discounted-price">RM 209.30 <small>++</small></div><p class="kn-seasonal-note">Jualan Musim 2026 · Pembangunan Laman Web sahaja</p></div><p class="price-sub">Untuk kempen pemasaran, pelancaran produk mudah dan portfolio kedai mini.</p><ul class="feature-list"><li>1 halaman utama (reka bentuk single-page)</li><li>Struktur kod responsif untuk peranti mudah alih</li><li>Pengoptimuman Google AdSense</li><li>Tindakan WhatsApp / borang</li><li><strong style="color:#ff4d4f;">Domain khusus tidak disertakan</strong></li></ul><a class="btn btn-primary" href="#checkout" onclick="openCheckout('landing-page'); return false;"><span>Langgan Sekarang ↗</span><img class="stripe-button-logo" src="../img/StripeLogo.png" alt="Stripe" loading="lazy"></a></article>
+      <article class="price-card premium"><span class="plan-tag">POPULAR</span><h3>Premium Standard</h3><div class="kn-seasonal-price"><div class="kn-seasonal-price-top"><span class="kn-original-price">RM 900 <small>++</small></span><span class="kn-discount-label">DISKAUN 30%</span></div><div class="price kn-discounted-price">RM 630.00 <small>++</small></div><p class="kn-seasonal-note">Jualan Musim 2026 · Pembangunan Laman Web sahaja</p></div><p class="price-sub">Sistem pengurusan lengkap untuk kelab, persatuan dan profil perniagaan dinamik.</p><ul class="feature-list"><li>Luncurkan laman web pelbagai halaman</li><li>Sistem Pengurusan Kandungan Tersuai</li><li>Google AdSense dan SEO lanjutan</li><li>Showcase produk / galeri aktiviti kelab</li><li>Sokongan domain khusus (.com/.my)</li><li>Gaya Premium Cyberpunk UI/UX</li></ul><a class="btn btn-primary" href="#checkout" onclick="openCheckout('premium-standard'); return false;"><span>Naik Taraf ke Premium ↗</span><img class="stripe-button-logo" src="../img/StripeLogo.png" alt="Stripe" loading="lazy"></a></article>
     </div>
 
     <details class="accordion-box">
@@ -1333,8 +1341,8 @@
 </script>
 <script>
   const KN_PACKAGES = {
-    "landing-page": { name: "Pakej Landing Page", price: "RM 299" },
-    "premium-standard": { name: "Premium Standard", price: "RM 900" }
+    "landing-page": { name: "Pakej Landing Page", price: "RM 209.30 ++" },
+    "premium-standard": { name: "Premium Standard", price: "RM 630.00 ++" }
   };
   let knSelectedPackage = null;
 
