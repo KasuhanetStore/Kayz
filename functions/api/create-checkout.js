@@ -155,10 +155,10 @@ export async function onRequestPost(context) {
 
   const isWorkshopOrder = selectedServices.length > 0;
   const isPackageBundle = selectedPackages.length > 1 && !isWorkshopOrder;
+  const hasSeasonalDiscount = !isWorkshopOrder && rawPackageIds.some(id => id === "landing-page" || id === "premium-standard");
   const orderName = (isWorkshopOrder
     ? selectedServices.map(service => service.name).join(", ")
     : selectedPackages.map(item => item.name).join(" + ")) + (hasSeasonalDiscount ? " (Seasonal Sale 30% OFF)" : "");
-  const hasSeasonalDiscount = !isWorkshopOrder && rawPackageIds.some(id => id === "landing-page" || id === "premium-standard");
   const amount = isWorkshopOrder
     ? selectedServices.reduce((sum, service) => sum + service.amount, 0)
     : rawPackageIds.reduce((sum, id) => sum + getCheckoutPackageAmount(id), 0);
