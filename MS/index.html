@@ -309,6 +309,24 @@
     .kn-discount-label { display:inline-flex; align-items:center; padding:5px 9px; border:1px solid rgba(0,240,255,.55); border-radius:999px; background:rgba(0,220,255,.12); color:#8ff7ff; font-size:10px; font-weight:950; letter-spacing:.7px; box-shadow:0 0 12px rgba(0,220,255,.12); white-space:nowrap; }
     .kn-seasonal-price .kn-discounted-price { margin:0; color:#8ff7ff; text-shadow:0 0 16px rgba(0,220,255,.18); }
     .kn-seasonal-price .kn-discounted-price small { color:#aebbc9; }
+
+    .kn-home-sale{position:relative;isolation:isolate;margin:24px auto 30px;padding:1px;border-radius:18px;max-width:1120px;background:linear-gradient(115deg,#00eaff,#315dff,#ff3b75,#00eaff);background-size:260% 260%;animation:knSaleBorder 7s linear infinite;box-shadow:0 0 22px rgba(0,220,255,.13)}
+    .kn-home-sale-inner{display:flex;align-items:center;justify-content:space-between;gap:22px;padding:clamp(18px,3vw,28px);border-radius:17px;background:linear-gradient(115deg,rgba(5,16,35,.98),rgba(8,26,48,.97) 55%,rgba(23,13,39,.98))}
+    .kn-home-sale-copy{min-width:0}.kn-home-sale-kicker{display:inline-block;color:#8ff7ff;font-size:10px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase}
+    .kn-home-sale h2{margin:6px 0;font-size:clamp(21px,3vw,30px);line-height:1.15;color:#f4fbff}
+    .kn-home-sale p{margin:0;color:#aebdce;font-size:13px}
+    .kn-home-sale-clock{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+    .kn-home-sale-time{display:grid;place-items:center;min-width:58px;padding:8px 7px;border:1px solid rgba(0,232,255,.38);border-radius:10px;background:rgba(0,220,255,.07);box-shadow:inset 0 0 14px rgba(0,220,255,.045)}
+    .kn-home-sale-time strong{font-size:22px;line-height:1.1;color:#8ff7ff;font-variant-numeric:tabular-nums}
+    .kn-home-sale-time small{margin-top:3px;color:#9aabba;font-size:9px;letter-spacing:.7px;text-transform:uppercase}
+    .kn-home-sale-cta{flex:0 0 auto;padding:11px 16px;border:1px solid rgba(0,240,255,.55);border-radius:9px;color:#9af8ff;text-decoration:none;font-size:12px;font-weight:900;white-space:nowrap;background:rgba(0,220,255,.09);transition:background .2s,box-shadow .2s}
+    .kn-home-sale-cta:hover{background:rgba(0,220,255,.17);box-shadow:0 0 16px rgba(0,220,255,.18)}
+    .kn-home-sale.is-expired{background:linear-gradient(115deg,#667080,#394454)}.kn-home-sale.is-expired .kn-home-sale-time{border-color:rgba(160,175,195,.3)}.kn-home-sale.is-expired .kn-home-sale-time strong{color:#b8c1cc}
+    @keyframes knSaleBorder{0%{background-position:0% 50%}100%{background-position:100% 50%}}
+    @media(max-width:760px){.kn-home-sale{margin:18px 14px 24px}.kn-home-sale-inner{flex-direction:column;align-items:stretch;text-align:center;gap:15px}.kn-home-sale-clock{justify-content:center}.kn-home-sale-cta{align-self:center}}
+    @media(max-width:390px){.kn-home-sale-time{min-width:51px;padding:7px 5px}.kn-home-sale-time strong{font-size:19px}}
+    @media(prefers-reduced-motion:reduce){.kn-home-sale{animation:none}}
+
     .kn-seasonal-note { margin:2px 0 0; color:#8c9aa9; font-size:10px; line-height:1.45; }
     .feature-list { list-style: none; margin: 0 0 28px; padding: 0; flex: 1; }
     .feature-list li { padding: 10px 0; border-bottom: none !important; color: #e4e6ed; font-size: 14px; }
@@ -957,6 +975,23 @@
   </div>
 </section>
 
+<section class="kn-home-sale" id="kn-home-sale" aria-label="Promosi diskaun 30 peratus">
+  <div class="kn-home-sale-inner container">
+    <div class="kn-home-sale-copy">
+      <span class="kn-home-sale-kicker">Promosi Terhad KasuhaNET</span>
+      <h2>Diskaun 30% Pembangunan Laman Web</h2>
+      <p>Tempah pakej laman web sebelum promosi tamat dalam masa 3 hari</p>
+    </div>
+    <div class="kn-home-sale-clock" role="timer" aria-live="off" aria-label="Kiraan masa promosi">
+      <span class="kn-home-sale-time"><strong data-sale-days>03</strong><small>Hari</small></span>
+      <span class="kn-home-sale-time"><strong data-sale-hours>00</strong><small>Jam</small></span>
+      <span class="kn-home-sale-time"><strong data-sale-minutes>00</strong><small>Minit</small></span>
+      <span class="kn-home-sale-time"><strong data-sale-seconds>00</strong><small>Saat</small></span>
+    </div>
+    <a class="kn-home-sale-cta" href="#pakej">Lihat Pakej ↗</a>
+  </div>
+</section>
+
 <!-- PARTNER CREDIT BAR -->
 <div id="partner-credit-placeholder"></div>
   
@@ -1395,11 +1430,56 @@
   });
 </script>
 <script>
+  const KN_SALE_END_AT = new Date("2026-11-28T14:19:22+08:00").getTime();
+  const knSaleActive = Date.now() < KN_SALE_END_AT;
   const KN_PACKAGES = {
-    "landing-page": { name: "Pakej Landing Page", price: "RM 209.30 ++" },
-    "premium-standard": { name: "Premium Standard", price: "RM 630.00 ++" }
+    "landing-page": { name: "Pakej Landing Page", price: knSaleActive ? "RM 209.30 ++" : "RM 299 ++" },
+    "premium-standard": { name: "Premium Standard", price: knSaleActive ? "RM 630.00 ++" : "RM 900 ++" }
   };
+  const knSaleTimer = document.getElementById("kn-home-sale");
+  function updateKnSaleCountdown(){
+    const remaining = KN_SALE_END_AT - Date.now();
+    if(remaining <= 0){
+      if(knSaleTimer){
+        knSaleTimer.classList.add("is-expired");
+        const copy=knSaleTimer.querySelector(".kn-home-sale-copy");
+        if(copy){
+          copy.querySelector(".kn-home-sale-kicker").textContent="Promosi Tamat";
+          copy.querySelector("h2").textContent="Promosi Diskaun 30% Telah Tamat";
+          copy.querySelector("p").textContent="Harga asal kini berkuat kuasa.";
+        }
+        knSaleTimer.querySelectorAll("[data-sale-days],[data-sale-hours],[data-sale-minutes],[data-sale-seconds]").forEach(el=>el.textContent="00");
+        const cta=knSaleTimer.querySelector(".kn-home-sale-cta");if(cta)cta.hidden=true;
+      }
+      document.querySelectorAll(".kn-seasonal-price").forEach(block=>{
+        const original=block.querySelector(".kn-original-price");
+        const current=block.querySelector(".kn-discounted-price");
+        const badge=block.querySelector(".kn-discount-label");
+        const note=block.querySelector(".kn-seasonal-note");
+        if(original&&current){
+          current.innerHTML=original.innerHTML;
+          current.classList.remove("kn-discounted-price");
+          original.hidden=true;
+          if(badge)badge.hidden=true;
+          if(note)note.textContent="Harga promosi telah tamat · Harga asal";
+        }
+      });
+      KN_PACKAGES["landing-page"].price="RM 299 ++";
+      KN_PACKAGES["premium-standard"].price="RM 900 ++";
+      if(knSelectedPackage&&document.getElementById("knPackagePrice"))document.getElementById("knPackagePrice").textContent=KN_PACKAGES[knSelectedPackage].price;
+      return;
+    }
+    const days=Math.floor(remaining/86400000);
+    const hours=Math.floor((remaining%86400000)/3600000);
+    const minutes=Math.floor((remaining%3600000)/60000);
+    const seconds=Math.floor((remaining%60000)/1000);
+    const values={"[data-sale-days]":days,"[data-sale-hours]":hours,"[data-sale-minutes]":minutes,"[data-sale-seconds]":seconds};
+    Object.entries(values).forEach(([selector,value])=>{const el=knSaleTimer&&knSaleTimer.querySelector(selector);if(el)el.textContent=String(value).padStart(2,"0");});
+  }
   let knSelectedPackage = null;
+  updateKnSaleCountdown();
+  if(Date.now()<KN_SALE_END_AT)setInterval(updateKnSaleCountdown,1000);
+
 
   const checkoutModal=document.getElementById("knCheckout");
   const particleCanvas=document.createElement("canvas");
