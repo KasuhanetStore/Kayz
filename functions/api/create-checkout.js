@@ -14,6 +14,14 @@ const PACKAGES = {
   "termux-linux-full-setup": { name: "Termux Linux Full Setup", amount: 5900 }
 };
 
+function getCheckoutPackageAmount(packageId) {
+  const item = PACKAGES[packageId];
+  if (!item) return 0;
+  return packageId === "landing-page" || packageId === "premium-standard"
+    ? Math.round(item.amount * 0.7)
+    : item.amount;
+}
+
 const WORKSHOP_SERVICES = {
   "domain-dns": { name: "Domain Management & DNS Routing", amount: 5000 },
   "vps-setup": { name: "Server / VPS Setup & Installation", amount: 12000 },
@@ -147,12 +155,13 @@ export async function onRequestPost(context) {
 
   const isWorkshopOrder = selectedServices.length > 0;
   const isPackageBundle = selectedPackages.length > 1 && !isWorkshopOrder;
-  const orderName = isWorkshopOrder
+  const orderName = (isWorkshopOrder
     ? selectedServices.map(service => service.name).join(", ")
-    : selectedPackages.map(item => item.name).join(" + ");
+    : selectedPackages.map(item => item.name).join(" + ")) + (hasSeasonalDiscount ? " (Seasonal Sale 30% OFF)" : "");
+  const hasSeasonalDiscount = !isWorkshopOrder && rawPackageIds.some(id => id === "landing-page" || id === "premium-standard");
   const amount = isWorkshopOrder
     ? selectedServices.reduce((sum, service) => sum + service.amount, 0)
-    : selectedPackages.reduce((sum, item) => sum + item.amount, 0);
+    : rawPackageIds.reduce((sum, id) => sum + getCheckoutPackageAmount(id), 0);
 
   const name = typeof input.name === "string" ? input.name.trim() : "";
   const email = typeof input.email === "string" ? input.email.trim() : "";
@@ -223,7 +232,7 @@ export async function onRequestPost(context) {
   stripeItems.forEach((item, index) => {
     form.set(`line_items[${index}][quantity]`, "1");
     form.set(`line_items[${index}][price_data][currency]`, "myr");
-    form.set(`line_items[${index}][price_data][unit_amount]`, String(item.amount));
+    form.set(`line_items[${index}][price_data][unit_amount]`, String(isWorkshopOrder ? item.amount : getCheckoutPackageAmount(rawPackageIds[index])));
     form.set(`line_items[${index}][price_data][product_data][name]`, item.name);
     form.set(`line_items[${index}][price_data][product_data][description]`, item === PACKAGES["termux-linux-full-setup"] ? "Termux Linux setup guide and configuration package for Android devices." : item === PACKAGES["dualstream-pro"] ? "DualStream Pro Linux terminal downloader software." : "KasuhaNET one-time setup and deployment service");
   });
@@ -235,6 +244,10 @@ export async function onRequestPost(context) {
   form.set("metadata[customer_name]", name);
   form.set("metadata[customer_email]", email);
   form.set("metadata[customer_phone]", phone);
+  if (hasSeasonalDiscount) {
+    form.set("metadata[promotion]", "seasonal-sale-2026");
+    form.set("metadata[discount_percent]", "30");
+  }
 
   let stripeResponse;
   try {
