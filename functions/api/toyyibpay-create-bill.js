@@ -77,6 +77,10 @@ export async function onRequestPost({request,env}){
   let input;try{input=await request.json();}catch{return json({error:"Invalid checkout request."},400);}
   if(!input || typeof input!=="object" || Array.isArray(input)) return json({error:"Invalid checkout details."},400);
   if(input.termsAccepted !== true || input.termsVersion !== "2026-11-25") return json({error:"Please accept the current Terms & Conditions before payment."},400);
+  const rawPackageIds=Array.isArray(input.packageIds)?input.packageIds:(input.packageId?[input.packageId]:[]);
+  if(rawPackageIds.length>2 || new Set(rawPackageIds).size!==rawPackageIds.length) return json({error:"Select one or two valid products."},400);
+  const selectedPackages=rawPackageIds.map(id=>PACKAGES[id]);
+  if(selectedPackages.some(x=>!x)) return json({error:"One or more selected products are invalid."},400);
   const rawIds=input.serviceIds;
   let services=[];
   if(Array.isArray(rawIds)){
@@ -85,10 +89,10 @@ export async function onRequestPost({request,env}){
     if(services.some(x=>!x)) return json({error:"One or more selected services are invalid."},400);
   }
   const isWorkshop=services.length>0;
-  const selected=PACKAGES[input.packageId];
-  if(!isWorkshop && !selected) return json({error:"Please select a valid package or workshop service."},400);
-  const amount=isWorkshop?services.reduce((n,x)=>n+x.amount,0):selected.amount;
-  const packageName=isWorkshop?services.map(x=>x.name).join(", "):selected.name;
+  const selected=selectedPackages[0];
+  if(!isWorkshop && !selectedPackages.length) return json({error:"Please select a valid package or workshop service."},400);
+  const amount=isWorkshop?services.reduce((n,x)=>n+x.amount,0):selectedPackages.reduce((n,x)=>n+x.amount,0);
+  const packageName=isWorkshop?services.map(x=>x.name).join(", "):selectedPackages.map(x=>x.name).join(" + ");
   const name=typeof input.name==="string"?input.name.trim():"";
   const email=typeof input.email==="string"?input.email.trim():"";
   const phone=typeof input.phone==="string"?input.phone.trim():"";
@@ -104,7 +108,7 @@ export async function onRequestPost({request,env}){
   try{
     await ensureTable(env.DB);
     await env.DB.prepare(`INSERT INTO toyyibpay_orders (id,external_ref,package_id,package_name,amount,customer_name,customer_email,customer_phone,status,terms_accepted,terms_version,terms_accepted_at)
-      VALUES(?,?,?,?,?,?,?,?, 'pending',1,?,CURRENT_TIMESTAMP)`).bind(id,externalRef,isWorkshop?"custom-workshop":input.packageId,packageName,amount,name,email,phone,input.termsVersion).run();
+      VALUES(?,?,?,?,?,?,?,?, 'pending',1,?,CURRENT_TIMESTAMP)`).bind(id,externalRef,isWorkshop?"custom-workshop":rawPackageIds.join(","),packageName,amount,name,email,phone,input.termsVersion).run();
   }catch{return json({error:"Unable to save the ToyyibPay order. Please try again."},500);}
   const locale=input.locale==="MS"?"MS":"EN";
   const returnPage=isWorkshop
@@ -115,7 +119,7 @@ export async function onRequestPost({request,env}){
       ? (locale==="MS"?"https://kasuhanet.store/MS/Terminal-Option_MS.html":"https://kasuhanet.store/Terminal-Option_EN.html")
       : (locale==="MS"?"https://kasuhanet.store/MS/Banner-WebSale-MS.html":"https://kasuhanet.store/Banner-WebSale-EN.html");
   const billName=("KasuhaNET_"+externalRef).slice(0,30);
-  const billDescription=(input.packageId==="termux-linux-full-setup"?"Termux Linux Setup "+externalRef:input.packageId==="dualstream-pro"?"DualStream Pro "+externalRef:"Payment_"+externalRef).slice(0,100);
+  const billDescription=(isWorkshop?packageName:selectedPackages.map(x=>x.name).join(" + ")+" "+externalRef).slice(0,100);
   // Check whether DuitNow QR has been activated for this ToyyibPay merchant.
   // If it is not active or the status endpoint is unavailable, keep the existing FPX/card checkout working.
   let duitNowQrEnabled=false;
