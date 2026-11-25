@@ -1,7 +1,8 @@
 const PACKAGES = {
   "landing-page": { name: "KasuhaNET Landing Page Package", amount: 29900 },
   "premium-standard": { name: "KasuhaNET Premium Standard", amount: 90000 },
-  "dualstream-pro": { name: "DualStream Pro", amount: 4770 }
+  "dualstream-pro": { name: "DualStream Pro", amount: 4770 },
+  "termux-linux-full-setup": { name: "Termux Linux Full Setup", amount: 5900 }
 };
 const WORKSHOP_SERVICES = {
   "domain-dns": { name: "Domain Management & DNS Routing", amount: 5000 },
@@ -108,11 +109,13 @@ export async function onRequestPost({request,env}){
   const locale=input.locale==="MS"?"MS":"EN";
   const returnPage=isWorkshop
     ? (locale==="MS"?"https://kasuhanet.store/MS/Bengkel-Custom-WebSite-MS.html":"https://kasuhanet.store/custom-web-workshop-EN.html")
-    : input.packageId==="dualstream-pro"
+    : input.packageId==="termux-linux-full-setup"
+      ? (locale==="MS"?"https://kasuhanet.store/MS/Termux-Linux-Full-Setup-MS.html":"https://kasuhanet.store/Termux-Linux-Full-Setup-EN.html")
+      : input.packageId==="dualstream-pro"
       ? (locale==="MS"?"https://kasuhanet.store/MS/Terminal-Option_MS.html":"https://kasuhanet.store/Terminal-Option_EN.html")
       : (locale==="MS"?"https://kasuhanet.store/MS/Banner-WebSale-MS.html":"https://kasuhanet.store/Banner-WebSale-EN.html");
   const billName=("KasuhaNET_"+externalRef).slice(0,30);
-  const billDescription=(input.packageId==="dualstream-pro"?"DualStream Pro "+externalRef:"Payment_"+externalRef).slice(0,100);
+  const billDescription=(input.packageId==="termux-linux-full-setup"?"Termux Linux Setup "+externalRef:input.packageId==="dualstream-pro"?"DualStream Pro "+externalRef:"Payment_"+externalRef).slice(0,100);
   // Check whether DuitNow QR has been activated for this ToyyibPay merchant.
   // If it is not active or the status endpoint is unavailable, keep the existing FPX/card checkout working.
   let duitNowQrEnabled=false;
