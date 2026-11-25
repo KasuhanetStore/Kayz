@@ -146,55 +146,6 @@
         }
     
     
-    /* Mod pembekuan sementara ShopGO */
-    @keyframes shopgoComingSoonFloat {
-        0%, 100% { transform: translateY(0) scale(1); }
-        50% { transform: translateY(-16px) scale(1.035); }
-    }
-    @keyframes shopgoComingSoonGlow {
-        0%, 100% { text-shadow: 0 0 8px rgba(255,214,10,.65), 0 0 18px rgba(255,214,10,.45); }
-        50% { text-shadow: 0 0 14px rgba(255,214,10,1), 0 0 32px rgba(255,214,10,.9), 0 0 48px rgba(255,214,10,.55); }
-    }
-    .shopgo-coming-soon {
-        position: fixed;
-        inset: 0;
-        z-index: 2147483647;
-        display: grid;
-        place-items: center;
-        overflow: hidden;
-        background: rgba(0, 0, 0, .80);
-        pointer-events: auto;
-        touch-action: none;
-        overscroll-behavior: contain;
-        cursor: not-allowed;
-        user-select: none;
-        -webkit-user-select: none;
-    }
-    .shopgo-coming-soon-text {
-        display: inline-block;
-        max-width: calc(100vw - 24px);
-        white-space: nowrap;
-        padding: 12px clamp(14px, 3vw, 28px) 14px;
-        border: 4px solid #18181B;
-        border-radius: 18px;
-        background: rgba(24, 24, 27, .88);
-        color: #FFD60A;
-        font-family: 'Fredoka', sans-serif;
-        font-size: clamp(2rem, 9vw, 6rem);
-        font-weight: 900;
-        line-height: 1;
-        letter-spacing: .045em;
-        text-align: center;
-        -webkit-text-stroke: 1px #18181B;
-        box-shadow: 7px 7px 0 rgba(24,24,27,.8), 0 0 22px rgba(255,214,10,.45);
-        animation: shopgoComingSoonFloat 2.8s ease-in-out infinite, shopgoComingSoonGlow 1.8s ease-in-out infinite;
-    }
-    @media (max-width: 380px) {
-        .shopgo-coming-soon-text { font-size: clamp(1.65rem, 8.5vw, 2rem); padding-inline: 10px; border-width: 3px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-        .shopgo-coming-soon-text { animation: none; }
-    }
     </style>
 </head>
 <body class="antialiased selection:bg-toon-pink selection:text-white">
@@ -248,7 +199,6 @@
   <button class="menu-toggle" type="button" aria-label="Buka Navigasi" aria-controls="knPolicyTemplateNavMS" aria-expanded="false" onclick="const n=document.getElementById('knPolicyTemplateNavMS');const s=n.classList.toggle('active');this.setAttribute('aria-expanded',s?'true':'false')"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
  </div>
 </header>
-    <div class="shopgo-coming-soon" role="presentation" aria-label="ShopGO temporarily frozen"><div class="shopgo-coming-soon-text" role="status">COMING SOON</div></div>
 
     <!-- ==================== BANNER PROMOSI ATAS & PEMASA ==================== -->
     <div class="bg-toon-ink text-white border-b-4 border-toon-ink py-2.5 px-4 sticky top-0 z-40">
@@ -1075,28 +1025,6 @@
         });
     </script>
 
-    <script>
-    (() => {
-        const freezeLayer = document.querySelector('.shopgo-coming-soon');
-        if (!freezeLayer) return;
-        freezeLayer.innerHTML = '<div class="shopgo-coming-soon-text" role="status" aria-live="polite">COMING SOON</div>';
-        document.documentElement.style.overflow = 'hidden';
-        document.body.style.overflow = 'hidden';
-        Array.from(document.body.children).forEach((element) => {
-            if (element !== freezeLayer && element.tagName !== 'SCRIPT') element.inert = true;
-        });
-        const stopPageAction = (event) => {
-            if (event.target === freezeLayer || freezeLayer.contains(event.target)) return;
-            event.preventDefault();
-            event.stopImmediatePropagation();
-        };
-        ['click', 'dblclick', 'submit', 'change', 'input', 'keydown', 'keyup', 'wheel', 'touchmove', 'contextmenu'].forEach((type) => {
-            document.addEventListener(type, stopPageAction, { capture: true, passive: false });
-        });
-        freezeLayer.addEventListener('wheel', (event) => event.preventDefault(), { passive: false });
-        freezeLayer.addEventListener('touchmove', (event) => event.preventDefault(), { passive: false });
-    })();
-    </script>
 
 </body>
 </html>
