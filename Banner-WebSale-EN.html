@@ -190,6 +190,23 @@ main .grid .card a.websale-buy-btn:focus-visible {
 main .grid .card a.websale-buy-btn:active {
   transform: translateY(0) !important;
 }
+</style>
+<style id="kn-sale-countdown-banner">
+.kn-home-sale{position:relative;isolation:isolate;margin:14px auto 18px;padding:1px;border-radius:13px;max-width:1120px;background:linear-gradient(115deg,#00eaff,#315dff,#ff3b75,#00eaff);background-size:260% 260%;animation:knSaleBorder 7s linear infinite;box-shadow:0 0 16px rgba(0,220,255,.11)}
+@keyframes knSaleBorder{0%{background-position:0% 50%}100%{background-position:100% 50%}}
+.kn-home-sale-inner{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 18px;border-radius:12px;background:linear-gradient(115deg,rgba(5,16,35,.98),rgba(8,26,48,.97) 55%,rgba(23,13,39,.98))}
+.kn-home-sale-copy{min-width:0}.kn-home-sale-kicker{display:inline-block;color:#8ff7ff;font-size:9px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase}
+.kn-home-sale h2{margin:3px 0;font-size:clamp(17px,2.2vw,22px);line-height:1.15;color:#f4fbff}
+.kn-home-sale p{margin:0;color:#aebdce;font-size:11px}
+.kn-home-sale-clock{display:flex;align-items:center;gap:5px;flex-wrap:nowrap}
+.kn-home-sale-time{display:grid;place-items:center;width:42px;height:36px;padding:3px;border:1px solid rgba(0,232,255,.34);border-radius:8px;background:rgba(0,220,255,.06);box-shadow:inset 0 0 10px rgba(0,220,255,.04)}
+.kn-home-sale-time strong{font-size:18px;line-height:1;color:#8ff7ff;font-variant-numeric:tabular-nums}
+.kn-home-sale-cta{flex:0 0 auto;padding:8px 11px;border:1px solid rgba(0,240,255,.5);border-radius:8px;color:#9af8ff;text-decoration:none;font-size:10px;font-weight:900;white-space:nowrap;background:rgba(0,220,255,.08);transition:background .2s,box-shadow .2s}
+.kn-home-sale-cta:hover{background:rgba(0,220,255,.17);box-shadow:0 0 14px rgba(0,220,255,.16)}
+@media(max-width:760px){.kn-home-sale{margin:12px 14px 18px}.kn-home-sale-inner{flex-wrap:wrap;justify-content:center;gap:9px 12px;padding:10px 12px;text-align:center}.kn-home-sale-copy{flex:1 1 100%}.kn-home-sale-clock{justify-content:center}.kn-home-sale-cta{padding:7px 10px}}
+@media(max-width:390px){.kn-home-sale-time{width:38px;height:33px;padding:2px}.kn-home-sale-time strong{font-size:16px}.kn-home-sale-clock{gap:4px}}
+@media(prefers-reduced-motion:reduce){.kn-home-sale{animation:none}}
+</style>
 <style id="kn-seasonal-sale-prices">
 main .grid .card .package-price { align-items:center !important; }
 .kn-sale-price-stack { display:flex; flex-direction:column; align-items:flex-start; gap:3px; min-width:0; }
@@ -343,6 +360,22 @@ main .grid .card .package-price { align-items:center !important; }
 
 <!-- KANDUNGAN UTAMA -->
 <main>
+<section class="kn-home-sale" id="kn-home-sale" aria-label="30 percent discount promotion">
+  <div class="kn-home-sale-inner container">
+    <div class="kn-home-sale-copy">
+      <span class="kn-home-sale-kicker">LIMITED KASUHANET PROMOTION</span>
+      <h2>30% OFF Website Development</h2>
+      <p>Secure your website package before the promotion ends in 3 days</p>
+    </div>
+    <div class="kn-home-sale-clock" role="timer" aria-live="off" aria-label="Promotion countdown">
+      <span class="kn-home-sale-time"><strong data-sale-days>03</strong></span>
+      <span class="kn-home-sale-time"><strong data-sale-hours>00</strong></span>
+      <span class="kn-home-sale-time"><strong data-sale-minutes>00</strong></span>
+      <span class="kn-home-sale-time"><strong data-sale-seconds>00</strong></span>
+    </div>
+    <a class="kn-home-sale-cta" href="#kn-sale-packages">View Packages ↗</a>
+  </div>
+</section>
   <div class="container" style="max-width: 880px;">
     
     <section class="about-section">
@@ -374,7 +407,7 @@ main .grid .card .package-price { align-items:center !important; }
         </div>
 
         <!-- GRID 2 KAD PAKEJ UTAMA -->
-        <div class="grid">
+        <div class="grid" id="kn-sale-packages">
             <!-- PAKEJ LANDING PAGE -->
             <div class="card">
                 <h3 class="package-title" style="color: var(--cyan);">Landing Page Package</h3>
@@ -581,11 +614,48 @@ main .grid .card .package-price { align-items:center !important; }
   });
 
 
+  const KN_SALE_END_AT = new Date("2026-11-28T14:19:22+08:00").getTime();
+  const knSaleActive = Date.now() < KN_SALE_END_AT;
   const KN_PACKAGES = {
-    "landing-page": { name: "Landing Page Package", price: "RM 209.30 ++" },
-    "premium-standard": { name: "Premium Standard", price: "RM 630.00 ++" }
+    "landing-page": { name: "Landing Page Package", price: knSaleActive ? "RM 209.30 ++" : "RM 299 ++" },
+    "premium-standard": { name: "Premium Standard", price: knSaleActive ? "RM 630.00 ++" : "RM 900 ++" }
   };
   let knSelectedPackage = null;
+  const knSaleTimer = document.getElementById("kn-home-sale");
+  function updateKnSaleCountdown(){
+    const remaining = KN_SALE_END_AT - Date.now();
+    if(remaining <= 0){
+      if(knSaleTimer){knSaleTimer.hidden=true;knSaleTimer.setAttribute("aria-hidden","true");}
+      document.querySelectorAll(".kn-sale-price-stack").forEach(block=>{
+        const original=block.querySelector(".kn-sale-original");
+        const current=block.querySelector(".kn-sale-current");
+        const badge=block.querySelector(".kn-sale-badge");
+        const caption=block.querySelector(".kn-sale-caption");
+        if(original&&current){
+          current.innerHTML=original.innerHTML;
+          original.hidden=true;
+          if(badge)badge.hidden=true;
+          if(caption)caption.textContent="Promotion ended · Original price";
+        }
+      });
+      KN_PACKAGES["landing-page"].price="RM 299 ++";
+      KN_PACKAGES["premium-standard"].price="RM 900 ++";
+      if(knSelectedPackage&&document.getElementById("knPackagePrice"))document.getElementById("knPackagePrice").textContent=KN_PACKAGES[knSelectedPackage].price;
+      return;
+    }
+    const values={
+      "[data-sale-days]":Math.floor(remaining/86400000),
+      "[data-sale-hours]":Math.floor((remaining%86400000)/3600000),
+      "[data-sale-minutes]":Math.floor((remaining%3600000)/60000),
+      "[data-sale-seconds]":Math.floor((remaining%60000)/1000)
+    };
+    Object.entries(values).forEach(([selector,value])=>{
+      const el=knSaleTimer&&knSaleTimer.querySelector(selector);
+      if(el)el.textContent=String(value).padStart(2,"0");
+    });
+  }
+  updateKnSaleCountdown();
+  if(knSaleActive)setInterval(updateKnSaleCountdown,1000);
 
   const checkoutModal=document.getElementById("knCheckout");
   const particleCanvas=document.createElement("canvas");
