@@ -122,7 +122,13 @@ export async function onRequestPost(context) {
 
   if (input.termsAccepted !== true || input.termsVersion !== "2026-11-25") return json({ error: "Please accept the current Terms & Conditions before payment." }, 400);
 
-  const selected = PACKAGES[input.packageId];
+  const rawPackageIds = Array.isArray(input.packageIds) ? input.packageIds : (input.packageId ? [input.packageId] : []);
+  if (rawPackageIds.length > 2 || new Set(rawPackageIds).size !== rawPackageIds.length) {
+    return json({ error: "Select one or two valid products." }, 400);
+  }
+  const selectedPackages = rawPackageIds.map(id => PACKAGES[id]);
+  if (selectedPackages.some(item => !item)) return json({ error: "One or more selected products are invalid." }, 400);
+  const selected = selectedPackages[0];
   const rawServiceIds = input.serviceIds;
   let selectedServices = [];
   if (Array.isArray(rawServiceIds)) {
@@ -140,18 +146,19 @@ export async function onRequestPost(context) {
   }
 
   const isWorkshopOrder = selectedServices.length > 0;
+  const isPackageBundle = selectedPackages.length > 1 && !isWorkshopOrder;
   const orderName = isWorkshopOrder
     ? selectedServices.map(service => service.name).join(", ")
-    : selected?.name;
+    : selectedPackages.map(item => item.name).join(" + ");
   const amount = isWorkshopOrder
     ? selectedServices.reduce((sum, service) => sum + service.amount, 0)
-    : selected?.amount;
+    : selectedPackages.reduce((sum, item) => sum + item.amount, 0);
 
   const name = typeof input.name === "string" ? input.name.trim() : "";
   const email = typeof input.email === "string" ? input.email.trim() : "";
   const phone = typeof input.phone === "string" ? input.phone.trim() : "";
 
-  if (!isWorkshopOrder && !selected) return json({ error: "Please select a valid package or workshop service." }, 400);
+  if (!isWorkshopOrder && !selectedPackages.length) return json({ error: "Please select a valid package or workshop service." }, 400);
   if (name.length < 2 || name.length > 100) {
     return json({ error: "Please enter a valid full name." }, 400);
   }
@@ -211,7 +218,7 @@ export async function onRequestPost(context) {
   form.set("phone_number_collection[enabled]", "true");
   const stripeItems = isWorkshopOrder
     ? selectedServices
-    : [{ name: selected.name, amount: selected.amount }];
+    : selectedPackages;
   stripeItems.forEach((item, index) => {
     form.set(`line_items[${index}][quantity]`, "1");
     form.set(`line_items[${index}][price_data][currency]`, "myr");
@@ -220,7 +227,7 @@ export async function onRequestPost(context) {
     form.set(`line_items[${index}][price_data][product_data][description]`, input.packageId === "termux-linux-full-setup" ? "Termux Linux setup guide and configuration package for Android devices." : input.packageId === "dualstream-pro" ? "DualStream Pro Linux terminal downloader software." : "KasuhaNET one-time setup and deployment service");
   });
   form.set("metadata[order_id]", orderId);
-  form.set("metadata[package_id]", isWorkshopOrder ? "custom-workshop" : input.packageId);
+  form.set("metadata[package_id]", isWorkshopOrder ? "custom-workshop" : selectedPackages.map(item => Object.keys(PACKAGES).find(id => PACKAGES[id] === item)).join(","));
   if (isWorkshopOrder) {
     form.set("metadata[service_ids]", rawServiceIds.join(","));
   }
