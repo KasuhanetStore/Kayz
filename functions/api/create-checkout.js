@@ -10,7 +10,8 @@ const PACKAGES = {
   "dualstream-pro": {
     name: "DualStream Pro",
     amount: 4770
-  }
+  },
+  "termux-linux-full-setup": { name: "Termux Linux Full Setup", amount: 5900 }
 };
 
 const WORKSHOP_SERVICES = {
@@ -195,10 +196,10 @@ export async function onRequestPost(context) {
     ? (locale === "MS"
         ? "https://kasuhanet.store/MS/Bengkel-Custom-WebSite-MS.html"
         : "https://kasuhanet.store/custom-web-workshop-EN.html")
-    : input.packageId === "dualstream-pro"
-      ? (locale === "MS"
-          ? "https://kasuhanet.store/MS/Terminal-Option_MS.html"
-          : "https://kasuhanet.store/Terminal-Option_EN.html")
+    : input.packageId === "termux-linux-full-setup"
+      ? (locale === "MS" ? "https://kasuhanet.store/MS/Termux-Linux-Full-Setup-MS.html" : "https://kasuhanet.store/Termux-Linux-Full-Setup-EN.html")
+      : input.packageId === "dualstream-pro"
+      ? (locale === "MS" ? "https://kasuhanet.store/MS/Terminal-Option_MS.html" : "https://kasuhanet.store/Terminal-Option_EN.html")
       : (locale === "MS"
           ? "https://kasuhanet.store/MS/Banner-WebSale-MS.html"
           : "https://kasuhanet.store/Banner-WebSale-EN.html");
@@ -216,7 +217,7 @@ export async function onRequestPost(context) {
     form.set(`line_items[${index}][price_data][currency]`, "myr");
     form.set(`line_items[${index}][price_data][unit_amount]`, String(item.amount));
     form.set(`line_items[${index}][price_data][product_data][name]`, item.name);
-    form.set(`line_items[${index}][price_data][product_data][description]`, input.packageId === "dualstream-pro" ? "DualStream Pro Linux terminal downloader software." : "KasuhaNET one-time setup and deployment service");
+    form.set(`line_items[${index}][price_data][product_data][description]`, input.packageId === "termux-linux-full-setup" ? "Termux Linux setup guide and configuration package for Android devices." : input.packageId === "dualstream-pro" ? "DualStream Pro Linux terminal downloader software." : "KasuhaNET one-time setup and deployment service");
   });
   form.set("metadata[order_id]", orderId);
   form.set("metadata[package_id]", isWorkshopOrder ? "custom-workshop" : input.packageId);
