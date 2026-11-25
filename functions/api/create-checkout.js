@@ -184,7 +184,7 @@ export async function onRequestPost(context) {
        VALUES (?, ?, ?, ?, 'myr', ?, ?, ?, 'pending', 1, ?, CURRENT_TIMESTAMP)`
     ).bind(
       orderId,
-      isWorkshopOrder ? "custom-workshop" : input.packageId,
+      isWorkshopOrder ? "custom-workshop" : rawPackageIds.join(","),
       orderName,
       amount,
       name,
@@ -199,13 +199,14 @@ export async function onRequestPost(context) {
   const form = new URLSearchParams();
   form.set("mode", "payment");
   const locale = input.locale === "MS" ? "MS" : "EN";
+  const primaryPackageId = rawPackageIds[0] || input.packageId;
   const returnPage = isWorkshopOrder
     ? (locale === "MS"
         ? "https://kasuhanet.store/MS/Bengkel-Custom-WebSite-MS.html"
         : "https://kasuhanet.store/custom-web-workshop-EN.html")
-    : input.packageId === "termux-linux-full-setup"
+    : primaryPackageId === "termux-linux-full-setup"
       ? (locale === "MS" ? "https://kasuhanet.store/MS/Termux-Linux-Full-Setup-MS.html" : "https://kasuhanet.store/Termux-Linux-Full-Setup-EN.html")
-      : input.packageId === "dualstream-pro"
+      : primaryPackageId === "dualstream-pro"
       ? (locale === "MS" ? "https://kasuhanet.store/MS/Terminal-Option_MS.html" : "https://kasuhanet.store/Terminal-Option_EN.html")
       : (locale === "MS"
           ? "https://kasuhanet.store/MS/Banner-WebSale-MS.html"
@@ -224,7 +225,7 @@ export async function onRequestPost(context) {
     form.set(`line_items[${index}][price_data][currency]`, "myr");
     form.set(`line_items[${index}][price_data][unit_amount]`, String(item.amount));
     form.set(`line_items[${index}][price_data][product_data][name]`, item.name);
-    form.set(`line_items[${index}][price_data][product_data][description]`, input.packageId === "termux-linux-full-setup" ? "Termux Linux setup guide and configuration package for Android devices." : input.packageId === "dualstream-pro" ? "DualStream Pro Linux terminal downloader software." : "KasuhaNET one-time setup and deployment service");
+    form.set(`line_items[${index}][price_data][product_data][description]`, item === PACKAGES["termux-linux-full-setup"] ? "Termux Linux setup guide and configuration package for Android devices." : item === PACKAGES["dualstream-pro"] ? "DualStream Pro Linux terminal downloader software." : "KasuhaNET one-time setup and deployment service");
   });
   form.set("metadata[order_id]", orderId);
   form.set("metadata[package_id]", isWorkshopOrder ? "custom-workshop" : selectedPackages.map(item => Object.keys(PACKAGES).find(id => PACKAGES[id] === item)).join(","));
