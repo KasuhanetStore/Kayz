@@ -458,7 +458,7 @@ footer > * { position: relative; z-index: 1; }
  [dual,termux].forEach(c=>c.addEventListener("change",()=>{updateCart();if(c.checked)cart.classList.add("is-open");}));
  toggle.addEventListener("click",()=>cart.classList.toggle("is-open"));
  document.addEventListener("click",e=>{if(cart.classList.contains("is-open")&&!cart.contains(e.target)&&!toggle.contains(e.target))cart.classList.remove("is-open");});
- checkout.addEventListener("click",()=>{const items=products.filter(p=>p.check.checked);if(items.length===1)location.href=items[0].url;else if(items.length>1)alert("Please complete checkout for one product at a time. Remove one product from the cart, then proceed.");});
+ checkout.addEventListener("click",()=>{const items=products.filter(p=>p.check.checked);if(!items.length)return;if(items.length===1)location.href=items[0].url;else location.href="/Terminal-Option_EN.html?checkout=1&cart="+encodeURIComponent(items.map(p=>p===products[0]?"dualstream-pro":"termux-linux-full-setup").join(","));});
  updateCart();
 })();;
 </script>
