@@ -181,11 +181,33 @@
  .kn-template-header .dropdown-content{position:static;width:100%;box-sizing:border-box;margin-top:7px}
 }
 @media(max-width:420px){.kn-template-header .container{width:calc(100% - 28px)}.kn-template-header .brand-logo{max-width:160px;max-height:56px}}
+
+/* Shared KasuhaNET navigation dropdown template */
+.kn-template-header .kn-nav-dropdown{position:relative;display:inline-flex;align-items:center;color:inherit;font:inherit;z-index:30}
+.kn-template-header .kn-nav-dropdown>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:7px;color:inherit;font:inherit;font-weight:inherit;white-space:nowrap}
+.kn-template-header .kn-nav-dropdown>summary::-webkit-details-marker{display:none}
+.kn-template-header .kn-nav-dropdown>summary:after{content:"";width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .18s ease}
+.kn-template-header .kn-nav-dropdown[open]>summary:after{transform:rotate(225deg) translate(-1px,-1px)}
+.kn-template-header .kn-nav-dropdown .kn-nav-menu{position:absolute;top:calc(100% + 12px);left:0;min-width:190px;padding:8px;display:grid;gap:3px;background:#0b1422;border:1px solid rgba(90,220,245,.35);border-radius:10px;box-shadow:0 14px 34px rgba(0,0,0,.4);z-index:1000}
+.kn-template-header .kn-nav-dropdown .kn-nav-menu a{display:block;padding:10px 12px;color:#d9e9f4;text-decoration:none;font-size:13px;line-height:1.35;border-radius:7px;white-space:nowrap}
+.kn-template-header .kn-nav-dropdown .kn-nav-menu a:hover,.kn-template-header .kn-nav-dropdown .kn-nav-menu a:focus{background:rgba(0,190,220,.14);color:#65eaff}
+.kn-template-header .kn-nav-dropdown[open] .kn-nav-menu{animation:knNavDropIn .14s ease-out}
+@keyframes knNavDropIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:850px){
+ .kn-template-header .kn-nav-dropdown{width:100%;display:block}
+ .kn-template-header .kn-nav-dropdown>summary{padding:8px 0}
+ .kn-template-header .kn-nav-dropdown .kn-nav-menu{position:static;min-width:0;width:100%;box-sizing:border-box;margin:4px 0 8px 10px;box-shadow:none;background:rgba(8,18,31,.96)}
+ .kn-template-header .kn-nav-dropdown .kn-nav-menu a{display:block!important;width:100%;white-space:normal}
+}
 </style>
 <header class="kn-template-header">
  <div class="container nav">
   <a class="brand"   aria-label="Laman Rasmi KasuhaNET" href="/MS/"><img src="/img/logo3.png" class="brand-logo" alt="KasuhaNET.STORE"></a>
-  <nav class="nav-links" id="knPolicyTemplateNavMS" aria-label="Navigasi Utama">
+  <nav class="nav-links" id="knShopGoTemplateNavMS" aria-label="Navigasi Utama">
+   <div class="dropdown">
+    <a href="#" onclick="event.preventDefault();this.nextElementSibling.classList.toggle('show')" aria-haspopup="true">Luar Negara <i class="fa-solid fa-chevron-down" aria-hidden="true" style="font-size:10px;margin-left:3px;color:#ff7187"></i></a>
+    <div class="dropdown-content"><a href="/Timor-Leste-SupportDevelopement.html"><i class="fa-solid fa-globe" style="margin-right:8px;color:#e600a4"></i>TIMOR LESTE (Asia)</a></div>
+   </div>
    <a href="/MS/">LAMAN UTAMA</a>
    <a href="/About-Us/MS/">TENTANG KAMI</a>
    
@@ -196,7 +218,7 @@
    <details class="kn-nav-dropdown"><summary>SOKONGAN</summary><div class="kn-nav-menu"><a href="/guides/MS/">PANDUAN</a><a href="/MS/artikel/">ARTIKEL</a><a href="/MS/FAQ/">SOALAN LAZIM</a><a href="/Support/MS/">PUSAT SOKONGAN</a></div></details><div class="nav-lang"><a lang="en" href="/">EN</a><a lang="ms" aria-current="page" href="/MS/">BM</a></div>
    <a class="btn-cyber-animated" href="/MS/Banner-WebSale-MS.html"><span>TEMPAH WEBSITE!</span><i class="fa-solid fa-computer-mouse" aria-hidden="true"></i></a>
   </nav>
-  <button class="menu-toggle" type="button" aria-label="Buka Navigasi" aria-controls="knPolicyTemplateNavMS" aria-expanded="false" onclick="const n=document.getElementById('knPolicyTemplateNavMS');const s=n.classList.toggle('active');this.setAttribute('aria-expanded',s?'true':'false')"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+  <button class="menu-toggle" type="button" aria-label="Buka Navigasi" aria-controls="knShopGoTemplateNavMS" aria-expanded="false" onclick="const n=document.getElementById('knShopGoTemplateNavMS');const s=n.classList.toggle('active');this.setAttribute('aria-expanded',s?'true':'false')"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
  </div>
 </header>
 
