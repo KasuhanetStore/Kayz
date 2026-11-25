@@ -317,22 +317,21 @@
     .kn-seasonal-price .kn-discounted-price { margin:0; color:#8ff7ff; text-shadow:0 0 16px rgba(0,220,255,.18); }
     .kn-seasonal-price .kn-discounted-price small { color:#aebbc9; }
 
-    .kn-home-sale{position:relative;isolation:isolate;margin:24px auto 30px;padding:1px;border-radius:18px;max-width:1120px;background:linear-gradient(115deg,#00eaff,#315dff,#ff3b75,#00eaff);background-size:260% 260%;animation:knSaleBorder 7s linear infinite;box-shadow:0 0 22px rgba(0,220,255,.13)}
-    .kn-home-sale-inner{display:flex;align-items:center;justify-content:space-between;gap:22px;padding:clamp(18px,3vw,28px);border-radius:17px;background:linear-gradient(115deg,rgba(5,16,35,.98),rgba(8,26,48,.97) 55%,rgba(23,13,39,.98))}
-    .kn-home-sale-copy{min-width:0}.kn-home-sale-kicker{display:inline-block;color:#8ff7ff;font-size:10px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase}
-    .kn-home-sale h2{margin:6px 0;font-size:clamp(21px,3vw,30px);line-height:1.15;color:#f4fbff}
-    .kn-home-sale p{margin:0;color:#aebdce;font-size:13px}
-    .kn-home-sale-clock{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
-    .kn-home-sale-time{display:grid;place-items:center;min-width:58px;padding:8px 7px;border:1px solid rgba(0,232,255,.38);border-radius:10px;background:rgba(0,220,255,.07);box-shadow:inset 0 0 14px rgba(0,220,255,.045)}
-    .kn-home-sale-time strong{font-size:22px;line-height:1.1;color:#8ff7ff;font-variant-numeric:tabular-nums}
-    .kn-home-sale-time small{margin-top:3px;color:#9aabba;font-size:9px;letter-spacing:.7px;text-transform:uppercase}
-    .kn-home-sale-cta{flex:0 0 auto;padding:11px 16px;border:1px solid rgba(0,240,255,.55);border-radius:9px;color:#9af8ff;text-decoration:none;font-size:12px;font-weight:900;white-space:nowrap;background:rgba(0,220,255,.09);transition:background .2s,box-shadow .2s}
-    .kn-home-sale-cta:hover{background:rgba(0,220,255,.17);box-shadow:0 0 16px rgba(0,220,255,.18)}
-    .kn-home-sale.is-expired{background:linear-gradient(115deg,#667080,#394454)}.kn-home-sale.is-expired .kn-home-sale-time{border-color:rgba(160,175,195,.3)}.kn-home-sale.is-expired .kn-home-sale-time strong{color:#b8c1cc}
-    @keyframes knSaleBorder{0%{background-position:0% 50%}100%{background-position:100% 50%}}
-    @media(max-width:760px){.kn-home-sale{margin:18px 14px 24px}.kn-home-sale-inner{flex-direction:column;align-items:stretch;text-align:center;gap:15px}.kn-home-sale-clock{justify-content:center}.kn-home-sale-cta{align-self:center}}
-    @media(max-width:390px){.kn-home-sale-time{min-width:51px;padding:7px 5px}.kn-home-sale-time strong{font-size:19px}}
-    @media(prefers-reduced-motion:reduce){.kn-home-sale{animation:none}}
+    .kn-home-sale{position:relative;isolation:isolate;margin:14px auto 18px;padding:1px;border-radius:13px;max-width:1120px;background:linear-gradient(115deg,#00eaff,#315dff,#ff3b75,#00eaff);background-size:260% 260%;animation:knSaleBorder 7s linear infinite;box-shadow:0 0 16px rgba(0,220,255,.11)}
+.kn-home-sale-inner{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 18px;border-radius:12px;background:linear-gradient(115deg,rgba(5,16,35,.98),rgba(8,26,48,.97) 55%,rgba(23,13,39,.98))}
+.kn-home-sale-copy{min-width:0}.kn-home-sale-kicker{display:inline-block;color:#8ff7ff;font-size:9px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase}
+.kn-home-sale h2{margin:3px 0;font-size:clamp(17px,2.2vw,22px);line-height:1.15;color:#f4fbff}
+.kn-home-sale p{margin:0;color:#aebdce;font-size:11px}
+.kn-home-sale-clock{display:flex;align-items:center;gap:5px;flex-wrap:nowrap}
+.kn-home-sale-time{display:grid;place-items:center;min-width:46px;padding:5px 5px;border:1px solid rgba(0,232,255,.34);border-radius:8px;background:rgba(0,220,255,.06);box-shadow:inset 0 0 10px rgba(0,220,255,.04)}
+.kn-home-sale-time strong{font-size:17px;line-height:1.05;color:#8ff7ff;font-variant-numeric:tabular-nums}
+.kn-home-sale-time small{margin-top:2px;color:#9aabba;font-size:8px;letter-spacing:.5px;text-transform:uppercase}
+.kn-home-sale-cta{flex:0 0 auto;padding:8px 11px;border:1px solid rgba(0,240,255,.5);border-radius:8px;color:#9af8ff;text-decoration:none;font-size:10px;font-weight:900;white-space:nowrap;background:rgba(0,220,255,.08);transition:background .2s,box-shadow .2s}
+.kn-home-sale-cta:hover{background:rgba(0,220,255,.17);box-shadow:0 0 14px rgba(0,220,255,.16)}
+@keyframes knSaleBorder{0%{background-position:0% 50%}100%{background-position:100% 50%}}
+@media(max-width:760px){.kn-home-sale{margin:12px 14px 18px}.kn-home-sale-inner{flex-wrap:wrap;justify-content:center;gap:9px 12px;padding:10px 12px;text-align:center}.kn-home-sale-copy{flex:1 1 100%}.kn-home-sale-clock{justify-content:center}.kn-home-sale-cta{padding:7px 10px}}
+@media(max-width:390px){.kn-home-sale-time{min-width:41px;padding:4px 4px}.kn-home-sale-time strong{font-size:16px}.kn-home-sale-clock{gap:4px}}
+@media(prefers-reduced-motion:reduce){.kn-home-sale{animation:none}}
 
     .kn-seasonal-note { margin:2px 0 0; color:#8c9aa9; font-size:10px; line-height:1.45; }
     .feature-list { list-style: none; margin: 0 0 28px; padding: 0; flex: 1; }
@@ -1552,17 +1551,7 @@
   function updateKnSaleCountdown(){
     const remaining = KN_SALE_END_AT - Date.now();
     if(remaining <= 0){
-      if(knSaleTimer){
-        knSaleTimer.classList.add("is-expired");
-        const copy=knSaleTimer.querySelector(".kn-home-sale-copy");
-        if(copy){
-          copy.querySelector(".kn-home-sale-kicker").textContent="Promotion Ended";
-          copy.querySelector("h2").textContent="The 30% Discount Has Ended";
-          copy.querySelector("p").textContent="Original package prices now apply.";
-        }
-        knSaleTimer.querySelectorAll("[data-sale-days],[data-sale-hours],[data-sale-minutes],[data-sale-seconds]").forEach(el=>el.textContent="00");
-        const cta=knSaleTimer.querySelector(".kn-home-sale-cta");if(cta)cta.hidden=true;
-      }
+      if(knSaleTimer){knSaleTimer.hidden=true;knSaleTimer.setAttribute("aria-hidden","true");}
       document.querySelectorAll(".kn-seasonal-price").forEach(block=>{
         const original=block.querySelector(".kn-original-price");
         const current=block.querySelector(".kn-discounted-price");
