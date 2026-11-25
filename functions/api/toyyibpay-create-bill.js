@@ -111,11 +111,12 @@ export async function onRequestPost({request,env}){
       VALUES(?,?,?,?,?,?,?,?, 'pending',1,?,CURRENT_TIMESTAMP)`).bind(id,externalRef,isWorkshop?"custom-workshop":rawPackageIds.join(","),packageName,amount,name,email,phone,input.termsVersion).run();
   }catch{return json({error:"Unable to save the ToyyibPay order. Please try again."},500);}
   const locale=input.locale==="MS"?"MS":"EN";
+  const primaryPackageId=rawPackageIds[0]||input.packageId;
   const returnPage=isWorkshop
     ? (locale==="MS"?"https://kasuhanet.store/MS/Bengkel-Custom-WebSite-MS.html":"https://kasuhanet.store/custom-web-workshop-EN.html")
-    : input.packageId==="termux-linux-full-setup"
+    : primaryPackageId==="termux-linux-full-setup"
       ? (locale==="MS"?"https://kasuhanet.store/MS/Termux-Linux-Full-Setup-MS.html":"https://kasuhanet.store/Termux-Linux-Full-Setup-EN.html")
-      : input.packageId==="dualstream-pro"
+      : primaryPackageId==="dualstream-pro"
       ? (locale==="MS"?"https://kasuhanet.store/MS/Terminal-Option_MS.html":"https://kasuhanet.store/Terminal-Option_EN.html")
       : (locale==="MS"?"https://kasuhanet.store/MS/Banner-WebSale-MS.html":"https://kasuhanet.store/Banner-WebSale-EN.html");
   const billName=("KasuhaNET_"+externalRef).slice(0,30);
