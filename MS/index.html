@@ -316,14 +316,14 @@
 .kn-home-sale h2{margin:3px 0;font-size:clamp(17px,2.2vw,22px);line-height:1.15;color:#f4fbff}
 .kn-home-sale p{margin:0;color:#aebdce;font-size:11px}
 .kn-home-sale-clock{display:flex;align-items:center;gap:5px;flex-wrap:nowrap}
-.kn-home-sale-time{display:grid;place-items:center;min-width:46px;padding:5px 5px;border:1px solid rgba(0,232,255,.34);border-radius:8px;background:rgba(0,220,255,.06);box-shadow:inset 0 0 10px rgba(0,220,255,.04)}
-.kn-home-sale-time strong{font-size:17px;line-height:1.05;color:#8ff7ff;font-variant-numeric:tabular-nums}
+.kn-home-sale-time{display:grid;place-items:center;width:42px;height:36px;padding:3px;border:1px solid rgba(0,232,255,.34);border-radius:8px;background:rgba(0,220,255,.06);box-shadow:inset 0 0 10px rgba(0,220,255,.04)}
+.kn-home-sale-time strong{font-size:18px;line-height:1;color:#8ff7ff;font-variant-numeric:tabular-nums}
 .kn-home-sale-time small{margin-top:2px;color:#9aabba;font-size:8px;letter-spacing:.5px;text-transform:uppercase}
 .kn-home-sale-cta{flex:0 0 auto;padding:8px 11px;border:1px solid rgba(0,240,255,.5);border-radius:8px;color:#9af8ff;text-decoration:none;font-size:10px;font-weight:900;white-space:nowrap;background:rgba(0,220,255,.08);transition:background .2s,box-shadow .2s}
 .kn-home-sale-cta:hover{background:rgba(0,220,255,.17);box-shadow:0 0 14px rgba(0,220,255,.16)}
 @keyframes knSaleBorder{0%{background-position:0% 50%}100%{background-position:100% 50%}}
 @media(max-width:760px){.kn-home-sale{margin:12px 14px 18px}.kn-home-sale-inner{flex-wrap:wrap;justify-content:center;gap:9px 12px;padding:10px 12px;text-align:center}.kn-home-sale-copy{flex:1 1 100%}.kn-home-sale-clock{justify-content:center}.kn-home-sale-cta{padding:7px 10px}}
-@media(max-width:390px){.kn-home-sale-time{min-width:41px;padding:4px 4px}.kn-home-sale-time strong{font-size:16px}.kn-home-sale-clock{gap:4px}}
+@media(max-width:390px){.kn-home-sale-time{width:38px;height:33px;padding:2px}.kn-home-sale-time strong{font-size:16px}.kn-home-sale-clock{gap:4px}}
 @media(prefers-reduced-motion:reduce){.kn-home-sale{animation:none}}
 
     .kn-seasonal-note { margin:2px 0 0; color:#8c9aa9; font-size:10px; line-height:1.45; }
@@ -982,10 +982,10 @@
       <p>Tempah pakej laman web sebelum promosi tamat dalam masa 3 hari</p>
     </div>
     <div class="kn-home-sale-clock" role="timer" aria-live="off" aria-label="Kiraan masa promosi">
-      <span class="kn-home-sale-time"><strong data-sale-days>03</strong><small>Hari</small></span>
-      <span class="kn-home-sale-time"><strong data-sale-hours>00</strong><small>Jam</small></span>
-      <span class="kn-home-sale-time"><strong data-sale-minutes>00</strong><small>Minit</small></span>
-      <span class="kn-home-sale-time"><strong data-sale-seconds>00</strong><small>Saat</small></span>
+      <span class="kn-home-sale-time"><strong data-sale-days>03</strong></span>
+      <span class="kn-home-sale-time"><strong data-sale-hours>00</strong></span>
+      <span class="kn-home-sale-time"><strong data-sale-minutes>00</strong></span>
+      <span class="kn-home-sale-time"><strong data-sale-seconds>00</strong></span>
     </div>
     <a class="kn-home-sale-cta" href="#pakej">Lihat Pakej ↗</a>
   </div>
