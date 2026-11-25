@@ -359,30 +359,28 @@ footer > * { position: relative; z-index: 1; }
 .dualstream-listing-view{display:inline-flex;align-items:center;justify-content:center;padding:10px 13px;border-radius:8px;background:linear-gradient(110deg,#4f31e8,#00aebf);color:#fff;text-decoration:none;font-size:12px;font-weight:900}
 .dualstream-cart-select{display:flex;align-items:center;gap:9px;color:#fff;font-size:13px;font-weight:800;cursor:pointer}
 .dualstream-cart-select input{width:19px;height:19px;accent-color:#00f0ff;cursor:pointer}
-.kn-command-cart{display:none;position:fixed;left:18px;bottom:96px;z-index:99990;width:min(360px,calc(100vw - 28px));padding:17px;border:1px solid rgba(0,240,255,.45);border-radius:14px;background:#111722;color:#fff;box-shadow:0 18px 55px rgba(0,0,0,.55)}
-.kn-command-cart.is-open{display:block}
-.kn-command-cart h3{margin:0 0 8px;color:#00f0ff;font-size:16px}
-.kn-command-cart p{margin:4px 0;color:#c4cad7;font-size:12px}
-.kn-command-cart-row{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:13px}
-.kn-command-cart-row strong{color:#25d366;white-space:nowrap}
-.kn-command-cart-actions{display:flex;gap:8px;margin-top:13px}
-.kn-command-cart-actions a,.kn-command-cart-actions button{flex:1;min-height:40px;display:flex;align-items:center;justify-content:center;border:0;border-radius:8px;padding:8px;background:linear-gradient(110deg,#4f31e8,#00bcd4);color:#fff;text-decoration:none;font-size:12px;font-weight:900;cursor:pointer}
-.kn-command-cart-actions button{background:#273044}
-.kn-command-cart-float{position:fixed;left:18px;bottom:18px;z-index:99991;display:none;align-items:center;gap:8px;min-height:58px;padding:12px 18px;border:2px solid #00f0ff;border-radius:999px;background:linear-gradient(120deg,#4f31e8,#00aebf);color:#fff;font-size:14px;font-weight:900;box-shadow:0 8px 32px rgba(0,0,0,.5);cursor:pointer;animation:knCommandCartPulse 1.2s ease-in-out infinite}
-.kn-command-cart-count{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 5px;border-radius:50%;background:#fff;color:#101722;font-size:11px}
-.kn-command-cart-float.is-visible{display:flex}\n@keyframes knCommandCartPulse{0%,100%{filter:brightness(1);transform:scale(1)}50%{filter:brightness(1.2);transform:scale(1.035)}}
-@media(prefers-reduced-motion:reduce){.kn-command-cart-float{animation:none}}
-</style>
+.kn-workshop-cart-items{display:grid;gap:8px;margin:14px 0}
+.kn-workshop-cart-item{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:12px}
+.kn-workshop-cart-name{color:#edf5ff}.kn-workshop-cart-item strong{color:#25d366;white-space:nowrap}
+.kn-workshop-remove{border:1px solid rgba(255,100,120,.35);border-radius:6px;padding:5px 8px;background:transparent;color:#ff9aa8;font-size:11px;cursor:pointer}
+.kn-workshop-empty{margin:8px 0;color:#aeb5c4;font-size:12px}
+.kn-workshop-cart{display:none;position:fixed;left:18px;bottom:96px;z-index:99990;width:min(390px,calc(100vw - 28px));max-height:min(70vh,560px);overflow:auto;margin:0;padding:18px;border:1px solid rgba(0,240,255,.45);border-radius:14px;background:#111722;color:#fff;box-shadow:0 18px 55px rgba(0,0,0,.55)}
+.kn-workshop-cart.is-open{display:block}
+.kn-workshop-float{display:none;position:fixed;left:18px;bottom:18px;z-index:99991;min-width:84px;min-height:84px;padding:15px 22px;border:2px solid rgba(0,240,255,.95);border-radius:999px;background:linear-gradient(120deg,#4f31e8,#00aebf);color:#fff;font-size:16px;font-weight:900;box-shadow:0 8px 32px rgba(0,0,0,.5);cursor:pointer;animation:knCartBlink 1.05s ease-in-out infinite}
+.kn-workshop-float.is-visible{display:flex;align-items:center;gap:9px}
+.kn-workshop-cart-icon{display:block;flex:0 0 25px;width:25px;height:25px}
+@keyframes knCartBlink{0%,100%{filter:brightness(1);transform:scale(1);box-shadow:0 8px 32px rgba(0,0,0,.5),0 0 0 0 rgba(0,240,255,.55)}50%{filter:brightness(1.35);transform:scale(1.045);box-shadow:0 8px 32px rgba(0,0,0,.5),0 0 0 11px rgba(0,240,255,0)}}
+@media(prefers-reduced-motion:reduce){.kn-workshop-float{animation:none}}
+.kn-workshop-float-count{display:inline-grid;place-items:center;min-width:23px;height:23px;padding:0 5px;border-radius:50%;background:#fff;color:#101722;font-size:11px}
+.kn-workshop-cart h3{margin:0 0 8px;color:#00f0ff;font-size:16px}
+.kn-workshop-cart p{margin:4px 0;color:#c4cad7;font-size:12px}
+.kn-workshop-cart-total{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0;color:#fff;font-weight:900}
+.kn-workshop-cart-total strong{color:#25d366;font-size:20px}
+.kn-workshop-pay{width:100%;min-height:46px;border:0;border-radius:8px;background:linear-gradient(110deg,#4f31e8,#00bcd4);color:#fff;font-weight:900;cursor:pointer}
+.kn-workshop-pay:disabled{opacity:.5;cursor:not-allowed}
+@media(max-width:600px){.kn-workshop-cart{padding:14px}}</style>
 
-<style id="kn-command-cart-hd-effects">
-.kn-command-cart{isolation:isolate;overflow:hidden}
-.kn-command-cart::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle at 15% 15%,rgba(0,210,255,.18),transparent 48%),radial-gradient(circle at 90% 90%,rgba(79,49,232,.18),transparent 48%);opacity:.9}
-.kn-command-cart.is-open{animation:knCommandCartMaterialize .48s cubic-bezier(.16,1,.3,1) both;box-shadow:0 18px 55px rgba(0,0,0,.55),0 0 28px rgba(0,210,255,.18)}
-.kn-command-cart>*:not(.kn-command-cart-particle-canvas){position:relative;z-index:2}
-.kn-command-cart-particle-canvas{position:absolute;inset:0;z-index:1;width:100%;height:100%;pointer-events:none;opacity:.8;mix-blend-mode:screen}
-@keyframes knCommandCartMaterialize{0%{opacity:0;transform:translateY(18px) scale(.96);filter:blur(5px)}100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
-@media(prefers-reduced-motion:reduce){.kn-command-cart.is-open{animation:none!important}.kn-command-cart-particle-canvas{display:none!important}}
-</style>
+
 <article class="dualstream-listing-card">
   <div class="dualstream-listing-preview" data-image-name="Terminal-Option_1.jpg" aria-label="Product image preview">
     <div class="dualstream-listing-preview-placeholder">
@@ -418,20 +416,14 @@ footer > * { position: relative; z-index: 1; }
 </main>
 
 
-<aside class="kn-command-cart" id="knCommandCart" aria-label="Shopping cart">
-  <h3>Shopping Cart</h3>
-  <p id="knCommandCartEmpty">Your cart is empty.</p>
-  <div class="kn-command-cart-row" id="knCartDualStreamRow" hidden><span>DualStreamPro</span><strong>RM 47.70</strong></div>
-  <div class="kn-command-cart-row" id="knCartTermuxRow" hidden><span>Termux Linux Full Setup</span><strong>RM 59.00</strong></div>
-  <div class="kn-command-cart-row" id="knCartTotalRow" hidden><span>Total</span><strong id="knCommandCartTotal">RM 0.00</strong></div>
-  <p id="knCartSeparateNote" hidden>Each product uses its own secure checkout. If both are selected, complete payment for each product separately.</p>
-  <div class="kn-command-cart-actions">
-    <a href="Terminal-Option_EN.html?checkout=1" id="knCartDualStreamPay" hidden>PAY DUALSTREAM</a>
-    <a href="/Termux-Linux-Full-Setup-EN.html?checkout=1" id="knCartTermuxPay" hidden>PAY TERMUX</a>
-    <button type="button" id="knCommandCartClose">CLOSE</button>
-  </div>
+<aside class="kn-workshop-cart" id="knCommandCart" aria-label="Shopping cart">
+  <h3>Shopping Cart</h3><p>Select the products you want and add them to your cart.</p>
+  <div id="knWorkshopCartItems" class="kn-workshop-cart-items" aria-live="polite"><p class="kn-workshop-empty">Your cart is empty.</p></div>
+  <div class="kn-workshop-cart-total"><span>Total</span><strong id="knCommandCartTotal">RM 0.00</strong></div>
+  <p id="knCommandCartCount" aria-live="polite">0 items</p>
+  <button class="kn-workshop-pay" id="knCommandCartCheckout" type="button" disabled>PROCEED TO CHECKOUT</button>
 </aside>
-<button class="kn-command-cart-float" id="knCommandCartToggle" type="button" aria-label="Open shopping cart">🛒 Cart <span class="kn-command-cart-count" id="knCommandCartCount">0</span></button>
+<button class="kn-workshop-float" id="knCommandCartToggle" type="button" aria-label="Open shopping cart"><svg class="kn-workshop-cart-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 4h2l2.1 10.1a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 1.9-1.4L22 8H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="20" r="1.5" fill="currentColor"/><circle cx="18" cy="20" r="1.5" fill="currentColor"/></svg><span>Cart</span><span class="kn-workshop-float-count" id="knCommandCartFloatCount">0</span></button>
 <script>
 (function(){
   // Product preview: fill only data-image-name with the image filename.
@@ -451,43 +443,23 @@ footer > * { position: relative; z-index: 1; }
 </script>
 <script>
 (function(){
-  const dual=document.getElementById("dualStreamCartCheck");
-  const termux=document.getElementById("termuxSetupCartCheck");
-  const cart=document.getElementById("knCommandCart");
-  const toggle=document.getElementById("knCommandCartToggle");
-  const count=document.getElementById("knCommandCartCount");
-  const empty=document.getElementById("knCommandCartEmpty");
-  const dualRow=document.getElementById("knCartDualStreamRow");
-  const termuxRow=document.getElementById("knCartTermuxRow");
-  const totalRow=document.getElementById("knCartTotalRow");
-  const total=document.getElementById("knCommandCartTotal");
-  const dualPay=document.getElementById("knCartDualStreamPay");
-  const termuxPay=document.getElementById("knCartTermuxPay");
-  const note=document.getElementById("knCartSeparateNote");
-  const cartCanvas=document.createElement("canvas");cartCanvas.className="kn-command-cart-particle-canvas";cartCanvas.setAttribute("aria-hidden","true");cart.prepend(cartCanvas);
-  const cartContext=cartCanvas.getContext("2d"),reduceCartMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let cartParticles=[],cartFrame=0,cartRunning=false,cartWidth=0,cartHeight=0;
-  function resizeCartParticles(){const b=cart.getBoundingClientRect(),dpr=Math.min(window.devicePixelRatio||1,1.5);cartWidth=b.width;cartHeight=b.height;cartCanvas.width=Math.max(1,Math.round(b.width*dpr));cartCanvas.height=Math.max(1,Math.round(b.height*dpr));cartContext.setTransform(dpr,0,0,dpr,0,0);cartParticles=Array.from({length:26},()=>({x:Math.random()*cartWidth,y:Math.random()*cartHeight,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*1.4+.5,a:Math.random()*.5+.2}));}
-  function drawCartParticles(){if(!cartRunning)return;cartContext.clearRect(0,0,cartWidth,cartHeight);for(let i=0;i<cartParticles.length;i++){const p=cartParticles[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=cartWidth;if(p.x>cartWidth)p.x=0;if(p.y<0)p.y=cartHeight;if(p.y>cartHeight)p.y=0;for(let j=i+1;j<cartParticles.length;j++){const q=cartParticles[j],d=Math.hypot(p.x-q.x,p.y-q.y);if(d<85){cartContext.beginPath();cartContext.moveTo(p.x,p.y);cartContext.lineTo(q.x,q.y);cartContext.strokeStyle="rgba(0,220,255,"+((1-d/85)*.16)+")";cartContext.stroke();}}cartContext.beginPath();cartContext.arc(p.x,p.y,p.r,0,Math.PI*2);cartContext.fillStyle="rgba(105,238,255,"+p.a+")";cartContext.shadowBlur=8;cartContext.shadowColor="rgba(0,220,255,.8)";cartContext.fill();}cartContext.shadowBlur=0;cartFrame=requestAnimationFrame(drawCartParticles);}
-  function openCart(){cart.classList.add("is-open");if(reduceCartMotion||cartRunning)return;resizeCartParticles();cartRunning=true;cartFrame=requestAnimationFrame(drawCartParticles);}
-  function closeCart(){cart.classList.remove("is-open");cartRunning=false;cancelAnimationFrame(cartFrame);}
-  window.addEventListener("resize",()=>{if(cartRunning)resizeCartParticles();},{passive:true});
-  function render(){
-    const hasDual=dual.checked,hasTermux=termux.checked,items=Number(hasDual)+Number(hasTermux),sum=(hasDual?47.70:0)+(hasTermux?59:0);
-    count.textContent=String(items);
-    toggle.classList.toggle("is-visible",items>0);
-    empty.hidden=items>0;
-    dualRow.hidden=!hasDual;termuxRow.hidden=!hasTermux;totalRow.hidden=items===0;
-    total.textContent="RM "+sum.toFixed(2);
-    dualPay.hidden=!hasDual;termuxPay.hidden=!hasTermux;
-    note.hidden=items<2;
-    if(items===0)closeCart();
-  }
-  [dual,termux].forEach(check=>check.addEventListener("change",()=>{render();if(check.checked)openCart();}));
-  toggle.addEventListener("click",()=>cart.classList.contains("is-open")?closeCart():openCart());
-  document.getElementById("knCommandCartClose").addEventListener("click",closeCart);
-  document.addEventListener("click",event=>{if(cart.classList.contains("is-open")&&!cart.contains(event.target)&&!toggle.contains(event.target))closeCart();});
-  render();
+ const dual=document.getElementById("dualStreamCartCheck"),termux=document.getElementById("termuxSetupCartCheck");
+ const cart=document.getElementById("knCommandCart"),toggle=document.getElementById("knCommandCartToggle");
+ const list=document.getElementById("knWorkshopCartItems"),total=document.getElementById("knCommandCartTotal");
+ const count=document.getElementById("knCommandCartCount"),floatCount=document.getElementById("knCommandCartFloatCount"),checkout=document.getElementById("knCommandCartCheckout");
+ const products=[{check:dual,name:"DualStreamPro",price:47.70,url:"/Terminal-Option_EN.html?checkout=1"},{check:termux,name:"Termux Linux Full Setup",price:59,url:"/Termux-Linux-Full-Setup-EN.html?checkout=1"}];
+ const money=v=>new Intl.NumberFormat("en-MY",{style:"currency",currency:"MYR",minimumFractionDigits:2,maximumFractionDigits:2}).format(v);
+ function updateCart(){
+  const items=products.filter(p=>p.check.checked),sum=items.reduce((n,p)=>n+p.price,0);list.replaceChildren();
+  if(!items.length){const empty=document.createElement("p");empty.className="kn-workshop-empty";empty.textContent="Your cart is empty. Select a product above to add it.";list.append(empty);}
+  items.forEach(p=>{const row=document.createElement("div");row.className="kn-workshop-cart-item";const name=document.createElement("span");name.className="kn-workshop-cart-name";name.textContent=p.name;const price=document.createElement("strong");price.textContent=money(p.price);const remove=document.createElement("button");remove.type="button";remove.className="kn-workshop-remove";remove.textContent="Remove";remove.setAttribute("aria-label","Remove "+p.name+" from cart");remove.addEventListener("click",()=>{p.check.checked=false;updateCart();});row.append(name,price,remove);list.append(row);});
+  total.textContent=money(sum);count.textContent=items.length+" item(s) in cart";floatCount.textContent=String(items.length);checkout.disabled=!items.length;toggle.classList.toggle("is-visible",items.length>0);if(!items.length)cart.classList.remove("is-open");
+ }
+ [dual,termux].forEach(c=>c.addEventListener("change",()=>{updateCart();if(c.checked)cart.classList.add("is-open");}));
+ toggle.addEventListener("click",()=>cart.classList.toggle("is-open"));
+ document.addEventListener("click",e=>{if(cart.classList.contains("is-open")&&!cart.contains(e.target)&&!toggle.contains(e.target))cart.classList.remove("is-open");});
+ checkout.addEventListener("click",()=>{const items=products.filter(p=>p.check.checked);if(items.length===1)location.href=items[0].url;else if(items.length>1)alert("Please complete checkout for one product at a time. Remove one product from the cart, then proceed.");});
+ updateCart();
 })();;
 </script>
 
