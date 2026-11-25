@@ -421,9 +421,13 @@ footer > * { position: relative; z-index: 1; }
 <aside class="kn-command-cart" id="knCommandCart" aria-label="Shopping cart">
   <h3>Shopping Cart</h3>
   <p id="knCommandCartEmpty">Your cart is empty.</p>
-  <div class="kn-command-cart-row" id="knCommandCartItem" hidden><span>DualStreamPro</span><strong>RM 47.70</strong></div>
+  <div class="kn-command-cart-row" id="knCartDualStreamRow" hidden><span>DualStreamPro</span><strong>RM 47.70</strong></div>
+  <div class="kn-command-cart-row" id="knCartTermuxRow" hidden><span>Termux Linux Full Setup</span><strong>RM 59.00</strong></div>
+  <div class="kn-command-cart-row" id="knCartTotalRow" hidden><span>Total</span><strong id="knCommandCartTotal">RM 0.00</strong></div>
+  <p id="knCartSeparateNote" hidden>Each product uses its own secure checkout. If both are selected, complete payment for each product separately.</p>
   <div class="kn-command-cart-actions">
-    <a href="Terminal-Option_EN.html?checkout=1" id="knCommandCartView" hidden>PAY NOW</a>
+    <a href="Terminal-Option_EN.html?checkout=1" id="knCartDualStreamPay" hidden>PAY DUALSTREAM</a>
+    <a href="/Termux-Linux-Full-Setup-EN.html?checkout=1" id="knCartTermuxPay" hidden>PAY TERMUX</a>
     <button type="button" id="knCommandCartClose">CLOSE</button>
   </div>
 </aside>
@@ -447,13 +451,19 @@ footer > * { position: relative; z-index: 1; }
 </script>
 <script>
 (function(){
-  const check=document.getElementById("dualStreamCartCheck");
+  const dual=document.getElementById("dualStreamCartCheck");
+  const termux=document.getElementById("termuxSetupCartCheck");
   const cart=document.getElementById("knCommandCart");
   const toggle=document.getElementById("knCommandCartToggle");
   const count=document.getElementById("knCommandCartCount");
   const empty=document.getElementById("knCommandCartEmpty");
-  const item=document.getElementById("knCommandCartItem");
-  const pay=document.getElementById("knCommandCartView");
+  const dualRow=document.getElementById("knCartDualStreamRow");
+  const termuxRow=document.getElementById("knCartTermuxRow");
+  const totalRow=document.getElementById("knCartTotalRow");
+  const total=document.getElementById("knCommandCartTotal");
+  const dualPay=document.getElementById("knCartDualStreamPay");
+  const termuxPay=document.getElementById("knCartTermuxPay");
+  const note=document.getElementById("knCartSeparateNote");
   const cartCanvas=document.createElement("canvas");cartCanvas.className="kn-command-cart-particle-canvas";cartCanvas.setAttribute("aria-hidden","true");cart.prepend(cartCanvas);
   const cartContext=cartCanvas.getContext("2d"),reduceCartMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let cartParticles=[],cartFrame=0,cartRunning=false,cartWidth=0,cartHeight=0;
@@ -463,22 +473,22 @@ footer > * { position: relative; z-index: 1; }
   function closeCart(){cart.classList.remove("is-open");cartRunning=false;cancelAnimationFrame(cartFrame);}
   window.addEventListener("resize",()=>{if(cartRunning)resizeCartParticles();},{passive:true});
   function render(){
-    const selected=check.checked;
-    count.textContent=selected?"1":"0";
-    toggle.classList.toggle("is-visible",selected);
-    empty.hidden=selected;
-    item.hidden=!selected;
-    pay.hidden=!selected;
-    if(!selected)closeCart();
+    const hasDual=dual.checked,hasTermux=termux.checked,items=Number(hasDual)+Number(hasTermux),sum=(hasDual?47.70:0)+(hasTermux?59:0);
+    count.textContent=String(items);
+    toggle.classList.toggle("is-visible",items>0);
+    empty.hidden=items>0;
+    dualRow.hidden=!hasDual;termuxRow.hidden=!hasTermux;totalRow.hidden=items===0;
+    total.textContent="RM "+sum.toFixed(2);
+    dualPay.hidden=!hasDual;termuxPay.hidden=!hasTermux;
+    note.hidden=items<2;
+    if(items===0)closeCart();
   }
-  check.addEventListener("change",render);
+  [dual,termux].forEach(check=>check.addEventListener("change",()=>{render();if(check.checked)openCart();}));
   toggle.addEventListener("click",()=>cart.classList.contains("is-open")?closeCart():openCart());
   document.getElementById("knCommandCartClose").addEventListener("click",closeCart);
-  document.addEventListener("click",event=>{
-    if(cart.classList.contains("is-open")&&!cart.contains(event.target)&&!toggle.contains(event.target))closeCart();
-  });
+  document.addEventListener("click",event=>{if(cart.classList.contains("is-open")&&!cart.contains(event.target)&&!toggle.contains(event.target))closeCart();});
   render();
-})();
+})();;
 </script>
 
 <!-- FADE ANIMATION POPUP PREVIEW MODAL -->
