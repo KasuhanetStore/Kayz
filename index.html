@@ -879,6 +879,46 @@
       beTracker.t({hash:"bb61254b52574c67ef12fcc0d16132c2"});
     });
   </script>
+
+  <style id="kn-service-heading-fullwidth">
+    #servis > .container > .section-head {
+      width: 100vw;
+      max-width: none;
+      box-sizing: border-box;
+      margin: 0 0 36px calc(50% - 50vw);
+      padding: clamp(28px, 5vw, 58px) clamp(18px, 7vw, 100px);
+      border: 1px solid rgba(0, 240, 255, .28);
+      border-left: 0;
+      border-right: 0;
+      border-radius: 0;
+      background:
+        linear-gradient(110deg, rgba(5, 10, 22, .94), rgba(5, 18, 35, .82) 55%, rgba(8, 9, 20, .92)),
+        url("broadcast.png") center / cover no-repeat;
+      box-shadow: 0 10px 34px rgba(0, 0, 0, .24), inset 0 0 28px rgba(0, 220, 255, .06);
+    }
+    #servis > .container > .section-head h1 {
+      max-width: 1100px;
+      margin: 12px auto;
+      font-size: clamp(30px, 5vw, 58px);
+      line-height: 1.12;
+      letter-spacing: -1.2px;
+    }
+    #servis > .container > .section-head p {
+      max-width: 920px;
+      margin: 0 auto;
+      font-size: clamp(14px, 1.5vw, 17px);
+    }
+    @media (max-width: 580px) {
+      #servis > .container > .section-head {
+        padding: 30px 18px;
+      }
+      #servis > .container > .section-head h1 {
+        font-size: clamp(27px, 8vw, 36px);
+        letter-spacing: -.7px;
+      }
+    }
+  </style>
+
 </head>
 <body>
 <style>
