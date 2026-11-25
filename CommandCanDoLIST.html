@@ -294,6 +294,13 @@ footer > * { position: relative; z-index: 1; }
 .kn-template-header .dropdown-content.show{display:block}
 .kn-template-header .dropdown-content a{display:block;padding:9px 10px;border-radius:7px;white-space:nowrap}
 .kn-template-header .dropdown-content a:hover{background:rgba(255,48,79,.12)}
+.kn-template-header .kn-nav-dropdown{position:relative;color:#d8dbe4;font:14px Inter,Arial,Helvetica,sans-serif}
+.kn-template-header .kn-nav-dropdown summary{list-style:none;cursor:pointer;color:inherit;transition:color .18s ease}
+.kn-template-header .kn-nav-dropdown summary::-webkit-details-marker{display:none}
+.kn-template-header .kn-nav-dropdown summary:hover,.kn-template-header .kn-nav-dropdown[open] summary{color:#ff667d}
+.kn-template-header .kn-nav-menu{position:absolute;top:100%;left:0;min-width:190px;padding:8px;background:#10131c;border:1px solid rgba(255,255,255,.14);border-radius:10px;box-shadow:0 14px 30px rgba(0,0,0,.45)}
+.kn-template-header .kn-nav-menu a{display:block;padding:9px 10px;border-radius:7px;white-space:nowrap}
+.kn-template-header .kn-nav-menu a:hover{background:rgba(255,48,79,.12)}
 @media(max-width:850px){
  .kn-template-header .nav{min-height:70px;padding:10px 0;gap:12px}
  .kn-template-header .menu-toggle{display:inline-flex;align-items:center;justify-content:center}
@@ -304,6 +311,8 @@ footer > * { position: relative; z-index: 1; }
  .kn-template-header .nav-lang a{flex:1}
  .kn-template-header .btn-cyber-animated{width:100%;box-sizing:border-box}
  .kn-template-header .dropdown-content{position:static;width:100%;box-sizing:border-box;margin-top:7px}
+ .kn-template-header .kn-nav-dropdown{width:100%;padding:7px 0}
+ .kn-template-header .kn-nav-menu{position:static;width:100%;box-sizing:border-box;margin-top:7px}
 }
 @media(max-width:420px){.kn-template-header .container{width:calc(100% - 28px)}.kn-template-header .brand-logo{max-width:160px;max-height:56px}}
 </style>
