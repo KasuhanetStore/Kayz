@@ -1,4 +1,4 @@
-const ALLOWED_HOSTS = new Set(["kasuhanet.store", "www.kasuhanet.store"]);
+const ALLOWED_HOSTS = new Set(["kasuhanet.store", "www.kasuhanet.store", "kayz.pages.dev"]);
 async function verifyChatRecaptcha(token, env) {
   if (!env.RECAPTCHA_SECRET_KEY || typeof token !== "string" || token.length > 4096) return false;
   try {
