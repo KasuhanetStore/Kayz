@@ -41,7 +41,8 @@ const WORKSHOP_SERVICES = {
 
 const ALLOWED_HOSTS = new Set([
   "kasuhanet.store",
-  "www.kasuhanet.store"
+  "www.kasuhanet.store",
+  "kayz.pages.dev"
 ]);
 
 function json(data, status) {
