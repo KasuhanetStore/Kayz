@@ -1027,7 +1027,6 @@ footer > * { position: relative; z-index: 1; }
     .catch(error => console.error(error));
 </script>
 
-<script src="https://www.google.com/recaptcha/api.js?render=6Lcs9yUuAAAAAD15iECIUiJBQ5x1hp_c7BxuAIAi"></script>
 <script>
 (function(){
   "use strict";
@@ -1299,15 +1298,8 @@ footer > * { position: relative; z-index: 1; }
     error.style.display="none";
     try{
       const recaptchaToken = await new Promise((resolve, reject) => {
-        if (!window.grecaptcha) return reject(new Error("Security verification could not load. Please refresh and try again."));
-        window.grecaptcha.ready(async () => {
-          try {
-            resolve(await window.grecaptcha.execute("6Lcs9yUuAAAAAD15iECIUiJBQ5x1hp_c7BxuAIAi", { action: "workshop_checkout" }));
-          } catch {
-            reject(new Error("Security verification failed. Please try again."));
-          }
-        });
-      });
+        const recaptchaToken = window.KN_Turnstile?.getToken(document.getElementById("knWorkshopPaymentForm"));
+      if (!recaptchaToken) throw new Error("Please complete the security verification before continuing.");
       const response=await fetch(paymentMethod==="toyyibpay"?"/api/toyyibpay-create-bill":"/api/create-checkout",{
         method:"POST",
         headers:{"Content-Type":"application/json"},
@@ -1389,5 +1381,6 @@ footer > * { position: relative; z-index: 1; }
 })();
 </script>
   <script src="/js/inbox-chat-widget.js" defer></script>
+  <script src="/js/turnstile-widget.js" defer></script>
 </body>
 </html>
