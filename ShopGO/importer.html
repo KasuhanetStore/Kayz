@@ -29,37 +29,55 @@
 <label>Token import ShopGO (ditetapkan dalam Cloudflare Pages Environment Variables)</label>
 <input id="token" type="password" autocomplete="off" placeholder="Masukkan SHOPGO_IMPORT_TOKEN">
 <label>Margin keuntungan (%)</label><input id="margin" type="number" min="0" max="500" step="0.5" value="30">
-<label>Fail katalog JSON</label><input id="file" type="file" accept=".json,application/json">
+<label>Fail katalog JSON atau CSV</label><input id="file" type="file" accept=".json,.csv,text/csv,application/json">
 <div id="preview" class="status">Belum ada fail dipilih.</div>
 <button id="import" disabled>IMPORT PRODUK KE SHOPGO</button>
 <div id="result" class="status" aria-live="polite">Menunggu tindakan.</div>
 </section>
 <section class="panel">
 <h2>Format data yang diterima</h2>
-<p>Fail JSON perlu mengandungi array produk atau objek dengan medan <code>products</code>. Setiap produk boleh mengandungi <code>name</code>, <code>sku</code>, <code>image</code>/<code>image_url</code>, <code>price</code>/<code>wholesale_price</code>, <code>category</code>, <code>description</code> dan <code>stock</code>.</p>
+<p>Fail JSON perlu mengandungi array produk atau objek <code>products</code>. CSV boleh menggunakan tajuk lajur name, sku, wholesale_price, image_url, category, description dan stock. Setiap produk boleh mengandungi <code>name</code>, <code>sku</code>, <code>image</code>/<code>image_url</code>, <code>price</code>/<code>wholesale_price</code>, <code>category</code>, <code>description</code> dan <code>stock</code>.</p>
 </section>
 </main>
 <script>
 let products=[];
 const $=id=>document.getElementById(id);
+function parseCSV(text){
+  const rows=[];let row=[],field='',quoted=false;
+  for(let i=0;i<text.length;i++){
+    const ch=text[i],next=text[i+1];
+    if(ch==='"'&&quoted&&next==='"'){field+='"';i++;}
+    else if(ch==='"'){quoted=!quoted;}
+    else if(ch===','&&!quoted){row.push(field);field='';}
+    else if((ch==='\\n'||ch==='\\r')&&!quoted){if(ch==='\\r'&&next==='\\n')i++;row.push(field);if(row.some(v=>v.trim()))rows.push(row);row=[];field='';}
+    else field+=ch;
+  }
+  row.push(field);if(row.some(v=>v.trim()))rows.push(row);
+  if(rows.length<2)return [];
+  const headers=rows.shift().map(h=>h.replace(/^\\uFEFF/,'').trim().toLowerCase().replace(/[ -]+/g,'_'));
+  return rows.map(values=>Object.fromEntries(headers.map((h,i)=>[h,(values[i]||'').trim()])));
+}
 $('file').addEventListener('change',async e=>{
   products=[];$('import').disabled=true;$('preview').textContent='Membaca fail...';
   try{
-    const raw=JSON.parse(await e.target.files[0].text());
-    const rows=Array.isArray(raw)?raw:(Array.isArray(raw.products)?raw.products:[]);
+    const file=e.target.files[0];if(!file)throw new Error('Tiada fail dipilih');
+    const content=await file.text();
+    let rows;
+    if(file.name.toLowerCase().endsWith('.csv')) rows=parseCSV(content);
+    else {const raw=JSON.parse(content);rows=Array.isArray(raw)?raw:(Array.isArray(raw.products)?raw.products:[]);}
     products=rows.map((p,i)=>({
       sku:String(p.sku||p.product_code||p.code||('SH-'+(i+1))).trim(),
-      name:String(p.name||p.title||p.product_name||'').trim(),
+      name:String(p.name||p.title||p.product_name||p.product||'').trim(),
       description:String(p.description||p.details||'').trim(),
       image_url:String(p.image_url||p.image||p.photo||p.thumbnail||'').trim(),
-      wholesale_price:Number(p.wholesale_price??p.price??p.selling_price??0),
+      wholesale_price:Number(String(p.wholesale_price??p.price??p.selling_price??p.cost??'0').replace(/[^0-9.]/g,'')),
       category:String(p.category||p.category_name||'Mainan').trim(),
-      stock:Number(p.stock??p.quantity??0),
+      stock:Number(String(p.stock??p.quantity??'0').replace(/[^0-9.-]/g,''))||0,
       source_url:String(p.source_url||'https://sales-hero-b2b.web.app/#/all_products')
     })).filter(p=>p.name&&Number.isFinite(p.wholesale_price)&&p.wholesale_price>=0);
-    $('preview').textContent=products.length+' produk sah ditemui.\n\n'+products.slice(0,12).map((p,i)=>(i+1)+'. '+p.name+' | SKU '+p.sku+' | RM '+p.wholesale_price.toFixed(2)).join('\n')+(products.length>12?'\n... dan '+(products.length-12)+' lagi.':'');
+    $('preview').textContent=products.length+' produk sah ditemui.\\n\\n'+products.slice(0,12).map((p,i)=>(i+1)+'. '+p.name+' | SKU '+p.sku+' | RM '+p.wholesale_price.toFixed(2)).join('\\n')+(products.length>12?'\\n... dan '+(products.length-12)+' lagi.':'');
     $('import').disabled=!products.length;
-  }catch(err){$('preview').textContent='Fail JSON tidak sah: '+err.message;}
+  }catch(err){$('preview').textContent='Fail tidak sah atau format tidak disokong: '+err.message;}
 });
 $('import').addEventListener('click',async()=>{
   const token=$('token').value.trim();if(!token){$('result').textContent='Masukkan token import dahulu.';return;}
