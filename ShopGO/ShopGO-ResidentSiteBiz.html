@@ -377,10 +377,12 @@
                 <div class="text-4xl mb-2">🚗</div><h3 class="font-toon text-xl font-bold">Mainan Kawalan Jauh</h3>
             </div>
         </div>
-        <div class="bg-white border-4 border-toon-ink rounded-[2rem] p-8 sm:p-12 text-center shadow-toon-xl">
-            <div class="text-5xl mb-4">📦</div>
-            <h3 class="font-toon text-2xl sm:text-3xl font-bold text-toon-ink mb-3">Katalog Sedang Dikemaskini</h3>
-            <p class="font-bold text-gray-600 max-w-2xl mx-auto">Kami sedang menyusun pilihan produk dan butiran bekalan. Produk hanya akan dipaparkan apabila maklumat, harga dan ketersediaan stok telah disahkan.</p>
+        <div id="shopgo-product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="col-span-full bg-white border-4 border-toon-ink rounded-[2rem] p-8 sm:p-12 text-center shadow-toon-xl">
+                <div class="text-5xl mb-4">📦</div>
+                <h3 class="font-toon text-2xl sm:text-3xl font-bold text-toon-ink mb-3">Katalog Sedang Dikemaskini</h3>
+                <p class="font-bold text-gray-600 max-w-2xl mx-auto">Produk pembekal akan dipaparkan di sini selepas diimport dan disahkan.</p>
+            </div>
         </div>
     </section>
 
@@ -427,5 +429,20 @@
     </footer>
 
     <!-- Katalog produk akan diaktifkan selepas data pembekal disahkan. -->
+<script>
+(async function loadShopGOCatalog(){
+ const grid=document.getElementById('shopgo-product-grid');if(!grid)return;
+ try{
+  const response=await fetch('/api/shopgo-products',{cache:'no-store'});if(!response.ok)throw new Error('catalog unavailable');
+  const data=await response.json(),items=Array.isArray(data.products)?data.products:[];
+  if(!items.length)return;
+  grid.innerHTML=items.map(p=>{
+   const img=p.image_url?'<img src="'+String(p.image_url).replace(/&/g,'&amp;').replace(/"/g,'&quot;')+'" alt="" loading="lazy" class="w-full h-52 object-contain bg-white rounded-xl">':'<div class="w-full h-52 grid place-items-center bg-toon-cream rounded-xl text-5xl">🧸</div>';
+   const safe=v=>String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+   return '<article class="toon-card bg-white rounded-3xl p-4 flex flex-col gap-3">'+img+'<div class="flex-1"><span class="text-xs font-extrabold uppercase text-gray-500">'+safe(p.category)+'</span><h3 class="font-toon text-xl font-bold mt-1">'+safe(p.name)+'</h3><p class="text-xs font-bold text-gray-500 mt-1">SKU: '+safe(p.sku)+'</p></div><div class="flex items-center justify-between gap-2"><strong class="font-toon text-2xl">RM '+Number(p.sale_price||0).toFixed(2)+'</strong><span class="text-xs font-extrabold text-green-700">Stok: '+Number(p.stock||0)+'</span></div></article>';
+  }).join('');
+ }catch(e){console.warn('ShopGO catalogue:',e);}
+})();
+</script>
 </body>
 </html>
