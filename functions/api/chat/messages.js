@@ -1,5 +1,5 @@
 import { ensureAILearningTables, getApprovedAIKnowledge, recordAIExperience } from '../ai-learning.js';
-const ALLOWED_HOSTS = new Set(["kasuhanet.store", "www.kasuhanet.store"]);
+const ALLOWED_HOSTS = new Set(["kasuhanet.store", "www.kasuhanet.store", "kayz.pages.dev"]);
 function json(data,status=200){return new Response(JSON.stringify(data),{status,headers:{"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"}});}
 function cleanAIText(value){return String(value||"").replace(/\\([*_`~])/g,"$1").replace(/\*\*(.*?)\*\*/gs,"$1").replace(/[ \t]{2,}/g," ").trim();}
 function allowed(request){
