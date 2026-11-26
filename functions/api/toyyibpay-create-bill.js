@@ -28,7 +28,7 @@ const WORKSHOP_SERVICES = {
   "page-design": { name: "Page Design Scripts (HTML/CSS/JS)", amount: 18000 }
 };
 const API = "https://toyyibpay.com/index.php/api";
-const ALLOWED_HOSTS = new Set(["kasuhanet.store", "www.kasuhanet.store"]);
+const ALLOWED_HOSTS = new Set(["kasuhanet.store", "www.kasuhanet.store", "kayz.pages.dev"]);
 function json(data,status=200){return new Response(JSON.stringify(data),{status,headers:{"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"}});}
 async function ensureTermsColumns(db, table) {
   if (table !== "stripe_orders" && table !== "toyyibpay_orders") throw new Error("Invalid order table.");
