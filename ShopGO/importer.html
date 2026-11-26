@@ -18,6 +18,13 @@
 <p class="muted">Nota: versi pertama menggunakan fail JSON perantara kerana portal pembekal berada pada domain berasingan dan tidak membenarkan laman KasuhaNET membaca sesi log masuk secara terus.</p>
 </section>
 <section class="panel">
+<h2>Ekstrak terus daripada SalesHero</h2>
+<p>Selepas log masuk dan buka katalog SalesHero, jalankan bookmarklet ini pada halaman katalog. Ia membaca kad produk yang kelihatan dan memuat turun fail JSON untuk diimport di bawah.</p>
+<a id="extractor" href="#" style="display:inline-block;background:#00c8e8;color:#03111a;padding:12px 16px;border-radius:9px;font-weight:800;text-decoration:none">SALIN BOOKMARKLET EXTRACTOR</a>
+<p class="muted">Telefon: salin kod bookmarklet dan simpan sebagai URL bookmark baru. Desktop: simpan kod itu sebagai bookmark URL. Buka katalog SalesHero yang sudah log masuk, kemudian jalankan bookmark tersebut. Data yang tidak dapat dikenal pasti perlu disemak sebelum import.</p>
+<textarea id="bookmarklet" readonly></textarea>
+</section>
+<section class="panel">
 <h2>Langkah 2 · Semak dan import</h2>
 <label>Token import ShopGO (ditetapkan dalam Cloudflare Pages Environment Variables)</label>
 <input id="token" type="password" autocomplete="off" placeholder="Masukkan SHOPGO_IMPORT_TOKEN">
@@ -65,4 +72,11 @@ $('import').addEventListener('click',async()=>{
   }catch(err){$('result').textContent='Import gagal: '+err.message;}
   finally{$('import').disabled=false;}
 });
-</script></body></html>
+</script><script>
+(function(){
+ const code=`javascript:(()=>{const priceRx=/(?:RM|MYR)\\s*([0-9][0-9,]*(?:\\.[0-9]{1,2})?)/i;const skuRx=/(?:SKU|CODE|ITEM\\s*CODE|PRODUCT\\s*CODE)\\s*[:#-]?\\s*([A-Z0-9_-]{3,})/i;const clean=s=>String(s||'').replace(/\\s+/g,' ').trim();const seen=new Set(),products=[];for(const img of [...document.images]){if(!img.currentSrc&&!img.src)continue;let node=img;let chosen=null;for(let depth=0;depth<7&&node;depth++,node=node.parentElement){const text=clean(node.innerText||node.textContent);if(text.length<12||text.length>900)continue;const m=text.match(priceRx);if(m){chosen={text,price:Number(m[1].replace(/,/g,'')),image:img.currentSrc||img.src};break;}}if(!chosen||!Number.isFinite(chosen.price))continue;const lines=(chosen.text||'').split(/\\n+/).map(clean).filter(Boolean);let name=lines.find(x=>x.length>=4&&x.length<=130&&!priceRx.test(x)&&!skuRx.test(x)&&!/^(add to cart|buy now|view details|in stock|out of stock)$/i.test(x));if(!name)name=lines[0]||'Product';const skuMatch=chosen.text.match(skuRx);const key=(skuMatch?.[1]||name).toLowerCase();if(seen.has(key))continue;seen.add(key);const stockMatch=chosen.text.match(/(?:stock|qty|quantity)\\s*[:：]?\\s*(\\d+)/i);products.push({sku:skuMatch?.[1]||'SH-'+String(products.length+1).padStart(5,'0'),name,wholesale_price:chosen.price,image_url:chosen.image,category:'Mainan',stock:stockMatch?Number(stockMatch[1]):0,description:chosen.text.slice(0,1000),source_url:location.href});}if(!products.length){alert('Tiada kad produk dengan harga dan gambar dapat dikenal pasti. Cuba scroll katalog supaya produk dimuatkan, kemudian jalankan semula.');return;}const blob=new Blob([JSON.stringify({source:location.href,exported_at:new Date().toISOString(),products},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='saleshero-products.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1500);alert(products.length+' produk diekstrak. Muat naik saleshero-products.json ke KasuhaNET Product Importer.');})()`;
+ document.getElementById('bookmarklet').value=code;
+ document.getElementById('extractor').addEventListener('click',async e=>{e.preventDefault();try{await navigator.clipboard.writeText(code);e.currentTarget.textContent='BOOKMARKLET DISALIN';}catch{document.getElementById('bookmarklet').focus();document.getElementById('bookmarklet').select();document.execCommand('copy');e.currentTarget.textContent='BOOKMARKLET DISALIN';}});
+})();
+</script>
+</body></html>
