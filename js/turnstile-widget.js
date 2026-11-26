@@ -3,20 +3,28 @@
   const SITE_KEY="0x4AAAAAAGThYpCOsoizh7Te";
   let apiPromise=null;
   const states=new WeakMap();
+  const style=document.createElement("style");
+  style.textContent=".kn-turnstile-widget{display:flex;justify-content:center;align-items:center;min-height:65px;margin:14px 0;width:100%;overflow:visible}.kn-chat-turnstile{padding:4px 0 8px}";
+  document.head.appendChild(style);
   function loadApi(){
     if(window.turnstile)return Promise.resolve();
     if(apiPromise)return apiPromise;
     apiPromise=new Promise((resolve,reject)=>{
       let script=document.querySelector('script[data-kn-turnstile-api]');
+      const loaded=()=>window.turnstile?resolve():reject(new Error("Turnstile failed to initialise."));
+      const failed=()=>reject(new Error("Turnstile could not load. Please refresh and try again."));
       if(!script){
         script=document.createElement("script");
         script.src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
         script.async=true;script.defer=true;script.dataset.knTurnstileApi="1";
+        script.addEventListener("load",loaded,{once:true});
+        script.addEventListener("error",failed,{once:true});
         document.head.appendChild(script);
+      }else{
+        script.addEventListener("load",loaded,{once:true});
+        script.addEventListener("error",failed,{once:true});
+        if(window.turnstile)resolve();
       }
-      script.addEventListener("load",()=>window.turnstile?resolve():reject(new Error("Turnstile failed to initialise.")),{once:true});
-      script.addEventListener("error",()=>reject(new Error("Turnstile could not load. Please refresh and try again.")),{once:true});
-      if(window.turnstile)resolve();
     });
     return apiPromise;
   }
