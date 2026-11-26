@@ -4,16 +4,16 @@
     if (!window.KN_Turnstile) {
       await new Promise((resolve, reject) => {
         let script = document.querySelector('script[data-kn-turnstile-loader]');
+        if (window.KN_Turnstile) return resolve();
         if (!script) {
           script = document.createElement("script");
           script.src = "/js/turnstile-widget.js";
           script.async = true;
           script.dataset.knTurnstileLoader = "1";
-          document.head.appendChild(script);
         }
         script.addEventListener("load", resolve, { once: true });
         script.addEventListener("error", () => reject(new Error("Security verification could not load.")), { once: true });
-        if (window.KN_Turnstile) resolve();
+        if (!script.isConnected) document.head.appendChild(script);
       });
     }
     const widget = document.getElementById("knChatTurnstile");
