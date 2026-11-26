@@ -1337,8 +1337,7 @@ footer > * { position: relative; z-index: 1; }
     button.textContent=paymentMethod==="toyyibpay"?"MENYAMBUNG KE TOYYIBPAY...":"SEDANG MENYAMBUNG KE STRIPE...";
     error.style.display="none";
     try{
-      const recaptchaToken = await new Promise((resolve, reject) => {
-        const recaptchaToken = window.KN_Turnstile?.getToken(document.getElementById("knWorkshopPaymentForm"));
+      const recaptchaToken = window.KN_Turnstile?.getToken(document.getElementById("knWorkshopPaymentForm"));
       if (!recaptchaToken) throw new Error("Please complete the security verification before continuing.");
       const response=await fetch(paymentMethod==="toyyibpay"?"/api/toyyibpay-create-bill":"/api/create-checkout",{
         method:"POST",
