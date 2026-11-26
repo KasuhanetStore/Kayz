@@ -1,15 +1,15 @@
 const ALLOWED_HOSTS = new Set(["kasuhanet.store", "www.kasuhanet.store", "kayz.pages.dev"]);
 async function verifyChatRecaptcha(token, env) {
-  if (!env.RECAPTCHA_SECRET_KEY || typeof token !== "string" || token.length > 4096) return false;
+  if (!env.TURNSTILE_SECRET_KEY || typeof token !== "string" || token.length > 4096) return false;
   try {
-    const body = new URLSearchParams({ secret: env.RECAPTCHA_SECRET_KEY, response: token });
-    const response = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+    const body = new URLSearchParams({ secret: env.TURNSTILE_SECRET_KEY, response: token });
+    const response = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
       method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: body.toString()
     });
     if (!response.ok) return false;
     const result = await response.json();
     return result.success === true && result.action === "chat_start" &&
-      ALLOWED_HOSTS.has(result.hostname) && typeof result.score === "number" && result.score >= 0.5;
+      ALLOWED_HOSTS.has(result.hostname);
   } catch { return false; }
 }
 function json(data, status=200) {
