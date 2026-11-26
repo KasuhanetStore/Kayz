@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ShopGO Product Importer | KasuhaNET</title>
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#080d16;color:#e8f2fb;font:15px Arial,sans-serif}.wrap{max-width:980px;margin:32px auto;padding:18px}.panel{background:#101a29;border:1px solid #24445b;border-radius:16px;padding:20px;margin:14px 0}h1{font-size:26px;margin:0 0 8px;color:#65eaff}p{color:#a9bdce;line-height:1.55}label{display:block;font-size:13px;color:#b9d5e6;margin:12px 0 6px}input,textarea,button{font:inherit}input[type=text],input[type=password],input[type=number],textarea{width:100%;padding:12px;border:1px solid #31536a;border-radius:9px;background:#07111e;color:#fff}textarea{min-height:130px}button{border:0;border-radius:9px;padding:12px 16px;background:#00c8e8;color:#03111a;font-weight:800;cursor:pointer;margin:8px 8px 0 0}button.secondary{background:#23384b;color:#eaf7ff}button:disabled{opacity:.5;cursor:wait}.muted{font-size:12px;color:#8da7bb}.status{padding:12px;border-radius:9px;background:#07111e;margin-top:12px;white-space:pre-wrap}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:9px;border-bottom:1px solid #294257;text-align:left}th{color:#65eaff}code{color:#8cecff;overflow-wrap:anywhere}.step{display:flex;gap:10px;align-items:flex-start;margin:10px 0}.num{background:#00c8e8;color:#04111a;border-radius:50%;width:25px;height:25px;display:grid;place-items:center;font-weight:bold;flex:none}
+</style>
+</head>
+<body><main class="wrap">
+<h1>KasuhaNET · ShopGO Product Importer</h1>
+<p>Import katalog produk ke ShopGO. Akaun SalesHero kekal dalam browser pembekal; jangan masukkan password di sini.</p>
+<section class="panel">
+<h2>Langkah 1 · Ambil katalog SalesHero</h2>
+<div class="step"><span class="num">1</span><div>Buka portal SalesHero dan log masuk seperti biasa: <a href="https://sales-hero-b2b.web.app/#/all_products" target="_blank" rel="noopener" style="color:#65eaff">SalesHero B2B</a>.</div></div>
+<div class="step"><span class="num">2</span><div>Di halaman katalog, buka menu browser dan gunakan alat pembaca katalog yang telah disediakan oleh pentadbir. Pengekstrakan hanya membaca produk yang dipaparkan dalam sesi akaun anda.</div></div>
+<div class="step"><span class="num">3</span><div>Muat turun data produk sebagai fail JSON, kemudian pilih fail itu di bawah.</div></div>
+<p class="muted">Nota: versi pertama menggunakan fail JSON perantara kerana portal pembekal berada pada domain berasingan dan tidak membenarkan laman KasuhaNET membaca sesi log masuk secara terus.</p>
+</section>
+<section class="panel">
+<h2>Langkah 2 · Semak dan import</h2>
+<label>Token import ShopGO (ditetapkan dalam Cloudflare Pages Environment Variables)</label>
+<input id="token" type="password" autocomplete="off" placeholder="Masukkan SHOPGO_IMPORT_TOKEN">
+<label>Margin keuntungan (%)</label><input id="margin" type="number" min="0" max="500" step="0.5" value="30">
+<label>Fail katalog JSON</label><input id="file" type="file" accept=".json,application/json">
+<div id="preview" class="status">Belum ada fail dipilih.</div>
+<button id="import" disabled>IMPORT PRODUK KE SHOPGO</button>
+<div id="result" class="status" aria-live="polite">Menunggu tindakan.</div>
+</section>
+<section class="panel">
+<h2>Format data yang diterima</h2>
+<p>Fail JSON perlu mengandungi array produk atau objek dengan medan <code>products</code>. Setiap produk boleh mengandungi <code>name</code>, <code>sku</code>, <code>image</code>/<code>image_url</code>, <code>price</code>/<code>wholesale_price</code>, <code>category</code>, <code>description</code> dan <code>stock</code>.</p>
+</section>
+</main>
+<script>
+let products=[];
+const $=id=>document.getElementById(id);
+$('file').addEventListener('change',async e=>{
+  products=[];$('import').disabled=true;$('preview').textContent='Membaca fail...';
+  try{
+    const raw=JSON.parse(await e.target.files[0].text());
+    const rows=Array.isArray(raw)?raw:(Array.isArray(raw.products)?raw.products:[]);
+    products=rows.map((p,i)=>({
+      sku:String(p.sku||p.product_code||p.code||('SH-'+(i+1))).trim(),
+      name:String(p.name||p.title||p.product_name||'').trim(),
+      description:String(p.description||p.details||'').trim(),
+      image_url:String(p.image_url||p.image||p.photo||p.thumbnail||'').trim(),
+      wholesale_price:Number(p.wholesale_price??p.price??p.selling_price??0),
+      category:String(p.category||p.category_name||'Mainan').trim(),
+      stock:Number(p.stock??p.quantity??0),
+      source_url:String(p.source_url||'https://sales-hero-b2b.web.app/#/all_products')
+    })).filter(p=>p.name&&Number.isFinite(p.wholesale_price)&&p.wholesale_price>=0);
+    $('preview').textContent=products.length+' produk sah ditemui.\n\n'+products.slice(0,12).map((p,i)=>(i+1)+'. '+p.name+' | SKU '+p.sku+' | RM '+p.wholesale_price.toFixed(2)).join('\n')+(products.length>12?'\n... dan '+(products.length-12)+' lagi.':'');
+    $('import').disabled=!products.length;
+  }catch(err){$('preview').textContent='Fail JSON tidak sah: '+err.message;}
+});
+$('import').addEventListener('click',async()=>{
+  const token=$('token').value.trim();if(!token){$('result').textContent='Masukkan token import dahulu.';return;}
+  const margin=Math.max(0,Math.min(500,Number($('margin').value)||0));
+  $('import').disabled=true;$('result').textContent='Mengimport '+products.length+' produk...';
+  try{
+    const res=await fetch('/api/shopgo-import',{method:'POST',headers:{'Content-Type':'application/json','X-ShopGO-Import-Token':token},body:JSON.stringify({products,margin})});
+    const data=await res.json();if(!res.ok)throw new Error(data.error||'Import gagal');
+    $('result').textContent='Selesai. '+data.imported+' produk disimpan / dikemas kini.\nMargin: '+margin+'%\n'+(data.skipped?'Dilangkau: '+data.skipped:'');
+  }catch(err){$('result').textContent='Import gagal: '+err.message;}
+  finally{$('import').disabled=false;}
+});
+</script></body></html>
