@@ -1,31 +1,24 @@
 (function () {
   if (window.__KN_INBOX_WIDGET__) return;
-  const RECAPTCHA_SITE_KEY = "6Lcs9yUuAAAAAD15iECIUiJBQ5x1hp_c7BxuAIAi";
-  function getChatRecaptchaToken() {
-    return new Promise((resolve, reject) => {
-      const run = () => {
-        if (!window.grecaptcha) return reject(new Error("Security verification could not load."));
-        window.grecaptcha.ready(async () => {
-          try { resolve(await window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: "chat_start" })); }
-          catch { reject(new Error("Security verification failed. Please try again.")); }
-        });
-      };
-      if (window.grecaptcha) return run();
-      let script = document.querySelector('script[data-kn-recaptcha]');
-      if (!script) {
-        script = document.createElement("script");
-        script.src = "https://www.google.com/recaptcha/api.js?render=" + RECAPTCHA_SITE_KEY;
-        script.async = true;
-        script.defer = true;
-        script.dataset.knRecaptcha = "1";
-        script.onload = run;
-        script.onerror = () => reject(new Error("Security verification could not load."));
-        document.head.appendChild(script);
-      } else {
-        script.addEventListener("load", run, { once: true });
+  async function getChatTurnstileToken() {
+    if (!window.KN_Turnstile) {
+      await new Promise((resolve, reject) => {
+        let script = document.querySelector('script[data-kn-turnstile-loader]');
+        if (!script) {
+          script = document.createElement("script");
+          script.src = "/js/turnstile-widget.js";
+          script.async = true;
+          script.dataset.knTurnstileLoader = "1";
+          document.head.appendChild(script);
+        }
+        script.addEventListener("load", resolve, { once: true });
         script.addEventListener("error", () => reject(new Error("Security verification could not load.")), { once: true });
-      }
-    });
+        if (window.KN_Turnstile) resolve();
+      });
+    }
+    const widget = document.getElementById("knChatTurnstile");
+    if (!widget) throw new Error("Security verification is unavailable.");
+    return window.KN_Turnstile.waitForToken(widget, "chat_start");
   }
   window.__KN_INBOX_WIDGET__ = true;
 
@@ -151,6 +144,7 @@
       <div class="kn-inbox-id">CHAT ID <b id="knInboxChatId">Connecting...</b></div>
       <div class="kn-inbox-messages" id="knInboxMessages" aria-live="polite"></div>
     </div>
+    <div id="knChatTurnstile" class="kn-turnstile-widget kn-chat-turnstile" aria-label="Security verification"></div>
     <div class="kn-inbox-tools" hidden><button type="button" data-action="image">＋ ${copy.image}</button><button type="button" data-action="location">⌖ ${copy.location}</button><button type="button" data-action="voice">● ${copy.voice}</button><button type="button" class="kn-clear" data-action="clear">× ${copy.clear}</button></div>
     <form class="kn-inbox-compose">
       <input type="file" accept="image/*" capture="environment" hidden>
@@ -242,7 +236,7 @@
         localStorage.removeItem(storageKey);
         session=null;
       }
-      const recaptchaToken = await getChatRecaptchaToken();
+      const recaptchaToken = await getChatTurnstileToken();
       const response=await fetch("/api/chat/start",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({recaptchaToken})});
       const data=await response.json();
       if(!response.ok || !data.chatId || !data.sessionToken) throw new Error("Chat setup failed");
