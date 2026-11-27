@@ -1,0 +1,35 @@
+{
+  "project": "KasuhaNET Central Operations",
+  "workflow": "post-payment-gateway",
+  "steps": [
+    {
+      "step": 1,
+      "event": "payment_verified",
+      "action": "database_update",
+      "status": "paid"
+    },
+    {
+      "step": 2,
+      "event": "automation_trigger",
+      "action": "generate_invoice_and_receipt"
+    },
+    {
+      "step": 3,
+      "event": "customer_notification",
+      "action": "send_email_receipt",
+      "follow_up": "request_delivery_details"
+    },
+    {
+      "step": 4,
+      "event": "form_submission",
+      "action": "capture_customer_data",
+      "fields": ["name", "address", "order_ref"]
+    },
+    {
+      "step": 5,
+      "event": "order_fulfillment",
+      "action": "update_dashboard_queue",
+      "status": "ready_to_ship"
+    }
+  ]
+}
