@@ -14,13 +14,10 @@ const PACKAGES = {
   "termux-linux-full-setup": { name: "Termux Linux Full Setup", amount: 5900 }
 };
 
-const PROMOTION_END_AT = new Date("2026-11-28T14:19:22+08:00").getTime();
-
 function getCheckoutPackageAmount(packageId) {
   const item = PACKAGES[packageId];
   if (!item) return 0;
-  const promotionActive = Date.now() < PROMOTION_END_AT;
-  return promotionActive && (packageId === "landing-page" || packageId === "premium-standard")
+  return packageId === "landing-page" || packageId === "premium-standard"
     ? Math.round(item.amount * 0.7)
     : item.amount;
 }
@@ -154,7 +151,7 @@ export async function onRequestPost(context) {
 
   const isWorkshopOrder = selectedServices.length > 0;
   const isPackageBundle = selectedPackages.length > 1 && !isWorkshopOrder;
-  const hasSeasonalDiscount = Date.now() < PROMOTION_END_AT && !isWorkshopOrder && rawPackageIds.some(id => id === "landing-page" || id === "premium-standard");
+  const hasSeasonalDiscount = !isWorkshopOrder && rawPackageIds.some(id => id === "landing-page" || id === "premium-standard");
   const orderName = (isWorkshopOrder
     ? selectedServices.map(service => service.name).join(", ")
     : selectedPackages.map(item => item.name).join(" + ")) + (hasSeasonalDiscount ? " (Seasonal Sale 30% OFF)" : "");
