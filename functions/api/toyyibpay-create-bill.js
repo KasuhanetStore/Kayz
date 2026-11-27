@@ -4,10 +4,13 @@ const PACKAGES = {
   "dualstream-pro": { name: "DualStream Pro", amount: 4770 },
   "termux-linux-full-setup": { name: "Termux Linux Full Setup", amount: 5900 }
 };
+const PROMOTION_END_AT = new Date("2026-11-28T14:19:22+08:00").getTime();
+
 function getCheckoutPackageAmount(packageId) {
   const item = PACKAGES[packageId];
   if (!item) return 0;
-  return packageId === "landing-page" || packageId === "premium-standard"
+  const promotionActive = Date.now() < PROMOTION_END_AT;
+  return promotionActive && (packageId === "landing-page" || packageId === "premium-standard")
     ? Math.round(item.amount * 0.7)
     : item.amount;
 }
@@ -93,7 +96,7 @@ export async function onRequestPost({request,env}){
   const isWorkshop=services.length>0;
   const selected=selectedPackages[0];
   if(!isWorkshop && !selectedPackages.length) return json({error:"Please select a valid package or workshop service."},400);
-  const hasSeasonalDiscount=!isWorkshop && rawPackageIds.some(id=>id==="landing-page" || id==="premium-standard");
+  const hasSeasonalDiscount=Date.now()<PROMOTION_END_AT && !isWorkshop && rawPackageIds.some(id=>id==="landing-page" || id==="premium-standard");
   const amount=isWorkshop?services.reduce((n,x)=>n+x.amount,0):rawPackageIds.reduce((n,id)=>n+getCheckoutPackageAmount(id),0);
   const packageName=(isWorkshop?services.map(x=>x.name).join(", "):selectedPackages.map(x=>x.name).join(" + "))+(hasSeasonalDiscount?" (Seasonal Sale 30% OFF)":"");
   const name=typeof input.name==="string"?input.name.trim():"";
