@@ -17,6 +17,12 @@ Repository source for the KasuhaNET website deployed through Cloudflare Pages.
 | `template-text/` | Reusable page, footer and partner-credit templates |
 | `docs/` | Repository documentation, audits and the [WPOS master plan](docs/KASUHANET-WPOS-MASTER-PLAN.md) |
 
+## Development governance
+
+- GitHub Copilot must follow [repository instructions](.github/copilot-instructions.md).
+- The [Development Department Charter](docs/DEVELOPMENT-DEPARTMENT-CHARTER.md) defines authorised scope, protected systems, review gates and deployment restrictions.
+- Existing production systems are protected by default. A task-specific owner approval is required before changing any restricted system.
+
 ## Deployment safety
 
 - Treat `main` as the production source branch.
