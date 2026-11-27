@@ -15,7 +15,7 @@ Repository source for the KasuhaNET website deployed through Cloudflare Pages.
 | `functions/api/` | Cloudflare Pages Functions, including checkout and payment callbacks |
 | `php/` | Remaining legacy files, pending review |
 | `template-text/` | Reusable page, footer and partner-credit templates |
-| `docs/` | Repository and migration documentation |
+| `docs/` | Repository documentation, audits and the [WPOS master plan](docs/KASUHANET-WPOS-MASTER-PLAN.md) |
 
 ## Deployment safety
 
@@ -27,4 +27,6 @@ Repository source for the KasuhaNET website deployed through Cloudflare Pages.
 
 ## Migration notes
 
-See [Repository structure proposal](docs/REPOSITORY-STRUCTURE.md), [Migration audit](docs/REPOSITORY-MIGRATION-AUDIT.md), and [Asset reference check](docs/ASSET-REFERENCE-CHECK.md), and [Legacy file and security audit](docs/LEGACY-FILE-SECURITY-AUDIT.md) for the current safe-migration scope and findings.
+See [Repository structure proposal](docs/REPOSITORY-STRUCTURE.md), [Migration audit](docs/REPOSITORY-MIGRATION-AUDIT.md), [Asset reference check](docs/ASSET-REFERENCE-CHECK.md), and [Legacy file and security audit](docs/LEGACY-FILE-SECURITY-AUDIT.md) for the current safe-migration scope and findings.
+
+For website protection, maintenance priorities, module status and the ongoing implementation roadmap, use the [KasuhaNET WPOS Master Plan](docs/KASUHANET-WPOS-MASTER-PLAN.md).
